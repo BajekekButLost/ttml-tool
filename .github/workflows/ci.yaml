@@ -1,12 +1,12 @@
 name: CI
 
-# Checks every PR and every push to dev/main. Make "CI / check" a required
+# Checks every PR and every push to dev/main/next. Make "CI / check" a required
 # status check on dev and main so nothing lands without passing it.
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
   push:
-    branches: [dev, main]
+    branches: [dev, main, next]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
