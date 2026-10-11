@@ -3,16 +3,8 @@ import {
 	MeshGradientRenderer,
 } from "@applemusic-like-lyrics/react";
 import classNames from "classnames";
-import { atom, useAtomValue, useSetAtom } from "jotai";
-import {
-	type CSSProperties,
-	memo,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import {
@@ -25,10 +17,7 @@ import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	instantHighlightFadeAtom,
-	lyricWordFadeWidthAtom,
 	showFpsCounterAtom,
-	showRomanLinesAtom,
-	showTranslationLinesAtom,
 	vsyncAtom,
 } from "$/modules/settings/states/preview";
 import {
@@ -36,214 +25,11 @@ import {
 	projectIdentityAtom,
 	selectedLinesAtom,
 } from "$/states/main.ts";
-import type { LyricLine, LyricWord } from "$/types/ttml";
+import type { LyricLine } from "$/types/ttml";
 import styles from "./index.module.css";
-
-const displayTimeAtom = atom(0);
-
-/**
- * A registry to hold references to active word DOM elements.
- * This allows us to update the --progress CSS variable directly at high frequency
- * without triggering React re-renders.
- */
-const wordRegistry = new Map<
-	string,
-	{ el: HTMLSpanElement; word: LyricWord }
->();
-
-// A single word span - static version (no time subscription)
-const StaticWord = memo(({ word }: { word: LyricWord }) => (
-	<span className={styles.wordStatic}>{word.word}</span>
-));
-
-// A single word span - active version (subscribes to time at a lower frequency)
-const ActiveWord = memo(
-	({
-		word,
-		onWordClick,
-	}: {
-		word: LyricWord;
-		onWordClick: (t: number) => void;
-	}) => {
-		const currentTime = useAtomValue(displayTimeAtom);
-		const spanRef = useRef<HTMLSpanElement>(null);
-
-		const isWordActive =
-			currentTime >= word.startTime && currentTime <= word.endTime;
-		const isWordPast = currentTime > word.endTime;
-		const fadeWidth = useAtomValue(lyricWordFadeWidthAtom);
-
-		// Register the element for high-frequency direct DOM updates
-		useEffect(() => {
-			if (isWordActive && spanRef.current) {
-				wordRegistry.set(word.id || `${word.startTime}`, {
-					el: spanRef.current,
-					word,
-				});
-				return () => {
-					wordRegistry.delete(word.id || `${word.startTime}`);
-				};
-			}
-		}, [isWordActive, word]);
-
-		// Initial progress for the first render or when state changes
-		const progress = isWordActive
-			? Math.min(
-					Math.max(
-						(currentTime - word.startTime) / (word.endTime - word.startTime),
-						0,
-					),
-					1,
-				)
-			: isWordPast
-				? 1
-				: 0;
-		const progressPercent = (progress * 100).toFixed(2);
-		const wordStyle: CSSProperties &
-			Record<"--progress" | "--fade-width", string> = {
-			"--progress": `${progressPercent}%`,
-			"--fade-width": `${(fadeWidth * 20).toFixed(2)}px`, // Scale for visibility
-		};
-
-		return (
-			<span
-				ref={spanRef}
-				className={classNames(
-					styles.word,
-					isWordActive && styles.wordActive,
-					isWordPast && styles.wordPast,
-				)}
-				data-active={isWordActive}
-				style={wordStyle}
-				onClick={(e) => {
-					e.stopPropagation();
-					onWordClick(word.startTime);
-				}}
-			>
-				{word.word}
-			</span>
-		);
-	},
-);
-
-/**
- * A "line group" = one main line + any co-timed BG lines beneath it.
- */
-interface LineGroup {
-	main: LyricLine;
-	bg: LyricLine[];
-}
-
-const StaticLineGroup = memo(
-	({ group, isPast }: { group: LineGroup; isPast: boolean }) => (
-		<div
-			className={classNames(
-				styles.lineGroup,
-				isPast && styles.lineGroupPast,
-				group.main.isDuet && styles.lineGroupDuet,
-			)}
-		>
-			{/* Main / duet line */}
-			<div
-				className={classNames(
-					styles.line,
-					group.main.isDuet && styles.lineDuetR,
-				)}
-			>
-				<div className={styles.wordsContainer}>
-					{group.main.words.map((w) => (
-						<StaticWord key={w.id} word={w} />
-					))}
-				</div>
-			</div>
-			{/* BG lines */}
-			{group.bg.map((bgLine, i) => (
-				<div
-					key={bgLine.id || i}
-					className={classNames(
-						styles.line,
-						styles.lineBG,
-						bgLine.isDuet && styles.lineDuetR,
-					)}
-				>
-					<div className={styles.wordsContainer}>
-						{bgLine.words.map((w, wi) => (
-							<StaticWord key={w.id || wi} word={w} />
-						))}
-					</div>
-				</div>
-			))}
-		</div>
-	),
-);
-
-const ActiveLineGroup = memo(
-	({
-		group,
-		onWordClick,
-	}: {
-		group: LineGroup;
-		onWordClick: (t: number) => void;
-	}) => {
-		const showTranslation = useAtomValue(showTranslationLinesAtom);
-		const showRoman = useAtomValue(showRomanLinesAtom);
-		return (
-			<div
-				className={classNames(
-					styles.lineGroup,
-					styles.lineGroupActive,
-					group.main.isDuet && styles.lineGroupDuet,
-				)}
-			>
-				{/* Main / duet line */}
-				<div
-					className={classNames(
-						styles.line,
-						styles.lineActive,
-						group.main.isDuet && styles.lineDuetR,
-					)}
-				>
-					<div className={styles.wordsContainer}>
-						{group.main.words.map((w, i) => (
-							<ActiveWord key={w.id || i} word={w} onWordClick={onWordClick} />
-						))}
-					</div>
-					{showTranslation && group.main.translatedLyric && (
-						<span className={styles.extraLine}>
-							{group.main.translatedLyric}
-						</span>
-					)}
-					{showRoman && group.main.romanLyric && (
-						<span className={styles.extraLine}>{group.main.romanLyric}</span>
-					)}
-				</div>
-				{/* BG lines - also highlight when group is active */}
-				{group.bg.map((bgLine, i) => (
-					<div
-						key={bgLine.id || i}
-						className={classNames(
-							styles.line,
-							styles.lineBG,
-							styles.lineBGActive,
-							bgLine.isDuet && styles.lineDuetR,
-						)}
-					>
-						<div className={styles.wordsContainer}>
-							{bgLine.words.map((w, wi) => (
-								<ActiveWord
-									key={w.id || wi}
-									word={w}
-									onWordClick={onWordClick}
-								/>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
-		);
-	},
-);
-
+import { ActiveLineGroup, StaticLineGroup } from "./LineGroups";
+import { groupAMLLLines, type LineGroup } from "./line-groups";
+import { displayTimeAtom, wordRegistry } from "./word-registry";
 export const AMLLWrapper = memo(
 	({ variant }: { variant?: "standard" | "toxi" }) => {
 		const isToxi = variant === "toxi";
@@ -312,26 +98,7 @@ export const AMLLWrapper = memo(
 		// This is guaranteed by the TTML→AMLL converter (amll-converter.ts line 149-156).
 		// So we just scan in order and attach BG lines to the preceding main line.
 		const lineGroups = useMemo((): LineGroup[] => {
-			const sorted = [...lyrics.lyricLines].sort(
-				(a, b) => a.startTime - b.startTime,
-			);
-			const groups: LineGroup[] = [];
-
-			for (let i = 0; i < sorted.length; i++) {
-				const line = sorted[i];
-				if (line.isBG) {
-					// Attach to the last group if one exists
-					if (groups.length > 0) {
-						groups[groups.length - 1].bg.push(line);
-					} else {
-						groups.push({ main: line, bg: [] });
-					}
-				} else {
-					groups.push({ main: line, bg: [] });
-				}
-			}
-
-			return groups;
+			return groupAMLLLines(lyrics.lyricLines);
 		}, [lyrics.lyricLines]);
 
 		const activeLineIdsSet = useMemo(
