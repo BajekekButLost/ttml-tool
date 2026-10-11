@@ -84,7 +84,8 @@ export const LyricWordView: FC<
 		prev.wordAtom === next.wordAtom &&
 		prev.wordIndex === next.wordIndex &&
 		prev.lineIndex === next.lineIndex &&
-		prev.line.id === next.line.id,
+		prev.line.id === next.line.id &&
+		prev.isHeaderLine === next.isHeaderLine,
 );
 
 export default LyricWordView;

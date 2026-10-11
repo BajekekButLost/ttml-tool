@@ -67,11 +67,18 @@ export const useSyncWordEditing = ({
 			editLyricLines((state) => {
 				const targetLine = state.lyricLines.find((item) => item.id === line.id);
 				const targetWord = targetLine?.words[wordIndex];
-				if (targetWord) targetWord[field] = value;
+				if (!targetWord) return;
+				// Ruby parts have no romanization, so their edits always target the text.
+				if (rubyIndex >= 0) {
+					const ruby = targetWord.ruby?.[rubyIndex];
+					if (ruby) ruby.word = value;
+				} else {
+					targetWord[field] = value;
+				}
 			});
 			setEditingTextField(null);
 		},
-		[editLyricLines, line.id, wordIndex],
+		[editLyricLines, line.id, wordIndex, rubyIndex],
 	);
 
 	useEffect(() => {

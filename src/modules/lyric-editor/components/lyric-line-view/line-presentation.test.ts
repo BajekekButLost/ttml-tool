@@ -23,8 +23,8 @@ describe("line presentation", () => {
 		expect(getHeaderType("[Unknown]", undefined)).toBe("accent");
 	});
 
-	it("preserves color matching and its existing precedence", () => {
-		for (const category of ["chorus", "refren", "refrain", "post-chorus"]) {
+	it("matches section colors, with post-chorus purple rather than chorus pink", () => {
+		for (const category of ["chorus", "refren", "refrain", "pre-chorus"]) {
 			expect(getCategoryColor(category)).toBe("pink");
 		}
 		for (const category of ["verse", "strofa", "couplet"]) {
@@ -32,6 +32,7 @@ describe("line presentation", () => {
 		}
 		expect(getCategoryColor("bridge")).toBe("orange");
 		expect(getCategoryColor("hook")).toBe("purple");
+		expect(getCategoryColor("post-chorus")).toBe("purple");
 		expect(getCategoryColor("instrumental")).toBe("green");
 		expect(getCategoryColor("interlude")).toBe("gray");
 		expect(getCategoryColor("unknown")).toBe("accent");

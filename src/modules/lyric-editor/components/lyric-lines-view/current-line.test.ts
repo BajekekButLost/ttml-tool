@@ -22,10 +22,20 @@ describe("findCurrentLineIndex", () => {
 		expect(findCurrentLineIndex(lines, 300)).toBe(2);
 	});
 
-	it("preserves main-vocal priority during overlap for both focus settings", () => {
-		const lines = [line(100, 300, true), line(150, 350)];
-		expect(findCurrentLineIndex(lines, 200)).toBe(1);
+	it("prefers the active main line during overlap when focusing main lines", () => {
+		const lines = [line(100, 300), line(150, 350, true)];
+		expect(findCurrentLineIndex(lines, 200)).toBe(0);
+	});
+
+	it("follows the most recently started active line when not focusing main lines", () => {
+		const lines = [line(100, 300), line(150, 350, true)];
 		expect(findCurrentLineIndex(lines, 200, false)).toBe(1);
+		expect(
+			findCurrentLineIndex([line(100, 300, true), line(150, 350)], 200, false),
+		).toBe(1);
+		expect(
+			findCurrentLineIndex([line(100, 300), line(100, 300, true)], 200, false),
+		).toBe(0);
 	});
 
 	it("finds an active background line when no main line is active", () => {

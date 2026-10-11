@@ -41,8 +41,20 @@ export const findCurrentLineIndex = (
 			return activeBGIndex;
 		}
 	} else {
-		if (activeMainIndex !== -1) return activeMainIndex;
-		if (activeBGIndex !== -1) return activeBGIndex;
+		// Treat main and background lines equally: follow the active line that
+		// started most recently, which is the one being sung right now.
+		let latestIndex = -1;
+		for (let i = 0; i < lines.length; i++) {
+			const line = lines[i];
+			if (
+				line.endTime > line.startTime &&
+				currentTime >= line.startTime &&
+				currentTime <= line.endTime &&
+				(latestIndex === -1 || line.startTime > lines[latestIndex].startTime)
+			)
+				latestIndex = i;
+		}
+		if (latestIndex !== -1) return latestIndex;
 	}
 
 	let previousIndex = -1;

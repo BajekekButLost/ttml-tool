@@ -206,6 +206,7 @@ export const LyricSyncWordView: FC<{
 		wordIndex,
 		lineIndex,
 		word,
+		rubyIndex,
 		editableField,
 		enableTimeModeDoubleClickEdit,
 		enableManualTimestampEdit,

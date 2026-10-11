@@ -27,6 +27,9 @@ export function getCategoryColor(
 	headerType: string,
 ): "accent" | "pink" | "blue" | "orange" | "purple" | "green" | "gray" {
 	if (!headerType) return "accent";
+	// Before the chorus check, which would otherwise also match "post-chorus".
+	if (headerType.includes("hook") || headerType.includes("post-chorus"))
+		return "purple";
 	if (
 		headerType.includes("chorus") ||
 		headerType.includes("refren") ||
@@ -41,8 +44,6 @@ export function getCategoryColor(
 		return "blue";
 	if (headerType.includes("bridge") || headerType.includes("break"))
 		return "orange";
-	if (headerType.includes("hook") || headerType.includes("post-chorus"))
-		return "purple";
 	if (headerType.includes("solo") || headerType.includes("instrumental"))
 		return "green";
 	if (
