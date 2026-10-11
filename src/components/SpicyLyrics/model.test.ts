@@ -4,6 +4,7 @@ import {
 	buildSpicyLines,
 	groupSpicyTokens,
 	isRtl,
+	keyFor,
 	type SpicyToken,
 	type SpicyWordGroup,
 } from "./model";
@@ -26,6 +27,37 @@ const token = (
 
 const flatten = (groups: SpicyWordGroup[]) =>
 	groups.flatMap((group) => group.items);
+
+describe("Spicy conversion ownership", () => {
+	it("does not mutate TTML input and preserves token keys across repeated conversion", () => {
+		const word = {
+			...newLyricWord(),
+			id: "word",
+			word: "Hi",
+			startTime: 100,
+			endTime: 600,
+		};
+		const line = {
+			...newLyricLine(),
+			id: "line",
+			startTime: 100,
+			endTime: 600,
+			words: [word],
+		};
+		const input = [line];
+		const snapshot = structuredClone(input);
+		const first = buildSpicyLines(input, false, false)[0];
+		const second = buildSpicyLines(input, false, false)[0];
+		expect(input).toEqual(snapshot);
+		expect(keyFor(first, first.words[0], 0)).toBe("line:word:0");
+		expect(keyFor(second, second.words[0], 0)).toBe(
+			keyFor(first, first.words[0], 0),
+		);
+		expect(keyFor(first, first.words[0], 1)).not.toBe(
+			keyFor(first, first.words[0], 0),
+		);
+	});
+});
 
 describe("groupSpicyTokens", () => {
 	it("keeps complete words as separate layout items", () => {

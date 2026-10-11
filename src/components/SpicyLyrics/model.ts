@@ -278,3 +278,6 @@ export function buildSpicyLines(
 	}
 	return result;
 }
+
+export const keyFor = (line: SpicyLine, word: SpicyToken, index: number) =>
+	`${line.id}:${word.id}:${index}`;
