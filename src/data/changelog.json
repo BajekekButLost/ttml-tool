@@ -1,5 +1,157 @@
 [
 	{
+		"version": "0.11.0",
+		"summary": "Exact audio playback",
+		"color": "iris",
+		"date": "2026-10-11",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "Exact playback and seeking for every audio format",
+				"body": "Audio now plays from the decoded file, so seeking and sync keys land on the exact time in any format, including VBR MP3s that used to be off by up to 2 seconds. The MP3 to FLAC conversion prompt is gone because it is no longer needed.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "More control over keyboard shortcuts",
+				"body": "Reset or clear individual shortcuts and see warnings about conflicts in the keybinding editor. Zoom, redo, and timeline Escape are remappable, and editor shortcuts stay out of the way while typing.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Find the right version of a song faster",
+				"body": "Online lyric search is prefilled from the audio's tags. LRCLIB results show their length, and versions that match your audio are badged and listed first.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "A simpler editor with fewer broken features",
+				"body": "Removed the AI sidebar, plugins, grammar checker, Developer tab, AMLL preview, AMLL database upload, experimental side toolbar, and empty menu commands. Spicy remains the lyric preview.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Better sounding slowdown",
+				"body": "Slowing playback down with **Keep pitch** on now uses SoundTouch, and auditions stop exactly at the end of the word at any speed.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Complete appearance presets and independent editor settings",
+				"body": "Appearance presets also save the font, interface scale, and background, with one glass blur setting. Edit and Time modes have separate auto-scroll and highlight settings.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Song info fills itself in",
+				"body": "Empty title, artist and album fields are filled from the audio's tags and from confirmed online imports. Values you typed are never replaced.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Preview skips lines without timing",
+				"body": "Untimed lines no longer pile up at 0:00 in the preview. A banner counts them and jumps to the first one in Time mode.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Clearer timing and a roomier editor",
+				"body": "Untimed timestamps look different from synced ones, the beginner guide shows how many words are timed, and empty translation and romanization rows only appear on the selected line.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Release notes and highlights stay together",
+				"body": "The changelog and What's New now share compiled release notes, so highlighted changes appear automatically when a release is prepared.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Consistent playback controls and ESLRC round trips",
+				"body": "Speed and volume stay in sync across the tool, with playback speed limited to 0.1–2x. Closing the latency test fully stops it, and exported ESLRC lyrics re-import correctly.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Selection and audition shortcuts behave correctly",
+				"body": "Ctrl+A selects without also deselecting, audition works for words at 0:00, and move-to-word-and-play shortcuts start playback.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Remapped shortcuts work reliably",
+				"body": "Shortcuts using Ctrl, Shift, or Alt now work, and Home and End can be recorded. Escape cancels shortcut recording, and arrow and bracket labels show their direction.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Faster editing in long songs",
+				"body": "Changing one word's timing only redraws that line instead of the whole lyric list.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Browsing online imports no longer renames your project",
+				"body": "The project is only renamed when you confirm an import, and only if it still has its default name. Importing into an empty editor no longer warns about unsaved changes.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Sync keys give the same time every press while paused",
+				"body": "Pressing a sync key while paused now uses the exact playhead and your sync offset, instead of a slightly different time on every press.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Text imports split words predictably",
+				"body": "Hidden, stale switches no longer change how imported text is split into words.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Default shortcuts no longer clash",
+				"body": "Audition uses Q/B/N instead of conflicting with S/W. Urban Dictionary uses Shift+F in both modes, and Auto Segment uses Shift+E.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Alt-drag gaps preview correctly",
+				"body": "Alt-dragging a word boundary in the spectrogram shows the new gap while dragging and no longer flips sides mid-drag.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Spectrogram ruler keeps its size",
+				"body": "The time ruler no longer grows on every redraw on high-DPI screens.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Imported syllables no longer keep trailing spaces",
+				"body": "Trailing spaces in imported TTML syllables are split into their own untimed word, so timed words stay clean and export keeps the spacing.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Long names fit in the history dialog",
+				"body": "Long project names and metadata values wrap instead of overflowing the restore dialog.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Open lyrics file and TTML export are easier to find",
+				"body": "Open buttons in the empty editor and guide say **Open lyrics file** and accept every format, and Export lists TTML first.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Notifications stay clickable over dialogs",
+				"body": "Buttons on notifications, like the update **Refresh** prompt, can be clicked while a dialog is open.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.10.4",
 		"summary": "Backup Restore, Sync Timing",
 		"color": "jade",
