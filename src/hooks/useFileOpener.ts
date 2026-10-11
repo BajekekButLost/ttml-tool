@@ -14,17 +14,9 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { uid } from "uid";
-import { audioEngine } from "$/modules/audio/audio-engine";
 import { getProjectList } from "$/modules/project/autosave/autosave";
-import { isSafeLinkedPath } from "$/modules/project/folder-project/manifest";
 import { maybePromptCreateProject } from "$/modules/project/folder-project/project-create";
-import {
-	activeProjectDirAtom,
-	pendingAudioFileAtom,
-	pendingAudioPathAtom,
-	pendingLyricSourceAtom,
-	projectAudioFileAtom,
-} from "$/modules/project/folder-project/state";
+import { pendingLyricSourceAtom } from "$/modules/project/folder-project/state";
 import { getSuggestedTtmlFileName } from "$/modules/project/logic/metadata-filename";
 import { isProjectMatch } from "$/modules/project/logic/project-match";
 import { parseLyric as parseTTML } from "$/modules/project/logic/ttml-parser";
@@ -45,8 +37,11 @@ import {
 	normalizeImportedLyricApostrophes,
 	normalizeImportedLyricCyrillicEs,
 } from "$/utils/apostrophe-normalization";
+import { AUDIO_EXTENSIONS } from "$/utils/audio-formats";
 import { log, error as logError } from "$/utils/logging";
 import { parseLrc } from "$/utils/parse-lrc";
+import { getDialogPath } from "./load-audio";
+import { useLoadAudio } from "./useLoadAudio";
 
 const LYRIC_PARSERS: Record<string, (text: string) => LyricLine[]> = {
 	lrc: parseLrc,
@@ -56,29 +51,9 @@ const LYRIC_PARSERS: Record<string, (text: string) => LyricLine[]> = {
 	lys: parseLys,
 };
 
-const getDialogPath = (file: File): string | null => {
-	const path = (file as File & { path?: unknown }).path;
-	return isSafeLinkedPath(path) ? path : null;
-};
-
-const AUDIO_EXTENSIONS = new Set([
-	"opus",
-	"flac",
-	"webm",
-	"weba",
-	"wav",
-	"ogg",
-	"m4a",
-	"oga",
-	"mid",
-	"mp3",
-	"aiff",
-	"wma",
-	"au",
-]);
-
 export const useFileOpener = () => {
 	const store = useStore();
+	const { openAudioFile } = useLoadAudio();
 	const setNewLyricLines = useSetAtom(newLyricLinesAtom);
 	const setProjectId = useSetAtom(projectIdAtom);
 	const setSaveFileName = useSetAtom(saveFileNameAtom);
@@ -113,35 +88,12 @@ export const useFileOpener = () => {
 		[],
 	);
 
-	const loadAudioFile = useCallback(
-		async (audio: File, originProjectDir: string | null) => {
-			store.set(pendingAudioFileAtom, audio);
-			await audioEngine.loadMusic(audio);
-			// Keep the folder project that started this load in sync so saving
-			// writes this file. Decoding can take a while, so skip it if
-			// the user switched to a different project (or none) in the meantime.
-			if (
-				originProjectDir &&
-				store.get(activeProjectDirAtom) === originProjectDir
-			) {
-				store.set(projectAudioFileAtom, audio);
-			}
-		},
-		[store],
-	);
-
 	const performOpenFileInner = useCallback(
 		async (file: File, forceExt?: string) => {
 			const rawExt = file.name.split(".").pop()?.toLowerCase() || "";
 			const ext = forceExt ? forceExt.toLowerCase() : rawExt;
-			const originProjectDir = store.get(activeProjectDirAtom);
 
 			try {
-				if (AUDIO_EXTENSIONS.has(ext)) {
-					await loadAudioFile(file, originProjectDir);
-					return;
-				}
-
 				let lyricData: TTMLLyric | null = null;
 				const text = await file.text();
 
@@ -209,6 +161,7 @@ export const useFileOpener = () => {
 							}
 						: null,
 				);
+				maybePromptCreateProject(store);
 			} catch (e) {
 				logError(`Failed to open file: ${file.name}`, e);
 				toast.error(t("error.openFileFailed", "打开文件失败"));
@@ -223,22 +176,7 @@ export const useFileOpener = () => {
 			normalizeApostrophesOnImport,
 			normalizeCyrillicEsOnImport,
 			store,
-			loadAudioFile,
 		],
-	);
-
-	const performOpenFile = useCallback(
-		async (file: File, forceExt?: string) => {
-			const rawExt = file.name.split(".").pop()?.toLowerCase() || "";
-			const ext = forceExt ? forceExt.toLowerCase() : rawExt;
-			if (AUDIO_EXTENSIONS.has(ext)) {
-				store.set(pendingAudioFileAtom, file);
-				store.set(pendingAudioPathAtom, getDialogPath(file));
-			}
-			await performOpenFileInner(file, forceExt);
-			maybePromptCreateProject(store);
-		},
-		[store, performOpenFileInner],
 	);
 
 	const openFile = useCallback(
@@ -248,13 +186,13 @@ export const useFileOpener = () => {
 		 * @param forceExt 可选参数，用于强制指定解析方式，不传入则从文件后缀名推断
 		 */
 		(file: File, forceExt?: string) => {
-			const run = () => performOpenFile(file, forceExt);
+			const run = () => performOpenFileInner(file, forceExt);
 
 			const rawExt = file.name.split(".").pop()?.toLowerCase() || "";
-			const finalExt = forceExt || rawExt;
+			const finalExt = forceExt?.toLowerCase() || rawExt;
 
 			if (AUDIO_EXTENSIONS.has(finalExt)) {
-				run();
+				void openAudioFile(file, forceExt);
 				return;
 			}
 
@@ -272,7 +210,7 @@ export const useFileOpener = () => {
 				run();
 			}
 		},
-		[isDirty, setConfirmDialog, t, performOpenFile],
+		[isDirty, setConfirmDialog, t, performOpenFileInner, openAudioFile],
 	);
 
 	return { openFile };

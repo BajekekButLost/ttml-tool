@@ -6,36 +6,41 @@ interface ParsedEvent {
 	index: number; // 用于保持同时间戳下的原始顺序
 }
 
-/**
- * 一个更好的 LRC 解析器，相比于上游的 LRC 解析器，支持丢弃空行、trim 歌词和自动检测翻译与音译行
- * @note 如果遇到相同时间戳的歌词行，第一行会作为主歌词行，第二行会作为翻译歌词，第三行会作为音译歌词
- * @param lrcContent LRC 字符串
- * @returns LyricLine 数组
- */
+// Include the seconds-only tags accepted by the old online-import stripper.
+const TIME_TAG = /\[(?:(\d+):)?(\d{1,2})(?:[.:](\d{1,3}))?\]/g;
+const METADATA_TAG = /\[(?:ar|ti|al|by|re|ve|length|offset):[^\]]*\]/gi;
+
+function readLrcRows(content: string) {
+	return content.split(/\r\n|\r|\n/).map((line) => ({
+		text: line.replace(TIME_TAG, "").replace(METADATA_TAG, "").trim(),
+		times: [...line.matchAll(TIME_TAG)].map(
+			(match) =>
+				Number(match[1] ?? 0) * 60000 +
+				Number(match[2]) * 1000 +
+				Number((match[3] ?? "").padEnd(3, "0")),
+		),
+	}));
+}
+
+/** Strip all time/metadata tags, keeping each source lyric row once. */
+export function lrcToPlainLyrics(content: string): string {
+	return readLrcRows(content)
+		.map((row) => row.text)
+		.filter(Boolean)
+		.join("\n");
+}
+
+/** Parse line timing; equal timestamps become main, translation, romanization. */
 export function parseLrc(lrcContent: string): LyricLine[] {
-	const lines = lrcContent.split(/\r?\n/);
 	const parsedEvents: ParsedEvent[] = [];
-
-	const timeTagRegex = /\[(\d{1,2}):(\d{1,2})(?:[.:](\d{1,3}))?\]/g;
-
+	const offsets = [...lrcContent.matchAll(/\[offset:([+-]?\d+)\]/gi)];
+	const offset = Number(offsets[offsets.length - 1]?.[1] ?? 0);
 	let globalIndex = 0;
-
-	for (const line of lines) {
-		const text = line.replace(timeTagRegex, "").trim();
-		const matches = line.matchAll(timeTagRegex);
-
-		for (const match of matches) {
-			const minutes = parseInt(match[1], 10);
-			const seconds = parseInt(match[2], 10);
-			const fractionStr = match[3] ? `0.${match[3]}` : "0";
-			const fraction = parseFloat(fractionStr);
-
-			const totalSeconds = minutes * 60 + seconds + fraction;
-			const totalMilliseconds = Math.round(totalSeconds * 1000);
-
+	for (const row of readLrcRows(lrcContent)) {
+		for (const time of row.times) {
 			parsedEvents.push({
-				time: totalMilliseconds,
-				text: text,
+				time: Math.max(0, time + offset),
+				text: row.text,
 				index: globalIndex++,
 			});
 		}

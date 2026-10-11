@@ -21,14 +21,13 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { useTopMenuActions } from "$/components/TopMenu/useTopMenuActions";
-import { useFileOpener } from "$/hooks/useFileOpener";
+import { useLoadAudio } from "$/hooks/useLoadAudio";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { currentDurationAtom } from "$/modules/audio/states";
 import {
 	ImportSourceCards,
 	type ImportSourceId,
 } from "$/modules/lyrics-import/components/ImportSourceCards";
-import { AUDIO_EXTS } from "$/modules/project/folder-project/audio-io";
 import exportTTMLText from "$/modules/project/logic/ttml-writer";
 import {
 	allowConsecutiveBackgroundLinesAtom,
@@ -50,7 +49,6 @@ import {
 	ToolMode,
 	toolModeAtom,
 } from "$/states/main";
-import { openFileWithDialog } from "$/utils/fileDialog";
 import { saveFile } from "$/utils/fileSystem";
 import {
 	GUIDE_STEP_IDS,
@@ -143,7 +141,7 @@ export const BeginnerGuide = () => {
 	const setToolMode = useSetAtom(toolModeAtom);
 	const setSettingsOpen = useSetAtom(settingsDialogAtom);
 	const setSettingsTab = useSetAtom(settingsTabAtom);
-	const { openFile } = useFileOpener();
+	const { loadAudio: pickAudio } = useLoadAudio();
 	const { onOpenFile } = useTopMenuActions();
 	const exitGuide = useSetAtom(exitBeginnerGuideAtom);
 	const timingProgress = getWordTimingProgress(lyrics);
@@ -221,19 +219,6 @@ export const BeginnerGuide = () => {
 		if (id === "export") return exported;
 		return false;
 	}, [duration, exported, lyrics, step]);
-
-	const pickAudio = useCallback(async () => {
-		const file = await openFileWithDialog({
-			multiple: false,
-			filters: [
-				{
-					name: "Audio",
-					extensions: [...AUDIO_EXTS],
-				},
-			],
-		});
-		if (file && !Array.isArray(file)) openFile(file);
-	}, [openFile]);
 
 	const openImportSource = useCallback(
 		(source: ImportSourceId) => {

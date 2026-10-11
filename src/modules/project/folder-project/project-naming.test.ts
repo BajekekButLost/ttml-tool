@@ -54,8 +54,8 @@ describe("pickFolderName", () => {
 });
 
 describe("toSafeFolderName", () => {
-	it("rejects unsafe or empty names", () => {
-		expect(toSafeFolderName("CON")).toBe("");
+	it("sanitizes reserved names and rejects empty names", () => {
+		expect(toSafeFolderName("CON")).toBe("_CON");
 		expect(toSafeFolderName("...")).toBe("");
 		expect(toSafeFolderName("a/b:c")).toBe("a_b_c");
 		expect(toSafeFolderName("../evil")).not.toContain("..");

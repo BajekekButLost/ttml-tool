@@ -7,13 +7,8 @@ import {
 
 const DOS_DEVICE_NAMES_REGEX = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\..*)?$/i;
 
-export function sanitizeFileName(name: string): string {
-	const cleaned = name
-		.replace(/[\\/:*?"<>|]/g, "_")
-		.replace(/\s+/g, " ")
-		.trim();
-	return cleaned.length > 0 ? cleaned : "Untitled";
-}
+// Compatibility export for existing project creation/saving callers.
+export { sanitizeFileName } from "../logic/file-names";
 
 function stripFileExtension(fileName: string): string {
 	const idx = fileName.lastIndexOf(".");

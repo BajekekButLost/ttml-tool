@@ -29,7 +29,7 @@ import {
 	useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { useFileOpener } from "$/hooks/useFileOpener.ts";
+import { useLoadAudio } from "$/hooks/useLoadAudio.ts";
 import { audioEngine } from "$/modules/audio/audio-engine.ts";
 import {
 	audioBufferAtom,
@@ -69,7 +69,6 @@ import {
 	showUnselectedLinesAtom,
 } from "$/states/main.ts";
 import { newLyricLine, newLyricWord } from "$/types/ttml.ts";
-import { openFileWithDialog } from "$/utils/fileDialog.ts";
 import { msToTimestamp } from "$/utils/timestamp.ts";
 import styles from "./AudioSpectrogram.module.css";
 import { FrequencyRuler } from "./FrequencyRuler.tsx";
@@ -129,7 +128,7 @@ export const AudioSpectrogram: FC = memo(() => {
 		const selection = store.get(spectrogramSelectionAtom);
 		const currentTimeMs = store.get(currentTimeAtom);
 
-		let newLines: any[] = [];
+		let newLines: typeof state.lyricLines = [];
 
 		if (selection) {
 			const totalDuration = selection.end - selection.start;
@@ -213,7 +212,7 @@ export const AudioSpectrogram: FC = memo(() => {
 				const anchorTime = selection ? selection.start : currentTimeMs;
 				// Find insertion point to keep sorted
 				let insertIndex = draft.lyricLines.findIndex(
-					(l: any) => l.startTime > anchorTime,
+					(l) => l.startTime > anchorTime,
 				);
 				if (insertIndex === -1) insertIndex = draft.lyricLines.length;
 
@@ -259,20 +258,7 @@ export const AudioSpectrogram: FC = memo(() => {
 
 	const rulerRef = useRef<TimelineRulerHandle>(null);
 
-	const { openFile } = useFileOpener();
-	const handleLoadMusic = useCallback(async () => {
-		const file = await openFileWithDialog({
-			multiple: false,
-			filters: [
-				{
-					name: "Audio",
-					extensions: ["mp3", "flac", "wav", "ogg", "m4a", "opus", "webm"],
-				},
-			],
-		});
-		if (!file || Array.isArray(file)) return;
-		openFile(file);
-	}, [openFile]);
+	const { loadAudio: handleLoadMusic } = useLoadAudio();
 
 	const { t } = useTranslation();
 
@@ -628,7 +614,7 @@ export const AudioSpectrogram: FC = memo(() => {
 											lyricLinesAtom,
 											produce((draft) => {
 												const line = draft.lyricLines.find(
-													(l: any) => l.id === draggingId,
+													(l) => l.id === draggingId,
 												);
 												if (!line) return;
 												line.startTime = Math.round(selection.start);
@@ -803,7 +789,7 @@ export const AudioSpectrogram: FC = memo(() => {
 									<SegmentedControl.Root
 										size="1"
 										value={fftSize.toString()}
-										onValueChange={(v) => setFftSize(Number.parseInt(v))}
+										onValueChange={(v) => setFftSize(Number.parseInt(v, 10))}
 									>
 										<SegmentedControl.Item value="512">
 											512

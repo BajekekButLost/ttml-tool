@@ -15,7 +15,7 @@ export const AUDIO_MIME_BY_EXT: Record<string, string> = {
 	opus: "audio/opus",
 };
 
-export const AUDIO_EXTS = new Set(Object.keys(AUDIO_MIME_BY_EXT));
+export { AUDIO_EXTENSIONS as AUDIO_EXTS } from "$/utils/audio-formats";
 export const MAX_AUDIO_BYTES = 150 * 1024 * 1024;
 
 export async function checkAudioFileSize(safePath: string): Promise<number> {

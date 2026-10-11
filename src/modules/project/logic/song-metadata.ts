@@ -1,4 +1,5 @@
 import type { TTMLMetadata } from "$/types/ttml";
+import { getSuggestedTtmlFileName } from "./metadata-filename";
 
 export interface SongMetadata {
 	title?: string;
@@ -63,8 +64,13 @@ export const getImportFileName = (current: string, song: SongMetadata) => {
 		current.trim()
 	)
 		return current;
-	const name = [song.artist, song.title]
-		.filter((value) => value?.trim())
-		.join(" - ");
-	return name ? `${name.replace(/[/\\?%*:|"<>]/g, "-").trim()}.ttml` : current;
+	return (
+		getSuggestedTtmlFileName(
+			[
+				{ key: "artists", value: [song.artist ?? ""] },
+				{ key: "musicName", value: [song.title ?? ""] },
+			],
+			{ allowPartial: true },
+		)?.fileName ?? current
+	);
 };

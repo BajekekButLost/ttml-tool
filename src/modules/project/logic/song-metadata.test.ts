@@ -77,12 +77,19 @@ describe("song metadata defaults", () => {
 	it("suggests safe import names only for default or untitled documents", () => {
 		const song = { artist: "Singer", title: "Track/Live" };
 		expect(getImportFileName("lyric.ttml", song)).toBe(
-			"Singer - Track-Live.ttml",
+			"Singer - Track_Live.ttml",
 		);
 		expect(getImportFileName("Untitled.ttml", song)).toBe(
-			"Singer - Track-Live.ttml",
+			"Singer - Track_Live.ttml",
 		);
 		expect(getImportFileName("My project.ttml", song)).toBe("My project.ttml");
 		expect(getImportFileName("lyric.ttml", {})).toBe("lyric.ttml");
+		expect(getImportFileName("lyric.ttml", { title: "CON" })).toBe("_CON.ttml");
+		expect(getImportFileName("lyric.ttml", { artist: "Björk" })).toBe(
+			"Björk.ttml",
+		);
+		expect(getImportFileName("lyric.ttml", { title: "100% Love" })).toBe(
+			"100% Love.ttml",
+		);
 	});
 });
