@@ -58,6 +58,7 @@ const settings: PresetSnapshotInput = {
 	vShadow: 0,
 	layoutOrder: ["titlebar", "ribbonbar", "editor", "audio-controls"],
 	legacyDarkTheme: false,
+	legacySpaceLabels: true,
 };
 
 describe("appearance preset snapshots", () => {
@@ -75,7 +76,6 @@ describe("appearance preset snapshots", () => {
 			...settings,
 			newPresetName: "Theme Name",
 			lastLoaded: "Another Theme",
-			legacySpaceLabels: true,
 		};
 		const before = structuredClone(input);
 		const snapshot = capturePresetSettings(input);

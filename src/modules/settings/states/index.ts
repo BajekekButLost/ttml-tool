@@ -418,6 +418,7 @@ export interface AppearancePresetSettings {
 	vBackdrop: number;
 	layoutOrder: string[];
 	legacyDarkTheme: boolean;
+	legacySpaceLabels: boolean;
 }
 
 export interface AppearancePreset {

@@ -31,6 +31,8 @@ export function createPresetActions({
 	setCustomGradientSize,
 	legacyDarkTheme,
 	setLegacyDarkTheme,
+	legacySpaceLabels,
+	setLegacySpaceLabels,
 	advWaveformColor,
 	setAdvWaveformColor,
 	advWaveformProgress,
@@ -177,6 +179,7 @@ export function createPresetActions({
 				vShadow,
 				layoutOrder,
 				legacyDarkTheme,
+				legacySpaceLabels,
 			}),
 		};
 		setPresets([...presets, newPreset]);
@@ -239,6 +242,8 @@ export function createPresetActions({
 			setCustomGradientSize(Number(s.customGradientSize));
 		if (s.legacyDarkTheme !== undefined)
 			setLegacyDarkTheme(!!s.legacyDarkTheme);
+		if (s.legacySpaceLabels !== undefined)
+			setLegacySpaceLabels(!!s.legacySpaceLabels);
 
 		// Advanced
 		if (s.advWaveformColor !== undefined)

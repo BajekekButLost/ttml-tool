@@ -55,6 +55,7 @@ export type PresetSnapshotInput = Pick<
 	| "vShadow"
 	| "layoutOrder"
 	| "legacyDarkTheme"
+	| "legacySpaceLabels"
 >;
 export function capturePresetSettings({
 	accentColor,
@@ -110,6 +111,7 @@ export function capturePresetSettings({
 	vShadow,
 	layoutOrder,
 	legacyDarkTheme,
+	legacySpaceLabels,
 }: PresetSnapshotInput): AppearancePreset["settings"] {
 	return {
 		// Basic & General
@@ -169,5 +171,6 @@ export function capturePresetSettings({
 		vShadow,
 		layoutOrder,
 		legacyDarkTheme,
+		legacySpaceLabels,
 	};
 }
