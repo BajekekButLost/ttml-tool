@@ -220,13 +220,11 @@
       "secondaryContent": "Secondary Content",
       "translatedLyric": "Translation",
       "romanLyric": "Romanization",
-      "layoutMode": "Layout",
       "auxiliaryLineDisplay": "Auxiliary Line Display",
       "previewPanel": "Preview Panel",
       "playbackTracking": "Tracking",
       "autoScroll": "Auto-Scroll",
-      "highlightActiveLine": "Highlight Line",
-      "syncTab": "Sync Tab"
+      "highlightActiveLine": "Highlight Line"
     },
     "previewMode": {
       "mode": "Mode",
@@ -242,11 +240,8 @@
       "lyrics": "Lyrics",
       "showTranslation": "Show Translation",
       "showRoman": "Show Romanization",
-      "word": "Word",
       "fadeWidth": "Fade Width",
       "instantFade": "Instant Fade Out",
-      "render": "Render",
-      "dev": "Dev",
       "showFps": "Show FPS"
     },
     "syncMode": {
@@ -265,7 +260,6 @@
       "manualTimestampEdit": "Manual Timestamp Editing",
       "doubleClickEdit": "Double-Click Word Editing",
       "displayOptions": "Display Options",
-      "wrapWords": "Wrap Words",
       "showTimestamps": "Show Timestamps",
       "highlightActiveWord": "Highlight Active Word",
       "enableGlowAnimation": "Enable Glow Animation",
@@ -282,8 +276,7 @@
       },
       "playbackTracking": "Tracking",
       "autoScroll": "Auto-Scroll",
-      "highlightActiveLine": "Highlight Line",
-      "syncTab": "Sync Tab"
+      "highlightActiveLine": "Highlight Line"
     },
     "loading": "Loading panel..."
   },
@@ -299,6 +292,7 @@
         "advance": "Advanced Mode"
       },
       "disabled": "Disabled",
+      "advancedRibbonControls": "Show advanced ribbon controls",
       "language": "Interface Language",
       "languageDesc": "Select the language for the interface",
       "helpTranslate": "Help translate this app",
@@ -488,7 +482,9 @@
       "timing": "Syncing",
       "timingHighlight": "Visual Timing Cue (Sync)",
       "playback": "Playback",
-      "autosave": "Auto Save"
+      "autosave": "Auto Save",
+      "previewControls": "Preview",
+      "editorControls": "Editor display & controls"
     },
     "assistant": {
       "manualTimestampEdit": "Manual Timestamp Editing",
@@ -563,6 +559,9 @@
       "paletteCustom": "Custom",
       "gradientEditorDesc": "A Pos value of 0.0 corresponds to the quietest part, and 1.0 corresponds to the loudest part. It is recommended to use brighter colors for larger Pos values.",
       "addStop": "Add Color Stop"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1256,5 +1255,10 @@
     "offlineReady": "Site successfully cached for offline use",
     "updateRefresh": "Site updated, refresh to use the latest version!",
     "refresh": "Refresh"
+  },
+  "export": {
+    "sectionReview": "Section review: {count, plural, one {# non-blocking issue} other {# non-blocking issues}}.",
+    "recoveryUntimed": "This recovery export contains untimed lyrics. Check timing before submitting.",
+    "recoveryReviewFailed": "Timing checks could not run. Review the recovered lyrics before submitting."
   }
 }

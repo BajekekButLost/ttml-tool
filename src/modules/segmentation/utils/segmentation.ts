@@ -1,3 +1,4 @@
+import { distributeTime as distributeUnitTimes } from "$/modules/lyric-editor/utils/distribute-time";
 /**
  * @description 分词引擎
  */
@@ -170,7 +171,7 @@ function postProcess(
 	tokens: string[],
 	config: SegmentationConfig,
 	context?: SegmentationContext,
-): { finalTokens: string[]; finalWeights: number[]; totalWeight: number } {
+): { finalTokens: string[]; finalWeights: number[] } {
 	const processedTokens: string[] = [];
 	const tokenWeights: number[] = [];
 
@@ -241,7 +242,6 @@ function postProcess(
 	// 权重计算
 	const finalTokens: string[] = [];
 	const finalWeights: number[] = [];
-	let totalWeight = 0;
 
 	for (let i = 0; i < processedTokens.length; i++) {
 		const token = processedTokens[i];
@@ -253,10 +253,9 @@ function postProcess(
 
 		finalTokens.push(token);
 		finalWeights.push(weight);
-		totalWeight += weight;
 	}
 
-	return { finalTokens, finalWeights, totalWeight };
+	return { finalTokens, finalWeights };
 }
 
 /**
@@ -264,63 +263,30 @@ function postProcess(
  * @param originalWord 原始的大词对象
  * @param tokens 切分后的文本数组
  * @param weights 对应的权重数组
- * @param totalWeight 总权重
  */
 function distributeTime(
 	originalWord: LyricWord,
 	tokens: string[],
 	weights: number[],
-	totalWeight: number,
 ): LyricWord[] {
 	if (tokens.length === 0) {
 		return [];
 	}
 	if (tokens.length === 1) {
-		return [{ ...originalWord, word: tokens[0] }];
+		return distributeUnitTimes(
+			[{ ...originalWord, word: tokens[0] }],
+			originalWord.startTime,
+			originalWord.endTime,
+			{ empty: "include" },
+		);
 	}
 
-	const totalDuration = originalWord.endTime - originalWord.startTime;
-	if (totalDuration <= 0) {
-		return tokens.map((token) => ({
-			...newLyricWord(),
-			word: token,
-			startTime: originalWord.startTime,
-			endTime: originalWord.endTime,
-		}));
-	}
-
-	if (totalWeight <= 0) {
-		return [];
-	}
-
-	const durationPerWeight = totalDuration / totalWeight;
-	const newWords: LyricWord[] = [];
-	let currentTokenStartMs = originalWord.startTime;
-
-	for (let i = 0; i < tokens.length; i++) {
-		const token = tokens[i];
-		const weight = weights[i];
-
-		const tokenDuration = Math.round(weight * durationPerWeight);
-		let tokenEndMs = currentTokenStartMs + tokenDuration;
-
-		if (i === tokens.length - 1) {
-			tokenEndMs = originalWord.endTime;
-		}
-
-		newWords.push({
-			...newLyricWord(),
-			word: token,
-			startTime: currentTokenStartMs,
-			endTime: tokenEndMs,
-		});
-
-		if (tokenEndMs > currentTokenStartMs) {
-			currentTokenStartMs = tokenEndMs;
-		}
-	}
-
-	return newWords;
+	return distributeUnitTimes(
+		tokens.map((token) => ({ ...newLyricWord(), word: token })),
+		originalWord.startTime,
+		originalWord.endTime,
+		{ weight: weights },
+	);
 }
 
 /**
@@ -336,12 +302,7 @@ export function segmentWord(
 		const weights = learnedSegments.map((token) =>
 			calculateLearnedWeight(token, config),
 		);
-		return distributeTime(
-			word,
-			learnedSegments,
-			weights,
-			weights.reduce((sum, weight) => sum + weight, 0),
-		);
+		return distributeTime(word, learnedSegments, weights);
 	}
 
 	const protectedWords = new Set([
@@ -353,12 +314,8 @@ export function segmentWord(
 	if (protectedWords.size === 0) {
 		const tokens = autoTokenize(word.word, config);
 		if (tokens.length === 0) return [];
-		const { finalTokens, finalWeights, totalWeight } = postProcess(
-			tokens,
-			config,
-			ctx,
-		);
-		return distributeTime(word, finalTokens, finalWeights, totalWeight);
+		const { finalTokens, finalWeights } = postProcess(tokens, config, ctx);
+		return distributeTime(word, finalTokens, finalWeights);
 	}
 
 	const sortedPatterns = Array.from(protectedWords)
@@ -369,12 +326,8 @@ export function segmentWord(
 	if (sortedPatterns.length === 0) {
 		const tokens = autoTokenize(word.word, config);
 		if (tokens.length === 0) return [];
-		const { finalTokens, finalWeights, totalWeight } = postProcess(
-			tokens,
-			config,
-			ctx,
-		);
-		return distributeTime(word, finalTokens, finalWeights, totalWeight);
+		const { finalTokens, finalWeights } = postProcess(tokens, config, ctx);
+		return distributeTime(word, finalTokens, finalWeights);
 	}
 
 	const pattern = new RegExp(`(${sortedPatterns.join("|")})`, "g");
@@ -383,7 +336,6 @@ export function segmentWord(
 
 	const allTokens: string[] = [];
 	const allWeights: number[] = [];
-	let grandTotalWeight = 0;
 
 	for (const part of parts) {
 		if (!part) continue;
@@ -395,27 +347,20 @@ export function segmentWord(
 				const weight = calculateWeight(token, config);
 				allTokens.push(token);
 				allWeights.push(weight);
-				grandTotalWeight += weight;
 			}
 		} else if (config.ignoreList.has(part)) {
 			const weight = calculateWeight(part, config);
 			allTokens.push(part);
 			allWeights.push(weight);
-			grandTotalWeight += weight;
 		} else {
 			const tokens = autoTokenize(part, config);
-			const { finalTokens, finalWeights, totalWeight } = postProcess(
-				tokens,
-				config,
-				ctx,
-			);
+			const { finalTokens, finalWeights } = postProcess(tokens, config, ctx);
 			allTokens.push(...finalTokens);
 			allWeights.push(...finalWeights);
-			grandTotalWeight += totalWeight;
 		}
 	}
 
-	return distributeTime(word, allTokens, allWeights, grandTotalWeight);
+	return distributeTime(word, allTokens, allWeights);
 }
 
 /**
@@ -464,7 +409,6 @@ export function recalculateWordTime(
 	config: SegmentationConfig,
 ): LyricWord[] {
 	const weights = segments.map((token) => calculateWeight(token, config));
-	const totalWeight = weights.reduce((sum, w) => sum + w, 0);
 
-	return distributeTime(originalWord, segments, weights, totalWeight);
+	return distributeTime(originalWord, segments, weights);
 }

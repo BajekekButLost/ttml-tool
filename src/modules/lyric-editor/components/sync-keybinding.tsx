@@ -1,6 +1,7 @@
 import { useStore } from "jotai";
 import { type FC, useCallback } from "react";
 import { audioEngine } from "$/modules/audio/audio-engine";
+import { distributeLineTime } from "$/modules/lyric-editor/utils/distribute-time";
 import {
 	findNextWord,
 	getCurrentLineLocation,
@@ -368,33 +369,15 @@ export const SyncKeyBinding: FC = () => {
 						) {
 							startTime = Math.max(0, currentTime - 1000);
 						}
-						const totalDuration = currentTime - startTime;
-						const lengths = units.map((u) =>
-							Math.max(1, (u.rubyWord?.word || u.word.word).trim().length),
+						const timedLine = distributeLineTime(
+							curLine,
+							startTime,
+							currentTime,
+							{ weight: "characters" },
 						);
-						const totalLength = lengths.reduce((a, b) => a + b, 0);
-
-						let currentStart = startTime;
-						for (let i = 0; i < units.length; i++) {
-							const duration = Math.round(
-								(lengths[i] / totalLength) * totalDuration,
-							);
-							const currentEnd =
-								i === units.length - 1 ? currentTime : currentStart + duration;
-							setUnitStartTimeCloned(
-								curLine,
-								units[i].wordIndex,
-								units[i].rubyIndex,
-								currentStart,
-							);
-							setUnitEndTimeCloned(
-								curLine,
-								units[i].wordIndex,
-								units[i].rubyIndex,
-								currentEnd,
-							);
-							currentStart = currentEnd;
-						}
+						curLine.words = timedLine.words;
+						curLine.startTime = timedLine.startTime;
+						curLine.endTime = timedLine.endTime;
 					}
 
 					const nextLineIndex = state.lyricLines
@@ -649,33 +632,15 @@ export const SyncKeyBinding: FC = () => {
 						) {
 							startTime = Math.max(0, currentTime - 1000);
 						}
-						const totalDuration = currentTime - startTime;
-						const lengths = units.map((u) =>
-							Math.max(1, (u.rubyWord?.word || u.word.word).trim().length),
+						const timedLine = distributeLineTime(
+							curLine,
+							startTime,
+							currentTime,
+							{ weight: "characters" },
 						);
-						const totalLength = lengths.reduce((a, b) => a + b, 0);
-
-						let currentStart = startTime;
-						for (let i = 0; i < units.length; i++) {
-							const duration = Math.round(
-								(lengths[i] / totalLength) * totalDuration,
-							);
-							const currentEnd =
-								i === units.length - 1 ? currentTime : currentStart + duration;
-							setUnitStartTimeCloned(
-								curLine,
-								units[i].wordIndex,
-								units[i].rubyIndex,
-								currentStart,
-							);
-							setUnitEndTimeCloned(
-								curLine,
-								units[i].wordIndex,
-								units[i].rubyIndex,
-								currentEnd,
-							);
-							currentStart = currentEnd;
-						}
+						curLine.words = timedLine.words;
+						curLine.startTime = timedLine.startTime;
+						curLine.endTime = timedLine.endTime;
 					}
 
 					nextLines[location.lineIndex] = curLine;

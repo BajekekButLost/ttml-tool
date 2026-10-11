@@ -1,3 +1,4 @@
+import { SettingToggle } from "$/modules/settings/components/WorkflowControls";
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -17,7 +18,6 @@ import {
 	Grid,
 	IconButton,
 	Popover,
-	RadioGroup,
 	Select,
 	Spinner,
 	Switch,
@@ -43,8 +43,6 @@ import { toast } from "react-toastify";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import {
 	displayRomanizationInSyncAtom,
-	LayoutMode,
-	layoutModeAtom,
 	showLineRomanizationAtom,
 	showLineTranslationAtom,
 	showWordRomanizationInputAtom,
@@ -52,7 +50,6 @@ import {
 import {
 	editActiveLineHighlightAtom,
 	editAutoScrollAtom,
-	editTabPositionAtom,
 } from "$/modules/settings/states/sync.ts";
 import {
 	editingTimeFieldAtom,
@@ -560,40 +557,6 @@ function CheckboxField<
 	);
 }
 
-function EditModeField({
-	simpleModeLabel = "简单模式",
-	advanceModeLabel = "高级模式",
-}) {
-	const [layoutMode, setLayoutMode] = useAtom(layoutModeAtom);
-	return (
-		<RadioGroup.Root
-			value={layoutMode}
-			onValueChange={(v) => setLayoutMode(v as LayoutMode)}
-			size="1"
-		>
-			<Flex gapY="3" direction="column">
-				<Text
-					wrap="nowrap"
-					size="1"
-					style={{ color: "var(--ribbon-label-color)" }}
-				>
-					<RadioGroup.Item value={LayoutMode.Simple}>
-						{simpleModeLabel}
-					</RadioGroup.Item>
-				</Text>
-				<Text
-					wrap="nowrap"
-					size="1"
-					style={{ color: "var(--ribbon-label-color)" }}
-				>
-					<RadioGroup.Item value={LayoutMode.Advance}>
-						{advanceModeLabel}
-					</RadioGroup.Item>
-				</Text>
-			</Flex>
-		</RadioGroup.Root>
-	);
-}
 // function DropdownField<
 // 	L extends Word extends true ? LyricWord : LyricLine,
 // 	F extends keyof L,
@@ -700,15 +663,6 @@ function EditModeField({
 // }
 
 const AuxiliaryDisplayField: FC = () => {
-	const [showTranslation, setShowTranslation] = useAtom(
-		showLineTranslationAtom,
-	);
-	const [showRomanization, setShowRomanization] = useAtom(
-		showLineRomanizationAtom,
-	);
-	const [showWordRomanizationInput, setShowWordRomanizationInput] = useAtom(
-		showWordRomanizationInputAtom,
-	);
 	const { t } = useTranslation();
 
 	const idTranslation = useId();
@@ -722,30 +676,30 @@ const AuxiliaryDisplayField: FC = () => {
 					{t("ribbonBar.editMode.showTranslation", "显示翻译行")}
 				</label>
 			</Text>
-			<Checkbox
+			<SettingToggle
+				setting={showLineTranslationAtom}
+				compact
 				id={idTranslation}
-				checked={showTranslation}
-				onCheckedChange={(c) => setShowTranslation(Boolean(c))}
 			/>
 			<Text size="1" asChild style={{ color: "var(--ribbon-label-color)" }}>
 				<label htmlFor={idRomanization}>
 					{t("ribbonBar.editMode.showRomanization", "显示音译行")}
 				</label>
 			</Text>
-			<Checkbox
+			<SettingToggle
+				setting={showLineRomanizationAtom}
+				compact
 				id={idRomanization}
-				checked={showRomanization}
-				onCheckedChange={(c) => setShowRomanization(Boolean(c))}
 			/>
 			<Text size="1" asChild style={{ color: "var(--ribbon-label-color)" }}>
 				<label htmlFor={idPerWord}>
 					{t("ribbonBar.editMode.showWordRomanizationInput", "显示逐字音译")}
 				</label>
 			</Text>
-			<Checkbox
+			<SettingToggle
+				setting={showWordRomanizationInputAtom}
+				compact
 				id={idPerWord}
-				checked={showWordRomanizationInput}
-				onCheckedChange={(c) => setShowWordRomanizationInput(Boolean(c))}
 			/>
 		</Grid>
 	);
@@ -963,11 +917,6 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 	const selectedLines = useAtomValue(selectedLinesAtom);
 	const selectedWords = useAtomValue(selectedWordsAtom);
 	const [showAdvanced, setShowAdvanced] = useAtom(advancedRibbonControlsAtom);
-	const [editAutoScroll, setEditAutoScroll] = useAtom(editAutoScrollAtom);
-	const [editActiveLineHighlight, setEditActiveLineHighlight] = useAtom(
-		editActiveLineHighlightAtom,
-	);
-	const [syncTabPosition, setSyncTabPosition] = useAtom(editTabPositionAtom);
 
 	return (
 		<RibbonFrame ref={ref} reserveControlRows={3}>
@@ -1003,10 +952,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.editMode.autoScroll", "Auto-Scroll")}
 					</Text>
-					<Checkbox
-						checked={editAutoScroll}
-						onCheckedChange={(v) => setEditAutoScroll(Boolean(v))}
-					/>
+					<SettingToggle setting={editAutoScrollAtom} compact />
 					<Text
 						wrap="nowrap"
 						size="1"
@@ -1014,21 +960,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.editMode.highlightActiveLine", "Highlight Line")}
 					</Text>
-					<Checkbox
-						checked={editActiveLineHighlight}
-						onCheckedChange={(v) => setEditActiveLineHighlight(Boolean(v))}
-					/>
-					<Text
-						wrap="nowrap"
-						size="1"
-						style={{ color: "var(--ribbon-label-color)" }}
-					>
-						{t("ribbonBar.editMode.syncTab", "Sync Tab")}
-					</Text>
-					<Checkbox
-						checked={syncTabPosition}
-						onCheckedChange={(v) => setSyncTabPosition(Boolean(v))}
-					/>
+					<SettingToggle setting={editActiveLineHighlightAtom} compact />
 				</Grid>
 			</RibbonSection>
 			{selectedLines.size > 0 && (
@@ -1184,20 +1116,6 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							textFieldStyle={{ width: "15em" }}
 						/>
 					</Grid>
-				</RibbonSection>
-			)}
-			{showAdvanced && (
-				<RibbonSection label={t("ribbonBar.editMode.layoutMode", "布局模式")}>
-					<EditModeField
-						simpleModeLabel={t(
-							"settings.common.layoutModeOptions.simple",
-							"简单模式",
-						)}
-						advanceModeLabel={t(
-							"settings.common.layoutModeOptions.advance",
-							"高级模式",
-						)}
-					/>
 				</RibbonSection>
 			)}
 			{showAdvanced && (

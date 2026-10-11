@@ -1,3 +1,9 @@
+import {
+	SettingToggle,
+	SyncLevelControl,
+	SyncOffsetControl,
+} from "$/modules/settings/components/WorkflowControls";
+import { backgroundSyncSettingAtom } from "$/modules/settings/states/background-sync";
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -9,58 +15,32 @@
  * https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/blob/main/LICENSE
  */
 
-import {
-	Checkbox,
-	Flex,
-	Grid,
-	SegmentedControl,
-	Slider,
-	Switch,
-	Text,
-	TextField,
-	Tooltip,
-} from "@radix-ui/themes";
+import { Flex, Grid, Slider, Switch, Text, Tooltip } from "@radix-ui/themes";
 import { useAtom, useAtomValue } from "jotai";
-import { useSetImmerAtom } from "jotai-immer";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useCurrentLocation } from "$/modules/lyric-editor/utils/lyric-states.ts";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import {
 	displayRomanizationInSyncAtom,
-	enableManualTimestampEditAtom,
-	enableSyncGlowAnimationAtom,
 	highlightActiveWordAtom,
 	highlightErrorsAtom,
 	showTimestampsAtom,
 	showWordRomanizationInputAtom,
 } from "$/modules/settings/states/index.ts";
-import { instantHighlightFadeAtom } from "$/modules/settings/states/preview";
 import {
 	currentEmptyBeatAtom,
-	enableTimeModeDoubleClickEditAtom,
-	type SyncLevelMode,
 	showTouchSyncPanelAtom,
 	spectrogramHoverSyncEnabledAtom,
 	syncActiveLineHighlightAtom,
 	syncAutoScrollAtom,
-	syncCommitOffsetAtom,
-	syncLevelModeAtom,
-	syncTabPositionAtom,
-	syncTimeOffsetAtom,
-	syncWordWrapAtom,
-	visualizeTimestampUpdateAtom,
 } from "$/modules/settings/states/sync.ts";
 import {
 	keySyncEndAtom,
 	keySyncNextAtom,
 	keySyncStartAtom,
 } from "$/states/keybindings.ts";
-import {
-	bgLyricIgnoreSyncAtom,
-	lyricLinesAtom,
-	showPreviewPanelAtom,
-} from "$/states/main.ts";
+import { showPreviewPanelAtom } from "$/states/main.ts";
 import { KeyBinding } from "../KeyBinding/index.tsx";
 import { RibbonFrame, RibbonSection } from "./common";
 
@@ -95,68 +75,12 @@ const EmptyBeatField = () => {
 };
 
 export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
-	const [visualizeTimestampUpdate, setVisualizeTimestampUpdate] = useAtom(
-		visualizeTimestampUpdateAtom,
-	);
-	const [showTouchSyncPanel, setShowTouchSyncPanel] = useAtom(
-		showTouchSyncPanelAtom,
-	);
-	const [showPreviewPanel, setShowPreviewPanel] = useAtom(showPreviewPanelAtom);
-	const [showTimestamps, setShowTimestamps] = useAtom(showTimestampsAtom);
-	const [highlightErrors, setHighlightErrors] = useAtom(highlightErrorsAtom);
-	const [highlightActiveWord, setHighlightActiveWord] = useAtom(
-		highlightActiveWordAtom,
-	);
-	const [enableSyncGlowAnimation, setEnableSyncGlowAnimation] = useAtom(
-		enableSyncGlowAnimationAtom,
-	);
-	const [enableManualTimestampEdit, setEnableManualTimestampEdit] = useAtom(
-		enableManualTimestampEditAtom,
-	);
-	const [enableTimeModeDoubleClickEdit, setEnableTimeModeDoubleClickEdit] =
-		useAtom(enableTimeModeDoubleClickEditAtom);
-
-	const [displayRomanizationInSync, setdisplayRomanizationInSync] = useAtom(
-		displayRomanizationInSyncAtom,
-	);
-	const [bgLyricIgnoreSync, setBgLyricIgnoreSync] = useAtom(
-		bgLyricIgnoreSyncAtom,
-	);
-	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const showWordRomanizationInput = useAtomValue(showWordRomanizationInputAtom);
-	const [syncTimeOffset, setSyncTimeOffset] = useAtom(syncTimeOffsetAtom);
-	const [syncCommitOffset, setSyncCommitOffset] = useAtom(syncCommitOffsetAtom);
-	const [syncWordWrap, setSyncWordWrap] = useAtom(syncWordWrapAtom);
-	const [spectrogramHoverSyncEnabled, setSpectrogramHoverSyncEnabled] = useAtom(
-		spectrogramHoverSyncEnabledAtom,
-	);
-	const [syncLevelMode, setSyncLevelMode] = useAtom(syncLevelModeAtom);
-	const [instantFade, setInstantFade] = useAtom(instantHighlightFadeAtom);
-	const [syncAutoScroll, setSyncAutoScroll] = useAtom(syncAutoScrollAtom);
-	const [syncActiveLineHighlight, setSyncActiveLineHighlight] = useAtom(
-		syncActiveLineHighlightAtom,
-	);
-	const [syncTabPosition, setSyncTabPosition] = useAtom(syncTabPositionAtom);
 	const { t } = useTranslation();
 	const [showAdvanced, setShowAdvanced] = useAtom(advancedRibbonControlsAtom);
 
 	return (
 		<RibbonFrame ref={ref}>
-			{showAdvanced && (
-				<RibbonSection
-					label={t("ribbonBar.syncMode.currentEmptyBeat", "当前空拍")}
-				>
-					<Grid
-						columns="max-content 4em"
-						gap="4"
-						gapY="1"
-						flexGrow="1"
-						align="center"
-					>
-						<EmptyBeatField />
-					</Grid>
-				</RibbonSection>
-			)}
 			<RibbonSection label={t("ribbonBar.syncMode.syncAdjustment", "打轴调整")}>
 				<Grid
 					columns="max-content auto"
@@ -172,21 +96,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.syncMode.timeOffset", "时间戳位移")}
 					</Text>
-					<TextField.Root
-						type="number"
-						step={1}
-						size="1"
-						style={{
-							width: "8em",
-						}}
-						value={syncTimeOffset}
-						onChange={(e) => setSyncTimeOffset(e.target.valueAsNumber)}
-					>
-						<TextField.Slot />
-						<TextField.Slot>
-							<Text>ms</Text>
-						</TextField.Slot>
-					</TextField.Root>
+					<SyncOffsetControl compact />
 					<Text
 						wrap="nowrap"
 						size="1"
@@ -194,21 +104,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.syncMode.commitOffset", "Commit Offset")}
 					</Text>
-					<TextField.Root
-						type="number"
-						step={1}
-						size="1"
-						style={{
-							width: "8em",
-						}}
-						value={syncCommitOffset}
-						onChange={(e) => setSyncCommitOffset(e.target.valueAsNumber)}
-					>
-						<TextField.Slot />
-						<TextField.Slot>
-							<Text>ms</Text>
-						</TextField.Slot>
-					</TextField.Root>
+					<SyncOffsetControl commit compact />
 					<EmptyBeatField />
 				</Grid>
 			</RibbonSection>
@@ -221,18 +117,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					px="2"
 					style={{ height: "100%" }}
 				>
-					<SegmentedControl.Root
-						value={syncLevelMode}
-						onValueChange={(v) => setSyncLevelMode(v as SyncLevelMode)}
-						size="1"
-					>
-						<SegmentedControl.Item value="word">
-							{t("ribbonBar.syncMode.syncLevelWord", "Word Sync")}
-						</SegmentedControl.Item>
-						<SegmentedControl.Item value="line">
-							{t("ribbonBar.syncMode.syncLevelLine", "Line Sync")}
-						</SegmentedControl.Item>
-					</SegmentedControl.Root>
+					<SyncLevelControl />
 				</Flex>
 			</RibbonSection>
 			<RibbonSection
@@ -252,10 +137,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.syncMode.autoScroll", "Auto-Scroll")}
 					</Text>
-					<Checkbox
-						checked={syncAutoScroll}
-						onCheckedChange={(v) => setSyncAutoScroll(Boolean(v))}
-					/>
+					<SettingToggle setting={syncAutoScrollAtom} compact />
 					<Text
 						wrap="nowrap"
 						size="1"
@@ -263,21 +145,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					>
 						{t("ribbonBar.syncMode.highlightActiveLine", "Highlight Line")}
 					</Text>
-					<Checkbox
-						checked={syncActiveLineHighlight}
-						onCheckedChange={(v) => setSyncActiveLineHighlight(Boolean(v))}
-					/>
-					<Text
-						wrap="nowrap"
-						size="1"
-						style={{ color: "var(--ribbon-label-color)" }}
-					>
-						{t("ribbonBar.syncMode.syncTab", "Sync Tab")}
-					</Text>
-					<Checkbox
-						checked={syncTabPosition}
-						onCheckedChange={(v) => setSyncTabPosition(Boolean(v))}
-					/>
+					<SettingToggle setting={syncActiveLineHighlightAtom} compact />
 				</Grid>
 			</RibbonSection>
 			{showAdvanced && (
@@ -296,23 +164,9 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.showTimestampUpdate", "呈现时间戳更新")}
-						</Text>
-						<Checkbox
-							checked={visualizeTimestampUpdate}
-							onCheckedChange={(v) => setVisualizeTimestampUpdate(!!v)}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
 							{t("ribbonBar.syncMode.touchSyncPanel", "触控打轴辅助面板")}
 						</Text>
-						<Checkbox
-							checked={showTouchSyncPanel}
-							onCheckedChange={(v) => setShowTouchSyncPanel(!!v)}
-						/>
+						<SettingToggle setting={showTouchSyncPanelAtom} compact />
 						<Text
 							wrap="nowrap"
 							size="1"
@@ -320,49 +174,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						>
 							{t("ribbonBar.syncMode.bgLyricIgnoreSync", "背景歌词忽略打轴")}
 						</Text>
-						<Checkbox
-							checked={bgLyricIgnoreSync}
-							onCheckedChange={(v) => {
-								const next = !!v;
-								setBgLyricIgnoreSync(next);
-								editLyricLines((state) => {
-									for (const line of state.lyricLines) {
-										if (line.isBG) {
-											line.ignoreSync = next;
-										}
-									}
-									return state;
-								});
-							}}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t(
-								"ribbonBar.syncMode.manualTimestampEdit",
-								"Manual Timestamp Editing",
-							)}
-						</Text>
-						<Checkbox
-							checked={enableManualTimestampEdit}
-							onCheckedChange={(v) => setEnableManualTimestampEdit(!!v)}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t(
-								"ribbonBar.syncMode.doubleClickEdit",
-								"Double-Click Word Editing",
-							)}
-						</Text>
-						<Checkbox
-							checked={enableTimeModeDoubleClickEdit}
-							onCheckedChange={(v) => setEnableTimeModeDoubleClickEdit(!!v)}
-						/>
+						<SettingToggle setting={backgroundSyncSettingAtom} compact />
 						<Text
 							wrap="nowrap"
 							size="1"
@@ -373,10 +185,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 								"Sync to Spectrogram Cursor",
 							)}
 						</Text>
-						<Checkbox
-							checked={spectrogramHoverSyncEnabled}
-							onCheckedChange={(v) => setSpectrogramHoverSyncEnabled(!!v)}
-						/>
+						<SettingToggle setting={spectrogramHoverSyncEnabledAtom} compact />
 					</Grid>
 				</RibbonSection>
 			)}
@@ -396,23 +205,9 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.wrapWords", "Wrap Words")}
-						</Text>
-						<Checkbox
-							checked={syncWordWrap}
-							onCheckedChange={(v) => setSyncWordWrap(!!v)}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
 							{t("ribbonBar.syncMode.showTimestamps", "显示时间戳")}
 						</Text>
-						<Checkbox
-							checked={showTimestamps}
-							onCheckedChange={(v) => setShowTimestamps(!!v)}
-						/>
+						<SettingToggle setting={showTimestampsAtom} compact />
 						<Text
 							wrap="nowrap"
 							size="1"
@@ -420,32 +215,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						>
 							{t("ribbonBar.syncMode.highlightActiveWord", "高亮当前音节")}
 						</Text>
-						<Checkbox
-							checked={highlightActiveWord}
-							onCheckedChange={(v) => setHighlightActiveWord(!!v)}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t("ribbonBar.syncMode.enableGlowAnimation", "启用高亮动态特效")}
-						</Text>
-						<Checkbox
-							checked={enableSyncGlowAnimation}
-							onCheckedChange={(v) => setEnableSyncGlowAnimation(!!v)}
-						/>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t("ribbonBar.previewMode.instantFade", "即时淡出")}
-						</Text>
-						<Checkbox
-							checked={instantFade}
-							onCheckedChange={(v) => setInstantFade(!!v)}
-						/>
+						<SettingToggle setting={highlightActiveWordAtom} compact />
 
 						<Text
 							wrap="nowrap"
@@ -454,10 +224,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						>
 							{t("ribbonBar.syncMode.highlightErrors", "高亮错误")}
 						</Text>
-						<Checkbox
-							checked={highlightErrors}
-							onCheckedChange={(v) => setHighlightErrors(!!v)}
-						/>
+						<SettingToggle setting={highlightErrorsAtom} compact />
 
 						{showWordRomanizationInput && (
 							<>
@@ -471,9 +238,9 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 										"显示逐字音译",
 									)}
 								</Text>
-								<Checkbox
-									checked={displayRomanizationInSync}
-									onCheckedChange={(v) => setdisplayRomanizationInSync(!!v)}
+								<SettingToggle
+									setting={displayRomanizationInSyncAtom}
+									compact
 								/>
 							</>
 						)}
@@ -522,10 +289,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			{showAdvanced && (
 				<RibbonSection label={t("ribbonBar.editMode.previewPanel", "预览面板")}>
 					<Flex direction="column" align="center" gap="1">
-						<Switch
-							checked={showPreviewPanel}
-							onCheckedChange={setShowPreviewPanel}
-						/>
+						<SettingToggle setting={showPreviewPanelAtom} />
 					</Flex>
 				</RibbonSection>
 			)}

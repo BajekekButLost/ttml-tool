@@ -1,3 +1,8 @@
+import {
+	PreviewModeControl,
+	SettingToggle,
+	SpicyBackgroundControl,
+} from "$/modules/settings/components/WorkflowControls";
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -9,88 +14,32 @@
  * https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/blob/main/LICENSE
  */
 
-import {
-	Checkbox,
-	Grid,
-	SegmentedControl,
-	Switch,
-	Text,
-	TextField,
-	Tooltip,
-} from "@radix-ui/themes";
-import { useAtom } from "jotai";
+import { Grid, Switch, Text, Tooltip } from "@radix-ui/themes";
+import { useAtom, useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import {
-	instantHighlightFadeAtom,
-	lyricWordFadeWidthAtom,
 	PreviewModeType,
 	previewModeTypeAtom,
-	showFpsCounterAtom,
 	showRomanLinesAtom,
 	showTranslationLinesAtom,
-	spicyBackgroundModeAtom,
 	spicyForceLineSyncedAtom,
 	spicySimpleLyricsModeAtom,
-	vsyncAtom,
 } from "$/modules/settings/states/preview";
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
 import { RibbonFrame, RibbonSection } from "./common";
 
 export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 	(_props, ref) => {
-		const [previewModeType, setPreviewModeType] = useAtom(previewModeTypeAtom);
-		const [timingOverviewAutoScroll, setTimingOverviewAutoScroll] = useAtom(
-			timingOverviewAutoScrollAtom,
-		);
-		const [showTranslationLine, setShowTranslationLine] = useAtom(
-			showTranslationLinesAtom,
-		);
-		const [showRomanLine, setShowRomanLine] = useAtom(showRomanLinesAtom);
-		const [lyricWordFadeWidth, setLyricWordFadeWidth] = useAtom(
-			lyricWordFadeWidthAtom,
-		);
-		const [instantFade, setInstantFade] = useAtom(instantHighlightFadeAtom);
-		const [vsync, setVsync] = useAtom(vsyncAtom);
-		const [showFps, setShowFps] = useAtom(showFpsCounterAtom);
-		const [spicySimpleMode, setSpicySimpleMode] = useAtom(
-			spicySimpleLyricsModeAtom,
-		);
-		const [spicyForceLineSynced, setSpicyForceLineSynced] = useAtom(
-			spicyForceLineSyncedAtom,
-		);
-		const [spicyBackgroundMode, setSpicyBackgroundMode] = useAtom(
-			spicyBackgroundModeAtom,
-		);
+		const previewModeType = useAtomValue(previewModeTypeAtom);
 		const { t } = useTranslation();
 		const [showAdvanced, setShowAdvanced] = useAtom(advancedRibbonControlsAtom);
-		const usesStandardRenderer =
-			previewModeType === PreviewModeType.Standard ||
-			previewModeType === PreviewModeType.Toxi;
 
 		return (
 			<RibbonFrame ref={ref}>
 				<RibbonSection label={t("ribbonBar.previewMode.mode", "模式")}>
-					<SegmentedControl.Root
-						value={previewModeType}
-						onValueChange={(v) => {
-							setPreviewModeType(v as PreviewModeType);
-						}}
-					>
-						<SegmentedControl.Item value={PreviewModeType.Standard}>
-							{t("ribbonBar.previewMode.standard", "标准")}
-						</SegmentedControl.Item>
-						<SegmentedControl.Item value={PreviewModeType.Toxi}>
-							{"Toxi"}
-						</SegmentedControl.Item>
-						<SegmentedControl.Item value={PreviewModeType.Spicy}>
-							{"Spicy"}
-						</SegmentedControl.Item>
-						<SegmentedControl.Item value={PreviewModeType.Timing}>
-							{t("ribbonBar.previewMode.timing", "时轴")}
-						</SegmentedControl.Item>
-					</SegmentedControl.Root>
+					<PreviewModeControl />
 				</RibbonSection>
 				{previewModeType === PreviewModeType.Spicy && (
 					<RibbonSection label={t("ribbonBar.previewMode.spicy", "Spicy")}>
@@ -108,10 +57,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t("ribbonBar.previewMode.simpleLyrics", "Simple lyrics")}
 							</Text>
-							<Checkbox
-								checked={spicySimpleMode}
-								onCheckedChange={(v) => setSpicySimpleMode(!!v)}
-							/>
+							<SettingToggle setting={spicySimpleLyricsModeAtom} compact />
 							<Text
 								wrap="nowrap"
 								size="1"
@@ -122,10 +68,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 									"Force line rendering",
 								)}
 							</Text>
-							<Checkbox
-								checked={spicyForceLineSynced}
-								onCheckedChange={(v) => setSpicyForceLineSynced(!!v)}
-							/>
+							<SettingToggle setting={spicyForceLineSyncedAtom} compact />
 							<Text
 								wrap="nowrap"
 								size="1"
@@ -133,23 +76,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t("ribbonBar.previewMode.background", "Background")}
 							</Text>
-							<SegmentedControl.Root
-								value={spicyBackgroundMode}
-								onValueChange={(v) =>
-									setSpicyBackgroundMode(v as typeof spicyBackgroundMode)
-								}
-								size="1"
-							>
-								<SegmentedControl.Item value="animated">
-									{t("ribbonBar.previewMode.backgroundAnimated", "Animated")}
-								</SegmentedControl.Item>
-								<SegmentedControl.Item value="color">
-									{t("ribbonBar.previewMode.backgroundColor", "Color")}
-								</SegmentedControl.Item>
-								<SegmentedControl.Item value="static">
-									{t("ribbonBar.previewMode.backgroundStatic", "Static")}
-								</SegmentedControl.Item>
-							</SegmentedControl.Root>
+							<SpicyBackgroundControl />
 						</Grid>
 					</RibbonSection>
 				)}
@@ -169,10 +96,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t("ribbonBar.previewMode.autoScroll", "Auto-Scroll")}
 							</Text>
-							<Checkbox
-								checked={timingOverviewAutoScroll}
-								onCheckedChange={(v) => setTimingOverviewAutoScroll(Boolean(v))}
-							/>
+							<SettingToggle setting={timingOverviewAutoScrollAtom} compact />
 						</Grid>
 					</RibbonSection>
 				)}
@@ -192,10 +116,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t("ribbonBar.previewMode.showTranslation", "显示翻译")}
 							</Text>
-							<Checkbox
-								checked={showTranslationLine}
-								onCheckedChange={(v) => setShowTranslationLine(!!v)}
-							/>
+							<SettingToggle setting={showTranslationLinesAtom} compact />
 							<Text
 								wrap="nowrap"
 								size="1"
@@ -203,101 +124,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t("ribbonBar.previewMode.showRoman", "显示音译")}
 							</Text>
-							<Checkbox
-								checked={showRomanLine}
-								onCheckedChange={(v) => setShowRomanLine(!!v)}
-							/>
-						</Grid>
-					</RibbonSection>
-				)}
-				{usesStandardRenderer && (
-					<RibbonSection label={t("ribbonBar.previewMode.word", "单词")}>
-						<Grid
-							columns="max-content auto"
-							gap="2"
-							gapY="1"
-							flexGrow="1"
-							align="center"
-						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.fadeWidth", "过渡宽度")}
-							</Text>
-							<TextField.Root
-								min={0}
-								step={0}
-								size="1"
-								style={{
-									width: "4em",
-								}}
-								defaultValue={lyricWordFadeWidth}
-								onBlur={(e) => {
-									const value = Number.parseFloat(e.target.value);
-									if (Number.isFinite(value)) {
-										setLyricWordFadeWidth(value);
-									}
-								}}
-							/>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.instantFade", "即时淡出")}
-							</Text>
-							<Checkbox
-								checked={instantFade}
-								onCheckedChange={(v) => setInstantFade(!!v)}
-							/>
-						</Grid>
-					</RibbonSection>
-				)}
-				{showAdvanced && usesStandardRenderer && (
-					<RibbonSection label={t("ribbonBar.previewMode.render", "渲染")}>
-						<Grid
-							columns="max-content auto"
-							gap="2"
-							gapY="1"
-							flexGrow="1"
-							align="center"
-						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{"V-Sync"}
-							</Text>
-							<Checkbox
-								checked={vsync}
-								onCheckedChange={(v) => setVsync(!!v)}
-							/>
-						</Grid>
-					</RibbonSection>
-				)}
-				{showAdvanced && usesStandardRenderer && (
-					<RibbonSection label={t("ribbonBar.previewMode.dev", "Dev")}>
-						<Grid
-							columns="max-content auto"
-							gap="2"
-							gapY="1"
-							flexGrow="1"
-							align="center"
-						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.showFps", "Show FPS")}
-							</Text>
-							<Checkbox
-								checked={showFps}
-								onCheckedChange={(v) => setShowFps(!!v)}
-							/>
+							<SettingToggle setting={showRomanLinesAtom} compact />
 						</Grid>
 					</RibbonSection>
 				)}

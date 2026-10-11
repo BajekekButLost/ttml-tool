@@ -73,10 +73,8 @@ import {
 	spectrogramHoverSyncEnabledAtom,
 	syncActiveLineHighlightAtom,
 	syncAutoScrollAtom,
-	syncCommitOffsetAtom,
 	syncFocusMainLineAtom,
 	syncTabPositionAtom,
-	syncTimeOffsetAtom,
 	syncWordWrapAtom,
 	upcomingWordHighlightColorAtom,
 	upcomingWordHighlightThresholdAtom,
@@ -86,6 +84,11 @@ import {
 	KeyBindingTriggerMode,
 	keyBindingTriggerModeAtom,
 } from "$/utils/keybindings";
+import {
+	SettingToggle,
+	SyncOffsetControl,
+} from "../components/WorkflowControls";
+import { WorkflowSettings } from "./workflow";
 
 export type CommonSettingsSection = "general" | "editor" | "files" | "audio";
 
@@ -121,11 +124,6 @@ export const SettingsCommonTab = ({
 	const [upcomingWordHighlightColor, setUpcomingWordHighlightColor] = useAtom(
 		upcomingWordHighlightColorAtom,
 	);
-	const [syncTimeOffset, setSyncTimeOffset] = useAtom(syncTimeOffsetAtom);
-	const [syncCommitOffset, setSyncCommitOffset] = useAtom(syncCommitOffsetAtom);
-	const [spectrogramHoverSyncEnabled, setSpectrogramHoverSyncEnabled] = useAtom(
-		spectrogramHoverSyncEnabledAtom,
-	);
 
 	const [compactBGInSync, setCompactBGInSync] = useAtom(compactBGInSyncAtom);
 	const [normalizeApostrophesOnImport, setNormalizeApostrophesOnImport] =
@@ -143,15 +141,10 @@ export const SettingsCommonTab = ({
 	const [playbackSettingsMode, setPlaybackSettingsMode] = useState(
 		toolMode === ToolMode.Edit ? ToolMode.Edit : ToolMode.Sync,
 	);
-	const [syncAutoScroll, setSyncAutoScroll] = useAtom(
+	const syncAutoScroll = useAtomValue(
 		playbackSettingsMode === ToolMode.Edit
 			? editAutoScrollAtom
 			: syncAutoScrollAtom,
-	);
-	const [editActiveLineHighlight, setEditActiveLineHighlight] = useAtom(
-		playbackSettingsMode === ToolMode.Edit
-			? editActiveLineHighlightAtom
-			: syncActiveLineHighlightAtom,
 	);
 	const [syncTabPosition, setSyncTabPosition] = useAtom(
 		playbackSettingsMode === ToolMode.Edit
@@ -521,15 +514,7 @@ export const SettingsCommonTab = ({
 											)}
 										</Text>
 									</Flex>
-									<TextField.Root
-										type="number"
-										value={syncTimeOffset}
-										onChange={(e) =>
-											setSyncTimeOffset(
-												Number.parseInt(e.target.value, 10) || 0,
-											)
-										}
-									/>
+									<SyncOffsetControl />
 								</Flex>
 							</Box>
 						</Flex>
@@ -554,15 +539,7 @@ export const SettingsCommonTab = ({
 											)}
 										</Text>
 									</Flex>
-									<TextField.Root
-										type="number"
-										value={syncCommitOffset}
-										onChange={(e) =>
-											setSyncCommitOffset(
-												Number.parseInt(e.target.value, 10) || 0,
-											)
-										}
-									/>
+									<SyncOffsetControl commit />
 								</Flex>
 							</Box>
 						</Flex>
@@ -645,10 +622,7 @@ export const SettingsCommonTab = ({
 												)}
 											</Text>
 										</Flex>
-										<Switch
-											checked={spectrogramHoverSyncEnabled}
-											onCheckedChange={setSpectrogramHoverSyncEnabled}
-										/>
+										<SettingToggle setting={spectrogramHoverSyncEnabledAtom} />
 									</Flex>
 								</Box>
 							</Flex>
@@ -730,9 +704,12 @@ export const SettingsCommonTab = ({
 												)}
 											</Text>
 										</Flex>
-										<Switch
-											checked={syncAutoScroll}
-											onCheckedChange={setSyncAutoScroll}
+										<SettingToggle
+											setting={
+												playbackSettingsMode === ToolMode.Edit
+													? editAutoScrollAtom
+													: syncAutoScrollAtom
+											}
 										/>
 									</Flex>
 								</Box>
@@ -801,9 +778,12 @@ export const SettingsCommonTab = ({
 												)}
 											</Text>
 										</Flex>
-										<Switch
-											checked={editActiveLineHighlight}
-											onCheckedChange={setEditActiveLineHighlight}
+										<SettingToggle
+											setting={
+												playbackSettingsMode === ToolMode.Edit
+													? editActiveLineHighlightAtom
+													: syncActiveLineHighlightAtom
+											}
 										/>
 									</Flex>
 								</Box>
@@ -918,6 +898,7 @@ export const SettingsCommonTab = ({
 							</Box>
 						</Flex>
 					</Card>
+					<WorkflowSettings />
 				</Flex>
 			)}
 

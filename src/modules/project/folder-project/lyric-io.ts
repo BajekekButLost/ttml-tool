@@ -6,8 +6,8 @@ import {
 	writeTextFile,
 } from "@tauri-apps/plugin-fs";
 import { assertSafePath } from "$/modules/project/folder-project/manifest";
+import { produceTTMLText } from "$/modules/project/logic/ttml-export";
 import { parseLyric } from "$/modules/project/logic/ttml-parser";
-import exportTTMLText from "$/modules/project/logic/ttml-writer";
 import type { TTMLLyric } from "$/types/ttml";
 import type { LyricTextNormalizationOptions } from "$/utils/apostrophe-normalization";
 
@@ -43,7 +43,7 @@ export function generateProjectTtmlText(
 	normalizationOptions?: LyricTextNormalizationOptions,
 	options?: { allowConsecutiveBackgroundLines?: boolean },
 ): string {
-	return exportTTMLText(lyric, normalizationOptions, options);
+	return produceTTMLText(lyric, normalizationOptions, options);
 }
 
 export async function writeProjectLyricFile(

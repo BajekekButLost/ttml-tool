@@ -29,12 +29,8 @@ import {
 	type ImportSourceId,
 } from "$/modules/lyrics-import/components/ImportSourceCards";
 import { AUDIO_EXTS } from "$/modules/project/folder-project/audio-io";
-import exportTTMLText from "$/modules/project/logic/ttml-writer";
-import {
-	allowConsecutiveBackgroundLinesAtom,
-	geniusApiKeyAtom,
-	lyricTextNormalizationOptionsAtom,
-} from "$/modules/settings/states";
+import { type ExportTranslation, saveTTML } from "$/modules/project/ttml-save";
+import { geniusApiKeyAtom } from "$/modules/settings/states";
 import {
 	geniusImportLyricsDialogAtom,
 	importFromLRCLIBDialogAtom,
@@ -44,14 +40,8 @@ import {
 	settingsDialogAtom,
 	settingsTabAtom,
 } from "$/states/dialogs";
-import {
-	lyricLinesAtom,
-	saveFileNameAtom,
-	ToolMode,
-	toolModeAtom,
-} from "$/states/main";
+import { lyricLinesAtom, ToolMode, toolModeAtom } from "$/states/main";
 import { openFileWithDialog } from "$/utils/fileDialog";
-import { saveFile } from "$/utils/fileSystem";
 import {
 	GUIDE_STEP_IDS,
 	getGuideProgress,
@@ -119,6 +109,10 @@ export const startBeginnerGuide = (
 
 export const BeginnerGuide = () => {
 	const { t } = useTranslation();
+	const exportT = useCallback<ExportTranslation>(
+		(key, fallback, options) => t(key, fallback ?? key, options),
+		[t],
+	);
 	const store = useStore();
 	const lyrics = useAtomValue(lyricLinesAtom);
 	const duration = useAtomValue(currentDurationAtom);
@@ -264,25 +258,7 @@ export const BeginnerGuide = () => {
 		if (id === "sync") setToolMode(ToolMode.Sync);
 		if (id === "songwriters") setMetadata(true);
 		if (id === "export") {
-			const text = exportTTMLText(
-				lyrics,
-				store.get(lyricTextNormalizationOptionsAtom),
-				{
-					allowConsecutiveBackgroundLines: store.get(
-						allowConsecutiveBackgroundLinesAtom,
-					),
-				},
-			);
-			const saved = await saveFile(text, {
-				suggestedName: store.get(saveFileNameAtom),
-				types: [
-					{
-						description: "TTML Files",
-						accept: { "application/ttml+xml": [".ttml"] },
-					},
-				],
-			});
-			if (saved) setExported(true);
+			await saveTTML(store, exportT, { onSaved: () => setExported(true) });
 		}
 		if (id === "test")
 			window.open(getGuideUrl("test"), "_blank", "noopener,noreferrer");
@@ -295,6 +271,7 @@ export const BeginnerGuide = () => {
 		setToolMode,
 		step,
 		store,
+		exportT,
 	]);
 
 	const finish = () => {

@@ -7,6 +7,8 @@ import { newLyricLine, newLyricWord } from "$/types/ttml";
 import {
 	commitUpdatedLine,
 	getUpdatedLineForDivider,
+	tryFixPartialInitialization,
+	tryInitializeZeroTimestampLine,
 } from "./timeline-mutations";
 
 const line = {
@@ -156,5 +158,65 @@ describe("Alt-drag gaps", () => {
 			200,
 		);
 		expect(getUpdatedLineForDivider(original, 1, 800, true).endTime).toBe(800);
+	});
+});
+
+describe("draft line timing", () => {
+	it("initializes words evenly in integer ms and fills only untimed ruby", () => {
+		const original = {
+			...newLyricLine(),
+			words: [
+				{
+					...newLyricWord(),
+					word: "a",
+					ruby: [
+						{ word: "a", startTime: 0, endTime: 0 },
+						{ word: "b", startTime: 0, endTime: 0 },
+					],
+				},
+				{ ...newLyricWord(), word: " " },
+				{
+					...newLyricWord(),
+					word: "long",
+					ruby: [{ word: "keep", startTime: 20, endTime: 21 }],
+				},
+			],
+		};
+		const result = produce(original, (draft) => {
+			expect(tryInitializeZeroTimestampLine(draft, 100, 105)).toBe(true);
+		});
+		expect(result.words.map((word) => [word.startTime, word.endTime])).toEqual([
+			[100, 103],
+			[103, 103],
+			[103, 105],
+		]);
+		expect(
+			result.words[0].ruby?.map((ruby) => [ruby.startTime, ruby.endTime]),
+		).toEqual([
+			[100, 102],
+			[102, 103],
+		]);
+		expect(result.words[2].ruby?.[0]).toEqual(original.words[2].ruby?.[0]);
+		expect(original.words[0].startTime).toBe(0);
+	});
+	it("repairs an anchor and following zero-time words without fractional ms", () => {
+		const original = {
+			...newLyricLine(),
+			words: [
+				{ ...newLyricWord(), word: "a", startTime: 100, endTime: 105 },
+				{ ...newLyricWord(), word: " " },
+				{ ...newLyricWord(), word: "b" },
+				{ ...newLyricWord(), word: "c" },
+			],
+		};
+		const result = produce(original, (draft) => {
+			expect(tryFixPartialInitialization(draft)).toBe(true);
+		});
+		expect(result.words.map((word) => [word.startTime, word.endTime])).toEqual([
+			[100, 102],
+			[102, 102],
+			[102, 103],
+			[103, 105],
+		]);
 	});
 });

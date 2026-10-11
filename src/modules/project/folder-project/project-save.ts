@@ -29,6 +29,8 @@ import {
 } from "$/states/main";
 import type { TTMLLyric } from "$/types/ttml";
 import { log, error as logError } from "$/utils/logging";
+import type { PreparedTTML } from "../logic/ttml-export";
+import { getTTMLSaveName } from "../logic/ttml-save-name";
 import { writeProjectAudioFile } from "./audio-io";
 import { generateProjectTtmlText, writeProjectLyricFile } from "./lyric-io";
 import {
@@ -145,9 +147,9 @@ async function saveLinkedProject(
 	t: TFunc,
 	dir: string,
 	manifest: ProjectManifest & { linked: LinkedProjectFiles },
-	options?: { silent?: boolean },
+	options?: { silent?: boolean; prepared?: PreparedTTML; onSaved?: () => void },
 ): Promise<boolean> {
-	const lyric = store.get(lyricLinesAtom);
+	const lyric = options?.prepared?.lyric ?? store.get(lyricLinesAtom);
 	if (lyric.lyricLines.length === 0) {
 		if (!options?.silent) {
 			toast.info(
@@ -159,7 +161,8 @@ async function saveLinkedProject(
 		}
 		return false;
 	}
-	const lyricText = generateLyricTextFromStore(store, t);
+	const lyricText =
+		options?.prepared?.text ?? generateLyricTextFromStore(store, t);
 	if (lyricText == null) return false;
 
 	// The linked file belongs to the user, not to the app: keep a one-time
@@ -200,6 +203,7 @@ async function saveLinkedProject(
 		store.set(activeProjectManifestAtom, nextManifest);
 		store.set(saveFileNameAtom, nextManifest.lyricFile);
 		store.set(markLyricsSavedAtom, lyric);
+		options?.onSaved?.();
 
 		if (!options?.silent) {
 			toast.success(t("success.folderProjectSaved", "Project saved"));
@@ -338,7 +342,11 @@ export async function createProject(store: Store, t: TFunc): Promise<void> {
 	}
 }
 
-export async function saveProject(store: Store, t: TFunc): Promise<boolean> {
+export async function saveProject(
+	store: Store,
+	t: TFunc,
+	options?: { prepared?: PreparedTTML; onSaved?: () => void },
+): Promise<boolean> {
 	if (!isTauri()) {
 		toast.error(
 			t(
@@ -362,28 +370,29 @@ export async function saveProject(store: Store, t: TFunc): Promise<boolean> {
 
 	const manifest = store.get(activeProjectManifestAtom);
 	if (manifest?.linked) {
-		return saveLinkedProject(store, t, dir, {
-			...manifest,
-			linked: manifest.linked,
-		});
+		return saveLinkedProject(
+			store,
+			t,
+			dir,
+			{
+				...manifest,
+				linked: manifest.linked,
+			},
+			options,
+		);
 	}
 	const audioFile = store.get(projectAudioFileAtom);
-	const lyric = store.get(lyricLinesAtom);
+	const lyric = options?.prepared?.lyric ?? store.get(lyricLinesAtom);
 	const hasLyricContent = lyric.lyricLines.length > 0;
 	const shouldWriteLyric = hasLyricContent;
 	const suggested = getSuggestedTtmlFileName(lyric.metadata);
 
 	const lyricFileName = shouldWriteLyric
-		? ensureExtension(
-				sanitizeFileName(
-					store.get(saveFileNameAtom) || suggested?.baseName || "lyric",
-				),
-				"ttml",
-			)
+		? getTTMLSaveName(lyric, store.get(saveFileNameAtom), manifest)
 		: "";
 
 	const lyricText = shouldWriteLyric
-		? generateLyricTextFromStore(store, t)
+		? (options?.prepared?.text ?? generateLyricTextFromStore(store, t))
 		: null;
 	if (shouldWriteLyric && lyricText == null) {
 		return false;
@@ -438,6 +447,7 @@ export async function saveProject(store: Store, t: TFunc): Promise<boolean> {
 		await rememberProjectWorkspace(store, dir);
 		store.set(saveFileNameAtom, lyricFileName);
 		store.set(markLyricsSavedAtom, lyric);
+		options?.onSaved?.();
 
 		const lyricCleaned =
 			!lyricFileName ||
@@ -476,7 +486,7 @@ export async function saveProject(store: Store, t: TFunc): Promise<boolean> {
 export async function saveLyricsOnly(
 	store: Store,
 	t: TFunc,
-	options?: { silent?: boolean },
+	options?: { silent?: boolean; prepared?: PreparedTTML; onSaved?: () => void },
 ): Promise<boolean> {
 	const activeDir = store.get(activeProjectDirAtom);
 	const manifest = store.get(activeProjectManifestAtom);
@@ -498,7 +508,7 @@ export async function saveLyricsOnly(
 		return false;
 	}
 
-	const lyric = store.get(lyricLinesAtom);
+	const lyric = options?.prepared?.lyric ?? store.get(lyricLinesAtom);
 	if (lyric.lyricLines.length === 0) {
 		if (!options?.silent) {
 			toast.info(
@@ -511,18 +521,17 @@ export async function saveLyricsOnly(
 		return false;
 	}
 
-	const lyricText = generateLyricTextFromStore(store, t);
+	const lyricText =
+		options?.prepared?.text ?? generateLyricTextFromStore(store, t);
 	if (lyricText == null) {
 		return false;
 	}
 
 	try {
-		const suggested = getSuggestedTtmlFileName(lyric.metadata);
-		const lyricFileName = ensureExtension(
-			sanitizeFileName(
-				store.get(saveFileNameAtom) || suggested?.baseName || "lyric",
-			),
-			"ttml",
+		const lyricFileName = getTTMLSaveName(
+			lyric,
+			store.get(saveFileNameAtom),
+			manifest,
 		);
 
 		await writeProjectLyricFile(activeDir, lyricFileName, lyricText);
@@ -541,6 +550,7 @@ export async function saveLyricsOnly(
 		store.set(activeProjectManifestAtom, nextManifest);
 		store.set(saveFileNameAtom, lyricFileName);
 		store.set(markLyricsSavedAtom, lyric);
+		options?.onSaved?.();
 		const cleaned = await removeReplacedFile(
 			activeDir,
 			manifest.lyricFile,

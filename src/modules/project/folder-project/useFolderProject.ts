@@ -1,6 +1,7 @@
 import { useAtomValue, useStore } from "jotai";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { saveTTML } from "../ttml-save";
 import {
 	importProjectDir as openImportProjectDir,
 	openProject as openProjectFlow,
@@ -10,7 +11,6 @@ import {
 	createProject as createProjectFlow,
 	renameProject as renameProjectFlow,
 	saveLyricsOnly as saveLyricsOnlyFlow,
-	saveProject as saveProjectFlow,
 } from "./project-save";
 import {
 	workspaceDirAtom,
@@ -54,7 +54,7 @@ export const useFolderProject = () => {
 	}, [store, t]);
 
 	const saveProject = useCallback(() => {
-		return saveProjectFlow(store, t);
+		return saveTTML(store, t, { project: true });
 	}, [store, t]);
 
 	const saveLyricsOnly = useCallback(
