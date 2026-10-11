@@ -7,10 +7,10 @@ import type { AboutSettings } from "./useAboutSettings";
 /**
  * ICU returns [text, link] for an element value. Children.toArray would copy
  * React's pending missing-key flag onto the keyed clones, so wrap each part in
- * a fresh keyed Fragment instead.
+ * a fresh Fragment; Children.map keys the Fragments by position.
  */
 const keyedParts = (parts: ReactNode) =>
-	Children.map(parts, (part, index) => <Fragment key={index}>{part}</Fragment>);
+	Children.map(parts, (part) => <Fragment>{part}</Fragment>);
 
 export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
 	<Card>
