@@ -23,8 +23,6 @@ files:
         sk: sk
         tr: tr
         zh-CN: zh-CN
-        en-UD: en-UD
-        lol: lol
       locale:
         cs: cs-CZ
         da: da-DK
@@ -41,5 +39,3 @@ files:
         sk: sk-SK
         tr: tr-TR
         zh-CN: zh-CN
-        en-UD: en-UD
-        lol: lol-US

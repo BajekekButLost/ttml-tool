@@ -182,6 +182,7 @@ export default defineConfig({
 			...configDefaults.exclude,
 			"scripts/version-utils.test.mjs",
 			"scripts/generate-contributors.test.mjs",
+			"scripts/check-locales.test.mjs",
 		],
 	},
 });

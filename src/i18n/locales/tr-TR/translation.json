@@ -1,4 +1,7 @@
 {
+  "changeNotes": {
+    "highlightsDescription": "NaeNae kullanıcıları için öne çıkanları ve en son iyileştirmeleri yayınlayın"
+  },
   "app": {
     "error": {
       "title": "Hay aksi, bir hata oluştu!",
@@ -17,8 +20,45 @@
       "description": "Yeni şarkı sözü eklemek için üst paneli kullan veya isteğin şarkı sözünü menüden aç/içe aktar"
     }
   },
-  "amll": {
-    "noLyrics": "No lyrics available in store"
+  "onlineImport": {
+    "processDescription": "İçe aktarırken metni kelimelere böler, noktalama ve boşlukları temizler, parantez içindeki vokalleri arka vokal satırlarına dönüştürür."
+  },
+  "preview": {
+    "untimedLines": "{count, plural, one {# satır henüz zamanlanmamış} other {# satır henüz zamanlanmamış}}",
+    "jumpToUntimed": "Zamanlanmamış ilk satırı senkronize et"
+  },
+  "beginnerGuide": {
+    "empty": {
+      "open": "Şarkı sözü dosyasını aç"
+    },
+    "welcome": {
+      "open": "Şarkı sözü dosyasını aç"
+    },
+    "sync": {
+      "wordProgress": "Zamanlanan kelimeler: {timed} / {total}"
+    }
+  },
+  "importChooser": {
+    "title": "Şarkı sözlerini içe aktar",
+    "description": "Şarkı sözlerinizi nereden içe aktarmak istediğinizi seçin.",
+    "options": {
+      "plainText": {
+        "title": "Düz metin",
+        "description": "Şarkı sözlerini yapıştırın ve satırların, çevirilerin, romanizasyonların ve sözcük bölmelerinin nasıl yorumlanacağını seçin."
+      },
+      "lrclib": {
+        "title": "LRCLIB",
+        "description": "Şarkıya ve sanatçıya göre senkronize edilmiş veya düz şarkı sözlerini LRCLIB arayın."
+      },
+      "lyrically": {
+        "title": "Lyrically",
+        "description": "Bir Genius belirteci ayarlamadan Lyrically'ın mevcut şarkı sözü kaynaklarını arayın."
+      },
+      "genius": {
+        "title": "Genius",
+        "description": "Erişim belirtecinizi kullanarak şarkı sözleri ve şarkı sözü yazarı bilgilerini Genius arayın."
+      }
+    }
   },
   "confirmDialog": {
     "cancel": "İptal",
@@ -32,10 +72,10 @@
       "description": "Kaydedilmemiş değişiklikleriniz var. Eğer devam ederseniz, bunlar kaybolacak. Yeni bir dosya oluşturmak istediğinize emin misiniz?"
     },
     "untimedLyrics": {
-      "title": "Untimed Lyrics Detected",
-      "description": "There is an untimed line or word in your lyrics. Would you like to fix it or export anyway?",
-      "exportAnyway": "Export Anyway",
-      "fixIt": "Fix It"
+      "title": "Zamanlanmamış sözler bulundu",
+      "description": "Bir satır veya kelime henüz zamanlanmamış. Düzeltmek mi, yine de dışa aktarmak mı istersiniz?",
+      "exportAnyway": "Yine de Dışa Aktar",
+      "fixIt": "Düzelt"
     },
     "syncLineTimestamps": {
       "title": "Satır Zamanlamasını Senkronize Etmeyi Onayla",
@@ -55,20 +95,17 @@
   },
   "experimentalFeatures": {
     "geniusCategorization": {
-      "dialogTitle": "Genius Headers Detected!",
-      "dialogDesc": "We've detected section headers in your lyrics. Would you like to enable the experimental 'Genius Header Categorization' feature to help with your workflow?",
-      "usageInfo": "Once enabled, section headers will be styled differently in the editor. You can click on them to access specialized tools like 'Copy Previous Timing' and 'Snap to Playhead'.",
-      "maybeLater": "Maybe Later",
-      "enableNow": "Enable Now",
-      "title": "Genius Header Categorization",
-      "description": "Detect, normalize, review, navigate, collapse, validate, and edit Genius-style song sections while preserving them in TTML exports.",
-      "snapToPlayhead": "Snap to Playhead",
-      "noPreviousFound": "No previous identical header found with timing.",
-      "copyPrevious": "Copy Previous Timing",
-      "headersRestored": "Section headers restored."
-    },
-    "title": "Experimental Features",
-    "description": "These features are currently in development and may be unstable. Use with caution."
+      "dialogTitle": "Genius Başlıklar Algılandı!",
+      "dialogDesc": "Şarkı sözlerinizde bölüm başlıkları tespit ettik. İş akışınıza yardımcı olması için deneysel 'Genius Başlık Kategorizasyonu' özelliğini etkinleştirmek ister misiniz?",
+      "usageInfo": "Etkinleştirildiğinde bölüm başlıkları düzenleyicide farklı bir stile sahip olacaktır. 'Önceki Zamanlamayı Kopyala' ve 'Oynatma Kafasına Yapış' gibi özel araçlara erişmek için üzerlerine tıklayabilirsiniz.",
+      "maybeLater": "Belki Daha Sonra",
+      "enableNow": "Şimdi Etkinleştir",
+      "title": "Genius Başlık Kategorizasyonu",
+      "snapToPlayhead": "Oynatma Kafasına Yasla",
+      "noPreviousFound": "Zamanlamayla daha önce aynı başlık bulunamadı.",
+      "copyPrevious": "Önceki Zamanlamayı Kopyala",
+      "headersRestored": "Bölüm başlıkları geri yüklendi."
+    }
   },
   "common": {
     "close": "Kapat",
@@ -80,38 +117,76 @@
     "search": "Ara",
     "success": "Geri yükleme başarılı",
     "error": "Veri bozuk veya kayıp",
-    "edit": "Edit",
+    "edit": "Düzenle",
     "apply": "Uygula",
     "confirm": "Onayla",
-    "back": "Back",
+    "back": "Geri",
     "deleteSuccess": "Başarıyla silindi",
     "time": "Zaman",
     "restore": "Geri Yükle",
-    "loading": "Loading...",
+    "loading": "Yükleniyor...",
     "sync": "Senkronizasyon",
     "remove": "Kaldır",
     "clickToSet": "Ayarlamak için tıklayın ",
-    "move": "Move",
-    "copy": "Copy"
+    "move": "Taşı",
+    "copy": "Kopyala"
   },
   "dialog": {
-    "mp3Conversion": {
-      "title": "MP3 dosyası FLAC'a dönüştürülsün mü?",
-      "description": "Bir MP3 dosyası içe aktarıyorsun: {fileName}",
-      "warning": "MP3 dosyaları bu uygulamada ses ve senkronizasyon bozukluklarına neden olabilir. Daha iyi uyum için dosyayı FLAC'a dönüştürmeniz tavsiye edilir.",
-      "dontShowAgain": "Bu uyarıyı bir daha gösterme",
-      "skip": "MP3 kullan",
-      "convert": "FLAC'a dönüştür",
-      "converting": "MP3 FLAC'a dönüştürülüyor...",
-      "success": "Dönüştürme başarılı",
-      "failed": "Dönüştürme başarısız: {error}"
+    "createProjectPrompt": {
+      "title": "Bir proje mi oluşturacaksınız?",
+      "description": "Sesi ve şarkı sözlerini bir proje klasöründe bir arada tutun.",
+      "ignore": "Yoksay",
+      "create": "Klasör oluştur",
+      "link": "Dosyaları yerinde tutun",
+      "linkDescription": "Veya dosyaları oldukları yerde tutun: proje yalnızca konumlarını hatırlar ve yalnızca açık bir kaydetme işlemi TTML dosyasını orijinal dosyasına geri yazar."
+    },
+    "linkProject": {
+      "audioTitle": "Yüklediğiniz ses dosyasını seçin",
+      "lyricTitle": "Bu projenin kaydettiği TTML dosyasını seçin"
     }
   },
+  "projectsDialog": {
+    "title": "Projeler",
+    "tabProject": "Proje",
+    "tabRecent": "Son",
+    "tabWorkspace": "Çalışma alanı",
+    "tabLinked": "Bağlantılı",
+    "linkedHint": "TTML ve seslerini orijinal klasörlerinde tutan projeler. Uygulama bir proje oluşturmayı teklif ettiğinde Dosyaları yerinde tut'u seçerek bir tane oluşturun.",
+    "noLinked": "Henüz bağlantılı proje yok",
+    "createNew": "Yeni Proje",
+    "folderBadge": "Proje klasörü",
+    "linkedBadge": "Bağlantılı dosyalar",
+    "openFolder": "Klasörü Aç",
+    "openLinkedFolder": "Projeler klasörünü aç",
+    "save": "Kaydet",
+    "browse": "Göz at...",
+    "loading": "Yükleniyor...",
+    "noRecent": "Yeni proje yok",
+    "noProject": "Şu anda açık proje yok",
+    "noMatches": "Aramanızla eşleşen proje yok",
+    "searchPlaceholder": "Ada veya konuma göre arayın",
+    "removeLinkTitle": "Bağlantılı proje kaldırılsın mı?",
+    "removeLinkDescription": "Proje girişi uygulamadan kaldırılır. TTML ve ses dosyalarınız silinmez.",
+    "showBackup": "Yedekleme konumunu göster"
+  },
+  "projectBrowser": {
+    "fileMissing": "{file} (eksik)",
+    "noAudio": "Ses yok",
+    "noLyric": "Şarkı sözü yok"
+  },
+  "workspace": {
+    "empty": "Hiçbir proje bulunamadı. Taranacak bir çalışma alanı klasörü seçin.",
+    "foundCount": "{count} proje(ler) bulundu",
+    "importable": "İthal edilebilir",
+    "scanning": "Taranıyor...",
+    "selectFolder": "Çalışma alanı klasörünü seçin...",
+    "unknown": "Bilinmiyor"
+  },
   "ribbonBar": {
+    "advancedTooltip": "Tüm araç çubukları için geçerlidir: Düzenleme, Zamanlama ve Önizleme.",
     "editMode": {
-      "grammarCheck": "Gramer Denetimi",
       "multipleValues": "Birden çok değer…",
-      "duration": "持续时间",
+      "duration": "Süre",
       "showTranslation": "Çeviri Satırını Göster",
       "showRomanization": "Romanizasyon Satırını Göster",
       "showWordRomanizationInput": "Kelime-Kelime Romanizasyonu Göster",
@@ -153,28 +228,29 @@
       "romanLyric": "Romanizasyon",
       "layoutMode": "Düzen",
       "auxiliaryLineDisplay": "Yardımcı Satır Görüntüleme",
-      "tools": "Kontrol et",
-      "previewPanel": "Önizleme Paneli"
+      "previewPanel": "Önizleme Paneli",
+      "playbackTracking": "Takip",
+      "autoScroll": "Otomatik Kaydırma",
+      "highlightActiveLine": "Çizgiyi Vurgula",
+      "syncTab": "Sekmeleri senkronize et"
     },
     "previewMode": {
       "mode": "Mod",
-      "amllDeprecated": "AMLL modu kullanımdan kaldırılmıştır, lütfen Standart modu kullanın",
       "standard": "Standart",
       "timing": "Zamanlama",
       "spicy": "Spicy",
-      "simpleLyrics": "Simple lyrics",
-      "forceLineRendering": "Force line rendering",
-      "background": "Background",
-      "backgroundAnimated": "Animated",
-      "backgroundColor": "Color",
-      "backgroundStatic": "Static",
+      "simpleLyrics": "Basit şarkı sözleri",
+      "forceLineRendering": "Satır bazında çizimi zorla",
+      "background": "Arkaplan",
+      "backgroundAnimated": "Animasyonlu",
+      "backgroundColor": "Renk",
+      "backgroundStatic": "Statik",
       "lyrics": "Şarkı Sözleri",
       "showTranslation": "Çeviriyi Göster",
       "showRoman": "Romanizasyonu Göster",
-      "maskObsceneWords": "Müstehcen Kelimeleri Gizle",
       "word": "Kelime",
       "fadeWidth": "Geçiş Genişliği",
-      "instantFade": "即时淡出",
+      "instantFade": "Anında Kararma",
       "render": "İşle",
       "dev": "Geliştirici",
       "showFps": "FPS'i Göster"
@@ -193,7 +269,9 @@
       "bgLyricIgnoreSync": "Arkaplan Vokallerini Yoksay",
       "quickFixes": "Hızlı Onarımlar",
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
+      "doubleClickEdit": "Çift Tıklamayla Kelime Düzenleme",
       "displayOptions": "Görüntüleme Seçenekleri",
+      "wrapWords": "Kelimeleri satıra sığdır",
       "showTimestamps": "Zaman Damgalarını Göster",
       "highlightActiveWord": "Aktif Kelimeyi İşaretle",
       "enableGlowAnimation": "Parlama Animasyonunu Etkinleştir",
@@ -207,13 +285,20 @@
         "title": "Hızlı Düzeltme İstisnalarını Yönet",
         "description": "Hızlı düzeltmelerde görmezden gelinecek kelimeler ekleyin.",
         "placeholder": "Görmezden gelinecek kelime yazın"
-      }
+      },
+      "playbackTracking": "Takip",
+      "autoScroll": "Otomatik Kaydırma",
+      "highlightActiveLine": "Çizgiyi Vurgula",
+      "syncTab": "Sekmeleri senkronize et"
     },
-    "experimentalFeatures": "Experimental Features",
-    "loading": "面板载入中..."
+    "loading": "Panel yükleniyor..."
   },
   "settings": {
     "common": {
+      "highlightActiveLineDesc": "Seçilen modda çalınmakta olan şarkı sözü satırını görsel olarak vurgular.",
+      "playbackSettingsMode": "Şunun için oynatma davranışı:",
+      "editMode": "Düzenle",
+      "timeMode": "Zaman",
       "enabled": "Aktif",
       "layoutModeOptions": {
         "simple": "Basit Mod",
@@ -256,6 +341,8 @@
       "enableUpcomingWordHighlightDesc": "Senkronizasyon modunda sonraki kelime başlamadan hemen önce soluk bir şekilde sonraki kelimeyi işaretler.",
       "upcomingWordHighlightThreshold": "Önceden İşaretleme Süresi (ms)",
       "upcomingWordHighlightColor": "İşaretleme Rengi (CSS Değeri)",
+      "syncTabPosition": "Sekmeler Arasında Konumu Senkronize Et",
+      "syncTabPositionDesc": "Şarkının çalınmasını sürdürür ve Düzenleme, Zaman ve Önizleme sekmeleri arasında geçiş yaparken aktif şarkı sözü satırını ortalar.",
       "volume": "Müzik Ses Seviyesi",
       "playbackRate": "Oynatma Hızı",
       "autosave": {
@@ -281,21 +368,31 @@
       "updateNow": "Şimdi güncelle",
       "downloading": "Güncelleme indiriliyor...",
       "ready": "Güncelleme hazır. Yüklenmesi için uygulamayı yeniden başlat.",
-      "restart": "Yeniden Başlat"
+      "restart": "Yeniden Başlat",
+      "websiteUpdate": "Web Sitesi Güncellemesi",
+      "websiteUpdateDescription": "Güncelleme istemi görünmediyse en son sürümü almak için web sitesini yenileyin.",
+      "forceRefresh": "Yenilemeye zorla",
+      "clearWebsiteCache": "Önbelleğe alınmış web sitesi verilerini temizle",
+      "clearWebsiteCacheTitle": "Önbelleğe alınmış web sitesi verileri temizlensin mi?",
+      "clearWebsiteCacheDescription": "Bu, çevrimdışı web sitesi dosyalarını kaldırır ve sayfayı yeniden yükler. Kaydedilen projeleriniz ve tercihleriniz silinmeyecektir."
     },
     "appearance": {
       "mode": {
-        "basic": "Basic Editor",
-        "advanced": "Advanced Editor",
+        "basic": "Temel Düzenleyici",
+        "advanced": "Gelişmiş Düzenleyici",
         "none": "Hiçbiri",
         "image": "Resim",
         "gradient": "Gradyan"
       },
       "presets": {
+        "missingBackground": "Bu ön ayarın arka plan resmi bu cihazda kullanılamıyor. Mevcut görüntü korundu.",
         "title": "Görünüm Ön Ayarları",
         "namePlaceholder": "Tema Adı...",
         "save": "Geçerli Olanı Kaydet",
-        "empty": "Henüz kaydedilmiş ön ayar yok."
+        "empty": "Henüz kaydedilmiş ön ayar yok.",
+        "active": "Aktif",
+        "load": "Ön ayarı uygula",
+        "delete": "Ön ayarı sil"
       },
       "theme": "Tema",
       "useCustomAccent": "Özel Aksan Rengi",
@@ -324,50 +421,55 @@
       "currentFont": "Mevcut Yazı Tipi",
       "changeFont": "Yazı tipi değiştir...",
       "advanced": {
-        "projectColors": "Project Colors",
-        "primaryText": "Primary Text Color",
-        "primaryTextDesc": "Global primary text override.",
-        "secondaryText": "Secondary Text Color",
-        "workspace": "Workspace Theme",
-        "titlebarBackground": "Titlebar Background",
-        "sidebarBackground": "Sidebar Background",
-        "activeItemHighlight": "Active Item Highlight",
-        "menuHoverColor": "Menu Hover Color",
-        "editor": "Editor Layout",
-        "editorCanvas": "Editor Canvas",
-        "activeLineHighlight": "Active Line Highlight",
-        "lineHoverEffect": "Line Hover Effect",
-        "selectionHighlight": "Selection Highlight",
-        "chipBorderRadius": "Chip Border Radius",
-        "chipSpacing": "Chip Spacing (Gap)",
-        "chipPaddingVertical": "Chip Padding (V)",
-        "chipPaddingHorizontal": "Chip Padding (H)",
-        "audioVisuals": "Playback & Visuals",
-        "audioBarColor": "Audio Bar Color",
-        "audioBarText": "Audio Bar Text",
-        "waveformInactive": "Waveform Inactive",
-        "waveformProgress": "Waveform Progress",
-        "global": "Global Design System",
-        "masterResetNote": "This will reset all 20+ granular overrides.",
-        "resetMaster": "Master Reset Advanced Config"
+        "resetToDefault": "Varsayılana sıfırla",
+        "projectColors": "Proje Renkleri",
+        "primaryText": "Birincil Metin Rengi",
+        "primaryTextDesc": "Genel birincil metin geçersiz kılma.",
+        "secondaryText": "İkincil Metin Rengi",
+        "workspace": "Çalışma Alanı Teması",
+        "titlebarBackground": "Başlık Çubuğu Arka Planı",
+        "sidebarBackground": "Kenar Çubuğu Arka Planı",
+        "activeItemHighlight": "Aktif Öğe Vurgulama",
+        "menuHoverColor": "Menü Vurgu Rengi",
+        "editor": "Düzenleyici Düzeni",
+        "editorCanvas": "Düzenleyici alanı",
+        "activeLineHighlight": "Aktif Çizgi Vurgulama",
+        "lineHoverEffect": "Satırda Vurgulu Efekt",
+        "selectionHighlight": "Seçim Vurgulama",
+        "chipBorderRadius": "Talaş Kenar Yarıçapı",
+        "chipSpacing": "Talaş Aralığı (Boşluk)",
+        "chipPaddingVertical": "Talaş Dolgusu (V)",
+        "chipPaddingHorizontal": "Talaş Dolgusu (H)",
+        "legacySpaceLabels": "Eski Alan Etiketleri",
+        "legacySpaceLabelsDesc": "Kompakt boş alan hücreleri yerine Space xN'yi gösterin.",
+        "audioVisuals": "Oynatma ve Görseller",
+        "audioBarColor": "Ses Çubuğu Rengi",
+        "audioBarText": "Ses Çubuğu Metni",
+        "waveformInactive": "Dalga Formu Aktif Değil",
+        "waveformProgress": "Dalga Formu İlerlemesi",
+        "global": "Küresel Tasarım Sistemi",
+        "legacyDarkTheme": "Klasik Koyu Tema",
+        "legacyDarkThemeDesc": "Tonlanmış Siyah yeniden tasarımından önceki daha açık koyu paleti kullanın.",
+        "masterResetNote": "Bu, 20'den fazla ayrıntılı geçersiz kılmanın tamamını sıfırlayacaktır.",
+        "resetMaster": "Tüm gelişmiş ayarları sıfırla"
       },
-      "secondaryDesc": "Translations & Metadata.",
+      "secondaryDesc": "Çeviriler ve Meta Veriler.",
       "layout": {
-        "title": "Application Layout",
-        "order": "Element Order",
-        "orderDesc": "Drag to reorder elements. Some positions may be limited by constraints.",
-        "titlebar": "Title Bar",
-        "ribbonbar": "Toolbar (Ribbon)",
-        "editor": "Main Editor Area",
-        "audio": "Audio Controls",
-        "ribbonPos": "Toolbar Orientation",
-        "pos": {
-          "top": "Top",
-          "bottom": "Bottom",
-          "left": "Left",
-          "right": "Right"
-        },
-        "sidebarWarning": "Note: Sidebar mode is experimental and may look different."
+        "title": "Uygulama Düzeni",
+        "syncWordWrap": "Zaman Modunda Kelimeleri Kaydır",
+        "syncWordWrapDesc": "Zaman / Senkronizasyon sekmesinde yatay kaydırma çubuğu göstermek yerine kelime kartlarını bir sonraki satıra kaydırır.",
+        "syncAutoScroll": "Oynatma Sırasında Etkin Satıra Otomatik Kaydırma",
+        "syncAutoScrollDesc": "Çalma sırasında o anda aktif olan şarkı sözü satırını takip etmek için editör görünümünü otomatik olarak kaydırır.",
+        "syncFocusMainLine": "Oynatma Sırasında Ana Satıra Odaklan",
+        "syncFocusMainLineDesc": "Oynatma sırasında aktif ana hatlara odaklanır ve aktif bir ana hat olmadığı sürece arka plan hatlarını yok sayar.",
+        "highlightActiveLine": "Oynatma Sırasında Aktif Satırı Vurgulayın",
+        "highlightActiveLineDesc": "Hem Düzenleme hem de Zaman modlarında çalınmakta olan şarkı sözü satırını görsel olarak vurgular.",
+        "order": "Eleman Sırası",
+        "orderDesc": "Öğeleri yeniden sıralamak için sürükleyin. Bazı pozisyonlar kısıtlamalarla sınırlı olabilir.",
+        "titlebar": "Başlık Çubuğu",
+        "ribbonbar": "Araç Çubuğu (Şerit)",
+        "editor": "Ana Düzenleyici Alanı",
+        "audio": "Ses Kontrolleri"
       },
       "fontImportSuccess": "Yazı tipi başarıyla içe aktarıldı!",
       "fontLibrary": "Yazı Tipi Kitaplığı",
@@ -388,7 +490,6 @@
       "googleFonts": "Google Fonts Kitaplığı"
     },
     "group": {
-      "assistant": "Asistan",
       "display": "Görüntü",
       "timing": "Senkronizasyon",
       "timingHighlight": "Görsel Zamanlama İpucu (Senkronizasyon)",
@@ -396,8 +497,6 @@
       "autosave": "Otomatik Kaydet"
     },
     "assistant": {
-      "quickFixes": "Hızı Onarımlar (Gramer)",
-      "quickFixesDesc": "Tekrarlanan kelimeler ve yaygın yazım hataları için önerileri etkinleştirir.",
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
       "manualTimestampEditDesc": "Senkronizasyon modunda, zaman damgalarına tıklayarak değerlerin elle girilmesine izin verir.",
       "visualizeTimestampUpdate": "Zaman Damgası Güncellemelerini Görselleştir",
@@ -416,57 +515,54 @@
       "customPresets": "Özel",
       "reset": "Sıfırla",
       "newPresetName": "Yeni Önayar Adı",
-      "save": "Önayarı Kaydet",
-      "mp3Conversion": "MP3'ten FLAC'a",
-      "mp3ConversionDesc": "Daha iyi senkronizasyon için içe aktarma sırasında MP3’ü FLAC’a dönüştür",
-      "mp3ConversionAsk": "Sor",
-      "mp3ConversionAlways": "Otomatik",
-      "mp3ConversionNever": "Kapalı"
+      "save": "Önayarı Kaydet"
     },
     "backup": {
       "category": {
-        "settings": "Settings",
-        "keybindings": "Keybindings",
-        "assets": "Appearance assets",
-        "projects": "Projects & history",
-        "plugins": "Plugins"
+        "settings": "Ayarlar",
+        "keybindings": "Tuş Atamaları",
+        "assets": "Görünüm varlıkları",
+        "projects": "Projeler ve tarih",
+        "apiKeys": "API anahtarları"
       },
       "hint": {
-        "settings": "{count} stored values",
-        "keybindings": "{count} keybindings",
-        "assetsSet": "Custom background image set",
+        "settings": "{count} saklanan değerler",
+        "keybindings": "{count} tuş atamaları",
+        "assetsSet": "Özel arka plan resmi seti",
         "assetsNone": "No custom background image",
-        "projects": "{count} projects",
-        "plugins": "{count} plugins"
+        "presetsCount": "{count} ön ayarlar",
+        "backgroundSet": "Özel arka plan",
+        "fontSet": "Özel yazı tipi",
+        "projects": "{count} projeleri",
+        "apiKeys": "{count} anahtar"
       },
-      "exportSuccess": "Backup exported",
-      "exportFailed": "Failed to export backup",
-      "newerVersion": "This backup was created by a newer version of the app",
-      "invalidFile": "Invalid or corrupted backup file",
-      "importSuccess": "Backup imported, reloading…",
-      "importFailed": "Failed to import backup. Some data may have been partially applied.",
-      "exportTitle": "Export",
-      "exportDesc": "Save your settings and data to a file you can restore later or move to another device.",
-      "exportButton": "Export backup",
-      "importTitle": "Import",
-      "importDesc": "Restore settings and data from a backup file. Existing values will be replaced.",
-      "importButton": "Choose backup file…",
-      "confirmTitle": "Confirm import",
-      "exportedAt": "Exported",
-      "confirmReplaceWarning": "Imported values will replace your current ones. The app will reload after importing.",
-      "cancelButton": "Cancel",
-      "applyButton": "Import & reload"
-    },
-    "dev": {
-      "previewPerformance": "Preview Performance",
-      "showFps": "Show FPS Counter in Preview",
-      "wasmPlugins": {
-        "title": "Topluluk Eklenti Sistemi (WASM)",
-        "description": "Aracın içe aktarma ve dışa aktarma yeteneklerini genişletmek için özel WebAssembly eklentilerini yönetin ve yükleyin."
-      },
-      "debugInfo": {
-        "title": "Hata Ayıklama Bilgileri"
-      }
+      "exportSuccess": "Yedekleme dışa aktarıldı",
+      "exportFailed": "Yedekleme dışa aktarılamadı",
+      "newerVersion": "Bu yedekleme, uygulamanın daha yeni bir sürümü tarafından oluşturuldu",
+      "invalidFile": "Geçersiz veya bozuk yedekleme dosyası",
+      "importSuccess": "Yedekleme içe aktarıldı, yeniden yükleniyor…",
+      "importFailed": "Yedekleme içe aktarılamadı. Bazı veriler kısmen uygulanmış olabilir.",
+      "exportTitle": "İhracat",
+      "exportDesc": "Ayarlarınızı ve verilerinizi daha sonra geri yükleyebileceğiniz veya başka bir cihaza taşıyabileceğiniz bir dosyaya kaydedin.",
+      "exportButton": "Yedeği dışa aktar",
+      "previewToggle": "İçerikleri önizleyin",
+      "previewLoading": "Önizleme yükleniyor…",
+      "previewEmpty": "Önizlemek için hiçbir şey seçilmedi",
+      "previewCategoryEmpty": "Bu kategoride dışa aktarılacak bir şey yok",
+      "previewMore": "+{count} daha",
+      "previewTotal": "Tahmini toplam boyut",
+      "previewPresetPrefix": "Ön ayar",
+      "previewFontPrefix": "Özel Yazı Tipi",
+      "previewVersions": "{count} sürümleri",
+      "apiKeysWarning": "API anahtarları yedekleme dosyasına düz metin olarak kaydedilir. Bunu özel tut.",
+      "importTitle": "İçe Aktar",
+      "importDesc": "Ayarları ve verileri bir yedekleme dosyasından geri yükleyin. Mevcut değerler değiştirilecek.",
+      "importButton": "Yedekleme dosyasını seçin…",
+      "confirmTitle": "İçe aktarmayı onayla",
+      "exportedAt": "Dışa aktarıldı",
+      "confirmReplaceWarning": "İçe aktarılan değerler mevcut değerlerinizin yerini alacak. Uygulama içe aktarıldıktan sonra yeniden yüklenecektir.",
+      "cancelButton": "İptal",
+      "applyButton": "İçe aktar ve yeniden yükle"
     },
     "spectrogram": {
       "palette": "Renk Paleti",
@@ -476,16 +572,19 @@
     }
   },
   "timingOverview": {
-    "start": "Start",
-    "end": "End",
-    "duration": "Duration",
-    "emptyBeat": "Empty Beat",
-    "romanization": "Roman",
-    "backgroundVocal": "BG",
-    "title": "Technical Timing Overview",
-    "lines": "Lines",
-    "words": "Words",
-    "lyricsAndTimings": "Lyrics & Word Timings"
+    "start": "Başlat",
+    "end": "Bitiş",
+    "duration": "Süre",
+    "emptyBeat": "Boş Ritim",
+    "romanization": "Romanizasyon",
+    "backgroundVocal": "Arka",
+    "title": "Teknik Zamanlamaya Genel Bakış",
+    "lines": "çizgiler",
+    "words": "kelimeler",
+    "lyricsAndTimings": "Şarkı Sözleri ve Kelime Zamanlamaları",
+    "autoScroll": "Otomatik Kaydırma",
+    "orderChronological": "Kronolojik",
+    "orderTextual": "Metinsel"
   },
   "topBar": {
     "modeBtns": {
@@ -493,17 +592,14 @@
       "sync": "Zamanla",
       "preview": "Ön İzleme"
     },
-    "boykisser": "boykisser",
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "NaeNae'ın AMLL TTML Tool Çatalı",
     "menu": {
       "undo": "Geri al",
       "redo": "İleri al",
       "selectAllLines": "Tüm satırları seç",
       "unselectAllLines": "Tüm satırların seçimini kaldır",
-      "invertSelectAllLines": "Satır seçimlerini tersine çevir",
-      "selectWordsOfMatchedSelection": "Seçilen kelimeyle eşleşenleri seç",
       "timeShift": "Zaman Kayması...",
-      "timeStretch": "时间伸缩...",
+      "timeStretch": "Zaman Uzatması...",
       "editMetadata": "Şarkı sözü metaverisini düzenle…",
       "edit": "Düzenle",
       "newLyric": "Yeni şarkı sözü",
@@ -512,7 +608,6 @@
       "saveLyric": "Şarkı sözünü kaydet",
       "restoreFromHistory": "Geçmişten kurtar…",
       "saveLyricToClipboard": "TTML'yi panoya kaydet",
-      "uploadToAMLLDB": "Veritabanına yükle (sadece CN)",
       "file": "Dosya",
       "helpDoc": "Dokümantasyon (CN)",
       "help": "Yardım",
@@ -520,25 +615,22 @@
       "autoSegment": "Otomatik Ayır",
       "rubySegment": "Ruby Ayırması",
       "advancedSegment": "Gelişmiş Ayırma...",
-      "learnedSplits": "Learned Splits...",
+      "learnedSplits": "Öğrenilmiş Bölmeler...",
       "syncLineTimestamps": "Satır Zamanlamasını Senkronize Et",
+      "ttmlChecklist": "TTML Kontrol Listesi",
       "tool": "Araçlar",
       "importLyric": {
         "import": "Şarkı sözlerini içe aktar",
         "fromPlainText": "Normal metinden içe aktar…",
         "fromLRCLIB": "LRCLIB'den içe aktar...",
         "fromLyrically": "Lyrically'den içe aktar...",
-        "fromGenius": "Genius'tan içe aktar…",
-        "fromLyRiC": "LyRiC dosyasından içe aktar…",
-        "fromESLyRiC": "ESLyRiC dosyasından içe aktar…",
-        "fromQRC": "QRC dosyasından içe aktar…",
-        "fromYRC": "YRC dosyasından içe aktar…",
-        "fromLrcfySylb": "Lyricify Syllable dosyasından içe aktar…"
+        "fromGenius": "Genius'tan içe aktar…"
       },
       "exportLyric": {
         "export": "Şarkı sözlerini dışa aktar",
-        "toLyRiC": "LyRiC dosyası olarak dışa aktar",
-        "toESLyRiC": "ESLyRiC dosyası olarak dışa aktar",
+        "toTTML": "TTML",
+        "toLRC": "LRC",
+        "toESLRC": "ESLRC",
         "toQRC": "QRC dosyası olarak dışa aktar",
         "toYRC": "YRC dosyası olarak dışa aktar",
         "toLrcfySylb": "Lyricify Syllable olarak dışa aktar",
@@ -548,14 +640,27 @@
   },
   "header": {
     "status": {
-      "autoSavedAt": "{time} saatinde otomatik kayıt edildi"
+      "autoSavedAt": "{time} saatinde otomatik kayıt edildi",
+      "unsavedChanges": "Kaydedilmemiş değişiklikler"
+    },
+    "project": {
+      "linked": "Bağlantılı proje",
+      "folder": "Klasör projesi"
+    },
+    "backup": {
+      "restore": "Yedeği geri yükle",
+      "confirmTitle": "Bağlantılı yedekleme geri yüklensin mi?",
+      "confirmDescription": "İlk üzerine yazmadan önce kaydedilen orijinal TTML mevcut şarkı dosyasının yerini alacak ve yedekleme kaldırılacaktır. Düzenleyicideki kaydedilmemiş değişiklikler kaybolacaktır."
     }
   },
   "contextMenu": {
     "deleteWords": "{count} tane kelime sil",
     "bgLyric": "Arka Plan Satırı",
     "duetLyric": "Düet Satırı",
-    "moveLineToPlayhead": "Move line to playhead",
+    "moveLineToPlayhead": "Satırı oynatma kafasına taşı",
+    "copyTimingsTo": "Zamanlamaları şuraya kopyala:",
+    "cancelCopyTimings": "Zamanlama kopyalamasını iptal et",
+    "snapSelectedLinesToPlayhead": "Seçili satırları oynatma kafasına yapıştır",
     "insertLineBefore": "Öncesine yeni satır ekle",
     "insertLineAfter": "Sonrasına yeni satır ekle",
     "copyLine": "{count} tane satırı çoğalt",
@@ -563,14 +668,18 @@
     "combineLine": "Satırları birleştir",
     "deleteLine": "{count} tane satırı sil",
     "splitWord": "Kelimeyi böl…",
-    "noSyllablesFound": "No multiple syllables found.",
-    "splitIntoSyllables": "Split into Syllables (Romanized)",
+    "noSyllablesFound": "Birden fazla hece bulunamadı.",
+    "splitIntoSyllables": "Hecelere ayır (romanizasyon)",
     "replaceWord": "Kelimeyi değiştir…",
+    "replaceRomanization": "Romanizasyonu değiştirin…",
     "combineWords": "Kelimeleri birleştir",
     "moveFollowingWordToNewLine": "Sonrakileri yeni satıra taşı",
     "moveWordToNewLine": "{count} tane kelimeyi yeni satıra taşı"
   },
   "settingsDialog": {
+    "search": "Arama ayarları",
+    "clearSearch": "Aramayı temizle",
+    "noSearchResults": "Eşleşen kategori yok",
     "title": "Tercihler",
     "common": {
       "latencyTest": "Ses/giriş gecikme testi"
@@ -581,15 +690,20 @@
       "saveFile": "Dosyayı Kaydet",
       "undo": "Geri al",
       "redo": "İleri al",
+      "redoAlternate": "Yinele (alternatif kısayol)",
       "selectAll": "Tümünü Seç",
       "unselectAll": "Tüm Seçimi Kaldır",
-      "selectInverted": "Seçimi Ters Çevir",
-      "selectWordsOfMatchedSelection": "Benzer kelimeleri seç",
       "deleteSelection": "Seçimi Sil",
-      "autoSegment": "",
+      "autoSegment": "Hızlı otomatik bölme",
+      "autoSegmentDialog": "Otomatik Ayır",
       "switchEditMode": "Mod Değişikliği - Düzenleme Moduna Geç",
       "switchSyncMode": "Mod Değişikliği - Zamanlama Moduna Geç",
       "switchPreviewMode": "Mod Değişikliği - Ön İzleme Moduna Geç",
+      "locateActiveLine": "Görünüm - Etkin Hattı Bulma",
+      "interfaceScaleUp": "Masaüstü - Arayüz ölçeğini artırın",
+      "interfaceScaleUpAlternate": "Masaüstü - Arayüz ölçeğini artırın (alternatif kısayol)",
+      "interfaceScaleDown": "Masaüstü - Arayüz ölçeğini azalt",
+      "interfaceScaleReset": "Masaüstü - Arayüz ölçeğini sıfırla",
       "moveNextWord": "Zamanlama - Sonraki kelimeye geç",
       "movePrevWord": "Zamanlama - Önceki kelimeye geç",
       "moveNextLine": "Zamanlama - Sonraki satırın başına geç",
@@ -616,6 +730,12 @@
       "auditionSelectionBefore": "Spektrogram - Seçimi Dinle (500ms önce)",
       "auditionSelection": "Spektrogram - Seçimi Dinle",
       "auditionSelectionAfter": "Spektrogram - Seçimi Dinle (500ms sonra)",
+      "cancelTimelineEditing": "Spectrogram - Zaman çizelgesi düzenlemesini iptal et",
+      "resetDefault": "Varsayılana sıfırla",
+      "clear": "Temizle",
+      "unbound": "Sınırsız",
+      "recording": "Kısayola basın (İptal etmek için Esc)",
+      "conflict": "Aynı modda {commands} öğesine de atanır. Bu kısayollardan birini yeniden eşleyin veya temizleyin.",
       "category": {
         "File": "Dosya",
         "Edit": "Düzenle",
@@ -624,40 +744,49 @@
         "Audio": "Ses",
         "Spectrogram": "Spektrogram"
       },
-      "autoSegmentOptions": "Auto Segment",
-      "autoSegmentDoublePress": "Require double press",
+      "autoSegmentOptions": "Otomatik Segment",
+      "autoSegmentDoublePress": "Çift basmayı gerektir",
       "autoSegmentDoublePressDesc": "Run Auto Segment only after pressing its shortcut twice quickly."
     },
     "tab": {
       "common": "Genel",
-      "assistant": "Asistan",
       "appearance": "Görünüm",
       "audio": "Ses",
       "keybindings": "Tuş Atamaları",
       "spectrogram": "Spektrogram",
-      "backup": "Backup",
-      "dev": "Geliştirici"
+      "backup": "Yedekleme"
     }
   },
-  "autoSegmentApplied": "Auto-segmented with {engine}",
+  "autoSegmentApplied": "{engine} ile otomatik olarak segmentlere ayrıldı",
   "error": {
     "unsupportedFileFormat": "Desteklenmeyen dosya biçimi: {ext}",
     "openFileFailed": "Dosya açılamadı",
-    "audioNotLoaded": "Ses yüklü değil. Lütfen bir ses dosaysının oynadığından emin olun."
+    "linkedProjectInvalidPath": "Seçilen dosyalar bağlanamıyor. Yerel sürücüde bir .ttml dosyası ve bir ses dosyası seçin. Ağ paylaşımları desteklenmez.",
+    "linkedProjectBackupFailed": "Orijinal TTML dosyası yedeklenemediği için üzerine yazılmadı",
+    "linkedProjectNoBackup": "Bu proje için yedek bulunamadı",
+    "linkedProjectRestoreFailed": "Orijinal TTML dosyası geri yüklenemedi",
+    "linkedProjectRestoreReloadFailed": "Orijinal dosya geri yüklendi ancak proje yeniden yüklenemedi"
+  },
+  "success": {
+    "linkedProjectBackupRestored": "Orijinal TTML dosyası geri yüklendi"
   },
   "audio": {
-    "marker": "Marker",
-    "markerLabel": "Label (e.g. Verse 1 Start)",
-    "markerDescription": "Description...",
-    "deleteMarker": "Delete Marker",
-    "waveform": "Audio Waveform",
+    "marker": "işaretleyici",
+    "markerLabel": "Etiket (örneğin Ayet 1 Başlangıç)",
+    "markerDescription": "Açıklama...",
+    "deleteMarker": "İşaretçiyi Sil",
+    "waveform": "Ses Dalga Formu",
     "status": {
       "transcoding": "Dekodlama başarısız, sesi transkodlanmaya çalışılacak...",
       "loading": "Ses yükleniyor...",
       "processing": "İşleniyor..."
     },
     "error": {
-      "workerError": "Sesi işlerken hata oluştu"
+      "workerError": "Sesi işlerken hata oluştu",
+      "noAudio": "Lütfen önce bir ses dosyası yükleyin.",
+      "contextStart": "Ses başlatılamadı. Tekrar Oynat tuşuna basmayı deneyin.",
+      "workletInit": "Ses oynatıcısı başlatılamadı.",
+      "workletStart": "Ses oynatıcı oynatmayı başlatmadı."
     }
   },
   "audioPanel": {
@@ -714,9 +843,9 @@
       "songwriterInvalidMsg": "Birden fazla şarkıyazarı varsa, lütfen sınırlayıcılar kullanmak yerine bu anahtarı birden çok kez ekleyin",
       "album": "Albüm Adı",
       "coverArt": "Kapak URL'si",
-      "ncmMusicId": "NetEase Music ID",
+      "ncmMusicId": "NetEase Music kimliği",
       "ncmMusicIdInvalidMsg": "NetEase Music ID numerik olmalıdır",
-      "qqMusicId": "QQ Music ID",
+      "qqMusicId": "QQ Music kimliği",
       "qqMusicIdInvalidMsg": "QQ Music ID alfanumerik olmalı",
       "spotifyId": "Spotify Parça ID'si",
       "spotifyIdInvalidMsg": "Spotify Parça ID'si alfanumerik olmalı",
@@ -742,24 +871,22 @@
     "placeholder": "Başlık Sanatçısı...",
     "notFound": "Hiç sonuç bulunamadı. Başka anahtar kelimeler dene",
     "noResult": "Aramaya başlamak için anahtar kelimeler gir",
-    "title": "LRCLIB'den Şarkı Sözü İçe Aktar"
+    "title": "LRCLIB'den Şarkı Sözü İçe Aktar",
+    "matchesAudio": "Sesinizle eşleşir"
   },
   "lyricEditor": {
-    "locate": "Konumlandır",
-    "lineSpectrogram": {
-      "title": "Satır Spektrogram Hizlaması",
-      "desc": "Spektrogramı kullanarak bu satırın başlangıç ve bitiş noktalarını ayarlayın. Satır süresi, karakter sayısına göre kelimelerine orantılı olarak bölünecektir.",
-      "startTime": "Başlangıç:",
-      "endTime": "Son:",
-      "duration": "Süre:",
-      "playPause": "Oynat/Duraklat"
-    }
+    "locate": "Konumlandır"
   },
   "lyricLineView": {
     "translatedLabel": "Çeviri:",
     "romanLabel": "Romanizasyon:",
     "empty": "Hiçbiri",
     "duplicateLinesHere": "Buraya seçili {count} taner satırı çoğalt",
+    "applyTimingsHere": "Buradan başlayarak {count} zamanlamaları uygulayın",
+    "applyPartialTimingsHere": "Buradan başlayarak {applied} / {total} zamanlamalarını uygulayın",
+    "timingsApplied": "{count} satırlarına zamanlama uygulandı.",
+    "partialTimingCopy": "{total} kaynak zamanlamalarından yalnızca {applied} tanesi şarkı sözlerinin sonuna uyuyor.",
+    "wordTimingMismatch": "{count} satırda kelime sayısı farklıydı; yalnızca eşleşen kelime konumları kopyalandı.",
     "insertLine": "Buraya yeni satır ekle",
     "insertWord": "Buraya kelime ekle…"
   },
@@ -769,61 +896,37 @@
     "removeWord": "Yinelenen Kelimeyi Sil",
     "editingWordTitle": "Kelime Düzenleniyor",
     "editingWordDesc": "Kelimeyi düzenle veya tavsiye edilen küçük düzeltmeleri uygula.",
-    "correctedWordPlaceholder": "Type the corrected word",
+    "correctedWordPlaceholder": "Düzeltilen kelimeyi yazın",
     "noSuggestions": "Öneri yok"
   },
   "sectionActions": {
-    "categorizeSelected": "Categorize selected {count, plural, one {line} other {lines}}",
-    "categorizeTitle": "Categorize selected lines",
-    "categorize": "Categorize",
-    "expand": "Expand section",
-    "collapse": "Collapse section",
-    "editTitle": "Edit section",
-    "vocalist": "Vocalist / role",
-    "notes": "Notes",
-    "manage": "Manage sections",
-    "goPrevious": "Go to previous section",
-    "goNext": "Go to next section",
-    "editMetadata": "Edit metadata",
-    "split": "Split at selected line",
-    "mergePrevious": "Merge with previous",
-    "mergeNext": "Merge with next",
-    "moveUp": "Move up",
-    "moveDown": "Move down",
-    "linkPrevious": "Link to previous {category}",
-    "unlinkRepeat": "Unlink repeat",
-    "removeHeader": "Remove header (keep lyrics)",
-    "addToPrevious": "Add unassigned lines to previous section",
-    "addToNext": "Add unassigned lines to next section",
-    "section": "Section"
+    "categorizeSelected": "Seçili {count, plural, one {satırı} other {satırları}} kategorize et",
+    "categorizeTitle": "Seçili satırları kategorilere ayır",
+    "categorize": "Kategorilere ayır",
+    "expand": "Bölümü genişlet",
+    "collapse": "Bölümü daralt",
+    "editTitle": "Bölümü düzenle",
+    "vocalist": "Vokalist / rol",
+    "notes": "Notlar",
+    "manage": "Bölümleri yönet",
+    "goPrevious": "Önceki bölüme git",
+    "goNext": "Sonraki bölüme git",
+    "editMetadata": "Meta verileri düzenle",
+    "split": "Seçilen satırda böl",
+    "mergePrevious": "Öncekiyle birleştir",
+    "mergeNext": "Sonrakiyle birleştir",
+    "moveUp": "Yukarı taşı",
+    "moveDown": "Aşağı taşı",
+    "linkPrevious": "Önceki {category} bağlantısı",
+    "unlinkRepeat": "Tekrarın bağlantısını kaldır",
+    "removeHeader": "Başlığı kaldır (şarkı sözlerini sakla)",
+    "addToPrevious": "Atanmamış satırları önceki bölüme ekle",
+    "addToNext": "Atanmamış satırları sonraki bölüme ekle",
+    "section": "Bölüm"
   },
   "touchSyncPanel": {
     "prevWord": "Önceki Kelimeye Atla",
     "nextWord": "Sonraki Kelimeye Atla"
-  },
-  "grammarCheck": {
-    "ambiguous": "Possible grammar issue",
-    "repeatedWord": "Repeated word",
-    "capitalization": "Kelime büyük harfle yazılmalı",
-    "capitalInMiddle": "Kelimenin ortasında büyük harfler var",
-    "title": "Gramer & Yazım Kontrolü",
-    "issues": "Sorunlar",
-    "history": "Geçmiş",
-    "ignoredWords": "Dikkate Alınmayan Kelimeler",
-    "noIssues": "Herhangi bir sorun bulunamadı!",
-    "issuesFound": "sorun bulundu",
-    "undoLast": "Sonuncuyu Geri Al",
-    "clearHistory": "Geçmişi Sil",
-    "noHistory": "Henüz herhangi bir değişiklik yapılmadı",
-    "fixed": "tamir edildi",
-    "ignored": "görmezden gelindi",
-    "line": "Satır",
-    "clearIgnoredWords": "Tümünü Temizle",
-    "noIgnoredWords": "Görmezden gelinen kelime yok",
-    "noIssuesMessage": "Hiç sorun bulunamadı! Şarkı sözleriniz iyi görünüyor.",
-    "applyFix": "Apply suggested fix",
-    "ignoreSession": "Ignore this word in this session",
-    "ignoreAlways": "Always ignore this word"
   },
   "urbanDictionary": {
     "title": "Urban Dictionary",
@@ -838,6 +941,13 @@
     "placeholder": "Yeni kelime",
     "applyToAll": "Bu değişikliği tüm aynı kelimelere uygula",
     "caseSensitive": "Eşleşme durumu (Tam eşleşme)"
+  },
+  "replaceRomanizationDialog": {
+    "title": "Latin alfabesini değiştir",
+    "description": "Yeni romanizasyon:",
+    "placeholder": "Yeni romantizasyon",
+    "applyToAll": "Tüm özdeş kelimelere uygula",
+    "caseSensitive": "Eşleşme durumu (tam eşleşme)"
   },
   "timeShiftDialog": {
     "title": "Zaman Kayması",
@@ -855,41 +965,41 @@
     "fromLine": "Bu satırdan",
     "toLine": "bu satıra",
     "line": "",
-    "snapToPlayhead": "Snap start of affected lines to current playback time"
+    "snapToPlayhead": "Etkilenen satırların başlangıcını geçerli oynatma süresine yasla"
   },
   "timeStretchDialog": {
-    "durationPlaceholder": "MM:SS.mmm or seconds",
-    "useCurrentSong": "Use current song",
+    "durationPlaceholder": "MM:SS.mmm veya saniye",
+    "useCurrentSong": "Mevcut şarkıyı kullan",
     "audioReadError": "Could not read the selected audio file's duration.",
-    "invalidDuration": "Enter a valid duration.",
-    "positiveDuration": "Duration must be greater than zero.",
-    "title": "Time Stretch",
-    "description": "Stretch or squeeze every TTML timestamp to fit a new song duration.",
-    "oldDuration": "Old song duration",
-    "readingAudio": "Reading audio...",
-    "chooseAudio": "Upload audio...",
-    "newDuration": "New song duration",
-    "noChange": "The durations match; no timing change is needed.",
-    "scaleFactor": "Scale factor: {factor}×",
-    "scopeLabel": "Apply to",
+    "invalidDuration": "Geçerli bir süre girin.",
+    "positiveDuration": "Süre sıfırdan büyük olmalıdır.",
+    "title": "Süreyi değiştir",
+    "description": "Yeni bir şarkı süresine uyacak şekilde her TTML zaman damgasını uzatın veya sıkıştırın.",
+    "oldDuration": "Eski şarkı süresi",
+    "readingAudio": "Ses okunuyor...",
+    "chooseAudio": "Sesi yükle...",
+    "newDuration": "Yeni şarkı süresi",
+    "noChange": "Süreler eşleşiyor; zamanlama değişikliğine gerek yoktur.",
+    "scaleFactor": "Ölçek faktörü: {factor}×",
+    "scopeLabel": "Uygula",
     "scope": {
-      "all": "All lines",
-      "selected": "Selected lines",
-      "selectedFollowing": "Selected lines and following",
-      "custom": "Custom range"
+      "all": "Tüm satırlar",
+      "selected": "Seçilen satırlar",
+      "selectedFollowing": "Seçilen satırlar ve takipleri",
+      "custom": "Özel aralık"
     },
-    "fromLine": "From",
-    "toLine": "to",
-    "line": "lines"
+    "fromLine": "Gönderen",
+    "toLine": "için",
+    "line": "çizgiler"
   },
   "lyrically": {
     "noLyricsLabel": "Bu parça için şarkı sözü mevcut değil.",
     "previewTitle": "Lyrically- Şarkı Sözü Ön İzlemesi",
-    "editingRawText": "Editing Raw Text",
-    "backToPreview": "Back to Preview",
-    "manualEdit": "Manual Edit",
+    "editingRawText": "Ham Metni Düzenleme",
+    "backToPreview": "Önizlemeye Geri Dön",
+    "manualEdit": "Manuel Düzenleme",
     "importTitle": "Şarkı Sözlerini Lyrically aracılığıyla güvenli bir şekilde içe aktarın (API endpoint aracılığıyla CORS yok)",
-    "source": "Source: "
+    "source": "Kaynak:"
   },
   "genius": {
     "setupTitle": "Genius API Anahtarı Kurulumu",
@@ -961,30 +1071,16 @@
     }
   },
   "sectionImportReview": {
-    "title": "Review detected sections",
-    "description": "Check normalized categories and metadata before replacing the lyrics.",
-    "sourceLyrics": "Source lyrics",
-    "structure": "Structure",
-    "sectionCount": "{count} sections",
-    "vocalist": "Vocalist / role",
-    "color": "Section color",
-    "notes": "Notes",
-    "lineCount": "{count} lyric lines",
-    "import": "Import reviewed lyrics"
-  },
-  "pluginManager": {
-    "trigger": "Plugins",
-    "title": "Plugin Management",
-    "description": "Extend your lyric editing capabilities",
-    "installed": "Installed",
-    "store": "Plugin Store",
-    "empty": "No plugins installed",
-    "browse": "Browse Store",
-    "techniques": "Techniques",
-    "usage": "Usage",
-    "sideload": "Sideload .wasm plugin",
-    "loading": "Loading community plugins...",
-    "install": "Install"
+    "title": "Algılanan bölümleri inceleyin",
+    "description": "Şarkı sözlerini değiştirmeden önce normalleştirilmiş kategorileri ve meta verileri kontrol edin.",
+    "sourceLyrics": "Kaynak şarkı sözleri",
+    "structure": "Yapı",
+    "sectionCount": "{count} bölümleri",
+    "vocalist": "Vokalist / rol",
+    "color": "Bölüm rengi",
+    "notes": "Notlar",
+    "lineCount": "{count} şarkı sözü satırları",
+    "import": "İncelenen şarkı sözlerini içe aktar"
   },
   "globalDragOverlay": {
     "title": "Yüklemek için bırakın"
@@ -1020,55 +1116,6 @@
   "metadata": {
     "title": "Metaveri"
   },
-  "submitToAMLLDB": {
-    "validation": {
-      "missingMusicName": "Metaveri'de parça ismi yok",
-      "missingArtists": "Metaveri'de parça sanatçısı yok",
-      "missingAlbum": "Metaveri'de albüm ismi yok",
-      "missingMusicId": "Metaveri'de platform parça ID'si yok"
-    },
-    "defaultReason": "Yeni Şarkı Sözü gönderimi",
-    "errors": {
-      "validation": "Gönderim doğrulaması başarısız oldu:\n{errors}",
-      "noLyrics": "Henüz şarkı sözleri içeriği yok mu?",
-      "uploadFailed": "Şarkı sözleri dosyası yüklenemedi: {status} {statusText}",
-      "submitFailed": "Gönderim başarısız oldu, neden için konsolu kontrol edin!"
-    },
-    "labels": {
-      "submit": "Şarkı Sözleri Gönderme/Düzeltme"
-    },
-    "issueTitle": "[Şarkı Sözleri Gönder/Düzelt] {name}",
-    "unknownTitle": "Bilinmeyen Başlık",
-    "unknownArtist": "Bilinmeyen sanatçı",
-    "description": "Şarkı sözlerini AMLL Şarkı Sözleri Veritabanına gönder",
-    "title": "AMLL Şarkı Sözleri Veritabanına şarkı sözleri gönderin (Yalnızca Basitleştirilmiş Çince kullanıcılar)",
-    "chineseOnlyWarning": "Bu özellik yalnızca AMLL Şarkı Sözleri Veritabanının Basitleştirilmiş Çince kullanıcıları tarafından kullanılabilir. Şarkı sözlerini başka bir yazılımda kullanmak için düzenliyorsanız, lütfen bu yazılımın şarkı sözleri gönderme şeklini takip edin!",
-    "thankYou": "Öncelikle, cömert şarkı sözleri katkınız için teşekkür ederiz!",
-    "cc0Agreement": "Göndererek",
-    "cc0Rights": "CC0 lisansını ve tamamen şarkı sözlerinden feragatı kabul etmiş olursunuz",
-    "andSubmit": "ve şarkı sözlerini veritabanına göndermiş olursunuz!",
-    "futureUse": "Ayrıca, bu şarkı sözleri AMLL sistemlerinde sonradan standart TTMl kaynağı olarak kullanılacak!",
-    "rightsWarning": "Eğer sahipliği önemsiyorsanız, lütfen şarkı sözlerinizi GÖNDERMEYİN!",
-    "submitInstructions": "Aşağıdaki bilgileri girin ve ardından GitHub sayı gönderme sayfasına atlayın!",
-    "closeWarning": "Uyarı mesajını kapat",
-    "uploadDbType": "Şarkı Sözü Veritabanı Türü",
-    "uploadDbTypeOfficial": "Resmi Veritabanı",
-    "uploadDbTypeUser": "Kullanıcı Veritabanı",
-    "uploadDbTypeBoth": "Tüm Veritabanları",
-    "officialDesc": "Şarkı sözlerinin kalitesini ve senkronizasyonunu doğrulamak için resmi veritabanına gönderirken manuel inceleme gerekir. Bu, yüksek kaliteli katkılar için önerilir.",
-    "userDesc": "Kullanıcı veritabanına göndermek için yalnızca bot doğrulaması gerekir. Daha hızlıdır ancak aynı düzeyde performans kalitesini garanti etmez.",
-    "bothDesc": "Bu, her iki depo için de gönderim sayfaları açacaktır. Lütfen her birinde manuel olarak bir sorun oluşturun.",
-    "genFromName": "Metaveri'den oluştur",
-    "musicName": "Parça Adı",
-    "musicNameDesc": "Tavsiye edilen format: Sanatçı - Şarkı İsmi",
-    "submitReason": "Sebep",
-    "submitReasonNew": "Yeni Şarkı Sözü gönderimi",
-    "submitReasonFix": "Var olan şarkı sözünü tamir et",
-    "comment": "Yorum",
-    "commentPlaceholder": "Eklemek istediğiniz başka bir şey var mı?",
-    "issueFoundTitle": "Göndermeden önce lütfen aşağıdaki sorunları düzeltin:",
-    "submitBtn": "Yükle ve Sorun Oluştur"
-  },
   "splitWordDialog": {
     "spaceCount": "Boşluk x{count}",
     "empty": "Boş",
@@ -1076,9 +1123,17 @@
     "tip": "Bölmeden sonra, yeni kelimeler orijinal kelimenin başlangıç/bitiş zamanını eşit olarak bölüşecektir. Boş vuruşlar temizlenecek.",
     "syllableSplit": "Hece Ayırması",
     "applyToAll": "Bu bölmeyi tüm aynı kelimelere uygula",
-    "remember": "Remember this split",
+    "remember": "Bu ayrılığı hatırla",
     "ignoreCase": "Büyük küçük harfi yoksay",
     "actionButton": "Onayla"
+  },
+  "combineWordsDialog": {
+    "title": "Kelimeleri Birleştir",
+    "description": "Seçilen kelimelerin nasıl birleştirilmesi gerektiğini onaylayın.",
+    "preview": "Ön İzleme",
+    "applyToAll": "Bu kombinasyonu tüm aynı kelime dizilerine uygulayın",
+    "ignoreCase": "Büyük küçük harfi yoksay",
+    "adjacentOnly": "Tümüne uygula seçeneği yalnızca bitişik seçilen kelimeler için kullanılabilir."
   },
   "advancedSegmentDialog": {
     "test": {
@@ -1103,7 +1158,7 @@
       "syllable": "Batı kelimelerini hecelere göre böl"
     },
     "engine": {
-      "select": "Choose a syllabification engine:"
+      "select": "Bir heceleme motoru seçin:"
     },
     "tip": "Bölündükten sonra, orijinal kelimenin toplam süresi karakter sayısına ve ağırlıklarına göre yeniden dağıtılacaktır.",
     "postProcess": {
@@ -1127,46 +1182,65 @@
       "placeholder": "Satır başına bir kelime, bu listedeki kelimeler otomatik olarak segmentlere ayrılmayacaktır"
     },
     "learned": {
-      "title": "Learned Split Rules",
-      "description": "These rules match any casing and ignore surrounding punctuation.",
-      "input": "Enter a word to teach the splitter...",
-      "saveHint": "Saving replaces the existing rule for this word.",
-      "save": "Save learned split",
-      "saved": "Saved rules ({count})",
-      "clear": "Clear all",
-      "search": "Search saved rules...",
-      "noResults": "No matching learned splits.",
-      "clearTitle": "Clear all learned splits?",
-      "clearDescription": "This permanently removes every learned split rule from this device."
+      "title": "Öğrenilen Bölünme Kuralları",
+      "description": "Kurallar büyük/küçük harf ayrımı yapmaz ve çevredeki noktalama işaretlerini yok sayar.",
+      "input": "Bir kelime girerek bölünmesini öğretin…",
+      "saveHint": "Kaydetme, bu kelimeye ilişkin mevcut kuralın yerine geçer.",
+      "save": "Öğrenilen bölmeyi kaydet",
+      "saved": "Kaydedilen kurallar ({count})",
+      "clear": "Tümünü temizle",
+      "search": "Kaydedilen kuralları ara...",
+      "noResults": "Eşleşen öğrenilmiş bölünme yok.",
+      "clearTitle": "Öğrenilen tüm bölünmeler temizlensin mi?",
+      "clearDescription": "Bu, öğrenilen tüm bölünmüş kuralları bu cihazdan kalıcı olarak kaldırır."
     }
   },
+  "ttmlChecklist": {
+    "title": "TTML Kontrol Listesi",
+    "description": "Daha sonra senkronize etmek istediğiniz şarkıları ve fikirleri takip edin.",
+    "songPlaceholder": "Şarkı adı *",
+    "artistPlaceholder": "Sanatçı (isteğe bağlı)",
+    "notesPlaceholder": "Notlar, sürüm, kaynak veya zamanlama fikri (isteğe bağlı)",
+    "add": "Kontrol listesine ekle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "empty": "Henüz gelecekteki TTML'ler yok. Fikir kaybolmadan bir sonraki şarkıyı ekleyin.",
+    "showNotes": "Notları göster",
+    "showCompleted": "Tamamlandı ({count})",
+    "hideCompleted": "Tamamlananları gizle",
+    "markDone": "Bitti",
+    "reopen": "Yeniden aç",
+    "edit": "Kontrol listesi öğesini düzenle",
+    "delete": "Kontrol listesi öğesini sil"
+  },
   "autoSegmentDialog": {
-    "title": "Auto Segment",
-    "description": "Choose a syllabification engine for all lyric lines.",
-    "suggested": "Suggested from lyrics:",
-    "applyAll": "Apply to all lines"
+    "title": "Otomatik Segment",
+    "description": "Tüm şarkı sözü satırları için bir heceleme motoru seçin.",
+    "suggested": "Şarkı sözlerinden önerildi:",
+    "applyAll": "Tüm satırlara uygula"
   },
   "suggestedSplits": {
-    "title": "Suggested Splits",
-    "description": "Choose a suggested split pattern for this {type}.",
-    "apply": "Apply Suggestion",
-    "noSuggestions": "No automated split suggestions available for this content."
+    "title": "Önerilen Bölmeler",
+    "description": "Bu {type} için önerilen bir bölme modeli seçin.",
+    "apply": "Öneriyi Uygula",
+    "noSuggestions": "Bu içerik için otomatik bölme önerisi yok."
   },
   "aboutModal": {
     "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
     "description": "Apple Music Benzeri Şarkı Sözleri için Kelime Kelime TTML Düzenleme ve Zaman Çizelgesi Aracı",
-    "maintainers": "Fork Maintainers & Contributors",
-    "maintainersDesc": "This fork is maintained and developed by:",
-    "forkMaintainer": "Fork maintainer & contributor",
-    "visitWebsite": "Visit website",
-    "credits": "Credits & Third-Party Notices",
-    "creditsIntro": "This project includes work adapted from the following open-source projects.",
-    "community": "Community & Contributions",
-    "communityDesc": "Help us make the tool better by contributing code, reporting issues, or providing translations.",
-    "github": "GitHub Repository",
-    "crowdin": "Help Translate in Crowdin",
+    "maintainers": "Çatal Bakımcıları ve Katkıda Bulunanlar",
+    "maintainersDesc": "Bu çatalın bakımı ve geliştirilmesi şu şekildedir:",
+    "forkMaintainer": "Çatal bakımcısı ve katkıda bulunan",
+    "visitWebsite": "Web sitesini ziyaret edin",
+    "credits": "Krediler ve Üçüncü Taraf Bildirimleri",
+    "creditsIntro": "Bu proje aşağıdaki açık kaynaklı projelerden uyarlanan çalışmaları içermektedir.",
+    "community": "Topluluk ve Katkılar",
+    "communityDesc": "Kod katkıda bulunarak, sorunları bildirerek veya çeviriler sağlayarak aracı daha iyi hale getirmemize yardımcı olun.",
+    "github": "GitHub Depo",
+    "crowdin": "Crowdin dilinde Çevirmeye Yardım Edin",
     "buildDate": "Yapım Tarihi: {date}",
-    "gitCommit": "Git Commit: {commit}"
+    "gitCommit": "Git Taahhüdü: {commit}",
+    "platform": "Platform: {platform}"
   },
   "spectrogram": {
     "invalidEndTime": "Bu son zamanı seçilemez",
@@ -1174,13 +1248,13 @@
     "loadAudio": "Ses dosyası yükle",
     "showUnselectedLines": "Seçili olmayan satırları göster",
     "settings": "Spektrogram ayarları",
-    "fftSize": "FFT Size",
+    "fftSize": "FFT Boyut",
     "resolution": "FFT Çözünürlüğü",
     "fftSizeOption": {
-      "512": "512 (Fast)",
+      "512": "512 (Hızlı)",
       "1024": "1024 (Normal)",
-      "2048": "2048 (Better Freq)",
-      "4096": "4096 (High Res)"
+      "2048": "2048 (Daha İyi Frekans)",
+      "4096": "4096 (Yüksek Çözünürlük)"
     },
     "height": "Görüntüleme Yüksekliği"
   },

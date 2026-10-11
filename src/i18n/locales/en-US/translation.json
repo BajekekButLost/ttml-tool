@@ -180,7 +180,7 @@
     "advancedTooltip": "Applies to all toolbars: Edit, Time, and Preview.",
     "editMode": {
       "multipleValues": "Multiple values…",
-      "duration": "持续时间",
+      "duration": "Duration",
       "showTranslation": "Show Translation Line",
       "showRomanization": "Show Romanization Line",
       "showWordRomanizationInput": "Show Per-Word Romanization",
