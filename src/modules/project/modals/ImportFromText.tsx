@@ -27,14 +27,16 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { getGeniusHeader } from "$/modules/lyric-editor/utils/genius-sections.ts";
 import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system.ts";
 import {
 	hasReviewableSections,
 	type ReviewedSection,
 	SectionImportReviewDialog,
 } from "$/modules/lyrics-import/modals/SectionImportReviewDialog";
-import { splitTextImportWords } from "$/modules/project/logic/text-import-words";
+import {
+	prepareTextImport,
+	textToLines,
+} from "$/modules/project/logic/text-to-lines";
 import {
 	geniusCategorizationEnabledAtom,
 	geniusHeaderDetectionDialogOpenAtom,
@@ -53,13 +55,11 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main.ts";
-import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml";
 import {
 	normalizeImportedLyricApostrophes,
 	normalizeImportedLyricCyrillicEs,
 } from "$/utils/apostrophe-normalization";
 import { error as logError } from "$/utils/logging.ts";
-import { prepareLyricLine } from "$/utils/lyric-prep";
 import styles from "./ImportFromText.module.css";
 
 // type IModelDeltaDecoration = monaco.editor.IModelDeltaDecoration;
@@ -218,145 +218,18 @@ export const ImportFromText = () => {
 				normalizeCyrillicEsOnImportAtom,
 			);
 
-			const lines = text.split("\n");
-			const result: LyricLine[] = [];
-			let currentGeniusHeader: string | undefined;
-			const consumeGeniusHeader = (value: string) => {
-				if (!geniusCategorizationEnabled) return false;
-				const header = getGeniusHeader(value);
-				if (!header) return false;
-				currentGeniusHeader = header;
-				return true;
-			};
-
-			function addLine(orig = "", trans = "", roman = "") {
-				let finalOrig = orig.trim();
-
-				let isBG = false;
-				let isDuet = false;
-
-				if (enableSpecialPrefix) {
-					// 循环遍历是否存在前缀，有则与之分离
-					while (true) {
-						if (finalOrig.startsWith(bgLyricPrefix)) {
-							isBG = true;
-							finalOrig = finalOrig.slice(bgLyricPrefix.length);
-						} else if (finalOrig.startsWith(duetLyricPrefix)) {
-							isDuet = true;
-							finalOrig = finalOrig.slice(duetLyricPrefix.length);
-						} else {
-							break;
-						}
-					}
-				}
-
-				const line: LyricLine = {
-					...newLyricLine(),
-					words: [
-						{
-							...newLyricWord(),
-							word: finalOrig,
-						},
-					],
-					translatedLyric: trans.replace(/\\/g, ""),
-					romanLyric: roman.replace(/\\/g, ""),
-					isBG,
-					isDuet,
-					geniusHeader: currentGeniusHeader,
-				};
-
-				result.push(line);
-				return line;
-			}
-
-			function addAsLyricOnly() {
-				for (const line of lines) {
-					if (consumeGeniusHeader(line)) continue;
-					addLine(line);
-				}
-			}
-
-			type KeysMatching<T, V> = NonNullable<
-				{ [K in keyof T]: T[K] extends V ? K : never }[keyof T]
-			>;
-
-			function addAsLyricWithSub(
-				sub1?: KeysMatching<LyricLine, string>,
-				sub2?: KeysMatching<LyricLine, string>,
-			) {
-				switch (lineSeparatorMode) {
-					case LineSeparatorMode.Interleaved: {
-						for (let i = 0; i < lines.length; ) {
-							const orig = lines[i++];
-							if (consumeGeniusHeader(orig)) continue;
-							const subText1 = sub1 ? (lines[i++] ?? "") : "";
-							const subText2 = sub2 ? (lines[i++] ?? "") : "";
-							const line = addLine(orig);
-							if (line && sub1) line[sub1] = subText1;
-							if (line && sub2) line[sub2] = subText2;
-						}
-						return;
-					}
-					case LineSeparatorMode.SameLineSeparator: {
-						for (const lineText of lines) {
-							const parts = lineText.split(lineSeparator);
-							const orig = parts[0];
-							if (consumeGeniusHeader(orig)) continue;
-							const subText1 = sub1 ? parts[1] : "";
-							const subText2 = sub2 ? parts[2] : "";
-							const line = addLine(orig);
-							if (line && sub1) line[sub1] = subText1;
-							if (line && sub2) line[sub2] = subText2;
-						}
-						return;
-					}
-				}
-			}
-
-			switch (importMode) {
-				case ImportMode.Lyric:
-					addAsLyricOnly();
-					break;
-				case ImportMode.LyricTrans:
-					addAsLyricWithSub("translatedLyric");
-					break;
-				case ImportMode.LyricRoman:
-					addAsLyricWithSub("romanLyric");
-					break;
-				case ImportMode.LyricTransRoman:
-					addAsLyricWithSub("translatedLyric", "romanLyric");
-					break;
-			}
-
-			if (swapTransAndRoman) {
-				for (const line of result) {
-					[line.romanLyric, line.translatedLyric] = [
-						line.translatedLyric,
-						line.romanLyric,
-					];
-				}
-			}
-
-			for (const line of result) {
-				const wholeLine = line.words.map((word) => word.word).join("");
-				const words = splitTextImportWords(wholeLine, wordSeparator);
-
-				line.words = words.map((word) => ({
-					...newLyricWord(),
-					word,
-				}));
-			}
-
-			if (enableEmptyBeat && emptyBeatSymbol.length > 0) {
-				for (const line of result) {
-					for (const word of line.words) {
-						while (word.word.endsWith(emptyBeatSymbol)) {
-							word.word = word.word.slice(0, -emptyBeatSymbol.length);
-							word.emptyBeat += 1;
-						}
-					}
-				}
-			}
+			const result = textToLines(text, {
+				mode: importMode,
+				lineSeparatorMode,
+				lineSeparator,
+				swapTransAndRoman,
+				wordSeparator,
+				sectionHeaders: geniusCategorizationEnabled ? "categorize" : "preserve",
+				blankLines: "preserve",
+				backgroundPrefix: enableSpecialPrefix ? bgLyricPrefix : "",
+				duetPrefix: enableSpecialPrefix ? duetLyricPrefix : "",
+				emptyBeatSymbol: enableEmptyBeat ? emptyBeatSymbol : "",
+			});
 
 			const importedLyrics = {
 				lyricLines: result,
@@ -392,55 +265,7 @@ export const ImportFromText = () => {
 		const text = store.get(textValueAtom);
 
 		const lines = text.split("\n");
-		const processedLines: string[] = [];
-
-		const processLineContent = (content: string) => {
-			return prepareLyricLine(content);
-			/*
-			let result = content.trim();
-			// 1. Wrap hyphens with separator: - -> -\
-			result = result.replace(/-/g, "-\\");
-			// 2. Wrap spaces with separator and a literal space word: " " -> "\ \"
-			result = result.replace(/ /g, "\\ \\");
-			return result;
-			*/
-		};
-
-		for (const line of lines) {
-			const currentLine = line.trim();
-			if (!currentLine) {
-				continue;
-			}
-
-			// Handle genius tags e.g. [Chorus: artist]
-			if (currentLine.startsWith("[") && currentLine.endsWith("]")) {
-				if (geniusCategorizationEnabled) {
-					processedLines.push(currentLine);
-				}
-				continue;
-			}
-
-			// Handle background vocals in parentheses at the end of the line
-			const bgMatch = currentLine.match(/(?!)/);
-			if (bgMatch) {
-				const mainPart = bgMatch[1].trim();
-				const bgPart = bgMatch[2].trim();
-
-				if (mainPart) {
-					processedLines.push(processLineContent(mainPart));
-				}
-				if (bgPart) {
-					processedLines.push(`<${processLineContent(bgPart)}`);
-				}
-			} else if (currentLine.startsWith("(") && currentLine.endsWith(")")) {
-				// Handle case where the whole line is in parentheses
-				processedLines.push(`<${processLineContent(currentLine.slice(1, -1))}`);
-			} else {
-				processedLines.push(processLineContent(currentLine));
-			}
-		}
-
-		setValue(processedLines.join("\n"));
+		setValue(prepareTextImport(text, geniusCategorizationEnabled));
 
 		// Set settings to match this format
 		setWordSeparator("\\");
@@ -455,31 +280,7 @@ export const ImportFromText = () => {
 			!geniusCategorizationEnabled &&
 			!geniusDetectionDialogShown
 		) {
-			// Save the processed text WITH headers for potential restoration
-			const processedWithHeaders: string[] = [];
-			for (const line of lines) {
-				const currentLine = line.trim();
-				if (!currentLine) continue;
-				if (currentLine.startsWith("[") && currentLine.endsWith("]")) {
-					processedWithHeaders.push(currentLine);
-					continue;
-				}
-				const bgMatch = currentLine.match(/^(.*?)\s*\((.*)\)\s*$/);
-				if (bgMatch) {
-					const mainPart = bgMatch[1].trim();
-					const bgPart = bgMatch[2].trim();
-					if (mainPart) processedWithHeaders.push(processLineContent(mainPart));
-					if (bgPart)
-						processedWithHeaders.push(`<${processLineContent(bgPart)}`);
-				} else if (currentLine.startsWith("(") && currentLine.endsWith(")")) {
-					processedWithHeaders.push(
-						`<${processLineContent(currentLine.slice(1, -1))}`,
-					);
-				} else {
-					processedWithHeaders.push(processLineContent(currentLine));
-				}
-			}
-			setRestorationText(processedWithHeaders.join("\n"));
+			setRestorationText(prepareTextImport(text, true));
 			setGeniusDetectionDialogOpen(true);
 		}
 

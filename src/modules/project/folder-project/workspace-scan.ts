@@ -7,7 +7,8 @@ import {
 } from "$/modules/project/folder-project/manifest";
 import { PROJECT_MANIFEST_FILENAME } from "$/modules/project/folder-project/types";
 
-const AUDIO_EXTS = new Set(["flac", "wav", "mp3", "m4a", "aac", "ogg", "opus"]);
+import { AUDIO_EXTENSIONS as AUDIO_EXTS } from "$/utils/audio-formats";
+
 const MAX_WORKSPACE_PROJECTS = 100;
 
 export interface ScannedProject {

@@ -4,7 +4,6 @@ import { isSafeProjectFileName, sanitizeFileName } from "./manifest";
 import type { ProjectSongInfo } from "./types";
 
 export const DEFAULT_PROJECT_NAME = "Untitled Song";
-const MAX_FOLDER_NAME_LENGTH = 120;
 
 export interface ProjectNameSource {
 	metadata?: TTMLMetadata[];
@@ -35,13 +34,8 @@ function firstMetadataValue(
 }
 
 export function toSafeFolderName(raw: string): string {
-	if (!raw.trim()) return "";
-	const cleaned = sanitizeFileName(raw)
-		.replace(/\.{2,}/g, ".")
-		.replace(/^[.\s]+/, "")
-		.replace(/[.\s]+$/, "")
-		.slice(0, MAX_FOLDER_NAME_LENGTH)
-		.replace(/[.\s]+$/, "");
+	if (!raw.replace(/[.\s]/g, "")) return "";
+	const cleaned = sanitizeFileName(raw, 120);
 	return cleaned && isSafeProjectFileName(cleaned) ? cleaned : "";
 }
 

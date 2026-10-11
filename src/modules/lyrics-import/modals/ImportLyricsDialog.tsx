@@ -19,12 +19,10 @@ import { useImmerAtom } from "jotai-immer";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { uid } from "uid";
 import { currentDurationAtom, loadedAudioAtom } from "$/modules/audio/states";
 import { GeniusApi } from "$/modules/genius/api/client";
 import { getBetterGeniusCoverArt } from "$/modules/genius/utils/image";
 import { LrcLibApi } from "$/modules/lrclib/api/client";
-import { getGeniusHeader } from "$/modules/lyric-editor/utils/genius-sections.ts";
 import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system.ts";
 import { LyricallyApi } from "$/modules/lyrically/api/client";
 import {
@@ -33,6 +31,7 @@ import {
 	processImportedLyricsAtom,
 } from "$/modules/lyrics-import/states";
 import { getAudioSearchQuery } from "$/modules/project/logic/song-metadata";
+import { textToLines } from "$/modules/project/logic/text-to-lines";
 import {
 	applyConfirmedImportMetadataAtom,
 	loadedAudioSongAtom,
@@ -55,13 +54,12 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main.ts";
-import type { LyricLine, LyricWord } from "$/types/ttml.ts";
 import {
 	normalizeImportedLyricApostrophes,
 	normalizeImportedLyricCyrillicEs,
 } from "$/utils/apostrophe-normalization";
 import { getGeniusKeyGuideUrl } from "$/utils/genius-guide";
-import { prepareLyricLine } from "$/utils/lyric-prep";
+import { lrcToPlainLyrics } from "$/utils/parse-lrc";
 import {
 	formatTrackDuration,
 	matchesAudioDuration,
@@ -87,9 +85,6 @@ type ImportTrack = {
 	fetchLyrics?: () => Promise<string>;
 	fetchSongwriters?: () => Promise<string[]>;
 };
-
-const lrcToPlainLyrics = (lyrics: string) =>
-	lyrics.replace(/^\s*\[(?:\d+:)?\d{1,2}(?:[.:]\d{1,3})?\]\s*/gm, "");
 
 export const ImportLyricsDialog = ({
 	source = "lyrically",
@@ -335,26 +330,16 @@ export const ImportLyricsDialog = ({
 
 	const performImport = useCallback(
 		async (reviewed: ReviewedSection[] = []) => {
-			const rawLines = (
-				processLyrics
-					? editableLyrics
-							.split("\n")
-							.flatMap((line) =>
-								categorizeGeniusHeaders && /^\[.+\]$/.test(line.trim())
-									? [line]
-									: prepareLyricLine(line).split("\n"),
-							)
-					: editableLyrics.split("\n")
-			).map((line) => line.trim());
-
-			const slopPatterns = categorizeGeniusHeaders ? [] : [/^\[.*\]$/];
-
-			const lines = rawLines.filter((l) => {
-				if (!l) return false;
-				return !slopPatterns.some((pattern) => pattern.test(l));
+			const processedLines = textToLines(editableLyrics, {
+				processLyrics,
+				sectionHeaders: categorizeGeniusHeaders ? "categorize" : "discard",
+				blankLines: "discard",
+				wordSeparator: processLyrics ? "\\" : "",
+				collapseWhitespace: !processLyrics,
+				backgroundPrefix: processLyrics ? "<" : "",
 			});
 
-			if (lines.length === 0) {
+			if (processedLines.length === 0) {
 				setSectionReviewSubmitted(false);
 				toast.error(
 					t(
@@ -394,134 +379,6 @@ export const ImportLyricsDialog = ({
 				};
 				applyImportMetadata(song);
 			};
-
-			if (processLyrics) {
-				let geniusHeader: string | undefined;
-				const processedLines: LyricLine[] = [];
-				for (const lineText of lines) {
-					const header = categorizeGeniusHeaders
-						? getGeniusHeader(lineText)
-						: undefined;
-					if (header) {
-						geniusHeader = header;
-						continue;
-					}
-					const isBG = lineText.startsWith("<");
-					const words: LyricWord[] = lineText
-						.slice(isBG ? 1 : 0)
-						.split("\\")
-						.filter(Boolean)
-						.map((word) => ({
-							id: uid(),
-							word,
-							startTime: 0,
-							endTime: 0,
-							emptyBeat: 0,
-							obscene: false,
-							romanWord: "",
-						}));
-					processedLines.push({
-						id: uid(),
-						words,
-						startTime: 0,
-						endTime: 0,
-						isBG,
-						isDuet: false,
-						ignoreSync: false,
-						translatedLyric: "",
-						romanLyric: "",
-						geniusHeader,
-					});
-				}
-
-				const normalizedLyrics = normalizeImportedLyricCyrillicEs(
-					normalizeImportedLyricApostrophes(
-						{ lyricLines: processedLines, metadata: [], sections: [] },
-						normalizeApostrophesOnImport,
-					),
-					normalizeCyrillicEsOnImport,
-				);
-				setLyricLines((prev) => {
-					prev.lyricLines = normalizedLyrics.lyricLines;
-					prev.sections = [];
-					applyReviewedSections(prev, reviewed);
-				});
-				if (categorizeGeniusHeaders) setGeniusCategorizationEnabled(true);
-				fillImportMetadata();
-				try {
-					await importSongwriters();
-				} catch (error) {
-					console.error("Genius songwriter fetch failed", error);
-				}
-				if (processedLines[0]?.words[0]) {
-					store.set(selectedLinesAtom, new Set([processedLines[0].id]));
-					store.set(
-						selectedWordsAtom,
-						new Set([processedLines[0].words[0].id]),
-					);
-				}
-				toast.success(
-					t(
-						"metadataDialog.fetchSongwriters.importSuccess",
-						"Imported {count} lines from Genius.",
-						{ count: processedLines.length },
-					),
-				);
-				setIsOpen(false);
-				setSectionReviewSubmitted(false);
-				return;
-			}
-
-			// Standard import: preserve source lines verbatim, including parentheses.
-			const processedLines: LyricLine[] = [];
-			let geniusHeader: string | undefined;
-
-			for (const lineText of lines) {
-				const header = categorizeGeniusHeaders
-					? getGeniusHeader(lineText)
-					: undefined;
-				if (header) {
-					geniusHeader = header;
-					continue;
-				}
-				const parts = [lineText];
-
-				for (const part of parts) {
-					const trimmed = part.trim();
-					if (!trimmed) continue;
-
-					const isBG = false;
-					let text = trimmed;
-
-					text = text.replace(/\\/g, "").replace(/\s+/g, " ");
-					if (!text) continue;
-
-					const wordStrings = [text];
-
-					const words: LyricWord[] = wordStrings.map((word) => ({
-						id: uid(),
-						word,
-						startTime: 0,
-						endTime: 0,
-						emptyBeat: 0,
-						obscene: false,
-						romanWord: "",
-					}));
-
-					processedLines.push({
-						id: uid(),
-						words,
-						startTime: 0,
-						endTime: 0,
-						isBG,
-						isDuet: false,
-						ignoreSync: false,
-						translatedLyric: "",
-						romanLyric: "",
-						geniusHeader,
-					});
-				}
-			}
 
 			const normalizedLyrics = normalizeImportedLyricCyrillicEs(
 				normalizeImportedLyricApostrophes(

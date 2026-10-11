@@ -31,7 +31,7 @@ import {
 import { useAtom, useAtomValue, useStore } from "jotai";
 import { type FC, memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useFileOpener } from "$/hooks/useFileOpener";
+import { useLoadAudio } from "$/hooks/useLoadAudio";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { AudioSlider } from "$/modules/audio/components/AudioSlider";
 import {
@@ -59,7 +59,6 @@ import {
 	keyVolumeDownAtom,
 	keyVolumeUpAtom,
 } from "$/states/keybindings.ts";
-import { openFileWithDialog } from "$/utils/fileDialog.ts";
 import { useKeyBindingAtom } from "$/utils/keybindings.ts";
 import { msToTimestamp } from "$/utils/timestamp.ts";
 
@@ -129,22 +128,8 @@ export const AudioControls: FC = memo(() => {
 	const currentDuration = useAtomValue(currentDurationAtom);
 	const [audioPlaying, setAudioPlaying] = useAtom(audioPlayingAtom);
 	const [volume, setVolume] = useAtom(volumeAtom);
-	const { openFile } = useFileOpener();
+	const { loadAudio: onLoadMusic } = useLoadAudio();
 	const { t } = useTranslation();
-
-	const onLoadMusic = useCallback(async () => {
-		const file = await openFileWithDialog({
-			multiple: false,
-			filters: [
-				{
-					name: "Audio",
-					extensions: ["mp3", "flac", "wav", "ogg", "m4a", "opus", "webm"],
-				},
-			],
-		});
-		if (!file || Array.isArray(file)) return;
-		openFile(file);
-	}, [openFile]);
 
 	const onTogglePlay = useCallback(() => {
 		if (audioEngine.musicPlaying) {
