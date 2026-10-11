@@ -1,5 +1,19 @@
 [
 	{
+		"version": "0.11.1",
+		"summary": "Sync Next fix",
+		"color": "cyan",
+		"date": "2026-10-11",
+		"entries": [
+			{
+				"type": "fix",
+				"title": "Sync Next no longer overwrites the next word's end time",
+				"body": "Pressing **Sync Next** now only sets the next word's start, like it used to, instead of also stamping the same time onto its end.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.11.0",
 		"summary": "Exact audio playback",
 		"color": "iris",
