@@ -27,24 +27,31 @@ const makeLyric = (): TTMLLyric => {
 	} as TTMLLyric;
 };
 
-const commitWith = (rubyIndex: number, field: "word" | "romanWord") => {
+const commitWith = (
+	rubyIndex: number,
+	field: "word" | "romanWord",
+	cancelFirst = false,
+) => {
 	let lyric = makeLyric();
 	const editLyricLines = (recipe: (state: TTMLLyric) => void) => {
 		lyric = produce(lyric, recipe);
 	};
-	let commit: ReturnType<typeof useSyncWordEditing>["commitTextEdit"];
+	let editing!: ReturnType<typeof useSyncWordEditing>;
 	const Probe = () => {
-		commit = useSyncWordEditing({
+		editing = useSyncWordEditing({
 			editLyricLines,
 			line: lyric.lyricLines[0],
 			wordIndex: 0,
 			rubyIndex,
-		}).commitTextEdit;
+		});
 		return null;
 	};
 	const root = createRoot(document.createElement("div"));
 	act(() => root.render(<Probe />));
-	act(() => commit(field, "edited"));
+	act(() => editing.setEditingTextField(field));
+	// Escape unmounts the input; the blur that follows must not commit.
+	if (cancelFirst) act(() => editing.cancelTextEdit());
+	act(() => editing.commitTextEdit(field, "edited"));
 	act(() => root.unmount());
 	return lyric.lyricLines[0].words[0];
 };
@@ -62,5 +69,10 @@ describe("useSyncWordEditing text commits", () => {
 			word: "漢字",
 			romanWord: "edited",
 		});
+	});
+
+	it("drops the blur commit that follows an Escape cancel", () => {
+		expect(commitWith(-1, "word", true).word).toBe("漢字");
+		expect(commitWith(1, "word", true).ruby?.[1]?.word).toBe("じ");
 	});
 });

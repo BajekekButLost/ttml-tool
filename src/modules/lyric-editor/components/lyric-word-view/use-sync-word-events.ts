@@ -67,6 +67,7 @@ export const useSyncWordEvents = ({
 		editingTextValueRef,
 		commitTimeEdit,
 		commitTextEdit,
+		cancelTextEdit,
 	} = editing;
 	const onWordPointerDown = (evt: PointerEvent<HTMLDivElement>) => {
 		evt.stopPropagation();
@@ -139,7 +140,7 @@ export const useSyncWordEvents = ({
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
-			setEditingTextField(null);
+			cancelTextEdit();
 		}
 	};
 	const onEndTimeClick = (e: MouseEvent<HTMLDivElement>) => {

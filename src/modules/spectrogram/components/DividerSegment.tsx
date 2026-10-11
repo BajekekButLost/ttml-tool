@@ -39,10 +39,12 @@ export const DividerSegment: FC<DividerSegmentProps> = ({
 	const { zoom } = useContext(SpectrogramContext);
 
 	const startDrag = useCallback(
-		(e: React.MouseEvent) => {
+		(e: React.MouseEvent<HTMLDivElement>) => {
 			if (e.button !== 0) return;
 			e.preventDefault();
 			e.stopPropagation();
+			// preventDefault blocks mouse focus, which the arrow-key nudge needs.
+			e.currentTarget.focus({ preventScroll: true });
 			setTimelineDrag({
 				type: "divider",
 				lineId: lineId,
@@ -56,8 +58,30 @@ export const DividerSegment: FC<DividerSegmentProps> = ({
 		[lineId, segmentIndex, setTimelineDrag, zoom, virtual],
 	);
 
+	// The timeline blocks mouse focus elsewhere, so drop it on any outside click
+	// to give plain arrows back to audio seeking.
+	const releaseFocusOnOutsideClick = useCallback(
+		(event: React.FocusEvent<HTMLDivElement>) => {
+			const divider = event.currentTarget;
+			const onPointerDown = (pointerEvent: PointerEvent) => {
+				if (!divider.contains(pointerEvent.target as Node)) divider.blur();
+			};
+			document.addEventListener("pointerdown", onPointerDown, true);
+			divider.addEventListener(
+				"blur",
+				() => document.removeEventListener("pointerdown", onPointerDown, true),
+				{ once: true },
+			);
+		},
+		[],
+	);
+
 	const handleKeyDown = useCallback(
-		(event: React.KeyboardEvent) => {
+		(event: React.KeyboardEvent<HTMLDivElement>) => {
+			if (event.key === "Escape") {
+				event.currentTarget.blur();
+				return;
+			}
 			if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
 				return;
 			}
@@ -125,6 +149,7 @@ export const DividerSegment: FC<DividerSegmentProps> = ({
 			aria-orientation="vertical"
 			aria-valuenow={timeMs}
 			onKeyDown={handleKeyDown}
+			onFocus={releaseFocusOnOutsideClick}
 		>
 			<div className={styles.dividerLine} />
 		</div>

@@ -41,11 +41,14 @@ export const useSyncWordEditing = ({
 	const editingTextInputRef = useRef<HTMLInputElement>(null);
 	const editingTextMeasureRef = useRef<HTMLSpanElement>(null);
 	const editingTextValueRef = useRef("");
+	// Escape unmounts the input, and the resulting blur must not commit.
+	const textEditCancelledRef = useRef(false);
 	const [editingTextWidth, setEditingTextWidth] = useState<number>();
 	const textForMeasurement = editingTextValue || " ";
 
 	useEffect(() => {
 		if (!editingTextField) return;
+		textEditCancelledRef.current = false;
 		editingTextInputRef.current?.focus();
 		editingTextInputRef.current?.select();
 	}, [editingTextField]);
@@ -64,6 +67,7 @@ export const useSyncWordEditing = ({
 
 	const commitTextEdit = useCallback(
 		(field: "word" | "romanWord", value: string) => {
+			if (textEditCancelledRef.current) return;
 			editLyricLines((state) => {
 				const targetLine = state.lyricLines.find((item) => item.id === line.id);
 				const targetWord = targetLine?.words[wordIndex];
@@ -97,6 +101,11 @@ export const useSyncWordEditing = ({
 				true,
 			);
 	}, [commitTextEdit, editingTextField]);
+
+	const cancelTextEdit = useCallback(() => {
+		textEditCancelledRef.current = true;
+		setEditingTextField(null);
+	}, []);
 
 	const commitTimeEdit = useCallback(
 		(field: "start" | "end", rawValue: string) => {
@@ -140,6 +149,7 @@ export const useSyncWordEditing = ({
 		editingTextWidth,
 		textForMeasurement,
 		commitTextEdit,
+		cancelTextEdit,
 		commitTimeEdit,
 	};
 };

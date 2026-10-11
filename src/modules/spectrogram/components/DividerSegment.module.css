@@ -29,13 +29,13 @@
 }
 
 .divider:hover .dividerLine,
-.divider:focus-visible .dividerLine {
+.divider:focus .dividerLine {
 	background-color: var(--accent-11);
 	opacity: 1;
 	width: 3px;
 	box-shadow: 0 0 6px var(--accent-a8);
 }
 
-.divider:focus-visible {
+.divider:focus {
 	outline: none;
 }

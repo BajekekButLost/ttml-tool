@@ -18,6 +18,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 import { useTranslation } from "react-i18next";
@@ -60,6 +61,8 @@ export const LyricWordViewEdit = ({
 	const setSplitState = useSetAtom(editingWordStateAtom);
 	const [editing, setEditing] = useState(false);
 	const [editingValue, setEditingValue] = useState(word.word);
+	// Escape unmounts the input, and the resulting blur must not commit.
+	const editCancelledRef = useRef(false);
 	const store = useStore();
 	const toolMode = useAtomValue(toolModeAtom);
 	const isWordBlank = useWordBlank(word.word);
@@ -87,7 +90,9 @@ export const LyricWordViewEdit = ({
 	);
 
 	useEffect(() => {
-		if (editing) setEditingValue(word.word);
+		if (!editing) return;
+		editCancelledRef.current = false;
+		setEditingValue(word.word);
 	}, [editing, word.word]);
 
 	const className = useMemo(
@@ -112,6 +117,7 @@ export const LyricWordViewEdit = ({
 	);
 	const onEnter = useCallback(
 		(evt: SyntheticEvent<HTMLInputElement>) => {
+			if (editCancelledRef.current) return;
 			setEditing(false);
 			const { word: parsedWord, enableRuby } = parseRubyShortcut(
 				evt.currentTarget.value,
@@ -141,6 +147,12 @@ export const LyricWordViewEdit = ({
 					onBlur={onEnter}
 					onKeyDown={(evt) => {
 						if (evt.key === "Enter") onEnter(evt);
+						if (evt.key === "Escape") {
+							evt.preventDefault();
+							evt.stopPropagation();
+							editCancelledRef.current = true;
+							setEditing(false);
+						}
 					}}
 				/>
 				{showRubyEditor && <RubyEditor wordAtom={wordAtom} />}

@@ -88,7 +88,8 @@ export function useLineDragDrop({
 			if (selectedCount > 1) {
 				dragPreview.dataset.lineCount = String(selectedCount);
 			}
-			document.body.append(dragPreview);
+			// Mount inside the Radix theme root so the count badge gets its tokens.
+			(viewEl.closest(".radix-themes") ?? document.body).append(dragPreview);
 			updateDragPreview();
 		};
 
