@@ -226,13 +226,11 @@
       "secondaryContent": "Contenu secondaire",
       "translatedLyric": "Traduction",
       "romanLyric": "Romanisation",
-      "layoutMode": "Disposition",
       "auxiliaryLineDisplay": "Affichage de ligne auxiliaire",
       "previewPanel": "Panneau d'aperçu",
       "playbackTracking": "Suivi",
       "autoScroll": "Défilement automatique",
-      "highlightActiveLine": "Ligne de surbrillance",
-      "syncTab": "Synchroniser les onglets"
+      "highlightActiveLine": "Ligne de surbrillance"
     },
     "previewMode": {
       "mode": "Mode",
@@ -248,11 +246,8 @@
       "lyrics": "Paroles",
       "showTranslation": "Afficher la traduction",
       "showRoman": "Afficher la romanisation",
-      "word": "Mot",
       "fadeWidth": "Largeur de fondu",
       "instantFade": "Fondu instantané",
-      "render": "Rendu",
-      "dev": "Dév.",
       "showFps": "Afficher FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Modification manuelle de l'horodatage",
       "doubleClickEdit": "Double-cliquez sur Modification de mots",
       "displayOptions": "Options d'affichage",
-      "wrapWords": "Retour à la ligne des mots",
       "showTimestamps": "Afficher les horodatages",
       "highlightActiveWord": "Surligner le mot actif",
       "enableGlowAnimation": "Activer l'animation lumineuse",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Suivi",
       "autoScroll": "Défilement automatique",
-      "highlightActiveLine": "Ligne de surbrillance",
-      "syncTab": "Synchroniser les onglets"
+      "highlightActiveLine": "Ligne de surbrillance"
     },
     "loading": "Panneau de chargement..."
   },
@@ -305,6 +298,7 @@
         "advance": "Mode avancé"
       },
       "disabled": "Désactivé",
+      "advancedRibbonControls": "Afficher les contrôles avancés du ruban",
       "language": "Langue de l'interface",
       "languageDesc": "Sélectionnez la langue de l'interface",
       "helpTranslate": "Aidez à traduire cette application",
@@ -494,7 +488,9 @@
       "timing": "Timing",
       "timingHighlight": "Repère visuel de synchronisation",
       "playback": "Lecture",
-      "autosave": "Sauvegarde auto"
+      "autosave": "Sauvegarde auto",
+      "previewControls": "Aperçu",
+      "editorControls": "Affichage et contrôles de l'éditeur"
     },
     "assistant": {
       "manualTimestampEdit": "Modification manuelle de l'horodatage",
@@ -569,6 +565,9 @@
       "paletteCustom": "Personnalisée",
       "gradientEditorDesc": "Une valeur Pos de 0.0 correspond à la partie la plus silencieuse, et 1.0 à la partie la plus forte. Il est recommandé d'utiliser des couleurs plus vives pour les valeurs Pos plus grandes.",
       "addStop": "Ajouter un point de couleur"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Site mis en cache avec succès pour une utilisation hors ligne",
     "updateRefresh": "Site mis à jour, actualisez pour utiliser la dernière version !",
     "refresh": "Actualiser"
+  },
+  "export": {
+    "sectionReview": "Vérification des sections : {count, plural, one {# problème non bloquant} many {# problèmes non bloquants} other {# problèmes non bloquants}}.",
+    "recoveryUntimed": "Cet export de récupération contient des paroles non synchronisées. Vérifiez la synchronisation avant de l'envoyer.",
+    "recoveryReviewFailed": "Les vérifications de synchronisation n'ont pas pu s'exécuter. Relisez les paroles récupérées avant de les envoyer."
   }
 }

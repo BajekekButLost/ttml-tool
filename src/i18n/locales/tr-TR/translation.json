@@ -226,13 +226,11 @@
       "secondaryContent": "İkincil İçerik",
       "translatedLyric": "Çeviri",
       "romanLyric": "Romanizasyon",
-      "layoutMode": "Düzen",
       "auxiliaryLineDisplay": "Yardımcı Satır Görüntüleme",
       "previewPanel": "Önizleme Paneli",
       "playbackTracking": "Takip",
       "autoScroll": "Otomatik Kaydırma",
-      "highlightActiveLine": "Çizgiyi Vurgula",
-      "syncTab": "Sekmeleri senkronize et"
+      "highlightActiveLine": "Çizgiyi Vurgula"
     },
     "previewMode": {
       "mode": "Mod",
@@ -248,11 +246,8 @@
       "lyrics": "Şarkı Sözleri",
       "showTranslation": "Çeviriyi Göster",
       "showRoman": "Romanizasyonu Göster",
-      "word": "Kelime",
       "fadeWidth": "Geçiş Genişliği",
       "instantFade": "Anında Kararma",
-      "render": "İşle",
-      "dev": "Geliştirici",
       "showFps": "FPS'i Göster"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
       "doubleClickEdit": "Çift Tıklamayla Kelime Düzenleme",
       "displayOptions": "Görüntüleme Seçenekleri",
-      "wrapWords": "Kelimeleri satıra sığdır",
       "showTimestamps": "Zaman Damgalarını Göster",
       "highlightActiveWord": "Aktif Kelimeyi İşaretle",
       "enableGlowAnimation": "Parlama Animasyonunu Etkinleştir",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Takip",
       "autoScroll": "Otomatik Kaydırma",
-      "highlightActiveLine": "Çizgiyi Vurgula",
-      "syncTab": "Sekmeleri senkronize et"
+      "highlightActiveLine": "Çizgiyi Vurgula"
     },
     "loading": "Panel yükleniyor..."
   },
@@ -305,6 +298,7 @@
         "advance": "Gelişmiş Mod"
       },
       "disabled": "Devre Dışı",
+      "advancedRibbonControls": "Gelişmiş şerit denetimlerini göster",
       "language": "Arayüz Dili",
       "languageDesc": "Arayüz için bir dil seç",
       "helpTranslate": "Bu uygulamanın çevirisinde yardım et",
@@ -494,7 +488,9 @@
       "timing": "Senkronizasyon",
       "timingHighlight": "Görsel Zamanlama İpucu (Senkronizasyon)",
       "playback": "Oynatma",
-      "autosave": "Otomatik Kaydet"
+      "autosave": "Otomatik Kaydet",
+      "previewControls": "Önizleme",
+      "editorControls": "Düzenleyici görünümü ve denetimleri"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
@@ -569,6 +565,9 @@
       "paletteCustom": "Özel",
       "gradientEditorDesc": "0.0 Pos değeri en sessiz kısmı, 1.0 Pos değeri ise en yüksek sesli kısmı temsil eder. Pos değeri yükseldikçe daha parlak renkler kullanılması önerilir.",
       "addStop": "Renk Noktası Ekle"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Site çevrimdışı kullanım için başarıyla kaydedildi",
     "updateRefresh": "Site güncellendi, son sürümü kullanmak için yenile!",
     "refresh": "Yenile"
+  },
+  "export": {
+    "sectionReview": "Bölüm incelemesi: {count, plural, one {# engellemeyen sorun} other {# engellemeyen sorun}}.",
+    "recoveryUntimed": "Bu kurtarma dışa aktarımı zamanlanmamış sözler içeriyor. Göndermeden önce zamanlamayı kontrol edin.",
+    "recoveryReviewFailed": "Zamanlama kontrolleri çalıştırılamadı. Göndermeden önce kurtarılan sözleri gözden geçirin."
   }
 }

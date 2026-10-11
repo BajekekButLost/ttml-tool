@@ -226,13 +226,11 @@
       "secondaryContent": "Sekundárny obsah",
       "translatedLyric": "Preklad",
       "romanLyric": "Romanizácia",
-      "layoutMode": "Rozloženie",
       "auxiliaryLineDisplay": "Zobrazenie pomocného riadku",
       "previewPanel": "Náhľadový panel",
       "playbackTracking": "Sledovanie",
       "autoScroll": "Automatické posúvanie",
-      "highlightActiveLine": "Zvýraznite čiaru",
-      "syncTab": "Synchronizovať karty"
+      "highlightActiveLine": "Zvýraznite čiaru"
     },
     "previewMode": {
       "mode": "Režim",
@@ -248,11 +246,8 @@
       "lyrics": "Texty",
       "showTranslation": "Zobraziť preklad",
       "showRoman": "Zobraziť romanizáciu",
-      "word": "Slovo",
       "fadeWidth": "Šírka prelínania",
       "instantFade": "Okamžité vyblednutie",
-      "render": "Vykresliť",
-      "dev": "Vývoj",
       "showFps": "Zobraziť FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Manuálna úprava časovej pečiatky",
       "doubleClickEdit": "Dvakrát kliknite na položku Word Editing",
       "displayOptions": "Možnosti zobrazenia",
-      "wrapWords": "Zalamovať slová",
       "showTimestamps": "Zobraziť časové značky",
       "highlightActiveWord": "Zvýrazniť aktívne slovo",
       "enableGlowAnimation": "Povoliť animáciu žiary",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Sledovanie",
       "autoScroll": "Automatické posúvanie",
-      "highlightActiveLine": "Zvýraznite čiaru",
-      "syncTab": "Synchronizovať karty"
+      "highlightActiveLine": "Zvýraznite čiaru"
     },
     "loading": "Načítavanie panelu…"
   },
@@ -305,6 +298,7 @@
         "advance": "Pokročilý režim"
       },
       "disabled": "Zakázané",
+      "advancedRibbonControls": "Zobraziť pokročilé ovládacie prvky na páse s nástrojmi",
       "language": "Jazyk rozhrania",
       "languageDesc": "Vyberte jazyk rozhrania",
       "helpTranslate": "Pomôžte preložiť túto aplikáciu",
@@ -494,7 +488,9 @@
       "timing": "Časovanie",
       "timingHighlight": "Vizuálna pomôcka pri synchronizácii",
       "playback": "Prehrávanie",
-      "autosave": "Automatické ukladanie"
+      "autosave": "Automatické ukladanie",
+      "previewControls": "Náhľad",
+      "editorControls": "Zobrazenie a ovládanie editora"
     },
     "assistant": {
       "manualTimestampEdit": "Manuálna úprava časovej pečiatky",
@@ -569,6 +565,9 @@
       "paletteCustom": "Vlastná",
       "gradientEditorDesc": "Hodnota Pos 0.0 zodpovedá najtichšej časti a 1.0 najhlasnejšej časti. Odporúča sa používať jasnejšie farby pre väčšie hodnoty Pos.",
       "addStop": "Pridať farebný bod"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Stránka úspešne uložená do vyrovnávacej pamäte pre offline použitie",
     "updateRefresh": "Stránka aktualizovaná, obnovte pre použitie najnovšej verzie!",
     "refresh": "Obnoviť"
+  },
+  "export": {
+    "sectionReview": "Kontrola sekcií: {count, plural, one {# neblokujúci problém} few {# neblokujúce problémy} many {# neblokujúceho problému} other {# neblokujúcich problémov}}.",
+    "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Pred odoslaním skontrolujte časovanie.",
+    "recoveryReviewFailed": "Kontroly časovania sa nepodarilo spustiť. Pred odoslaním skontrolujte obnovené texty."
   }
 }

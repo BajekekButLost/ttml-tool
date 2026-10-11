@@ -226,13 +226,11 @@
       "secondaryContent": "Secundaire inhoud",
       "translatedLyric": "Vertaling",
       "romanLyric": "Romanisatie",
-      "layoutMode": "Indeling",
       "auxiliaryLineDisplay": "Weergave hulplijn",
       "previewPanel": "Paneel bekijken",
       "playbackTracking": "Volgen",
       "autoScroll": "Automatisch scrollen",
-      "highlightActiveLine": "Markeer lijn",
-      "syncTab": "Tabbladen synchroniseren"
+      "highlightActiveLine": "Markeer lijn"
     },
     "previewMode": {
       "mode": "Modus",
@@ -248,11 +246,8 @@
       "lyrics": "Songteksten",
       "showTranslation": "Vertaling tonen",
       "showRoman": "Toon romanisatie",
-      "word": "Woord",
       "fadeWidth": "Vervagen breedte",
       "instantFade": "Direct uitfaden",
-      "render": "Renderen",
-      "dev": "Ontwikkeling",
       "showFps": "Toon FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Handmatige tijdsaanduiding bewerken",
       "doubleClickEdit": "Dubbelklik op Woordbewerking",
       "displayOptions": "Weergave opties",
-      "wrapWords": "Woorden laten teruglopen",
       "showTimestamps": "Tijdstempels weergeven",
       "highlightActiveWord": "Markeer actief woord",
       "enableGlowAnimation": "Gloed Animatie Inschakelen",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Volgen",
       "autoScroll": "Automatisch scrollen",
-      "highlightActiveLine": "Markeer lijn",
-      "syncTab": "Tabbladen synchroniseren"
+      "highlightActiveLine": "Markeer lijn"
     },
     "loading": "Laadpaneel..."
   },
@@ -305,6 +298,7 @@
         "advance": "Geavanceerde modus"
       },
       "disabled": "Uitgeschakeld",
+      "advancedRibbonControls": "Geavanceerde lintknoppen tonen",
       "language": "Interface taal",
       "languageDesc": "Selecteer de taal voor de interface",
       "helpTranslate": "Help deze app te vertalen",
@@ -494,7 +488,9 @@
       "timing": "Synchroniseren",
       "timingHighlight": "Visuele Timing Cue (Sync)",
       "playback": "Afspelen",
-      "autosave": "Automatisch opslaan"
+      "autosave": "Automatisch opslaan",
+      "previewControls": "Voorbeeld",
+      "editorControls": "Editorweergave en -bediening"
     },
     "assistant": {
       "manualTimestampEdit": "Handmatige tijdsaanduiding bewerken",
@@ -569,6 +565,9 @@
       "paletteCustom": "Aangepaste",
       "gradientEditorDesc": "Een Pos waarde van 0,0 komt overeen met het rustigste gedeelte, en 1.0 komt overeen met het luidste gedeelte. Het wordt aanbevolen om helderdere kleuren te gebruiken voor grotere Pos waarden.",
       "addStop": "Kleurstop toevoegen"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Site succesvol gecached voor offline gebruik",
     "updateRefresh": "Site bijgewerkt, vernieuwd om de nieuwste versie te gebruiken!",
     "refresh": "Vernieuwen"
+  },
+  "export": {
+    "sectionReview": "Sectiecontrole: {count, plural, one {# niet-blokkerend probleem} other {# niet-blokkerende problemen}}.",
+    "recoveryUntimed": "Deze herstelexport bevat ongetimede songteksten. Controleer de timing voordat je instuurt.",
+    "recoveryReviewFailed": "Timingcontroles konden niet worden uitgevoerd. Controleer de herstelde songteksten voordat je instuurt."
   }
 }

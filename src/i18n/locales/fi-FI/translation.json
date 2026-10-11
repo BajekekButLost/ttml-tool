@@ -226,13 +226,11 @@
       "secondaryContent": "Toissijainen Sisältö",
       "translatedLyric": "Käännös",
       "romanLyric": "Romanisointi",
-      "layoutMode": "Asettelu",
       "auxiliaryLineDisplay": "Apuviivojen Näyttö",
       "previewPanel": "Esikatselupaneeli",
       "playbackTracking": "Seuranta",
       "autoScroll": "Automaattinen vieritys",
-      "highlightActiveLine": "Korosta rivi",
-      "syncTab": "Synkronoi välilehdet"
+      "highlightActiveLine": "Korosta rivi"
     },
     "previewMode": {
       "mode": "tila",
@@ -248,11 +246,8 @@
       "lyrics": "Sanoitukset",
       "showTranslation": "Näytä käännös",
       "showRoman": "Näytä romanisointi",
-      "word": "sana",
       "fadeWidth": "Häivytysleveys",
       "instantFade": "Välitön häivytys",
-      "render": "Renderöi",
-      "dev": "Kehitys",
       "showFps": "Näytä FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Manuaalinen aikaleiman muokkaus",
       "doubleClickEdit": "Kaksoisnapsauta Word Editing",
       "displayOptions": "Näyttöasetukset",
-      "wrapWords": "Rivitä sanat",
       "showTimestamps": "Näytä aikaleimat",
       "highlightActiveWord": "Korosta Active Word",
       "enableGlowAnimation": "Ota Glow Animation käyttöön",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Seuranta",
       "autoScroll": "Automaattinen vieritys",
-      "highlightActiveLine": "Korosta rivi",
-      "syncTab": "Synkronoi välilehdet"
+      "highlightActiveLine": "Korosta rivi"
     },
     "loading": "Ladataan paneelia..."
   },
@@ -305,6 +298,7 @@
         "advance": "Edistynyt tila"
       },
       "disabled": "Ei käytössä",
+      "advancedRibbonControls": "Näytä nauhan lisäsäätimet",
       "language": "Käyttöliittymän kieli",
       "languageDesc": "Valitse käyttöliittymän kieli",
       "helpTranslate": "Auta kääntämään tämä sovellus",
@@ -494,7 +488,9 @@
       "timing": "Synkronoidaan",
       "timingHighlight": "Synkronoinnin visuaalinen vihje",
       "playback": "Toisto",
-      "autosave": "Automaattinen tallennus"
+      "autosave": "Automaattinen tallennus",
+      "previewControls": "Esikatselu",
+      "editorControls": "Editorin näkymä ja säätimet"
     },
     "assistant": {
       "manualTimestampEdit": "Manuaalinen aikaleiman muokkaus",
@@ -569,6 +565,9 @@
       "paletteCustom": "Mukautettu",
       "gradientEditorDesc": "Pos-arvo 0,0 vastaa hiljaisinta osaa ja 1,0 vastaa äänekkäintä kohtaa. On suositeltavaa käyttää kirkkaampia värejä suurempia Pos-arvoja varten.",
       "addStop": "Lisää Color Stop"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Sivusto on tallennettu välimuistiin offline-käyttöä varten",
     "updateRefresh": "Sivusto päivitetty, päivitä käyttääksesi uusinta versiota!",
     "refresh": "Päivitä"
+  },
+  "export": {
+    "sectionReview": "Osioiden tarkistus: {count, plural, one {# ei-estävä ongelma} other {# ei-estävää ongelmaa}}.",
+    "recoveryUntimed": "Tämä palautettu vienti sisältää ajastamattomia sanoituksia. Tarkista ajoitus ennen lähettämistä.",
+    "recoveryReviewFailed": "Ajoitustarkistuksia ei voitu suorittaa. Tarkista palautetut sanoitukset ennen lähettämistä."
   }
 }

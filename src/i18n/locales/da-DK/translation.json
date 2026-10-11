@@ -226,13 +226,11 @@
       "secondaryContent": "Sekundært indhold",
       "translatedLyric": "Oversættelse",
       "romanLyric": "Romanisering",
-      "layoutMode": "Layout",
       "auxiliaryLineDisplay": "Visning af hjælpelinje",
       "previewPanel": "Preview-panel",
       "playbackTracking": "Sporing",
       "autoScroll": "Auto-rul",
-      "highlightActiveLine": "Fremhæv linje",
-      "syncTab": "Synkroniser faner"
+      "highlightActiveLine": "Fremhæv linje"
     },
     "previewMode": {
       "mode": "tilstand",
@@ -248,11 +246,8 @@
       "lyrics": "Sangtekster",
       "showTranslation": "Vis oversættelse",
       "showRoman": "Vis romanisering",
-      "word": "Ord",
       "fadeWidth": "Fade-bredde",
       "instantFade": "Øjeblikkelig fade ud",
-      "render": "Gengivelse",
-      "dev": "Udvikling",
       "showFps": "Vis FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Manuel redigering af tidsstempel",
       "doubleClickEdit": "Dobbeltklik på Ordredigering",
       "displayOptions": "Visningsmuligheder",
-      "wrapWords": "Ombryd ord",
       "showTimestamps": "Vis tidsstempler",
       "highlightActiveWord": "Fremhæv aktivt ord",
       "enableGlowAnimation": "Aktiver Glow Animation",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Sporing",
       "autoScroll": "Auto-rul",
-      "highlightActiveLine": "Fremhæv linje",
-      "syncTab": "Synkroniser faner"
+      "highlightActiveLine": "Fremhæv linje"
     },
     "loading": "Indlæser panel..."
   },
@@ -305,6 +298,7 @@
         "advance": "Avanceret tilstand"
       },
       "disabled": "Deaktiveret",
+      "advancedRibbonControls": "Vis avancerede båndkontroller",
       "language": "Grænsefladesprog",
       "languageDesc": "Vælg sproget for grænsefladen",
       "helpTranslate": "Hjælp med at oversætte denne app",
@@ -494,7 +488,9 @@
       "timing": "Timing",
       "timingHighlight": "Visuelt signal ved synkronisering",
       "playback": "Afspilning",
-      "autosave": "Automatisk lagring"
+      "autosave": "Automatisk lagring",
+      "previewControls": "Forhåndsvisning",
+      "editorControls": "Editorvisning og -kontroller"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel redigering af tidsstempel",
@@ -569,6 +565,9 @@
       "paletteCustom": "Brugerdefineret",
       "gradientEditorDesc": "En Pos-værdi på 0.0 svarer til den roligste del, og 1.0 svarer til den højeste del. Det anbefales at bruge lysere farver for større Pos-værdier.",
       "addStop": "Tilføj farvepunkt"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Websted succesfuldt cachet til offline brug",
     "updateRefresh": "Websted opdateret, opdater for at bruge den seneste version!",
     "refresh": "Opdater"
+  },
+  "export": {
+    "sectionReview": "Afsnitsgennemgang: {count, plural, one {# ikke-blokerende problem} other {# ikke-blokerende problemer}}.",
+    "recoveryUntimed": "Denne gendannede eksport indeholder tekster uden timing. Tjek timingen, før du indsender.",
+    "recoveryReviewFailed": "Timingtjek kunne ikke køres. Gennemgå de gendannede tekster, før du indsender."
   }
 }

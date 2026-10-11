@@ -226,13 +226,11 @@
       "secondaryContent": "Conteúdo secundário",
       "translatedLyric": "Tradução",
       "romanLyric": "Romanização",
-      "layoutMode": "Disposição",
       "auxiliaryLineDisplay": "Exibição de linha auxiliar",
       "previewPanel": "Painel de visualização",
       "playbackTracking": "Rastreamento",
       "autoScroll": "Rolagem automática",
-      "highlightActiveLine": "Linha de destaque",
-      "syncTab": "Sincronizar abas"
+      "highlightActiveLine": "Linha de destaque"
     },
     "previewMode": {
       "mode": "Modo",
@@ -248,11 +246,8 @@
       "lyrics": "Letras",
       "showTranslation": "Mostrar tradução",
       "showRoman": "Mostrar romanização",
-      "word": "Palavra",
       "fadeWidth": "Largura do fade",
       "instantFade": "Desaparecimento instantâneo",
-      "render": "Renderizar",
-      "dev": "Desenvolvimento",
       "showFps": "Mostrar FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Edição manual de carimbo de data/hora",
       "doubleClickEdit": "Edição de palavras com duplo clique",
       "displayOptions": "Opções de exibição",
-      "wrapWords": "Quebrar linhas entre palavras",
       "showTimestamps": "Mostrar marcas de tempo",
       "highlightActiveWord": "Destacar palavra ativa",
       "enableGlowAnimation": "Ativar animação de brilho",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Rastreamento",
       "autoScroll": "Rolagem automática",
-      "highlightActiveLine": "Linha de destaque",
-      "syncTab": "Sincronizar abas"
+      "highlightActiveLine": "Linha de destaque"
     },
     "loading": "Carregando painel..."
   },
@@ -305,6 +298,7 @@
         "advance": "Modo avançado"
       },
       "disabled": "Desativado",
+      "advancedRibbonControls": "Mostrar controles avançados da faixa de opções",
       "language": "Idioma da interface",
       "languageDesc": "Selecione o idioma da interface",
       "helpTranslate": "Ajude a traduzir este aplicativo",
@@ -494,7 +488,9 @@
       "timing": "Temporização",
       "timingHighlight": "Indicação visual de sincronização",
       "playback": "Reprodução",
-      "autosave": "Salvamento automático"
+      "autosave": "Salvamento automático",
+      "previewControls": "Pré-visualização",
+      "editorControls": "Exibição e controles do editor"
     },
     "assistant": {
       "manualTimestampEdit": "Edição manual de carimbo de data/hora",
@@ -569,6 +565,9 @@
       "paletteCustom": "Personalizada",
       "gradientEditorDesc": "Um valor de Pos de 0.0 corresponde à parte mais silenciosa, e 1.0 corresponde à parte mais alta. É recomendado usar cores mais brilhantes para valores de Pos maiores.",
       "addStop": "Adicionar ponto de cor"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Site armazenado em cache com sucesso para uso offline",
     "updateRefresh": "Site atualizado, atualize para usar a versão mais recente!",
     "refresh": "Atualizar"
+  },
+  "export": {
+    "sectionReview": "Revisão de seções: {count, plural, one {# problema não bloqueante} many {# problemas não bloqueantes} other {# problemas não bloqueantes}}.",
+    "recoveryUntimed": "Esta exportação de recuperação contém letras sem sincronização. Verifique a sincronização antes de enviar.",
+    "recoveryReviewFailed": "Não foi possível executar as verificações de sincronização. Revise as letras recuperadas antes de enviar."
   }
 }

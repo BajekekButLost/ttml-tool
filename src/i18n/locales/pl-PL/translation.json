@@ -226,13 +226,11 @@
       "secondaryContent": "Zawartość drugorzędna",
       "translatedLyric": "Tłumaczenie",
       "romanLyric": "Romanizacja",
-      "layoutMode": "Układ",
       "auxiliaryLineDisplay": "Wyświetlanie linii pomocniczej",
       "previewPanel": "Panel podglądu",
       "playbackTracking": "Śledzenie",
       "autoScroll": "Automatyczne przewijanie",
-      "highlightActiveLine": "Podświetl linię",
-      "syncTab": "Synchronizuj karty"
+      "highlightActiveLine": "Podświetl linię"
     },
     "previewMode": {
       "mode": "Tryb",
@@ -248,11 +246,8 @@
       "lyrics": "Tekst",
       "showTranslation": "Pokaż tłumaczenie",
       "showRoman": "Pokaż romanizację",
-      "word": "Słowo",
       "fadeWidth": "Szerokość zanikania",
       "instantFade": "Natychmiastowe zanikanie",
-      "render": "Renderuj",
-      "dev": "Deweloper",
       "showFps": "Pokaż FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Ręczna edycja znacznika czasu",
       "doubleClickEdit": "Kliknij dwukrotnie opcję Edytuj słowa",
       "displayOptions": "Opcje wyświetlania",
-      "wrapWords": "Zawijaj słowa",
       "showTimestamps": "Pokaż znaczniki czasu",
       "highlightActiveWord": "Podświetl aktywne słowo",
       "enableGlowAnimation": "Włącz animację blasku",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Śledzenie",
       "autoScroll": "Automatyczne przewijanie",
-      "highlightActiveLine": "Podświetl linię",
-      "syncTab": "Synchronizuj karty"
+      "highlightActiveLine": "Podświetl linię"
     },
     "loading": "Ładowanie panelu..."
   },
@@ -305,6 +298,7 @@
         "advance": "Tryb zaawansowany"
       },
       "disabled": "Niepełnosprawny",
+      "advancedRibbonControls": "Pokaż zaawansowane elementy wstążki",
       "language": "Język interfejsu",
       "languageDesc": "Wybierz język interfejsu",
       "helpTranslate": "Pomóż przetłumaczyć tę aplikację",
@@ -494,7 +488,9 @@
       "timing": "Synchronizacja",
       "timingHighlight": "Wizualna wskazówka synchronizacji",
       "playback": "Odtwarzanie",
-      "autosave": "Automatyczny zapis"
+      "autosave": "Automatyczny zapis",
+      "previewControls": "Podgląd",
+      "editorControls": "Wyświetlanie i sterowanie edytora"
     },
     "assistant": {
       "manualTimestampEdit": "Ręczna edycja znacznika czasu",
@@ -569,6 +565,9 @@
       "paletteCustom": "Niestandardowa",
       "gradientEditorDesc": "Wartość Pos 0.0 odpowiada najcichszej części, a 1.0 najgłośniejszej. Zaleca się używanie jaśniejszych kolorów dla większych wartości Pos.",
       "addStop": "Dodaj punkt koloru"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Strona pomyślnie zapisana w pamięci podręcznej do użytku offline",
     "updateRefresh": "Strona zaktualizowana, odśwież, aby użyć najnowszej wersji!",
     "refresh": "Odśwież"
+  },
+  "export": {
+    "sectionReview": "Przegląd sekcji: {count, plural, one {# nieblokujący problem} few {# nieblokujące problemy} many {# nieblokujących problemów} other {# nieblokującego problemu}}.",
+    "recoveryUntimed": "Ten odzyskany eksport zawiera niezsynchronizowane teksty. Sprawdź synchronizację przed wysłaniem.",
+    "recoveryReviewFailed": "Nie udało się uruchomić sprawdzania synchronizacji. Przejrzyj odzyskane teksty przed wysłaniem."
   }
 }

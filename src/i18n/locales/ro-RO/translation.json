@@ -226,13 +226,11 @@
       "secondaryContent": "Conținut secundar",
       "translatedLyric": "Translație",
       "romanLyric": "Romanizare",
-      "layoutMode": "Aranjare",
       "auxiliaryLineDisplay": "Afișare Auxiliara a Liniei",
       "previewPanel": "Panou de Previzualizare",
       "playbackTracking": "Urmărire",
       "autoScroll": "Defilare automată",
-      "highlightActiveLine": "Evidențiați linia",
-      "syncTab": "Sincronizează filele"
+      "highlightActiveLine": "Evidențiați linia"
     },
     "previewMode": {
       "mode": "Mod",
@@ -248,11 +246,8 @@
       "lyrics": "Lyric-uri",
       "showTranslation": "Afișare traducere",
       "showRoman": "Arată Romanizarea",
-      "word": "Cuvânt",
       "fadeWidth": "Lățime estompare",
       "instantFade": "Fade Out instantanee",
-      "render": "Redați",
-      "dev": "Dezvoltare",
       "showFps": "Afișează FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "Editare Manual Timestamp",
       "doubleClickEdit": "Faceți dublu clic pe Editarea cuvintelor",
       "displayOptions": "Opțiuni de Afișare",
-      "wrapWords": "Încadrează cuvintele pe rânduri",
       "showTimestamps": "Arată marcajele temporale",
       "highlightActiveWord": "Evidențiază Cuvântul activ",
       "enableGlowAnimation": "Activează animația Glow",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "Urmărire",
       "autoScroll": "Defilare automată",
-      "highlightActiveLine": "Evidențiați linia",
-      "syncTab": "Sincronizează filele"
+      "highlightActiveLine": "Evidențiați linia"
     },
     "loading": "Se încarcă panoul..."
   },
@@ -305,6 +298,7 @@
         "advance": "Modul Avansat"
       },
       "disabled": "Dezactivat",
+      "advancedRibbonControls": "Afișează controalele avansate din panglică",
       "language": "Limba Interfeței",
       "languageDesc": "Selectaţi limba pentru interfaţă",
       "helpTranslate": "Ajută la traducerea aplicației",
@@ -494,7 +488,9 @@
       "timing": "Sincronizare",
       "timingHighlight": "Cue de sincronizare vizuală (Sync)",
       "playback": "Redare",
-      "autosave": "Salvare automată"
+      "autosave": "Salvare automată",
+      "previewControls": "Previzualizare",
+      "editorControls": "Afișare și controale editor"
     },
     "assistant": {
       "manualTimestampEdit": "Modificare Manual Timestamp",
@@ -569,6 +565,9 @@
       "paletteCustom": "Personalizat",
       "gradientEditorDesc": "O valoare Pos de 0.0 corespunde celei mai liniștite părți, iar 1.0 corespunde părții cele mai puternice. Se recomandă utilizarea unor culori mai bune pentru valorile Pos mai mari.",
       "addStop": "Adaugă Oprire culoare"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "Site-ul a fost memorat cu succes pentru utilizare offline",
     "updateRefresh": "Site actualizat, reîmprospătează pentru a folosi ultima versiune!",
     "refresh": "Împrospătează"
+  },
+  "export": {
+    "sectionReview": "Verificarea secțiunilor: {count, plural, one {# problemă neblocantă} few {# probleme neblocante} other {# de probleme neblocante}}.",
+    "recoveryUntimed": "Acest export de recuperare conține versuri nesincronizate. Verifică sincronizarea înainte de trimitere.",
+    "recoveryReviewFailed": "Verificările de sincronizare nu au putut rula. Revizuiește versurile recuperate înainte de trimitere."
   }
 }

@@ -226,13 +226,11 @@
       "secondaryContent": "附属内容",
       "translatedLyric": "翻译",
       "romanLyric": "注音",
-      "layoutMode": "布局",
       "auxiliaryLineDisplay": "辅助行显示",
       "previewPanel": "预览面板",
       "playbackTracking": "追踪",
       "autoScroll": "自动滚动",
-      "highlightActiveLine": "高光线",
-      "syncTab": "同步标签页"
+      "highlightActiveLine": "高光线"
     },
     "previewMode": {
       "mode": "模式",
@@ -248,11 +246,8 @@
       "lyrics": "歌词",
       "showTranslation": "显示翻译",
       "showRoman": "显示注音",
-      "word": "单词",
       "fadeWidth": "淡化宽度",
       "instantFade": "即时淡出",
-      "render": "渲染",
-      "dev": "开发",
       "showFps": "显示 FPS"
     },
     "syncMode": {
@@ -271,7 +266,6 @@
       "manualTimestampEdit": "手动时间戳编辑",
       "doubleClickEdit": "双击Word编辑",
       "displayOptions": "显示选项",
-      "wrapWords": "自动换行",
       "showTimestamps": "显示时间戳",
       "highlightActiveWord": "高亮活动单词",
       "enableGlowAnimation": "启用发光动画",
@@ -288,8 +282,7 @@
       },
       "playbackTracking": "追踪",
       "autoScroll": "自动滚动",
-      "highlightActiveLine": "高光线",
-      "syncTab": "同步标签页"
+      "highlightActiveLine": "高光线"
     },
     "loading": "面板载入中..."
   },
@@ -305,6 +298,7 @@
         "advance": "高级模式"
       },
       "disabled": "禁用",
+      "advancedRibbonControls": "显示高级功能区控件",
       "language": "界面语言",
       "languageDesc": "选择界面显示的语言",
       "helpTranslate": "帮助翻译此程序",
@@ -494,7 +488,9 @@
       "timing": "同步",
       "timingHighlight": "视觉对齐提示 (同步)",
       "playback": "播放",
-      "autosave": "自动保存"
+      "autosave": "自动保存",
+      "previewControls": "预览",
+      "editorControls": "编辑器显示与控件"
     },
     "assistant": {
       "manualTimestampEdit": "手动时间戳编辑",
@@ -569,6 +565,9 @@
       "paletteCustom": "自定义",
       "gradientEditorDesc": "Pos 值为 0.0 对应最安静的部分，1.0 对应最响亮的部分。建议在更大的 Pos 值时使用更亮的颜色。",
       "addStop": "添加色标"
+    },
+    "preview": {
+      "vsync": "V-Sync"
     }
   },
   "timingOverview": {
@@ -1262,5 +1261,10 @@
     "offlineReady": "网站已成功离线缓存，后续可离线访问本网页",
     "updateRefresh": "网站已更新，刷新网页以使用最新版本！",
     "refresh": "刷新"
+  },
+  "export": {
+    "sectionReview": "分段检查：{count, plural, other {# 个非阻塞问题}}。",
+    "recoveryUntimed": "此恢复导出包含未计时的歌词。提交前请检查时间轴。",
+    "recoveryReviewFailed": "无法运行时间检查。提交前请检查恢复的歌词。"
   }
 }
