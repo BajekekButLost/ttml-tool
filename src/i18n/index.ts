@@ -3,8 +3,8 @@ import i18n from "i18next";
 import ICU from "i18next-icu";
 import { initReactI18next } from "react-i18next";
 
-// en-US is the source language: new keys land there first, then Crowdin
-// translates them.
+// The repository is the translation source of truth; en-US defines the keys.
+// Crowdin is synced manually.
 type TranslationResource = typeof import("./locales/en-US/translation.json");
 
 declare module "i18next" {
