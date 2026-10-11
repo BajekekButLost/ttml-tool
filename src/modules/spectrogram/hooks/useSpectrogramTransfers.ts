@@ -5,8 +5,11 @@ import { cmdDuplicatePaste } from "$/modules/keyboard/commands.ts";
 import { useCommand } from "$/modules/keyboard/hooks.ts";
 import { draggingIdAtom } from "$/modules/lyric-editor/components/lyric-line-view-states.ts";
 import { spectrogramSelectionAtom } from "$/modules/spectrogram/states";
+import {
+	copyLinesAtTime,
+	copyLinesIntoRange,
+} from "$/modules/spectrogram/utils/duplicate-paste";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main.ts";
-import { newLyricLine, newLyricWord } from "$/types/ttml.ts";
 
 export function useSpectrogramTransfers(
 	globalEnableInsert: boolean,
@@ -27,83 +30,9 @@ export function useSpectrogramTransfers(
 		const selection = store.get(spectrogramSelectionAtom);
 		const currentTimeMs = store.get(currentTimeAtom);
 
-		let newLines: typeof state.lyricLines = [];
-
-		if (selection) {
-			const totalDuration = selection.end - selection.start;
-			const lineCount = linesToCopy.length;
-			const lineDuration = totalDuration / lineCount;
-
-			newLines = linesToCopy.map((l, i) => {
-				const lineStart = Math.round(selection.start + i * lineDuration);
-				const lineEnd = Math.round(selection.start + (i + 1) * lineDuration);
-				const duration = lineEnd - lineStart;
-
-				const nl = {
-					...l,
-					id: newLyricLine().id,
-					startTime: lineStart,
-					endTime: lineEnd,
-					words: l.words.map((w) => ({
-						...w,
-						id: newLyricWord().id,
-						startTime: 0,
-						endTime: 0,
-					})),
-				};
-
-				// Distribute words
-				const nonEmptyWords = nl.words.filter((w) => w.word.trim() !== "");
-				if (nonEmptyWords.length > 0) {
-					const perWordDur = duration / nonEmptyWords.length;
-					let wordIdx = 0;
-					for (const w of nl.words) {
-						if (w.word.trim() !== "") {
-							w.startTime = Math.round(lineStart + wordIdx * perWordDur);
-							w.endTime = Math.round(lineStart + (wordIdx + 1) * perWordDur);
-							wordIdx++;
-						} else {
-							w.startTime = lineStart;
-							w.endTime = lineStart;
-						}
-					}
-					// Fix rounding issues for the last word
-					const lastNonEmpty = nl.words
-						.slice()
-						.reverse()
-						.find((w) => w.word.trim() !== "");
-					if (lastNonEmpty) lastNonEmpty.endTime = lineEnd;
-				} else {
-					// No words, just set line timing
-					nl.startTime = lineStart;
-					nl.endTime = lineEnd;
-				}
-
-				return nl;
-			});
-		} else {
-			// Fallback to playhead offset
-			const minStart = Math.min(...linesToCopy.map((l) => l.startTime));
-			const offset = currentTimeMs - minStart;
-
-			newLines = linesToCopy.map((l) => ({
-				...l,
-				id: newLyricLine().id,
-				startTime: l.startTime + offset,
-				endTime: l.endTime + offset,
-				words: l.words.map((w) => ({
-					...w,
-					id: newLyricWord().id,
-					startTime: w.startTime + offset,
-					endTime: w.endTime + offset,
-					ruby: w.ruby?.map((r) => ({
-						...r,
-						startTime: r.startTime + offset,
-						endTime: r.endTime + offset,
-					})),
-				})),
-			}));
-		}
+		const newLines = selection
+			? copyLinesIntoRange(linesToCopy, selection.start, selection.end)
+			: copyLinesAtTime(linesToCopy, currentTimeMs);
 
 		store.set(
 			lyricLinesAtom,
