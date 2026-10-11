@@ -65,7 +65,6 @@ const FileMenuItems = () => {
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<ImportExportLyric onSaveTtml={menu.onSaveFile} />
-			<DropdownMenu.Separator />
 		</>
 	);
 };

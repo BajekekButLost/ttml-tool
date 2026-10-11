@@ -684,7 +684,14 @@ export const ImportLyricsDialog = ({
 					open={isOpen && !sectionReviewOpen && !sectionReviewSubmitted}
 					onOpenChange={setIsOpen}
 				>
-					<Dialog.Content style={{ maxWidth: 680, height: "80vh" }}>
+					<Dialog.Content
+						style={{
+							maxWidth: 680,
+							height: "80vh",
+							display: "flex",
+							flexDirection: "column",
+						}}
+					>
 						<Flex justify="between" align="center" mb="3">
 							<Flex direction="column">
 								<Dialog.Title mb="0">
@@ -744,7 +751,8 @@ export const ImportLyricsDialog = ({
 										value={editableLyrics}
 										onChange={(e) => setEditableLyrics(e.target.value)}
 										style={{
-											height: "calc(82vh - 200px)",
+											flex: 1,
+											minHeight: 0,
 											resize: "none",
 											fontSize: 13,
 										}}
@@ -752,7 +760,8 @@ export const ImportLyricsDialog = ({
 								) : (
 									<Box
 										style={{
-											height: "calc(82vh - 200px)",
+											flex: 1,
+											minHeight: 0,
 											padding: "16px",
 											backgroundColor: "var(--gray-2)",
 											border: "1px solid var(--gray-5)",
@@ -837,7 +846,7 @@ export const ImportLyricsDialog = ({
 											<Text
 												id="online-import-processing-description"
 												size="1"
-												color="gray"
+												style={{ color: "var(--gray-9)", fontSize: 11 }}
 											>
 												{t(
 													"onlineImport.processDescription",
