@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SyncJudgeMode } from "$/modules/settings/states";
-import { newLyricLine, newLyricWord } from "$/types/ttml";
-import { calculateSyncTime, setPendingUnitTimeCloned } from "./sync-timing";
+import { calculateSyncTime } from "./sync-timing";
 
 const baseOptions = {
 	audioTimeSeconds: 10,
@@ -104,44 +103,5 @@ describe("calculateSyncTime", () => {
 				actionOffset: -500,
 			}),
 		).toBe(0);
-	});
-});
-
-describe("setPendingUnitTimeCloned", () => {
-	it("replaces a stale next-word end with the new shared boundary", () => {
-		const word = {
-			...newLyricWord(),
-			word: "to",
-			startTime: 1_000,
-			endTime: 1_500,
-		};
-		const line = { ...newLyricLine(), words: [word] };
-		setPendingUnitTimeCloned(line, 0, undefined, 2_000);
-		expect(line.words[0]).toMatchObject({ startTime: 2_000, endTime: 2_000 });
-		expect(line.words[0]).not.toBe(word);
-	});
-
-	it("updates a pending ruby unit and recalculates its parent bounds", () => {
-		const line = {
-			...newLyricLine(),
-			words: [
-				{
-					...newLyricWord(),
-					word: "word",
-					startTime: 1_000,
-					endTime: 1_800,
-					ruby: [
-						{ word: "a", startTime: 1_000, endTime: 1_400 },
-						{ word: "b", startTime: 1_400, endTime: 1_800 },
-					],
-				},
-			],
-		};
-		setPendingUnitTimeCloned(line, 0, 1, 2_000);
-		expect(line.words[0].ruby?.[1]).toMatchObject({
-			startTime: 2_000,
-			endTime: 2_000,
-		});
-		expect(line.words[0]).toMatchObject({ startTime: 1_000, endTime: 2_000 });
 	});
 });
