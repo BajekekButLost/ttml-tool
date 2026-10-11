@@ -9,12 +9,13 @@ import {
 } from "@radix-ui/themes";
 import { useAtom, useAtomValue, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { currentDurationAtom } from "$/modules/audio/states";
 import { timeStretchDialogAtom } from "$/states/dialogs";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main";
 import { openFileWithDialog } from "$/utils/fileDialog.ts";
+import { DurationField } from "./TimeStretch/DurationField";
 import {
 	formatDurationInput,
 	parseDurationInput,
@@ -23,79 +24,6 @@ import {
 } from "./time-stretch";
 
 type StretchScope = "all" | "selected" | "selected-following" | "custom";
-
-type DurationFieldProps = {
-	label: string;
-	value: string;
-	onChange: (value: string) => void;
-	onUseCurrent: () => void;
-	currentSongAvailable: boolean;
-	error?: string;
-	secondaryAction?: ReactNode;
-	footer?: ReactNode;
-};
-
-const DurationField = ({
-	label,
-	value,
-	onChange,
-	onUseCurrent,
-	currentSongAvailable,
-	error,
-	secondaryAction,
-	footer,
-}: DurationFieldProps) => {
-	const { t } = useTranslation();
-	const parsedDuration = parseDurationInput(value);
-	return (
-		<Flex direction="column" gap="3" style={{ minWidth: 0 }}>
-			<Text size="3" weight="bold" align="center">
-				{label}
-			</Text>
-			<TextField.Root
-				value={value}
-				onChange={(event) => onChange(event.target.value)}
-				onBlur={() =>
-					parsedDuration !== null &&
-					onChange(formatDurationInput(parsedDuration))
-				}
-				placeholder={t(
-					"timeStretchDialog.durationPlaceholder",
-					"MM:SS.mmm or seconds",
-				)}
-				style={{ width: "100%" }}
-			/>
-			{secondaryAction ? (
-				<Flex gap="2" style={{ width: "100%" }}>
-					<Button
-						variant="soft"
-						disabled={!currentSongAvailable}
-						onClick={onUseCurrent}
-						style={{ flex: 1 }}
-					>
-						{t("timeStretchDialog.useCurrentSong", "Use current song")}
-					</Button>
-					{secondaryAction}
-				</Flex>
-			) : (
-				<Button
-					variant="soft"
-					disabled={!currentSongAvailable}
-					onClick={onUseCurrent}
-					style={{ width: "100%" }}
-				>
-					{t("timeStretchDialog.useCurrentSong", "Use current song")}
-				</Button>
-			)}
-			{error && (
-				<Text size="1" color="red">
-					{error}
-				</Text>
-			)}
-			{footer}
-		</Flex>
-	);
-};
 
 export const TimeStretchDialog = () => {
 	const { t } = useTranslation();

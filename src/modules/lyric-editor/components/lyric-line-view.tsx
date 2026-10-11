@@ -84,6 +84,7 @@ import {
 	applyLineTimingSnapshots,
 } from "../utils/line-timing.ts";
 import { getSynchronizableUnits } from "../utils/lyric-states.ts";
+import { parseRubyShortcut } from "../utils/ruby-shortcut";
 import {
 	duplicateLinesWithSections,
 	repairSectionIntegrity,
@@ -110,19 +111,6 @@ import {
 } from "./SectionActions.tsx";
 import { shouldAutoCenterSelection } from "./selection-scroll";
 import { UntimedTimestamp } from "./untimed-timestamp";
-
-const parseRubyShortcut = (value: string) => {
-	if (value.endsWith("|")) {
-		return {
-			word: value.slice(0, -1),
-			enableRuby: true,
-		};
-	}
-	return {
-		word: value,
-		enableRuby: false,
-	};
-};
 
 const LyricLineScroller = ({
 	lineAtom,
