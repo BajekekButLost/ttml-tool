@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { newLyricLine, newLyricWord } from "$/types/ttml";
 
 const atoms = vi.hoisted(() => ({
 	activeProjectDirAtom: { name: "dir" },
@@ -347,5 +348,36 @@ describe("folder project saves", () => {
 			"song.ttml",
 			"<tt/>",
 		);
+	});
+});
+
+describe("prepared TTML project saves", () => {
+	it("writes and marks the prepared snapshot instead of a newer store document", async () => {
+		const store = makeStore(baseManifest);
+		const snapshot = {
+			lyricLines: [
+				{ ...newLyricLine(), words: [{ ...newLyricWord(), word: "snapshot" }] },
+			],
+			metadata: [],
+		};
+		const onSaved = vi.fn();
+		await saveLyricsOnly(store as never, (key) => key, {
+			prepared: { lyric: snapshot, text: "prepared-ttml" },
+			onSaved,
+		});
+		expect(lyricIo.writeProjectLyricFile).toHaveBeenLastCalledWith(
+			"C:/Music/Song",
+			"new.ttml",
+			"prepared-ttml",
+		);
+		expect(store.set).toHaveBeenCalledWith(atoms.markLyricsSavedAtom, snapshot);
+		expect(onSaved).toHaveBeenCalledOnce();
+	});
+	it("does not notify completion if manifest persistence fails", async () => {
+		const store = makeStore(baseManifest);
+		const onSaved = vi.fn();
+		fs.writeTextFile.mockRejectedValueOnce(new Error("disk full"));
+		await saveLyricsOnly(store as never, (key) => key, { onSaved });
+		expect(onSaved).not.toHaveBeenCalled();
 	});
 });

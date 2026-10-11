@@ -1,22 +1,21 @@
 import { open } from "@tauri-apps/plugin-shell";
-import { useAtom, useAtomValue, useSetAtom, useStore } from "jotai";
+import { useAtomValue, useSetAtom, useStore } from "jotai";
 import { useSetImmerAtom, withImmer } from "jotai-immer";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { uid } from "uid";
 import { useFileOpener } from "$/hooks/useFileOpener.ts";
-import { audioEngine } from "$/modules/audio/audio-engine";
-import { currentTimeAtom } from "$/modules/audio/states/index.ts";
-import { getSynchronizableUnits } from "$/modules/lyric-editor/utils/lyric-states.ts";
-import { validateSections } from "$/modules/lyric-editor/utils/section-system.ts";
 import {
 	activeProjectDirAtom,
 	activeProjectManifestAtom,
 	projectAudioFileAtom,
 } from "$/modules/project/folder-project/state";
-import { useFolderProject } from "$/modules/project/folder-project/useFolderProject";
-import exportTTMLText from "$/modules/project/logic/ttml-writer";
+import {
+	copyTTML,
+	type ExportTranslation,
+	saveTTML,
+} from "$/modules/project/ttml-save";
 import {
 	segmentationEngineAtom,
 	segmentationSplitEnglishAtom,
@@ -28,11 +27,6 @@ import {
 } from "$/modules/segmentation/utils/segmentation";
 import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabification-engines";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
-import {
-	allowConsecutiveBackgroundLinesAtom,
-	folderProjectsEnabledAtom,
-	lyricTextNormalizationOptionsAtom,
-} from "$/modules/settings/states";
 import {
 	advancedSegmentationDialogAtom,
 	autoSegmentDialogAtom,
@@ -59,7 +53,6 @@ import {
 import {
 	isDirtyAtom,
 	lyricLinesAtom,
-	markLyricsSavedAtom,
 	newLyricLinesAtom,
 	projectIdAtom,
 	redoLyricLinesAtom,
@@ -72,13 +65,16 @@ import {
 } from "$/states/main.ts";
 import { type LyricWord, type LyricWordBase, newLyricWord } from "$/types/ttml";
 import { openFileWithDialog } from "$/utils/fileDialog.ts";
-import { saveFile } from "$/utils/fileSystem.ts";
 import { error, log } from "$/utils/logging.ts";
 import { createHistoryActionGate } from "./history-action-gate";
 
 export const useTopMenuActions = () => {
 	const { t } = useTranslation();
-	const [saveFileName, setSaveFileName] = useAtom(saveFileNameAtom);
+	const exportT = useCallback<ExportTranslation>(
+		(key, fallback, options) => t(key, fallback ?? key, options),
+		[t],
+	);
+	const setSaveFileName = useSetAtom(saveFileNameAtom);
 	const newLyricLine = useSetAtom(newLyricLinesAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const setMetadataEditorOpened = useSetAtom(metadataEditorDialogAtom);
@@ -89,8 +85,6 @@ export const useTopMenuActions = () => {
 	const setConfirmDialog = useSetAtom(confirmDialogAtom);
 	const setHistoryRestoreDialog = useSetAtom(historyRestoreDialogAtom);
 	const setProjectsDialog = useSetAtom(projectsDialogAtom);
-	const folderProjectsEnabled = useAtomValue(folderProjectsEnabledAtom);
-	const { saveLyricsOnly: saveFolderLyricsOnly } = useFolderProject();
 	const setAdvancedSegmentationDialog = useSetAtom(
 		advancedSegmentationDialogAtom,
 	);
@@ -222,110 +216,8 @@ export const useTopMenuActions = () => {
 	}, [openFile]);
 
 	const onSaveFile = useCallback(async () => {
-		if (folderProjectsEnabled) {
-			const hasActiveProject = Boolean(
-				store.get(activeProjectDirAtom) && store.get(activeProjectManifestAtom),
-			);
-			if (hasActiveProject) {
-				const shouldFallback = await saveFolderLyricsOnly();
-				if (!shouldFallback) return;
-			}
-		}
-		const action = async () => {
-			try {
-				const currentLyrics = store.get(lyricLinesAtom);
-				const sectionIssues = validateSections(currentLyrics);
-				if (sectionIssues.length > 0) {
-					toast.info(
-						`Section review: ${sectionIssues.length} non-blocking issue${sectionIssues.length === 1 ? "" : "s"}.`,
-					);
-				}
-				const ttmlText = exportTTMLText(
-					currentLyrics,
-					store.get(lyricTextNormalizationOptionsAtom),
-					{
-						allowConsecutiveBackgroundLines: store.get(
-							allowConsecutiveBackgroundLinesAtom,
-						),
-					},
-				);
-				const savedName = await saveFile(ttmlText, {
-					suggestedName: saveFileName,
-					types: [
-						{
-							description: "TTML Files",
-							accept: { "application/ttml+xml": [".ttml"] },
-						},
-					],
-				});
-				if (savedName) {
-					setSaveFileName(savedName);
-					store.set(markLyricsSavedAtom, currentLyrics);
-				}
-			} catch (e) {
-				error("Failed to save TTML file", e);
-			}
-		};
-
-		const lyrics = store.get(lyricLinesAtom);
-		const firstUntimedLine = lyrics.lyricLines.find(
-			(line) => line.endTime === 0 && getSynchronizableUnits(line).length > 0,
-		);
-		let untimedWord: LyricWord | undefined;
-		let untimedLine: import("$/types/ttml").LyricLine | undefined;
-
-		if (firstUntimedLine) {
-			untimedLine = firstUntimedLine;
-			untimedWord = getSynchronizableUnits(firstUntimedLine)[0].word;
-		} else {
-			untimedLine = lyrics.lyricLines.find((line) =>
-				getSynchronizableUnits(line).some((u) => u.word.endTime === 0),
-			);
-			if (untimedLine) {
-				untimedWord = getSynchronizableUnits(untimedLine).find(
-					(u) => u.word.endTime === 0,
-				)?.word;
-			}
-		}
-
-		if (untimedLine && untimedWord) {
-			const line = untimedLine;
-			const word = untimedWord;
-			setConfirmDialog({
-				open: true,
-				title: t(
-					"confirmDialog.untimedLyrics.title",
-					"Untimed Lyrics Detected",
-				),
-				description: t(
-					"confirmDialog.untimedLyrics.description",
-					"There is an untimed line or word in your lyrics. Would you like to fix it or export anyway?",
-				),
-				confirmText: t(
-					"confirmDialog.untimedLyrics.exportAnyway",
-					"Export Anyway",
-				),
-				cancelText: t("confirmDialog.untimedLyrics.fixIt", "Fix It"),
-				onConfirm: action,
-				onCancel: () => {
-					store.set(selectedLinesAtom, new Set([line.id]));
-					store.set(selectedWordsAtom, new Set([word.id]));
-					audioEngine.seekMusic(line.startTime / 1000);
-					store.set(currentTimeAtom, line.startTime);
-				},
-			});
-		} else {
-			action();
-		}
-	}, [
-		saveFileName,
-		store,
-		setSaveFileName,
-		setConfirmDialog,
-		t,
-		folderProjectsEnabled,
-		saveFolderLyricsOnly,
-	]);
+		await saveTTML(store, exportT);
+	}, [store, exportT]);
 
 	const onOpenProjects = useCallback(() => {
 		setProjectsDialog(true);
@@ -335,82 +227,10 @@ export const useTopMenuActions = () => {
 		setHistoryRestoreDialog(true);
 	}, [setHistoryRestoreDialog]);
 
-	const onSaveFileToClipboard = useCallback(async () => {
-		const action = async () => {
-			try {
-				const lyric = store.get(lyricLinesAtom);
-				const sectionIssues = validateSections(lyric);
-				if (sectionIssues.length > 0) {
-					toast.info(
-						`Section review: ${sectionIssues.length} non-blocking issue${sectionIssues.length === 1 ? "" : "s"}.`,
-					);
-				}
-				const ttml = exportTTMLText(
-					lyric,
-					store.get(lyricTextNormalizationOptionsAtom),
-					{
-						allowConsecutiveBackgroundLines: store.get(
-							allowConsecutiveBackgroundLinesAtom,
-						),
-					},
-				);
-				await navigator.clipboard.writeText(ttml);
-			} catch (e) {
-				error("Failed to save TTML file into clipboard", e);
-			}
-		};
-
-		const lyrics = store.get(lyricLinesAtom);
-		const firstUntimedLine = lyrics.lyricLines.find(
-			(line) => line.endTime === 0 && getSynchronizableUnits(line).length > 0,
-		);
-		let untimedWord: LyricWord | undefined;
-		let untimedLine: import("$/types/ttml").LyricLine | undefined;
-
-		if (firstUntimedLine) {
-			untimedLine = firstUntimedLine;
-			untimedWord = getSynchronizableUnits(firstUntimedLine)[0].word;
-		} else {
-			untimedLine = lyrics.lyricLines.find((line) =>
-				getSynchronizableUnits(line).some((u) => u.word.endTime === 0),
-			);
-			if (untimedLine) {
-				untimedWord = getSynchronizableUnits(untimedLine).find(
-					(u) => u.word.endTime === 0,
-				)?.word;
-			}
-		}
-
-		if (untimedLine && untimedWord) {
-			const line = untimedLine;
-			const word = untimedWord;
-			setConfirmDialog({
-				open: true,
-				title: t(
-					"confirmDialog.untimedLyrics.title",
-					"Untimed Lyrics Detected",
-				),
-				description: t(
-					"confirmDialog.untimedLyrics.description",
-					"There is an untimed line or word in your lyrics. Would you like to fix it or export anyway?",
-				),
-				confirmText: t(
-					"confirmDialog.untimedLyrics.exportAnyway",
-					"Export Anyway",
-				),
-				cancelText: t("confirmDialog.untimedLyrics.fixIt", "Fix It"),
-				onConfirm: action,
-				onCancel: () => {
-					store.set(selectedLinesAtom, new Set([line.id]));
-					store.set(selectedWordsAtom, new Set([word.id]));
-					audioEngine.seekMusic(line.startTime / 1000);
-					store.set(currentTimeAtom, line.startTime);
-				},
-			});
-		} else {
-			action();
-		}
-	}, [store, setConfirmDialog, t]);
+	const onSaveFileToClipboard = useCallback(
+		() => copyTTML(store, exportT),
+		[store, exportT],
+	);
 
 	const onOpenMetadataEditor = useCallback(() => {
 		setMetadataEditorOpened(true);

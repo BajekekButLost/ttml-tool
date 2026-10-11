@@ -2,7 +2,7 @@ export const settingsSearchKeywords: Record<string, string> = {
 	common:
 		"interface language layout mode simple advanced privacy display discord presence compact background vocals sync",
 	editor:
-		"sync timing timestamp judgment keybinding trigger offset commit smart first last word upcoming highlight threshold color wrap scroll focus spectrogram hover tab position",
+		"sync timing timestamp judgment keybinding trigger offset commit smart first last word upcoming highlight threshold color wrap scroll focus spectrogram hover tab position preview fps vsync fade ruby romanization translation glow manual double click background line rendering touch panel",
 	files:
 		"import export cleanup normalize apostrophes cyrillic autosave interval snapshots history backup restore folder project storage preview files consecutive standalone background vocals",
 	audio:

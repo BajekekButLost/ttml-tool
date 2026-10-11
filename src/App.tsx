@@ -20,7 +20,7 @@ import {
 } from "@radix-ui/themes";
 import SuspensePlaceHolder from "$/components/SuspensePlaceHolder";
 import { TouchSyncPanel } from "$/modules/lyric-editor/components/TouchSyncPanel/index.tsx";
-import { log, error as logError } from "$/utils/logging.ts";
+import { log } from "$/utils/logging.ts";
 import "@radix-ui/themes/styles.css";
 import { invoke } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
@@ -31,7 +31,6 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
-import saveFile from "save-file";
 import semverGt from "semver/functions/gt";
 import { backgroundGradients } from "$/modules/settings/states/gradients";
 import {
@@ -62,7 +61,6 @@ import {
 	advSidebarBgAtom,
 	advTitlebarBgAtom,
 	advTranslationColorAtom,
-	allowConsecutiveBackgroundLinesAtom,
 	appFontAtom,
 	appFontStyleAtom,
 	appFontWeightAtom,
@@ -79,7 +77,6 @@ import {
 	customGradientTypeAtom,
 	glassmorphismBlurAtom,
 	legacyDarkThemeAtom,
-	lyricTextNormalizationOptionsAtom,
 	selectedGradientAtom,
 	useCustomAccentAtom,
 	useCustomGradientAtom,
@@ -99,8 +96,8 @@ import { UrbanDictionaryKeybinding } from "./modules/lyric-editor/components/urb
 import { BeginnerGuide } from "./modules/onboarding/BeginnerGuide";
 import { AudioMetadataPrefill } from "./modules/project/audio-metadata";
 import { AutosaveManager } from "./modules/project/autosave/AutosaveManager.tsx";
-import exportTTMLText from "./modules/project/logic/ttml-writer.ts";
 import { GlobalDragOverlay } from "./modules/project/modals/GlobalDragOverlay.tsx";
+import { type ExportTranslation, saveTTML } from "./modules/project/ttml-save";
 import { InterfaceScaleManager } from "./modules/settings/components/InterfaceScaleManager";
 import {
 	customBackgroundBlurAtom,
@@ -139,6 +136,9 @@ const AppErrorPage = ({
 }) => {
 	const store = useStore();
 	const { t } = useTranslation();
+	const [exportWarning, setExportWarning] = useState("");
+	const exportT: ExportTranslation = (key, fallback, options) =>
+		t(key, fallback ?? key, options);
 
 	return (
 		<Flex direction="column" align="center" justify="center" height="100vh">
@@ -153,21 +153,14 @@ const AppErrorPage = ({
 				<Flex gap="2">
 					<Button
 						onClick={() => {
-							try {
-								const ttmlText = exportTTMLText(
-									store.get(lyricLinesAtom),
-									store.get(lyricTextNormalizationOptionsAtom),
-									{
-										allowConsecutiveBackgroundLines: store.get(
-											allowConsecutiveBackgroundLinesAtom,
-										),
-									},
-								);
-								const b = new Blob([ttmlText], { type: "text/plain" });
-								saveFile(b, "lyric.ttml").catch(logError);
-							} catch (e) {
-								logError("Failed to save TTML file", e);
-							}
+							setExportWarning("");
+							void saveTTML(store, exportT, {
+								recovery: true,
+								onWarning: (message) =>
+									setExportWarning((previous) =>
+										previous ? `${previous} ${message}` : message,
+									),
+							});
 						}}
 					>
 						{t("app.error.saveLyrics", "尝试保存当前歌词")}
@@ -181,6 +174,7 @@ const AppErrorPage = ({
 						{t("app.error.tryRestart", "尝试重新进入程序")}
 					</Button>
 				</Flex>
+				{exportWarning && <Text role="status">{exportWarning}</Text>}
 				<Text>{t("app.error.details", "大致错误信息：")}</Text>
 				<TextArea
 					readOnly

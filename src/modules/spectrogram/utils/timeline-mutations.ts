@@ -1,4 +1,5 @@
 import type { Draft } from "immer";
+import { distributeTime } from "$/modules/lyric-editor/utils/distribute-time";
 import {
 	type ProcessedLyricLine,
 	processSingleLine,
@@ -18,13 +19,9 @@ function fillRubyTimingFromWord(word: Draft<LyricWord>) {
 	if (!shouldFill) return;
 	const totalDuration = word.endTime - word.startTime;
 	if (totalDuration <= 0) return;
-	const perRubyDuration = totalDuration / word.ruby.length;
-	let cursor = word.startTime;
-	for (const rubyWord of word.ruby) {
-		rubyWord.startTime = cursor;
-		rubyWord.endTime = cursor + perRubyDuration;
-		cursor += perRubyDuration;
-	}
+	word.ruby = distributeTime(word.ruby, word.startTime, word.endTime, {
+		empty: "include",
+	});
 }
 
 // Gap preview/direction handling adapted from apoint123's upstream ecd0594f (GPLv3).
@@ -353,26 +350,10 @@ export function tryInitializeZeroTimestampLine(
 	if (isAllZero) {
 		line.startTime = newStartTime;
 		line.endTime = newEndTime;
-		const totalDuration = newEndTime - newStartTime;
-		const nonEmptyWordCount = line.words.filter(
-			(w) => w.word.trim() !== "",
-		).length;
-
-		if (nonEmptyWordCount === 0) {
-			return true;
-		}
-
-		const perWordDuration = totalDuration / nonEmptyWordCount;
-		let nonEmptyWordIndex = 0;
-
-		line.words.forEach((word) => {
-			if (word.word.trim() !== "") {
-				word.startTime = newStartTime + nonEmptyWordIndex * perWordDuration;
-				word.endTime = newStartTime + (nonEmptyWordIndex + 1) * perWordDuration;
-				nonEmptyWordIndex++;
-			}
-			fillRubyTimingFromWord(word);
-		});
+		line.words = distributeTime(line.words, newStartTime, newEndTime);
+		line.startTime = line.words[0].startTime;
+		line.endTime = Math.max(line.startTime, Math.round(newEndTime));
+		line.words.forEach(fillRubyTimingFromWord);
 		return true;
 	}
 	return false;
@@ -410,29 +391,17 @@ export function tryFixPartialInitialization(line: Draft<LyricLine>): boolean {
 
 			if (groupToProcess.length > 1) {
 				didChange = true;
-				const groupStartTime = anchorWord.startTime;
-				const totalDuration = anchorWord.endTime - anchorWord.startTime;
-
-				const nonEmptyWords = groupToProcess.filter(
-					(w) => w.word.trim() !== "",
-				);
-				const nonEmptyWordCount = nonEmptyWords.length;
-
-				if (nonEmptyWordCount > 0 && totalDuration > 0) {
-					const perWordDuration = totalDuration / nonEmptyWordCount;
-					let cursorTime = groupStartTime;
-
-					for (const word of groupToProcess) {
-						if (word.word.trim() !== "") {
-							word.startTime = cursorTime;
-							word.endTime = cursorTime + perWordDuration;
-							cursorTime += perWordDuration;
-						} else {
-							word.startTime = cursorTime;
-							word.endTime = cursorTime;
-						}
+				if (anchorWord.endTime > anchorWord.startTime) {
+					const times = distributeTime(
+						groupToProcess,
+						anchorWord.startTime,
+						anchorWord.endTime,
+					);
+					groupToProcess.forEach((word, index) => {
+						word.startTime = times[index].startTime;
+						word.endTime = times[index].endTime;
 						fillRubyTimingFromWord(word);
-					}
+					});
 				}
 
 				i = lookaheadIndex - 1;
