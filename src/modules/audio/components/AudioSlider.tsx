@@ -14,12 +14,8 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import WaveSurfer from "wavesurfer.js";
 import { audioEngine } from "$/modules/audio/audio-engine";
-import {
-	audioBufferAtom,
-	audioPlayingAtom,
-	currentDurationAtom,
-	currentTimeAtom,
-} from "$/modules/audio/states";
+import { audioBufferAtom, currentDurationAtom } from "$/modules/audio/states";
+import { playbackClock } from "$/modules/playback-clock";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main";
 import type { Mark } from "$/types/ttml";
 import { msToTimestamp } from "$/utils/timestamp";
@@ -176,9 +172,7 @@ const MarkerItem = memo(
 
 export const AudioSlider = memo(() => {
 	const { t } = useTranslation();
-	const setCurrentTime = useSetAtom(currentTimeAtom);
 	const setCurrentDuration = useSetAtom(currentDurationAtom);
-	const setAudioPlaying = useSetAtom(audioPlayingAtom);
 
 	const currentDuration = useAtomValue(currentDurationAtom);
 	const [lyricLines, setLyricLines] = useAtom(lyricLinesAtom);
@@ -279,6 +273,7 @@ export const AudioSlider = memo(() => {
 		});
 		ws.on("interaction", (time) => audioEngine.seekMusic(time));
 		waveSurferRef.current = ws;
+		ws.setTime(playbackClock.getSnapshot());
 		return ws;
 	}, [audioBuffer]);
 
@@ -306,73 +301,22 @@ export const AudioSlider = memo(() => {
 	}, [audioBuffer, createWaveSurfer, destroyWaveSurfer, setCurrentDuration]);
 
 	useEffect(() => {
+		const syncClock = (seconds: number) => {
+			waveSurferRef.current?.setTime(seconds);
+		};
 		const handleMusicUnload = () => {
 			destroyWaveSurfer();
 			setCurrentDuration(0);
-			setCurrentTime(0);
-			setAudioPlaying(false);
 		};
-
-		let frameId: number | null = null;
-		let isDestroyed = false;
-
-		const syncClock = () => {
-			const time = audioEngine.interpolatedCurrentTime;
-			setCurrentTime(Math.round(time * 1000));
-			waveSurferRef.current?.setTime(time);
-		};
-		const handleTimeUpdate = syncClock;
-		const onFrame = () => {
-			if (isDestroyed || !audioEngine.musicPlaying) {
-				frameId = null;
-				return;
-			}
-			syncClock();
-			frameId = requestAnimationFrame(onFrame);
-		};
-
-		const handlePlay = () => {
-			syncClock();
-			if (frameId === null) onFrame();
-			setAudioPlaying(true);
-		};
-		const handlePause = () => {
-			syncClock();
-			setAudioPlaying(false);
-		};
-		const handleSeek = syncClock;
-		const handlePlaybackRateChange = syncClock;
-
+		const unsubscribe = playbackClock.subscribe(syncClock);
+		syncClock(playbackClock.getSnapshot());
 		audioEngine.addEventListener("music-unload", handleMusicUnload);
-		audioEngine.addEventListener("music-resume", handlePlay);
-		audioEngine.addEventListener("music-pause", handlePause);
-		audioEngine.addEventListener("music-seeked", handleSeek);
-		audioEngine.addEventListener("music-timeupdate", handleTimeUpdate);
-		audioEngine.addEventListener(
-			"music-playback-rate-change",
-			handlePlaybackRateChange,
-		);
-
-		// Start loop if already playing
-		if (audioEngine.musicPlaying) {
-			handlePlay();
-		}
-
 		return () => {
-			isDestroyed = true;
-			if (frameId !== null) cancelAnimationFrame(frameId);
+			unsubscribe();
 			destroyWaveSurfer();
 			audioEngine.removeEventListener("music-unload", handleMusicUnload);
-			audioEngine.removeEventListener("music-resume", handlePlay);
-			audioEngine.removeEventListener("music-pause", handlePause);
-			audioEngine.removeEventListener("music-seeked", handleSeek);
-			audioEngine.removeEventListener("music-timeupdate", handleTimeUpdate);
-			audioEngine.removeEventListener(
-				"music-playback-rate-change",
-				handlePlaybackRateChange,
-			);
 		};
-	}, [destroyWaveSurfer, setCurrentDuration, setCurrentTime, setAudioPlaying]);
+	}, [destroyWaveSurfer, setCurrentDuration]);
 
 	const selectedRegions = useMemo(() => {
 		if (currentDuration <= 0 || sliderWidthPx <= 0) return [];

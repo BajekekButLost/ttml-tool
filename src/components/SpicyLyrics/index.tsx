@@ -8,6 +8,7 @@ import {
 	type CSSProperties,
 	memo,
 	type RefObject,
+	useCallback,
 	useEffect,
 	useMemo,
 	useRef,
@@ -16,6 +17,8 @@ import {
 import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { audioCoverArtAtom, currentTimeAtom } from "$/modules/audio/states";
+import { playbackClock } from "$/modules/playback-clock";
+import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	customAccentColorAtom,
@@ -29,6 +32,7 @@ import {
 	spicyForceLineSyncedAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
+import { findSpicyActiveIndex, findSpicyScrollIndex } from "./active-line";
 import styles from "./index.module.css";
 import { CubicSpline, progressAt, Spring, stateAt } from "./math";
 import {
@@ -212,7 +216,7 @@ function useKawarpBackground(
 		if (mode !== "animated" || !image || !container.current) return;
 		let disposed = false;
 		let instance: KawarpInstance | null = null;
-		let frame = 0;
+		let unsubscribe: (() => void) | undefined;
 		const canvas = document.createElement("canvas");
 		canvas.className = styles.backgroundCanvas;
 		container.current.replaceChildren(canvas);
@@ -238,14 +242,14 @@ function useKawarpBackground(
 					const energy =
 						bins.reduce((sum, value) => sum + value, 0) / (bins.length * 255);
 					instance?.setOptions({ animationSpeed: 0.1 + energy * 0.35 });
-					frame = requestAnimationFrame(animate);
 				};
-				frame = requestAnimationFrame(animate);
+				animate();
+				unsubscribe = playbackClock.subscribe(animate);
 			})
 			.catch(() => container.current?.replaceChildren());
 		return () => {
 			disposed = true;
-			cancelAnimationFrame(frame);
+			unsubscribe?.();
 			instance?.dispose();
 		};
 	}, [container, image, mode]);
@@ -292,8 +296,6 @@ export const SpicyLyrics = memo(() => {
 	const springs = useRef(new Map<string, SpringSet>());
 	const lineGlowSprings = useRef(new Map<string, Spring>());
 	const slmAnimations = useRef(new Map<string, SlmAnimation>());
-	const scrollPauseUntil = useRef(0);
-	const lastLine = useRef<string | null>(null);
 	const lastTime = useRef(performance.now());
 	const [fps, setFps] = useState(0);
 	const fpsRef = useRef({ frames: 0, lastTime: performance.now() });
@@ -317,24 +319,21 @@ export const SpicyLyrics = memo(() => {
 		slmAnimations.current.clear();
 	}, [simple]);
 
-	useEffect(() => {
-		const viewport = viewportRef.current;
-		if (!viewport) return;
-		const onUserScroll = () => {
-			scrollPauseUntil.current = performance.now() + 750;
-		};
-		viewport.addEventListener("wheel", onUserScroll, { passive: true });
-		viewport.addEventListener("touchmove", onUserScroll, { passive: true });
-		return () => {
-			viewport.removeEventListener("wheel", onUserScroll);
-			viewport.removeEventListener("touchmove", onUserScroll);
-		};
-	}, []);
+	const getScrollTarget = useCallback(
+		(timeMs: number) => {
+			const index = findSpicyScrollIndex(lines, timeMs);
+			if (index < 0) return undefined;
+			const line = lines[index];
+			return { id: line.id, getNode: () => lineNodes.current.get(line.id) };
+		},
+		[lines],
+	);
+	usePreviewScroll(viewportRef, getScrollTarget, { offset: 30 });
 
 	useEffect(() => {
-		let raf = 0;
-		let previousPosition = -Infinity;
-		const animate = (now: number) => {
+		lastTime.current = performance.now();
+		const animate = (seconds: number, now: number, seeked = false) => {
+			const snap = seeked || !audioEngine.musicPlaying;
 			if (showFpsRef.current) {
 				fpsRef.current.frames++;
 				if (now - fpsRef.current.lastTime >= 1000) {
@@ -349,23 +348,8 @@ export const SpicyLyrics = memo(() => {
 			}
 			const dt = (now - lastTime.current) / 1000;
 			lastTime.current = now;
-			const time = Math.max(
-				0,
-				audioEngine.interpolatedCurrentTime * 1000 +
-					(audioEngine.musicPlaying ? 100 : 0) -
-					(simple ? 33.5 : 0),
-			);
-			const activeIndices = lines.flatMap((line, index) =>
-				stateAt(time, line.startTime, line.endTime) === "active" ? [index] : [],
-			);
-			let activeIndex = activeIndices[0] ?? -1;
-			if (activeIndices.length > 1) {
-				const firstActive = activeIndices[0] ?? -1;
-				const lastActive =
-					activeIndices[activeIndices.length - 1] ?? firstActive;
-				activeIndex = lastActive - firstActive <= 1 ? firstActive : lastActive;
-			}
-			const active = activeIndex >= 0 ? lines[activeIndex] : undefined;
+			const time = seconds * 1000;
+			const activeIndex = findSpicyActiveIndex(lines, time);
 			for (let i = 0; i < lines.length; i++) {
 				const line = lines[i];
 				const status = stateAt(time, line.startTime, line.endTime);
@@ -400,7 +384,7 @@ export const SpicyLyrics = memo(() => {
 								glow = new Spring(0, 1, 0.5);
 								lineGlowSprings.current.set(line.id, glow);
 							}
-							glow.setGoal(lineGlowSpline.at(lineProgress));
+							glow.setGoal(lineGlowSpline.at(lineProgress), snap);
 							const currentGlow = glow.step(dt);
 							node.style.setProperty(
 								"--line-shadow-blur",
@@ -464,29 +448,37 @@ export const SpicyLyrics = memo(() => {
 							node: HTMLElement | undefined,
 							phase: "pre" | "fill",
 							duration: number,
+							elapsed: number,
 						) => {
 							if (!node || !simple) return;
 							const animation = slmStateFor(nodeKey);
-							if (animation.phase === phase) return;
-							animation.animation?.cancel();
-							node.style.removeProperty("--spicy-slm-gradient-position");
-							animation.phase = phase;
-							animation.animation = node.animate(
-								phase === "fill"
-									? [
-											{ "--spicy-slm-gradient-position": "-27.5%" },
-											{ "--spicy-slm-gradient-position": "100%" },
-										]
-									: [
-											{ "--spicy-slm-gradient-position": "-50%" },
-											{ "--spicy-slm-gradient-position": "-27.5%" },
-										],
-								{
-									duration: Math.max(0, duration),
-									easing: "linear",
-									fill: "forwards",
-								},
-							);
+							if (animation.phase !== phase || !animation.animation) {
+								animation.animation?.cancel();
+								node.style.removeProperty("--spicy-slm-gradient-position");
+								animation.phase = phase;
+								animation.animation = node.animate(
+									phase === "fill"
+										? [
+												{ "--spicy-slm-gradient-position": "-27.5%" },
+												{ "--spicy-slm-gradient-position": "100%" },
+											]
+										: [
+												{ "--spicy-slm-gradient-position": "-50%" },
+												{ "--spicy-slm-gradient-position": "-27.5%" },
+											],
+									{
+										duration: Math.max(0, duration),
+										easing: "linear",
+										fill: "forwards",
+									},
+								);
+							}
+							animation.animation?.pause();
+							if (animation.animation)
+								animation.animation.currentTime = Math.max(
+									0,
+									Math.min(duration, elapsed),
+								);
 						};
 						const prefillToken = (
 							next: SpicyToken | undefined,
@@ -509,6 +501,7 @@ export const SpicyLyrics = memo(() => {
 										wordNodes.current.get(`${nextKey}:${letterStart}`),
 										"pre",
 										125,
+										125 - (letterStart - time),
 									);
 								}
 							} else
@@ -517,6 +510,7 @@ export const SpicyLyrics = memo(() => {
 									wordNodes.current.get(nextKey),
 									"pre",
 									125,
+									125 - (next.startTime - time),
 								);
 						};
 						const animateNode = (
@@ -563,16 +557,17 @@ export const SpicyLyrics = memo(() => {
 							const simpleWord = simple && !isDot && !letter;
 							const simpleDot = simple && isDot;
 							if (!simpleWord && !simpleDot) {
-								set.scale.setGoal(scale);
-								set.glow.setGoal(glow);
+								set.scale.setGoal(scale, snap);
+								set.glow.setGoal(glow, snap);
 							}
-							if (!simpleDot) set.y.setGoal(y);
+							if (!simpleDot) set.y.setGoal(y, snap);
 							set.opacity.setGoal(
 								isDot
 									? simple
 										? simpleDotOpacitySpline.at(p)
 										: dotOpacitySpline.at(p)
 									: 1,
+								snap,
 							);
 							const currentScale =
 								simpleWord || simpleDot ? 1 : set.scale.step(dt);
@@ -590,7 +585,13 @@ export const SpicyLyrics = memo(() => {
 								if (simple) {
 									const duration = word.endTime - word.startTime;
 									if (wordState === "active") {
-										runSlmAnimation(nodeKey, node, "fill", duration);
+										runSlmAnimation(
+											nodeKey,
+											node,
+											"fill",
+											duration,
+											time - word.startTime,
+										);
 										if (time >= word.startTime + duration * 0.6 - 22)
 											prefillToken(line.words[wi + 1], wi + 1);
 									} else
@@ -636,10 +637,10 @@ export const SpicyLyrics = memo(() => {
 							// SLM deliberately disables the normal word bounce and glow. Held
 							// letters retain their own smaller proximity effects below.
 							if (!simple) {
-								set.scale.setGoal(scaleSpline.at(p));
-								set.glow.setGoal(glowSpline.at(p));
+								set.scale.setGoal(scaleSpline.at(p), snap);
+								set.glow.setGoal(glowSpline.at(p), snap);
 							}
-							set.y.setGoal((simple ? simpleYSpline : ySpline).at(p));
+							set.y.setGoal((simple ? simpleYSpline : ySpline).at(p), snap);
 							const currentScale = simple ? 1 : set.scale.step(dt);
 							const currentY = set.y.step(dt);
 							node.style.transform = `translateY(${currentY}em)`;
@@ -745,9 +746,9 @@ export const SpicyLyrics = memo(() => {
 								) {
 									targetGlow = glowSpline.at(0.2);
 								}
-								set.scale.setGoal(targetScale);
-								set.y.setGoal(targetY);
-								set.glow.setGoal(targetGlow);
+								set.scale.setGoal(targetScale, snap);
+								set.y.setGoal(targetY, snap);
+								set.glow.setGoal(targetGlow, snap);
 								const currentScale = set.scale.step(dt);
 								const currentY = set.y.step(dt);
 								const currentGlow = set.glow.step(dt);
@@ -768,7 +769,13 @@ export const SpicyLyrics = memo(() => {
 														: -20;
 								if (simple) {
 									if (letterState === "active")
-										runSlmAnimation(nodeKey, node, "fill", end - start);
+										runSlmAnimation(
+											nodeKey,
+											node,
+											"fill",
+											end - start,
+											time - start,
+										);
 									else
 										pinSlmGradient(
 											nodeKey,
@@ -806,57 +813,9 @@ export const SpicyLyrics = memo(() => {
 						} else
 							animateNode(rootKey, wordNodes.current.get(rootKey), progress);
 					}
-			const allSung = lines.every(
-				(line) => stateAt(time, line.startTime, line.endTime) === "sung",
-			);
-			const shouldForce =
-				lastLine.current === null || Math.abs(time - previousPosition) > 1000;
-			const scrollTarget = allSung ? lines[lines.length - 1] : active;
-			const scrollNode = scrollTarget
-				? lineNodes.current.get(scrollTarget.id)
-				: undefined;
-			const viewport = viewportRef.current;
-			const visible =
-				!!scrollNode &&
-				!!viewport &&
-				Math.min(
-					scrollNode.getBoundingClientRect().bottom,
-					viewport.getBoundingClientRect().bottom,
-				) -
-					Math.max(
-						scrollNode.getBoundingClientRect().top,
-						viewport.getBoundingClientRect().top,
-					) >=
-					5;
-			if (
-				scrollTarget &&
-				scrollNode &&
-				viewport &&
-				(shouldForce ||
-					(now > scrollPauseUntil.current &&
-						visible &&
-						lastLine.current !== scrollTarget.id))
-			) {
-				const target = Math.max(
-					0,
-					Math.min(
-						viewport.scrollHeight - viewport.clientHeight,
-						scrollNode.offsetTop -
-							(viewport.clientHeight / 2 - scrollNode.offsetHeight / 2) +
-							30,
-					),
-				);
-				viewport.scrollTo({
-					top: target,
-					behavior: shouldForce ? "auto" : "smooth",
-				});
-				lastLine.current = scrollTarget.id;
-			}
-			previousPosition = time;
-			raf = requestAnimationFrame(animate);
 		};
-		raf = requestAnimationFrame(animate);
-		return () => cancelAnimationFrame(raf);
+		animate(playbackClock.getSnapshot(), performance.now(), true);
+		return playbackClock.subscribe(animate);
 	}, [lines, simple]);
 
 	const seek = (time: number) => {

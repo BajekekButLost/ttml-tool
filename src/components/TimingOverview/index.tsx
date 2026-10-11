@@ -9,13 +9,13 @@ import {
 } from "@radix-ui/themes";
 import classNames from "classnames";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ViewportList, type ViewportListRef } from "react-viewport-list";
 import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
-import { audioPlayingAtom, currentTimeAtom } from "$/modules/audio/states";
-import { AUTO_SCROLL_PAUSE_MS } from "$/modules/lyric-editor/components/selection-scroll";
+import { currentTimeAtom } from "$/modules/audio/states";
+import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import {
 	type TimingOverviewOrderMode,
 	timingOverviewAutoScrollAtom,
@@ -338,14 +338,10 @@ export const TimingOverview = memo(() => {
 	const currentTime = useAtomValue(currentTimeAtom);
 	const setCurrentTime = useSetAtom(currentTimeAtom);
 	const setSelectedLines = useSetAtom(selectedLinesAtom);
-	const audioPlaying = useAtomValue(audioPlayingAtom);
 	const [autoScroll, setAutoScroll] = useAtom(timingOverviewAutoScrollAtom);
 	const [orderMode, setOrderMode] = useAtom(timingOverviewOrderModeAtom);
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const viewportListRef = useRef<ViewportListRef>(null);
-	const userScrolledAtRef = useRef<number>(0);
-	const lastActiveIndexRef = useRef<number | undefined>(undefined);
-	const lastKnownTimeRef = useRef(0);
 
 	const displayedLines = useMemo(() => {
 		return getDisplayedTimingLines(lyrics.lyricLines, orderMode);
@@ -359,7 +355,6 @@ export const TimingOverview = memo(() => {
 
 	const handleRowClick = useMemo(
 		() => (line: LyricLine) => {
-			userScrolledAtRef.current = Date.now();
 			setCurrentTime(line.startTime);
 			setSelectedLines(new Set([line.id]));
 			audioEngine.seekMusic(line.startTime / 1000);
@@ -380,161 +375,29 @@ export const TimingOverview = memo(() => {
 		[setCurrentTime, setSelectedLines],
 	);
 
-	const scrollRafRef = useRef<number | null>(null);
-	const lastProgrammaticScrollTimeRef = useRef<number>(0);
-	const isPointerDownRef = useRef<boolean>(false);
-
-	const cancelScrollAnimation = useCallback(() => {
-		if (scrollRafRef.current !== null) {
-			cancelAnimationFrame(scrollRafRef.current);
-			scrollRafRef.current = null;
-		}
-	}, []);
-
-	const smoothScrollTo = useCallback(
-		(element: HTMLElement, targetTop: number, duration = 300) => {
-			cancelScrollAnimation();
-			const startTop = element.scrollTop;
-			const distance = targetTop - startTop;
-			if (Math.abs(distance) < 2) return;
-
-			const startTime = performance.now();
-			const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
-
-			const step = (now: number) => {
-				const elapsed = now - startTime;
-				const progress = Math.min(elapsed / duration, 1);
-				lastProgrammaticScrollTimeRef.current = performance.now();
-				element.scrollTop = startTop + distance * easeOutCubic(progress);
-
-				if (progress < 1) {
-					scrollRafRef.current = requestAnimationFrame(step);
-				} else {
-					scrollRafRef.current = null;
-				}
+	const getScrollTarget = useCallback(
+		(timeMs: number) => {
+			const index = findActiveTimingLineIndex(displayedLines, timeMs);
+			if (index < 0) return undefined;
+			return {
+				id: displayedLines[index].id,
+				getNode: () =>
+					scrollRef.current?.querySelector<HTMLElement>(
+						`[data-line-index="${index}"]`,
+					),
+				reveal: () =>
+					viewportListRef.current?.scrollToIndex({
+						index,
+						offset: (scrollRef.current?.clientHeight ?? 0) / -2,
+					}),
 			};
-
-			scrollRafRef.current = requestAnimationFrame(step);
 		},
-		[cancelScrollAnimation],
+		[displayedLines],
 	);
-
-	useEffect(() => {
-		return () => {
-			cancelScrollAnimation();
-		};
-	}, [cancelScrollAnimation]);
-
-	useEffect(() => {
-		const scrollEl = scrollRef.current;
-		if (!scrollEl) return;
-		const onPointerDown = () => {
-			isPointerDownRef.current = true;
-			cancelScrollAnimation();
-			userScrolledAtRef.current = Date.now();
-		};
-		const onPointerUp = () => {
-			if (!isPointerDownRef.current) return;
-			isPointerDownRef.current = false;
-			userScrolledAtRef.current = Date.now();
-		};
-		const onScroll = () => {
-			if (performance.now() - lastProgrammaticScrollTimeRef.current < 50)
-				return;
-			cancelScrollAnimation();
-			userScrolledAtRef.current = Date.now();
-		};
-		scrollEl.addEventListener("wheel", onPointerDown, {
-			capture: true,
-			passive: true,
-		});
-		scrollEl.addEventListener("touchmove", onPointerDown, {
-			capture: true,
-			passive: true,
-		});
-		scrollEl.addEventListener("pointerdown", onPointerDown, {
-			capture: true,
-			passive: true,
-		});
-		window.addEventListener("pointerup", onPointerUp, {
-			capture: true,
-			passive: true,
-		});
-		window.addEventListener("pointercancel", onPointerUp, {
-			capture: true,
-			passive: true,
-		});
-		scrollEl.addEventListener("scroll", onScroll, { passive: true });
-		return () => {
-			scrollEl.removeEventListener("wheel", onPointerDown, { capture: true });
-			scrollEl.removeEventListener("touchmove", onPointerDown, {
-				capture: true,
-			});
-			scrollEl.removeEventListener("pointerdown", onPointerDown, {
-				capture: true,
-			});
-			window.removeEventListener("pointerup", onPointerUp, { capture: true });
-			window.removeEventListener("pointercancel", onPointerUp, {
-				capture: true,
-			});
-			scrollEl.removeEventListener("scroll", onScroll);
-		};
-	}, [cancelScrollAnimation]);
-
-	useEffect(() => {
-		if (!autoScroll) return;
-		if (isPointerDownRef.current) return;
-		if (Date.now() - userScrolledAtRef.current < AUTO_SCROLL_PAUSE_MS) return;
-
-		const activeIndex = findActiveTimingLineIndex(displayedLines, currentTime);
-		if (activeIndex === -1 || activeIndex === lastActiveIndexRef.current)
-			return;
-
-		if (!audioPlaying && lastActiveIndexRef.current !== -1) {
-			const timeDiff = Math.abs(currentTime - lastKnownTimeRef.current);
-			if (timeDiff < 500) return;
-		}
-		lastKnownTimeRef.current = currentTime;
-		lastActiveIndexRef.current = activeIndex;
-
-		const scrollEl = scrollRef.current;
-		if (!scrollEl) return;
-		const rowEl = scrollEl.querySelector<HTMLElement>(
-			`[data-line-index="${activeIndex}"]`,
-		);
-		if (rowEl) {
-			const rowRect = rowEl.getBoundingClientRect();
-			const scrollRect = scrollEl.getBoundingClientRect();
-			const targetTop =
-				scrollEl.scrollTop +
-				(rowRect.top - scrollRect.top) -
-				scrollEl.clientHeight / 2 +
-				rowRect.height / 2;
-			smoothScrollTo(scrollEl, Math.max(0, targetTop), 300);
-		} else {
-			viewportListRef.current?.scrollToIndex({
-				index: activeIndex,
-				offset: scrollEl.clientHeight / -2,
-			});
-			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					const renderedRowEl = scrollEl.querySelector<HTMLElement>(
-						`[data-line-index="${activeIndex}"]`,
-					);
-					if (renderedRowEl) {
-						const rowRect = renderedRowEl.getBoundingClientRect();
-						const scrollRect = scrollEl.getBoundingClientRect();
-						const targetTop =
-							scrollEl.scrollTop +
-							(rowRect.top - scrollRect.top) -
-							scrollEl.clientHeight / 2 +
-							rowRect.height / 2;
-						smoothScrollTo(scrollEl, Math.max(0, targetTop), 300);
-					}
-				});
-			});
-		}
-	}, [autoScroll, audioPlaying, currentTime, displayedLines, smoothScrollTo]);
+	usePreviewScroll(scrollRef, getScrollTarget, {
+		enabled: autoScroll,
+		pauseMs: 3500,
+	});
 
 	return (
 		<Card className={styles.timingOverview}>
@@ -568,7 +431,6 @@ export const TimingOverview = memo(() => {
 						<SegmentedControl.Root
 							value={orderMode}
 							onValueChange={(v) => {
-								lastActiveIndexRef.current = undefined;
 								setOrderMode(v as TimingOverviewOrderMode);
 							}}
 							size="1"

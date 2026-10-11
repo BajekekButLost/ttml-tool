@@ -7,6 +7,7 @@ import { atom, useAtomValue, useSetAtom } from "jotai";
 import {
 	type CSSProperties,
 	memo,
+	useCallback,
 	useEffect,
 	useMemo,
 	useRef,
@@ -19,6 +20,8 @@ import {
 	audioPlayingAtom,
 	currentTimeAtom,
 } from "$/modules/audio/states/index.ts";
+import { playbackClock } from "$/modules/playback-clock";
+import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	instantHighlightFadeAtom,
@@ -252,72 +255,35 @@ export const AMLLWrapper = memo(
 		const fpsRef = useRef({ frames: 0, lastTime: performance.now() });
 
 		useEffect(() => {
-			let rafId: number;
-			let lastAudioTime = audioEngine.musicCurrentTime;
-			let interpolatedTime = lastAudioTime;
-			let lastRealTime = performance.now();
-
-			const loop = () => {
-				const now = performance.now();
-				const audioTime = audioEngine.musicCurrentTime;
-				const isPlaying = audioEngine.musicPlaying;
-
-				if (!isPlaying) {
-					setDisplayTime(audioTime * 1000);
-					lastAudioTime = audioTime;
-					interpolatedTime = audioTime;
-					lastRealTime = now;
-				} else {
-					if (audioTime !== lastAudioTime) {
-						interpolatedTime = audioTime;
-						lastAudioTime = audioTime;
-					} else {
-						const dt = (now - lastRealTime) / 1000;
-						interpolatedTime += dt * audioEngine.musicPlayBackRate;
-					}
-					lastRealTime = now;
-
-					const displayMs = interpolatedTime * 1000;
-
-					/**
-					 * Split-Rate Optimization:
-					 * 1. Visual updates (DOM) happen at the monitor's full refresh rate (rAF).
-					 * 2. Logic updates (React State) happen at a capped rate (max 60Hz) to save CPU.
-					 */
-
-					// Update all registered active words directly via DOM
-					wordRegistry.forEach(({ el, word }) => {
-						const progress = Math.min(
-							Math.max(
-								(displayMs - word.startTime) / (word.endTime - word.startTime),
-								0,
-							),
-							1,
-						);
-						// Using simple rounding instead of toFixed to reduce string garbage
-						el.style.setProperty(
-							"--progress",
-							`${Math.round(progress * 1000) / 10}%`,
-						);
-					});
-
-					if (vsync) {
-						// Even with vsync, we cap the React update if the frequency is extremely high,
-						// but we allow 60Hz for logic consistency.
-						if (now - lastUpdateRef.current >= 16.6) {
-							setDisplayTime(displayMs);
-							lastUpdateRef.current = now;
-						}
-					} else {
-						// Capped logic update (30Hz) when vsync is off to maximize efficiency
-						if (now - lastUpdateRef.current >= 33.3) {
-							setDisplayTime(displayMs);
-							lastUpdateRef.current = now;
-						}
-					}
+			const update = (seconds: number, now: number, seeked = false) => {
+				const displayMs = seconds * 1000;
+				wordRegistry.forEach(({ el, word }) => {
+					const progress =
+						word.endTime <= word.startTime
+							? 1
+							: Math.min(
+									Math.max(
+										(displayMs - word.startTime) /
+											(word.endTime - word.startTime),
+										0,
+									),
+									1,
+								);
+					el.style.setProperty(
+						"--progress",
+						`${Math.round(progress * 1000) / 10}%`,
+					);
+				});
+				// Preserve the existing 30/60Hz React budget. DOM progress and the
+				// shared editor atom always use the engine's exact frame sample.
+				if (
+					seeked ||
+					!audioEngine.musicPlaying ||
+					now - lastUpdateRef.current >= (vsync ? 16.6 : 33.3)
+				) {
+					setDisplayTime(displayMs);
+					lastUpdateRef.current = now;
 				}
-
-				// Calculate FPS
 				fpsRef.current.frames++;
 				if (now - fpsRef.current.lastTime >= 1000) {
 					setFps(
@@ -325,15 +291,11 @@ export const AMLLWrapper = memo(
 							(fpsRef.current.frames * 1000) / (now - fpsRef.current.lastTime),
 						),
 					);
-					fpsRef.current.frames = 0;
-					fpsRef.current.lastTime = now;
+					fpsRef.current = { frames: 0, lastTime: now };
 				}
-
-				rafId = requestAnimationFrame(loop);
 			};
-
-			rafId = requestAnimationFrame(loop);
-			return () => cancelAnimationFrame(rafId);
+			update(playbackClock.getSnapshot(), performance.now(), true);
+			return playbackClock.subscribe(update);
 		}, [vsync, setDisplayTime]);
 
 		const lyrics = useAtomValue(timedPreviewLyricsAtom);
@@ -344,7 +306,6 @@ export const AMLLWrapper = memo(
 		const setSelectedLines = useSetAtom(selectedLinesAtom);
 
 		const scrollContainerRef = useRef<HTMLDivElement>(null);
-		const lastScrolledId = useRef<string | null>(null);
 
 		// Group lines: in the AMLL data format, a BG vocal line (isBG: true) is
 		// ALWAYS placed immediately after its parent main line in the sorted array.
@@ -378,40 +339,27 @@ export const AMLLWrapper = memo(
 			[activeLineIds],
 		);
 
-		// Scroll to the active group
-		useEffect(() => {
-			const activeGroupIndex = lineGroups.findIndex(
-				(g) =>
-					activeLineIdsSet.has(g.main.id) ||
-					g.bg.some((b) => activeLineIdsSet.has(b.id)),
-			);
-			if (activeGroupIndex === -1) {
-				lastScrolledId.current = null;
-				return;
-			}
-
-			const groupId = lineGroups[activeGroupIndex].main.id;
-			if (groupId === lastScrolledId.current) return;
-			lastScrolledId.current = groupId;
-
-			const container = scrollContainerRef.current;
-			if (container) {
-				const wrapperEl = container.children[
-					activeGroupIndex + 1
-				] as HTMLElement;
-				if (wrapperEl) {
-					// The wrapper has display:contents so it has no layout box (offsetTop = 0).
-					// Use its firstElementChild (the actual lineGroup div) for the real position.
-					const lineEl =
-						(wrapperEl.firstElementChild as HTMLElement) ?? wrapperEl;
-					const targetScroll =
-						lineEl.offsetTop -
-						container.clientHeight * 0.4 +
-						lineEl.clientHeight / 2;
-					container.scrollTo({ top: targetScroll, behavior: "smooth" });
-				}
-			}
-		}, [activeLineIdsSet, lineGroups]);
+		const getScrollTarget = useCallback(
+			(timeMs: number) => {
+				const index = lineGroups.findIndex((group) =>
+					[group.main, ...group.bg].some(
+						(line) => timeMs >= line.startTime && timeMs <= line.endTime,
+					),
+				);
+				if (index < 0) return undefined;
+				return {
+					id: lineGroups[index].main.id,
+					getNode: () => {
+						const wrapper = scrollContainerRef.current?.children[index + 1];
+						// display:contents has no box; measure its actual line group.
+						const line = wrapper?.firstElementChild ?? wrapper;
+						return line instanceof HTMLElement ? line : undefined;
+					},
+				};
+			},
+			[lineGroups],
+		);
+		usePreviewScroll(scrollContainerRef, getScrollTarget, { anchor: 0.4 });
 
 		const handleLineClick = (line: LyricLine) => {
 			setCurrentTime(line.startTime);
