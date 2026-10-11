@@ -10,10 +10,7 @@ import {
 	getSynchronizableUnits,
 	isSynchronizableLine,
 } from "$/modules/lyric-editor/utils/lyric-states";
-import {
-	calculateSyncTime,
-	setPendingUnitTimeCloned,
-} from "$/modules/lyric-editor/utils/sync-timing";
+import { calculateSyncTime } from "$/modules/lyric-editor/utils/sync-timing";
 import {
 	highlightActiveWordAtom,
 	smartFirstWordAtom,
@@ -413,7 +410,7 @@ export const SyncKeyBinding: FC = () => {
 						nextLine.startTime = currentTime;
 						const nextLineUnits = getSynchronizableUnits(nextLine);
 						if (nextLineUnits.length > 0) {
-							setPendingUnitTimeCloned(
+							setUnitStartTimeCloned(
 								nextLine,
 								nextLineUnits[0].wordIndex,
 								nextLineUnits[0].rubyIndex,
@@ -577,7 +574,7 @@ export const SyncKeyBinding: FC = () => {
 							nextLines[iterLineIndex].endTime = currentTime;
 							targetLine.startTime = currentTime;
 						}
-						setPendingUnitTimeCloned(
+						setUnitStartTimeCloned(
 							targetLine,
 							next.unit.wordIndex,
 							next.unit.rubyIndex,

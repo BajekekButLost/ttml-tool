@@ -1,5 +1,4 @@
 import { SyncJudgeMode } from "$/modules/settings/states";
-import type { LyricLine, LyricWord } from "$/types/ttml";
 
 export interface SyncKeyTiming {
 	downTimeOffset: number;
@@ -78,43 +77,4 @@ export function calculateSyncTime({
 			audioTimeAtEvent + keyAdjustment + syncTimeOffset + actionOffset,
 		),
 	);
-}
-
-function cloneWordWithRuby(word: LyricWord): LyricWord {
-	return {
-		...word,
-		ruby: word.ruby ? word.ruby.map((ruby) => ({ ...ruby })) : undefined,
-	};
-}
-
-function updateRubyParentTime(word: LyricWord) {
-	const ruby = word.ruby;
-	if (!ruby || ruby.length === 0) return;
-	word.startTime = Math.min(...ruby.map((part) => part.startTime));
-	word.endTime = Math.max(...ruby.map((part) => part.endTime));
-}
-
-export function setPendingUnitTimeCloned(
-	line: LyricLine,
-	wordIndex: number,
-	rubyIndex: number | undefined,
-	time: number,
-) {
-	const previousWord = line.words[wordIndex];
-	if (!previousWord) return;
-	const nextWord = cloneWordWithRuby(previousWord);
-
-	if (rubyIndex !== undefined && nextWord.ruby?.[rubyIndex]) {
-		nextWord.ruby[rubyIndex] = {
-			...nextWord.ruby[rubyIndex],
-			startTime: time,
-			endTime: time,
-		};
-		updateRubyParentTime(nextWord);
-	} else {
-		nextWord.startTime = time;
-		nextWord.endTime = time;
-	}
-
-	line.words[wordIndex] = nextWord;
 }
