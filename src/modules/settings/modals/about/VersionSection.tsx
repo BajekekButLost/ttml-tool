@@ -1,5 +1,6 @@
 import { BUILD_TIME, GIT_COMMIT } from "virtual:buildmeta";
 import { Card, Flex, Link, Text } from "@radix-ui/themes";
+import { Children } from "react";
 import { openExternal } from "./externalLinks";
 import type { AboutSettings } from "./useAboutSettings";
 export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
@@ -17,28 +18,31 @@ export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
 					})}
 				</Text>
 				<Text as="div" size="2">
-					{t("aboutModal.gitCommit", "Git Commit: {commit}", {
-						commit:
-							GIT_COMMIT === "unknown" ? (
-								t("aboutModal.unknown", "Unknown")
-							) : (
-								<Link
-									href={`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`}
-									target="_blank"
-									rel="noreferrer"
-									onClick={(event) => {
-										if (import.meta.env.TAURI_ENV_PLATFORM) {
-											event.preventDefault();
-											openExternal(
-												`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`,
-											);
-										}
-									}}
-								>
-									{GIT_COMMIT}
-								</Link>
-							),
-					})}
+					{/* ICU returns [text, link] for an element value; toArray keys the parts. */}
+					{Children.toArray(
+						t("aboutModal.gitCommit", "Git Commit: {commit}", {
+							commit:
+								GIT_COMMIT === "unknown" ? (
+									t("aboutModal.unknown", "Unknown")
+								) : (
+									<Link
+										href={`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`}
+										target="_blank"
+										rel="noreferrer"
+										onClick={(event) => {
+											if (import.meta.env.TAURI_ENV_PLATFORM) {
+												event.preventDefault();
+												openExternal(
+													`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`,
+												);
+											}
+										}}
+									>
+										{GIT_COMMIT}
+									</Link>
+								),
+						}),
+					)}
 				</Text>
 			</Flex>
 		</Flex>
