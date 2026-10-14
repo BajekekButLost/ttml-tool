@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Najważniejsze informacje o wydaniu i najnowsze ulepszenia dla użytkowników NaeNae"
+    "highlightsDescription": "Najważniejsze informacje o wydaniu i najnowsze ulepszenia dla użytkowników NaeNae",
+    "changelogTitle": "Lista zmian i aktualizacje",
+    "viewCommits": "Zobacz commity na GitHubie",
+    "whatsNewTitle": "Co nowego w NaeNae's Fork",
+    "otherEnhancements": "Inne ulepszenia"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Brak linii tekstu",
       "description": "Dodaj nowe linie tekstu w górnym panelu lub otwórz/importuj istniejący tekst z menu"
+    },
+    "window": {
+      "minimize": "Minimalizuj okno",
+      "maximize": "Maksymalizuj okno",
+      "close": "Zamknij okno"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Otwórz plik z tekstami"
+      "open": "Otwórz plik z tekstami",
+      "start": "Uruchom przewodnik",
+      "import": "Importuj tekst"
     },
     "welcome": {
-      "open": "Otwórz plik z tekstami"
+      "open": "Otwórz plik z tekstami",
+      "title": "Utwórz swój pierwszy zsynchronizowany TTML",
+      "description": "Przewodnik towarzyszy Ci, otwiera właściwe narzędzia i czeka, aż każde wymagane zadanie zostanie naprawdę ukończone.",
+      "own": "Przeprowadź mnie przez mój pierwszy TTML",
+      "skip": "Pomiń na razie"
     },
     "sync": {
-      "wordProgress": "Zsynchronizowane słowa: {timed} / {total}"
+      "wordProgress": "Zsynchronizowane słowa: {timed} / {total}",
+      "open": "Otwórz tryb Synchronizacja"
+    },
+    "menu": "Uruchom przewodnik",
+    "restore": "Pokaż przewodnik",
+    "progress": "Krok {current} z {total}",
+    "tuck": "Schowaj",
+    "exit": "Zamknij przewodnik",
+    "beforeStart": {
+      "title": "Zanim zaczniesz:",
+      "text": "Możesz dostosować wygląd edytora do swoich preferencji. Kliknij poniżej, aby otworzyć ustawienia. Wypróbuj Podstawowy edytor lub Zaawansowany edytor, jeśli chcesz kontrolować każdy szczegół.",
+      "link": "Dostosuj wygląd edytora"
+    },
+    "status": {
+      "complete": "Gotowe — narzędzie wykryło, że ten krok jest ukończony."
+    },
+    "readMore": "Pełny przewodnik",
+    "continue": "Dalej",
+    "review": {
+      "confirm": "Sprawdziłem(-am) tekst"
+    },
+    "test": {
+      "open": "Otwórz kroki testowania"
+    },
+    "audio": {
+      "choose": "Wybierz dźwięk"
+    },
+    "songwriters": {
+      "open": "Otwórz metadane"
+    },
+    "export": {
+      "save": "Zapisz TTML"
+    },
+    "genius": {
+      "title": "Utwórz Client Access Token Genius",
+      "step1": "1. Otwórz Genius API Clients i zaloguj się.",
+      "step2": "2. Wybierz New API Client, nadaj dowolną rozpoznawalną nazwę aplikacji i wypełnij wymagane pole strony aplikacji.",
+      "step3": "3. Zapisz klienta, a następnie wybierz Generate Access Token.",
+      "step4": "4. Skopiuj Client Access Token — nie Client ID ani Client Secret.",
+      "reuse": "Narzędzie zapisuje ten token lokalnie i używa go ponownie do importu tekstów i wyszukiwania autorów.",
+      "openPortal": "Otwórz Genius API Clients",
+      "paste": "Wklej token w imporcie z Genius"
+    },
+    "finish": "Zakończ przewodnik",
+    "steps": {
+      "intro": {
+        "title": "Najpierw przeczytaj pełny przewodnik",
+        "description": "Ten wbudowany przewodnik to praktyczne uzupełnienie pełnego przewodnika TTML. Przeczytaj pełny przewodnik, aby poznać zasady, a potem trzymaj ten panel otwarty, stosując je w edytorze.",
+        "waiting": "Przeczytaj pełny przewodnik i kontynuuj, gdy będziesz gotowy(-a)."
+      },
+      "audio": {
+        "title": "Zaimportuj utwór",
+        "description": "Wybierz dokładnie to nagranie, dla którego tworzysz tekst. Przewodnik przejdzie dalej, gdy dźwięk się wczyta.",
+        "waiting": "Użyj przycisku „Wybierz dźwięk” poniżej i poczekaj na zakończenie wczytywania."
+      },
+      "lyrics": {
+        "title": "Zaimportuj tekst",
+        "description": "Wybierz poniżej źródło tekstu. Sprawdź wynik w oknie importu i potwierdź import.",
+        "waiting": "Wybierz poniżej jedno źródło i dokończ jego okno importu."
+      },
+      "review": {
+        "title": "Sprawdź tekst i typy wersów",
+        "description": "Porównaj każdy wers z nagraniem. Kliknij dwukrotnie słowo, aby je poprawić; zaznacz wersy, aby oznaczyć wokal w tle lub duet. Usuń puste wersy, a potem potwierdź poniżej.",
+        "waiting": "Struktura jest poprawna. Dokończ czytanie tekstu, a potem potwierdź sprawdzenie.",
+        "waitingEmptyLines": "Pozostał co najmniej jeden pusty wers. Usuń go lub uzupełnij przed potwierdzeniem."
+      },
+      "sync": {
+        "title": "Zsynchronizuj każde słowo",
+        "description": "Przejdź do trybu Synchronizacja, zaznacz pierwsze słowo, naciśnij spację, a następnie używaj F na początek, G między słowami i H przy pauzach lub na końcu wersu. Każde słowo musi otrzymać poprawny czas.",
+        "waiting": "Otwórz tryb Synchronizacja i kontynuuj; krok zakończy się, gdy każde odpowiednie słowo będzie mieć poprawny początek i koniec."
+      },
+      "songwriters": {
+        "title": "Dodaj autorów",
+        "description": "Otwórz metadane i użyj „Pobierz autorów piosenek z Genius” albo dodaj jedną wartość Autor tekstu dla każdego prawdziwego nazwiska. Przewodnik wykryje, gdy zapisany zostanie co najmniej jeden.",
+        "waiting": "Otwórz metadane i dodaj co najmniej jedną niepustą wartość Autor tekstu."
+      },
+      "export": {
+        "title": "Wyeksportuj TTML",
+        "description": "Zapisz gotowy plik TTML. Ten krok zakończy się dopiero po faktycznym zapisaniu pliku.",
+        "waiting": "Wybierz Zapisz TTML i dokończ wybór pliku."
+      },
+      "test": {
+        "title": "Przetestuj lokalnie",
+        "description": "Wgraj zapisany plik do Spicy Lyrics i sprawdź wczytywanie, formatowanie oraz synchronizację.",
+        "waiting": "Otwórz instrukcje testowania lokalnego, sprawdź plik w Spicy Lyrics i zakończ przewodnik."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Piosenka nie ma autorów. Czy chcesz kontynuować oszczędzanie?"
+    },
+    "newProject": {
+      "title": "Potwierdź utworzenie projektu",
+      "description": "Masz niezapisane zmiany. Jeśli kontynuujesz, zostaną utracone. Czy na pewno chcesz utworzyć nowy projekt?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Usuń",
     "clickToSet": "Kliknij, aby ustawić ",
     "move": "Rusz się",
-    "copy": "Kopiuj"
+    "copy": "Kopiuj",
+    "reset": "Zresetuj",
+    "preview": "Podgląd"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Wybierz załadowany plik audio",
       "lyricTitle": "Wybierz plik TTML, w którym zapisywany jest ten projekt"
+    },
+    "createProject": {
+      "parentTitle": "Wybierz, gdzie utworzyć folder projektu",
+      "title": "Wybierz lub utwórz folder dla nowego projektu"
+    },
+    "openProject": {
+      "title": "Wybierz folder projektu"
+    },
+    "saveProject": {
+      "title": "Wybierz lub utwórz folder projektu"
+    },
+    "openWorkspace": {
+      "title": "Wybierz folder obszaru roboczego z projektami"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Importowalne",
     "scanning": "Skanowanie...",
     "selectFolder": "Wybierz folder obszaru roboczego...",
-    "unknown": "Nieznany"
+    "unknown": "Nieznany",
+    "noProjectsFound": "W tym folderze nie znaleziono projektów",
+    "projectsFound": "Znalezione projekty: {count}",
+    "scanFailed": "Nie udało się przeskanować folderu obszaru roboczego"
   },
   "ribbonBar": {
     "advancedTooltip": "Dotyczy wszystkich pasków: Edycja, Synchronizacja i Podgląd.",
@@ -248,7 +370,8 @@
       "showRoman": "Pokaż romanizację",
       "fadeWidth": "Szerokość zanikania",
       "instantFade": "Natychmiastowe zanikanie",
-      "showFps": "Pokaż FPS"
+      "showFps": "Pokaż FPS",
+      "autoScroll": "Automatyczne przewijanie"
     },
     "syncMode": {
       "currentEmptyBeat": "Pusty takt",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Śledzenie",
       "autoScroll": "Automatyczne przewijanie",
-      "highlightActiveLine": "Podświetl linię"
+      "highlightActiveLine": "Podświetl linię",
+      "spectrogramHoverSync": "Synchronizuj według kursora spektrogramu"
     },
-    "loading": "Ładowanie panelu..."
+    "loading": "Ładowanie panelu...",
+    "advanced": "Zaawansowane"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Promień rozmycia",
       "customBackgroundBrightness": "Jasność",
       "customBackgroundEnabled": "Zestaw tła",
-      "customBackgroundManage": "Ustawienia"
+      "customBackgroundManage": "Ustawienia",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Udostępniaj konfigurowalne szczegóły projektu i odtwarzania w aplikacji Discord na komputer.",
+      "discordCustomize": "Dostosuj status i bezczynność",
+      "discordTemplates": "Szablony statusu",
+      "discordTemplateHelp": "Używaj {{variables}}, a tekst opcjonalny umieszczaj w [[podwójnych nawiasach kwadratowych]].",
+      "discordDetails": "Szczegóły",
+      "discordState": "Stan",
+      "discordSearchVariables": "Szukaj zmiennych…",
+      "discordPlaybackTimeline": "Oś czasu odtwarzania",
+      "discordProjectElapsed": "Licznik czasu pracy nad projektem",
+      "discordRepositoryButton": "Przycisk repozytorium",
+      "discordStatusBadge": "Plakietka stanu odtwarzania/pauzy",
+      "discordIdleTimeout": "Nieaktywny po",
+      "discordIdlePrivacy": "Status nieaktywności ukrywa szczegóły projektu, przyciski, plakietki i liczniki.",
+      "normalizeApostrophesOnImport": "Ujednolicaj apostrofy",
+      "normalizeApostrophesOnImportDesc": "Zamienia apostrofy drukarskie i inne podobne znaki podczas importu i eksportu.",
+      "normalizeCyrillicEsOnImport": "Poprawiaj pojedyncze cyrylickie Е/е w słowach łacińskich",
+      "normalizeCyrillicEsOnImportDesc": "Poprawia ukryte cyrylickie sobowtóry w słowach łacińskich podczas importu i eksportu.",
+      "allowConsecutiveBackgroundLines": "Zezwalaj na kolejne i samodzielne wokale w tle",
+      "allowConsecutiveBackgroundLinesDesc": "Eksportuje kolejne wokale w tle razem i zachowuje samodzielne wokale w tle dla zgodności ze Spicy Lyrics. Inne odtwarzacze mogą nie obsługiwać tej struktury.",
+      "spectrogramHoverSync": "Synchronizuj według kursora spektrogramu",
+      "spectrogramHoverSyncDesc": "Gdy kursor znajduje się nad spektrogramem w trybie synchronizacji, klawisze (F, G, H) zapisują czas pod kursorem zamiast czasu odtwarzania.",
+      "syncWordWrap": "Zawijaj słowa w trybie czasu",
+      "syncWordWrapDesc": "Zawija karty słowne do następnego wiersza zamiast pokazywać poziomy pasek przewijania na karcie Czas/Synchronizacja.",
+      "syncAutoScroll": "Automatyczne przewijanie do aktywnej linii podczas odtwarzania",
+      "syncAutoScrollDesc": "Automatycznie przewija widok edytora, aby podczas odtwarzania podążać za aktualnie aktywną linią tekstu.",
+      "syncFocusMainLine": "Skoncentruj linię główną podczas odtwarzania",
+      "syncFocusMainLineDesc": "Podczas odtwarzania skupia się na aktywnych liniach głównych i ignoruje linie tła, chyba że żadna linia główna nie jest aktywna.",
+      "highlightActiveLine": "Podświetl aktywną linię podczas odtwarzania"
     },
     "about": {
       "update": "Aktualizacja",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klasyczny ciemny motyw",
         "legacyDarkThemeDesc": "Użyj jaśniejszej, ciemnej palety sprzed przeprojektowania Intonated Black.",
         "masterResetNote": "Spowoduje to zresetowanie wszystkich ponad 20 szczegółowych zastąpień.",
-        "resetMaster": "Przywróć wszystkie ustawienia zaawansowane"
+        "resetMaster": "Przywróć wszystkie ustawienia zaawansowane",
+        "scrollbarThumb": "Suwak paska przewijania",
+        "dialogBackground": "Tło okien dialogowych",
+        "dialogBorder": "Obramowanie okien dialogowych",
+        "globalBorderRadius": "Globalne zaokrąglenie rogów",
+        "globalBorderWidth": "Globalna grubość obramowania",
+        "shadowIntensity": "Intensywność cieni",
+        "romanizationText": "Tekst latynizacji",
+        "translationText": "Tekst tłumaczenia",
+        "geniusHeaderColor": "Kolor nagłówków Genius"
       },
       "secondaryDesc": "Tłumaczenia i metadane.",
       "layout": {
         "title": "Układ aplikacji",
-        "syncWordWrap": "Zawijaj słowa w trybie czasu",
-        "syncWordWrapDesc": "Zawija karty słowne do następnego wiersza zamiast pokazywać poziomy pasek przewijania na karcie Czas/Synchronizacja.",
-        "syncAutoScroll": "Automatyczne przewijanie do aktywnej linii podczas odtwarzania",
-        "syncAutoScrollDesc": "Automatycznie przewija widok edytora, aby podczas odtwarzania podążać za aktualnie aktywną linią tekstu.",
-        "syncFocusMainLine": "Skoncentruj linię główną podczas odtwarzania",
-        "syncFocusMainLineDesc": "Podczas odtwarzania skupia się na aktywnych liniach głównych i ignoruje linie tła, chyba że żadna linia główna nie jest aktywna.",
-        "highlightActiveLine": "Podświetl aktywną linię podczas odtwarzania",
-        "highlightActiveLineDesc": "Wizualnie podkreśla aktualnie odtwarzaną linię tekstu w trybach edycji i czasu.",
         "order": "Kolejność elementów",
         "orderDesc": "Przeciągnij, aby zmienić kolejność elementów. Niektóre pozycje mogą być ograniczone ograniczeniami.",
         "titlebar": "Pasek tytułu",
@@ -481,7 +636,13 @@
       "customFontActive": "LOKALNA CZCIONKA NIESTANDARDOWA",
       "defaultFonts": "Standardowe stosy",
       "systemFonts": "Czcionki systemowe",
-      "googleFonts": "Biblioteka czcionek Google"
+      "googleFonts": "Biblioteka czcionek Google",
+      "fontDialogDescription": "Wybierz czcionkę standardową, systemową lub z biblioteki Google Fonts.",
+      "interfaceScale": "Skala interfejsu",
+      "interfaceScaleDesc": "Wybierz skalę i zastosuj ją. Możesz też użyć Ctrl/Cmd +, - lub 0.",
+      "resetTitle": "Zresetuj motyw",
+      "resetDesc": "Przywraca wszystkie kolory, tła, gradienty i własne zmiany do motywu domyślnego.",
+      "resetTheme": "Przywróć domyślny motyw"
     },
     "group": {
       "display": "Wyświetlanie",
@@ -490,7 +651,11 @@
       "playback": "Odtwarzanie",
       "autosave": "Automatyczny zapis",
       "previewControls": "Podgląd",
-      "editorControls": "Wyświetlanie i sterowanie edytora"
+      "editorControls": "Wyświetlanie i sterowanie edytora",
+      "import": "Import i eksport",
+      "syncWordWrap": "Tryb Synchronizacja / karta synchronizacji",
+      "privacy": "Prywatność",
+      "projects": "Projekty"
     },
     "assistant": {
       "manualTimestampEdit": "Ręczna edycja znacznika czasu",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Projekty w folderach",
+      "folderProjectsDesc": "Otwieraj, zapisuj i porządkuj teksty jako foldery projektów z manifestem project.json.",
+      "folderProjectsAutosave": "Zapisuj plik projektu przy autozapisie",
+      "folderProjectsAutosaveDesc": "Przy każdym autozapisie zapisuje na dysk plik tekstu otwartego projektu."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Eksportuj do YRC",
         "toLrcfySylb": "Eksportuj do Lyricify Syllable",
         "toASS": "Eksportuj do napisów ASS"
-      }
+      },
+      "spectrogramHoverSync": "Synchronizuj według kursora spektrogramu",
+      "whatsNew": "Co nowego",
+      "changelog": "Lista zmian i aktualizacje",
+      "projects": "Projekty"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Powiązany projekt",
-      "folder": "Projekt folderu"
+      "folder": "Projekt folderu",
+      "namePlaceholder": "Nazwa projektu"
     },
     "backup": {
       "restore": "Przywróć kopię zapasową",
@@ -753,7 +929,15 @@
       "audio": "Dźwięk",
       "keybindings": "Skróty klawiszowe",
       "spectrogram": "Spektrogram",
-      "backup": "Kopia zapasowa"
+      "backup": "Kopia zapasowa",
+      "editor": "Edytor i synchronizacja",
+      "files": "Pliki i pamięć"
+    },
+    "page": {
+      "generalDesc": "Język, układ, prywatność i ogólne działanie aplikacji.",
+      "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
+      "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
+      "audioDesc": "Odtwarzanie, konwersja, korektor i wyświetlanie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automatyczna segmentacja za pomocą {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Nie można utworzyć kopii zapasowej oryginalnego pliku TTML, więc nie został on nadpisany",
     "linkedProjectNoBackup": "Nie znaleziono kopii zapasowej dla tego projektu",
     "linkedProjectRestoreFailed": "Nie udało się przywrócić oryginalnego pliku TTML",
-    "linkedProjectRestoreReloadFailed": "Przywrócono oryginalny plik, ale nie udało się ponownie załadować projektu"
+    "linkedProjectRestoreReloadFailed": "Przywrócono oryginalny plik, ale nie udało się ponownie załadować projektu",
+    "folderProjectInvalid": "Nieprawidłowy folder projektu",
+    "folderProjectRequiresDesktop": "Foldery projektów są dostępne tylko w aplikacji na komputer",
+    "folderProjectCreateFailed": "Nie udało się utworzyć projektu",
+    "folderProjectLyricParse": "Nie udało się odczytać pliku tekstu",
+    "folderProjectNoLyric": "Dodaj plik tekstu przed zapisaniem projektu",
+    "folderProjectAudioReadFailed": "Nie znaleziono pliku dźwiękowego projektu",
+    "folderProjectAudioLoadFailed": "Nie udało się wczytać dźwięku projektu",
+    "folderProjectNoAudio": "Wczytaj plik dźwiękowy przed zapisaniem projektu",
+    "folderProjectUnavailable": "Folder projektu jest niedostępny",
+    "folderProjectNoContent": "W tym folderze nie znaleziono plików TTML ani dźwiękowych",
+    "folderProjectSaveFailed": "Nie udało się zapisać projektu",
+    "folderProjectNotFound": "Wybrany folder nie jest prawidłowym folderem projektu (brak project.json, plików TTML i dźwiękowych)",
+    "folderProjectOpenFailed": "Nie udało się otworzyć folderu projektu: {reason}",
+    "ttmlGenerateFailed": "Nie udało się wygenerować TTML",
+    "folderProjectCleanupFailed": "Zapisano, ale nie udało się usunąć poprzedniego pliku projektu",
+    "openFolderFailed": "Nie można otworzyć folderu"
   },
   "success": {
-    "linkedProjectBackupRestored": "Przywrócono oryginalny plik TTML"
+    "linkedProjectBackupRestored": "Przywrócono oryginalny plik TTML",
+    "folderProjectSaved": "Zapisano projekt",
+    "folderProjectAlreadyExists": "Ten folder jest już projektem, więc zostanie otwarty",
+    "folderProjectCreated": "Utworzono projekt",
+    "lyricsSavedToProject": "Zapisano tekst w projekcie"
   },
   "audio": {
     "marker": "Znacznik",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Zatrzymaj się",
       "start": "Zacznij"
-    }
+    },
+    "description": "Wybierz tempo i naciskaj {key} przy każdym sygnale, aby zmierzyć opóźnienie między dźwiękiem a Twoim wejściem."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Wyszukiwanie nie powiodło się: {error}",
       "fetchError": "Nie udało się pobrać tekstu: {error}",
       "noLyricsError": "Brak tekstów do zaimportowania.",
-      "importSuccess": "Zaimportowano linie {count} z Genius."
+      "importSuccess": "Zaimportowano linie {count} z Genius.",
+      "howToGetKey": "Jak utworzyć Client Access Token Genius"
     },
     "openLink": "Otwórz link",
     "duplicateMsg": "Znaleziono zduplikowane wartości metadanych",
@@ -1012,7 +1218,9 @@
     "importTitle": "Importuj teksty z Genius",
     "searchPlaceholder": "Artysta – tytuł utworu…",
     "notFound": "Nie znaleziono żadnych wyników. Wypróbuj inne słowa kluczowe.",
-    "noResult": "Aby rozpocząć, wpisz nazwę utworu lub wykonawcę."
+    "noResult": "Aby rozpocząć, wpisz nazwę utworu lub wykonawcę.",
+    "howToGetKey": "Jak utworzyć Client Access Token Genius",
+    "changeKey": "Zmień klucz API"
   },
   "textImportDialog": {
     "processLyrics": "Teksty Procesu",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Pełny przewodnik TTML"
-    }
+    },
+    "description": "Importuj tekst z czystego tekstu lub innych formatów."
   },
   "sectionImportReview": {
     "title": "Przejrzyj wykryte sekcje",
@@ -1239,7 +1448,13 @@
     "crowdin": "Pomóż w tłumaczeniu w Crowdin",
     "buildDate": "Data kompilacji: {date}",
     "gitCommit": "Commit Git: {commit}",
-    "platform": "Platforma: {platform}"
+    "platform": "Platforma: {platform}",
+    "contributors": "Współtwórcy",
+    "viewContributors": "Zobacz współtwórców",
+    "contributorProfiles": "Profile współtwórców",
+    "contributorTooltip": "{name} – wkład: {count}",
+    "openContributorProfile": "Otwórz profil GitHub użytkownika {name}",
+    "unknown": "Nieznany"
   },
   "spectrogram": {
     "invalidEndTime": "Nie można wybrać tego czasu końcowego",

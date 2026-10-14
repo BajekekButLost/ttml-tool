@@ -206,7 +206,7 @@ export const HeaderFileInfo = () => {
 							size="1"
 							value={draftName}
 							onChange={(e) => setDraftName(e.target.value)}
-							placeholder="example"
+							placeholder={t("header.project.namePlaceholder", "Project name")}
 							style={{ width: "10rem" }}
 							onBlur={() => finishEditing({ commit: true })}
 							onKeyDown={(event) => {

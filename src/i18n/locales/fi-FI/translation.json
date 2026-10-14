@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Julkaisun kohokohdat ja viimeaikaiset parannukset NaeNae-käyttäjille"
+    "highlightsDescription": "Julkaisun kohokohdat ja viimeaikaiset parannukset NaeNae-käyttäjille",
+    "changelogTitle": "Muutosloki ja päivitykset",
+    "viewCommits": "Näytä commitit GitHubissa",
+    "whatsNewTitle": "Uutta NaeNae's Forkissa",
+    "otherEnhancements": "Muut parannukset"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Ei sanoituksia",
       "description": "Lisää uusia sanoitusrivejä yläpaneeliin tai avaa/tuo olemassa olevat sanoitukset valikosta."
+    },
+    "window": {
+      "minimize": "Pienennä ikkuna",
+      "maximize": "Suurenna ikkuna",
+      "close": "Sulje ikkuna"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Avaa sanoitustiedosto"
+      "open": "Avaa sanoitustiedosto",
+      "start": "Aloita opas",
+      "import": "Tuo sanoituksia"
     },
     "welcome": {
-      "open": "Avaa sanoitustiedosto"
+      "open": "Avaa sanoitustiedosto",
+      "title": "Tee ensimmäinen synkronoitu TTML-tiedostosi",
+      "description": "Opas pysyy mukanasi, avaa oikeat työkalut ja odottaa, kunnes jokainen vaadittu tehtävä on todella valmis.",
+      "own": "Opasta minut ensimmäisen TTML:n läpi",
+      "skip": "Ohita toistaiseksi"
     },
     "sync": {
-      "wordProgress": "Ajoitettuja sanoja: {timed} / {total}"
+      "wordProgress": "Ajoitettuja sanoja: {timed} / {total}",
+      "open": "Avaa Aika-tila"
+    },
+    "menu": "Aloita opas",
+    "restore": "Näytä opas",
+    "progress": "Vaihe {current}/{total}",
+    "tuck": "Piilota",
+    "exit": "Poistu oppaasta",
+    "beforeStart": {
+      "title": "Ennen kuin aloitat:",
+      "text": "Voit muokata editorin ulkoasua mieleiseksesi. Avaa asetukset alta. Kokeile Peruseditoria tai Edistynyttä editoria, jos haluat hallita kaikkia yksityiskohtia.",
+      "link": "Muokkaa editorin ulkoasua"
+    },
+    "status": {
+      "complete": "Valmis — työkalu havaitsi, että tämä vaihe on suoritettu."
+    },
+    "readMore": "Koko opas",
+    "continue": "Jatka",
+    "review": {
+      "confirm": "Tarkistin sanoitukset"
+    },
+    "test": {
+      "open": "Avaa testausohjeet"
+    },
+    "audio": {
+      "choose": "Valitse ääni"
+    },
+    "songwriters": {
+      "open": "Avaa metatiedot"
+    },
+    "export": {
+      "save": "Tallenna TTML"
+    },
+    "genius": {
+      "title": "Luo Genius Client Access Token",
+      "step1": "1. Avaa Genius API Clients ja kirjaudu sisään.",
+      "step2": "2. Valitse New API Client, anna sille jokin tunnistettava sovelluksen nimi ja täytä pakollinen sovelluksen verkkosivustokenttä.",
+      "step3": "3. Tallenna asiakas ja valitse sitten Generate Access Token.",
+      "step4": "4. Kopioi Client Access Token — ei Client ID:tä tai Client Secretiä.",
+      "reuse": "Työkalu tallentaa tunnuksen paikallisesti ja käyttää sitä sanoitusten tuontiin ja lauluntekijöiden hakuun.",
+      "openPortal": "Avaa Genius API Clients",
+      "paste": "Liitä tunnus Genius-tuontiin"
+    },
+    "finish": "Viimeistele opas",
+    "steps": {
+      "intro": {
+        "title": "Lue ensin koko opas",
+        "description": "Tämä sisäänrakennettu opas on käytännön apu koko TTML-oppaan rinnalle. Lue käsitteet koko oppaasta ja pidä tämä paneeli auki, kun sovellat niitä editorissa.",
+        "waiting": "Lue koko opas ja jatka, kun olet valmis aloittamaan."
+      },
+      "audio": {
+        "title": "Tuo kappale",
+        "description": "Valitse juuri se tallenne, jolle teet sanoitukset. Opas jatkuu, kun ääni on latautunut.",
+        "waiting": "Käytä alla olevaa ”Valitse ääni” -painiketta ja odota latauksen valmistumista."
+      },
+      "lyrics": {
+        "title": "Tuo sanoitukset",
+        "description": "Valitse sanoitusten lähde alta. Tarkista tulos tuontiikkunassa ja vahvista tuonti.",
+        "waiting": "Valitse yksi lähde alta ja vie sen tuontiikkuna loppuun."
+      },
+      "review": {
+        "title": "Tarkista sanoitukset ja rivityypit",
+        "description": "Vertaa jokaista riviä tallenteeseen. Korjaa sanoja kaksoisnapsauttamalla; valitse rivejä merkitäksesi taustalaulun tai duetin. Poista tyhjät rivit ja vahvista sitten alla.",
+        "waiting": "Rakenne on kunnossa. Lue sanoitukset loppuun ja vahvista tarkistus.",
+        "waitingEmptyLines": "Jäljellä on vähintään yksi tyhjä rivi. Poista tai täytä se ennen vahvistamista."
+      },
+      "sync": {
+        "title": "Ajoita jokainen sana",
+        "description": "Siirry Aika-tilaan, valitse ensimmäinen sana, paina välilyöntiä ja käytä sitten F:ää aloitukseen, G:tä sanojen välissä ja H:ta tauoissa tai rivien lopussa. Jokaisella sanalla on oltava kelvollinen aika.",
+        "waiting": "Avaa Aika-tila ja jatka ajoitusta; vaihe valmistuu, kun jokaisella asiaankuuluvalla sanalla on kelvollinen alku ja loppu."
+      },
+      "songwriters": {
+        "title": "Lisää lauluntekijät",
+        "description": "Avaa metatiedot ja käytä toimintoa ”Hae lauluntekijät Genius:sta” tai lisää yksi Lauluntekijä-arvo kutakin oikeaa nimeä kohden. Opas huomaa, kun vähintään yksi on tallennettu.",
+        "waiting": "Avaa metatiedot ja lisää vähintään yksi ei-tyhjä Lauluntekijä-arvo."
+      },
+      "export": {
+        "title": "Vie TTML",
+        "description": "Tallenna valmis TTML. Tämä vaihe valmistuu vasta, kun tiedosto on oikeasti kirjoitettu.",
+        "waiting": "Valitse Tallenna TTML ja vie tiedostonvalinta loppuun."
+      },
+      "test": {
+        "title": "Testaa paikallisesti",
+        "description": "Lataa tallennettu tiedosto Spicy Lyricsiin ja tarkista jäsentäminen, muotoilu ja ajoitus.",
+        "waiting": "Avaa paikallisen testauksen ohjeet, tarkista tiedosto Spicy Lyricsissä ja viimeistele sitten opas."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Kappaleella ei ole lauluntekijää. Haluatko varmasti jatkaa tallentamista?"
+    },
+    "newProject": {
+      "title": "Vahvista projektin luominen",
+      "description": "Sinulla on tallentamattomia muutoksia. Jos jatkat, ne menetetään. Haluatko varmasti luoda uuden projektin?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Poista",
     "clickToSet": "Aseta napsauttamalla",
     "move": "Siirrä",
-    "copy": "Kopioi"
+    "copy": "Kopioi",
+    "reset": "Nollaa",
+    "preview": "Esikatselu"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Valitse lataamasi äänitiedosto",
       "lyricTitle": "Valitse TTML-tiedosto, johon tämä projekti tallentaa"
+    },
+    "createProject": {
+      "parentTitle": "Valitse, minne projektikansio luodaan",
+      "title": "Valitse tai luo kansio uudelle projektille"
+    },
+    "openProject": {
+      "title": "Valitse projektikansio"
+    },
+    "saveProject": {
+      "title": "Valitse tai luo projektikansio"
+    },
+    "openWorkspace": {
+      "title": "Valitse projekteja sisältävä työtilakansio"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Tuotava",
     "scanning": "Skannataan...",
     "selectFolder": "Valitse työtilan kansio...",
-    "unknown": "Tuntematon"
+    "unknown": "Tuntematon",
+    "noProjectsFound": "Tästä kansiosta ei löytynyt projekteja",
+    "projectsFound": "Löydetyt projektit: {count}",
+    "scanFailed": "Työtilakansion läpikäynti epäonnistui"
   },
   "ribbonBar": {
     "advancedTooltip": "Koskee kaikkia työkalurivejä: Muokkaus, Ajoitus ja Esikatselu.",
@@ -248,7 +370,8 @@
       "showRoman": "Näytä romanisointi",
       "fadeWidth": "Häivytysleveys",
       "instantFade": "Välitön häivytys",
-      "showFps": "Näytä FPS"
+      "showFps": "Näytä FPS",
+      "autoScroll": "Automaattinen vieritys"
     },
     "syncMode": {
       "currentEmptyBeat": "Tyhjä Beat",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Seuranta",
       "autoScroll": "Automaattinen vieritys",
-      "highlightActiveLine": "Korosta rivi"
+      "highlightActiveLine": "Korosta rivi",
+      "spectrogramHoverSync": "Synkronoi spektrogrammin kursoriin"
     },
-    "loading": "Ladataan paneelia..."
+    "loading": "Ladataan paneelia...",
+    "advanced": "Lisäasetukset"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Sumennuksen säde",
       "customBackgroundBrightness": "Kirkkaus",
       "customBackgroundEnabled": "Tausta asetettu",
-      "customBackgroundManage": "Asetukset"
+      "customBackgroundManage": "Asetukset",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Jaa muokattavia projekti- ja toistotietoja Discordin työpöytäsovellukseen.",
+      "discordCustomize": "Muokkaa tilaa ja passiivisuutta",
+      "discordTemplates": "Tilamallit",
+      "discordTemplateHelp": "Käytä muotoa {{variables}} ja kirjoita valinnainen teksti [[kaksoishakasulkeisiin]].",
+      "discordDetails": "Tiedot",
+      "discordState": "Tila",
+      "discordSearchVariables": "Hae muuttujia…",
+      "discordPlaybackTimeline": "Toiston aikajana",
+      "discordProjectElapsed": "Projektiin käytetyn ajan laskuri",
+      "discordRepositoryButton": "Repositorion painike",
+      "discordStatusBadge": "Toisto/tauko-tilamerkki",
+      "discordIdleTimeout": "Passiivinen, kun on kulunut",
+      "discordIdlePrivacy": "Passiivinen tila piilottaa projektin tiedot, painikkeet, merkit ja ajastimet.",
+      "normalizeApostrophesOnImport": "Yhtenäistä heittomerkit",
+      "normalizeApostrophesOnImportDesc": "Muuntaa kaarevat ja muut heittomerkin kaltaiset merkit tuonnin ja viennin aikana.",
+      "normalizeCyrillicEsOnImport": "Korjaa yksittäiset kyrilliset Е/е latinalaisissa sanoissa",
+      "normalizeCyrillicEsOnImportDesc": "Korjaa piilossa olevat samannäköiset kyrilliset merkit latinalaisissa sanoissa tuonnin ja viennin aikana.",
+      "allowConsecutiveBackgroundLines": "Salli peräkkäiset ja itsenäiset taustalaulut",
+      "allowConsecutiveBackgroundLinesDesc": "Vie peräkkäiset taustalaulut yhdessä ja säilyttää itsenäiset taustalaulut Spicy Lyrics -yhteensopivuutta varten. Muut soittimet eivät välttämättä tue tätä rakennetta.",
+      "spectrogramHoverSync": "Synkronoi spektrogrammin kursoriin",
+      "spectrogramHoverSyncDesc": "Kun kursori on spektrogrammin päällä synkronointitilassa, laukaisunäppäimet (F, G, H) tallentavat kursorin kohdan aikaleiman toistoajan sijaan.",
+      "syncWordWrap": "Kääri sanat aikatilassa",
+      "syncWordWrapDesc": "Käärii sanakortit seuraavalle riville sen sijaan, että näyttäisi vaakasuuntaisen vierityspalkin Aika/synkronointi-välilehdessä.",
+      "syncAutoScroll": "Selaa automaattisesti aktiiviseen riviin toiston aikana",
+      "syncAutoScrollDesc": "Vierittää automaattisesti muokkausnäkymää ja seuraa tällä hetkellä aktiivista sanoitusriviä toiston aikana.",
+      "syncFocusMainLine": "Tarkenna päälinja toiston aikana",
+      "syncFocusMainLineDesc": "Toistettaessa keskittyy aktiivisiin päälinjoihin ja ohittaa taustalinjat, ellei mikään päälinja ole aktiivinen.",
+      "highlightActiveLine": "Korosta Active Line toiston aikana"
     },
     "about": {
       "update": "Päivitä",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klassinen tumma teema",
         "legacyDarkThemeDesc": "Käytä vaaleampaa tummaa palettia ennen Intonated Blackin uudelleensuunnittelua.",
         "masterResetNote": "Tämä nollaa kaikki yli 20 rakeista ohitusta.",
-        "resetMaster": "Palauta kaikki lisäasetukset"
+        "resetMaster": "Palauta kaikki lisäasetukset",
+        "scrollbarThumb": "Vierityspalkin liukusäädin",
+        "dialogBackground": "Valintaikkunoiden tausta",
+        "dialogBorder": "Valintaikkunoiden reunus",
+        "globalBorderRadius": "Yleinen kulmien pyöristys",
+        "globalBorderWidth": "Yleinen reunuksen leveys",
+        "shadowIntensity": "Varjojen voimakkuus",
+        "romanizationText": "Latinisoinnin teksti",
+        "translationText": "Käännöksen teksti",
+        "geniusHeaderColor": "Genius-otsikoiden väri"
       },
       "secondaryDesc": "Käännökset ja metatiedot.",
       "layout": {
         "title": "Sovelluksen asettelu",
-        "syncWordWrap": "Kääri sanat aikatilassa",
-        "syncWordWrapDesc": "Käärii sanakortit seuraavalle riville sen sijaan, että näyttäisi vaakasuuntaisen vierityspalkin Aika/synkronointi-välilehdessä.",
-        "syncAutoScroll": "Selaa automaattisesti aktiiviseen riviin toiston aikana",
-        "syncAutoScrollDesc": "Vierittää automaattisesti muokkausnäkymää ja seuraa tällä hetkellä aktiivista sanoitusriviä toiston aikana.",
-        "syncFocusMainLine": "Tarkenna päälinja toiston aikana",
-        "syncFocusMainLineDesc": "Toistettaessa keskittyy aktiivisiin päälinjoihin ja ohittaa taustalinjat, ellei mikään päälinja ole aktiivinen.",
-        "highlightActiveLine": "Korosta Active Line toiston aikana",
-        "highlightActiveLineDesc": "Korostaa visuaalisesti parhaillaan soitettavan lyriikan sekä muokkaus- että aikatiloissa.",
         "order": "Elementtien järjestys",
         "orderDesc": "Järjestä elementit uudelleen vetämällä. Joitakin paikkoja voivat rajoittaa rajoitukset.",
         "titlebar": "Otsikkopalkki",
@@ -481,7 +636,13 @@
       "customFontActive": "PAIKALLINEN MUKAUTETTU FONTTI",
       "defaultFonts": "Vakiopinot",
       "systemFonts": "Järjestelmän fontit",
-      "googleFonts": "Google Fonts -kirjasto"
+      "googleFonts": "Google Fonts -kirjasto",
+      "fontDialogDescription": "Valitse fontti vakio-, järjestelmä- tai Google-fonttikirjastosta.",
+      "interfaceScale": "Käyttöliittymän skaalaus",
+      "interfaceScaleDesc": "Valitse skaalaus ja ota se käyttöön. Voit käyttää myös Ctrl/Cmd +, - tai 0.",
+      "resetTitle": "Palauta teema",
+      "resetDesc": "Palauttaa kaikki värit, taustat, liukuvärit ja omat muutokset oletusteemaan.",
+      "resetTheme": "Palauta oletusteema"
     },
     "group": {
       "display": "Näyttö",
@@ -490,7 +651,11 @@
       "playback": "Toisto",
       "autosave": "Automaattinen tallennus",
       "previewControls": "Esikatselu",
-      "editorControls": "Editorin näkymä ja säätimet"
+      "editorControls": "Editorin näkymä ja säätimet",
+      "import": "Tuonti ja vienti",
+      "syncWordWrap": "Aika-tila / synkronointivälilehti",
+      "privacy": "Yksityisyys",
+      "projects": "Projektit"
     },
     "assistant": {
       "manualTimestampEdit": "Manuaalinen aikaleiman muokkaus",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Kansioprojektit",
+      "folderProjectsDesc": "Avaa, tallenna ja järjestä sanoituksia projektikansioina, joissa on project.json-luettelo.",
+      "folderProjectsAutosave": "Tallenna projektitiedosto automaattitallennuksessa",
+      "folderProjectsAutosaveDesc": "Kirjoittaa avoimen projektin sanoitustiedoston levylle jokaisella automaattitallennuksella."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Vie malliin YRC",
         "toLrcfySylb": "Vie malliin Lyricify Syllable",
         "toASS": "Vie ASS-tekstitykseen"
-      }
+      },
+      "spectrogramHoverSync": "Synkronoi spektrogrammin kursoriin",
+      "whatsNew": "Uutta",
+      "changelog": "Muutosloki ja päivitykset",
+      "projects": "Projektit"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Linkitetty projekti",
-      "folder": "Kansioprojekti"
+      "folder": "Kansioprojekti",
+      "namePlaceholder": "Projektin nimi"
     },
     "backup": {
       "restore": "Palauta varmuuskopio",
@@ -753,7 +929,15 @@
       "audio": "Ääni",
       "keybindings": "Näppäimet",
       "spectrogram": "Spektrogrammi",
-      "backup": "Varmuuskopio"
+      "backup": "Varmuuskopio",
+      "editor": "Editori ja synkronointi",
+      "files": "Tiedostot ja tallennus"
+    },
+    "page": {
+      "generalDesc": "Kieli, asettelu, yksityisyys ja koko sovelluksen toiminta.",
+      "editorDesc": "Ajoitussyöte, synkronoinnin toiminta ja visuaaliset vihjeet.",
+      "filesDesc": "Tuonnin siivous, automaattitallennuksen historia ja siirrettävät varmuuskopiot.",
+      "audioDesc": "Toisto, muunnos, taajuuskorjain ja spektrogrammin näyttö."
     }
   },
   "autoSegmentApplied": "Automaattisesti segmentoitu {engine}:lla",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Alkuperäistä TTML-tiedostoa ei voitu varmuuskopioida, joten sitä ei kirjoitettu päälle",
     "linkedProjectNoBackup": "Tälle projektille ei löytynyt varmuuskopiota",
     "linkedProjectRestoreFailed": "Alkuperäisen TTML-tiedoston palauttaminen epäonnistui",
-    "linkedProjectRestoreReloadFailed": "Alkuperäinen tiedosto palautettiin, mutta projektin uudelleenlataus epäonnistui"
+    "linkedProjectRestoreReloadFailed": "Alkuperäinen tiedosto palautettiin, mutta projektin uudelleenlataus epäonnistui",
+    "folderProjectInvalid": "Virheellinen projektikansio",
+    "folderProjectRequiresDesktop": "Projektikansiot ovat käytettävissä vain työpöytäsovelluksessa",
+    "folderProjectCreateFailed": "Projektin luominen epäonnistui",
+    "folderProjectLyricParse": "Sanoitustiedoston jäsentäminen epäonnistui",
+    "folderProjectNoLyric": "Lisää sanoitustiedosto ennen projektin tallentamista",
+    "folderProjectAudioReadFailed": "Projektin äänitiedostoa ei löytynyt",
+    "folderProjectAudioLoadFailed": "Projektin äänen lataaminen epäonnistui",
+    "folderProjectNoAudio": "Lataa äänitiedosto ennen projektin tallentamista",
+    "folderProjectUnavailable": "Projektikansioon ei päästä käsiksi",
+    "folderProjectNoContent": "Tästä kansiosta ei löytynyt TTML- tai äänitiedostoja",
+    "folderProjectSaveFailed": "Projektin tallentaminen epäonnistui",
+    "folderProjectNotFound": "Valittu kansio ei ole kelvollinen projektikansio (ei project.json-, TTML- tai äänitiedostoja)",
+    "folderProjectOpenFailed": "Projektikansion avaaminen epäonnistui: {reason}",
+    "ttmlGenerateFailed": "TTML:n luominen epäonnistui",
+    "folderProjectCleanupFailed": "Tallennettu, mutta aiempaa projektitiedostoa ei voitu poistaa",
+    "openFolderFailed": "Kansiota ei voitu avata"
   },
   "success": {
-    "linkedProjectBackupRestored": "Palautettu alkuperäinen TTML-tiedosto"
+    "linkedProjectBackupRestored": "Palautettu alkuperäinen TTML-tiedosto",
+    "folderProjectSaved": "Projekti tallennettu",
+    "folderProjectAlreadyExists": "Tämä kansio on jo projekti, joten se avataan",
+    "folderProjectCreated": "Projekti luotu",
+    "lyricsSavedToProject": "Sanoitukset tallennettu projektiin"
   },
   "audio": {
     "marker": "Merkki",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Pysähdy",
       "start": "Aloita"
-    }
+    },
+    "description": "Valitse mieleisesi tempo ja paina {key} jokaisen piippauksen kohdalla mitataksesi viiveen äänen ja syötteesi välillä."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Haku epäonnistui: {error}",
       "fetchError": "Sanoitusta ei voitu hakea: {error}",
       "noLyricsError": "Ei tuodattavia sanoituksia.",
-      "importSuccess": "Tuodut {count}-linjat Genius:sta."
+      "importSuccess": "Tuodut {count}-linjat Genius:sta.",
+      "howToGetKey": "Genius Client Access Tokenin luominen"
     },
     "openLink": "Avaa linkki",
     "duplicateMsg": "Löytyi päällekkäisiä metatietoarvoja",
@@ -1012,7 +1218,9 @@
     "importTitle": "Tuo sanat Genius:sta",
     "searchPlaceholder": "Artisti – Kappaleen nimi…",
     "notFound": "Tuloksia ei löytynyt. Kokeile eri avainsanoja.",
-    "noResult": "Aloita kirjoittamalla kappaleen nimi tai esittäjä."
+    "noResult": "Aloita kirjoittamalla kappaleen nimi tai esittäjä.",
+    "howToGetKey": "Genius Client Access Tokenin luominen",
+    "changeKey": "Vaihda API-avain"
   },
   "textImportDialog": {
     "processLyrics": "Prosessin sanat",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Täydellinen TTML opas"
-    }
+    },
+    "description": "Tuo sanoitukset pelkkänä tekstinä tai muista muodoista."
   },
   "sectionImportReview": {
     "title": "Tarkista havaitut osiot",
@@ -1239,7 +1448,13 @@
     "crowdin": "Auta kääntämään kielellä Crowdin",
     "buildDate": "Valmistuspäivämäärä: {date}",
     "gitCommit": "Git-commit: {commit}",
-    "platform": "Alusta: {platform}"
+    "platform": "Alusta: {platform}",
+    "contributors": "Avustajat",
+    "viewContributors": "Näytä avustajat",
+    "contributorProfiles": "Avustajien profiilit",
+    "contributorTooltip": "{name} – kontribuutiot: {count}",
+    "openContributorProfile": "Avaa käyttäjän {name} GitHub-profiili",
+    "unknown": "Tuntematon"
   },
   "spectrogram": {
     "invalidEndTime": "Tätä lopetusaikaa ei voi valita",

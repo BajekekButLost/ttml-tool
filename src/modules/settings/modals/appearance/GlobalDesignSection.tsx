@@ -70,23 +70,35 @@ export const GlobalDesignSection = ({
 				</Flex>
 				<Grid columns="2" gap="3">
 					<AdvancedColorItem
-						label="Scrollbar Thumb"
+						label={t(
+							"settings.appearance.advanced.scrollbarThumb",
+							"Scrollbar Thumb",
+						)}
 						value={vScrollbar}
 						onChange={setVScrollbar}
 					/>
 					<AdvancedColorItem
-						label="Dialog Background"
+						label={t(
+							"settings.appearance.advanced.dialogBackground",
+							"Dialog Background",
+						)}
 						value={vDialogBg}
 						onChange={setVDialogBg}
 					/>
 					<AdvancedColorItem
-						label="Dialog Border"
+						label={t(
+							"settings.appearance.advanced.dialogBorder",
+							"Dialog Border",
+						)}
 						value={vDialogBorder}
 						onChange={setVDialogBorder}
 					/>
 				</Grid>
 				<AdvancedSliderItem
-					label="Global Border Radius"
+					label={t(
+						"settings.appearance.advanced.globalBorderRadius",
+						"Global Border Radius",
+					)}
 					icon={<Stack24Regular />}
 					value={vGlobalRadius}
 					min={0}
@@ -95,7 +107,10 @@ export const GlobalDesignSection = ({
 					unit="px"
 				/>
 				<AdvancedSliderItem
-					label="Global Border Width"
+					label={t(
+						"settings.appearance.advanced.globalBorderWidth",
+						"Global Border Width",
+					)}
 					icon={<LineThickness24Regular />}
 					value={vGlobalBorderWidth}
 					min={0}
@@ -104,7 +119,10 @@ export const GlobalDesignSection = ({
 					unit="px"
 				/>
 				<AdvancedSliderItem
-					label="Shadow Intensity"
+					label={t(
+						"settings.appearance.advanced.shadowIntensity",
+						"Shadow Intensity",
+					)}
 					icon={<VideoBackgroundEffect24Regular />}
 					value={vShadow}
 					min={0}

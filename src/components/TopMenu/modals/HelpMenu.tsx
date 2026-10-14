@@ -41,10 +41,10 @@ const HelpMenuItems = () => {
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={() => setWhatsNewOpen(true)}>
-				What's New
+				{t("topBar.menu.whatsNew", "What's New")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={() => setChangelogOpen(true)}>
-				Changelog & Updates
+				{t("topBar.menu.changelog", "Changelog & Updates")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={openAbout}>

@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Udgivelseshøjdepunkter og seneste forbedringer for NaeNae-brugere"
+    "highlightsDescription": "Udgivelseshøjdepunkter og seneste forbedringer for NaeNae-brugere",
+    "changelogTitle": "Ændringslog og opdateringer",
+    "viewCommits": "Se commits på GitHub",
+    "whatsNewTitle": "Nyheder i NaeNae's Fork",
+    "otherEnhancements": "Andre forbedringer"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Ingen sangtekstlinjer",
       "description": "Tilføj nye sangtekstlinjer i toppanelet eller åbn/importér eksisterende sangtekster fra menuen"
+    },
+    "window": {
+      "minimize": "Minimér vindue",
+      "maximize": "Maksimér vindue",
+      "close": "Luk vindue"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Åbn sangtekstfil"
+      "open": "Åbn sangtekstfil",
+      "start": "Start guide",
+      "import": "Importér sangtekster"
     },
     "welcome": {
-      "open": "Åbn sangtekstfil"
+      "open": "Åbn sangtekstfil",
+      "title": "Lav din første synkroniserede TTML",
+      "description": "Guiden bliver hos dig, åbner de rigtige værktøjer og venter, indtil hver påkrævet opgave faktisk er fuldført.",
+      "own": "Guid mig gennem min første TTML",
+      "skip": "Spring over indtil videre"
     },
     "sync": {
-      "wordProgress": "Ord med timing: {timed} / {total}"
+      "wordProgress": "Ord med timing: {timed} / {total}",
+      "open": "Åbn Tid-tilstand"
+    },
+    "menu": "Start guide",
+    "restore": "Vis guide",
+    "progress": "Trin {current} af {total}",
+    "tuck": "Gem væk",
+    "exit": "Afslut guide",
+    "beforeStart": {
+      "title": "Før du starter:",
+      "text": "Du kan tilpasse editorens udseende efter din smag. Klik nedenfor for at åbne indstillingerne. Prøv Grundlæggende redaktør, eller se Avanceret editor for fuld kontrol over detaljerne.",
+      "link": "Tilpas editorens udseende"
+    },
+    "status": {
+      "complete": "Færdig — værktøjet har registreret, at dette trin er fuldført."
+    },
+    "readMore": "Hele guiden",
+    "continue": "Fortsæt",
+    "review": {
+      "confirm": "Jeg har tjekket sangteksten"
+    },
+    "test": {
+      "open": "Åbn testtrin"
+    },
+    "audio": {
+      "choose": "Vælg lyd"
+    },
+    "songwriters": {
+      "open": "Åbn metadata"
+    },
+    "export": {
+      "save": "Gem TTML"
+    },
+    "genius": {
+      "title": "Opret et Genius Client Access Token",
+      "step1": "1. Åbn Genius API Clients, og log ind.",
+      "step2": "2. Vælg New API Client, giv den et genkendeligt appnavn, og udfyld det påkrævede felt til appens websted.",
+      "step3": "3. Gem klienten, og vælg derefter Generate Access Token.",
+      "step4": "4. Kopiér Client Access Token — ikke Client ID eller Client Secret.",
+      "reuse": "Værktøjet gemmer dette token lokalt og genbruger det til import af sangtekster og opslag af sangskrivere.",
+      "openPortal": "Åbn Genius API Clients",
+      "paste": "Indsæt token i Genius-import"
+    },
+    "finish": "Afslut guiden",
+    "steps": {
+      "intro": {
+        "title": "Læs hele guiden først",
+        "description": "Denne indbyggede guide er en praktisk ledsager til den fulde TTML-guide. Læs den fulde guide for begreberne, og hold derefter dette panel åbent, mens du anvender dem i editoren.",
+        "waiting": "Læs hele guiden, og fortsæt, når du er klar til at begynde."
+      },
+      "audio": {
+        "title": "Importér sangen",
+        "description": "Vælg præcis den indspilning, du laver sangtekst til. Guiden fortsætter, når lyden er færdig med at indlæse.",
+        "waiting": "Brug “Vælg lyd” nedenfor, og vent på, at indlæsningen er færdig."
+      },
+      "lyrics": {
+        "title": "Importér sangteksten",
+        "description": "Vælg en kilde til sangteksten nedenfor. Gennemse resultatet i importvinduet, og bekræft importen.",
+        "waiting": "Vælg én kilde nedenfor, og gør importvinduet færdigt."
+      },
+      "review": {
+        "title": "Tjek sangtekst og linjetyper",
+        "description": "Sammenlign hver linje med indspilningen. Dobbeltklik på ord for at rette dem; markér linjer for at angive baggrundsvokal eller duet. Fjern tomme linjer, og bekræft derefter nedenfor.",
+        "waiting": "Strukturen er gyldig. Læs sangteksten færdig, og bekræft derefter din gennemgang.",
+        "waitingEmptyLines": "Der er stadig mindst én tom linje. Slet eller udfyld den, før du bekræfter."
+      },
+      "sync": {
+        "title": "Synkronisér hvert ord",
+        "description": "Gå til Tid-tilstand, vælg det første ord, tryk på mellemrum, og brug derefter F til start, G mellem ord og H ved pauser eller linjeslut. Hvert ord skal have en gyldig tid.",
+        "waiting": "Åbn Tid-tilstand, og fortsæt med at time; trinnet er fuldført, når hvert relevant ord har en gyldig start og slutning."
+      },
+      "songwriters": {
+        "title": "Tilføj sangskrivere",
+        "description": "Åbn metadata, og brug “Hent sangskrivere fra Genius”, eller tilføj én Sangskriver-værdi pr. rigtigt navn. Guiden registrerer, når mindst én er gemt.",
+        "waiting": "Åbn metadata, og tilføj mindst én Sangskriver-værdi, der ikke er tom."
+      },
+      "export": {
+        "title": "Eksportér TTML-filen",
+        "description": "Gem den færdige TTML. Dette trin fuldføres først, når en fil faktisk er skrevet.",
+        "waiting": "Vælg Gem TTML, og gør filvælgeren færdig."
+      },
+      "test": {
+        "title": "Test lokalt",
+        "description": "Upload den gemte fil i Spicy Lyrics, og tjek indlæsning, formatering og timing.",
+        "waiting": "Åbn vejledningen til lokal test, kontrollér filen i Spicy Lyrics, og afslut derefter guiden."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Sangen har ingen sangskrivere. Vil du fortsætte med at spare?"
+    },
+    "newProject": {
+      "title": "Bekræft oprettelse af projekt",
+      "description": "Du har ændringer, der ikke er gemt. Hvis du fortsætter, går de tabt. Er du sikker på, at du vil oprette et nyt projekt?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Fjern",
     "clickToSet": "Klik for at indstille ",
     "move": "Flyt",
-    "copy": "Kopiér"
+    "copy": "Kopiér",
+    "reset": "Nulstil",
+    "preview": "Forhåndsvisning"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Vælg den lydfil, du har indlæst",
       "lyricTitle": "Vælg den TTML-fil, som dette projekt gemmer til"
+    },
+    "createProject": {
+      "parentTitle": "Vælg, hvor projektmappen skal oprettes",
+      "title": "Vælg eller opret en mappe til det nye projekt"
+    },
+    "openProject": {
+      "title": "Vælg projektmappe"
+    },
+    "saveProject": {
+      "title": "Vælg eller opret en projektmappe"
+    },
+    "openWorkspace": {
+      "title": "Vælg en arbejdsområdemappe med projekter"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Importerbar",
     "scanning": "Scanner...",
     "selectFolder": "Vælg arbejdsområdemappe...",
-    "unknown": "Ukendt"
+    "unknown": "Ukendt",
+    "noProjectsFound": "Der blev ikke fundet nogen projekter i denne mappe",
+    "projectsFound": "Fundne projekter: {count}",
+    "scanFailed": "Arbejdsområdemappen kunne ikke scannes"
   },
   "ribbonBar": {
     "advancedTooltip": "Gælder alle værktøjslinjer: Redigering, Timing og Forhåndsvisning.",
@@ -248,7 +370,8 @@
       "showRoman": "Vis romanisering",
       "fadeWidth": "Fade-bredde",
       "instantFade": "Øjeblikkelig fade ud",
-      "showFps": "Vis FPS"
+      "showFps": "Vis FPS",
+      "autoScroll": "Auto-rul"
     },
     "syncMode": {
       "currentEmptyBeat": "Tom takt",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Sporing",
       "autoScroll": "Auto-rul",
-      "highlightActiveLine": "Fremhæv linje"
+      "highlightActiveLine": "Fremhæv linje",
+      "spectrogramHoverSync": "Synkronisér til spektrogrammarkøren"
     },
-    "loading": "Indlæser panel..."
+    "loading": "Indlæser panel...",
+    "advanced": "Avanceret"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Sløringsradius",
       "customBackgroundBrightness": "Lysstyrke",
       "customBackgroundEnabled": "Baggrundssæt",
-      "customBackgroundManage": "Indstillinger"
+      "customBackgroundManage": "Indstillinger",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Del tilpasselige projekt- og afspilningsdetaljer med Discord-skrivebordsappen.",
+      "discordCustomize": "Tilpas status og inaktivitet",
+      "discordTemplates": "Statusskabeloner",
+      "discordTemplateHelp": "Brug {{variables}} og omslut valgfri tekst med [[dobbelte kantede parenteser]].",
+      "discordDetails": "Detaljer",
+      "discordState": "Status",
+      "discordSearchVariables": "Søg i variabler…",
+      "discordPlaybackTimeline": "Afspilningstidslinje",
+      "discordProjectElapsed": "Timer for tid brugt på projektet",
+      "discordRepositoryButton": "Repository-knap",
+      "discordStatusBadge": "Statusmærke for afspil/pause",
+      "discordIdleTimeout": "Inaktiv efter",
+      "discordIdlePrivacy": "Inaktiv status skjuler projektdetaljer, knapper, mærker og timere.",
+      "normalizeApostrophesOnImport": "Normalisér apostroffer",
+      "normalizeApostrophesOnImportDesc": "Konvertér krøllede og andre apostroflignende tegn ved import og eksport.",
+      "normalizeCyrillicEsOnImport": "Ret enkeltstående kyrilliske Е/е i latinske ord",
+      "normalizeCyrillicEsOnImportDesc": "Retter skjulte kyrilliske dobbeltgængere i latinske ord ved import og eksport.",
+      "allowConsecutiveBackgroundLines": "Tillad efterfølgende og selvstændig baggrundsvokal",
+      "allowConsecutiveBackgroundLinesDesc": "Eksportér efterfølgende baggrundsvokal samlet, og bevar selvstændig baggrundsvokal af hensyn til kompatibilitet med Spicy Lyrics. Andre afspillere understøtter muligvis ikke denne struktur.",
+      "spectrogramHoverSync": "Synkronisér til spektrogrammarkøren",
+      "spectrogramHoverSyncDesc": "Når du holder markøren over spektrogrammet i synkroniseringstilstand, registrerer udløsertasterne (F, G, H) tidspunktet ved markøren i stedet for afspilningstiden.",
+      "syncWordWrap": "Indpak ord i tidstilstand",
+      "syncWordWrapDesc": "Ombryder ordkort til næste linje i stedet for at vise en vandret rullepanel på fanen Tid/synkronisering.",
+      "syncAutoScroll": "Auto-rul til aktiv linje under afspilning",
+      "syncAutoScrollDesc": "Ruller automatisk i redigeringsvisningen for at følge den aktuelt aktive tekstlinje under afspilning.",
+      "syncFocusMainLine": "Fokuser hovedlinjen under afspilning",
+      "syncFocusMainLineDesc": "Når du afspiller, fokuserer på aktive hovedlinjer og ignorerer baggrundslinjer, medmindre ingen hovedlinje er aktiv.",
+      "highlightActiveLine": "Fremhæv aktiv linje under afspilning"
     },
     "about": {
       "update": "Opdatering",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klassisk mørkt tema",
         "legacyDarkThemeDesc": "Brug den lysere mørke palet fra før redesignet Intonated Black.",
         "masterResetNote": "Dette vil nulstille alle 20+ granulære tilsidesættelser.",
-        "resetMaster": "Nulstil alle avancerede indstillinger"
+        "resetMaster": "Nulstil alle avancerede indstillinger",
+        "scrollbarThumb": "Rullebjælkens greb",
+        "dialogBackground": "Dialogbaggrund",
+        "dialogBorder": "Dialogkant",
+        "globalBorderRadius": "Global hjørneradius",
+        "globalBorderWidth": "Global kantbredde",
+        "shadowIntensity": "Skyggeintensitet",
+        "romanizationText": "Romaniseringstekst",
+        "translationText": "Oversættelsestekst",
+        "geniusHeaderColor": "Farve på Genius-overskrifter"
       },
       "secondaryDesc": "Oversættelser og metadata.",
       "layout": {
         "title": "Applikationslayout",
-        "syncWordWrap": "Indpak ord i tidstilstand",
-        "syncWordWrapDesc": "Ombryder ordkort til næste linje i stedet for at vise en vandret rullepanel på fanen Tid/synkronisering.",
-        "syncAutoScroll": "Auto-rul til aktiv linje under afspilning",
-        "syncAutoScrollDesc": "Ruller automatisk i redigeringsvisningen for at følge den aktuelt aktive tekstlinje under afspilning.",
-        "syncFocusMainLine": "Fokuser hovedlinjen under afspilning",
-        "syncFocusMainLineDesc": "Når du afspiller, fokuserer på aktive hovedlinjer og ignorerer baggrundslinjer, medmindre ingen hovedlinje er aktiv.",
-        "highlightActiveLine": "Fremhæv aktiv linje under afspilning",
-        "highlightActiveLineDesc": "Fremhæver visuelt den lyriske linje, der i øjeblikket afspilles i både redigerings- og tidstilstand.",
         "order": "Elementrækkefølge",
         "orderDesc": "Træk for at omarrangere elementer. Nogle positioner kan være begrænset af begrænsninger.",
         "titlebar": "Titellinje",
@@ -481,7 +636,13 @@
       "customFontActive": "LOKAL BRUGERDEFINERET FONT",
       "defaultFonts": "Standard stakke",
       "systemFonts": "Systemskrifttyper",
-      "googleFonts": "Google Fonts-bibliotek"
+      "googleFonts": "Google Fonts-bibliotek",
+      "fontDialogDescription": "Vælg en skrifttype blandt standard-, system- eller Google-skrifttyper.",
+      "interfaceScale": "Grænsefladeskala",
+      "interfaceScaleDesc": "Vælg en skala, og anvend den. Du kan også bruge Ctrl/Cmd +, - eller 0.",
+      "resetTitle": "Nulstil tema",
+      "resetDesc": "Nulstil alle farver, baggrunde, gradienter og brugerdefinerede tilpasninger til standardtemaet.",
+      "resetTheme": "Nulstil tema til standard"
     },
     "group": {
       "display": "Visning",
@@ -490,7 +651,11 @@
       "playback": "Afspilning",
       "autosave": "Automatisk lagring",
       "previewControls": "Forhåndsvisning",
-      "editorControls": "Editorvisning og -kontroller"
+      "editorControls": "Editorvisning og -kontroller",
+      "import": "Import og eksport",
+      "syncWordWrap": "Tid-tilstand / synkroniseringsfane",
+      "privacy": "Privatliv",
+      "projects": "Projekter"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel redigering af tidsstempel",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Mappeprojekter",
+      "folderProjectsDesc": "Åbn, gem og organisér sangtekster som projektmapper med et project.json-manifest.",
+      "folderProjectsAutosave": "Gem projektfilen ved automatisk lagring",
+      "folderProjectsAutosaveDesc": "Skriv den åbne projekts sangtekstfil til disken ved hver automatisk lagring."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Eksportér til YRC",
         "toLrcfySylb": "Eksportér til Lyricify Syllable",
         "toASS": "Eksportér til ASS-undertekster"
-      }
+      },
+      "spectrogramHoverSync": "Synkronisér til spektrogrammarkøren",
+      "whatsNew": "Nyheder",
+      "changelog": "Ændringslog og opdateringer",
+      "projects": "Projekter"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Sammenkædet projekt",
-      "folder": "Mappeprojekt"
+      "folder": "Mappeprojekt",
+      "namePlaceholder": "Projektnavn"
     },
     "backup": {
       "restore": "Gendan backup",
@@ -753,7 +929,15 @@
       "audio": "Lyd",
       "keybindings": "Tastaturgenveje",
       "spectrogram": "Spektrogram",
-      "backup": "Backup"
+      "backup": "Backup",
+      "editor": "Editor og synkronisering",
+      "files": "Filer og lager"
+    },
+    "page": {
+      "generalDesc": "Sprog, layout, privatliv og adfærd for hele appen.",
+      "editorDesc": "Tidsinput, synkroniseringsadfærd og visuelle signaler.",
+      "filesDesc": "Oprydning ved import, historik for automatisk lagring og flytbare sikkerhedskopier.",
+      "audioDesc": "Afspilning, konvertering, equalizer og spektrogramvisning."
     }
   },
   "autoSegmentApplied": "Autosegmenteret med {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Kunne ikke sikkerhedskopiere den originale TTML-fil, så den blev ikke overskrevet",
     "linkedProjectNoBackup": "Ingen backup fundet for dette projekt",
     "linkedProjectRestoreFailed": "Kunne ikke gendanne den originale TTML-fil",
-    "linkedProjectRestoreReloadFailed": "Gendannet original fil, men projektet kunne ikke genindlæses"
+    "linkedProjectRestoreReloadFailed": "Gendannet original fil, men projektet kunne ikke genindlæses",
+    "folderProjectInvalid": "Ugyldig projektmappe",
+    "folderProjectRequiresDesktop": "Projektmapper er kun tilgængelige i skrivebordsappen",
+    "folderProjectCreateFailed": "Projektet kunne ikke oprettes",
+    "folderProjectLyricParse": "Sangtekstfilen kunne ikke læses",
+    "folderProjectNoLyric": "Tilføj en sangtekstfil, før du gemmer projektet",
+    "folderProjectAudioReadFailed": "Projektets lydfil blev ikke fundet",
+    "folderProjectAudioLoadFailed": "Projektets lyd kunne ikke indlæses",
+    "folderProjectNoAudio": "Indlæs en lydfil, før du gemmer projektet",
+    "folderProjectUnavailable": "Projektmappen er ikke tilgængelig",
+    "folderProjectNoContent": "Der blev ikke fundet TTML- eller lydfiler i denne mappe",
+    "folderProjectSaveFailed": "Projektet kunne ikke gemmes",
+    "folderProjectNotFound": "Den valgte mappe er ikke en gyldig projektmappe (ingen project.json-, TTML- eller lydfiler)",
+    "folderProjectOpenFailed": "Projektmappen kunne ikke åbnes: {reason}",
+    "ttmlGenerateFailed": "TTML kunne ikke genereres",
+    "folderProjectCleanupFailed": "Gemt, men en tidligere projektfil kunne ikke fjernes",
+    "openFolderFailed": "Mappen kunne ikke åbnes"
   },
   "success": {
-    "linkedProjectBackupRestored": "Gendannet original TTML-fil"
+    "linkedProjectBackupRestored": "Gendannet original TTML-fil",
+    "folderProjectSaved": "Projekt gemt",
+    "folderProjectAlreadyExists": "Denne mappe er allerede et projekt og åbnes i stedet",
+    "folderProjectCreated": "Projekt oprettet",
+    "lyricsSavedToProject": "Sangtekst gemt i projektet"
   },
   "audio": {
     "marker": "Markør",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Stop",
       "start": "Start"
-    }
+    },
+    "description": "Vælg et tempo, du kan lide, og tryk på {key} ved hvert bip for at måle forsinkelsen mellem lyden og dit input."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Søgning mislykkedes: {error}",
       "fetchError": "Kunne ikke hente sangtekster: {error}",
       "noLyricsError": "Ingen sangtekster at importere.",
-      "importSuccess": "Importerede {count} linjer fra Genius."
+      "importSuccess": "Importerede {count} linjer fra Genius.",
+      "howToGetKey": "Sådan opretter du et Genius Client Access Token"
     },
     "openLink": "Åbn link",
     "duplicateMsg": "Fandt duplikerede metadataværdier",
@@ -1012,7 +1218,9 @@
     "importTitle": "Importer sangtekster fra Genius",
     "searchPlaceholder": "Kunstner – Sangtitel...",
     "notFound": "Ingen resultater fundet. Prøv forskellige søgeord.",
-    "noResult": "Indtast et sangnavn eller en kunstner for at starte."
+    "noResult": "Indtast et sangnavn eller en kunstner for at starte.",
+    "howToGetKey": "Sådan opretter du et Genius Client Access Token",
+    "changeKey": "Skift API-nøgle"
   },
   "textImportDialog": {
     "processLyrics": "Proces tekster",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Fuld TTML guide"
-    }
+    },
+    "description": "Importér sangtekster fra almindelig tekst eller andre formater."
   },
   "sectionImportReview": {
     "title": "Gennemgå opdagede sektioner",
@@ -1239,7 +1448,13 @@
     "crowdin": "Hjælp med at oversætte til Crowdin",
     "buildDate": "Byggedato: {date}",
     "gitCommit": "Git-commit: {commit}",
-    "platform": "Platform: {platform}"
+    "platform": "Platform: {platform}",
+    "contributors": "Bidragydere",
+    "viewContributors": "Se bidragydere",
+    "contributorProfiles": "Bidragyderprofiler",
+    "contributorTooltip": "{name} – bidrag: {count}",
+    "openContributorProfile": "Åbn GitHub-profilen for {name}",
+    "unknown": "Ukendt"
   },
   "spectrogram": {
     "invalidEndTime": "Kan ikke vælge denne sluttid",

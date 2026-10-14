@@ -6,6 +6,7 @@ import {
 	IconButton,
 	VisuallyHidden,
 } from "@radix-ui/themes";
+import { useTranslation } from "react-i18next";
 import { CustomFontSection } from "./FontSelectionDialog/CustomFontSection";
 import { FontLibrarySection } from "./FontSelectionDialog/FontLibrarySection";
 import { FontSearchSection } from "./FontSelectionDialog/FontSearchSection";
@@ -14,6 +15,7 @@ import { useFontSelection } from "./FontSelectionDialog/useFontSelection";
 
 export { GOOGLE_FONTS } from "./FontSelectionDialog/catalog";
 export const FontSelectionDialog = () => {
+	const { t } = useTranslation();
 	const state = useFontSelection();
 	return (
 		<Dialog.Root open={state.isOpen} onOpenChange={state.setIsOpen}>
@@ -28,7 +30,10 @@ export const FontSelectionDialog = () => {
 			>
 				<VisuallyHidden>
 					<Dialog.Description>
-						Select a font from standard, system, or Google fonts library.
+						{t(
+							"settings.appearance.fontDialogDescription",
+							"Select a font from standard, system, or Google fonts library.",
+						)}
 					</Dialog.Description>
 				</VisuallyHidden>
 				<Flex justify="between" align="center" mb="5">

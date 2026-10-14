@@ -313,7 +313,10 @@ export const ImportFromText = () => {
 				<Dialog.Content maxWidth="1100px" maxHeight="90vh">
 					<VisuallyHidden>
 						<Dialog.Description>
-							Import lyrics from plain text or other formats.
+							{t(
+								"textImportDialog.description",
+								"Import lyrics from plain text or other formats.",
+							)}
 						</Dialog.Description>
 					</VisuallyHidden>
 					<Tabs.Root

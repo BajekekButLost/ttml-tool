@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Evidențierea lansării și îmbunătățirile recente pentru utilizatorii NaeNae"
+    "highlightsDescription": "Evidențierea lansării și îmbunătățirile recente pentru utilizatorii NaeNae",
+    "changelogTitle": "Jurnal de modificări și actualizări",
+    "viewCommits": "Vezi commit-urile pe GitHub",
+    "whatsNewTitle": "Noutăți în NaeNae's Fork",
+    "otherEnhancements": "Alte îmbunătățiri"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Fără linii de lyric-uri",
       "description": "Adăugați noi linii de text în panoul de sus sau deschideți/importați versuri existente din meniu"
+    },
+    "window": {
+      "minimize": "Minimizează fereastra",
+      "maximize": "Maximizează fereastra",
+      "close": "Închide fereastra"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Deschideți fișierul cu versuri"
+      "open": "Deschideți fișierul cu versuri",
+      "start": "Pornește ghidul",
+      "import": "Importă lyric-uri"
     },
     "welcome": {
-      "open": "Deschideți fișierul cu versuri"
+      "open": "Deschideți fișierul cu versuri",
+      "title": "Creează primul tău TTML sincronizat",
+      "description": "Ghidul rămâne cu tine, deschide instrumentele potrivite și așteaptă până când fiecare sarcină necesară este cu adevărat finalizată.",
+      "own": "Ghidează-mă prin primul meu TTML",
+      "skip": "Omite deocamdată"
     },
     "sync": {
-      "wordProgress": "Cuvinte sincronizate: {timed} / {total}"
+      "wordProgress": "Cuvinte sincronizate: {timed} / {total}",
+      "open": "Deschide modul Timp"
+    },
+    "menu": "Pornește ghidul",
+    "restore": "Arată ghidul",
+    "progress": "Pasul {current} din {total}",
+    "tuck": "Ascunde",
+    "exit": "Ieși din ghid",
+    "beforeStart": {
+      "title": "Înainte să începi:",
+      "text": "Poți schimba aspectul editorului după preferințe. Dă clic mai jos pentru a deschide setările. Încearcă Editorul de bază sau Editorul avansat pentru control complet asupra detaliilor.",
+      "link": "Personalizează aspectul editorului"
+    },
+    "status": {
+      "complete": "Gata — instrumentul a detectat că acest pas este finalizat."
+    },
+    "readMore": "Ghidul complet",
+    "continue": "Continuă",
+    "review": {
+      "confirm": "Am verificat versurile"
+    },
+    "test": {
+      "open": "Deschide pașii de testare"
+    },
+    "audio": {
+      "choose": "Alege audio"
+    },
+    "songwriters": {
+      "open": "Deschide metadatele"
+    },
+    "export": {
+      "save": "Salvează TTML"
+    },
+    "genius": {
+      "title": "Creează un Client Access Token Genius",
+      "step1": "1. Deschide Genius API Clients și conectează-te.",
+      "step2": "2. Selectează New API Client, dă-i un nume de aplicație ușor de recunoscut și completează câmpul obligatoriu pentru site-ul aplicației.",
+      "step3": "3. Salvează clientul, apoi selectează Generate Access Token.",
+      "step4": "4. Copiază Client Access Token, nu Client ID sau Client Secret.",
+      "reuse": "Instrumentul păstrează acest token local și îl refolosește pentru importul versurilor și căutarea compozitorilor.",
+      "openPortal": "Deschide Genius API Clients",
+      "paste": "Lipește tokenul în importul Genius"
+    },
+    "finish": "Încheie ghidul",
+    "steps": {
+      "intro": {
+        "title": "Citește mai întâi ghidul complet",
+        "description": "Acest ghid integrat este un însoțitor practic al ghidului TTML complet. Citește ghidul complet pentru concepte, apoi ține acest panou deschis în timp ce le aplici în editor.",
+        "waiting": "Citește ghidul complet, apoi continuă când ești gata să începi."
+      },
+      "audio": {
+        "title": "Importă melodia",
+        "description": "Alege exact înregistrarea pentru care creezi versurile. Ghidul continuă după ce sunetul termină de încărcat.",
+        "waiting": "Folosește „Alege audio” mai jos, apoi așteaptă să se termine încărcarea."
+      },
+      "lyrics": {
+        "title": "Importă versurile",
+        "description": "Alege mai jos o sursă pentru versuri. Verifică rezultatul în fereastra de import și confirmă importul.",
+        "waiting": "Alege o sursă mai jos și finalizează fereastra ei de import."
+      },
+      "review": {
+        "title": "Verifică versurile și tipurile de rânduri",
+        "description": "Compară fiecare rând cu înregistrarea. Dă dublu clic pe cuvinte pentru a le corecta; selectează rânduri pentru a marca vocile de fundal sau duetul. Elimină rândurile goale, apoi confirmă mai jos.",
+        "waiting": "Structura este validă. Termină de citit versurile, apoi confirmă verificarea.",
+        "waitingEmptyLines": "A rămas cel puțin un rând gol. Șterge-l sau completează-l înainte de a confirma."
+      },
+      "sync": {
+        "title": "Sincronizează fiecare cuvânt",
+        "description": "Intră în modul Timp, selectează primul cuvânt, apasă Spațiu, apoi folosește F pentru început, G între cuvinte și H la pauze sau la final de rând. Fiecare cuvânt trebuie să primească un timp valid.",
+        "waiting": "Deschide modul Timp și continuă sincronizarea; pasul se încheie când fiecare cuvânt relevant are un început și un sfârșit valide."
+      },
+      "songwriters": {
+        "title": "Adaugă compozitorii",
+        "description": "Deschide metadatele și folosește „Preia compozitori din Genius” sau adaugă câte o valoare Compozitor pentru fiecare nume real. Ghidul detectează când este salvat cel puțin unul.",
+        "waiting": "Deschide metadatele și adaugă cel puțin o valoare Compozitor care nu este goală."
+      },
+      "export": {
+        "title": "Exportă fișierul TTML",
+        "description": "Salvează fișierul TTML finalizat. Pasul se încheie doar după ce un fișier este scris efectiv.",
+        "waiting": "Alege Salvează TTML și finalizează selectorul de fișiere."
+      },
+      "test": {
+        "title": "Testează local",
+        "description": "Încarcă fișierul salvat în Spicy Lyrics și verifică interpretarea, formatarea și sincronizarea.",
+        "waiting": "Deschide instrucțiunile de testare locală, verifică fișierul în Spicy Lyrics, apoi încheie ghidul."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Cântecul nu are autori de melodii. Doriți să continuați să salvați?"
+    },
+    "newProject": {
+      "title": "Confirmă crearea proiectului",
+      "description": "Ai modificări nesalvate. Dacă continui, acestea se vor pierde. Sigur vrei să creezi un proiect nou?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Elimină",
     "clickToSet": "Clic pentru setare ",
     "move": "Mișcă-te",
-    "copy": "Copiere"
+    "copy": "Copiere",
+    "reset": "Resetează",
+    "preview": "Previzualizare"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Selectați fișierul audio pe care l-ați încărcat",
       "lyricTitle": "Alegeți fișierul TTML în care acest proiect îl salvează"
+    },
+    "createProject": {
+      "parentTitle": "Alege unde să fie creat folderul proiectului",
+      "title": "Selectează sau creează un folder pentru noul proiect"
+    },
+    "openProject": {
+      "title": "Selectează folderul proiectului"
+    },
+    "saveProject": {
+      "title": "Selectează sau creează un folder de proiect"
+    },
+    "openWorkspace": {
+      "title": "Selectează un folder de spațiu de lucru care conține proiecte"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Importabil",
     "scanning": "Se scanează...",
     "selectFolder": "Selectați dosarul spațiului de lucru...",
-    "unknown": "Necunoscut"
+    "unknown": "Necunoscut",
+    "noProjectsFound": "Nu s-au găsit proiecte în acest folder",
+    "projectsFound": "Proiecte găsite: {count}",
+    "scanFailed": "Folderul spațiului de lucru nu a putut fi scanat"
   },
   "ribbonBar": {
     "advancedTooltip": "Se aplică tuturor barelor: Editare, Sincronizare și Previzualizare.",
@@ -248,7 +370,8 @@
       "showRoman": "Arată Romanizarea",
       "fadeWidth": "Lățime estompare",
       "instantFade": "Fade Out instantanee",
-      "showFps": "Afișează FPS"
+      "showFps": "Afișează FPS",
+      "autoScroll": "Defilare automată"
     },
     "syncMode": {
       "currentEmptyBeat": "Beat gol",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Urmărire",
       "autoScroll": "Defilare automată",
-      "highlightActiveLine": "Evidențiați linia"
+      "highlightActiveLine": "Evidențiați linia",
+      "spectrogramHoverSync": "Sincronizează cu cursorul din spectrogramă"
     },
-    "loading": "Se încarcă panoul..."
+    "loading": "Se încarcă panoul...",
+    "advanced": "Avansat"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Rază estompare",
       "customBackgroundBrightness": "Luminozitate",
       "customBackgroundEnabled": "Set de fundal",
-      "customBackgroundManage": "Setări"
+      "customBackgroundManage": "Setări",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Partajează detalii personalizabile despre proiect și redare cu aplicația desktop Discord.",
+      "discordCustomize": "Personalizează starea și inactivitatea",
+      "discordTemplates": "Șabloane de stare",
+      "discordTemplateHelp": "Folosește {{variables}} și pune textul opțional între [[paranteze drepte duble]].",
+      "discordDetails": "Detalii",
+      "discordState": "Stare",
+      "discordSearchVariables": "Caută variabile…",
+      "discordPlaybackTimeline": "Cronologie de redare",
+      "discordProjectElapsed": "Cronometru pentru timpul petrecut în proiect",
+      "discordRepositoryButton": "Buton pentru repository",
+      "discordStatusBadge": "Insignă de stare redare/pauză",
+      "discordIdleTimeout": "Inactiv după",
+      "discordIdlePrivacy": "Starea inactivă ascunde detaliile proiectului, butoanele, insignele și cronometrele.",
+      "normalizeApostrophesOnImport": "Normalizează apostrofurile",
+      "normalizeApostrophesOnImportDesc": "Convertește apostrofurile tipografice și alte caractere asemănătoare la import și export.",
+      "normalizeCyrillicEsOnImport": "Corectează Е/е chirilice izolate în cuvintele latine",
+      "normalizeCyrillicEsOnImportDesc": "Corectează caracterele chirilice identice ascunse în cuvintele latine la import și export.",
+      "allowConsecutiveBackgroundLines": "Permite voci de fundal consecutive și independente",
+      "allowConsecutiveBackgroundLinesDesc": "Exportă împreună vocile de fundal consecutive și păstrează vocile de fundal independente pentru compatibilitatea cu Spicy Lyrics. Alte playere s-ar putea să nu suporte această structură.",
+      "spectrogramHoverSync": "Sincronizează cu cursorul din spectrogramă",
+      "spectrogramHoverSyncDesc": "Când cursorul este deasupra spectrogramei în modul de sincronizare, tastele de declanșare (F, G, H) înregistrează momentul de sub cursor în locul timpului de redare.",
+      "syncWordWrap": "Încheierea cuvintelor în modul Timp",
+      "syncWordWrapDesc": "Înfășoară cardurile de cuvinte la rândul următor în loc să afișeze o bară de defilare orizontală în fila Timp / Sincronizare.",
+      "syncAutoScroll": "Derulare automată la linia activă în timpul redării",
+      "syncAutoScrollDesc": "Derulează automat vizualizarea editorului pentru a urma linia versurilor activă în timpul redării.",
+      "syncFocusMainLine": "Concentrați linia principală în timpul redării",
+      "syncFocusMainLineDesc": "La redare, se concentrează pe liniile principale active și ignoră liniile de fundal, cu excepția cazului în care nu este activă nicio linie principală.",
+      "highlightActiveLine": "Evidențiați Linia activă în timpul redării"
     },
     "about": {
       "update": "Actualizare",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Tema clasică întunecată",
         "legacyDarkThemeDesc": "Folosiți paleta întunecată mai deschisă de dinaintea reproiectării Negru Intonat.",
         "masterResetNote": "Acest lucru va reseta toate cele peste 20 de modificări granulare.",
-        "resetMaster": "Resetează toate setările avansate"
+        "resetMaster": "Resetează toate setările avansate",
+        "scrollbarThumb": "Cursorul barei de derulare",
+        "dialogBackground": "Fundalul dialogurilor",
+        "dialogBorder": "Marginea dialogurilor",
+        "globalBorderRadius": "Rază globală a colțurilor",
+        "globalBorderWidth": "Grosime globală a marginilor",
+        "shadowIntensity": "Intensitatea umbrelor",
+        "romanizationText": "Textul romanizării",
+        "translationText": "Textul traducerii",
+        "geniusHeaderColor": "Culoarea antetelor Genius"
       },
       "secondaryDesc": "Traduceri și metadate.",
       "layout": {
         "title": "Aspect aplicație",
-        "syncWordWrap": "Încheierea cuvintelor în modul Timp",
-        "syncWordWrapDesc": "Înfășoară cardurile de cuvinte la rândul următor în loc să afișeze o bară de defilare orizontală în fila Timp / Sincronizare.",
-        "syncAutoScroll": "Derulare automată la linia activă în timpul redării",
-        "syncAutoScrollDesc": "Derulează automat vizualizarea editorului pentru a urma linia versurilor activă în timpul redării.",
-        "syncFocusMainLine": "Concentrați linia principală în timpul redării",
-        "syncFocusMainLineDesc": "La redare, se concentrează pe liniile principale active și ignoră liniile de fundal, cu excepția cazului în care nu este activă nicio linie principală.",
-        "highlightActiveLine": "Evidențiați Linia activă în timpul redării",
-        "highlightActiveLineDesc": "Evidențiază vizual linia versurilor care este redată în mod curent atât în modul Edit, cât și în modul Time.",
         "order": "Ordinea elementelor",
         "orderDesc": "Trageți pentru a reordona elementele. Unele poziții pot fi limitate de constrângeri.",
         "titlebar": "Bara de titlu",
@@ -481,7 +636,13 @@
       "customFontActive": "FONTUL PERSONAL LOCAL",
       "defaultFonts": "Scaruri standard",
       "systemFonts": "Fonturi Sistem",
-      "googleFonts": "Librărie de fonturi Google"
+      "googleFonts": "Librărie de fonturi Google",
+      "fontDialogDescription": "Alege un font standard, de sistem sau din biblioteca Google Fonts.",
+      "interfaceScale": "Scara interfeței",
+      "interfaceScaleDesc": "Alege o scară, apoi aplic-o. Poți folosi și Ctrl/Cmd +, - sau 0.",
+      "resetTitle": "Resetează tema",
+      "resetDesc": "Readuce toate culorile, fundalurile, degradeurile și personalizările la tema implicită.",
+      "resetTheme": "Resetează tema la valorile implicite"
     },
     "group": {
       "display": "Afişare",
@@ -490,7 +651,11 @@
       "playback": "Redare",
       "autosave": "Salvare automată",
       "previewControls": "Previzualizare",
-      "editorControls": "Afișare și controale editor"
+      "editorControls": "Afișare și controale editor",
+      "import": "Import și export",
+      "syncWordWrap": "Modul Timp / fila de sincronizare",
+      "privacy": "Confidențialitate",
+      "projects": "Proiecte"
     },
     "assistant": {
       "manualTimestampEdit": "Modificare Manual Timestamp",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Proiecte în foldere",
+      "folderProjectsDesc": "Deschide, salvează și organizează versurile ca foldere de proiect cu un manifest project.json.",
+      "folderProjectsAutosave": "Salvează fișierul proiectului la salvarea automată",
+      "folderProjectsAutosaveDesc": "Scrie pe disc fișierul cu versuri al proiectului deschis la fiecare salvare automată."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Export în YRC",
         "toLrcfySylb": "Exportă în Sylable Lyricify",
         "toASS": "Exportă în subtitrări ASS"
-      }
+      },
+      "spectrogramHoverSync": "Sincronizează cu cursorul din spectrogramă",
+      "whatsNew": "Noutăți",
+      "changelog": "Jurnal de modificări și actualizări",
+      "projects": "Proiecte"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Proiect legat",
-      "folder": "Proiect folder"
+      "folder": "Proiect folder",
+      "namePlaceholder": "Numele proiectului"
     },
     "backup": {
       "restore": "Restaurați backupul",
@@ -753,7 +929,15 @@
       "audio": "Audio",
       "keybindings": "Legături cheie",
       "spectrogram": "Spectrograma",
-      "backup": "Backup"
+      "backup": "Backup",
+      "editor": "Editor și sincronizare",
+      "files": "Fișiere și stocare"
+    },
+    "page": {
+      "generalDesc": "Limbă, aspect, confidențialitate și comportamentul general al aplicației.",
+      "editorDesc": "Introducerea timpilor, comportamentul sincronizării și indicii vizuale.",
+      "filesDesc": "Curățare la import, istoricul salvărilor automate și copii de rezervă portabile.",
+      "audioDesc": "Redare, conversie, egalizator și afișarea spectrogramei."
     }
   },
   "autoSegmentApplied": "Segmentat automat cu {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Nu s-a putut face backup pentru fișierul original TTML, așa că nu a fost suprascris",
     "linkedProjectNoBackup": "Nu a fost găsită nicio copie de rezervă pentru acest proiect",
     "linkedProjectRestoreFailed": "Nu s-a restabilit fișierul original TTML",
-    "linkedProjectRestoreReloadFailed": "Fișierul original a fost restaurat, dar proiectul nu s-a reîncărcat"
+    "linkedProjectRestoreReloadFailed": "Fișierul original a fost restaurat, dar proiectul nu s-a reîncărcat",
+    "folderProjectInvalid": "Folder de proiect nevalid",
+    "folderProjectRequiresDesktop": "Folderele de proiect sunt disponibile doar în aplicația desktop",
+    "folderProjectCreateFailed": "Proiectul nu a putut fi creat",
+    "folderProjectLyricParse": "Fișierul cu versuri nu a putut fi interpretat",
+    "folderProjectNoLyric": "Adaugă un fișier cu versuri înainte de a salva proiectul",
+    "folderProjectAudioReadFailed": "Fișierul audio al proiectului nu a fost găsit",
+    "folderProjectAudioLoadFailed": "Sunetul proiectului nu a putut fi încărcat",
+    "folderProjectNoAudio": "Încarcă un fișier audio înainte de a salva proiectul",
+    "folderProjectUnavailable": "Folderul proiectului nu este accesibil",
+    "folderProjectNoContent": "Nu s-au găsit fișiere TTML sau audio în acest folder",
+    "folderProjectSaveFailed": "Proiectul nu a putut fi salvat",
+    "folderProjectNotFound": "Folderul selectat nu este un folder de proiect valid (lipsesc project.json, TTML și fișierele audio)",
+    "folderProjectOpenFailed": "Folderul proiectului nu a putut fi deschis: {reason}",
+    "ttmlGenerateFailed": "Fișierul TTML nu a putut fi generat",
+    "folderProjectCleanupFailed": "Salvat, dar un fișier anterior al proiectului nu a putut fi șters",
+    "openFolderFailed": "Folderul nu a putut fi deschis"
   },
   "success": {
-    "linkedProjectBackupRestored": "Fișierul original TTML a fost restaurat"
+    "linkedProjectBackupRestored": "Fișierul original TTML a fost restaurat",
+    "folderProjectSaved": "Proiect salvat",
+    "folderProjectAlreadyExists": "Acest folder este deja un proiect, așa că va fi deschis",
+    "folderProjectCreated": "Proiect creat",
+    "lyricsSavedToProject": "Versurile au fost salvate în proiect"
   },
   "audio": {
     "marker": "Marcaj",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Opreste-te",
       "start": "Începeți"
-    }
+    },
+    "description": "Alege un tempo și apasă {key} la fiecare bip pentru a măsura întârzierea dintre sunet și apăsările tale."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Căutare eșuată: {error}",
       "fetchError": "Nu s-au putut prelua versurile: {error}",
       "noLyricsError": "Nu sunt lyric-uri de importat.",
-      "importSuccess": "Importat {count} de linii din Geniu."
+      "importSuccess": "Importat {count} de linii din Geniu.",
+      "howToGetKey": "Cum creezi un Client Access Token Genius"
     },
     "openLink": "Deschide link-ul",
     "duplicateMsg": "S-au găsit valori de metadate duplicate",
@@ -1012,7 +1218,9 @@
     "importTitle": "Importă versuri din Genius",
     "searchPlaceholder": "Artist – Titlul melodiei…",
     "notFound": "Niciun rezultat găsit. Încearcă cuvinte cheie diferite.",
-    "noResult": "Introdu un nume de melodie sau un artist pentru a începe."
+    "noResult": "Introdu un nume de melodie sau un artist pentru a începe.",
+    "howToGetKey": "Cum creezi un Client Access Token Genius",
+    "changeKey": "Schimbă cheia API"
   },
   "textImportDialog": {
     "processLyrics": "Procesare versuri",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Ghidul complet TTML"
-    }
+    },
+    "description": "Importă versurile din text simplu sau din alte formate."
   },
   "sectionImportReview": {
     "title": "Examinați secțiunile detectate",
@@ -1239,7 +1448,13 @@
     "crowdin": "Ajută la traducere în Crowdin",
     "buildDate": "Data compilării: {date}",
     "gitCommit": "Commit Git: {commit}",
-    "platform": "Platformă: {platform}"
+    "platform": "Platformă: {platform}",
+    "contributors": "Contribuitori",
+    "viewContributors": "Vezi contribuitorii",
+    "contributorProfiles": "Profilurile contribuitorilor",
+    "contributorTooltip": "{name} – contribuții: {count}",
+    "openContributorProfile": "Deschide profilul GitHub al lui {name}",
+    "unknown": "Necunoscut"
   },
   "spectrogram": {
     "invalidEndTime": "Nu se poate selecta acest timp de sfârșit",

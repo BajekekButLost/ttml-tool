@@ -10,12 +10,14 @@ import {
 } from "@radix-ui/themes";
 import { open } from "@tauri-apps/plugin-shell";
 import { useAtom } from "jotai";
+import { useTranslation } from "react-i18next";
 import changelog from "$/data/changelog.json";
 import legacy from "$/data/changelog-legacy.json";
 import { changelogDialogAtom } from "$/states/dialogs.ts";
 import { ChangeMarkdown, releaseColor } from "./change-notes.tsx";
 
 export function ChangelogDialog() {
+	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useAtom(changelogDialogAtom);
 
 	const openGitHub = async () => {
@@ -33,7 +35,9 @@ export function ChangelogDialog() {
 			<Dialog.Content style={{ maxWidth: 650, height: "70vh", maxHeight: 600 }}>
 				<Flex justify="between" align="center" mb="4">
 					<Flex align="center" gap="3">
-						<Dialog.Title mb="0">Changelog & Updates</Dialog.Title>
+						<Dialog.Title mb="0">
+							{t("changeNotes.changelogTitle", "Changelog & Updates")}
+						</Dialog.Title>
 						<Button
 							variant="soft"
 							size="1"
@@ -41,7 +45,7 @@ export function ChangelogDialog() {
 							onClick={openGitHub}
 							style={{ cursor: "pointer" }}
 						>
-							View Commits on GitHub
+							{t("changeNotes.viewCommits", "View Commits on GitHub")}
 						</Button>
 					</Flex>
 					<Dialog.Close>

@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Release highlights and recent improvements for NaeNae users"
+    "highlightsDescription": "Release highlights and recent improvements for NaeNae users",
+    "changelogTitle": "Changelog & Updates",
+    "viewCommits": "View Commits on GitHub",
+    "whatsNewTitle": "What's New in NaeNae's Fork",
+    "otherEnhancements": "Other Enhancements"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "No lyric lines",
       "description": "Add new lyric lines in the top panel or open/import existing lyrics from the menu"
+    },
+    "window": {
+      "minimize": "Minimize window",
+      "maximize": "Maximize window",
+      "close": "Close window"
     }
   },
   "onlineImport": {
@@ -28,9 +37,106 @@
     "jumpToUntimed": "Time the first untimed line"
   },
   "beginnerGuide": {
-    "empty": { "open": "Open lyrics file" },
-    "welcome": { "open": "Open lyrics file" },
-    "sync": { "wordProgress": "{timed} / {total} words timed" }
+    "empty": {
+      "open": "Open lyrics file",
+      "start": "Start Guide",
+      "import": "Import Lyrics"
+    },
+    "welcome": {
+      "open": "Open lyrics file",
+      "title": "Make your first synced TTML",
+      "description": "The guide stays with you, opens the right tools, and waits until each required task is actually complete.",
+      "own": "Guide me through my first TTML",
+      "skip": "Skip for now"
+    },
+    "sync": {
+      "wordProgress": "{timed} / {total} words timed",
+      "open": "Open Time mode"
+    },
+    "menu": "Start Guide",
+    "restore": "Show guide",
+    "progress": "Step {current} of {total}",
+    "tuck": "Tuck",
+    "exit": "Exit guide",
+    "beforeStart": {
+      "title": "Before you start:",
+      "text": "You can change the appearance of the editor to suit your preference. Click below to open settings. Feel free to try the Basic Editor, or check out the Advanced Editor for complete detail control.",
+      "link": "Customize Editor Appearance"
+    },
+    "status": {
+      "complete": "Done — the tool detected this step is complete."
+    },
+    "readMore": "Full guide",
+    "continue": "Continue",
+    "review": {
+      "confirm": "I checked the lyrics"
+    },
+    "test": {
+      "open": "Open testing steps"
+    },
+    "audio": {
+      "choose": "Choose audio"
+    },
+    "songwriters": {
+      "open": "Open metadata"
+    },
+    "export": {
+      "save": "Save TTML"
+    },
+    "genius": {
+      "title": "Create a Genius Client Access Token",
+      "step1": "1. Open Genius API Clients and sign in.",
+      "step2": "2. Select New API Client, give it any recognizable app name, and fill the required app website field.",
+      "step3": "3. Save the client, then select Generate Access Token.",
+      "step4": "4. Copy the Client Access Token—not the Client ID or Client Secret.",
+      "reuse": "The tool stores this token locally and reuses it for lyric imports and songwriter lookup.",
+      "openPortal": "Open Genius API Clients",
+      "paste": "Paste token in Genius import"
+    },
+    "finish": "Finish guide",
+    "steps": {
+      "intro": {
+        "title": "Read the full guide first",
+        "description": "This built-in guide is a hands-on companion to the full TTML guide. Read the full guide for the concepts, then keep this panel open while you apply them in the editor.",
+        "waiting": "Read the full guide, then continue when you are ready to begin."
+      },
+      "audio": {
+        "title": "Import the song",
+        "description": "Choose the exact recording you are making lyrics for. The guide will continue once the audio finishes loading.",
+        "waiting": "Use “Choose audio” below, then wait for loading to finish."
+      },
+      "lyrics": {
+        "title": "Import the lyrics",
+        "description": "Choose a lyrics source below. Review the result in its import window and confirm the import.",
+        "waiting": "Choose one source below and finish its import window."
+      },
+      "review": {
+        "title": "Check lyrics and line types",
+        "description": "Read every line against the recording. Double-click words to fix them; select lines to mark background or duet vocals. Remove empty lines, then confirm below.",
+        "waiting": "The structure is valid. Finish reading the lyrics, then confirm your review.",
+        "waitingEmptyLines": "At least one empty lyric line remains. Delete or fill it before confirming."
+      },
+      "sync": {
+        "title": "Sync every word",
+        "description": "Enter Time mode, select the first word, press Space, then use F to start, G between words, and H at pauses or line endings. Every word must receive a valid time.",
+        "waiting": "Open Time mode and keep timing; this completes when every applicable word has a valid start and end."
+      },
+      "songwriters": {
+        "title": "Add songwriters",
+        "description": "Open metadata and use Fetch Songwriters from Genius, or add one Songwriter value per real name. The guide detects when at least one is saved.",
+        "waiting": "Open metadata and add at least one non-empty Songwriter value."
+      },
+      "export": {
+        "title": "Export the TTML",
+        "description": "Save the finished TTML. This step completes only after a file is actually written.",
+        "waiting": "Choose Save TTML and complete the file picker."
+      },
+      "test": {
+        "title": "Test locally",
+        "description": "Upload the saved file in Spicy Lyrics and check parsing, formatting, and timing.",
+        "waiting": "Open the local testing instructions, verify the file in Spicy Lyrics, then finish the guide."
+      }
+    }
   },
   "importChooser": {
     "title": "Import lyrics",
@@ -85,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "The song has no songwriters. Do you want to continue saving?"
+    },
+    "newProject": {
+      "title": "Confirm Create Project",
+      "description": "You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to create a new project?"
     }
   },
   "experimentalFeatures": {
@@ -123,7 +233,9 @@
     "remove": "Remove",
     "clickToSet": "Click to set ",
     "move": "Move",
-    "copy": "Copy"
+    "copy": "Copy",
+    "reset": "Reset",
+    "preview": "Preview"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -137,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Select the audio file you loaded",
       "lyricTitle": "Choose the TTML file this project saves to"
+    },
+    "createProject": {
+      "parentTitle": "Select where to create the project folder",
+      "title": "Select or create a folder for the new project"
+    },
+    "openProject": {
+      "title": "Select project folder"
+    },
+    "saveProject": {
+      "title": "Select or create a project folder"
+    },
+    "openWorkspace": {
+      "title": "Select a workspace folder containing projects"
     }
   },
   "projectsDialog": {
@@ -174,7 +299,10 @@
     "importable": "Importable",
     "scanning": "Scanning...",
     "selectFolder": "Select workspace folder...",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "noProjectsFound": "No projects found in this folder",
+    "projectsFound": "Found {count} project(s)",
+    "scanFailed": "Failed to scan workspace folder"
   },
   "ribbonBar": {
     "advancedTooltip": "Applies to all toolbars: Edit, Time, and Preview.",
@@ -242,7 +370,8 @@
       "showRoman": "Show Romanization",
       "fadeWidth": "Fade Width",
       "instantFade": "Instant Fade Out",
-      "showFps": "Show FPS"
+      "showFps": "Show FPS",
+      "autoScroll": "Auto-Scroll"
     },
     "syncMode": {
       "currentEmptyBeat": "Empty Beat",
@@ -276,9 +405,11 @@
       },
       "playbackTracking": "Tracking",
       "autoScroll": "Auto-Scroll",
-      "highlightActiveLine": "Highlight Line"
+      "highlightActiveLine": "Highlight Line",
+      "spectrogramHoverSync": "Sync to Spectrogram Cursor"
     },
-    "loading": "Loading panel..."
+    "loading": "Loading panel...",
+    "advanced": "Advanced"
   },
   "settings": {
     "common": {
@@ -348,7 +479,36 @@
       "customBackgroundBlur": "Blur Radius",
       "customBackgroundBrightness": "Brightness",
       "customBackgroundEnabled": "Background set",
-      "customBackgroundManage": "Settings"
+      "customBackgroundManage": "Settings",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Share customizable project and playback details with the Discord desktop app.",
+      "discordCustomize": "Customize presence and inactivity",
+      "discordTemplates": "Presence templates",
+      "discordTemplateHelp": "Use {{variables}} and wrap optional text in [[double brackets]].",
+      "discordDetails": "Details",
+      "discordState": "State",
+      "discordSearchVariables": "Search variables…",
+      "discordPlaybackTimeline": "Playback timeline",
+      "discordProjectElapsed": "Project elapsed timer",
+      "discordRepositoryButton": "Repository button",
+      "discordStatusBadge": "Play/pause status badge",
+      "discordIdleTimeout": "Inactive after",
+      "discordIdlePrivacy": "Inactive presence hides project details, buttons, badges, and timers.",
+      "normalizeApostrophesOnImport": "Normalize apostrophes",
+      "normalizeApostrophesOnImportDesc": "Convert curly and other apostrophe-like characters during import and export.",
+      "normalizeCyrillicEsOnImport": "Fix isolated Cyrillic Е/е in Latin words",
+      "normalizeCyrillicEsOnImportDesc": "Correct hidden Cyrillic lookalikes in Latin words during import and export.",
+      "allowConsecutiveBackgroundLines": "Allow consecutive and standalone background vocals",
+      "allowConsecutiveBackgroundLinesDesc": "Export consecutive background vocals together and preserve standalone background vocals for Spicy Lyrics compatibility. Other players may not support this structure.",
+      "spectrogramHoverSync": "Sync to Spectrogram Cursor",
+      "spectrogramHoverSyncDesc": "When hovering over the spectrogram in Sync mode, trigger keys (F, G, H) record the hover position timestamp instead of the playback time.",
+      "syncWordWrap": "Wrap Words in Time Mode",
+      "syncWordWrapDesc": "Wraps word cards to the next line instead of showing a horizontal scrollbar in Time / Sync tab.",
+      "syncAutoScroll": "Auto-Scroll to Active Line During Playback",
+      "syncAutoScrollDesc": "Automatically scrolls the editor view to follow the currently active lyric line during playback.",
+      "syncFocusMainLine": "Focus Main Line During Playback",
+      "syncFocusMainLineDesc": "When playing back, focuses on active main lines and ignores background lines unless no main line is active.",
+      "highlightActiveLine": "Highlight Active Line During Playback"
     },
     "about": {
       "update": "Update",
@@ -439,19 +599,20 @@
         "legacyDarkTheme": "Classic Dark Theme",
         "legacyDarkThemeDesc": "Use the lighter dark palette from before the Intonated Black redesign.",
         "masterResetNote": "This will reset all 20+ granular overrides.",
-        "resetMaster": "Master Reset Advanced Config"
+        "resetMaster": "Master Reset Advanced Config",
+        "scrollbarThumb": "Scrollbar Thumb",
+        "dialogBackground": "Dialog Background",
+        "dialogBorder": "Dialog Border",
+        "globalBorderRadius": "Global Border Radius",
+        "globalBorderWidth": "Global Border Width",
+        "shadowIntensity": "Shadow Intensity",
+        "romanizationText": "Romanization Text",
+        "translationText": "Translation Text",
+        "geniusHeaderColor": "Genius Header Color"
       },
       "secondaryDesc": "Translations & Metadata.",
       "layout": {
         "title": "Application Layout",
-        "syncWordWrap": "Wrap Words in Time Mode",
-        "syncWordWrapDesc": "Wraps word cards to the next line instead of showing a horizontal scrollbar in Time / Sync tab.",
-        "syncAutoScroll": "Auto-Scroll to Active Line During Playback",
-        "syncAutoScrollDesc": "Automatically scrolls the editor view to follow the currently active lyric line during playback.",
-        "syncFocusMainLine": "Focus Main Line During Playback",
-        "syncFocusMainLineDesc": "When playing back, focuses on active main lines and ignores background lines unless no main line is active.",
-        "highlightActiveLine": "Highlight Active Line During Playback",
-        "highlightActiveLineDesc": "Visually highlights the lyric line currently being played in both Edit and Time modes.",
         "order": "Element Order",
         "orderDesc": "Drag to reorder elements. Some positions may be limited by constraints.",
         "titlebar": "Title Bar",
@@ -475,7 +636,13 @@
       "customFontActive": "LOCAL CUSTOM FONT",
       "defaultFonts": "Standard Stacks",
       "systemFonts": "System Fonts",
-      "googleFonts": "Google Fonts Library"
+      "googleFonts": "Google Fonts Library",
+      "fontDialogDescription": "Select a font from standard, system, or Google fonts library.",
+      "interfaceScale": "Interface Scale",
+      "interfaceScaleDesc": "Choose a scale, then apply it. You can also use Ctrl/Cmd +, -, or 0.",
+      "resetTitle": "Reset Theme",
+      "resetDesc": "Reset all colors, backgrounds, gradients, and custom overrides back to the default theme.",
+      "resetTheme": "Reset Theme to Default"
     },
     "group": {
       "display": "Display",
@@ -484,7 +651,11 @@
       "playback": "Playback",
       "autosave": "Auto Save",
       "previewControls": "Preview",
-      "editorControls": "Editor display & controls"
+      "editorControls": "Editor display & controls",
+      "import": "Import & export",
+      "syncWordWrap": "Time Mode / Sync Tab",
+      "privacy": "Privacy",
+      "projects": "Projects"
     },
     "assistant": {
       "manualTimestampEdit": "Manual Timestamp Editing",
@@ -562,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Folder projects",
+      "folderProjectsDesc": "Open, save, and organize lyrics as project folders with a project.json manifest.",
+      "folderProjectsAutosave": "Save project file on auto save",
+      "folderProjectsAutosaveDesc": "Write the open project lyric file to disk on every auto save."
     }
   },
   "timingOverview": {
@@ -628,7 +805,11 @@
         "toYRC": "Export to YRC",
         "toLrcfySylb": "Export to Lyricify Syllable",
         "toASS": "Export to ASS subtitles"
-      }
+      },
+      "spectrogramHoverSync": "Sync to Spectrogram Cursor",
+      "whatsNew": "What's New",
+      "changelog": "Changelog & Updates",
+      "projects": "Projects"
     }
   },
   "header": {
@@ -638,7 +819,8 @@
     },
     "project": {
       "linked": "Linked project",
-      "folder": "Folder project"
+      "folder": "Folder project",
+      "namePlaceholder": "Project name"
     },
     "backup": {
       "restore": "Restore backup",
@@ -747,7 +929,15 @@
       "audio": "Audio",
       "keybindings": "Keybindings",
       "spectrogram": "Spectrogram",
-      "backup": "Backup"
+      "backup": "Backup",
+      "editor": "Editor & Sync",
+      "files": "Files & Storage"
+    },
+    "page": {
+      "generalDesc": "Language, layout, privacy, and app-wide behavior.",
+      "editorDesc": "Timing input, synchronization behavior, and visual cues.",
+      "filesDesc": "Import cleanup, autosave history, and portable backups.",
+      "audioDesc": "Playback, conversion, equalizer, and spectrogram display."
     }
   },
   "autoSegmentApplied": "Auto-segmented with {engine}",
@@ -758,10 +948,30 @@
     "linkedProjectBackupFailed": "Could not back up the original TTML file, so it was not overwritten",
     "linkedProjectNoBackup": "No backup found for this project",
     "linkedProjectRestoreFailed": "Failed to restore original TTML file",
-    "linkedProjectRestoreReloadFailed": "Restored original file, but failed to reload project"
+    "linkedProjectRestoreReloadFailed": "Restored original file, but failed to reload project",
+    "folderProjectInvalid": "Invalid project folder",
+    "folderProjectRequiresDesktop": "The project folder feature is only available in the desktop app",
+    "folderProjectCreateFailed": "Failed to create project",
+    "folderProjectLyricParse": "Failed to parse lyric file",
+    "folderProjectNoLyric": "Add a lyric file before saving the project",
+    "folderProjectAudioReadFailed": "Project audio file not found",
+    "folderProjectAudioLoadFailed": "Failed to load project audio",
+    "folderProjectNoAudio": "Load an audio file before saving the project",
+    "folderProjectUnavailable": "The project folder is not accessible",
+    "folderProjectNoContent": "No TTML or audio files found in this folder",
+    "folderProjectSaveFailed": "Failed to save project",
+    "folderProjectNotFound": "The selected folder is not a valid project folder (no project.json, TTML, or audio files)",
+    "folderProjectOpenFailed": "Failed to open project folder: {reason}",
+    "ttmlGenerateFailed": "Failed to generate TTML",
+    "folderProjectCleanupFailed": "Saved, but a previous project file could not be removed",
+    "openFolderFailed": "Could not open the folder"
   },
   "success": {
-    "linkedProjectBackupRestored": "Restored original TTML file"
+    "linkedProjectBackupRestored": "Restored original TTML file",
+    "folderProjectSaved": "Project saved",
+    "folderProjectAlreadyExists": "This folder is already a project, opening it instead",
+    "folderProjectCreated": "Project created",
+    "lyricsSavedToProject": "Lyrics saved to project"
   },
   "audio": {
     "marker": "Marker",
@@ -806,7 +1016,8 @@
     "button": {
       "stop": "Stop",
       "start": "Start"
-    }
+    },
+    "description": "Pick a tempo you like and press {key} on every beep to measure the delay between the audio and your input."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -823,7 +1034,8 @@
       "searchError": "Search failed: {error}",
       "fetchError": "Could not fetch lyrics: {error}",
       "noLyricsError": "No lyrics to import.",
-      "importSuccess": "Imported {count} lines from Genius."
+      "importSuccess": "Imported {count} lines from Genius.",
+      "howToGetKey": "How to create a Genius Client Access Token"
     },
     "openLink": "Open link",
     "duplicateMsg": "Found duplicate metadata values",
@@ -1006,7 +1218,9 @@
     "importTitle": "Import Lyrics from Genius",
     "searchPlaceholder": "Artist – Song title…",
     "notFound": "No results found. Try different keywords.",
-    "noResult": "Enter a song name or artist to start."
+    "noResult": "Enter a song name or artist to start.",
+    "howToGetKey": "How to create a Genius Client Access Token",
+    "changeKey": "Change API Key"
   },
   "textImportDialog": {
     "processLyrics": "Process Lyrics",
@@ -1061,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Full TTML Guide"
-    }
+    },
+    "description": "Import lyrics from plain text or other formats."
   },
   "sectionImportReview": {
     "title": "Review detected sections",
@@ -1233,7 +1448,13 @@
     "crowdin": "Help Translate in Crowdin",
     "buildDate": "Build Date: {date}",
     "gitCommit": "Git Commit: {commit}",
-    "platform": "Platform: {platform}"
+    "platform": "Platform: {platform}",
+    "contributors": "Contributors",
+    "viewContributors": "View contributors",
+    "contributorProfiles": "Contributor profiles",
+    "contributorTooltip": "{name} - {count} contributions",
+    "openContributorProfile": "Open {name}'s GitHub profile",
+    "unknown": "Unknown"
   },
   "spectrogram": {
     "invalidEndTime": "Cannot select this end time",

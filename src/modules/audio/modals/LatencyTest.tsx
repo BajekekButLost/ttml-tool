@@ -236,7 +236,7 @@ export const LatencyTestDialog = memo(() => {
 					<Text>
 						{t(
 							"latencyTestDialog.description",
-							"请选择自己喜欢的 BPM，并在每个蜂鸣声响起时按下 {key} 键，以测量音频/输入延迟差",
+							"Pick a tempo you like and press {key} on every beep to measure the delay between the audio and your input.",
 							{
 								key: <KeyBinding kbdAtom={keySyncNextAtom} />,
 							},

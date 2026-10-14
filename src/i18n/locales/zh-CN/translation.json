@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "面向 NaeNae 用户的发布亮点和最新改进"
+    "highlightsDescription": "面向 NaeNae 用户的发布亮点和最新改进",
+    "changelogTitle": "更新日志",
+    "viewCommits": "在 GitHub 上查看提交",
+    "whatsNewTitle": "NaeNae's Fork 新功能",
+    "otherEnhancements": "其他改进"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "没有歌词行",
       "description": "在顶部面板中添加新歌词行或从菜单栏打开 / 导入已有歌词"
+    },
+    "window": {
+      "minimize": "最小化窗口",
+      "maximize": "最大化窗口",
+      "close": "关闭窗口"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "打开歌词文件"
+      "open": "打开歌词文件",
+      "start": "开始引导",
+      "import": "导入歌词"
     },
     "welcome": {
-      "open": "打开歌词文件"
+      "open": "打开歌词文件",
+      "title": "制作你的第一个逐字 TTML",
+      "description": "引导会全程陪伴你，打开合适的工具，并等待每个必要步骤真正完成。",
+      "own": "带我完成第一个 TTML",
+      "skip": "暂时跳过"
     },
     "sync": {
-      "wordProgress": "已打轴单词：{timed} / {total}"
+      "wordProgress": "已打轴单词：{timed} / {total}",
+      "open": "打开打轴模式"
+    },
+    "menu": "开始引导",
+    "restore": "显示引导",
+    "progress": "第 {current} 步，共 {total} 步",
+    "tuck": "收起",
+    "exit": "退出引导",
+    "beforeStart": {
+      "title": "开始之前：",
+      "text": "你可以按喜好调整编辑器外观。点击下方打开设置。可以先试试基本编辑器，或使用高级编辑器以完全掌控细节。",
+      "link": "自定义编辑器外观"
+    },
+    "status": {
+      "complete": "完成：工具已检测到此步骤已完成。"
+    },
+    "readMore": "完整指南",
+    "continue": "继续",
+    "review": {
+      "confirm": "我已检查歌词"
+    },
+    "test": {
+      "open": "打开测试步骤"
+    },
+    "audio": {
+      "choose": "选择音频"
+    },
+    "songwriters": {
+      "open": "打开元数据"
+    },
+    "export": {
+      "save": "保存 TTML"
+    },
+    "genius": {
+      "title": "创建 Genius Client Access Token",
+      "step1": "1. 打开 Genius API Clients 并登录。",
+      "step2": "2. 选择 New API Client，填写任意易识别的应用名称，并填写必填的应用网站字段。",
+      "step3": "3. 保存客户端，然后选择 Generate Access Token。",
+      "step4": "4. 复制 Client Access Token，而不是 Client ID 或 Client Secret。",
+      "reuse": "工具会在本地保存此令牌，并在导入歌词和查找词曲作者时重复使用。",
+      "openPortal": "打开 Genius API Clients",
+      "paste": "在 Genius 导入中粘贴令牌"
+    },
+    "finish": "完成引导",
+    "steps": {
+      "intro": {
+        "title": "请先阅读完整指南",
+        "description": "这份内置引导是完整 TTML 指南的实操伴侣。请先阅读完整指南了解概念，然后在编辑器中实践时保持此面板打开。",
+        "waiting": "阅读完整指南后，准备好开始时点击继续。"
+      },
+      "audio": {
+        "title": "导入歌曲",
+        "description": "选择你要制作歌词的那个录音版本。音频加载完成后引导会继续。",
+        "waiting": "使用下方的“选择音频”，然后等待加载完成。"
+      },
+      "lyrics": {
+        "title": "导入歌词",
+        "description": "在下方选择一个歌词来源。在导入窗口中检查结果并确认导入。",
+        "waiting": "在下方选择一个来源，并完成其导入窗口。"
+      },
+      "review": {
+        "title": "检查歌词与行类型",
+        "description": "对照录音逐行检查。双击单词进行修正；选中行可标记为背景人声或对唱。删除空行后在下方确认。",
+        "waiting": "结构有效。读完歌词后确认检查。",
+        "waitingEmptyLines": "仍有至少一行空歌词。请在确认前删除或填写。"
+      },
+      "sync": {
+        "title": "为每个字打轴",
+        "description": "进入打轴模式，选中第一个字，按空格，然后用 F 开始、G 在字与字之间、H 用于停顿或行尾。每个字都必须获得有效的时间。",
+        "waiting": "打开打轴模式继续打轴；当每个相关的字都有有效的开始和结束时间时，此步骤完成。"
+      },
+      "songwriters": {
+        "title": "添加词曲作者",
+        "description": "打开元数据并使用“从 Genius 获取词曲作者”，或为每个真实姓名添加一个“词曲作者”值。至少保存一个后引导会检测到。",
+        "waiting": "打开元数据，并添加至少一个非空的“词曲作者”值。"
+      },
+      "export": {
+        "title": "导出 TTML",
+        "description": "保存完成的 TTML。只有在实际写入文件后此步骤才会完成。",
+        "waiting": "选择“保存 TTML”并完成文件选择。"
+      },
+      "test": {
+        "title": "本地测试",
+        "description": "在 Spicy Lyrics 中上传保存的文件，检查解析、格式和时间轴。",
+        "waiting": "打开本地测试说明，在 Spicy Lyrics 中验证文件，然后完成引导。"
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "该歌曲没有记录词曲作者（songwriter），确定要保存吗？"
+    },
+    "newProject": {
+      "title": "确认创建项目",
+      "description": "你有未保存的更改。继续操作将丢失这些更改。确定要创建新项目吗？"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "移除",
     "clickToSet": "点击设置 ",
     "move": "移动",
-    "copy": "复制"
+    "copy": "复制",
+    "reset": "重置",
+    "preview": "预览"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "选择您加载的音频文件",
       "lyricTitle": "选择该项目保存到的 TTML 文件"
+    },
+    "createProject": {
+      "parentTitle": "选择项目文件夹的创建位置",
+      "title": "为新项目选择或创建文件夹"
+    },
+    "openProject": {
+      "title": "选择项目文件夹"
+    },
+    "saveProject": {
+      "title": "选择或创建项目文件夹"
+    },
+    "openWorkspace": {
+      "title": "选择包含项目的工作区文件夹"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "可导入",
     "scanning": "正在扫描...",
     "selectFolder": "选择工作区文件夹...",
-    "unknown": "未知"
+    "unknown": "未知",
+    "noProjectsFound": "此文件夹中未找到项目",
+    "projectsFound": "找到 {count} 个项目",
+    "scanFailed": "扫描工作区文件夹失败"
   },
   "ribbonBar": {
     "advancedTooltip": "适用于所有工具栏：编辑、打轴和预览。",
@@ -248,7 +370,8 @@
       "showRoman": "显示注音",
       "fadeWidth": "淡化宽度",
       "instantFade": "即时淡出",
-      "showFps": "显示 FPS"
+      "showFps": "显示 FPS",
+      "autoScroll": "自动滚动"
     },
     "syncMode": {
       "currentEmptyBeat": "当前空拍",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "追踪",
       "autoScroll": "自动滚动",
-      "highlightActiveLine": "高光线"
+      "highlightActiveLine": "高光线",
+      "spectrogramHoverSync": "按频谱图光标打轴"
     },
-    "loading": "面板载入中..."
+    "loading": "面板载入中...",
+    "advanced": "高级"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "模糊半径",
       "customBackgroundBrightness": "亮度",
       "customBackgroundEnabled": "背景已设置",
-      "customBackgroundManage": "设置"
+      "customBackgroundManage": "设置",
+      "discordRichPresence": "Discord 动态状态",
+      "discordRichPresenceDesc": "向 Discord 桌面应用分享可自定义的项目与播放信息。",
+      "discordCustomize": "自定义状态与闲置",
+      "discordTemplates": "状态模板",
+      "discordTemplateHelp": "使用 {{variables}}，可选文本请用 [[双方括号]] 包裹。",
+      "discordDetails": "详情",
+      "discordState": "状态",
+      "discordSearchVariables": "搜索变量…",
+      "discordPlaybackTimeline": "播放进度",
+      "discordProjectElapsed": "项目已用时间计时器",
+      "discordRepositoryButton": "仓库按钮",
+      "discordStatusBadge": "播放/暂停状态角标",
+      "discordIdleTimeout": "闲置时长",
+      "discordIdlePrivacy": "闲置状态会隐藏项目详情、按钮、角标和计时器。",
+      "normalizeApostrophesOnImport": "统一撇号",
+      "normalizeApostrophesOnImportDesc": "在导入和导出时转换弯撇号及其他类似撇号的字符。",
+      "normalizeCyrillicEsOnImport": "修正拉丁单词中混入的西里尔字母 Е/е",
+      "normalizeCyrillicEsOnImportDesc": "在导入和导出时修正拉丁单词中隐藏的形似西里尔字母。",
+      "allowConsecutiveBackgroundLines": "允许连续及独立的背景人声",
+      "allowConsecutiveBackgroundLinesDesc": "将连续的背景人声合并导出，并保留独立的背景人声，以兼容 Spicy Lyrics。其他播放器可能不支持此结构。",
+      "spectrogramHoverSync": "按频谱图光标打轴",
+      "spectrogramHoverSyncDesc": "在打轴模式下将光标悬停在频谱图上时，触发键（F、G、H）会记录光标所在位置的时间，而不是播放时间。",
+      "syncWordWrap": "自动换行 (时间模式)",
+      "syncWordWrapDesc": "在时间戳 / 打轴标签页中，让音节卡片自动换行显示，而不是出现横向滚动条。",
+      "syncAutoScroll": "播放时自动滚动至当前歌词行",
+      "syncAutoScrollDesc": "在时间戳 / 打轴标签页播放时，自动滚动编辑器视图跟随当前活动歌词行。",
+      "syncFocusMainLine": "播放时优先聚焦主歌词行",
+      "syncFocusMainLineDesc": "在时间戳 / 打轴标签页播放时，优先定位与聚焦主歌词行，忽略背景歌词（除非没有活动的主歌词行）。",
+      "highlightActiveLine": "播放期间突出显示活动线路"
     },
     "about": {
       "update": "更新",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "经典深色主题",
         "legacyDarkThemeDesc": "使用 Intonated Black 重新设计之前的浅色深色调色板。",
         "masterResetNote": "这将重置所有 20 多个粒度覆盖。",
-        "resetMaster": "重置所有高级设置"
+        "resetMaster": "重置所有高级设置",
+        "scrollbarThumb": "滚动条滑块",
+        "dialogBackground": "对话框背景",
+        "dialogBorder": "对话框边框",
+        "globalBorderRadius": "全局圆角",
+        "globalBorderWidth": "全局边框宽度",
+        "shadowIntensity": "阴影强度",
+        "romanizationText": "音译文本",
+        "translationText": "翻译文本",
+        "geniusHeaderColor": "Genius 段落标题颜色"
       },
       "secondaryDesc": "翻译和元数据。",
       "layout": {
         "title": "应用布局",
-        "syncWordWrap": "自动换行 (时间模式)",
-        "syncWordWrapDesc": "在时间戳 / 打轴标签页中，让音节卡片自动换行显示，而不是出现横向滚动条。",
-        "syncAutoScroll": "播放时自动滚动至当前歌词行",
-        "syncAutoScrollDesc": "在时间戳 / 打轴标签页播放时，自动滚动编辑器视图跟随当前活动歌词行。",
-        "syncFocusMainLine": "播放时优先聚焦主歌词行",
-        "syncFocusMainLineDesc": "在时间戳 / 打轴标签页播放时，优先定位与聚焦主歌词行，忽略背景歌词（除非没有活动的主歌词行）。",
-        "highlightActiveLine": "播放期间突出显示活动线路",
-        "highlightActiveLineDesc": "以视觉方式突出显示当前在编辑和时间模式下播放的歌词行。",
         "order": "元素顺序",
         "orderDesc": "拖动以重新排序元素。某些职位可能会受到限制。",
         "titlebar": "标题栏",
@@ -481,7 +636,13 @@
       "customFontActive": "本地自定义字体",
       "defaultFonts": "标准字体族",
       "systemFonts": "系统字体",
-      "googleFonts": "Google Fonts 字体库"
+      "googleFonts": "Google Fonts 字体库",
+      "fontDialogDescription": "从标准字体、系统字体或 Google Fonts 字体库中选择字体。",
+      "interfaceScale": "界面缩放",
+      "interfaceScaleDesc": "选择缩放比例后应用。也可以使用 Ctrl/Cmd +、- 或 0。",
+      "resetTitle": "重置主题",
+      "resetDesc": "将所有颜色、背景、渐变和自定义覆盖恢复为默认主题。",
+      "resetTheme": "将主题重置为默认"
     },
     "group": {
       "display": "显示",
@@ -490,7 +651,11 @@
       "playback": "播放",
       "autosave": "自动保存",
       "previewControls": "预览",
-      "editorControls": "编辑器显示与控件"
+      "editorControls": "编辑器显示与控件",
+      "import": "导入与导出",
+      "syncWordWrap": "打轴模式 / 打轴标签页",
+      "privacy": "隐私",
+      "projects": "项目"
     },
     "assistant": {
       "manualTimestampEdit": "手动时间戳编辑",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "文件夹项目",
+      "folderProjectsDesc": "以带有 project.json 清单的项目文件夹形式打开、保存和整理歌词。",
+      "folderProjectsAutosave": "自动保存时保存项目文件",
+      "folderProjectsAutosaveDesc": "每次自动保存时，将当前项目的歌词文件写入磁盘。"
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "导出到 YRC",
         "toLrcfySylb": "导出到 Lyricify Syllable",
         "toASS": "导出到 ASS 字幕"
-      }
+      },
+      "spectrogramHoverSync": "按频谱图光标打轴",
+      "whatsNew": "新功能",
+      "changelog": "更新日志",
+      "projects": "项目"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "关联项目",
-      "folder": "文件夹项目"
+      "folder": "文件夹项目",
+      "namePlaceholder": "项目名称"
     },
     "backup": {
       "restore": "恢复备份",
@@ -753,7 +929,15 @@
       "audio": "音频",
       "keybindings": "快捷键",
       "spectrogram": "频谱图",
-      "backup": "备份"
+      "backup": "备份",
+      "editor": "编辑与打轴",
+      "files": "文件与存储"
+    },
+    "page": {
+      "generalDesc": "语言、布局、隐私及应用全局行为。",
+      "editorDesc": "时间输入、打轴行为与视觉提示。",
+      "filesDesc": "导入清理、自动保存历史与可移植备份。",
+      "audioDesc": "播放、转换、均衡器与频谱图显示。"
     }
   },
   "autoSegmentApplied": "使用 {engine} 自动分段",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "无法备份原始 TTML 文件，因此未被覆盖",
     "linkedProjectNoBackup": "找不到该项目的备份",
     "linkedProjectRestoreFailed": "无法恢复原始 TTML 文件",
-    "linkedProjectRestoreReloadFailed": "恢复原始文件，但无法重新加载项目"
+    "linkedProjectRestoreReloadFailed": "恢复原始文件，但无法重新加载项目",
+    "folderProjectInvalid": "无效的项目文件夹",
+    "folderProjectRequiresDesktop": "项目文件夹功能仅在桌面应用中可用",
+    "folderProjectCreateFailed": "创建项目失败",
+    "folderProjectLyricParse": "解析歌词文件失败",
+    "folderProjectNoLyric": "保存项目前请先添加歌词文件",
+    "folderProjectAudioReadFailed": "未找到项目音频文件",
+    "folderProjectAudioLoadFailed": "加载项目音频失败",
+    "folderProjectNoAudio": "保存项目前请先加载音频文件",
+    "folderProjectUnavailable": "无法访问项目文件夹",
+    "folderProjectNoContent": "此文件夹中未找到 TTML 或音频文件",
+    "folderProjectSaveFailed": "保存项目失败",
+    "folderProjectNotFound": "所选文件夹不是有效的项目文件夹（没有 project.json、TTML 或音频文件）",
+    "folderProjectOpenFailed": "打开项目文件夹失败：{reason}",
+    "ttmlGenerateFailed": "生成 TTML 失败",
+    "folderProjectCleanupFailed": "已保存，但无法删除先前的项目文件",
+    "openFolderFailed": "无法打开文件夹"
   },
   "success": {
-    "linkedProjectBackupRestored": "恢复原始 TTML 文件"
+    "linkedProjectBackupRestored": "恢复原始 TTML 文件",
+    "folderProjectSaved": "项目已保存",
+    "folderProjectAlreadyExists": "此文件夹已是项目，将直接打开",
+    "folderProjectCreated": "项目已创建",
+    "lyricsSavedToProject": "歌词已保存到项目"
   },
   "audio": {
     "marker": "标记",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "停止",
       "start": "开始"
-    }
+    },
+    "description": "选择一个你喜欢的 BPM，并在每次蜂鸣声响起时按下 {key} 键，以测量音频与输入之间的延迟"
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "搜索失败: {error}",
       "fetchError": "无法获取歌词: {error}",
       "noLyricsError": "没有可导入的歌词。",
-      "importSuccess": "从 Genius 导入了 {count} 行。"
+      "importSuccess": "从 Genius 导入了 {count} 行。",
+      "howToGetKey": "如何创建 Genius Client Access Token"
     },
     "openLink": "打开链接",
     "duplicateMsg": "发现重复的元数据值",
@@ -1012,7 +1218,9 @@
     "importTitle": "从 Genius 导入歌词",
     "searchPlaceholder": "艺术家 – 歌曲标题…",
     "notFound": "未找到结果。请尝试不同的关键词。",
-    "noResult": "输入歌曲名称或艺术家以开始。"
+    "noResult": "输入歌曲名称或艺术家以开始。",
+    "howToGetKey": "如何创建 Genius Client Access Token",
+    "changeKey": "更换 API 密钥"
   },
   "textImportDialog": {
     "processLyrics": "处理歌词",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "完整 TTML 指南"
-    }
+    },
+    "description": "从纯文本或其他格式导入歌词。"
   },
   "sectionImportReview": {
     "title": "查看检测到的部分",
@@ -1239,7 +1448,13 @@
     "crowdin": "帮助翻译 Crowdin",
     "buildDate": "构建日期：{date}",
     "gitCommit": "Git 提交：{commit}",
-    "platform": "平台：{platform}"
+    "platform": "平台：{platform}",
+    "contributors": "贡献者",
+    "viewContributors": "查看贡献者",
+    "contributorProfiles": "贡献者主页",
+    "contributorTooltip": "{name} - {count} 次贡献",
+    "openContributorProfile": "打开 {name} 的 GitHub 主页",
+    "unknown": "未知"
   },
   "spectrogram": {
     "invalidEndTime": "不能选择此结束时间",

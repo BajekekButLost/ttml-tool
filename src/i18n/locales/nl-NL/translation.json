@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Releasehoogtepunten en recente verbeteringen voor NaeNae-gebruikers"
+    "highlightsDescription": "Releasehoogtepunten en recente verbeteringen voor NaeNae-gebruikers",
+    "changelogTitle": "Wijzigingslogboek en updates",
+    "viewCommits": "Commits bekijken op GitHub",
+    "whatsNewTitle": "Wat is er nieuw in NaeNae's Fork",
+    "otherEnhancements": "Andere verbeteringen"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Geen lyrische lijnen",
       "description": "Voeg nieuwe lyrische lijnen toe in het bovenste paneel of open / importeer bestaande songteksten uit het menu"
+    },
+    "window": {
+      "minimize": "Venster minimaliseren",
+      "maximize": "Venster maximaliseren",
+      "close": "Venster sluiten"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Songtekstbestand openen"
+      "open": "Songtekstbestand openen",
+      "start": "Gids starten",
+      "import": "Importeer songteksten"
     },
     "welcome": {
-      "open": "Songtekstbestand openen"
+      "open": "Songtekstbestand openen",
+      "title": "Maak je eerste gesynchroniseerde TTML",
+      "description": "De gids blijft bij je, opent de juiste hulpmiddelen en wacht tot elke vereiste taak echt klaar is.",
+      "own": "Begeleid me bij mijn eerste TTML",
+      "skip": "Voorlopig overslaan"
     },
     "sync": {
-      "wordProgress": "Woorden met timing: {timed} / {total}"
+      "wordProgress": "Woorden met timing: {timed} / {total}",
+      "open": "Tijdmodus openen"
+    },
+    "menu": "Gids starten",
+    "restore": "Gids tonen",
+    "progress": "Stap {current} van {total}",
+    "tuck": "Wegstoppen",
+    "exit": "Gids afsluiten",
+    "beforeStart": {
+      "title": "Voordat je begint:",
+      "text": "Je kunt het uiterlijk van de editor naar wens aanpassen. Klik hieronder om de instellingen te openen. Probeer de Basiseditor, of bekijk de Geavanceerde editor voor volledige controle over details.",
+      "link": "Uiterlijk van de editor aanpassen"
+    },
+    "status": {
+      "complete": "Klaar — de tool heeft gedetecteerd dat deze stap voltooid is."
+    },
+    "readMore": "Volledige gids",
+    "continue": "Doorgaan",
+    "review": {
+      "confirm": "Ik heb de songtekst gecontroleerd"
+    },
+    "test": {
+      "open": "Teststappen openen"
+    },
+    "audio": {
+      "choose": "Audio kiezen"
+    },
+    "songwriters": {
+      "open": "Metagegevens openen"
+    },
+    "export": {
+      "save": "TTML opslaan"
+    },
+    "genius": {
+      "title": "Maak een Genius Client Access Token",
+      "step1": "1. Open Genius API Clients en meld je aan.",
+      "step2": "2. Kies New API Client, geef hem een herkenbare appnaam en vul het verplichte veld voor de appwebsite in.",
+      "step3": "3. Sla de client op en kies daarna Generate Access Token.",
+      "step4": "4. Kopieer het Client Access Token — niet de Client ID of het Client Secret.",
+      "reuse": "De tool slaat dit token lokaal op en hergebruikt het voor het importeren van songteksten en het opzoeken van liedschrijvers.",
+      "openPortal": "Genius API Clients openen",
+      "paste": "Token plakken in Genius-import"
+    },
+    "finish": "Gids voltooien",
+    "steps": {
+      "intro": {
+        "title": "Lees eerst de volledige gids",
+        "description": "Deze ingebouwde gids is een praktische aanvulling op de volledige TTML-gids. Lees de volledige gids voor de concepten en houd dit paneel open terwijl je ze in de editor toepast.",
+        "waiting": "Lees de volledige gids en ga verder wanneer je klaar bent om te beginnen."
+      },
+      "audio": {
+        "title": "Importeer het nummer",
+        "description": "Kies precies de opname waarvoor je de songtekst maakt. De gids gaat verder zodra het geluid is geladen.",
+        "waiting": "Gebruik ‘Audio kiezen’ hieronder en wacht tot het laden klaar is."
+      },
+      "lyrics": {
+        "title": "Importeer de songtekst",
+        "description": "Kies hieronder een bron voor de songtekst. Controleer het resultaat in het importvenster en bevestig de import.",
+        "waiting": "Kies hieronder één bron en rond het importvenster af."
+      },
+      "review": {
+        "title": "Controleer songtekst en regeltypen",
+        "description": "Vergelijk elke regel met de opname. Dubbelklik op woorden om ze te corrigeren; selecteer regels om achtergrondzang of duet te markeren. Verwijder lege regels en bevestig hieronder.",
+        "waiting": "De structuur is geldig. Lees de songtekst uit en bevestig daarna je controle.",
+        "waitingEmptyLines": "Er staat nog minstens één lege regel. Verwijder of vul die voordat je bevestigt."
+      },
+      "sync": {
+        "title": "Synchroniseer elk woord",
+        "description": "Ga naar de Tijdmodus, selecteer het eerste woord, druk op spatie en gebruik dan F om te starten, G tussen woorden en H bij pauzes of regeleinden. Elk woord moet een geldige tijd krijgen.",
+        "waiting": "Open de Tijdmodus en blijf timen; dit is voltooid zodra elk relevant woord een geldige begin- en eindtijd heeft."
+      },
+      "songwriters": {
+        "title": "Voeg liedschrijvers toe",
+        "description": "Open de metagegevens en gebruik ‘Songwriters uit Genius ophalen’, of voeg per echte naam één Liedschrijver-waarde toe. De gids merkt het zodra er minstens één is opgeslagen.",
+        "waiting": "Open de metagegevens en voeg minstens één niet-lege Liedschrijver-waarde toe."
+      },
+      "export": {
+        "title": "Exporteer de TTML",
+        "description": "Sla de afgeronde TTML op. Deze stap is pas voltooid als er echt een bestand is geschreven.",
+        "waiting": "Kies TTML opslaan en rond de bestandskiezer af."
+      },
+      "test": {
+        "title": "Lokaal testen",
+        "description": "Upload het opgeslagen bestand in Spicy Lyrics en controleer het inlezen, de opmaak en de timing.",
+        "waiting": "Open de instructies voor lokaal testen, controleer het bestand in Spicy Lyrics en rond daarna de gids af."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Het nummer heeft geen songschrijvers. Wil je doorgaan met opslaan?"
+    },
+    "newProject": {
+      "title": "Project maken bevestigen",
+      "description": "Je hebt niet-opgeslagen wijzigingen. Als je doorgaat, gaan ze verloren. Weet je zeker dat je een nieuw project wilt maken?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Verwijderen",
     "clickToSet": "Klik om in te stellen ",
     "move": "Verplaatsen",
-    "copy": "Kopieer"
+    "copy": "Kopieer",
+    "reset": "Opnieuw instellen",
+    "preview": "Voorbeeld"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Selecteer het audiobestand dat u hebt geladen",
       "lyricTitle": "Kies het TTML-bestand waarin dit project wordt opgeslagen"
+    },
+    "createProject": {
+      "parentTitle": "Kies waar de projectmap moet worden gemaakt",
+      "title": "Kies of maak een map voor het nieuwe project"
+    },
+    "openProject": {
+      "title": "Projectmap kiezen"
+    },
+    "saveProject": {
+      "title": "Kies of maak een projectmap"
+    },
+    "openWorkspace": {
+      "title": "Kies een werkruimtemap met projecten"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Importeerbaar",
     "scanning": "Scannen...",
     "selectFolder": "Werkruimtemap selecteren...",
-    "unknown": "Onbekend"
+    "unknown": "Onbekend",
+    "noProjectsFound": "Geen projecten gevonden in deze map",
+    "projectsFound": "Gevonden projecten: {count}",
+    "scanFailed": "Werkruimtemap scannen mislukt"
   },
   "ribbonBar": {
     "advancedTooltip": "Geldt voor alle werkbalken: Bewerken, Timing en Voorbeeld.",
@@ -248,7 +370,8 @@
       "showRoman": "Toon romanisatie",
       "fadeWidth": "Vervagen breedte",
       "instantFade": "Direct uitfaden",
-      "showFps": "Toon FPS"
+      "showFps": "Toon FPS",
+      "autoScroll": "Automatisch scrollen"
     },
     "syncMode": {
       "currentEmptyBeat": "Lege slag",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Volgen",
       "autoScroll": "Automatisch scrollen",
-      "highlightActiveLine": "Markeer lijn"
+      "highlightActiveLine": "Markeer lijn",
+      "spectrogramHoverSync": "Synchroniseren met spectrogramcursor"
     },
-    "loading": "Laadpaneel..."
+    "loading": "Laadpaneel...",
+    "advanced": "Geavanceerd"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Vervagen straal",
       "customBackgroundBrightness": "Helderheid",
       "customBackgroundEnabled": "Achtergrond instellen",
-      "customBackgroundManage": "Instellingen"
+      "customBackgroundManage": "Instellingen",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Deel aanpasbare project- en afspeelgegevens met de Discord-desktopapp.",
+      "discordCustomize": "Status en inactiviteit aanpassen",
+      "discordTemplates": "Statussjablonen",
+      "discordTemplateHelp": "Gebruik {{variables}} en zet optionele tekst tussen [[dubbele vierkante haken]].",
+      "discordDetails": "Details",
+      "discordState": "Status",
+      "discordSearchVariables": "Variabelen zoeken…",
+      "discordPlaybackTimeline": "Afspeeltijdlijn",
+      "discordProjectElapsed": "Timer voor tijd besteed aan het project",
+      "discordRepositoryButton": "Repositoryknop",
+      "discordStatusBadge": "Statusbadge voor afspelen/pauzeren",
+      "discordIdleTimeout": "Inactief na",
+      "discordIdlePrivacy": "Een inactieve status verbergt projectdetails, knoppen, badges en timers.",
+      "normalizeApostrophesOnImport": "Apostroffen normaliseren",
+      "normalizeApostrophesOnImportDesc": "Zet gekrulde en andere apostrofachtige tekens om bij importeren en exporteren.",
+      "normalizeCyrillicEsOnImport": "Losse Cyrillische Е/е in Latijnse woorden corrigeren",
+      "normalizeCyrillicEsOnImportDesc": "Corrigeert verborgen Cyrillische dubbelgangers in Latijnse woorden bij importeren en exporteren.",
+      "allowConsecutiveBackgroundLines": "Opeenvolgende en losse achtergrondzang toestaan",
+      "allowConsecutiveBackgroundLinesDesc": "Exporteert opeenvolgende achtergrondzang samen en behoudt losse achtergrondzang voor compatibiliteit met Spicy Lyrics. Andere spelers ondersteunen deze structuur mogelijk niet.",
+      "spectrogramHoverSync": "Synchroniseren met spectrogramcursor",
+      "spectrogramHoverSyncDesc": "Als je in de synchronisatiemodus over het spectrogram beweegt, leggen de triggertoetsen (F, G, H) het tijdstip onder de cursor vast in plaats van de afspeeltijd.",
+      "syncWordWrap": "Wikkel woorden in de tijdmodus",
+      "syncWordWrapDesc": "Plaatst woordkaarten op de volgende regel in plaats van een horizontale schuifbalk weer te geven op het tabblad Tijd/Synchronisatie.",
+      "syncAutoScroll": "Automatisch scrollen naar actieve lijn tijdens afspelen",
+      "syncAutoScrollDesc": "Bladert automatisch door de editorweergave om de momenteel actieve tekstregel te volgen tijdens het afspelen.",
+      "syncFocusMainLine": "Focus op de hoofdlijn tijdens het afspelen",
+      "syncFocusMainLineDesc": "Tijdens het afspelen wordt scherpgesteld op actieve hoofdlijnen en worden achtergrondlijnen genegeerd, tenzij er geen hoofdlijn actief is.",
+      "highlightActiveLine": "Markeer Actieve lijn tijdens afspelen"
     },
     "about": {
       "update": "Vernieuwen",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klassiek donker thema",
         "legacyDarkThemeDesc": "Gebruik het lichtere donkere palet van vóór het herontwerp van Intonated Black.",
         "masterResetNote": "Hiermee worden alle 20+ gedetailleerde overschrijvingen gereset.",
-        "resetMaster": "Alle geavanceerde instellingen herstellen"
+        "resetMaster": "Alle geavanceerde instellingen herstellen",
+        "scrollbarThumb": "Schuifbalkgreep",
+        "dialogBackground": "Achtergrond van dialogen",
+        "dialogBorder": "Rand van dialogen",
+        "globalBorderRadius": "Globale hoekafronding",
+        "globalBorderWidth": "Globale randdikte",
+        "shadowIntensity": "Schaduwintensiteit",
+        "romanizationText": "Romanisatietekst",
+        "translationText": "Vertalingstekst",
+        "geniusHeaderColor": "Kleur van Genius-kopjes"
       },
       "secondaryDesc": "Vertalingen en metadata.",
       "layout": {
         "title": "Applicatie-indeling",
-        "syncWordWrap": "Wikkel woorden in de tijdmodus",
-        "syncWordWrapDesc": "Plaatst woordkaarten op de volgende regel in plaats van een horizontale schuifbalk weer te geven op het tabblad Tijd/Synchronisatie.",
-        "syncAutoScroll": "Automatisch scrollen naar actieve lijn tijdens afspelen",
-        "syncAutoScrollDesc": "Bladert automatisch door de editorweergave om de momenteel actieve tekstregel te volgen tijdens het afspelen.",
-        "syncFocusMainLine": "Focus op de hoofdlijn tijdens het afspelen",
-        "syncFocusMainLineDesc": "Tijdens het afspelen wordt scherpgesteld op actieve hoofdlijnen en worden achtergrondlijnen genegeerd, tenzij er geen hoofdlijn actief is.",
-        "highlightActiveLine": "Markeer Actieve lijn tijdens afspelen",
-        "highlightActiveLineDesc": "Markeert visueel de tekstregel die momenteel wordt gespeeld in zowel de Edit- als de Time-modus.",
         "order": "Elementvolgorde",
         "orderDesc": "Sleep om de volgorde van elementen te wijzigen. Sommige posities kunnen beperkt zijn door beperkingen.",
         "titlebar": "Titelbalk",
@@ -481,7 +636,13 @@
       "customFontActive": "LOKALE AANGEPASTE FONT",
       "defaultFonts": "Standaard stapels",
       "systemFonts": "Systeem lettertypen",
-      "googleFonts": "Google lettertypen bibliotheek"
+      "googleFonts": "Google lettertypen bibliotheek",
+      "fontDialogDescription": "Kies een standaard-, systeem- of Google-lettertype.",
+      "interfaceScale": "Interfaceschaal",
+      "interfaceScaleDesc": "Kies een schaal en pas die toe. Je kunt ook Ctrl/Cmd +, - of 0 gebruiken.",
+      "resetTitle": "Thema opnieuw instellen",
+      "resetDesc": "Zet alle kleuren, achtergronden, verlopen en aangepaste overschrijvingen terug naar het standaardthema.",
+      "resetTheme": "Standaardthema herstellen"
     },
     "group": {
       "display": "Weergeven",
@@ -490,7 +651,11 @@
       "playback": "Afspelen",
       "autosave": "Automatisch opslaan",
       "previewControls": "Voorbeeld",
-      "editorControls": "Editorweergave en -bediening"
+      "editorControls": "Editorweergave en -bediening",
+      "import": "Importeren en exporteren",
+      "syncWordWrap": "Tijdmodus / synchronisatietabblad",
+      "privacy": "Privacy",
+      "projects": "Projecten"
     },
     "assistant": {
       "manualTimestampEdit": "Handmatige tijdsaanduiding bewerken",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Mapprojecten",
+      "folderProjectsDesc": "Open, bewaar en orden songteksten als projectmappen met een project.json-manifest.",
+      "folderProjectsAutosave": "Projectbestand opslaan bij automatisch opslaan",
+      "folderProjectsAutosaveDesc": "Schrijft het songtekstbestand van het geopende project bij elke automatische opslag naar schijf."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Exporteren naar YRC",
         "toLrcfySylb": "Export naar Lyricify Syllable",
         "toASS": "Exporteren naar ASS-ondertitels"
-      }
+      },
+      "spectrogramHoverSync": "Synchroniseren met spectrogramcursor",
+      "whatsNew": "Wat is er nieuw",
+      "changelog": "Wijzigingslogboek en updates",
+      "projects": "Projecten"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Gekoppeld project",
-      "folder": "Mapproject"
+      "folder": "Mapproject",
+      "namePlaceholder": "Projectnaam"
     },
     "backup": {
       "restore": "Back-up herstellen",
@@ -753,7 +929,15 @@
       "audio": "Geluid",
       "keybindings": "Toetsencombinaties",
       "spectrogram": "Spectrogram",
-      "backup": "Back-up"
+      "backup": "Back-up",
+      "editor": "Editor en synchronisatie",
+      "files": "Bestanden en opslag"
+    },
+    "page": {
+      "generalDesc": "Taal, indeling, privacy en algemeen gedrag van de app.",
+      "editorDesc": "Tijdinvoer, synchronisatiegedrag en visuele hints.",
+      "filesDesc": "Opschonen bij importeren, geschiedenis van automatisch opslaan en draagbare back-ups.",
+      "audioDesc": "Afspelen, conversie, equalizer en spectrogramweergave."
     }
   },
   "autoSegmentApplied": "Automatisch gesegmenteerd met {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Er kon geen back-up worden gemaakt van het originele TTML-bestand, dus het werd niet overschreven",
     "linkedProjectNoBackup": "Er is geen back-up gevonden voor dit project",
     "linkedProjectRestoreFailed": "Kan het oorspronkelijke TTML-bestand niet herstellen",
-    "linkedProjectRestoreReloadFailed": "Origineel bestand hersteld, maar project niet opnieuw laden"
+    "linkedProjectRestoreReloadFailed": "Origineel bestand hersteld, maar project niet opnieuw laden",
+    "folderProjectInvalid": "Ongeldige projectmap",
+    "folderProjectRequiresDesktop": "Projectmappen zijn alleen beschikbaar in de desktopapp",
+    "folderProjectCreateFailed": "Project maken mislukt",
+    "folderProjectLyricParse": "Songtekstbestand kon niet worden gelezen",
+    "folderProjectNoLyric": "Voeg een songtekstbestand toe voordat je het project opslaat",
+    "folderProjectAudioReadFailed": "Audiobestand van het project niet gevonden",
+    "folderProjectAudioLoadFailed": "Audio van het project laden mislukt",
+    "folderProjectNoAudio": "Laad een audiobestand voordat je het project opslaat",
+    "folderProjectUnavailable": "De projectmap is niet toegankelijk",
+    "folderProjectNoContent": "Geen TTML- of audiobestanden gevonden in deze map",
+    "folderProjectSaveFailed": "Project opslaan mislukt",
+    "folderProjectNotFound": "De gekozen map is geen geldige projectmap (geen project.json, TTML- of audiobestanden)",
+    "folderProjectOpenFailed": "Projectmap openen mislukt: {reason}",
+    "ttmlGenerateFailed": "TTML genereren mislukt",
+    "folderProjectCleanupFailed": "Opgeslagen, maar een eerder projectbestand kon niet worden verwijderd",
+    "openFolderFailed": "Kan de map niet openen"
   },
   "success": {
-    "linkedProjectBackupRestored": "Origineel TTML-bestand hersteld"
+    "linkedProjectBackupRestored": "Origineel TTML-bestand hersteld",
+    "folderProjectSaved": "Project opgeslagen",
+    "folderProjectAlreadyExists": "Deze map is al een project en wordt in plaats daarvan geopend",
+    "folderProjectCreated": "Project gemaakt",
+    "lyricsSavedToProject": "Songtekst opgeslagen in het project"
   },
   "audio": {
     "marker": "Markering",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Stoppen",
       "start": "Beginnen"
-    }
+    },
+    "description": "Kies een tempo en druk bij elke piep op {key} om de vertraging tussen het geluid en je invoer te meten."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Zoeken mislukt: {error}",
       "fetchError": "Kan de songteksten niet ophalen: {error}",
       "noLyricsError": "Geen songteksten om te importeren.",
-      "importSuccess": "Geïmporteerde {count} lijnen uit Genius."
+      "importSuccess": "Geïmporteerde {count} lijnen uit Genius.",
+      "howToGetKey": "Een Genius Client Access Token aanmaken"
     },
     "openLink": "Koppeling openen",
     "duplicateMsg": "Dubbele metadata waarden gevonden",
@@ -1012,7 +1218,9 @@
     "importTitle": "Importeer songteksten van Genius",
     "searchPlaceholder": "Kunstenaar - Nummer titel…",
     "notFound": "Geen resultaten gevonden. Probeer andere trefwoorden.",
-    "noResult": "Voer de naam van het nummer of de artiest in om te starten."
+    "noResult": "Voer de naam van het nummer of de artiest in om te starten.",
+    "howToGetKey": "Een Genius Client Access Token aanmaken",
+    "changeKey": "API-sleutel wijzigen"
   },
   "textImportDialog": {
     "processLyrics": "Songteksten verwerken",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Volledige TTML Handleiding"
-    }
+    },
+    "description": "Importeer songteksten uit platte tekst of andere formaten."
   },
   "sectionImportReview": {
     "title": "Controleer gedetecteerde secties",
@@ -1239,7 +1448,13 @@
     "crowdin": "Help Vertalen in Crowdin",
     "buildDate": "Build datum: {date}",
     "gitCommit": "Git-commit: {commit}",
-    "platform": "Platform: {platform}"
+    "platform": "Platform: {platform}",
+    "contributors": "Bijdragers",
+    "viewContributors": "Bijdragers bekijken",
+    "contributorProfiles": "Profielen van bijdragers",
+    "contributorTooltip": "{name} – bijdragen: {count}",
+    "openContributorProfile": "GitHub-profiel van {name} openen",
+    "unknown": "Onbekend"
   },
   "spectrogram": {
     "invalidEndTime": "Kan deze eindtijd niet selecteren",

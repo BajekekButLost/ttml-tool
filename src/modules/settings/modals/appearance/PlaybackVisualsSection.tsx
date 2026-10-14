@@ -78,17 +78,26 @@ export const PlaybackVisualsSection = ({
 					/>
 				</Grid>
 				<AdvancedColorItem
-					label="Romanization Text"
+					label={t(
+						"settings.appearance.advanced.romanizationText",
+						"Romanization Text",
+					)}
 					value={vRomanColor}
 					onChange={setVRomanColor}
 				/>
 				<AdvancedColorItem
-					label="Translation Text"
+					label={t(
+						"settings.appearance.advanced.translationText",
+						"Translation Text",
+					)}
 					value={vTransColor}
 					onChange={setVTransColor}
 				/>
 				<AdvancedColorItem
-					label="Genius Header Color"
+					label={t(
+						"settings.appearance.advanced.geniusHeaderColor",
+						"Genius Header Color",
+					)}
 					value={vGeniusHeaderColor}
 					onChange={setVGeniusHeaderColor}
 				/>

@@ -270,6 +270,10 @@ export const BeginnerGuide = () => {
 	const currentId = GUIDE_STEP_IDS[Math.min(step, GUIDE_STEP_IDS.length - 1)];
 	const copy = GUIDE_COPY[currentId];
 	const stepNumber = getGuideStepNumber(step);
+	const waitingKey =
+		currentId === "review" && !hasNoEmptyLyricLines(lyrics)
+			? "beginnerGuide.steps.review.waitingEmptyLines"
+			: `beginnerGuide.steps.${currentId}.waiting`;
 	const waitingText =
 		currentId === "intro"
 			? "Read the full guide, then continue when you are ready to begin."
@@ -545,10 +549,7 @@ export const BeginnerGuide = () => {
 													"beginnerGuide.status.complete",
 													"Done — the tool detected this step is complete.",
 												)
-											: t(
-													`beginnerGuide.steps.${currentId}.waiting`,
-													waitingText,
-												)}
+											: t(waitingKey, waitingText)}
 									</Text>
 								</Card>
 								{currentId === "lyrics" && !stepComplete && (

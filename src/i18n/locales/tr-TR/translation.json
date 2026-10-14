@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "NaeNae kullanıcıları için öne çıkanları ve en son iyileştirmeleri yayınlayın"
+    "highlightsDescription": "NaeNae kullanıcıları için öne çıkanları ve en son iyileştirmeleri yayınlayın",
+    "changelogTitle": "Değişiklik Günlüğü ve Güncellemeler",
+    "viewCommits": "GitHub'da Commit'leri Görüntüle",
+    "whatsNewTitle": "NaeNae's Fork'taki Yenilikler",
+    "otherEnhancements": "Diğer İyileştirmeler"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Şarkı sözü yok",
       "description": "Yeni şarkı sözü eklemek için üst paneli kullan veya isteğin şarkı sözünü menüden aç/içe aktar"
+    },
+    "window": {
+      "minimize": "Pencereyi simge durumuna küçült",
+      "maximize": "Pencereyi ekranı kaplat",
+      "close": "Pencereyi kapat"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Şarkı sözü dosyasını aç"
+      "open": "Şarkı sözü dosyasını aç",
+      "start": "Rehberi Başlat",
+      "import": "Şarkı sözlerini içe aktar"
     },
     "welcome": {
-      "open": "Şarkı sözü dosyasını aç"
+      "open": "Şarkı sözü dosyasını aç",
+      "title": "İlk zamanlanmış TTML'nizi oluşturun",
+      "description": "Rehber sizinle kalır, doğru araçları açar ve gereken her görev gerçekten tamamlanana kadar bekler.",
+      "own": "İlk TTML'mde bana rehberlik et",
+      "skip": "Şimdilik atla"
     },
     "sync": {
-      "wordProgress": "Zamanlanan kelimeler: {timed} / {total}"
+      "wordProgress": "Zamanlanan kelimeler: {timed} / {total}",
+      "open": "Zamanla modunu aç"
+    },
+    "menu": "Rehberi Başlat",
+    "restore": "Rehberi göster",
+    "progress": "Adım {current}/{total}",
+    "tuck": "Gizle",
+    "exit": "Rehberden çık",
+    "beforeStart": {
+      "title": "Başlamadan önce:",
+      "text": "Düzenleyicinin görünümünü zevkinize göre değiştirebilirsiniz. Ayarları açmak için aşağıya tıklayın. Temel Düzenleyici'yi deneyin ya da tüm ayrıntıları kontrol etmek için Gelişmiş Düzenleyici'ye göz atın.",
+      "link": "Düzenleyici Görünümünü Özelleştir"
+    },
+    "status": {
+      "complete": "Tamam — araç bu adımın tamamlandığını algıladı."
+    },
+    "readMore": "Tam rehber",
+    "continue": "Devam",
+    "review": {
+      "confirm": "Şarkı sözlerini kontrol ettim"
+    },
+    "test": {
+      "open": "Test adımlarını aç"
+    },
+    "audio": {
+      "choose": "Ses seç"
+    },
+    "songwriters": {
+      "open": "Metaverileri aç"
+    },
+    "export": {
+      "save": "TTML'yi kaydet"
+    },
+    "genius": {
+      "title": "Bir Genius Client Access Token oluşturun",
+      "step1": "1. Genius API Clients sayfasını açın ve oturum açın.",
+      "step2": "2. New API Client'ı seçin, tanınabilir bir uygulama adı verin ve zorunlu uygulama web sitesi alanını doldurun.",
+      "step3": "3. İstemciyi kaydedin, ardından Generate Access Token'ı seçin.",
+      "step4": "4. Client ID veya Client Secret'ı değil, Client Access Token'ı kopyalayın.",
+      "reuse": "Araç bu token'ı yerel olarak saklar ve şarkı sözü içe aktarma ile şarkıyazarı aramada yeniden kullanır.",
+      "openPortal": "Genius API Clients'ı aç",
+      "paste": "Token'ı Genius içe aktarmaya yapıştır"
+    },
+    "finish": "Rehberi bitir",
+    "steps": {
+      "intro": {
+        "title": "Önce tam rehberi okuyun",
+        "description": "Bu yerleşik rehber, tam TTML rehberinin uygulamalı bir yardımcısıdır. Kavramlar için tam rehberi okuyun, ardından bunları düzenleyicide uygularken bu paneli açık tutun.",
+        "waiting": "Tam rehberi okuyun, başlamaya hazır olduğunuzda devam edin."
+      },
+      "audio": {
+        "title": "Şarkıyı içe aktarın",
+        "description": "Şarkı sözlerini hazırladığınız kaydın tam olarak kendisini seçin. Ses yüklendiğinde rehber devam eder.",
+        "waiting": "Aşağıdaki “Ses seç” düğmesini kullanın ve yüklemenin bitmesini bekleyin."
+      },
+      "lyrics": {
+        "title": "Şarkı sözlerini içe aktarın",
+        "description": "Aşağıdan bir şarkı sözü kaynağı seçin. Sonucu içe aktarma penceresinde inceleyin ve onaylayın.",
+        "waiting": "Aşağıdan bir kaynak seçin ve içe aktarma penceresini tamamlayın."
+      },
+      "review": {
+        "title": "Şarkı sözlerini ve satır türlerini kontrol edin",
+        "description": "Her satırı kayıtla karşılaştırın. Düzeltmek için kelimelere çift tıklayın; arka vokal veya düet olarak işaretlemek için satırları seçin. Boş satırları kaldırın, ardından aşağıdan onaylayın.",
+        "waiting": "Yapı geçerli. Şarkı sözlerini okumayı bitirin, ardından incelemenizi onaylayın.",
+        "waitingEmptyLines": "En az bir boş satır kaldı. Onaylamadan önce silin veya doldurun."
+      },
+      "sync": {
+        "title": "Her kelimeyi zamanlayın",
+        "description": "Zamanla moduna geçin, ilk kelimeyi seçin, Boşluk'a basın; ardından başlatmak için F, kelimeler arasında G, duraklamalarda veya satır sonlarında H kullanın. Her kelimeye geçerli bir zaman verilmelidir.",
+        "waiting": "Zamanla modunu açın ve zamanlamaya devam edin; ilgili her kelimenin geçerli bir başlangıcı ve bitişi olduğunda tamamlanır."
+      },
+      "songwriters": {
+        "title": "Şarkıyazarlarını ekleyin",
+        "description": "Metaverileri açın ve “Genius'tan şarkıyazarlarını al”ı kullanın ya da her gerçek isim için bir Şarkıyazarı değeri ekleyin. En az biri kaydedildiğinde rehber bunu algılar.",
+        "waiting": "Metaverileri açın ve en az bir boş olmayan Şarkıyazarı değeri ekleyin."
+      },
+      "export": {
+        "title": "TTML'yi dışa aktarın",
+        "description": "Bitmiş TTML'yi kaydedin. Bu adım ancak bir dosya gerçekten yazıldığında tamamlanır.",
+        "waiting": "TTML'yi kaydet'i seçin ve dosya seçiciyi tamamlayın."
+      },
+      "test": {
+        "title": "Yerel olarak test edin",
+        "description": "Kaydedilen dosyayı Spicy Lyrics'e yükleyin ve ayrıştırma, biçimlendirme ile zamanlamayı kontrol edin.",
+        "waiting": "Yerel test talimatlarını açın, dosyayı Spicy Lyrics'te doğrulayın, ardından rehberi bitirin."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Bu şarkının şarkıyazarı yok. Kaydetmeye devam etmek istiyor musun?"
+    },
+    "newProject": {
+      "title": "Proje Oluşturmayı Onayla",
+      "description": "Kaydedilmemiş değişiklikleriniz var. Devam ederseniz bu değişiklikler kaybolacak. Yeni bir proje oluşturmak istediğinizden emin misiniz?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Kaldır",
     "clickToSet": "Ayarlamak için tıklayın ",
     "move": "Taşı",
-    "copy": "Kopyala"
+    "copy": "Kopyala",
+    "reset": "Sıfırla",
+    "preview": "Önizleme"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Yüklediğiniz ses dosyasını seçin",
       "lyricTitle": "Bu projenin kaydettiği TTML dosyasını seçin"
+    },
+    "createProject": {
+      "parentTitle": "Proje klasörünün oluşturulacağı yeri seçin",
+      "title": "Yeni proje için bir klasör seçin veya oluşturun"
+    },
+    "openProject": {
+      "title": "Proje klasörünü seçin"
+    },
+    "saveProject": {
+      "title": "Bir proje klasörü seçin veya oluşturun"
+    },
+    "openWorkspace": {
+      "title": "Proje içeren bir çalışma alanı klasörü seçin"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "İthal edilebilir",
     "scanning": "Taranıyor...",
     "selectFolder": "Çalışma alanı klasörünü seçin...",
-    "unknown": "Bilinmiyor"
+    "unknown": "Bilinmiyor",
+    "noProjectsFound": "Bu klasörde proje bulunamadı",
+    "projectsFound": "{count} proje bulundu",
+    "scanFailed": "Çalışma alanı klasörü taranamadı"
   },
   "ribbonBar": {
     "advancedTooltip": "Tüm araç çubukları için geçerlidir: Düzenleme, Zamanlama ve Önizleme.",
@@ -248,7 +370,8 @@
       "showRoman": "Romanizasyonu Göster",
       "fadeWidth": "Geçiş Genişliği",
       "instantFade": "Anında Kararma",
-      "showFps": "FPS'i Göster"
+      "showFps": "FPS'i Göster",
+      "autoScroll": "Otomatik Kaydırma"
     },
     "syncMode": {
       "currentEmptyBeat": "Boş Ritim",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Takip",
       "autoScroll": "Otomatik Kaydırma",
-      "highlightActiveLine": "Çizgiyi Vurgula"
+      "highlightActiveLine": "Çizgiyi Vurgula",
+      "spectrogramHoverSync": "Spektrogram imlecine göre zamanla"
     },
-    "loading": "Panel yükleniyor..."
+    "loading": "Panel yükleniyor...",
+    "advanced": "Gelişmiş"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Bulanıklık Yarıçapı",
       "customBackgroundBrightness": "Parlaklık",
       "customBackgroundEnabled": "Arka Plan ayarlandı",
-      "customBackgroundManage": "Ayarlar"
+      "customBackgroundManage": "Ayarlar",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Özelleştirilebilir proje ve oynatma ayrıntılarını Discord masaüstü uygulamasıyla paylaşın.",
+      "discordCustomize": "Durumu ve hareketsizliği özelleştir",
+      "discordTemplates": "Durum şablonları",
+      "discordTemplateHelp": "{{variables}} kullanın ve isteğe bağlı metni [[çift köşeli parantez]] içine alın.",
+      "discordDetails": "Ayrıntılar",
+      "discordState": "Durum",
+      "discordSearchVariables": "Değişken ara…",
+      "discordPlaybackTimeline": "Oynatma zaman çizelgesi",
+      "discordProjectElapsed": "Projede geçen süre sayacı",
+      "discordRepositoryButton": "Depo düğmesi",
+      "discordStatusBadge": "Oynat/duraklat durum rozeti",
+      "discordIdleTimeout": "Şu süreden sonra pasif",
+      "discordIdlePrivacy": "Pasif durum proje ayrıntılarını, düğmeleri, rozetleri ve sayaçları gizler.",
+      "normalizeApostrophesOnImport": "Kesme işaretlerini normalleştir",
+      "normalizeApostrophesOnImportDesc": "İçe ve dışa aktarma sırasında kıvrık ve kesme işaretine benzeyen diğer karakterleri dönüştürür.",
+      "normalizeCyrillicEsOnImport": "Latin kelimelerdeki tekil Kiril Е/е harflerini düzelt",
+      "normalizeCyrillicEsOnImportDesc": "İçe ve dışa aktarma sırasında Latin kelimelerdeki gizli Kiril benzeri harfleri düzeltir.",
+      "allowConsecutiveBackgroundLines": "Ardışık ve bağımsız arka vokallere izin ver",
+      "allowConsecutiveBackgroundLinesDesc": "Spicy Lyrics uyumluluğu için ardışık arka vokalleri birlikte dışa aktarır ve bağımsız arka vokalleri korur. Diğer oynatıcılar bu yapıyı desteklemeyebilir.",
+      "spectrogramHoverSync": "Spektrogram imlecine göre zamanla",
+      "spectrogramHoverSyncDesc": "Senkronizasyon modunda imleç spektrogramın üzerindeyken tetikleme tuşları (F, G, H) oynatma süresi yerine imlecin bulunduğu zamanı kaydeder.",
+      "syncWordWrap": "Zaman Modunda Kelimeleri Kaydır",
+      "syncWordWrapDesc": "Zaman / Senkronizasyon sekmesinde yatay kaydırma çubuğu göstermek yerine kelime kartlarını bir sonraki satıra kaydırır.",
+      "syncAutoScroll": "Oynatma Sırasında Etkin Satıra Otomatik Kaydırma",
+      "syncAutoScrollDesc": "Çalma sırasında o anda aktif olan şarkı sözü satırını takip etmek için editör görünümünü otomatik olarak kaydırır.",
+      "syncFocusMainLine": "Oynatma Sırasında Ana Satıra Odaklan",
+      "syncFocusMainLineDesc": "Oynatma sırasında aktif ana hatlara odaklanır ve aktif bir ana hat olmadığı sürece arka plan hatlarını yok sayar.",
+      "highlightActiveLine": "Oynatma Sırasında Aktif Satırı Vurgulayın"
     },
     "about": {
       "update": "Güncelle",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klasik Koyu Tema",
         "legacyDarkThemeDesc": "Tonlanmış Siyah yeniden tasarımından önceki daha açık koyu paleti kullanın.",
         "masterResetNote": "Bu, 20'den fazla ayrıntılı geçersiz kılmanın tamamını sıfırlayacaktır.",
-        "resetMaster": "Tüm gelişmiş ayarları sıfırla"
+        "resetMaster": "Tüm gelişmiş ayarları sıfırla",
+        "scrollbarThumb": "Kaydırma Çubuğu Tutamacı",
+        "dialogBackground": "İletişim Kutusu Arka Planı",
+        "dialogBorder": "İletişim Kutusu Kenarlığı",
+        "globalBorderRadius": "Genel Kenar Yuvarlaklığı",
+        "globalBorderWidth": "Genel Kenarlık Kalınlığı",
+        "shadowIntensity": "Gölge Yoğunluğu",
+        "romanizationText": "Romanizasyon Metni",
+        "translationText": "Çeviri Metni",
+        "geniusHeaderColor": "Genius Başlık Rengi"
       },
       "secondaryDesc": "Çeviriler ve Meta Veriler.",
       "layout": {
         "title": "Uygulama Düzeni",
-        "syncWordWrap": "Zaman Modunda Kelimeleri Kaydır",
-        "syncWordWrapDesc": "Zaman / Senkronizasyon sekmesinde yatay kaydırma çubuğu göstermek yerine kelime kartlarını bir sonraki satıra kaydırır.",
-        "syncAutoScroll": "Oynatma Sırasında Etkin Satıra Otomatik Kaydırma",
-        "syncAutoScrollDesc": "Çalma sırasında o anda aktif olan şarkı sözü satırını takip etmek için editör görünümünü otomatik olarak kaydırır.",
-        "syncFocusMainLine": "Oynatma Sırasında Ana Satıra Odaklan",
-        "syncFocusMainLineDesc": "Oynatma sırasında aktif ana hatlara odaklanır ve aktif bir ana hat olmadığı sürece arka plan hatlarını yok sayar.",
-        "highlightActiveLine": "Oynatma Sırasında Aktif Satırı Vurgulayın",
-        "highlightActiveLineDesc": "Hem Düzenleme hem de Zaman modlarında çalınmakta olan şarkı sözü satırını görsel olarak vurgular.",
         "order": "Eleman Sırası",
         "orderDesc": "Öğeleri yeniden sıralamak için sürükleyin. Bazı pozisyonlar kısıtlamalarla sınırlı olabilir.",
         "titlebar": "Başlık Çubuğu",
@@ -481,7 +636,13 @@
       "customFontActive": "YEREL ÖZEL YAZI TİPİ",
       "defaultFonts": "Standart Stackler",
       "systemFonts": "Sistem Yazı Tipleri",
-      "googleFonts": "Google Fonts Kitaplığı"
+      "googleFonts": "Google Fonts Kitaplığı",
+      "fontDialogDescription": "Standart, sistem veya Google Fonts kitaplığından bir yazı tipi seçin.",
+      "interfaceScale": "Arayüz Ölçeği",
+      "interfaceScaleDesc": "Bir ölçek seçin ve uygulayın. Ctrl/Cmd +, - veya 0 da kullanabilirsiniz.",
+      "resetTitle": "Temayı Sıfırla",
+      "resetDesc": "Tüm renkleri, arka planları, gradyanları ve özel ayarları varsayılan temaya döndürür.",
+      "resetTheme": "Temayı Varsayılana Sıfırla"
     },
     "group": {
       "display": "Görüntü",
@@ -490,7 +651,11 @@
       "playback": "Oynatma",
       "autosave": "Otomatik Kaydet",
       "previewControls": "Önizleme",
-      "editorControls": "Düzenleyici görünümü ve denetimleri"
+      "editorControls": "Düzenleyici görünümü ve denetimleri",
+      "import": "İçe ve dışa aktarma",
+      "syncWordWrap": "Zamanla Modu / Senkronizasyon Sekmesi",
+      "privacy": "Gizlilik",
+      "projects": "Projeler"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Klasör projeleri",
+      "folderProjectsDesc": "Şarkı sözlerini project.json bildirimine sahip proje klasörleri olarak açın, kaydedin ve düzenleyin.",
+      "folderProjectsAutosave": "Otomatik kaydetmede proje dosyasını kaydet",
+      "folderProjectsAutosaveDesc": "Her otomatik kaydetmede açık projenin şarkı sözü dosyasını diske yazar."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "YRC dosyası olarak dışa aktar",
         "toLrcfySylb": "Lyricify Syllable olarak dışa aktar",
         "toASS": "ASS altyazısı olarak dışa aktar"
-      }
+      },
+      "spectrogramHoverSync": "Spektrogram imlecine göre zamanla",
+      "whatsNew": "Yenilikler",
+      "changelog": "Değişiklik Günlüğü ve Güncellemeler",
+      "projects": "Projeler"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Bağlantılı proje",
-      "folder": "Klasör projesi"
+      "folder": "Klasör projesi",
+      "namePlaceholder": "Proje adı"
     },
     "backup": {
       "restore": "Yedeği geri yükle",
@@ -753,7 +929,15 @@
       "audio": "Ses",
       "keybindings": "Tuş Atamaları",
       "spectrogram": "Spektrogram",
-      "backup": "Yedekleme"
+      "backup": "Yedekleme",
+      "editor": "Düzenleyici ve Zamanlama",
+      "files": "Dosyalar ve Depolama"
+    },
+    "page": {
+      "generalDesc": "Dil, düzen, gizlilik ve uygulama genelindeki davranış.",
+      "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
+      "filesDesc": "İçe aktarma temizliği, otomatik kaydetme geçmişi ve taşınabilir yedekler.",
+      "audioDesc": "Oynatma, dönüştürme, ekolayzır ve spektrogram görünümü."
     }
   },
   "autoSegmentApplied": "{engine} ile otomatik olarak segmentlere ayrıldı",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Orijinal TTML dosyası yedeklenemediği için üzerine yazılmadı",
     "linkedProjectNoBackup": "Bu proje için yedek bulunamadı",
     "linkedProjectRestoreFailed": "Orijinal TTML dosyası geri yüklenemedi",
-    "linkedProjectRestoreReloadFailed": "Orijinal dosya geri yüklendi ancak proje yeniden yüklenemedi"
+    "linkedProjectRestoreReloadFailed": "Orijinal dosya geri yüklendi ancak proje yeniden yüklenemedi",
+    "folderProjectInvalid": "Geçersiz proje klasörü",
+    "folderProjectRequiresDesktop": "Proje klasörleri yalnızca masaüstü uygulamasında kullanılabilir",
+    "folderProjectCreateFailed": "Proje oluşturulamadı",
+    "folderProjectLyricParse": "Şarkı sözü dosyası ayrıştırılamadı",
+    "folderProjectNoLyric": "Projeyi kaydetmeden önce bir şarkı sözü dosyası ekleyin",
+    "folderProjectAudioReadFailed": "Proje ses dosyası bulunamadı",
+    "folderProjectAudioLoadFailed": "Proje sesi yüklenemedi",
+    "folderProjectNoAudio": "Projeyi kaydetmeden önce bir ses dosyası yükleyin",
+    "folderProjectUnavailable": "Proje klasörüne erişilemiyor",
+    "folderProjectNoContent": "Bu klasörde TTML veya ses dosyası bulunamadı",
+    "folderProjectSaveFailed": "Proje kaydedilemedi",
+    "folderProjectNotFound": "Seçilen klasör geçerli bir proje klasörü değil (project.json, TTML veya ses dosyası yok)",
+    "folderProjectOpenFailed": "Proje klasörü açılamadı: {reason}",
+    "ttmlGenerateFailed": "TTML oluşturulamadı",
+    "folderProjectCleanupFailed": "Kaydedildi, ancak önceki bir proje dosyası kaldırılamadı",
+    "openFolderFailed": "Klasör açılamadı"
   },
   "success": {
-    "linkedProjectBackupRestored": "Orijinal TTML dosyası geri yüklendi"
+    "linkedProjectBackupRestored": "Orijinal TTML dosyası geri yüklendi",
+    "folderProjectSaved": "Proje kaydedildi",
+    "folderProjectAlreadyExists": "Bu klasör zaten bir proje, onun yerine açılıyor",
+    "folderProjectCreated": "Proje oluşturuldu",
+    "lyricsSavedToProject": "Şarkı sözleri projeye kaydedildi"
   },
   "audio": {
     "marker": "işaretleyici",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Durdur",
       "start": "Başlat"
-    }
+    },
+    "description": "Beğendiğiniz bir tempo seçin ve ses ile girişiniz arasındaki gecikmeyi ölçmek için her bip sesinde {key} tuşuna basın."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Arama yapılamadı: {error}",
       "fetchError": "Şarkı sözü alınamadı: {error}",
       "noLyricsError": "İçe aktarmak için şarkı sözü yok.",
-      "importSuccess": "Genius'tan {count} tane satır içe aktarıldı."
+      "importSuccess": "Genius'tan {count} tane satır içe aktarıldı.",
+      "howToGetKey": "Genius Client Access Token nasıl oluşturulur"
     },
     "openLink": "Linki aç",
     "duplicateMsg": "Birden fazla aynı metaveri değeri bulundu",
@@ -1012,7 +1218,9 @@
     "importTitle": "Genius'tan şarkı sözü içe aktar",
     "searchPlaceholder": "Sanatçı - Şarkı Başlığı…",
     "notFound": "Hiç sonuç bulunamadı. Başka anahtar kelimeler dene.",
-    "noResult": "Bir şarkı veya sanatçı ismi gir."
+    "noResult": "Bir şarkı veya sanatçı ismi gir.",
+    "howToGetKey": "Genius Client Access Token nasıl oluşturulur",
+    "changeKey": "API Anahtarını Değiştir"
   },
   "textImportDialog": {
     "processLyrics": "Şarkı Sözlerini İşle",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Tüm TTML Kılavuzu"
-    }
+    },
+    "description": "Şarkı sözlerini düz metinden veya başka biçimlerden içe aktarın."
   },
   "sectionImportReview": {
     "title": "Algılanan bölümleri inceleyin",
@@ -1239,7 +1448,13 @@
     "crowdin": "Crowdin dilinde Çevirmeye Yardım Edin",
     "buildDate": "Yapım Tarihi: {date}",
     "gitCommit": "Git Taahhüdü: {commit}",
-    "platform": "Platform: {platform}"
+    "platform": "Platform: {platform}",
+    "contributors": "Katkıda Bulunanlar",
+    "viewContributors": "Katkıda bulunanları görüntüle",
+    "contributorProfiles": "Katkıda bulunanların profilleri",
+    "contributorTooltip": "{name} - {count} katkı",
+    "openContributorProfile": "{name} kullanıcısının GitHub profilini aç",
+    "unknown": "Bilinmiyor"
   },
   "spectrogram": {
     "invalidEndTime": "Bu son zamanı seçilemez",

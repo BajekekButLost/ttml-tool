@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Hlavní novinky a nedávná vylepšení pro uživatele NaeNae"
+    "highlightsDescription": "Hlavní novinky a nedávná vylepšení pro uživatele NaeNae",
+    "changelogTitle": "Seznam změn a aktualizace",
+    "viewCommits": "Zobrazit commity na GitHubu",
+    "whatsNewTitle": "Co je nového v NaeNae's Fork",
+    "otherEnhancements": "Další vylepšení"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Žádné řádky titulek",
       "description": "Přidejte nové řádky titulek v horním panelu nebo otevřete/importujte existující titulky z nabídky"
+    },
+    "window": {
+      "minimize": "Minimalizovat okno",
+      "maximize": "Maximalizovat okno",
+      "close": "Zavřít okno"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Otevřete soubor s textem písně"
+      "open": "Otevřete soubor s textem písně",
+      "start": "Spustit průvodce",
+      "import": "Importovat titulky"
     },
     "welcome": {
-      "open": "Otevřete soubor s textem písně"
+      "open": "Otevřete soubor s textem písně",
+      "title": "Vytvořte svůj první synchronizovaný TTML",
+      "description": "Průvodce zůstane s vámi, otevře správné nástroje a počká, dokud každý potřebný krok skutečně nedokončíte.",
+      "own": "Proveďte mě mým prvním TTML",
+      "skip": "Teď přeskočit"
     },
     "sync": {
-      "wordProgress": "Načasovaná slova: {timed} / {total}"
+      "wordProgress": "Načasovaná slova: {timed} / {total}",
+      "open": "Otevřít režim Čas"
+    },
+    "menu": "Spustit průvodce",
+    "restore": "Zobrazit průvodce",
+    "progress": "Krok {current} z {total}",
+    "tuck": "Schovat",
+    "exit": "Ukončit průvodce",
+    "beforeStart": {
+      "title": "Než začnete:",
+      "text": "Vzhled editoru si můžete upravit podle sebe. Kliknutím níže otevřete nastavení. Vyzkoušejte Základní editor, nebo Pokročilý editor pro plnou kontrolu nad detaily.",
+      "link": "Přizpůsobit vzhled editoru"
+    },
+    "status": {
+      "complete": "Hotovo — nástroj zjistil, že je tento krok dokončen."
+    },
+    "readMore": "Celý průvodce",
+    "continue": "Pokračovat",
+    "review": {
+      "confirm": "Text jsem zkontroloval(a)"
+    },
+    "test": {
+      "open": "Otevřít postup testování"
+    },
+    "audio": {
+      "choose": "Vybrat zvuk"
+    },
+    "songwriters": {
+      "open": "Otevřít metadata"
+    },
+    "export": {
+      "save": "Uložit TTML"
+    },
+    "genius": {
+      "title": "Vytvořte Genius Client Access Token",
+      "step1": "1. Otevřete Genius API Clients a přihlaste se.",
+      "step2": "2. Zvolte New API Client, zadejte libovolný rozpoznatelný název aplikace a vyplňte povinné pole s webem aplikace.",
+      "step3": "3. Uložte klienta a pak zvolte Generate Access Token.",
+      "step4": "4. Zkopírujte Client Access Token — ne Client ID ani Client Secret.",
+      "reuse": "Nástroj token uloží místně a použije jej znovu pro import textů a vyhledávání skladatelů.",
+      "openPortal": "Otevřít Genius API Clients",
+      "paste": "Vložit token do importu z Genius"
+    },
+    "finish": "Dokončit průvodce",
+    "steps": {
+      "intro": {
+        "title": "Nejdřív si přečtěte celý průvodce",
+        "description": "Tento vestavěný průvodce je praktickým doplňkem celého průvodce TTML. Koncepty najdete v celém průvodci; tento panel mějte otevřený, zatímco je uplatňujete v editoru.",
+        "waiting": "Přečtěte si celý průvodce a pokračujte, až budete připraveni začít."
+      },
+      "audio": {
+        "title": "Importujte skladbu",
+        "description": "Vyberte přesně tu nahrávku, pro kterou text vytváříte. Průvodce bude pokračovat, jakmile se zvuk načte.",
+        "waiting": "Použijte níže „Vybrat zvuk“ a počkejte na dokončení načítání."
+      },
+      "lyrics": {
+        "title": "Importujte text",
+        "description": "Níže vyberte zdroj textu. Výsledek zkontrolujte v okně importu a import potvrďte.",
+        "waiting": "Vyberte níže jeden zdroj a dokončete jeho okno importu."
+      },
+      "review": {
+        "title": "Zkontrolujte text a typy řádků",
+        "description": "Porovnejte každý řádek s nahrávkou. Dvojklikem na slovo jej opravíte; výběrem řádků je označíte jako doprovodné vokály nebo duet. Odstraňte prázdné řádky a potvrďte níže.",
+        "waiting": "Struktura je v pořádku. Dočtěte text a pak kontrolu potvrďte.",
+        "waitingEmptyLines": "Zbývá alespoň jeden prázdný řádek. Před potvrzením ho smažte nebo vyplňte."
+      },
+      "sync": {
+        "title": "Načasujte každé slovo",
+        "description": "Přepněte do režimu Čas, vyberte první slovo, stiskněte mezerník a pak použijte F pro začátek, G mezi slovy a H u pauz nebo na konci řádku. Každé slovo musí dostat platný čas.",
+        "waiting": "Otevřete režim Čas a pokračujte v časování; krok se dokončí, až bude mít každé příslušné slovo platný začátek a konec."
+      },
+      "songwriters": {
+        "title": "Přidejte skladatele",
+        "description": "Otevřete metadata a použijte „Načtěte skladatele ze Genius“, nebo přidejte jednu hodnotu Skladatel pro každé skutečné jméno. Průvodce pozná, když je uložen alespoň jeden.",
+        "waiting": "Otevřete metadata a přidejte alespoň jednu neprázdnou hodnotu Skladatel."
+      },
+      "export": {
+        "title": "Exportujte TTML",
+        "description": "Uložte hotový TTML. Tento krok se dokončí až po skutečném zápisu souboru.",
+        "waiting": "Zvolte Uložit TTML a dokončete výběr souboru."
+      },
+      "test": {
+        "title": "Otestujte lokálně",
+        "description": "Nahrajte uložený soubor do Spicy Lyrics a zkontrolujte načtení, formátování a časování.",
+        "waiting": "Otevřete pokyny k lokálnímu testování, ověřte soubor ve Spicy Lyrics a pak průvodce dokončete."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Píseň nemá žádné skladatele. Chcete pokračovat v ukládání?"
+    },
+    "newProject": {
+      "title": "Potvrdit vytvoření projektu",
+      "description": "Máte neuložené změny. Pokud budete pokračovat, budou ztraceny. Opravdu chcete vytvořit nový projekt?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Odstranit",
     "clickToSet": "Klikněte pro nastavení ",
     "move": "Pohybujte se",
-    "copy": "Kopírovat"
+    "copy": "Kopírovat",
+    "reset": "Resetovat",
+    "preview": "Náhled"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Vyberte zvukový soubor, který jste načetli",
       "lyricTitle": "Vyberte soubor TTML, do kterého se tento projekt uloží"
+    },
+    "createProject": {
+      "parentTitle": "Vyberte, kde se má složka projektu vytvořit",
+      "title": "Vyberte nebo vytvořte složku pro nový projekt"
+    },
+    "openProject": {
+      "title": "Vyberte složku projektu"
+    },
+    "saveProject": {
+      "title": "Vyberte nebo vytvořte složku projektu"
+    },
+    "openWorkspace": {
+      "title": "Vyberte složku pracovního prostoru s projekty"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Importovatelné",
     "scanning": "Skenování...",
     "selectFolder": "Vyberte složku pracovního prostoru...",
-    "unknown": "Neznámý"
+    "unknown": "Neznámý",
+    "noProjectsFound": "V této složce nebyly nalezeny žádné projekty",
+    "projectsFound": "Nalezené projekty: {count}",
+    "scanFailed": "Složku pracovního prostoru se nepodařilo prohledat"
   },
   "ribbonBar": {
     "advancedTooltip": "Platí pro všechny panely nástrojů: Úpravy, Časování a Náhled.",
@@ -248,7 +370,8 @@
       "showRoman": "Zobrazit romanizaci",
       "fadeWidth": "Šířka prolínání",
       "instantFade": "Okamžité vyblednutí",
-      "showFps": "Zobrazit FPS"
+      "showFps": "Zobrazit FPS",
+      "autoScroll": "Automatické posouvání"
     },
     "syncMode": {
       "currentEmptyBeat": "Prázdná doba",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Sledování",
       "autoScroll": "Automatické posouvání",
-      "highlightActiveLine": "Zvýrazněte řádek"
+      "highlightActiveLine": "Zvýrazněte řádek",
+      "spectrogramHoverSync": "Synchronizovat podle kurzoru ve spektrogramu"
     },
-    "loading": "Načítání panelu..."
+    "loading": "Načítání panelu...",
+    "advanced": "Pokročilé"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Poloměr rozostření",
       "customBackgroundBrightness": "Jas",
       "customBackgroundEnabled": "Sada pozadí",
-      "customBackgroundManage": "Nastavení"
+      "customBackgroundManage": "Nastavení",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Sdílet přizpůsobitelné údaje o projektu a přehrávání s desktopovou aplikací Discord.",
+      "discordCustomize": "Přizpůsobit stav a nečinnost",
+      "discordTemplates": "Šablony stavu",
+      "discordTemplateHelp": "Použijte {{variables}} a volitelný text uzavřete do [[dvojitých hranatých závorek]].",
+      "discordDetails": "Podrobnosti",
+      "discordState": "Stav",
+      "discordSearchVariables": "Hledat proměnné…",
+      "discordPlaybackTimeline": "Časová osa přehrávání",
+      "discordProjectElapsed": "Časovač doby práce na projektu",
+      "discordRepositoryButton": "Tlačítko repozitáře",
+      "discordStatusBadge": "Odznak stavu přehrávání/pozastavení",
+      "discordIdleTimeout": "Neaktivní po",
+      "discordIdlePrivacy": "Neaktivní stav skryje podrobnosti projektu, tlačítka, odznaky a časovače.",
+      "normalizeApostrophesOnImport": "Sjednotit apostrofy",
+      "normalizeApostrophesOnImportDesc": "Při importu a exportu převádí typografické a další znaky podobné apostrofu.",
+      "normalizeCyrillicEsOnImport": "Opravit osamocená cyrilská Е/е v latinských slovech",
+      "normalizeCyrillicEsOnImportDesc": "Při importu a exportu opravuje skryté cyrilské dvojníky v latinských slovech.",
+      "allowConsecutiveBackgroundLines": "Povolit po sobě jdoucí a samostatné doprovodné vokály",
+      "allowConsecutiveBackgroundLinesDesc": "Exportuje po sobě jdoucí doprovodné vokály společně a zachová samostatné doprovodné vokály kvůli kompatibilitě se Spicy Lyrics. Jiné přehrávače tuto strukturu nemusí podporovat.",
+      "spectrogramHoverSync": "Synchronizovat podle kurzoru ve spektrogramu",
+      "spectrogramHoverSyncDesc": "Když v režimu synchronizace najedete na spektrogram, spouštěcí klávesy (F, G, H) zaznamenají čas pod kurzorem místo času přehrávání.",
+      "syncWordWrap": "Zalamování slov v režimu času",
+      "syncWordWrapDesc": "Zabalí kartičky se slovy na další řádek namísto zobrazení vodorovného posuvníku na kartě Čas / Synchronizace.",
+      "syncAutoScroll": "Auto-Scroll to Active Line během přehrávání",
+      "syncAutoScrollDesc": "Automaticky posouvá zobrazení editoru tak, aby během přehrávání sledovalo aktuálně aktivní řádek textu.",
+      "syncFocusMainLine": "Zaostřete na hlavní řádek během přehrávání",
+      "syncFocusMainLineDesc": "Při přehrávání se zaměřuje na aktivní hlavní čáry a ignoruje čáry na pozadí, pokud není aktivní žádná hlavní čára.",
+      "highlightActiveLine": "Zvýrazněte Active Line během přehrávání"
     },
     "about": {
       "update": "Aktualizace",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Klasické tmavé téma",
         "legacyDarkThemeDesc": "Použijte světlejší tmavou paletu z doby před redesignem Intonated Black.",
         "masterResetNote": "Tím se resetuje všech 20+ granulárních přepsání.",
-        "resetMaster": "Obnovit všechna pokročilá nastavení"
+        "resetMaster": "Obnovit všechna pokročilá nastavení",
+        "scrollbarThumb": "Jezdec posuvníku",
+        "dialogBackground": "Pozadí dialogů",
+        "dialogBorder": "Okraj dialogů",
+        "globalBorderRadius": "Globální zaoblení rohů",
+        "globalBorderWidth": "Globální šířka okrajů",
+        "shadowIntensity": "Intenzita stínů",
+        "romanizationText": "Text romanizace",
+        "translationText": "Text překladu",
+        "geniusHeaderColor": "Barva hlaviček z Genius"
       },
       "secondaryDesc": "Překlady a metadata.",
       "layout": {
         "title": "Rozložení aplikace",
-        "syncWordWrap": "Zalamování slov v režimu času",
-        "syncWordWrapDesc": "Zabalí kartičky se slovy na další řádek namísto zobrazení vodorovného posuvníku na kartě Čas / Synchronizace.",
-        "syncAutoScroll": "Auto-Scroll to Active Line během přehrávání",
-        "syncAutoScrollDesc": "Automaticky posouvá zobrazení editoru tak, aby během přehrávání sledovalo aktuálně aktivní řádek textu.",
-        "syncFocusMainLine": "Zaostřete na hlavní řádek během přehrávání",
-        "syncFocusMainLineDesc": "Při přehrávání se zaměřuje na aktivní hlavní čáry a ignoruje čáry na pozadí, pokud není aktivní žádná hlavní čára.",
-        "highlightActiveLine": "Zvýrazněte Active Line během přehrávání",
-        "highlightActiveLineDesc": "Vizuálně zvýrazní aktuálně přehrávanou textovou linii v obou režimech Edit a Time.",
         "order": "Pořadí prvků",
         "orderDesc": "Přetažením změníte pořadí prvků. Některé pozice mohou být omezeny omezeními.",
         "titlebar": "Titulní lišta",
@@ -481,7 +636,13 @@
       "customFontActive": "MÍSTNÍ VLASTNÍ PÍSMO",
       "defaultFonts": "Standardní zásobníky",
       "systemFonts": "Systémová písma",
-      "googleFonts": "Knihovna písem Google"
+      "googleFonts": "Knihovna písem Google",
+      "fontDialogDescription": "Vyberte písmo ze standardních, systémových nebo Google písem.",
+      "interfaceScale": "Měřítko rozhraní",
+      "interfaceScaleDesc": "Vyberte měřítko a použijte ho. Můžete také použít Ctrl/Cmd +, - nebo 0.",
+      "resetTitle": "Obnovit motiv",
+      "resetDesc": "Vrátí všechny barvy, pozadí, přechody a vlastní úpravy na výchozí motiv.",
+      "resetTheme": "Obnovit výchozí motiv"
     },
     "group": {
       "display": "Zobrazení",
@@ -490,7 +651,11 @@
       "playback": "Přehrávání",
       "autosave": "Automatické ukládání",
       "previewControls": "Náhled",
-      "editorControls": "Zobrazení a ovládání editoru"
+      "editorControls": "Zobrazení a ovládání editoru",
+      "import": "Import a export",
+      "syncWordWrap": "Režim Čas / karta synchronizace",
+      "privacy": "Soukromí",
+      "projects": "Projekty"
     },
     "assistant": {
       "manualTimestampEdit": "Ruční úprava časového razítka",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Projekty ve složkách",
+      "folderProjectsDesc": "Otevírejte, ukládejte a organizujte texty jako složky projektů s manifestem project.json.",
+      "folderProjectsAutosave": "Ukládat soubor projektu při automatickém ukládání",
+      "folderProjectsAutosaveDesc": "Při každém automatickém uložení zapíše soubor s textem otevřeného projektu na disk."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Exportovat do YRC",
         "toLrcfySylb": "Exportovat do Lyricify Syllable",
         "toASS": "Exportovat do titulků ASS"
-      }
+      },
+      "spectrogramHoverSync": "Synchronizovat podle kurzoru ve spektrogramu",
+      "whatsNew": "Co je nového",
+      "changelog": "Seznam změn a aktualizace",
+      "projects": "Projekty"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Propojený projekt",
-      "folder": "Projekt složky"
+      "folder": "Projekt složky",
+      "namePlaceholder": "Název projektu"
     },
     "backup": {
       "restore": "Obnovit zálohu",
@@ -753,7 +929,15 @@
       "audio": "Zvuk",
       "keybindings": "Klávesové zkratky",
       "spectrogram": "Spektrogram",
-      "backup": "Zálohování"
+      "backup": "Zálohování",
+      "editor": "Editor a synchronizace",
+      "files": "Soubory a úložiště"
+    },
+    "page": {
+      "generalDesc": "Jazyk, rozvržení, soukromí a chování celé aplikace.",
+      "editorDesc": "Zadávání časů, chování synchronizace a vizuální podněty.",
+      "filesDesc": "Čištění při importu, historie automatického ukládání a přenosné zálohy.",
+      "audioDesc": "Přehrávání, převod, ekvalizér a zobrazení spektrogramu."
     }
   },
   "autoSegmentApplied": "Automaticky segmentováno pomocí {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Původní soubor TTML se nepodařilo zálohovat, takže nebyl přepsán",
     "linkedProjectNoBackup": "Pro tento projekt nebyla nalezena žádná záloha",
     "linkedProjectRestoreFailed": "Obnovení původního souboru TTML se nezdařilo",
-    "linkedProjectRestoreReloadFailed": "Původní soubor byl obnoven, ale nepodařilo se znovu načíst projekt"
+    "linkedProjectRestoreReloadFailed": "Původní soubor byl obnoven, ale nepodařilo se znovu načíst projekt",
+    "folderProjectInvalid": "Neplatná složka projektu",
+    "folderProjectRequiresDesktop": "Složky projektů jsou dostupné pouze v desktopové aplikaci",
+    "folderProjectCreateFailed": "Projekt se nepodařilo vytvořit",
+    "folderProjectLyricParse": "Soubor s textem se nepodařilo načíst",
+    "folderProjectNoLyric": "Před uložením projektu přidejte soubor s textem",
+    "folderProjectAudioReadFailed": "Zvukový soubor projektu nebyl nalezen",
+    "folderProjectAudioLoadFailed": "Zvuk projektu se nepodařilo načíst",
+    "folderProjectNoAudio": "Před uložením projektu načtěte zvukový soubor",
+    "folderProjectUnavailable": "Složka projektu není přístupná",
+    "folderProjectNoContent": "V této složce nebyly nalezeny žádné soubory TTML ani zvukové soubory",
+    "folderProjectSaveFailed": "Projekt se nepodařilo uložit",
+    "folderProjectNotFound": "Vybraná složka není platnou složkou projektu (chybí project.json, TTML i zvukové soubory)",
+    "folderProjectOpenFailed": "Složku projektu se nepodařilo otevřít: {reason}",
+    "ttmlGenerateFailed": "TTML se nepodařilo vygenerovat",
+    "folderProjectCleanupFailed": "Uloženo, ale předchozí soubor projektu se nepodařilo odstranit",
+    "openFolderFailed": "Složku se nepodařilo otevřít"
   },
   "success": {
-    "linkedProjectBackupRestored": "Obnovený původní soubor TTML"
+    "linkedProjectBackupRestored": "Obnovený původní soubor TTML",
+    "folderProjectSaved": "Projekt uložen",
+    "folderProjectAlreadyExists": "Tato složka už je projektem, otevírám ji",
+    "folderProjectCreated": "Projekt vytvořen",
+    "lyricsSavedToProject": "Text uložen do projektu"
   },
   "audio": {
     "marker": "Značka",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Přestaň",
       "start": "Začněte"
-    }
+    },
+    "description": "Zvolte si tempo a při každém pípnutí stiskněte {key}, abyste změřili zpoždění mezi zvukem a vaším vstupem."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Vyhledávání se nezdařilo: {error}",
       "fetchError": "Nelze načíst text: {error}",
       "noLyricsError": "Žádné texty k importu.",
-      "importSuccess": "Importované linky {count} ze Genius."
+      "importSuccess": "Importované linky {count} ze Genius.",
+      "howToGetKey": "Jak vytvořit Genius Client Access Token"
     },
     "openLink": "Otevřít odkaz",
     "duplicateMsg": "Nalezeny duplicitní hodnoty metadat",
@@ -1012,7 +1218,9 @@
     "importTitle": "Importujte texty ze Genius",
     "searchPlaceholder": "Interpret – Název písně…",
     "notFound": "Nebyly nalezeny žádné výsledky. Zkuste jiná klíčová slova.",
-    "noResult": "Začněte zadáním názvu skladby nebo interpreta."
+    "noResult": "Začněte zadáním názvu skladby nebo interpreta.",
+    "howToGetKey": "Jak vytvořit Genius Client Access Token",
+    "changeKey": "Změnit klíč API"
   },
   "textImportDialog": {
     "processLyrics": "Text procesu",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Kompletní průvodce TTML"
-    }
+    },
+    "description": "Importovat text písně z prostého textu nebo jiných formátů."
   },
   "sectionImportReview": {
     "title": "Zkontrolujte zjištěné sekce",
@@ -1239,7 +1448,13 @@
     "crowdin": "Pomoc s překladem v Crowdin",
     "buildDate": "Datum sestavení: {date}",
     "gitCommit": "Git commit: {commit}",
-    "platform": "Platforma: {platform}"
+    "platform": "Platforma: {platform}",
+    "contributors": "Přispěvatelé",
+    "viewContributors": "Zobrazit přispěvatele",
+    "contributorProfiles": "Profily přispěvatelů",
+    "contributorTooltip": "{name} – příspěvky: {count}",
+    "openContributorProfile": "Otevřít GitHub profil uživatele {name}",
+    "unknown": "Neznámý"
   },
   "spectrogram": {
     "invalidEndTime": "Nelze vybrat tento čas konce",

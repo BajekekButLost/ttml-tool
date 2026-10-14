@@ -1,6 +1,10 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Sorotan rilis dan peningkatan terkini untuk pengguna NaeNae"
+    "highlightsDescription": "Sorotan rilis dan peningkatan terkini untuk pengguna NaeNae",
+    "changelogTitle": "Log Perubahan & Pembaruan",
+    "viewCommits": "Lihat Commit di GitHub",
+    "whatsNewTitle": "Yang Baru di NaeNae's Fork",
+    "otherEnhancements": "Peningkatan Lainnya"
   },
   "app": {
     "error": {
@@ -18,6 +22,11 @@
     "empty": {
       "title": "Tidak ada baris lirik",
       "description": "Tambahkan baris lirik baru di panel atas atau buka / impor lirik yang sudah ada dari bilah menu"
+    },
+    "window": {
+      "minimize": "Perkecil jendela",
+      "maximize": "Perbesar jendela",
+      "close": "Tutup jendela"
     }
   },
   "onlineImport": {
@@ -29,13 +38,104 @@
   },
   "beginnerGuide": {
     "empty": {
-      "open": "Buka file lirik"
+      "open": "Buka file lirik",
+      "start": "Mulai Panduan",
+      "import": "Impor Lirik"
     },
     "welcome": {
-      "open": "Buka file lirik"
+      "open": "Buka file lirik",
+      "title": "Buat TTML tersinkron pertama Anda",
+      "description": "Panduan ini menemani Anda, membuka alat yang tepat, dan menunggu sampai setiap tugas wajib benar-benar selesai.",
+      "own": "Pandu saya membuat TTML pertama",
+      "skip": "Lewati untuk sekarang"
     },
     "sync": {
-      "wordProgress": "Kata dengan penanda waktu: {timed} / {total}"
+      "wordProgress": "Kata dengan penanda waktu: {timed} / {total}",
+      "open": "Buka mode Sinkronisasi"
+    },
+    "menu": "Mulai Panduan",
+    "restore": "Tampilkan panduan",
+    "progress": "Langkah {current} dari {total}",
+    "tuck": "Sembunyikan",
+    "exit": "Keluar dari panduan",
+    "beforeStart": {
+      "title": "Sebelum memulai:",
+      "text": "Anda dapat mengubah tampilan editor sesuai selera. Klik di bawah untuk membuka pengaturan. Silakan coba Editor Dasar, atau Penyunting Tingkat Lanjut untuk kontrol detail penuh.",
+      "link": "Sesuaikan Tampilan Editor"
+    },
+    "status": {
+      "complete": "Selesai — alat mendeteksi langkah ini sudah selesai."
+    },
+    "readMore": "Panduan lengkap",
+    "continue": "Lanjutkan",
+    "review": {
+      "confirm": "Saya sudah memeriksa lirik"
+    },
+    "test": {
+      "open": "Buka langkah pengujian"
+    },
+    "audio": {
+      "choose": "Pilih audio"
+    },
+    "songwriters": {
+      "open": "Buka metadata"
+    },
+    "export": {
+      "save": "Simpan TTML"
+    },
+    "genius": {
+      "title": "Buat Genius Client Access Token",
+      "step1": "1. Buka Genius API Clients dan masuk.",
+      "step2": "2. Pilih New API Client, beri nama aplikasi yang mudah dikenali, lalu isi kolom situs web aplikasi yang wajib.",
+      "step3": "3. Simpan klien, lalu pilih Generate Access Token.",
+      "step4": "4. Salin Client Access Token—bukan Client ID atau Client Secret.",
+      "reuse": "Alat menyimpan token ini secara lokal dan menggunakannya kembali untuk impor lirik dan pencarian penulis lagu.",
+      "openPortal": "Buka Genius API Clients",
+      "paste": "Tempel token di impor Genius"
+    },
+    "finish": "Selesaikan panduan",
+    "steps": {
+      "intro": {
+        "title": "Baca panduan lengkap terlebih dahulu",
+        "description": "Panduan bawaan ini adalah pendamping praktis untuk panduan TTML lengkap. Baca panduan lengkap untuk memahami konsepnya, lalu biarkan panel ini terbuka saat Anda menerapkannya di editor.",
+        "waiting": "Baca panduan lengkap, lalu lanjutkan saat Anda siap memulai."
+      },
+      "audio": {
+        "title": "Impor lagu",
+        "description": "Pilih rekaman yang tepat untuk lirik yang Anda buat. Panduan akan berlanjut setelah audio selesai dimuat.",
+        "waiting": "Gunakan “Pilih audio” di bawah, lalu tunggu hingga pemuatan selesai."
+      },
+      "lyrics": {
+        "title": "Impor lirik",
+        "description": "Pilih sumber lirik di bawah. Tinjau hasilnya di jendela impor dan konfirmasi impor.",
+        "waiting": "Pilih satu sumber di bawah dan selesaikan jendela impornya."
+      },
+      "review": {
+        "title": "Periksa lirik dan jenis baris",
+        "description": "Cocokkan setiap baris dengan rekaman. Klik dua kali kata untuk memperbaikinya; pilih baris untuk menandai vokal latar atau duet. Hapus baris kosong, lalu konfirmasi di bawah.",
+        "waiting": "Strukturnya valid. Selesaikan membaca lirik, lalu konfirmasi peninjauan Anda.",
+        "waitingEmptyLines": "Masih ada setidaknya satu baris lirik kosong. Hapus atau isi sebelum mengonfirmasi."
+      },
+      "sync": {
+        "title": "Sinkronkan setiap kata",
+        "description": "Masuk ke mode Sinkronisasi, pilih kata pertama, tekan Spasi, lalu gunakan F untuk mulai, G di antara kata, dan H saat jeda atau akhir baris. Setiap kata harus mendapat waktu yang valid.",
+        "waiting": "Buka mode Sinkronisasi dan lanjutkan; langkah ini selesai saat setiap kata terkait memiliki awal dan akhir yang valid."
+      },
+      "songwriters": {
+        "title": "Tambahkan penulis lagu",
+        "description": "Buka metadata dan gunakan “Ambil Penulis Lagu dari Genius”, atau tambahkan satu nilai Penulis Lagu untuk setiap nama asli. Panduan mendeteksi saat setidaknya satu tersimpan.",
+        "waiting": "Buka metadata dan tambahkan setidaknya satu nilai Penulis Lagu yang tidak kosong."
+      },
+      "export": {
+        "title": "Ekspor TTML",
+        "description": "Simpan TTML yang sudah selesai. Langkah ini hanya selesai setelah file benar-benar ditulis.",
+        "waiting": "Pilih Simpan TTML dan selesaikan pemilih file."
+      },
+      "test": {
+        "title": "Uji secara lokal",
+        "description": "Unggah file yang disimpan ke Spicy Lyrics dan periksa penguraian, format, serta waktunya.",
+        "waiting": "Buka petunjuk pengujian lokal, periksa file di Spicy Lyrics, lalu selesaikan panduan."
+      }
     }
   },
   "importChooser": {
@@ -91,6 +191,10 @@
     },
     "noSongwriter": {
       "description": "Lagu tersebut tidak memiliki penulis lagu. Apakah Anda ingin terus menabung?"
+    },
+    "newProject": {
+      "title": "Konfirmasi Pembuatan Proyek",
+      "description": "Ada perubahan yang belum disimpan. Jika Anda melanjutkan, perubahan ini akan hilang. Yakin ingin membuat proyek baru?"
     }
   },
   "experimentalFeatures": {
@@ -129,7 +233,9 @@
     "remove": "Hapus",
     "clickToSet": "Klik untuk mengatur",
     "move": "Pindah",
-    "copy": "Salin"
+    "copy": "Salin",
+    "reset": "Setel ulang",
+    "preview": "Pratinjau"
   },
   "dialog": {
     "createProjectPrompt": {
@@ -143,6 +249,19 @@
     "linkProject": {
       "audioTitle": "Pilih file audio yang Anda muat",
       "lyricTitle": "Pilih file TTML tempat proyek ini disimpan"
+    },
+    "createProject": {
+      "parentTitle": "Pilih lokasi untuk membuat folder proyek",
+      "title": "Pilih atau buat folder untuk proyek baru"
+    },
+    "openProject": {
+      "title": "Pilih folder proyek"
+    },
+    "saveProject": {
+      "title": "Pilih atau buat folder proyek"
+    },
+    "openWorkspace": {
+      "title": "Pilih folder ruang kerja yang berisi proyek"
     }
   },
   "projectsDialog": {
@@ -180,7 +299,10 @@
     "importable": "Dapat diimpor",
     "scanning": "Memindai...",
     "selectFolder": "Pilih folder ruang kerja...",
-    "unknown": "Tidak diketahui"
+    "unknown": "Tidak diketahui",
+    "noProjectsFound": "Tidak ada proyek di folder ini",
+    "projectsFound": "Ditemukan {count} proyek",
+    "scanFailed": "Gagal memindai folder ruang kerja"
   },
   "ribbonBar": {
     "advancedTooltip": "Berlaku untuk semua toolbar: Edit, Waktu, dan Pratinjau.",
@@ -248,7 +370,8 @@
       "showRoman": "Tampilkan Romanisasi",
       "fadeWidth": "Lebar Transisi",
       "instantFade": "Memudar Seketika",
-      "showFps": "Tampilkan FPS"
+      "showFps": "Tampilkan FPS",
+      "autoScroll": "Gulir Otomatis"
     },
     "syncMode": {
       "currentEmptyBeat": "Ketukan Kosong Saat Ini",
@@ -282,9 +405,11 @@
       },
       "playbackTracking": "Pelacakan",
       "autoScroll": "Gulir Otomatis",
-      "highlightActiveLine": "Garis Sorot"
+      "highlightActiveLine": "Garis Sorot",
+      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram"
     },
-    "loading": "Memuat panel..."
+    "loading": "Memuat panel...",
+    "advanced": "Lanjutan"
   },
   "settings": {
     "common": {
@@ -354,7 +479,36 @@
       "customBackgroundBlur": "Radius Blur",
       "customBackgroundBrightness": "Kecerahan",
       "customBackgroundEnabled": "Latar belakang telah diatur",
-      "customBackgroundManage": "Pengaturan"
+      "customBackgroundManage": "Pengaturan",
+      "discordRichPresence": "Discord Rich Presence",
+      "discordRichPresenceDesc": "Bagikan detail proyek dan pemutaran yang dapat disesuaikan ke aplikasi desktop Discord.",
+      "discordCustomize": "Sesuaikan status dan ketidakaktifan",
+      "discordTemplates": "Templat status",
+      "discordTemplateHelp": "Gunakan {{variables}} dan apit teks opsional dengan [[kurung siku ganda]].",
+      "discordDetails": "Detail",
+      "discordState": "Status",
+      "discordSearchVariables": "Cari variabel…",
+      "discordPlaybackTimeline": "Linimasa pemutaran",
+      "discordProjectElapsed": "Pengatur waktu durasi proyek",
+      "discordRepositoryButton": "Tombol repositori",
+      "discordStatusBadge": "Lencana status putar/jeda",
+      "discordIdleTimeout": "Tidak aktif setelah",
+      "discordIdlePrivacy": "Status tidak aktif menyembunyikan detail proyek, tombol, lencana, dan pengatur waktu.",
+      "normalizeApostrophesOnImport": "Seragamkan apostrof",
+      "normalizeApostrophesOnImportDesc": "Ubah apostrof melengkung dan karakter mirip apostrof lainnya saat impor dan ekspor.",
+      "normalizeCyrillicEsOnImport": "Perbaiki Е/е Sirilik yang terselip di kata Latin",
+      "normalizeCyrillicEsOnImportDesc": "Perbaiki karakter Sirilik yang mirip dan tersembunyi di kata Latin saat impor dan ekspor.",
+      "allowConsecutiveBackgroundLines": "Izinkan vokal latar berurutan dan berdiri sendiri",
+      "allowConsecutiveBackgroundLinesDesc": "Ekspor vokal latar berurutan bersama-sama dan pertahankan vokal latar yang berdiri sendiri demi kompatibilitas Spicy Lyrics. Pemutar lain mungkin tidak mendukung struktur ini.",
+      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram",
+      "spectrogramHoverSyncDesc": "Saat kursor berada di atas spektrogram dalam mode Sinkronisasi, tombol pemicu (F, G, H) mencatat waktu pada posisi kursor, bukan waktu pemutaran.",
+      "syncWordWrap": "Bungkus Kata dalam Mode Waktu",
+      "syncWordWrapDesc": "Membungkus kartu kata ke baris berikutnya alih-alih menampilkan bilah gulir horizontal di tab Waktu/Sinkronisasi.",
+      "syncAutoScroll": "Gulir Otomatis ke Jalur Aktif Selama Pemutaran",
+      "syncAutoScrollDesc": "Secara otomatis menggulir tampilan editor untuk mengikuti baris lirik yang sedang aktif selama pemutaran.",
+      "syncFocusMainLine": "Fokuskan Jalur Utama Selama Pemutaran",
+      "syncFocusMainLineDesc": "Saat memutar ulang, fokuskan pada jalur utama yang aktif dan abaikan jalur latar belakang kecuali tidak ada jalur utama yang aktif.",
+      "highlightActiveLine": "Sorot Jalur Aktif Selama Pemutaran"
     },
     "about": {
       "update": "Pembaruan Perangkat Lunak",
@@ -445,19 +599,20 @@
         "legacyDarkTheme": "Tema Gelap Klasik",
         "legacyDarkThemeDesc": "Gunakan palet gelap yang lebih terang dari sebelum desain ulang Intonated Black.",
         "masterResetNote": "Ini akan mengatur ulang semua 20+ penggantian granular.",
-        "resetMaster": "Atur ulang semua pengaturan lanjutan"
+        "resetMaster": "Atur ulang semua pengaturan lanjutan",
+        "scrollbarThumb": "Pegangan bilah gulir",
+        "dialogBackground": "Latar dialog",
+        "dialogBorder": "Garis tepi dialog",
+        "globalBorderRadius": "Radius sudut global",
+        "globalBorderWidth": "Ketebalan garis tepi global",
+        "shadowIntensity": "Intensitas bayangan",
+        "romanizationText": "Teks romanisasi",
+        "translationText": "Teks terjemahan",
+        "geniusHeaderColor": "Warna header Genius"
       },
       "secondaryDesc": "Terjemahan & Metadata.",
       "layout": {
         "title": "Tata Letak Aplikasi",
-        "syncWordWrap": "Bungkus Kata dalam Mode Waktu",
-        "syncWordWrapDesc": "Membungkus kartu kata ke baris berikutnya alih-alih menampilkan bilah gulir horizontal di tab Waktu/Sinkronisasi.",
-        "syncAutoScroll": "Gulir Otomatis ke Jalur Aktif Selama Pemutaran",
-        "syncAutoScrollDesc": "Secara otomatis menggulir tampilan editor untuk mengikuti baris lirik yang sedang aktif selama pemutaran.",
-        "syncFocusMainLine": "Fokuskan Jalur Utama Selama Pemutaran",
-        "syncFocusMainLineDesc": "Saat memutar ulang, fokuskan pada jalur utama yang aktif dan abaikan jalur latar belakang kecuali tidak ada jalur utama yang aktif.",
-        "highlightActiveLine": "Sorot Jalur Aktif Selama Pemutaran",
-        "highlightActiveLineDesc": "Menyorot secara visual baris lirik yang sedang diputar dalam mode Edit dan Waktu.",
         "order": "Urutan Elemen",
         "orderDesc": "Seret untuk menyusun ulang elemen. Beberapa posisi mungkin dibatasi oleh kendala.",
         "titlebar": "Bilah Judul",
@@ -481,7 +636,13 @@
       "customFontActive": "FONT KUSTOM LOKAL",
       "defaultFonts": "Tumpukan Standar",
       "systemFonts": "Font Sistem",
-      "googleFonts": "Perpustakaan Google Font"
+      "googleFonts": "Perpustakaan Google Font",
+      "fontDialogDescription": "Pilih font standar, font sistem, atau dari pustaka Google Fonts.",
+      "interfaceScale": "Skala antarmuka",
+      "interfaceScaleDesc": "Pilih skala, lalu terapkan. Anda juga bisa memakai Ctrl/Cmd +, -, atau 0.",
+      "resetTitle": "Setel Ulang Tema",
+      "resetDesc": "Kembalikan semua warna, latar, gradien, dan penyesuaian kustom ke tema bawaan.",
+      "resetTheme": "Setel Ulang Tema ke Bawaan"
     },
     "group": {
       "display": "Tampilan",
@@ -490,7 +651,11 @@
       "playback": "Pemutaran",
       "autosave": "Simpan Otomatis",
       "previewControls": "Pratinjau",
-      "editorControls": "Tampilan & kontrol editor"
+      "editorControls": "Tampilan & kontrol editor",
+      "import": "Impor & ekspor",
+      "syncWordWrap": "Mode Sinkronisasi / Tab Sinkronisasi",
+      "privacy": "Privasi",
+      "projects": "Proyek"
     },
     "assistant": {
       "manualTimestampEdit": "Pengeditan Stempel Waktu Manual",
@@ -568,6 +733,12 @@
     },
     "preview": {
       "vsync": "V-Sync"
+    },
+    "files": {
+      "folderProjects": "Proyek folder",
+      "folderProjectsDesc": "Buka, simpan, dan atur lirik sebagai folder proyek dengan manifes project.json.",
+      "folderProjectsAutosave": "Simpan file proyek saat simpan otomatis",
+      "folderProjectsAutosaveDesc": "Tulis file lirik proyek yang terbuka ke disk setiap kali simpan otomatis."
     }
   },
   "timingOverview": {
@@ -634,7 +805,11 @@
         "toYRC": "Ekspor ke YRC",
         "toLrcfySylb": "Ekspor ke Lyricify Syllable",
         "toASS": "Ekspor ke Subtitle ASS"
-      }
+      },
+      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram",
+      "whatsNew": "Yang Baru",
+      "changelog": "Log Perubahan & Pembaruan",
+      "projects": "Proyek"
     }
   },
   "header": {
@@ -644,7 +819,8 @@
     },
     "project": {
       "linked": "Proyek tertaut",
-      "folder": "Proyek map"
+      "folder": "Proyek map",
+      "namePlaceholder": "Nama proyek"
     },
     "backup": {
       "restore": "Pulihkan cadangan",
@@ -753,7 +929,15 @@
       "audio": "Audio",
       "keybindings": "Pintasan Keyboard",
       "spectrogram": "Spektrogram",
-      "backup": "Cadangan"
+      "backup": "Cadangan",
+      "editor": "Editor & Sinkronisasi",
+      "files": "File & Penyimpanan"
+    },
+    "page": {
+      "generalDesc": "Bahasa, tata letak, privasi, dan perilaku seluruh aplikasi.",
+      "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
+      "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
+      "audioDesc": "Pemutaran, konversi, equalizer, dan tampilan spektrogram."
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",
@@ -764,10 +948,30 @@
     "linkedProjectBackupFailed": "Tidak dapat mencadangkan file TTML asli, sehingga tidak ditimpa",
     "linkedProjectNoBackup": "Tidak ada cadangan yang ditemukan untuk proyek ini",
     "linkedProjectRestoreFailed": "Gagal memulihkan file TTML asli",
-    "linkedProjectRestoreReloadFailed": "File asli dipulihkan, tetapi gagal memuat ulang proyek"
+    "linkedProjectRestoreReloadFailed": "File asli dipulihkan, tetapi gagal memuat ulang proyek",
+    "folderProjectInvalid": "Folder proyek tidak valid",
+    "folderProjectRequiresDesktop": "Fitur folder proyek hanya tersedia di aplikasi desktop",
+    "folderProjectCreateFailed": "Gagal membuat proyek",
+    "folderProjectLyricParse": "Gagal mengurai file lirik",
+    "folderProjectNoLyric": "Tambahkan file lirik sebelum menyimpan proyek",
+    "folderProjectAudioReadFailed": "File audio proyek tidak ditemukan",
+    "folderProjectAudioLoadFailed": "Gagal memuat audio proyek",
+    "folderProjectNoAudio": "Muat file audio sebelum menyimpan proyek",
+    "folderProjectUnavailable": "Folder proyek tidak dapat diakses",
+    "folderProjectNoContent": "Tidak ada file TTML atau audio di folder ini",
+    "folderProjectSaveFailed": "Gagal menyimpan proyek",
+    "folderProjectNotFound": "Folder yang dipilih bukan folder proyek yang valid (tidak ada project.json, TTML, atau file audio)",
+    "folderProjectOpenFailed": "Gagal membuka folder proyek: {reason}",
+    "ttmlGenerateFailed": "Gagal membuat TTML",
+    "folderProjectCleanupFailed": "Tersimpan, tetapi file proyek sebelumnya tidak dapat dihapus",
+    "openFolderFailed": "Tidak dapat membuka folder"
   },
   "success": {
-    "linkedProjectBackupRestored": "File TTML asli dipulihkan"
+    "linkedProjectBackupRestored": "File TTML asli dipulihkan",
+    "folderProjectSaved": "Proyek disimpan",
+    "folderProjectAlreadyExists": "Folder ini sudah menjadi proyek, jadi akan dibuka",
+    "folderProjectCreated": "Proyek dibuat",
+    "lyricsSavedToProject": "Lirik disimpan ke proyek"
   },
   "audio": {
     "marker": "Penanda",
@@ -812,7 +1016,8 @@
     "button": {
       "stop": "Berhenti",
       "start": "Mulai"
-    }
+    },
+    "description": "Pilih tempo yang Anda suka dan tekan {key} pada setiap bunyi bip untuk mengukur jeda antara audio dan input Anda."
   },
   "metadataDialog": {
     "fetchSongwriters": {
@@ -829,7 +1034,8 @@
       "searchError": "Pencarian gagal: {error}",
       "fetchError": "Tidak dapat mengambil lirik: {error}",
       "noLyricsError": "Tidak ada lirik untuk diimpor.",
-      "importSuccess": "Garis {count} yang diimpor dari Genius."
+      "importSuccess": "Garis {count} yang diimpor dari Genius.",
+      "howToGetKey": "Cara membuat Genius Client Access Token"
     },
     "openLink": "Buka Tautan",
     "duplicateMsg": "Ada nilai metadata yang duplikat",
@@ -1012,7 +1218,9 @@
     "importTitle": "Impor Lirik dari Genius",
     "searchPlaceholder": "Artis – Judul lagu…",
     "notFound": "Tidak ada hasil yang ditemukan. Coba kata kunci yang berbeda.",
-    "noResult": "Masukkan nama lagu atau artis untuk memulai."
+    "noResult": "Masukkan nama lagu atau artis untuk memulai.",
+    "howToGetKey": "Cara membuat Genius Client Access Token",
+    "changeKey": "Ubah Kunci API"
   },
   "textImportDialog": {
     "processLyrics": "Lirik Proses",
@@ -1067,7 +1275,8 @@
     },
     "guidesMenu": {
       "full": "Panduan lengkap TTML"
-    }
+    },
+    "description": "Impor lirik dari teks biasa atau format lain."
   },
   "sectionImportReview": {
     "title": "Tinjau bagian yang terdeteksi",
@@ -1239,7 +1448,13 @@
     "crowdin": "Bantuan Menerjemahkan di Crowdin",
     "buildDate": "Tanggal Pembuatan: {date}",
     "gitCommit": "Komit Git: {commit}",
-    "platform": "Peron: {platform}"
+    "platform": "Peron: {platform}",
+    "contributors": "Kontributor",
+    "viewContributors": "Lihat kontributor",
+    "contributorProfiles": "Profil kontributor",
+    "contributorTooltip": "{name} - {count} kontribusi",
+    "openContributorProfile": "Buka profil GitHub {name}",
+    "unknown": "Tidak diketahui"
   },
   "spectrogram": {
     "invalidEndTime": "Tidak dapat memilih waktu akhir ini",
