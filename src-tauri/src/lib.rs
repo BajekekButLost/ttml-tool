@@ -462,9 +462,21 @@ pub fn run() {
         .plugin(tauri_plugin_persisted_scope::init())
         .plugin(tauri_plugin_process::init());
 
-    #[cfg(any(target_os = "macos", windows, target_os = "linux"))]
+    #[cfg(any(target_os = "macos", target_os = "linux"))]
     {
         builder = builder.plugin(tauri_plugin_updater::Builder::new().build());
+    }
+
+    // Always update through the NSIS installer. The MSI re-creates its desktop shortcut on
+    // every upgrade, and newer updater versions would keep MSI installs on the MSI. NSIS
+    // migrates an MSI install once, then leaves shortcuts alone in update mode.
+    #[cfg(windows)]
+    {
+        builder = builder.plugin(
+            tauri_plugin_updater::Builder::new()
+                .target(format!("windows-{}-nsis", std::env::consts::ARCH))
+                .build(),
+        );
     }
 
     #[cfg(desktop)]
