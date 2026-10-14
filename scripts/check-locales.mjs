@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export function flattenStrings(catalog, prefix = "") {
@@ -178,18 +178,76 @@ export function checkLocales(root) {
 	};
 }
 
+// t("key"), i18next.t("key"), i18n.t("key") and <Trans i18nKey="key">.
+const KEY_USE =
+	/(?<![\w.$])(?:i18next\.|i18n\.)?t\(\s*(["'`])((?:\\.|(?!\1).)*?)\1|i18nKey=["']([^"']+)["']/g;
+
+/** Report translation keys used in source that en-US does not define. */
+export function checkUsedKeys(source, files) {
+	const english = flattenStrings(source);
+	const keys = Object.keys(english);
+	const errors = [];
+	for (const { path, text } of files) {
+		for (const match of text.matchAll(KEY_USE)) {
+			const key = match[2] ?? match[3];
+			const line = text.slice(0, match.index).split("\n").length;
+			if (match[1] === "`" && key.includes("${")) {
+				// A template key must match at least one real key.
+				const pattern = new RegExp(
+					`^${key
+						.split(/\$\{[^}]*\}/)
+						.map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+						.join("[^.]+")}$`,
+				);
+				if (!keys.some((candidate) => pattern.test(candidate))) {
+					errors.push(`${path}:${line}: no en-US key matches ${key}`);
+				}
+			} else if (!(key in english)) {
+				errors.push(`${path}:${line}: missing en-US key ${key}`);
+			}
+		}
+	}
+	return errors;
+}
+
+export function readSourceFiles(dir, base = dir) {
+	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+		const path = resolve(dir, entry.name);
+		if (entry.isDirectory()) return readSourceFiles(path, base);
+		if (!/\.tsx?$/.test(entry.name) || /\.(test|d)\.tsx?$/.test(entry.name))
+			return [];
+		return [
+			{
+				path: relative(base, path).split(sep).join("/"),
+				text: readFileSync(path, "utf8"),
+			},
+		];
+	});
+}
+
 if (
 	process.argv[1] &&
 	resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
 	const root = fileURLToPath(new URL("../src/i18n/locales", import.meta.url));
-	const { locales, errors } = checkLocales(root);
+	const src = fileURLToPath(new URL("../src", import.meta.url));
+	const checked = checkLocales(root);
+	const { locales } = checked;
+	const errors = [
+		...checked.errors,
+		...checkUsedKeys(
+			JSON.parse(
+				readFileSync(resolve(root, "en-US", "translation.json"), "utf8"),
+			),
+			readSourceFiles(src),
+		).map((error) => `src/${error}`),
+	];
 	if (errors.length) {
 		console.error(errors.join("\n"));
 		process.exitCode = 1;
 	} else {
 		console.log(
-			`Locale check passed: ${locales.length} catalogs, matching keys, order and placeholders.`,
+			`Locale check passed: ${locales.length} catalogs, matching keys, order and placeholders; every key used in src exists.`,
 		);
 	}
 }

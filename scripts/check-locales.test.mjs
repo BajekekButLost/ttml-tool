@@ -4,7 +4,12 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { createInstance } from "i18next";
 import ICU from "i18next-icu";
-import { checkLocale, checkLocales, placeholders } from "./check-locales.mjs";
+import {
+	checkLocale,
+	checkLocales,
+	checkUsedKeys,
+	placeholders,
+} from "./check-locales.mjs";
 
 test("reports missing, obsolete, non-string and reordered nested keys", () => {
 	const source = { dialog: { title: "Title", text: "Text" } };
@@ -165,4 +170,41 @@ test("removed saved languages resolve to English using the existing i18next fall
 		assert.equal(i18n.resolvedLanguage, "en-US");
 		assert.equal(i18n.t("title"), "English");
 	}
+});
+
+test("reports keys used in source that en-US does not define", () => {
+	const source = {
+		menu: { open: "Open" },
+		steps: { intro: { title: "Intro" } },
+	};
+	const file = (...lines) => [{ path: "a.tsx", text: lines.join("\n") }];
+	const id = "$" + "{id}";
+	assert.deepEqual(
+		checkUsedKeys(
+			source,
+			file(
+				`t("menu.open"); i18next.t('menu.open');`,
+				`<Trans i18nKey="menu.open" />; t(\`steps.${id}.title\`);`,
+				`format("not.a.key"); dt("not.a.key");`,
+			),
+		),
+		[],
+	);
+	assert.deepEqual(
+		checkUsedKeys(
+			source,
+			file(
+				"const x = 1;",
+				`t("menu.close", "Close");`,
+				`<Trans i18nKey="menu.gone" />`,
+			),
+		),
+		[
+			"a.tsx:2: missing en-US key menu.close",
+			"a.tsx:3: missing en-US key menu.gone",
+		],
+	);
+	assert.deepEqual(checkUsedKeys(source, file(`t(\`steps.${id}.waiting\`)`)), [
+		`a.tsx:1: no en-US key matches steps.${id}.waiting`,
+	]);
 });
