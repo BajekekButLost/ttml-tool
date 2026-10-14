@@ -23,10 +23,7 @@ import {
 import { instantHighlightFadeAtom } from "$/modules/settings/states/preview";
 import {
 	enableTimeModeDoubleClickEditAtom,
-	enableUpcomingWordHighlightAtom,
 	syncLevelModeAtom,
-	upcomingWordHighlightColorAtom,
-	upcomingWordHighlightThresholdAtom,
 	visualizeTimestampUpdateAtom,
 } from "$/modules/settings/states/sync.ts";
 import { splitWordDialogAtom } from "$/states/dialogs.ts";
@@ -95,20 +92,9 @@ export const LyricSyncWordView: FC<{
 	);
 
 	const store = useStore();
-	const enableUpcomingWordHighlight = useAtomValue(
-		enableUpcomingWordHighlightAtom,
-	);
-	const upcomingWordHighlightColor = useAtomValue(
-		upcomingWordHighlightColorAtom,
-	);
-	const upcomingWordHighlightThreshold = useAtomValue(
-		upcomingWordHighlightThresholdAtom,
-	);
-
 	const {
 		startTimeRef,
 		endTimeRef,
-		ambientHighlightRef,
 		wordContainerRef,
 		lastClickTimeRef,
 		editing,
@@ -118,9 +104,6 @@ export const LyricSyncWordView: FC<{
 		endTime,
 		highlightActiveWord,
 		enableSyncGlowAnimation,
-		enableUpcomingWordHighlight,
-		upcomingWordHighlightColor,
-		upcomingWordHighlightThreshold,
 		visualizeTimestampUpdate,
 		editLyricLines,
 		line,
@@ -228,20 +211,6 @@ export const LyricSyncWordView: FC<{
 			onPointerDown={onWordPointerDown}
 			onClick={onWordClick}
 		>
-			<div
-				ref={ambientHighlightRef}
-				style={{
-					position: "absolute",
-					top: 0,
-					left: 0,
-					right: 0,
-					bottom: 0,
-					opacity: 0,
-					zIndex: -1,
-					pointerEvents: "none",
-					borderRadius: "inherit",
-				}}
-			/>
 			{showTimestamps && (
 				<div
 					className={classNames(

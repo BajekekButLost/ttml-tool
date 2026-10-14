@@ -5,7 +5,6 @@ import {
 	Image16Regular,
 	Info16Regular,
 	MusicNote1Regular,
-	NumberSymbol16Regular,
 	Open16Regular,
 	Person16Regular,
 	Search16Regular,
@@ -40,13 +39,7 @@ import {
 import { lyricLinesAtom } from "$/states/main.ts";
 import type { TTMLLyric } from "$/types/ttml";
 import styles from "./MetadataEditor.module.css";
-import {
-	AppleMusicIcon,
-	GithubIcon,
-	NeteaseIcon,
-	QQMusicIcon,
-	SpotifyIcon,
-} from "./PlatformIcons";
+import { GithubIcon } from "./PlatformIcons";
 
 interface MetadataEntryProps {
 	entry: { key: string; value: string[] };
@@ -420,29 +413,6 @@ export const MetadataEditor = () => {
 	const { t } = useTranslation();
 
 	const builtinOptions: SelectOption[] = useMemo(() => {
-		const numeric = (value: string) => /^\d+$/.test(value);
-		const alphanumeric = (value: string) => /^[a-zA-Z0-9]+$/.test(value);
-
-		const getPlatformUrl = (key: string, value: string) => {
-			if (!value || !value.trim()) return null;
-
-			switch (key) {
-				case "ncmMusicId":
-					return `https://music.163.com/#/song?id=${value}`;
-				case "qqMusicId":
-					return `https://y.qq.com/n/ryqq/songDetail/${value}`;
-				case "spotifyId":
-					return `https://open.spotify.com/track/${value}`;
-				case "appleMusicId":
-					return `https://music.apple.com/song/${value}`;
-				case "ttmlAuthorGithubLogin":
-					return `https://github.com/${value}`;
-				case "isrc":
-					return `https://isrcsearch.ifpi.org/?tab=%22code%22&isrcCode=%22${value}%22`;
-				default:
-					return null;
-			}
-		};
 		return [
 			{
 				// 歌词所匹配的歌曲名
@@ -485,129 +455,6 @@ export const MetadataEditor = () => {
 				label: t("metadataDialog.builtinOptions.coverArt", "Cover URL"),
 				value: "cover_art",
 				icon: <Image16Regular />,
-			},
-			{
-				// 歌词所匹配的网易云音乐 ID
-				label: t("metadataDialog.builtinOptions.ncmMusicId", "网易云音乐 ID"),
-				value: "ncmMusicId",
-				icon: <NeteaseIcon />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("ncmMusicId", val),
-				validation: {
-					verifier: numeric,
-					message: t(
-						"metadataDialog.builtinOptions.ncmMusicIdInvalidMsg",
-						"网易云音乐 ID 应为纯数字",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 歌词所匹配的 QQ 音乐 ID
-				label: t("metadataDialog.builtinOptions.qqMusicId", "QQ 音乐 ID"),
-				value: "qqMusicId",
-				icon: <QQMusicIcon />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("qqMusicId", val),
-				validation: {
-					verifier: alphanumeric,
-					message: t(
-						"metadataDialog.builtinOptions.qqMusicIdInvalidMsg",
-						"QQ 音乐 ID 应为字母或数字",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 歌词所匹配的 Spotify 音乐 ID
-				label: t("metadataDialog.builtinOptions.spotifyId", "Spotify 音乐 ID"),
-				value: "spotifyId",
-				icon: <SpotifyIcon />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("spotifyId", val),
-				validation: {
-					verifier: alphanumeric,
-					message: t(
-						"metadataDialog.builtinOptions.spotifyIdInvalidMsg",
-						"Spotify ID 应为字母或数字",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 歌词所匹配的 Apple Music 音乐 ID
-				label: t(
-					"metadataDialog.builtinOptions.appleMusicId",
-					"Apple Music 音乐 ID",
-				),
-				value: "appleMusicId",
-				icon: <AppleMusicIcon />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("appleMusicId", val),
-				validation: {
-					verifier: numeric,
-					message: t(
-						"metadataDialog.builtinOptions.appleMusicIdInvalidMsg",
-						"Apple Music ID 应为纯数字",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 歌词所匹配的 ISRC 编码
-				label: t("metadataDialog.builtinOptions.isrc", "歌曲的 ISRC 号码"),
-				value: "isrc",
-				icon: <NumberSymbol16Regular />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("isrc", val),
-				validation: {
-					verifier: (value: string) =>
-						/^[A-Z]{2}-?[A-Z0-9]{3}-?\d{2}-?\d{5}$/.test(value),
-					message: t(
-						"metadataDialog.builtinOptions.isrcInvalidMsg",
-						"ISRC 编码格式应为 CC-XXX-YY-NNNNN",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 逐词歌词作者 GitHub ID，例如 39523898
-				label: t(
-					"metadataDialog.builtinOptions.ttmlAuthorGithub",
-					"歌词作者 GitHub ID",
-				),
-				value: "ttmlAuthorGithub",
-				icon: <GithubIcon />,
-				validation: {
-					verifier: numeric,
-					message: t(
-						"metadataDialog.builtinOptions.ttmlAuthorGithubInvalidMsg",
-						"GitHub ID 应为纯数字",
-					),
-					severe: true,
-				},
-			},
-			{
-				// 逐词歌词作者 GitHub 用户名，例如 Steve-xmh
-				label: t(
-					"metadataDialog.builtinOptions.ttmlAuthorGithubLogin",
-					"歌词作者 GitHub 用户名",
-				),
-				value: "ttmlAuthorGithubLogin",
-				icon: <GithubIcon />,
-				isLinkable: true,
-				urlFormatter: (val) => getPlatformUrl("ttmlAuthorGithubLogin", val),
-				validation: {
-					verifier: (value: string) =>
-						/^(?!.*--)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(
-							value,
-						),
-					message: t(
-						"metadataDialog.builtinOptions.ttmlAuthorGithubLoginInvalidMsg",
-						"GitHub username should be alphanumeric or hyphens, up to 39 characters",
-					),
-					severe: true,
-				},
 			},
 		];
 	}, [t]);

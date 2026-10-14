@@ -77,7 +77,6 @@ export const useFileOpener = () => {
 						...word,
 						id: uid(),
 						obscene: false,
-						emptyBeat: 0,
 					})),
 					ignoreSync: false,
 					id: uid(),

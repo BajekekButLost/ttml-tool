@@ -23,7 +23,6 @@ describe("Timing Overview Ordering & Stats", () => {
 				word: text,
 				startTime,
 				endTime,
-				emptyBeat: 0,
 				obscene: false,
 				romanWord: "",
 			},

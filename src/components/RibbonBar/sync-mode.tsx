@@ -15,11 +15,10 @@ import { backgroundSyncSettingAtom } from "$/modules/settings/states/background-
  * https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/blob/main/LICENSE
  */
 
-import { Flex, Grid, Slider, Switch, Text, Tooltip } from "@radix-ui/themes";
+import { Flex, Grid, Switch, Text, Tooltip } from "@radix-ui/themes";
 import { useAtom, useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useCurrentLocation } from "$/modules/lyric-editor/utils/lyric-states.ts";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import {
 	displayRomanizationInSyncAtom,
@@ -29,7 +28,6 @@ import {
 	showWordRomanizationInputAtom,
 } from "$/modules/settings/states/index.ts";
 import {
-	currentEmptyBeatAtom,
 	showTouchSyncPanelAtom,
 	spectrogramHoverSyncEnabledAtom,
 	syncActiveLineHighlightAtom,
@@ -43,36 +41,6 @@ import {
 import { showPreviewPanelAtom } from "$/states/main.ts";
 import { KeyBinding } from "../KeyBinding/index.tsx";
 import { RibbonFrame, RibbonSection } from "./common";
-
-const EmptyBeatField = () => {
-	const [currentEmptyBeat, setCurrentEmptyBeat] = useAtom(currentEmptyBeatAtom);
-	const currentWordEmptyBeat = useCurrentLocation()?.word.emptyBeat || 0;
-	const { t } = useTranslation();
-
-	return (
-		<>
-			<Text
-				wrap="nowrap"
-				size="1"
-				style={{ color: "var(--ribbon-label-color)" }}
-			>
-				{t("ribbonBar.syncMode.currentEmptyBeat", "当前空拍")}
-			</Text>
-			<Slider
-				value={[currentEmptyBeat]}
-				onValueChange={(v) => setCurrentEmptyBeat(v[0])}
-				min={0}
-				max={currentWordEmptyBeat}
-				step={1}
-				disabled={currentWordEmptyBeat === 0}
-			/>
-			<div />
-			<Text wrap="nowrap" align="center" size="1">
-				{currentEmptyBeat} / {currentWordEmptyBeat}
-			</Text>
-		</>
-	);
-};
 
 export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 	const showWordRomanizationInput = useAtomValue(showWordRomanizationInputAtom);
@@ -105,7 +73,6 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						{t("ribbonBar.syncMode.commitOffset", "Commit Offset")}
 					</Text>
 					<SyncOffsetControl commit compact />
-					<EmptyBeatField />
 				</Grid>
 			</RibbonSection>
 			<RibbonSection label={t("ribbonBar.syncMode.syncLevel", "Sync Level")}>

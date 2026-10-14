@@ -118,7 +118,6 @@ export const useTopMenuActions = () => {
 				word: text,
 				startTime: baseWord.startTime,
 				endTime: baseWord.endTime,
-				emptyBeat: 0,
 			};
 			const segments = segmentWord(sourceWord, segmentationConfig);
 			if (segments.length === 0) {

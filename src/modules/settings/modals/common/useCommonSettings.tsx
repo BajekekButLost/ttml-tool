@@ -21,13 +21,10 @@ import {
 import {
 	editAutoScrollAtom,
 	editTabPositionAtom,
-	enableUpcomingWordHighlightAtom,
 	syncAutoScrollAtom,
 	syncFocusMainLineAtom,
 	syncTabPositionAtom,
 	syncWordWrapAtom,
-	upcomingWordHighlightColorAtom,
-	upcomingWordHighlightThresholdAtom,
 } from "$/modules/settings/states/sync";
 import { ToolMode, toolModeAtom } from "$/states/main";
 import { keyBindingTriggerModeAtom } from "$/utils/keybindings";
@@ -50,14 +47,6 @@ export function useCommonSettings() {
 	);
 	const [folderProjectsEnabled, setFolderProjectsEnabled] = useAtom(
 		folderProjectsEnabledAtom,
-	);
-	const [enableUpcomingWordHighlight, setEnableUpcomingWordHighlight] = useAtom(
-		enableUpcomingWordHighlightAtom,
-	);
-	const [upcomingWordHighlightThreshold, setUpcomingWordHighlightThreshold] =
-		useAtom(upcomingWordHighlightThresholdAtom);
-	const [upcomingWordHighlightColor, setUpcomingWordHighlightColor] = useAtom(
-		upcomingWordHighlightColorAtom,
 	);
 	const [compactBGInSync, setCompactBGInSync] = useAtom(compactBGInSyncAtom);
 	const [normalizeApostrophesOnImport, setNormalizeApostrophesOnImport] =
@@ -113,12 +102,6 @@ export function useCommonSettings() {
 		setFolderProjectsAutosave,
 		folderProjectsEnabled,
 		setFolderProjectsEnabled,
-		enableUpcomingWordHighlight,
-		setEnableUpcomingWordHighlight,
-		upcomingWordHighlightThreshold,
-		setUpcomingWordHighlightThreshold,
-		upcomingWordHighlightColor,
-		setUpcomingWordHighlightColor,
 		compactBGInSync,
 		setCompactBGInSync,
 		normalizeApostrophesOnImport,

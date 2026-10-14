@@ -165,16 +165,6 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							parser={parseTimespan}
 							formatter={msToTimestamp}
 						/>
-						<EditField
-							label={t("ribbonBar.editMode.emptyBeatCount", "空拍数量")}
-							fieldName="emptyBeat"
-							isWordField
-							parser={(v) => {
-								const parsed = Number.parseInt(v, 10);
-								return Number.isNaN(parsed) ? 0 : parsed;
-							}}
-							formatter={String}
-						/>
 					</Grid>
 				</RibbonSection>
 			)}
@@ -202,12 +192,6 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							isWordField
 							parser={(v) => v}
 							formatter={(v) => v || ""}
-						/>
-						<CheckboxField
-							label={t("ribbonBar.editMode.obscene", "不雅用语")}
-							isWordField
-							fieldName="obscene"
-							defaultValue={false}
 						/>
 					</Grid>
 				</RibbonSection>

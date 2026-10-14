@@ -79,19 +79,15 @@ describe("shared text import", () => {
 		).toEqual([["[Chorus]"], [""], ["a b"]]);
 	});
 
-	it("keeps custom prefixes, empty beats and literal word separators", () => {
-		const [line] = textToLines("<><a|*b^^", {
+	it("keeps custom prefixes and literal word separators", () => {
+		const [line] = textToLines("<><a|*b", {
 			wordSeparator: "|*",
 			backgroundPrefix: "<",
 			duetPrefix: ">",
-			emptyBeatSymbol: "^",
 		});
 		expect(line.isBG).toBe(true);
 		expect(line.isDuet).toBe(true);
-		expect(line.words.map((word) => [word.word, word.emptyBeat])).toEqual([
-			["a", 0],
-			["b", 2],
-		]);
+		expect(line.words.map((word) => word.word)).toEqual(["a", "b"]);
 		expect(words("hello", { backgroundPrefix: "", duetPrefix: "" })).toEqual([
 			["hello"],
 		]);

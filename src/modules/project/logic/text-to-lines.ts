@@ -13,7 +13,6 @@ export interface TextToLinesOptions {
 	collapseWhitespace?: boolean;
 	backgroundPrefix?: string;
 	duetPrefix?: string;
-	emptyBeatSymbol?: string;
 	mode?: "lyric" | "lyric-trans" | "lyric-roman" | "lyric-trans-roman";
 	lineSeparatorMode?: "interleaved-line" | "same-line-separator";
 	lineSeparator?: string;
@@ -51,7 +50,6 @@ export function textToLines(
 		collapseWhitespace = false,
 		backgroundPrefix = processLyrics ? "<" : "",
 		duetPrefix = "",
-		emptyBeatSymbol = "",
 		mode = "lyric",
 		lineSeparatorMode = "interleaved-line",
 		lineSeparator = "|",
@@ -110,14 +108,7 @@ export function textToLines(
 			original,
 			wordSeparator,
 			splitHyphens,
-		).map((text) => {
-			const word = { ...newLyricWord(), word: text };
-			while (emptyBeatSymbol && word.word.endsWith(emptyBeatSymbol)) {
-				word.word = word.word.slice(0, -emptyBeatSymbol.length);
-				word.emptyBeat++;
-			}
-			return word;
-		});
+		).map((text) => ({ ...newLyricWord(), word: text }));
 		if (swapTransAndRoman) {
 			[line.translatedLyric, line.romanLyric] = [
 				line.romanLyric,

@@ -23,9 +23,6 @@ export const useSyncWordLifecycle = ({
 	endTime,
 	highlightActiveWord,
 	enableSyncGlowAnimation,
-	enableUpcomingWordHighlight,
-	upcomingWordHighlightColor,
-	upcomingWordHighlightThreshold,
 	visualizeTimestampUpdate,
 	editLyricLines,
 	line,
@@ -37,9 +34,6 @@ export const useSyncWordLifecycle = ({
 	endTime: number;
 	highlightActiveWord: boolean;
 	enableSyncGlowAnimation: boolean;
-	enableUpcomingWordHighlight: boolean;
-	upcomingWordHighlightColor: string;
-	upcomingWordHighlightThreshold: number;
 	visualizeTimestampUpdate: boolean;
 	editLyricLines: (recipe: (state: Draft<TTMLLyric>) => void) => void;
 	line: LyricLine;
@@ -48,7 +42,6 @@ export const useSyncWordLifecycle = ({
 }) => {
 	const startTimeRef = useRef<HTMLDivElement>(null);
 	const endTimeRef = useRef<HTMLDivElement>(null);
-	const ambientHighlightRef = useRef<HTMLDivElement>(null);
 	const wordContainerRef = useRef<HTMLDivElement>(null);
 	const lastClickTimeRef = useRef(0);
 
@@ -106,64 +99,6 @@ export const useSyncWordLifecycle = ({
 		rubyIndex,
 	});
 
-	// Optimized render loop for pre-playback word ambient highlighting
-	useEffect(() => {
-		if (!ambientHighlightRef.current) return;
-		if (!enableUpcomingWordHighlight) {
-			ambientHighlightRef.current.style.opacity = "0";
-			return;
-		}
-
-		const el = ambientHighlightRef.current;
-		const updateHighlight = () => {
-			if (!ambientHighlightRef.current) return;
-			const currentTime = store.get(currentTimeAtom);
-			const delta = startTime - currentTime;
-			const threshold = upcomingWordHighlightThreshold;
-
-			const isBlueActive =
-				ambientHighlightRef.current.parentElement?.classList.contains(
-					styles.active,
-				);
-
-			// Extend the highlight window by 50ms to sync with the React blue highlight render delay
-			if (
-				delta > -50 &&
-				!isBlueActive &&
-				(threshold <= 0 || delta <= threshold)
-			) {
-				// Cap effective delta at 0 so opacity stays at maximum (0.75) during the 50ms delay window
-				const effectiveDelta = Math.max(0, delta);
-				const opacity =
-					threshold > 0 ? 0.75 * (1 - effectiveDelta / threshold) : 0.75;
-				ambientHighlightRef.current.style.transition = "none";
-				ambientHighlightRef.current.style.opacity = opacity.toFixed(3);
-				ambientHighlightRef.current.style.backgroundColor =
-					upcomingWordHighlightColor;
-			} else {
-				ambientHighlightRef.current.style.transition = "none";
-				ambientHighlightRef.current.style.opacity = "0";
-			}
-		};
-
-		// Run immediately to establish initial state without waiting for playback
-		updateHighlight();
-
-		const unsub = store.sub(currentTimeAtom, updateHighlight);
-		return () => {
-			unsub();
-			if (el) {
-				el.style.opacity = "0";
-			}
-		};
-	}, [
-		enableUpcomingWordHighlight,
-		upcomingWordHighlightColor,
-		upcomingWordHighlightThreshold,
-		startTime,
-		store,
-	]);
-
 	// biome-ignore lint/correctness/useExhaustiveDependencies: 用于呈现时间戳更新效果
 	useEffect(() => {
 		if (!visualizeTimestampUpdate) return;
@@ -210,7 +145,6 @@ export const useSyncWordLifecycle = ({
 	return {
 		startTimeRef,
 		endTimeRef,
-		ambientHighlightRef,
 		wordContainerRef,
 		lastClickTimeRef,
 		editing,

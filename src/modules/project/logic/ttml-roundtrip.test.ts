@@ -54,4 +54,20 @@ describe("TTML round trip", () => {
 		);
 		expect(line.words.map((w) => w.word).join("")).toBe("a whole line  ");
 	});
+
+	it("opens old files with obscene and empty-beat marks and drops them on export", () => {
+		const xml = ttml(
+			'<p begin="00:01.000" end="00:03.000"><span begin="00:01.000" end="00:02.000" amll:obscene="true" amll:empty-beat="2">bad </span><span begin="00:02.000" end="00:03.000">word</span></p>',
+		);
+		const [line] = parseLyric(xml).lyricLines;
+		expect(
+			line.words.filter((w) => w.word.trim()).map((w) => [w.word, w.obscene]),
+		).toEqual([
+			["bad", false],
+			["word", false],
+		]);
+		const exported = exportTTMLText(parseLyric(xml));
+		expect(exported).not.toContain("obscene");
+		expect(exported).not.toContain("empty-beat");
+	});
 });

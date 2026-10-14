@@ -14,8 +14,6 @@ import {
 	DeleteRegular,
 	PaddingLeftRegular,
 	PaddingRightRegular,
-	SplitVerticalRegular,
-	TaskListLtrRegular,
 } from "@fluentui/react-icons";
 import { ContextMenu, IconButton, TextField } from "@radix-ui/themes";
 import classNames from "classnames";
@@ -196,38 +194,6 @@ export const LyricWordViewEditAdvance = ({
 							<PaddingRightRegular />
 						</TextField.Slot>
 					</WordEditField>
-					<div className={styles.advanceBar}>
-						<WordEditField
-							size="1"
-							type="number"
-							min={0}
-							wordAtom={wordAtom}
-							fieldName="emptyBeat"
-							formatter={String}
-							parser={Number.parseInt}
-							style={{
-								minWidth: "0",
-							}}
-						>
-							<TextField.Slot>
-								<SplitVerticalRegular />
-							</TextField.Slot>
-						</WordEditField>
-						<IconButton
-							variant="soft"
-							size="1"
-							onClick={() => {
-								editLyricLines((state) => {
-									for (const line of state.lyricLines)
-										for (const word of line.words)
-											if (word.word === currentWord.word)
-												word.emptyBeat = currentWord.emptyBeat;
-								});
-							}}
-						>
-							<TaskListLtrRegular />
-						</IconButton>
-					</div>
 				</LyricWordViewEditSpan>
 			</ContextMenu.Trigger>
 			<ContextMenu.Content

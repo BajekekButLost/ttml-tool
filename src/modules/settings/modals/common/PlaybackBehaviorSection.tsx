@@ -2,11 +2,8 @@ import {
 	ArrowSortDownLines24Regular,
 	ArrowSync24Regular,
 	Highlight24Regular,
-	PaintBrush24Regular,
-	Sparkle24Regular,
 	Target24Regular,
 	TextWrap24Regular,
-	Timer24Regular,
 } from "@fluentui/react-icons";
 import {
 	Box,
@@ -16,7 +13,6 @@ import {
 	SegmentedControl,
 	Switch,
 	Text,
-	TextField,
 } from "@radix-ui/themes";
 import {
 	editActiveLineHighlightAtom,
@@ -29,12 +25,6 @@ import { SettingToggle } from "../../components/WorkflowControls";
 import { WorkflowSettings } from "../workflow";
 import type { CommonSettings } from "./useCommonSettings";
 export const PlaybackBehaviorSection = ({
-	enableUpcomingWordHighlight,
-	setEnableUpcomingWordHighlight,
-	upcomingWordHighlightThreshold,
-	setUpcomingWordHighlightThreshold,
-	upcomingWordHighlightColor,
-	setUpcomingWordHighlightColor,
 	syncWordWrap,
 	setSyncWordWrap,
 	syncFocusMainLine,
@@ -47,12 +37,6 @@ export const PlaybackBehaviorSection = ({
 	t,
 }: Pick<
 	CommonSettings,
-	| "enableUpcomingWordHighlight"
-	| "setEnableUpcomingWordHighlight"
-	| "upcomingWordHighlightThreshold"
-	| "setUpcomingWordHighlightThreshold"
-	| "upcomingWordHighlightColor"
-	| "setUpcomingWordHighlightColor"
 	| "syncWordWrap"
 	| "setSyncWordWrap"
 	| "syncFocusMainLine"
@@ -245,83 +229,6 @@ export const PlaybackBehaviorSection = ({
 					</Box>
 				</Flex>
 			</Text>
-		</Card>
-		<Heading size="4">
-			{t("settings.group.timingHighlight", "Visual Timing Cue (Sync)")}
-		</Heading>
-		<Card>
-			<Text as="label">
-				<Flex gap="3" align="center">
-					<Sparkle24Regular />
-					<Box flexGrow="1">
-						<Flex gap="2" align="center" justify="between">
-							<Flex direction="column" gap="1">
-								<Text>
-									{t(
-										"settings.common.enableUpcomingWordHighlight",
-										"Enable Upcoming Word Pre-Highlight",
-									)}
-								</Text>
-								<Text size="1" color="gray">
-									{t(
-										"settings.common.enableUpcomingWordHighlightDesc",
-										"Fades in a highlight color shortly before a word plays during Sync mode to improve precision.",
-									)}
-								</Text>
-							</Flex>
-							<Switch
-								checked={enableUpcomingWordHighlight}
-								onCheckedChange={setEnableUpcomingWordHighlight}
-							/>
-						</Flex>
-					</Box>
-				</Flex>
-			</Text>
-		</Card>
-		<Card>
-			<Flex gap="3" align="center">
-				<Timer24Regular />
-				<Box flexGrow="1">
-					<Flex direction="column" gap="2" align="start">
-						<Text>
-							{t(
-								"settings.common.upcomingWordHighlightThreshold",
-								"Pre-Highlight Time Threshold (ms)",
-							)}
-						</Text>
-						<TextField.Root
-							type="number"
-							disabled={!enableUpcomingWordHighlight}
-							value={upcomingWordHighlightThreshold}
-							onChange={(e) =>
-								setUpcomingWordHighlightThreshold(
-									Math.max(0, Number.parseInt(e.target.value, 10) || 0),
-								)
-							}
-						/>
-					</Flex>
-				</Box>
-			</Flex>
-		</Card>
-		<Card>
-			<Flex gap="3" align="center">
-				<PaintBrush24Regular />
-				<Box flexGrow="1">
-					<Flex direction="column" gap="2" align="start">
-						<Text>
-							{t(
-								"settings.common.upcomingWordHighlightColor",
-								"Highlight Color (CSS Value)",
-							)}
-						</Text>
-						<TextField.Root
-							disabled={!enableUpcomingWordHighlight}
-							value={upcomingWordHighlightColor}
-							onChange={(e) => setUpcomingWordHighlightColor(e.target.value)}
-						/>
-					</Flex>
-				</Box>
-			</Flex>
 		</Card>
 		<WorkflowSettings />
 	</Flex>
