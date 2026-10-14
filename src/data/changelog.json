@@ -723,7 +723,7 @@
 			{
 				"type": "feature",
 				"title": "Global Text Normalization",
-				"body": "The apostrophe and Cyrillic E options now clean all user-visible fields during import and every export, including metadata, sections, marks, and legacy headers, while preserving internal identifiers."
+				"body": "The apostrophe and Cyrillic E options now clean all user-visible fields during import and every export, including metadata, sections, marks, ruby text, and legacy headers, while preserving internal identifiers."
 			},
 			{
 				"type": "fix",
@@ -974,7 +974,7 @@
 	{
 		"version": "0.7",
 		"summary": "Spicy Lyrics, Imports & Timing",
-		"color": "crimson",
+		"color": "ruby",
 		"date": "2026-07-23",
 		"entries": [
 			{
@@ -1040,7 +1040,7 @@
 	{
 		"version": "0.6.6",
 		"summary": "Preview Stability",
-		"color": "crimson",
+		"color": "ruby",
 		"date": "2026-05-05",
 		"entries": [
 			{
@@ -1152,7 +1152,7 @@
 	{
 		"version": "0.6.0",
 		"summary": "Migration & Sync",
-		"color": "crimson",
+		"color": "ruby",
 		"date": "2026-05-02",
 		"entries": [
 			{
@@ -1297,7 +1297,7 @@
 	{
 		"version": "0.3.2",
 		"summary": "Layout",
-		"color": "crimson",
+		"color": "ruby",
 		"date": "2026-04-19",
 		"entries": [
 			{
@@ -1603,7 +1603,7 @@
 	{
 		"version": "0.1.2",
 		"summary": "Custom Typography",
-		"color": "crimson",
+		"color": "ruby",
 		"date": "2026-04-10",
 		"entries": [
 			{

@@ -11,6 +11,7 @@ const colors = [
 	"orange",
 	"tomato",
 	"red",
+	"ruby",
 	"crimson",
 	"pink",
 	"plum",
