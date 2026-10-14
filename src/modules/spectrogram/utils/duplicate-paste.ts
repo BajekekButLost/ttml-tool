@@ -1,10 +1,8 @@
-import { distributeTime } from "$/modules/lyric-editor/utils/distribute-time";
 import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml.ts";
 
 /**
  * Copies lines into a spectrogram selection: the range is split evenly between
- * the lines, each line's non-blank words split its share evenly, and ruby parts
- * split their word's span evenly.
+ * the lines, each line's non-blank words split its share evenly.
  */
 export function copyLinesIntoRange(
 	linesToCopy: readonly LyricLine[],
@@ -54,12 +52,6 @@ export function copyLinesIntoRange(
 			if (lastNonEmpty) lastNonEmpty.endTime = lineEnd;
 		}
 
-		// Ruby parts would otherwise keep the copied line's old timings.
-		for (const w of nl.words) {
-			if (w.ruby && w.ruby.length > 0)
-				w.ruby = distributeTime(w.ruby, w.startTime, w.endTime);
-		}
-
 		return nl;
 	});
 }
@@ -82,11 +74,6 @@ export function copyLinesAtTime(
 			id: newLyricWord().id,
 			startTime: w.startTime + offset,
 			endTime: w.endTime + offset,
-			ruby: w.ruby?.map((r) => ({
-				...r,
-				startTime: r.startTime + offset,
-				endTime: r.endTime + offset,
-			})),
 		})),
 	}));
 }

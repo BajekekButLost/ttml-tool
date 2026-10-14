@@ -11,19 +11,6 @@ import type { LyricLine, LyricWord } from "$/types/ttml";
 
 const MIN_WORD_DURATION_MS = 10;
 
-function fillRubyTimingFromWord(word: Draft<LyricWord>) {
-	if (!word.ruby || word.ruby.length === 0) return;
-	const shouldFill = word.ruby.every(
-		(rubyWord) => rubyWord.startTime === 0 && rubyWord.endTime === 0,
-	);
-	if (!shouldFill) return;
-	const totalDuration = word.endTime - word.startTime;
-	if (totalDuration <= 0) return;
-	word.ruby = distributeTime(word.ruby, word.startTime, word.endTime, {
-		empty: "include",
-	});
-}
-
 // Gap preview/direction handling adapted from apoint123's upstream ecd0594f (GPLv3).
 export function getUpdatedLineForDivider(
 	originalLine: ProcessedLyricLine,
@@ -151,21 +138,8 @@ export function commitUpdatedLine(updatedLine: ProcessedLyricLine) {
 	);
 
 	const updatedWordsMap = new Map<string, WordSegment>();
-	const updatedRubyMap = new Map<string, Map<number, WordSegment>>();
-	for (const segment of updatedValidSegments) {
-		if (
-			segment.isRuby &&
-			segment.parentId &&
-			typeof segment.rubyIndex === "number"
-		) {
-			const rubyUpdates =
-				updatedRubyMap.get(segment.parentId) ?? new Map<number, WordSegment>();
-			rubyUpdates.set(segment.rubyIndex, segment);
-			updatedRubyMap.set(segment.parentId, rubyUpdates);
-		} else {
-			updatedWordsMap.set(segment.id, segment);
-		}
-	}
+	for (const segment of updatedValidSegments)
+		updatedWordsMap.set(segment.id, segment);
 
 	globalStore.set(lyricLinesAtom, (prev) => {
 		const newLines = prev.lyricLines.map((line) => {
@@ -177,44 +151,8 @@ export function commitUpdatedLine(updatedLine: ProcessedLyricLine) {
 				const updatedWord = updatedWordsMap.get(originalWord.id);
 				let nextWord = originalWord;
 				if (updatedWord) {
-					const { type, isRuby, parentId, rubyIndex, ...word } = updatedWord;
+					const { type, ...word } = updatedWord;
 					nextWord = word;
-				}
-
-				const rubyUpdates = updatedRubyMap.get(originalWord.id);
-				if (rubyUpdates && nextWord.ruby) {
-					const newRuby = nextWord.ruby.map((rubyWord, index) => {
-						const updatedRuby = rubyUpdates.get(index);
-						if (!updatedRuby) return rubyWord;
-						return {
-							...rubyWord,
-							word: updatedRuby.word,
-							startTime: updatedRuby.startTime,
-							endTime: updatedRuby.endTime,
-						};
-					});
-					const validRuby = newRuby.filter(
-						(rubyWord) => rubyWord.endTime > rubyWord.startTime,
-					);
-					if (validRuby.length > 0) {
-						const minStart = Math.min(
-							...validRuby.map((rubyWord) => rubyWord.startTime),
-						);
-						const maxEnd = Math.max(
-							...validRuby.map((rubyWord) => rubyWord.endTime),
-						);
-						nextWord = {
-							...nextWord,
-							startTime: minStart,
-							endTime: maxEnd,
-							ruby: newRuby,
-						};
-					} else {
-						nextWord = {
-							...nextWord,
-							ruby: newRuby,
-						};
-					}
 				}
 
 				return nextWord;
@@ -353,7 +291,6 @@ export function tryInitializeZeroTimestampLine(
 		line.words = distributeTime(line.words, newStartTime, newEndTime);
 		line.startTime = line.words[0].startTime;
 		line.endTime = Math.max(line.startTime, Math.round(newEndTime));
-		line.words.forEach(fillRubyTimingFromWord);
 		return true;
 	}
 	return false;
@@ -400,7 +337,6 @@ export function tryFixPartialInitialization(line: Draft<LyricLine>): boolean {
 					groupToProcess.forEach((word, index) => {
 						word.startTime = times[index].startTime;
 						word.endTime = times[index].endTime;
-						fillRubyTimingFromWord(word);
 					});
 				}
 
@@ -422,12 +358,6 @@ export function shiftLineStartTime(
 		for (const word of line.words) {
 			word.startTime += delta;
 			word.endTime += delta;
-			if (word.ruby && word.ruby.length > 0) {
-				for (const rubyWord of word.ruby) {
-					rubyWord.startTime += delta;
-					rubyWord.endTime += delta;
-				}
-			}
 		}
 	}
 }
@@ -456,33 +386,19 @@ export function adjustLineEndTime(line: Draft<LyricLine>, newEndTime: number) {
 
 		const processedLine = processSingleLine(line);
 
-		type RubyWord = NonNullable<LyricWord["ruby"]>[number];
 		interface CompressTarget {
 			duration: number;
-			ref?: Draft<LyricWord | RubyWord>;
+			ref?: Draft<LyricWord>;
 		}
 
 		const wordDraftMap = new Map<string, Draft<LyricWord>>();
-		const rubyDraftMap = new Map<string, Map<number, Draft<RubyWord>>>();
 		for (const w of line.words) {
 			wordDraftMap.set(w.id, w);
-			if (w.ruby && w.ruby.length > 0) {
-				const rubyMap = new Map<number, Draft<RubyWord>>();
-				w.ruby.forEach((rubyWord, index) => {
-					rubyMap.set(index, rubyWord);
-				});
-				rubyDraftMap.set(w.id, rubyMap);
-			}
 		}
 
 		const targets: CompressTarget[] = processedLine.segments.map((seg) => ({
 			duration: seg.endTime - seg.startTime,
-			ref:
-				seg.type === "word"
-					? seg.isRuby && seg.parentId && typeof seg.rubyIndex === "number"
-						? rubyDraftMap.get(seg.parentId)?.get(seg.rubyIndex)
-						: wordDraftMap.get(seg.id)
-					: undefined,
+			ref: seg.type === "word" ? wordDraftMap.get(seg.id) : undefined,
 		}));
 
 		let remainingReduction = diff;
@@ -522,21 +438,6 @@ export function adjustLineEndTime(line: Draft<LyricLine>, newEndTime: number) {
 				target.ref.endTime = writeCursor + target.duration;
 			}
 			writeCursor += target.duration;
-		}
-		for (const word of line.words) {
-			if (word.ruby && word.ruby.length > 0) {
-				const validRuby = word.ruby.filter(
-					(rubyWord) => rubyWord.endTime > rubyWord.startTime,
-				);
-				if (validRuby.length > 0) {
-					word.startTime = Math.min(
-						...validRuby.map((rubyWord) => rubyWord.startTime),
-					);
-					word.endTime = Math.max(
-						...validRuby.map((rubyWord) => rubyWord.endTime),
-					);
-				}
-			}
 		}
 	}
 }

@@ -32,7 +32,7 @@ export const UpdateSection = ({
 						{t("settings.about.update", "Software Update")}
 					</Heading>
 					{status === "available" && (
-						<Badge color="ruby">
+						<Badge color="crimson">
 							{t("settings.about.newVersion", "New Version")}
 						</Badge>
 					)}
@@ -81,7 +81,7 @@ export const UpdateSection = ({
 					{status === "ready" && (
 						<Flex direction="column" gap="2">
 							<Flex align="center" gap="2">
-								<CheckmarkCircle24Regular color="var(--ruby-9)" />
+								<CheckmarkCircle24Regular color="var(--crimson-9)" />
 								<Text size="2">
 									{t(
 										"settings.about.ready",

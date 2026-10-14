@@ -72,10 +72,6 @@ export const normalizeLyricText = (
 				...word,
 				word: normalize(word.word),
 				romanWord: normalize(word.romanWord ?? ""),
-				ruby: word.ruby?.map((rubyWord) => ({
-					...rubyWord,
-					word: normalize(rubyWord.word),
-				})),
 			})),
 		})),
 	};

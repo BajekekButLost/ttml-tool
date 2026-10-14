@@ -16,10 +16,6 @@ const makeLyric = (): TTMLLyric => {
 		...newLyricWord(),
 		word: "漢字",
 		romanWord: "kanji",
-		ruby: [
-			{ ...newLyricWord(), word: "かん" },
-			{ ...newLyricWord(), word: "じ" },
-		],
 	};
 	return {
 		lyricLines: [{ ...line, words: [word] }],
@@ -27,11 +23,7 @@ const makeLyric = (): TTMLLyric => {
 	} as TTMLLyric;
 };
 
-const commitWith = (
-	rubyIndex: number,
-	field: "word" | "romanWord",
-	cancelFirst = false,
-) => {
+const commitWith = (field: "word" | "romanWord", cancelFirst = false) => {
 	let lyric = makeLyric();
 	const editLyricLines = (recipe: (state: TTMLLyric) => void) => {
 		lyric = produce(lyric, recipe);
@@ -42,7 +34,6 @@ const commitWith = (
 			editLyricLines,
 			line: lyric.lyricLines[0],
 			wordIndex: 0,
-			rubyIndex,
 		});
 		return null;
 	};
@@ -57,22 +48,15 @@ const commitWith = (
 };
 
 describe("useSyncWordEditing text commits", () => {
-	it("edits the ruby part being edited, not its parent word", () => {
-		const word = commitWith(1, "word");
-		expect(word.ruby?.map((ruby) => ruby.word)).toEqual(["かん", "edited"]);
-		expect(word.word).toBe("漢字");
-	});
-
-	it("edits the word or its romanization when no ruby part is targeted", () => {
-		expect(commitWith(-1, "word").word).toBe("edited");
-		expect(commitWith(-1, "romanWord")).toMatchObject({
+	it("edits the word or its romanization", () => {
+		expect(commitWith("word").word).toBe("edited");
+		expect(commitWith("romanWord")).toMatchObject({
 			word: "漢字",
 			romanWord: "edited",
 		});
 	});
 
 	it("drops the blur commit that follows an Escape cancel", () => {
-		expect(commitWith(-1, "word", true).word).toBe("漢字");
-		expect(commitWith(1, "word", true).ruby?.[1]?.word).toBe("じ");
+		expect(commitWith("word", true).word).toBe("漢字");
 	});
 });

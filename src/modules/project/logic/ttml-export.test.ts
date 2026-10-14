@@ -45,16 +45,7 @@ describe("TTML export", () => {
 			}),
 		);
 	});
-	it("checks untimed ruby rather than the timed parent and selects the ruby id", () => {
-		const document = lyric();
-		document.lyricLines[0].words[0].ruby = [
-			{ word: "reading", startTime: 0, endTime: 0 },
-		];
-		const untimed = reviewTTMLExport(document).untimed;
-		expect(untimed?.unit.id).toBe(
-			`${document.lyricLines[0].words[0].id}-ruby-0`,
-		);
-	});
+
 	it("prioritizes an untimed line and ignores whitespace-only words", () => {
 		const document = lyric();
 		document.lyricLines[0].words.push({ ...newLyricWord(), word: " " });

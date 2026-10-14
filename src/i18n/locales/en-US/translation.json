@@ -774,7 +774,6 @@
       "help": "Help",
       "segmentationTools": "Segmentation Tools",
       "autoSegment": "Auto segment...",
-      "rubySegment": "Ruby Segmentation",
       "advancedSegment": "Advanced Segment...",
       "learnedSplits": "Learned Splits...",
       "syncLineTimestamps": "Sync Line Timestamps",

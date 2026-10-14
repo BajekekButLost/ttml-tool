@@ -30,7 +30,6 @@ import {
 	toolModeAtom,
 } from "$/states/main.ts";
 import { msToTimestamp, parseTimespan } from "$/utils/timestamp.ts";
-import { RubyEditor } from "../../tools/RubyEditor.tsx";
 import styles from "../index.module.css";
 import { LyricLineMenu } from "../lyric-line-menu.tsx";
 import { LyricWordMenu } from "../lyric-word-menu";
@@ -59,10 +58,6 @@ export const LyricWordViewEditAdvance = ({
 	const isWordSelected = useAtomValue(isWordSelectedAtom);
 
 	const isWordBlank = useWordBlank(currentWord.word);
-	const showRubyEditor = useMemo(
-		() => currentWord.ruby !== undefined,
-		[currentWord.ruby],
-	);
 
 	const hasError = useMemo(
 		() => currentWord.startTime > currentWord.endTime,
@@ -77,10 +72,9 @@ export const LyricWordViewEditAdvance = ({
 				styles.advance,
 				isWordSelected && styles.selected,
 				isWordBlank && styles.blank,
-				showRubyEditor && styles.rubyEnabled,
 				hasError && toolMode === ToolMode.Edit && styles.error,
 			),
-		[isWordBlank, isWordSelected, showRubyEditor, hasError, toolMode],
+		[isWordBlank, isWordSelected, hasError, toolMode],
 	);
 
 	return (
@@ -171,14 +165,6 @@ export const LyricWordViewEditAdvance = ({
 						>
 							<DeleteRegular />
 						</IconButton>
-					</div>
-					<div className={styles.rubyAdvanceRow}>
-						<RubyEditor
-							wordAtom={wordAtom}
-							forceShow
-							showIcon
-							className={styles.rubyEditorCompact}
-						/>
 					</div>
 					<WordEditField
 						size="1"

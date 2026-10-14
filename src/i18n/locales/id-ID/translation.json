@@ -774,7 +774,6 @@
       "help": "Bantuan",
       "segmentationTools": "Segmentasi",
       "autoSegment": "Segmentasi Otomatis",
-      "rubySegment": "Segmentasi Furigana/Ruby",
       "advancedSegment": "Segmentasi Lanjutan...",
       "learnedSplits": "Perpecahan yang Dipelajari...",
       "syncLineTimestamps": "Sinkronkan Penanda Waktu Baris",

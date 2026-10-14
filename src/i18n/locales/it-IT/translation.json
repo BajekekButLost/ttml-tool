@@ -774,7 +774,6 @@
       "help": "Aiuto",
       "segmentationTools": "Strumenti di Segmentazione",
       "autoSegment": "Segmentazione Automatica",
-      "rubySegment": "Segmentazione con Ruby",
       "advancedSegment": "Segmentazione Avanzato...",
       "learnedSplits": "Divisioni apprese...",
       "syncLineTimestamps": "Sincronizza i tempi dei versi",

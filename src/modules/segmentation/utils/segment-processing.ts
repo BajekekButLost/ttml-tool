@@ -4,9 +4,6 @@ import type { LyricLine, LyricWord } from "$/types/ttml";
 
 export interface WordSegment extends LyricWord {
 	type: "word";
-	isRuby?: boolean;
-	parentId?: string;
-	rubyIndex?: number;
 }
 
 export interface GapSegment {
@@ -25,30 +22,10 @@ export interface ProcessedLyricLine extends Omit<LyricLine, "words"> {
 export function processSingleLine(line: LyricLine): ProcessedLyricLine {
 	const segments: ProcessedSegment[] = [];
 
-	const rawWordSegments: WordSegment[] = line.words.flatMap(
-		(word): WordSegment[] => {
-			if (word.ruby && word.ruby.length > 0) {
-				return word.ruby.map((rubyWord, index) => ({
-					type: "word" as const,
-					id: `${word.id}-ruby-${index}`,
-					word: rubyWord.word,
-					startTime: rubyWord.startTime,
-					endTime: rubyWord.endTime,
-					obscene: word.obscene,
-					romanWord: "",
-					isRuby: true,
-					parentId: word.id,
-					rubyIndex: index,
-				}));
-			}
-			return [
-				{
-					...word,
-					type: "word" as const,
-				},
-			];
-		},
-	);
+	const rawWordSegments: WordSegment[] = line.words.map((word) => ({
+		...word,
+		type: "word",
+	}));
 
 	const validWords = rawWordSegments
 		.filter((w) => w.endTime > w.startTime)

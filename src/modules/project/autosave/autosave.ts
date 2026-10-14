@@ -1,4 +1,5 @@
 import { type DBSchema, type IDBPDatabase, openDB } from "idb";
+import { normalizeDocumentWords } from "$/modules/project/logic/normalize-document";
 import { identifyProject } from "$/modules/project/logic/project-info";
 import type { TTMLLyric } from "$/types/ttml";
 
@@ -175,6 +176,7 @@ export async function autoSaveProject(
 	limit: number,
 	saveInterval: number,
 ) {
+	lyrics = normalizeDocumentWords(lyrics);
 	const db = await getDB();
 
 	const identity = identifyProject(lyrics);
@@ -274,7 +276,16 @@ export async function exportAllProjectsData(): Promise<{
 		db.getAll("projects"),
 		db.getAll("versions"),
 	]);
-	return { projects, versions };
+	return {
+		projects: projects.map((project) => ({
+			...project,
+			latestState: normalizeDocumentWords(project.latestState),
+		})),
+		versions: versions.map((version) => ({
+			...version,
+			data: normalizeDocumentWords(version.data),
+		})),
+	};
 }
 
 /**
@@ -294,14 +305,20 @@ export async function restoreProjectsData(
 	const versionIndex = versionStore.index("by-project");
 
 	for (const project of projects) {
-		await projectStore.put(project);
+		await projectStore.put({
+			...project,
+			latestState: normalizeDocumentWords(project.latestState),
+		});
 		const existingKeys = await versionIndex.getAllKeys(project.id);
 		await Promise.all(existingKeys.map((key) => versionStore.delete(key)));
 	}
 
 	for (const version of versions) {
 		const { id: _ignored, ...rest } = version as ProjectVersion;
-		await versionStore.add(rest);
+		await versionStore.add({
+			...rest,
+			data: normalizeDocumentWords(rest.data),
+		});
 	}
 
 	await tx.done;

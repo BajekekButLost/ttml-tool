@@ -774,7 +774,6 @@
       "help": "Aide",
       "segmentationTools": "Outils de segmentation",
       "autoSegment": "Segmentation automatique",
-      "rubySegment": "Segmentation du rubis",
       "advancedSegment": "Segmentation avancée...",
       "learnedSplits": "Splits appris...",
       "syncLineTimestamps": "Synchroniser les horodatages des lignes",

@@ -22,7 +22,7 @@ export const CreditsSection = ({ t }: Pick<AboutSettings, "t">) => (
 				<Card variant="classic" style={{ padding: "var(--space-3)" }}>
 					<Flex direction="column" gap="2">
 						<Flex align="center" gap="2">
-							<Box style={{ color: "var(--ruby-11)" }}>
+							<Box style={{ color: "var(--crimson-11)" }}>
 								<StarRegular />
 							</Box>
 							<Heading size="3">Spicy Lyrics</Heading>

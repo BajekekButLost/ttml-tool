@@ -128,7 +128,6 @@ export const accentColorAtom = atomWithStorage<
 	| "orange"
 	| "tomato"
 	| "red"
-	| "ruby"
 	| "crimson"
 	| "pink"
 	| "plum"

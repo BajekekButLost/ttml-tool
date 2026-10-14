@@ -32,8 +32,7 @@ import {
 	ToolMode,
 	toolModeAtom,
 } from "$/states/main.ts";
-import { AutoSizeTextField, RubyEditor } from "../../tools/RubyEditor.tsx";
-import { parseRubyShortcut } from "../../utils/ruby-shortcut";
+import { AutoSizeTextField } from "../../tools/AutoSizeTextField.tsx";
 import styles from "../index.module.css";
 import { LyricLineMenu } from "../lyric-line-menu.tsx";
 import { LyricWordMenu } from "../lyric-word-menu";
@@ -82,7 +81,6 @@ export const LyricWordViewEdit = ({
 				count: word.word.length,
 			})
 		: undefined;
-	const showRubyEditor = useMemo(() => word.ruby !== undefined, [word.ruby]);
 
 	const hasError = useMemo(
 		() => word.startTime > word.endTime,
@@ -103,33 +101,20 @@ export const LyricWordViewEdit = ({
 				isWordSelected && styles.selected,
 				isWordBlank && styles.blank,
 				useCompactSpace && styles.compactSpace,
-				showRubyEditor && styles.rubyEnabled,
 				hasError && toolMode === ToolMode.Edit && styles.error,
 			),
-		[
-			isWordBlank,
-			useCompactSpace,
-			isWordSelected,
-			showRubyEditor,
-			hasError,
-			toolMode,
-		],
+		[isWordBlank, useCompactSpace, isWordSelected, hasError, toolMode],
 	);
 	const onEnter = useCallback(
 		(evt: SyntheticEvent<HTMLInputElement>) => {
 			if (editCancelledRef.current) return;
 			setEditing(false);
-			const { word: parsedWord, enableRuby } = parseRubyShortcut(
-				evt.currentTarget.value,
-			);
-			if (parsedWord !== word.word || enableRuby) {
+			const parsedWord = evt.currentTarget.value;
+			if (parsedWord !== word.word) {
 				editLyricLines((state) => {
 					const targetWord = state.lyricLines[lineIndex]?.words[wordIndex];
 					if (!targetWord) return;
 					targetWord.word = parsedWord;
-					if (enableRuby && !targetWord.ruby) {
-						targetWord.ruby = [];
-					}
 				});
 			}
 		},
@@ -155,7 +140,6 @@ export const LyricWordViewEdit = ({
 						}
 					}}
 				/>
-				{showRubyEditor && <RubyEditor wordAtom={wordAtom} />}
 			</span>
 		</div>
 	) : (
@@ -209,7 +193,6 @@ export const LyricWordViewEdit = ({
 								{useCompactSpace ? null : displayWord}
 							</div>
 						</div>
-						{showRubyEditor && <RubyEditor wordAtom={wordAtom} />}
 					</span>
 				</LyricWordViewEditSpan>
 			</ContextMenu.Trigger>

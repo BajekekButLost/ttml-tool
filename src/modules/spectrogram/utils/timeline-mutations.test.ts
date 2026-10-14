@@ -109,45 +109,6 @@ describe("Alt-drag gaps", () => {
 		expect(preview.segments[1]).toMatchObject({ startTime: 400, endTime: 600 });
 	});
 
-	it("preserves ruby ownership and commits changes to the correct ruby syllable", () => {
-		const rubyLine = {
-			...line,
-			words: [
-				{
-					...line.words[0],
-					id: "ruby",
-					word: "漢字",
-					endTime: 900,
-					ruby: [
-						{ word: "かん", startTime: 100, endTime: 500 },
-						{ word: "じ", startTime: 500, endTime: 900 },
-					],
-				},
-			],
-		};
-		globalStore.set(lyricLinesAtom, { lyricLines: [rubyLine], metadata: [] });
-		const preview = getUpdatedLineForDivider(
-			processSingleLine(rubyLine),
-			0,
-			650,
-			true,
-			100,
-			"right",
-		);
-		expect(preview.segments[2]).toMatchObject({
-			parentId: "ruby",
-			rubyIndex: 1,
-			isRuby: true,
-		});
-		commitUpdatedLine(preview);
-		const word = globalStore.get(lyricLinesAtom).lyricLines[0].words[0];
-		expect(word.ruby).toEqual([
-			{ word: "かん", startTime: 100, endTime: 500 },
-			{ word: "じ", startTime: 650, endTime: 900 },
-		]);
-		expect(word).toMatchObject({ word: "漢字", startTime: 100, endTime: 900 });
-	});
-
 	it("keeps normal divider and line boundary drags working", () => {
 		const original = processSingleLine(line);
 		const divider = getUpdatedLineForDivider(original, 0, 600, false);
@@ -162,23 +123,18 @@ describe("Alt-drag gaps", () => {
 });
 
 describe("draft line timing", () => {
-	it("initializes words evenly in integer ms and fills only untimed ruby", () => {
+	it("initializes words evenly in integer ms", () => {
 		const original = {
 			...newLyricLine(),
 			words: [
 				{
 					...newLyricWord(),
 					word: "a",
-					ruby: [
-						{ word: "a", startTime: 0, endTime: 0 },
-						{ word: "b", startTime: 0, endTime: 0 },
-					],
 				},
 				{ ...newLyricWord(), word: " " },
 				{
 					...newLyricWord(),
 					word: "long",
-					ruby: [{ word: "keep", startTime: 20, endTime: 21 }],
 				},
 			],
 		};
@@ -190,13 +146,6 @@ describe("draft line timing", () => {
 			[103, 103],
 			[103, 105],
 		]);
-		expect(
-			result.words[0].ruby?.map((ruby) => [ruby.startTime, ruby.endTime]),
-		).toEqual([
-			[100, 102],
-			[102, 103],
-		]);
-		expect(result.words[2].ruby?.[0]).toEqual(original.words[2].ruby?.[0]);
 		expect(original.words[0].startTime).toBe(0);
 	});
 	it("repairs an anchor and following zero-time words without fractional ms", () => {

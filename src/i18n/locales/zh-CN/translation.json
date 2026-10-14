@@ -774,7 +774,6 @@
       "help": "帮助",
       "segmentationTools": "分词工具",
       "autoSegment": "自动分词",
-      "rubySegment": "Ruby 分词",
       "advancedSegment": "高级分词...",
       "learnedSplits": "学会了分裂...",
       "syncLineTimestamps": "同步行时间戳",

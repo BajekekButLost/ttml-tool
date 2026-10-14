@@ -33,15 +33,6 @@ export const UrbanDictionaryKeybinding: FC = () => {
 					selectedWordsList.push(word.word.trim());
 					remainingIds.delete(word.id);
 				}
-				if (word.ruby) {
-					for (const r of word.ruby) {
-						if (!("id" in r) || typeof r.id !== "string") continue;
-						if (remainingIds.has(r.id)) {
-							selectedWordsList.push(r.word.trim());
-							remainingIds.delete(r.id);
-						}
-					}
-				}
 			}
 		}
 

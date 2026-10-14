@@ -113,7 +113,7 @@
 			"title": "Spicy Lyrics Preview",
 			"body": "A high-fidelity Spicy Lyrics renderer with animated, custom, and cover-art backgrounds; karaoke, Simple Lyrics, and line-synced layouts; automatic scrolling; and an optional FPS counter.",
 			"highlight": true,
-			"color": "ruby",
+			"color": "crimson",
 			"icon": "StarRegular",
 			"info": "Choose Spicy from the Preview mode selector. It includes interlude dots, RTL- and duet-aware layouts, plus CJK and romanized word wrapping."
 		},
@@ -248,7 +248,7 @@
 			"title": "Appearance Editor",
 			"body": "Over 40 granular visual parameters and theme presets to fully customize your editor's look.",
 			"highlight": true,
-			"color": "ruby",
+			"color": "crimson",
 			"icon": "SettingsRegular",
 			"info": "Access via the Settings icon > Appearance. Customize everything from colors to border radius."
 		},

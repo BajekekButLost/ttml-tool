@@ -5,7 +5,7 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main.ts";
-import type { LyricLine, LyricWord, LyricWordBase } from "$/types/ttml";
+import type { LyricLine, LyricWord } from "$/types/ttml";
 
 export interface LineLocationResult {
 	lines: LyricLine[];
@@ -16,8 +16,6 @@ export interface LineLocationResult {
 export interface LineAndWordLocationResult extends LineLocationResult {
 	word: LyricWord;
 	wordIndex: number;
-	rubyIndex?: number;
-	rubyWord?: LyricWordBase;
 	syncIndex: number;
 	syncId: string;
 	isFirstWord: boolean;
@@ -28,45 +26,14 @@ export interface SyncWordUnit {
 	id: string;
 	word: LyricWord;
 	wordIndex: number;
-	rubyIndex?: number;
-	rubyWord?: LyricWordBase;
 }
 
-export const buildRubySelectionId = (wordId: string, rubyIndex: number) =>
-	`${wordId}-ruby-${rubyIndex}`;
-
-export const parseRubySelectionId = (id: string) => {
-	const match = id.match(/^(.*)-ruby-(\d+)$/);
-	if (!match) return;
-	return {
-		wordId: match[1],
-		rubyIndex: Number.parseInt(match[2], 10),
-	};
-};
-
 export const getSyncUnitsForLine = (line: LyricLine): SyncWordUnit[] =>
-	line.words.flatMap((word, wordIndex) => {
-		if (word.ruby && word.ruby.length > 0) {
-			return word.ruby.map((rubyWord, rubyIndex) => ({
-				id: buildRubySelectionId(word.id, rubyIndex),
-				word,
-				wordIndex,
-				rubyIndex,
-				rubyWord,
-			}));
-		}
-		return [
-			{
-				id: word.id,
-				word,
-				wordIndex,
-			},
-		];
-	});
+	line.words.map((word, wordIndex) => ({ id: word.id, word, wordIndex }));
 
 export const getSynchronizableUnits = (line: LyricLine) =>
 	getSyncUnitsForLine(line).filter((unit) => {
-		const text = unit.rubyWord?.word ?? unit.word.word;
+		const text = unit.word.word;
 		return text.trim().length > 0;
 	});
 
@@ -105,20 +72,7 @@ export function getCurrentLocation(
 	if (!selectedWordId) return;
 	const line = lyricLines[lyricLine];
 	const syncUnits = getSynchronizableUnits(line);
-	let syncIndex = syncUnits.findIndex((unit) => unit.id === selectedWordId);
-	if (syncIndex === -1) {
-		const parsed = parseRubySelectionId(selectedWordId);
-		if (parsed) {
-			syncIndex = syncUnits.findIndex(
-				(unit) =>
-					unit.word.id === parsed.wordId && unit.rubyIndex === parsed.rubyIndex,
-			);
-		} else {
-			syncIndex = syncUnits.findIndex(
-				(unit) => unit.word.id === selectedWordId,
-			);
-		}
-	}
+	const syncIndex = syncUnits.findIndex((unit) => unit.id === selectedWordId);
 	if (syncIndex === -1) return;
 	const targetUnit = syncUnits[syncIndex];
 	if (!targetUnit) return;
@@ -130,8 +84,6 @@ export function getCurrentLocation(
 		lineIndex: lyricLine,
 		word: targetUnit.word,
 		wordIndex: targetUnit.wordIndex,
-		rubyIndex: targetUnit.rubyIndex,
-		rubyWord: targetUnit.rubyWord,
 		syncIndex,
 		syncId: targetUnit.id,
 		isFirstWord,
@@ -150,23 +102,7 @@ export function useCurrentLocation(): LineAndWordLocationResult | undefined {
 		if (lyricLine === -1) return;
 		const line = lyrics.lyricLines[lyricLine];
 		const syncUnits = getSynchronizableUnits(line);
-		let syncIndex = syncUnits.findIndex((unit) => selectedWords.has(unit.id));
-		if (syncIndex === -1) {
-			const selectedWordId = [...selectedWords][0];
-			if (!selectedWordId) return;
-			const parsed = parseRubySelectionId(selectedWordId);
-			if (parsed) {
-				syncIndex = syncUnits.findIndex(
-					(unit) =>
-						unit.word.id === parsed.wordId &&
-						unit.rubyIndex === parsed.rubyIndex,
-				);
-			} else {
-				syncIndex = syncUnits.findIndex(
-					(unit) => unit.word.id === selectedWordId,
-				);
-			}
-		}
+		const syncIndex = syncUnits.findIndex((unit) => selectedWords.has(unit.id));
 		if (syncIndex === -1) return;
 		const targetUnit = syncUnits[syncIndex];
 		if (!targetUnit) return;
@@ -178,8 +114,6 @@ export function useCurrentLocation(): LineAndWordLocationResult | undefined {
 			lineIndex: lyricLine,
 			word: targetUnit.word,
 			wordIndex: targetUnit.wordIndex,
-			rubyIndex: targetUnit.rubyIndex,
-			rubyWord: targetUnit.rubyWord,
 			syncIndex,
 			syncId: targetUnit.id,
 			isFirstWord,

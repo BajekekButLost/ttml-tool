@@ -113,14 +113,16 @@ describe("backup import", () => {
 				app: "amll-ttml-tool",
 				formatVersion: 1,
 				categories: {
-					settings: { localStorage: { accentColor: JSON.stringify("ruby") } },
+					settings: {
+						localStorage: { accentColor: JSON.stringify("crimson") },
+					},
 					plugins: { plugins: [{ id: "old", blobBase64: "AA==" }] },
 				},
 			}),
 		);
 		expect(getPresentCategories(backup)).toEqual(["settings"]);
 		await applyBackup(backup, new Set(getPresentCategories(backup)));
-		expect(localStorage.getItem("accentColor")).toBe(JSON.stringify("ruby"));
+		expect(localStorage.getItem("accentColor")).toBe(JSON.stringify("crimson"));
 	});
 
 	it("does not export or restore retired settings, commands, or AI keys", async () => {
@@ -171,7 +173,7 @@ describe("backup import", () => {
 		localStorage.clear();
 		await applyBackup(
 			craft({
-				accentColor: JSON.stringify("ruby"),
+				accentColor: JSON.stringify("crimson"),
 				geniusApiKey: JSON.stringify("injected"),
 				aiSidebarApiKey: JSON.stringify("injected"),
 				lastWorkspaceDir: JSON.stringify("D:\\x"),
@@ -179,7 +181,7 @@ describe("backup import", () => {
 			new Set<BackupCategoryId>(["settings"]),
 		);
 
-		expect(localStorage.getItem("accentColor")).toBe(JSON.stringify("ruby"));
+		expect(localStorage.getItem("accentColor")).toBe(JSON.stringify("crimson"));
 		expect(localStorage.getItem("geniusApiKey")).toBeNull();
 		expect(localStorage.getItem("aiSidebarApiKey")).toBeNull();
 		expect(localStorage.getItem("lastWorkspaceDir")).toBeNull();

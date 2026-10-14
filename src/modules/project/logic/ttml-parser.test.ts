@@ -6,7 +6,7 @@ import {
 } from "./ttml-parser";
 
 describe("separateTrailingWhitespace", () => {
-	it("keeps timing, identity, metadata and ruby on the trimmed syllable", () => {
+	it("keeps timing, identity, metadata on the trimmed syllable", () => {
 		const word = {
 			...newLyricWord(),
 			word: " hello  \t",
@@ -15,7 +15,6 @@ describe("separateTrailingWhitespace", () => {
 			obscene: true,
 			emptyBeat: 2,
 			romanWord: "he-lo",
-			ruby: [{ word: "hello", startTime: 100, endTime: 400 }],
 		};
 		const [syllable, spaces] = separateTrailingWhitespace([word]);
 		expect(syllable).toEqual({ ...word, word: " hello" });

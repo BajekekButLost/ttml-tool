@@ -52,11 +52,6 @@ export const scaleTTMLTimings = (
 		for (const word of line.words) {
 			word.startTime = scaleTimestamp(word.startTime, factor);
 			word.endTime = scaleTimestamp(word.endTime, factor);
-
-			for (const rubyWord of word.ruby ?? []) {
-				rubyWord.startTime = scaleTimestamp(rubyWord.startTime, factor);
-				rubyWord.endTime = scaleTimestamp(rubyWord.endTime, factor);
-			}
 		}
 	}
 

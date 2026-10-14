@@ -154,12 +154,6 @@ export const TimeShiftToolbar: FC = () => {
 						w.id = uid();
 						w.startTime += offset;
 						w.endTime += offset;
-						if (w.ruby) {
-							w.ruby.forEach((r: any) => {
-								r.startTime += offset;
-								r.endTime += offset;
-							});
-						}
 					});
 					return newLine;
 				});
@@ -173,12 +167,6 @@ export const TimeShiftToolbar: FC = () => {
 					line.words.forEach((w) => {
 						w.startTime += offset;
 						w.endTime += offset;
-						if (w.ruby) {
-							w.ruby.forEach((r) => {
-								r.startTime += offset;
-								r.endTime += offset;
-							});
-						}
 					});
 				});
 			}

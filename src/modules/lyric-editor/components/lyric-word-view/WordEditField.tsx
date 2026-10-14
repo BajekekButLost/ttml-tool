@@ -21,7 +21,6 @@ import {
 } from "react";
 import { lyricLinesAtom } from "$/states/main.ts";
 import type { LyricWord } from "$/types/ttml.ts";
-import { parseRubyShortcut } from "../../utils/ruby-shortcut";
 export function WordEditField<
 	F extends keyof LyricWord,
 	V extends LyricWord[F],
@@ -62,22 +61,12 @@ export function WordEditField<
 		(rawValue: string) => {
 			try {
 				const thisWord = store.get(wordAtom);
-				const { word: inputWord, enableRuby } =
-					fieldName === "word"
-						? parseRubyShortcut(rawValue)
-						: { word: rawValue, enableRuby: false };
-				const value =
-					fieldName === "word"
-						? (inputWord as unknown as V)
-						: parser(inputWord as string);
+				const value = parser(rawValue);
 				editLyricLines((state) => {
 					for (const line of state.lyricLines) {
 						for (const word of line.words) {
 							if (thisWord.id === word.id) {
 								word[fieldName] = value;
-								if (fieldName === "word" && enableRuby && !word.ruby) {
-									word.ruby = [];
-								}
 								break;
 							}
 						}

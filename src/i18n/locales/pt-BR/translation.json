@@ -774,7 +774,6 @@
       "help": "Ajuda",
       "segmentationTools": "Ferramentas de segmentação",
       "autoSegment": "Segmentação automática",
-      "rubySegment": "Segmentação Ruby",
       "advancedSegment": "Segmentação avançada...",
       "learnedSplits": "Divisões aprendidas...",
       "syncLineTimestamps": "Sincronizar marcas de tempo das linhas",

@@ -27,7 +27,6 @@ export const useSyncWordLifecycle = ({
 	editLyricLines,
 	line,
 	wordIndex,
-	rubyIndex,
 }: {
 	store: ReturnType<typeof useStore>;
 	startTime: number;
@@ -38,7 +37,6 @@ export const useSyncWordLifecycle = ({
 	editLyricLines: (recipe: (state: Draft<TTMLLyric>) => void) => void;
 	line: LyricLine;
 	wordIndex: number;
-	rubyIndex: number;
 }) => {
 	const startTimeRef = useRef<HTMLDivElement>(null);
 	const endTimeRef = useRef<HTMLDivElement>(null);
@@ -96,7 +94,6 @@ export const useSyncWordLifecycle = ({
 		editLyricLines,
 		line,
 		wordIndex,
-		rubyIndex,
 	});
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: 用于呈现时间戳更新效果

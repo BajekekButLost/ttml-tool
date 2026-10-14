@@ -48,34 +48,13 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main.ts";
-import type {
-	LyricLine,
-	LyricWord,
-	LyricWordBase,
-	TTMLLyric,
-} from "$/types/ttml";
+import type { LyricLine, LyricWord, TTMLLyric } from "$/types/ttml";
 import {
 	type KeyBindingEvent,
 	useKeyBindingAtom,
 } from "$/utils/keybindings.ts";
 
-const getUnitStartTime = (unit: {
-	word: LyricWord;
-	rubyWord?: LyricWordBase;
-}) => unit.rubyWord?.startTime ?? unit.word.startTime;
-
-const updateRubyParentTime = (word: LyricWord) => {
-	const ruby = word.ruby;
-	if (!ruby || ruby.length === 0) return;
-	let minStart = Number.POSITIVE_INFINITY;
-	let maxEnd = Number.NEGATIVE_INFINITY;
-	for (const r of ruby) {
-		if (r.startTime < minStart) minStart = r.startTime;
-		if (r.endTime > maxEnd) maxEnd = r.endTime;
-	}
-	if (Number.isFinite(minStart)) word.startTime = minStart;
-	if (Number.isFinite(maxEnd)) word.endTime = maxEnd;
-};
+const getUnitStartTime = (unit: { word: LyricWord }) => unit.word.startTime;
 
 type LyricsState = TTMLLyric;
 
@@ -83,30 +62,16 @@ function cloneLineWithWords(line: LyricLine): LyricLine {
 	return { ...line, words: line.words.slice() };
 }
 
-function cloneWordWithRuby(word: LyricWord): LyricWord {
-	return {
-		...word,
-		ruby: word.ruby ? word.ruby.slice() : undefined,
-	};
-}
-
 function setUnitStartTimeCloned(
 	line: LyricLine,
 	wordIndex: number,
-	rubyIndex: number | undefined,
 	time: number,
 ) {
 	const prevWord = line.words[wordIndex];
 	if (!prevWord) return;
-	const nextWord = cloneWordWithRuby(prevWord);
+	const nextWord = { ...prevWord };
 
-	if (rubyIndex !== undefined && nextWord.ruby?.[rubyIndex]) {
-		const prevRuby = nextWord.ruby[rubyIndex];
-		nextWord.ruby[rubyIndex] = { ...prevRuby, startTime: time };
-		updateRubyParentTime(nextWord);
-	} else {
-		nextWord.startTime = time;
-	}
+	nextWord.startTime = time;
 
 	line.words[wordIndex] = nextWord;
 }
@@ -114,20 +79,13 @@ function setUnitStartTimeCloned(
 function setUnitEndTimeCloned(
 	line: LyricLine,
 	wordIndex: number,
-	rubyIndex: number | undefined,
 	time: number,
 ) {
 	const prevWord = line.words[wordIndex];
 	if (!prevWord) return;
-	const nextWord = cloneWordWithRuby(prevWord);
+	const nextWord = { ...prevWord };
 
-	if (rubyIndex !== undefined && nextWord.ruby?.[rubyIndex]) {
-		const prevRuby = nextWord.ruby[rubyIndex];
-		nextWord.ruby[rubyIndex] = { ...prevRuby, endTime: time };
-		updateRubyParentTime(nextWord);
-	} else {
-		nextWord.endTime = time;
-	}
+	nextWord.endTime = time;
 
 	line.words[wordIndex] = nextWord;
 }
@@ -321,12 +279,7 @@ export const SyncKeyBinding: FC = () => {
 				const nextLines = state.lyricLines.slice();
 				const nextLine = cloneLineWithWords(prevLine);
 				if (location.isFirstWord) nextLine.startTime = currentTime;
-				setUnitStartTimeCloned(
-					nextLine,
-					location.wordIndex,
-					location.rubyIndex,
-					currentTime,
-				);
+				setUnitStartTimeCloned(nextLine, location.wordIndex, currentTime);
 				nextLines[location.lineIndex] = nextLine;
 
 				return { ...state, lyricLines: nextLines };
@@ -394,7 +347,6 @@ export const SyncKeyBinding: FC = () => {
 							setUnitStartTimeCloned(
 								nextLine,
 								nextLineUnits[0].wordIndex,
-								nextLineUnits[0].rubyIndex,
 								currentTime,
 							);
 						}
@@ -438,12 +390,7 @@ export const SyncKeyBinding: FC = () => {
 						const nextLines = state.lyricLines.slice();
 						const nextLine = cloneLineWithWords(prevLine);
 						nextLine.startTime = currentTime;
-						setUnitStartTimeCloned(
-							nextLine,
-							location.wordIndex,
-							location.rubyIndex,
-							currentTime,
-						);
+						setUnitStartTimeCloned(nextLine, location.wordIndex, currentTime);
 						nextLines[location.lineIndex] = nextLine;
 
 						return { ...state, lyricLines: nextLines };
@@ -464,12 +411,7 @@ export const SyncKeyBinding: FC = () => {
 
 					const nextLines = state.lyricLines.slice();
 					const nextLine = cloneLineWithWords(prevLine);
-					setUnitEndTimeCloned(
-						nextLine,
-						location.wordIndex,
-						location.rubyIndex,
-						currentTime,
-					);
+					setUnitEndTimeCloned(nextLine, location.wordIndex, currentTime);
 					nextLine.endTime = currentTime;
 					nextLines[location.lineIndex] = nextLine;
 
@@ -491,7 +433,6 @@ export const SyncKeyBinding: FC = () => {
 
 				const curLineIndex = location.lineIndex;
 				const curWordIndex = location.wordIndex;
-				const curRubyIndex = location.rubyIndex;
 				const curSyncIndex = location.syncIndex;
 
 				const getLineToEdit = (idx: number) => {
@@ -503,7 +444,6 @@ export const SyncKeyBinding: FC = () => {
 				setUnitEndTimeCloned(
 					getLineToEdit(curLineIndex),
 					curWordIndex,
-					curRubyIndex,
 					currentTime,
 				);
 
@@ -517,7 +457,7 @@ export const SyncKeyBinding: FC = () => {
 					const next = findNextWord(nextLines, iterLineIndex, iterSyncIndex);
 					if (!next) break;
 
-					const text = (next.unit.rubyWord?.word ?? next.unit.word.word).trim();
+					const text = next.unit.word.word.trim();
 					if (text.length === 0) {
 						// Whitespace — auto-commit both start and end
 						const targetLine = getLineToEdit(next.lineIndex);
@@ -528,15 +468,9 @@ export const SyncKeyBinding: FC = () => {
 						setUnitStartTimeCloned(
 							targetLine,
 							next.unit.wordIndex,
-							next.unit.rubyIndex,
 							currentTime,
 						);
-						setUnitEndTimeCloned(
-							targetLine,
-							next.unit.wordIndex,
-							next.unit.rubyIndex,
-							currentTime,
-						);
+						setUnitEndTimeCloned(targetLine, next.unit.wordIndex, currentTime);
 						iterLineIndex = next.lineIndex;
 						iterSyncIndex = next.syncIndex;
 					} else {
@@ -549,7 +483,6 @@ export const SyncKeyBinding: FC = () => {
 						setUnitStartTimeCloned(
 							targetLine,
 							next.unit.wordIndex,
-							next.unit.rubyIndex,
 							currentTime,
 						);
 						targetSelection = { id: next.unit.id, lineId: next.line.id };
@@ -658,12 +591,7 @@ export const SyncKeyBinding: FC = () => {
 
 				const nextLines = state.lyricLines.slice();
 				const nextLine = cloneLineWithWords(prevLine);
-				setUnitEndTimeCloned(
-					nextLine,
-					location.wordIndex,
-					location.rubyIndex,
-					currentTime,
-				);
+				setUnitEndTimeCloned(nextLine, location.wordIndex, currentTime);
 				if (location.isLastWord) nextLine.endTime = currentTime;
 				nextLines[location.lineIndex] = nextLine;
 

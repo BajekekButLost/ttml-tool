@@ -671,7 +671,7 @@ export const ImportFromText = () => {
 															"Community Guides & Cheat Sheets",
 														)}
 													</Text>
-													<Badge color="ruby">GENIUS</Badge>
+													<Badge color="crimson">GENIUS</Badge>
 												</Flex>
 												<Text color="gray" size="2">
 													{t(
@@ -756,7 +756,7 @@ export const ImportFromText = () => {
 															<Button
 																key={guide.url}
 																variant={guide.featured ? "surface" : "soft"}
-																color={guide.featured ? "ruby" : "gray"}
+																color={guide.featured ? "crimson" : "gray"}
 																onClick={() => window.open(guide.url, "_blank")}
 																style={{
 																	justifyContent: "start",
@@ -778,7 +778,7 @@ export const ImportFromText = () => {
 																		{guide.featured && (
 																			<Badge
 																				size="1"
-																				color="ruby"
+																				color="crimson"
 																				style={{ marginLeft: "auto" }}
 																			>
 																				Featured

@@ -11,7 +11,7 @@ import {
 } from "react";
 import { lyricLinesAtom } from "$/states/main";
 import type { LyricWord } from "$/types/ttml";
-import { AutoSizeTextField } from "../tools/RubyEditor.tsx";
+import { AutoSizeTextField } from "../tools/AutoSizeTextField.tsx";
 import styles from "./roman-word-view.module.css";
 
 interface RomanWordViewProps {

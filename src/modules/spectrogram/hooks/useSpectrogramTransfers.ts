@@ -88,31 +88,10 @@ export function useSpectrogramTransfers(
 								word.startTime = currentWordTime;
 								word.endTime = currentWordTime + wordDuration;
 								currentWordTime += wordDuration;
-								if (word.ruby && word.ruby.length > 0) {
-									let totalRubyChars = 0;
-									for (const ruby of word.ruby)
-										totalRubyChars += ruby.word.length;
-									let currentRubyTime = word.startTime;
-									for (const ruby of word.ruby) {
-										const rubyDur =
-											totalRubyChars > 0
-												? Math.round(
-														(ruby.word.length / totalRubyChars) * wordDuration,
-													)
-												: 0;
-										ruby.startTime = currentRubyTime;
-										ruby.endTime = currentRubyTime + rubyDur;
-										currentRubyTime += rubyDur;
-									}
-								}
 							}
 							if (line.words.length > 0) {
 								const lastWord = line.words[line.words.length - 1];
 								lastWord.endTime = line.endTime;
-								if (lastWord.ruby && lastWord.ruby.length > 0) {
-									lastWord.ruby[lastWord.ruby.length - 1].endTime =
-										line.endTime;
-								}
 							}
 						}
 					}),

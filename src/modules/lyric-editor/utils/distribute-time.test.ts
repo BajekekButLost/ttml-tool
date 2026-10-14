@@ -1,11 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { newLyricLine, newLyricWord } from "$/types/ttml";
-import {
-	type DistributionOptions,
-	distributeLineTime,
-	distributeTime,
-} from "./distribute-time";
-import { getSynchronizableUnits } from "./lyric-states";
+import { distributeLineTime, distributeTime } from "./distribute-time";
 
 const units = (texts: string[]) =>
 	texts.map((word) => ({ word, startTime: 0, endTime: 0 }));
@@ -100,56 +95,24 @@ describe("distributeTime", () => {
 			expect(word.endTime).toBeGreaterThanOrEqual(word.startTime);
 		});
 	});
-	it("distributes ruby sub-units in reading order using their text", () => {
+	it("drafts word timing including spaces without mutating the line", () => {
 		const line = {
 			...newLyricLine(),
 			words: [
-				{ ...newLyricWord(), word: "base", ruby: units(["a", " ", "bbb"]) },
-				{ ...newLyricWord(), word: "cc" },
-			],
-		};
-		const readingUnits = getSynchronizableUnits(line);
-		const options: DistributionOptions = { weight: "characters" };
-		expect(
-			distributeTime(
-				readingUnits.map((unit) => unit.rubyWord ?? unit.word),
-				100,
-				106,
-				options,
-			).map((word) => [word.startTime, word.endTime]),
-		).toEqual([
-			[100, 101],
-			[101, 104],
-			[104, 106],
-		]);
-		expect(distributeTime([], 0, 1)).toEqual([]);
-	});
-	it("updates ruby parents without stale zero-time spaces and never mutates a line", () => {
-		const line = {
-			...newLyricLine(),
-			words: [
-				{
-					...newLyricWord(),
-					word: "base",
-					ruby: units([" ", "a", "bbb", " "]),
-				},
+				{ ...newLyricWord(), word: "base" },
 				{ ...newLyricWord(), word: " " },
 				{ ...newLyricWord(), word: "cc" },
 			],
 		};
+		const before = structuredClone(line);
 		const result = distributeLineTime(line, 100, 106, { weight: "characters" });
-		expect(result.words[0]).toMatchObject({ startTime: 100, endTime: 104 });
-		expect(
-			result.words[0].ruby?.map((ruby) => [ruby.startTime, ruby.endTime]),
-		).toEqual([
-			[100, 100],
-			[100, 101],
-			[101, 104],
+		expect(result.words.map((word) => [word.startTime, word.endTime])).toEqual([
+			[100, 104],
 			[104, 104],
+			[104, 106],
 		]);
-		expect(result.words[1]).toMatchObject({ startTime: 104, endTime: 104 });
-		expect(result.words[2]).toMatchObject({ startTime: 104, endTime: 106 });
 		expect(result).toMatchObject({ startTime: 100, endTime: 106 });
-		expect(line.words[0].ruby?.[1].endTime).toBe(0);
+		expect(line).toEqual(before);
+		expect(distributeTime([], 0, 1)).toEqual([]);
 	});
 });

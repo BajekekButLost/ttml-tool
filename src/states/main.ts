@@ -17,6 +17,7 @@ import {
 	migrateLegacySections,
 	repairSectionIntegrity,
 } from "$/modules/lyric-editor/utils/section-system";
+import { normalizeDocumentWords } from "$/modules/project/logic/normalize-document";
 import { identifyProject } from "$/modules/project/logic/project-info";
 import type { TTMLLyric } from "../types/ttml";
 
@@ -73,8 +74,6 @@ export const allLyricsWordsAtom: Atom<Set<string>> = selectAtom(
  * - 打开文件时会尝试与数据库中的历史项目进行匹配，如果匹配成功，则复用旧项目的 ID，否则生成新 ID
  */
 export const projectIdAtom = atom(uid());
-
-export const rubyWarningShownProjectIdsAtom = atom(new Set<string>());
 
 /**
  * @description 当前项目的显示身份信息，主要用于在 UI 上显示项目名称
@@ -163,6 +162,7 @@ export const newLyricLinesAtom = atom(
 			sections: [],
 		},
 	) => {
+		newState = normalizeDocumentWords(newState);
 		if (!newState.marks) newState.marks = [];
 		migrateLegacySections(newState);
 		repairSectionIntegrity(newState);

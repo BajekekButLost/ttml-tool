@@ -14,8 +14,6 @@ import { type FC, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { displayRomanizationInSyncAtom } from "$/modules/settings/states/index.ts";
 import type { LyricLine, LyricWord } from "$/types/ttml.ts";
-import { buildRubySelectionId } from "../../utils/lyric-states.ts";
-import styles from "../index.module.css";
 import { LyricSyncWordView } from "./LyricSyncWordView";
 import { useWordBlank } from "./use-word-blank";
 import { getDisplayWordText } from "./word-text";
@@ -42,50 +40,23 @@ export const LyricWordViewSync: FC<{
 		[t],
 	);
 
-	const content =
-		word.ruby && word.ruby.length > 0 ? (
-			<div className={styles.rubySyncRow}>
-				{word.ruby.map((rubyWord, rubyIndex) => {
-					const isRubyBlank =
-						rubyWord.word.length === 0 ||
-						(rubyWord.word.length > 0 && rubyWord.word.trim().length === 0);
-					return (
-						<LyricSyncWordView
-							key={`${word.id}-ruby-${rubyIndex}`}
-							syncId={buildRubySelectionId(word.id, rubyIndex)}
-							wordAtom={wordAtom}
-							line={line}
-							startTime={rubyWord.startTime}
-							endTime={rubyWord.endTime}
-							displayWord={getDisplayWord(rubyWord.word, isRubyBlank)}
-							isWordBlank={isRubyBlank}
-							wordIndex={wordIndex}
-							lineIndex={lineIndex}
-							rubyIndex={rubyIndex}
-							editableField="word"
-						/>
-					);
-				})}
-			</div>
-		) : (
-			<LyricSyncWordView
-				syncId={word.id}
-				wordAtom={wordAtom}
-				line={line}
-				startTime={word.startTime}
-				endTime={word.endTime}
-				displayWord={getDisplayWord(
-					word.word,
-					isWordBlank,
-					word.romanWord,
-					displayRomanizationInSync,
-				)}
-				isWordBlank={isWordBlank}
-				wordIndex={wordIndex}
-				lineIndex={lineIndex}
-				editableField={hasRomanization ? "romanWord" : "word"}
-			/>
-		);
-
-	return content;
+	return (
+		<LyricSyncWordView
+			syncId={word.id}
+			wordAtom={wordAtom}
+			line={line}
+			startTime={word.startTime}
+			endTime={word.endTime}
+			displayWord={getDisplayWord(
+				word.word,
+				isWordBlank,
+				word.romanWord,
+				displayRomanizationInSync,
+			)}
+			isWordBlank={isWordBlank}
+			wordIndex={wordIndex}
+			lineIndex={lineIndex}
+			editableField={hasRomanization ? "romanWord" : "word"}
+		/>
+	);
 };

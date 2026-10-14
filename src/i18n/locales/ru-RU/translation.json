@@ -774,7 +774,6 @@
       "help": "Справка",
       "segmentationTools": "Инструменты сегментации",
       "autoSegment": "Авто-сегментация",
-      "rubySegment": "Сегментация Ruby",
       "advancedSegment": "Продвинутая сегментация...",
       "learnedSplits": "Выученные шпагаты...",
       "syncLineTimestamps": "Синхронизировать временные метки строки",

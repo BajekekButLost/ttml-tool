@@ -20,17 +20,13 @@ export function reviewTTMLExport(lyric: TTMLLyric) {
 	const line =
 		firstUntimedLine ??
 		lyric.lyricLines.find((candidate) =>
-			getSynchronizableUnits(candidate).some(
-				(unit) => (unit.rubyWord ?? unit.word).endTime === 0,
-			),
+			getSynchronizableUnits(candidate).some((unit) => unit.word.endTime === 0),
 		);
 	const unit =
 		line &&
 		(firstUntimedLine
 			? getSynchronizableUnits(line)[0]
-			: getSynchronizableUnits(line).find(
-					(unit) => (unit.rubyWord ?? unit.word).endTime === 0,
-				));
+			: getSynchronizableUnits(line).find((unit) => unit.word.endTime === 0));
 	return {
 		untimed: line && unit ? { line, unit } : undefined,
 		sectionIssueCount: validateSections(lyric).length,

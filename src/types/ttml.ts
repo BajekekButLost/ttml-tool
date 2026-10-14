@@ -83,7 +83,6 @@ export interface LyricWord extends AMLLLyricWord {
 	/** Required by AMLL's renderer types; always false, the tool no longer edits or exports it. */
 	obscene: boolean;
 	romanWarning?: boolean;
-	ruby?: LyricWordBase[];
 	romanWord: string;
 }
 

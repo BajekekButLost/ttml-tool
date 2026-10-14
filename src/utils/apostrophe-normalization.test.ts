@@ -69,7 +69,6 @@ describe("normalizeImportedLyricApostrophes", () => {
 						word: "It‘s fine",
 						romanWord: "d’Accord",
 						obscene: false,
-						ruby: [{ startTime: 0, endTime: 1, word: "Ruby’s text" }],
 					},
 				],
 			},
@@ -87,7 +86,6 @@ describe("normalizeImportedLyricApostrophes", () => {
 				{
 					word: "It's fine",
 					romanWord: "d'Accord",
-					ruby: [{ word: "Ruby's text" }],
 				},
 			],
 		});
@@ -160,7 +158,6 @@ describe("normalizeImportedLyricApostrophes", () => {
 								...lyrics.lyricLines[0].words[0],
 								word: "Неy",
 								romanWord: "Еcho",
-								ruby: [{ startTime: 0, endTime: 1, word: "Thе ruby" }],
 							},
 						],
 					},
@@ -173,7 +170,7 @@ describe("normalizeImportedLyricApostrophes", () => {
 			translatedLyric: "Тest",
 			romanLyric: "Echo",
 			geniusHeader: "[The Verse]",
-			words: [{ word: "Нey", romanWord: "Echo", ruby: [{ word: "The ruby" }] }],
+			words: [{ word: "Нey", romanWord: "Echo" }],
 		});
 		expect(normalized.metadata[0].value).toEqual(["The Song"]);
 		expect(normalized.marks?.[0]).toMatchObject({

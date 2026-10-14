@@ -1,7 +1,7 @@
 import { TextField } from "@radix-ui/themes";
 import classNames from "classnames";
 import type { ComponentPropsWithoutRef } from "react";
-import styles from "../../components/index.module.css";
+import styles from "../components/index.module.css";
 
 export const AutoSizeTextField = ({
 	value,

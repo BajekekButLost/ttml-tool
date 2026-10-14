@@ -8,7 +8,6 @@ export const accentColors = [
 	"orange",
 	"tomato",
 	"red",
-	"ruby",
 	"crimson",
 	"pink",
 	"plum",

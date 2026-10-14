@@ -48,11 +48,7 @@ export function collectFollowingBackgroundLines(
 export function hasExportableLineContent(line: LyricLine): boolean {
 	return (
 		line.words.some(
-			(word) =>
-				word.word.trim().length > 0 ||
-				word.romanWord.trim().length > 0 ||
-				(word.ruby?.some((rubyWord) => rubyWord.word.trim().length > 0) ??
-					false),
+			(word) => word.word.trim().length > 0 || word.romanWord.trim().length > 0,
 		) ||
 		line.translatedLyric.trim().length > 0 ||
 		line.romanLyric.trim().length > 0
@@ -77,35 +73,7 @@ export default function exportTTMLText(
 
 	const doc = new Document();
 
-	function createRubyWordElement(word: LyricWord): Element {
-		const container = doc.createElement("span");
-		container.setAttribute("tts:ruby", "container");
-		const base = doc.createElement("span");
-		base.setAttribute("tts:ruby", "base");
-		base.appendChild(doc.createTextNode(word.word));
-		container.appendChild(base);
-		const textContainer = doc.createElement("span");
-		textContainer.setAttribute("tts:ruby", "textContainer");
-		for (const rubyWord of word.ruby ?? []) {
-			const rubySpan = doc.createElement("span");
-			rubySpan.setAttribute("tts:ruby", "text");
-			rubySpan.setAttribute("begin", msToTimestamp(rubyWord.startTime));
-			rubySpan.setAttribute("end", msToTimestamp(rubyWord.endTime));
-			rubySpan.appendChild(doc.createTextNode(rubyWord.word));
-			textContainer.appendChild(rubySpan);
-		}
-		container.appendChild(textContainer);
-		return container;
-	}
-
-	function hasRuby(word: LyricWord): boolean {
-		return Array.isArray(word.ruby) && word.ruby.length > 0;
-	}
-
 	function createWordElement(word: LyricWord): Element {
-		if (Array.isArray(word.ruby) && word.ruby.length > 0) {
-			return createRubyWordElement(word);
-		}
 		const span = doc.createElement("span");
 		span.setAttribute("begin", msToTimestamp(word.startTime));
 		span.setAttribute("end", msToTimestamp(word.endTime));
@@ -317,7 +285,7 @@ export default function exportTTMLText(
 				);
 			} else {
 				for (const word of line.words) {
-					if (word.word.trim().length === 0 && !hasRuby(word)) {
+					if (word.word.trim().length === 0) {
 						lineP.appendChild(doc.createTextNode(word.word));
 					} else {
 						const span = createWordElement(word);
@@ -375,7 +343,7 @@ export default function exportTTMLText(
 						wordIndex++
 					) {
 						const word = bgLine.words[wordIndex];
-						if (word.word.trim().length === 0 && !hasRuby(word)) {
+						if (word.word.trim().length === 0) {
 							bgLineSpan.appendChild(doc.createTextNode(word.word));
 						} else {
 							const span = createWordElement(word);

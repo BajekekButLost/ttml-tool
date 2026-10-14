@@ -774,7 +774,6 @@
       "help": "Pomoc",
       "segmentationTools": "Narzędzia segmentacji",
       "autoSegment": "Automatyczna segmentacja",
-      "rubySegment": "Segmentacja rubinowa",
       "advancedSegment": "Zaawansowana segmentacja...",
       "learnedSplits": "Nauczyłem się podziałów...",
       "syncLineTimestamps": "Synchronizuj znaczniki czasu wierszy",

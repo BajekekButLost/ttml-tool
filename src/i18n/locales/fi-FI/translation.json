@@ -774,7 +774,6 @@
       "help": "Apua",
       "segmentationTools": "Segmentointityökalut",
       "autoSegment": "Auto Segment",
-      "rubySegment": "Rubiinin segmentointi",
       "advancedSegment": "Tehostettu segmentti...",
       "learnedSplits": "Opittuja eroja...",
       "syncLineTimestamps": "Synkronoi linjan aikaleimat",

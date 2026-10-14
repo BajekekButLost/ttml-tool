@@ -54,7 +54,6 @@ export const LyricSyncWordView: FC<{
 	isWordBlank: boolean;
 	wordIndex: number;
 	lineIndex: number;
-	rubyIndex?: number;
 	editableField: "word" | "romanWord";
 }> = ({
 	syncId,
@@ -66,7 +65,6 @@ export const LyricSyncWordView: FC<{
 	isWordBlank,
 	wordIndex,
 	lineIndex,
-	rubyIndex = -1,
 	editableField,
 }) => {
 	const word = useAtomValue(wordAtom);
@@ -108,7 +106,6 @@ export const LyricSyncWordView: FC<{
 		editLyricLines,
 		line,
 		wordIndex,
-		rubyIndex,
 	});
 
 	const {
@@ -189,7 +186,6 @@ export const LyricSyncWordView: FC<{
 		wordIndex,
 		lineIndex,
 		word,
-		rubyIndex,
 		editableField,
 		enableTimeModeDoubleClickEdit,
 		enableManualTimestampEdit,

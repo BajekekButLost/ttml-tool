@@ -774,7 +774,6 @@
       "help": "Yardım",
       "segmentationTools": "Ayırma Araçları",
       "autoSegment": "Otomatik Ayır",
-      "rubySegment": "Ruby Ayırması",
       "advancedSegment": "Gelişmiş Ayırma...",
       "learnedSplits": "Öğrenilmiş Bölmeler...",
       "syncLineTimestamps": "Satır Zamanlamasını Senkronize Et",

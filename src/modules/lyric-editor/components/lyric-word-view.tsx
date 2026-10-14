@@ -36,7 +36,6 @@ export const LyricWordView: FC<
 		const layoutMode = useAtomValue(layoutModeAtom);
 
 		const isWordBlank = useWordBlank(word.word);
-		const hasRuby = word.ruby && word.ruby.length > 0;
 
 		if (isHeaderLine) {
 			return (
@@ -64,7 +63,7 @@ export const LyricWordView: FC<
 						wordIndex={wordIndex}
 					/>
 				)}
-				{toolMode === ToolMode.Sync && (hasRuby || !isWordBlank) && (
+				{toolMode === ToolMode.Sync && !isWordBlank && (
 					<LyricWordViewSync
 						wordAtom={wordAtom}
 						line={line}

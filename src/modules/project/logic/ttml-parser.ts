@@ -20,7 +20,6 @@ import { uid } from "uid";
 import type {
 	LyricLine,
 	LyricWord,
-	LyricWordBase,
 	Mark,
 	TTMLLyric,
 	TTMLMetadata,
@@ -81,11 +80,7 @@ export function appendParentBeforeNestedLines(
 ) {
 	const nestedLines = lines.splice(nestedStartIndex);
 	const hasParentContent =
-		parent.words.some(
-			(word) =>
-				word.word.trim().length > 0 ||
-				word.ruby?.some((rubyWord) => rubyWord.word.trim().length > 0),
-		) ||
+		parent.words.some((word) => word.word.trim().length > 0) ||
 		parent.translatedLyric.trim().length > 0 ||
 		parent.romanLyric.trim().length > 0;
 	if (nestedLines.length > 0 && !hasParentContent) {
@@ -149,7 +144,9 @@ function parseSpan(spanEl: Element): SpanNode {
 }
 
 function flattenSpanText(span: SpanNode, skipRoles?: Set<string>): string {
-	const skipCurrent = span.role ? skipRoles?.has(span.role) : false;
+	const skipCurrent =
+		(span.role ? skipRoles?.has(span.role) : false) ||
+		["text", "textContainer", "delimiter"].includes(span.ruby ?? "");
 	let text = "";
 	if (!skipCurrent) {
 		text += span.text || "";
@@ -162,7 +159,9 @@ function flattenSpanText(span: SpanNode, skipRoles?: Set<string>): string {
 }
 
 function flattenSpanInnerText(span: SpanNode, skipRoles?: Set<string>): string {
-	const skipCurrent = span.role ? skipRoles?.has(span.role) : false;
+	const skipCurrent =
+		(span.role ? skipRoles?.has(span.role) : false) ||
+		["text", "textContainer", "delimiter"].includes(span.ruby ?? "");
 	let text = "";
 	if (!skipCurrent) {
 		text += span.text || "";
@@ -173,75 +172,31 @@ function flattenSpanInnerText(span: SpanNode, skipRoles?: Set<string>): string {
 	return text;
 }
 
-function collectRubyTextSpans(span: SpanNode): SpanNode[] {
-	const results: SpanNode[] = [];
-	if (span.ruby === "text") {
-		results.push(span);
-	}
-	for (const child of span.children) {
-		results.push(...collectRubyTextSpans(child));
-	}
-	return results;
-}
-
-function computeWordTiming(words: LyricWordBase[]): [number, number] {
-	const filtered = words.filter((v) => v.word.trim().length > 0);
-	const start =
-		filtered.reduce(
-			(pv, cv) => Math.min(pv, cv.startTime),
-			Number.POSITIVE_INFINITY,
-		) ?? 0;
-	const end = filtered.reduce((pv, cv) => Math.max(pv, cv.endTime), 0);
-	return [start === Number.POSITIVE_INFINITY ? 0 : start, end];
-}
-
-function createWordFromSpanElement(wordEl: Element): LyricWord | null {
-	const begin = getAttr(wordEl, "begin");
-	const end = getAttr(wordEl, "end");
+function createWordFromSpanElement(
+	wordEl: Element,
+	lineStart: number,
+	lineEnd: number,
+): LyricWord | null {
+	const baseEl = Array.from(wordEl.children).find(
+		(child) => getAttr(child, "ruby") === "base",
+	);
+	const begin =
+		getAttr(wordEl, "begin") ?? (baseEl ? getAttr(baseEl, "begin") : null);
+	const end =
+		getAttr(wordEl, "end") ?? (baseEl ? getAttr(baseEl, "end") : null);
 	const spanNode = parseSpan(wordEl);
 	const skipRoles = new Set(["x-translation", "x-roman"]);
-	if (spanNode.ruby === "container") {
-		const baseSpan = spanNode.children.find((child) => child.ruby === "base");
-		const baseText = baseSpan
-			? flattenSpanInnerText(baseSpan, skipRoles)
-			: flattenSpanInnerText(spanNode, skipRoles);
-		const rubyTextSpans = collectRubyTextSpans(spanNode);
-		const containerStart = begin ? parseTimespan(begin) : null;
-		const containerEnd = end ? parseTimespan(end) : null;
-		const rubyWords: LyricWordBase[] = rubyTextSpans.map((rubySpan) => {
-			const rubyBegin = rubySpan.begin
-				? parseTimespan(rubySpan.begin)
-				: (containerStart ?? 0);
-			const rubyEnd = rubySpan.end
-				? parseTimespan(rubySpan.end)
-				: (containerEnd ?? 0);
-			return {
-				word: flattenSpanInnerText(rubySpan, skipRoles),
-				startTime: rubyBegin,
-				endTime: rubyEnd,
-			};
-		});
-		const [rubyStart, rubyEnd] = computeWordTiming(rubyWords);
-		const word: LyricWord = {
-			id: uid(),
-			word: baseText,
-			startTime: containerStart ?? rubyStart,
-			endTime: containerEnd ?? rubyEnd,
-			obscene: false,
-			romanWord: "",
-			ruby: rubyWords.length > 0 ? rubyWords : undefined,
-		};
-		return word;
-	}
-	if (!begin || !end) {
+	// Older exports timed only the readings. Keep their base text using the
+	// enclosing line's timing, without borrowing discarded annotation times.
+	if ((!begin || !end) && spanNode.ruby !== "container") {
 		return null;
 	}
 	const wordText = flattenSpanInnerText(spanNode, skipRoles);
 	const word: LyricWord = {
 		id: uid(),
 		word: wordText,
-		startTime: parseTimespan(begin),
-		endTime: parseTimespan(end),
+		startTime: begin ? parseTimespan(begin) : lineStart,
+		endTime: end ? parseTimespan(end) : lineEnd,
 		obscene: false,
 		romanWord: "",
 	};
@@ -560,7 +515,11 @@ export function parseLyric(ttmlText: string): TTMLLyric {
 						}
 					}
 				} else {
-					const word = createWordFromSpanElement(wordEl);
+					const word = createWordFromSpanElement(
+						wordEl,
+						line.startTime,
+						line.endTime,
+					);
 					if (!word) continue;
 					if (availableRomanWords.length > 0) {
 						const matchIndex = availableRomanWords.findIndex(

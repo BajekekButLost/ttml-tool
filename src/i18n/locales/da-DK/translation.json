@@ -774,7 +774,6 @@
       "help": "Hjælp",
       "segmentationTools": "Segmenteringsværktøjer",
       "autoSegment": "Auto-segmentering",
-      "rubySegment": "Ruby Segmentating",
       "advancedSegment": "Avanceret segmentering...",
       "learnedSplits": "Lærte spaltninger...",
       "syncLineTimestamps": "Synkroniser linjetidsstempler",

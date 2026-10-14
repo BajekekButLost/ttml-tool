@@ -21,10 +21,7 @@ import {
 	segmentationSplitEnglishAtom,
 } from "$/modules/segmentation/states";
 import { matchesSavedSyllabificationEngine } from "$/modules/segmentation/utils/detect-syllabification-engine";
-import {
-	segmentLyricLines,
-	segmentWord,
-} from "$/modules/segmentation/utils/segmentation";
+import { segmentLyricLines } from "$/modules/segmentation/utils/segmentation";
 import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabification-engines";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import {
@@ -63,7 +60,6 @@ import {
 	undoableLyricLinesAtom,
 	undoLyricLinesAtom,
 } from "$/states/main.ts";
-import { type LyricWord, type LyricWordBase, newLyricWord } from "$/types/ttml";
 import { openFileWithDialog } from "$/utils/fileDialog.ts";
 import { error, log } from "$/utils/logging.ts";
 import { createHistoryActionGate } from "./history-action-gate";
@@ -109,33 +105,6 @@ export const useTopMenuActions = () => {
 	const runHistoryAction = useMemo(
 		() => createHistoryActionGate(requestAnimationFrame),
 		[],
-	);
-
-	const buildRubySegments = useCallback(
-		(text: string, baseWord: LyricWordBase) => {
-			const sourceWord: LyricWord = {
-				...newLyricWord(),
-				word: text,
-				startTime: baseWord.startTime,
-				endTime: baseWord.endTime,
-			};
-			const segments = segmentWord(sourceWord, segmentationConfig);
-			if (segments.length === 0) {
-				return [
-					{
-						word: text,
-						startTime: baseWord.startTime,
-						endTime: baseWord.endTime,
-					},
-				];
-			}
-			return segments.map((segment) => ({
-				word: segment.word,
-				startTime: segment.startTime,
-				endTime: segment.endTime,
-			}));
-		},
-		[segmentationConfig],
 	);
 
 	const onNewFile = useCallback(() => {
@@ -385,34 +354,6 @@ export const useTopMenuActions = () => {
 		t,
 	]);
 
-	const onRubySegment = useCallback(() => {
-		const selectedWordIds = store.get(selectedWordsAtom);
-		const hasSelection = selectedWordIds.size > 0;
-		editLyricLines((state) => {
-			for (const line of state.lyricLines) {
-				for (const word of line.words) {
-					if (hasSelection && !selectedWordIds.has(word.id)) continue;
-					if (!word.ruby || word.ruby.length === 0) continue;
-					const nextRuby: LyricWordBase[] = [];
-					for (const rubyWord of word.ruby) {
-						const parts = rubyWord.word.split("|");
-						const nextSegments = buildRubySegments(parts[0] ?? "", rubyWord);
-						const fallbackBase = {
-							word: "",
-							startTime: word.startTime,
-							endTime: word.endTime,
-						};
-						const extraSegments = parts
-							.slice(1)
-							.flatMap((part) => buildRubySegments(part, fallbackBase));
-						nextRuby.push(...nextSegments, ...extraSegments);
-					}
-					word.ruby = nextRuby;
-				}
-			}
-		});
-	}, [buildRubySegments, editLyricLines, store]);
-
 	const onOpenTimeShift = useCallback(() => {
 		setTimeShiftDialog(true);
 	}, [setTimeShiftDialog]);
@@ -495,7 +436,6 @@ export const useTopMenuActions = () => {
 		onOpenSettings,
 		onAutoSegment,
 		onQuickAutoSegment,
-		onRubySegment,
 		onOpenAdvancedSegmentation,
 		onOpenLearnedSplits,
 		onSyncLineTimestamps,

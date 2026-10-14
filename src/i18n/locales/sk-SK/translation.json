@@ -774,7 +774,6 @@
       "help": "Pomoc",
       "segmentationTools": "Nástroje segmentácie",
       "autoSegment": "Automatická segmentácia",
-      "rubySegment": "Rubínová segmentácia",
       "advancedSegment": "Pokročilá segmentácia...",
       "learnedSplits": "Naučené rozchody...",
       "syncLineTimestamps": "Synchronizovať časové značky riadkov",

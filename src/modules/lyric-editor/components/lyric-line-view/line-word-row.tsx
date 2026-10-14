@@ -13,7 +13,6 @@ import { AddFilled } from "@fluentui/react-icons";
 import { Flex, IconButton, TextField } from "@radix-ui/themes";
 import classNames from "classnames";
 import { Fragment } from "react";
-import { parseRubyShortcut } from "$/modules/lyric-editor/utils/ruby-shortcut";
 import { ToolMode } from "$/states/main.ts";
 import { newLyricWord } from "$/types/ttml.ts";
 import { getWordConnections } from "../../utils/word-connections.ts";
@@ -180,23 +179,12 @@ export function LineWordRow({
 						if (evt.key === "Enter") {
 							evt.preventDefault();
 							evt.stopPropagation();
-							const { word, enableRuby } = parseRubyShortcut(
-								evt.currentTarget.value,
-							);
+							const word = evt.currentTarget.value;
 							editLyricLines((state) => {
 								const newWord = newLyricWord();
 								state.lyricLines[lineIndex].words.push({
 									...newWord,
 									word,
-									ruby: enableRuby
-										? [
-												{
-													word: "",
-													startTime: newWord.startTime,
-													endTime: newWord.endTime,
-												},
-											]
-										: undefined,
 								});
 							});
 							evt.currentTarget.value = "";

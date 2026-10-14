@@ -24,12 +24,10 @@ export const useSyncWordEditing = ({
 	editLyricLines,
 	line,
 	wordIndex,
-	rubyIndex,
 }: {
 	editLyricLines: (recipe: (state: Draft<TTMLLyric>) => void) => void;
 	line: LyricLine;
 	wordIndex: number;
-	rubyIndex: number;
 }) => {
 	// Inline timestamp editing state: null = not editing, "start" | "end" = editing that field
 	const [editingTime, setEditingTime] = useState<"start" | "end" | null>(null);
@@ -72,17 +70,11 @@ export const useSyncWordEditing = ({
 				const targetLine = state.lyricLines.find((item) => item.id === line.id);
 				const targetWord = targetLine?.words[wordIndex];
 				if (!targetWord) return;
-				// Ruby parts have no romanization, so their edits always target the text.
-				if (rubyIndex >= 0) {
-					const ruby = targetWord.ruby?.[rubyIndex];
-					if (ruby) ruby.word = value;
-				} else {
-					targetWord[field] = value;
-				}
+				targetWord[field] = value;
 			});
 			setEditingTextField(null);
 		},
-		[editLyricLines, line.id, wordIndex, rubyIndex],
+		[editLyricLines, line.id, wordIndex],
 	);
 
 	useEffect(() => {
@@ -116,22 +108,15 @@ export const useSyncWordEditing = ({
 					if (!targetLine) return;
 					const word = targetLine.words[wordIndex];
 					if (!word) return;
-					if (rubyIndex >= 0) {
-						const ruby = word.ruby?.[rubyIndex];
-						if (!ruby) return;
-						if (field === "start") ruby.startTime = newMs;
-						else ruby.endTime = newMs;
-					} else {
-						if (field === "start") word.startTime = newMs;
-						else word.endTime = newMs;
-					}
+					if (field === "start") word.startTime = newMs;
+					else word.endTime = newMs;
 				});
 			} catch {
 				// invalid format — silently revert
 			}
 			setEditingTime(null);
 		},
-		[editLyricLines, line.id, wordIndex, rubyIndex],
+		[editLyricLines, line.id, wordIndex],
 	);
 
 	return {

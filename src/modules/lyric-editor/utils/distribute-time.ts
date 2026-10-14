@@ -8,7 +8,6 @@ export interface DistributionOptions {
 
 /** Draft contiguous integer-ms times. Inputs are never mutated.
  * Custom weights let segmentation keep its syllable/punctuation policy.
- * Callers flatten ruby sub-units before distributing, then update their parent.
  */
 export function distributeTime<T extends LyricWordBase>(
 	units: readonly T[],
@@ -61,35 +60,15 @@ export function distributeTime<T extends LyricWordBase>(
 	});
 }
 
-/** Draft a line using ruby reading units, including zero-duration spaces.
- * Updating parents from the complete reading avoids stale empty ruby times
- * pulling an otherwise timed parent back to zero.
- */
+/** Draft a line including zero-duration spaces, without mutating it. */
 export function distributeLineTime(
 	line: LyricLine,
 	start: number,
 	end: number,
 	options: DistributionOptions = {},
 ): LyricLine {
-	const units = line.words.flatMap((word) =>
-		word.ruby?.length ? word.ruby : [word],
-	);
-	const times = distributeTime(units, start, end, options);
-	let index = 0;
-	const words = line.words.map((word) => {
-		if (word.ruby?.length) {
-			const ruby = times.slice(index, index + word.ruby.length);
-			index += ruby.length;
-			return {
-				...word,
-				ruby,
-				startTime: ruby[0].startTime,
-				endTime: ruby[ruby.length - 1].endTime,
-			};
-		}
-		const timing = times[index++];
-		return { ...word, startTime: timing.startTime, endTime: timing.endTime };
-	});
+	const times = distributeTime(line.words, start, end, options);
+	const words = times;
 	return {
 		...line,
 		words,

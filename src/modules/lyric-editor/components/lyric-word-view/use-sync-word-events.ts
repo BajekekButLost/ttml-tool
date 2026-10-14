@@ -22,7 +22,6 @@ export const useSyncWordEvents = ({
 	wordIndex,
 	lineIndex,
 	word,
-	rubyIndex,
 	editableField,
 	enableTimeModeDoubleClickEdit,
 	enableManualTimestampEdit,
@@ -41,7 +40,6 @@ export const useSyncWordEvents = ({
 	wordIndex: number;
 	lineIndex: number;
 	word: LyricWord;
-	rubyIndex: number;
 	editableField: "word" | "romanWord";
 	enableTimeModeDoubleClickEdit: boolean;
 	enableManualTimestampEdit: boolean;
@@ -110,10 +108,7 @@ export const useSyncWordEvents = ({
 		}
 		if (!enableTimeModeDoubleClickEdit) return;
 
-		const value =
-			rubyIndex >= 0
-				? (word.ruby?.[rubyIndex]?.word ?? "")
-				: word[editableField] || "";
+		const value = word[editableField] || "";
 		editingTextValueRef.current = value;
 		setEditingTextValue(value);
 		setEditingTextField(editableField);

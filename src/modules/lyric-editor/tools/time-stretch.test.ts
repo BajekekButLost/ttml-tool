@@ -45,7 +45,6 @@ describe("scaleTTMLTimings", () => {
 							endTime: 1_901,
 							obscene: false,
 							romanWord: "",
-							ruby: [{ word: "he", startTime: 1_101, endTime: 1_401 }],
 						},
 					],
 				},
@@ -58,10 +57,6 @@ describe("scaleTTMLTimings", () => {
 		expect(lyrics.lyricLines[0].endTime).toBe(1_001);
 		expect(lyrics.lyricLines[0].words[0].startTime).toBe(551);
 		expect(lyrics.lyricLines[0].words[0].endTime).toBe(951);
-		expect(lyrics.lyricLines[0].words[0].ruby?.[0]).toMatchObject({
-			startTime: 551,
-			endTime: 701,
-		});
 		expect(lyrics.lyricLines[0].endTimeLink).toEqual({
 			originalEndTime: 1_051,
 			originalNextStartTime: 1_101,
