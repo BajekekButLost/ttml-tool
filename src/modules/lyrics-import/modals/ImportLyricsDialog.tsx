@@ -335,6 +335,8 @@ export const ImportLyricsDialog = ({
 				sectionHeaders: categorizeGeniusHeaders ? "categorize" : "discard",
 				blankLines: "discard",
 				wordSeparator: processLyrics ? "\\" : "",
+				// Processing already splits hyphenated words; off means as-is.
+				splitHyphens: false,
 				collapseWhitespace: !processLyrics,
 				backgroundPrefix: processLyrics ? "<" : "",
 			});

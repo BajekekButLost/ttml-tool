@@ -6,6 +6,13 @@ describe("text import word boundaries", () => {
 		expect(splitTextImportWords("la-la-la", "")).toEqual(["la-", "la-", "la"]);
 	});
 
+	it("can leave hyphens alone", () => {
+		expect(splitTextImportWords("la-la\\x", "\\", false)).toEqual([
+			"la-la",
+			"x",
+		]);
+	});
+
 	it("keeps whitespace and never adds spaces", () => {
 		expect(splitTextImportWords("well-known  song", "")).toEqual([
 			"well-",

@@ -12,6 +12,18 @@ describe("shared text import", () => {
 		]);
 	});
 
+	it("keeps hyphenated words whole when hyphen splitting is off", () => {
+		expect(words("Self-aware, twenty-one", { splitHyphens: false })).toEqual([
+			["Self-aware, twenty-one"],
+		]);
+	});
+
+	it("still splits hyphenated words through processing without hyphen splitting", () => {
+		expect(
+			words("twenty-one", { processLyrics: true, splitHyphens: false }),
+		).toEqual([["twenty-", "one"]]);
+	});
+
 	it("preserves literal parentheses and CJK without processing", () => {
 		expect(words("你世界 (hello)")).toEqual([["你世界 (hello)"]]);
 	});

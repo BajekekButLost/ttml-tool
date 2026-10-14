@@ -8,6 +8,8 @@ export interface TextToLinesOptions {
 	sectionHeaders?: "preserve" | "categorize" | "discard";
 	blankLines?: "preserve" | "discard";
 	wordSeparator?: string;
+	/** Split after hyphens; off when the source should come in as-is. */
+	splitHyphens?: boolean;
 	collapseWhitespace?: boolean;
 	backgroundPrefix?: string;
 	duetPrefix?: string;
@@ -45,6 +47,7 @@ export function textToLines(
 		sectionHeaders = "discard",
 		blankLines = "discard",
 		wordSeparator = processLyrics ? "\\" : "",
+		splitHyphens = true,
 		collapseWhitespace = false,
 		backgroundPrefix = processLyrics ? "<" : "",
 		duetPrefix = "",
@@ -103,7 +106,11 @@ export function textToLines(
 			} else break;
 		}
 		if (collapseWhitespace) original = original.replace(/\s+/g, " ");
-		line.words = splitTextImportWords(original, wordSeparator).map((text) => {
+		line.words = splitTextImportWords(
+			original,
+			wordSeparator,
+			splitHyphens,
+		).map((text) => {
 			const word = { ...newLyricWord(), word: text };
 			while (emptyBeatSymbol && word.word.endsWith(emptyBeatSymbol)) {
 				word.word = word.word.slice(0, -emptyBeatSymbol.length);
