@@ -56,8 +56,13 @@ export const getTranslationProgress = (
 						s[key] as Record<string, unknown>,
 						t[key] as Record<string, unknown>,
 					);
-				} else if (t[key] !== s[key] && t[key] !== "") {
-					// Only count as translated if it's different from English and not empty
+				} else if (
+					typeof t[key] === "string" &&
+					(t[key] !== "" || s[key] === "")
+				) {
+					// Text identical to English still counts: names like "TTML" and
+					// words like "Album" are correct as-is. Only missing or blank
+					// strings are untranslated.
 					count++;
 				}
 			}

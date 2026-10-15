@@ -50,19 +50,22 @@ describe("translation progress", () => {
 				nested: { translated: "Hello", identical: "OK", empty: "Name" },
 				missing: "Missing",
 				other: "Other",
+				blankInSource: "",
 			},
 		},
 		fr: {
 			translation: {
 				nested: { translated: "Bonjour", identical: "OK", empty: "" },
 				other: "Autre",
+				blankInSource: "",
 				extra: "Extra keys do not count",
 			},
 		},
 	};
 
-	it("counts nested translated leaves and ignores empty, identical, missing and extra keys", () => {
-		expect(getTranslationProgress("fr", translations)).toBe(40);
+	it("counts translated and intentionally identical leaves, but not blank, missing or extra keys", () => {
+		// translated, identical, other and blankInSource count; empty and missing do not.
+		expect(getTranslationProgress("fr", translations)).toBe(66);
 	});
 
 	it("returns no progress for the source or unavailable translations", () => {
