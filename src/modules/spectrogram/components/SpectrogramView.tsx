@@ -91,7 +91,7 @@ export function SpectrogramView({
 								<Text color="gray" size="3">
 									{t(
 										"spectrogram.noAudioLoaded",
-										"请先加载一个音频文件来渲染频谱图哦",
+										"Load an audio file to show the spectrogram",
 									)}
 								</Text>
 								<Button variant="soft" onClick={handleLoadMusic}>

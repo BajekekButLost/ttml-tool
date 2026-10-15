@@ -132,7 +132,7 @@ export function SpectrogramSettingsSidebar({
 					<IconButton
 						variant="ghost"
 						color="gray"
-						title={t("spectrogram.settings", "频谱图设置")}
+						title={t("spectrogram.settings", "Spectrogram settings")}
 					>
 						<SettingsFilled />
 					</IconButton>
@@ -140,13 +140,13 @@ export function SpectrogramSettingsSidebar({
 				<Popover.Content side="left" align="end" style={{ width: 220 }}>
 					<Flex direction="column" gap="3">
 						<Text size="2" weight="bold">
-							{t("spectrogram.settings", "频谱图设置")}
+							{t("spectrogram.settings", "Spectrogram settings")}
 						</Text>
 
 						<Flex direction="column" gap="2">
 							<Text size="1" color="gray">
-								{t("spectrogram.fftSize", "FFT Size")} (
-								{t("spectrogram.resolution", "解析度")})
+								{t("spectrogram.fftSize", "FFT size")} (
+								{t("spectrogram.resolution", "FFT resolution")})
 							</Text>
 							<SegmentedControl.Root
 								size="1"
@@ -162,7 +162,7 @@ export function SpectrogramSettingsSidebar({
 
 						<Flex align="center" gap="2">
 							<Text size="1" color="gray">
-								{t("spectrogram.height", "高度")}
+								{t("spectrogram.height", "Display height")}
 							</Text>
 							<Slider
 								size="1"

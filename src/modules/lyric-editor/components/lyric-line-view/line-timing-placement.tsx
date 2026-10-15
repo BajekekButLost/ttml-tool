@@ -59,7 +59,8 @@ export function LineTimingPlacement({
 					toast.success(
 						t("lyricLineView.timingsApplied", {
 							count: result.appliedLineCount,
-							defaultValue: "Applied timing to {count} line(s).",
+							defaultValue:
+								"{count, plural, one {Applied timing to # line.} other {Applied timing to # lines.}}",
 						}),
 					);
 					const warnings: string[] = [];
@@ -78,7 +79,7 @@ export function LineTimingPlacement({
 							t("lyricLineView.wordTimingMismatch", {
 								count: result.wordCountMismatchCount,
 								defaultValue:
-									"{count} line(s) had different word counts; copied matching word positions only.",
+									"{count, plural, one {# line had a different word count, so only matching word positions were copied.} other {# lines had different word counts, so only matching word positions were copied.}}",
 							}),
 						);
 					}
@@ -99,7 +100,8 @@ export function LineTimingPlacement({
 						})
 					: t("lyricLineView.applyTimingsHere", {
 							count: timingCopyPlacement.snapshots.length,
-							defaultValue: "Apply {count} timing(s) starting here",
+							defaultValue:
+								"{count, plural, one {Apply # timing starting here} other {Apply # timings starting here}}",
 						})}
 			</Button>
 		)

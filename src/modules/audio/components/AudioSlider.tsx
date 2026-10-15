@@ -139,14 +139,14 @@ const MarkerItem = memo(
 						</Box>
 						<TextField.Root
 							size="1"
-							placeholder={t("audio.markerLabel", "Label (e.g. Verse 1 Start)")}
+							placeholder={t("audio.markerLabel", "Label (e.g. verse 1 start)")}
 							value={localLabel}
 							onChange={(e) => setLocalLabel(e.target.value)}
 							onBlur={commitChanges}
 						/>
 						<TextArea
 							size="1"
-							placeholder={t("audio.markerDescription", "Description...")}
+							placeholder={t("audio.markerDescription", "Description…")}
 							value={localDescription}
 							onChange={(e) => setLocalDescription(e.target.value)}
 							onBlur={commitChanges}
@@ -158,7 +158,7 @@ const MarkerItem = memo(
 								variant="ghost"
 								color="red"
 								onClick={() => toggleMark(marker.timeMs)}
-								title={t("audio.deleteMarker", "Delete Marker")}
+								title={t("audio.deleteMarker", "Delete marker")}
 							>
 								<Delete16Regular />
 							</IconButton>
@@ -356,7 +356,7 @@ export const AudioSlider = memo(() => {
 		>
 			<section
 				className={styles.waveformContainer}
-				aria-label={t("audio.waveform", "Audio Waveform")}
+				aria-label={t("audio.waveform", "Audio waveform")}
 				ref={wsContainerRef}
 				style={{ width: "100%", height: "100%", overflow: "hidden" }}
 				onMouseDown={handleContainerMouseDown}

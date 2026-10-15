@@ -78,7 +78,7 @@ export const CombineWordsDialog = memo(() => {
 		>
 			<Dialog.Content maxWidth="460px">
 				<Dialog.Title>
-					{t("combineWordsDialog.title", "Combine Words")}
+					{t("combineWordsDialog.title", "Combine words")}
 				</Dialog.Title>
 				<Dialog.Description size="2" mb="4">
 					{t(

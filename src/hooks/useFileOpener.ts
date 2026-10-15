@@ -198,7 +198,7 @@ export const useFileOpener = () => {
 			if (isDirty) {
 				setConfirmDialog({
 					open: true,
-					title: t("confirmDialog.openFile.title", "确认打开文件"),
+					title: t("confirmDialog.openFile.title", "Open another file?"),
 					description: t(
 						"confirmDialog.openFile.description",
 						"当前文件有未保存的更改。如果继续，这些更改将会丢失。确定要打开新文件吗？",

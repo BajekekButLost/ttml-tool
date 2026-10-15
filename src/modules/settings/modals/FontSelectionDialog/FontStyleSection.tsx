@@ -21,7 +21,7 @@ export const FontStyleSection = ({
 		<Grid columns="2" gap="6" width="100%">
 			<Flex direction="column" gap="3">
 				<Text size="4" weight="bold" mb="2">
-					{t("settings.appearance.fontWeight", "Font Weight")}
+					{t("settings.appearance.fontWeight", "Font weight")}
 				</Text>
 				<SegmentedControl.Root
 					size="3"
@@ -39,7 +39,7 @@ export const FontStyleSection = ({
 			</Flex>
 			<Flex direction="column" gap="3">
 				<Text size="4" weight="bold" mb="2">
-					{t("settings.appearance.fontStyle", "Font Style")}
+					{t("settings.appearance.fontStyle", "Font style")}
 				</Text>
 				<SegmentedControl.Root
 					size="3"

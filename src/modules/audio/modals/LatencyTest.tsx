@@ -230,7 +230,7 @@ export const LatencyTestDialog = memo(() => {
 		<Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
 			<Dialog.Content>
 				<Dialog.Title>
-					{t("latencyTestDialog.title", "打轴延迟测试")}
+					{t("latencyTestDialog.title", "Latency test")}
 				</Dialog.Title>
 				<Flex direction="column" gap="2">
 					<Text>
@@ -279,7 +279,10 @@ export const LatencyTestDialog = memo(() => {
 							}
 						>
 							{hitOffset === null
-								? t("latencyTestDialog.latencyDisplay.current.none", "未测量")
+								? t(
+										"latencyTestDialog.latencyDisplay.current.none",
+										"Not measured",
+									)
 								: hitOffset.cur > 0
 									? `${t("latencyTestDialog.latencyDisplay.current.fast", "快")} ${hitOffset.cur}ms`
 									: hitOffset.cur < 0

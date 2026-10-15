@@ -44,7 +44,7 @@ export const usePhoneticSection = () => {
 				toast.info(
 					t(
 						"ribbonBar.editMode.phonetic.noSelection",
-						"Please select lines or words first",
+						"Select lines or words first",
 					),
 				);
 				return;

@@ -38,7 +38,7 @@ export const FontSearchSection = ({
 			style={{ cursor: "pointer" }}
 		>
 			<ArrowUpload24Regular />
-			{t("settings.appearance.importFont", "Import Font File")}
+			{t("settings.appearance.importFont", "Import font file")}
 		</Button>
 	</Flex>
 );

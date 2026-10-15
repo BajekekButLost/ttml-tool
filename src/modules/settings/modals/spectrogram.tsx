@@ -71,7 +71,7 @@ export const SettingsSpectrogramTab = () => {
 		<Flex direction="column" gap="4">
 			<Text as="label">
 				<Flex direction="column" gap="2" align="start">
-					<Text>{t("settings.spectrogram.palette", "Color Palette")}</Text>
+					<Text>{t("settings.spectrogram.palette", "Color palette")}</Text>
 					<Select.Root
 						value={selectedPaletteId}
 						onValueChange={(v) => setSelectedPaletteId(v)}
@@ -106,7 +106,7 @@ export const SettingsSpectrogramTab = () => {
 							<Text size="1" color="gray">
 								{t(
 									"settings.spectrogram.gradientEditorDesc",
-									"Pos 0.0 corresponds to the quietest part, 1.0 to the loudest part. It is recommended to use brighter colors for larger Pos values.",
+									"A position of 0.0 is the quietest part and 1.0 the loudest. Brighter colors at higher positions usually read best.",
 								)}
 							</Text>
 
@@ -169,7 +169,7 @@ export const SettingsSpectrogramTab = () => {
 							))}
 							<Button variant="outline" onClick={handleAddStop}>
 								<Add20Regular />
-								{t("settings.spectrogram.addStop", "Add Color Stop")}
+								{t("settings.spectrogram.addStop", "Add color stop")}
 							</Button>
 						</Flex>
 					</section>

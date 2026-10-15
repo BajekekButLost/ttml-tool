@@ -30,7 +30,7 @@ export const WebsiteRecoverySection = ({
 			<Card>
 				<Flex direction="column" gap="3">
 					<Heading size="3">
-						{t("settings.about.websiteUpdate", "Website Update")}
+						{t("settings.about.websiteUpdate", "Website update")}
 					</Heading>
 					<Text size="2" color="gray">
 						{t(

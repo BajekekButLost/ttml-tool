@@ -192,7 +192,7 @@ export const TimeStretchDialog = () => {
 				style={{ minHeight: "320px", display: "flex", flexDirection: "column" }}
 			>
 				<Dialog.Title>
-					{t("timeStretchDialog.title", "Time Stretch")}
+					{t("timeStretchDialog.title", "Time stretch")}
 				</Dialog.Title>
 				<Dialog.Description size="3" mb="7">
 					{t(
@@ -218,8 +218,8 @@ export const TimeStretchDialog = () => {
 										style={{ flex: 1 }}
 									>
 										{readingTemporaryAudio
-											? t("timeStretchDialog.readingAudio", "Reading audio...")
-											: t("timeStretchDialog.chooseAudio", "Upload audio...")}
+											? t("timeStretchDialog.readingAudio", "Reading audio…")
+											: t("timeStretchDialog.chooseAudio", "Choose audio…")}
 									</Button>
 								}
 								footer={
@@ -269,8 +269,8 @@ export const TimeStretchDialog = () => {
 										style={{ flex: 1 }}
 									>
 										{readingTemporaryAudio
-											? t("timeStretchDialog.readingAudio", "Reading audio...")
-											: t("timeStretchDialog.chooseAudio", "Upload audio...")}
+											? t("timeStretchDialog.readingAudio", "Reading audio…")
+											: t("timeStretchDialog.chooseAudio", "Choose audio…")}
 									</Button>
 								}
 								footer={

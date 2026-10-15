@@ -72,7 +72,7 @@ export const SettingsCustomBackgroundSettings = ({
 		<Flex direction="column" gap="4">
 			<Flex align="center" justify="between">
 				<Heading size="4">
-					{t("settings.common.customBackground", "Custom Background")}
+					{t("settings.common.customBackground", "Custom background")}
 				</Heading>
 				<IconButton variant="ghost" onClick={onClose}>
 					<Dismiss24Regular />
@@ -104,7 +104,7 @@ export const SettingsCustomBackgroundSettings = ({
 							variant="soft"
 							onClick={() => backgroundFileInputRef.current?.click()}
 						>
-							{t("settings.common.customBackgroundPick", "Select Image")}
+							{t("settings.common.customBackgroundPick", "Choose image")}
 						</Button>
 						<Button
 							variant="ghost"
@@ -221,7 +221,7 @@ export const SettingsCustomBackgroundSettings = ({
 								<Blur24Regular />
 							</Box>
 							<Text>
-								{t("settings.common.customBackgroundBlur", "Blur Radius")}
+								{t("settings.common.customBackgroundBlur", "Blur radius")}
 							</Text>
 						</Flex>
 						<Flex align="center" gap="2">
@@ -309,7 +309,7 @@ export const SettingsCustomBackgroundCard = ({
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
 							<Text>
-								{t("settings.common.customBackground", "Custom Background")}
+								{t("settings.common.customBackground", "Custom background")}
 							</Text>
 							<Text size="1" color="gray">
 								{customBackgroundImage

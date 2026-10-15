@@ -23,7 +23,7 @@ export const InterfaceScaleSection = ({
 	import.meta.env.TAURI_ENV_PLATFORM && (
 		<Flex direction="column" gap="3">
 			<Heading size="4">
-				{t("settings.appearance.interfaceScale", "Interface Scale")}
+				{t("settings.appearance.interfaceScale", "Interface scale")}
 			</Heading>
 			<Card>
 				<Flex gap="3" align="start">

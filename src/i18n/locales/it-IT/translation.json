@@ -215,7 +215,7 @@
     "close": "Chiudi",
     "autoDetect": "Rileva automaticamente",
     "about": "Info",
-    "resultsFound": "Trovato {count} risultati",
+    "resultsFound": "{count, plural, one {Trovato # risultati} many {Trovato # risultati} other {Trovato # risultati}}",
     "cancel": "Annulla",
     "save": "Salva",
     "search": "Cerca",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Nessun progetto trovato. Seleziona una cartella dell'area di lavoro da scansionare.",
-    "foundCount": "{count} progetti trovati",
+    "foundCount": "{count, plural, one {# progetti trovati} many {# progetti trovati} other {# progetti trovati}}",
     "importable": "Importabile",
     "scanning": "Scansione...",
     "selectFolder": "Seleziona la cartella dell'area di lavoro...",
     "unknown": "Sconosciuto",
     "noProjectsFound": "Nessun progetto trovato in questa cartella",
-    "projectsFound": "Progetti trovati: {count}",
+    "projectsFound": "{count, plural, one {Progetti trovati: #} many {Progetti trovati: #} other {Progetti trovati: #}}",
     "scanFailed": "Impossibile analizzare la cartella dell'area di lavoro"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Chiavi API"
       },
       "hint": {
-        "settings": "{count} valori memorizzati",
-        "keybindings": "{count} combinazioni di tasti",
+        "settings": "{count, plural, one {# valori memorizzati} many {# valori memorizzati} other {# valori memorizzati}}",
+        "keybindings": "{count, plural, one {# combinazioni di tasti} many {# combinazioni di tasti} other {# combinazioni di tasti}}",
         "assetsSet": "Immagini di sfondo personalizzate",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} preimpostazioni",
+        "presetsCount": "{count, plural, one {# preimpostazioni} many {# preimpostazioni} other {# preimpostazioni}}",
         "backgroundSet": "Sfondo personalizzato",
         "fontSet": "Carattere personalizzato",
-        "projects": "{count} progetti",
-        "apiKeys": "{count} chiavi"
+        "projects": "{count, plural, one {# progetti} many {# progetti} other {# progetti}}",
+        "apiKeys": "{count, plural, one {# chiavi} many {# chiavi} other {# chiavi}}"
       },
       "exportSuccess": "Backup esportato",
       "exportFailed": "Impossibile esportare il backup",
@@ -709,7 +709,7 @@
       "previewTotal": "Dimensione totale stimata",
       "previewPresetPrefix": "Preimpostazione",
       "previewFontPrefix": "Carattere personalizzato",
-      "previewVersions": "{count} versioni",
+      "previewVersions": "{count, plural, one {# versioni} many {# versioni} other {# versioni}}",
       "apiKeysWarning": "Le chiavi API vengono salvate come testo normale nel file di backup. Mantienilo privato.",
       "importTitle": "Importa",
       "importDesc": "Ripristina impostazioni e dati da un file di backup. I valori esistenti verranno sostituiti.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Elimina {count} parola/e",
+    "deleteWords": "{count, plural, one {Elimina # parola/e} many {Elimina # parola/e} other {Elimina # parola/e}}",
     "bgLyric": "Verso di Sottofondo",
     "duetLyric": "Verso di Duetto",
     "moveLineToPlayhead": "Sposta la linea sulla testina di riproduzione",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Blocca i versi selezionate sulla testina di riproduzione",
     "insertLineBefore": "Inserisci un nuovo verso prima",
     "insertLineAfter": "Inserisci un nuovo verso dopo",
-    "copyLine": "Duplica {count} verso/i",
+    "copyLine": "{count, plural, one {Duplica # verso/i} many {Duplica # verso/i} other {Duplica # verso/i}}",
     "duplicateTo": "Duplica a...",
     "combineLine": "Combina versi",
-    "deleteLine": "Elimina {count} verso/i",
+    "deleteLine": "{count, plural, one {Elimina # verso/i} many {Elimina # verso/i} other {Elimina # verso/i}}",
     "splitWord": "Dividi parola…",
     "noSyllablesFound": "Nessuna sillaba multipla trovata.",
     "splitIntoSyllables": "Dividi in sillabe (romanizzazione)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Sostituisci la romanizzazione…",
     "combineWords": "Combina parole",
     "moveFollowingWordToNewLine": "Sposta le seguenti a un nuovo verso",
-    "moveWordToNewLine": "Sposta {count} parola/e su un nuovo verso"
+    "moveWordToNewLine": "{count, plural, one {Sposta # parola/e su un nuovo verso} many {Sposta # parola/e su un nuovo verso} other {Sposta # parola/e su un nuovo verso}}"
   },
   "settingsDialog": {
     "search": "Impostazioni di ricerca",
@@ -1053,7 +1053,7 @@
       "searchError": "Ricerca non riuscita: {error}",
       "fetchError": "Impossibile recuperare il testo: {error}",
       "noLyricsError": "Nessun testo da importare.",
-      "importSuccess": "Importato {count} versi da Genius.",
+      "importSuccess": "{count, plural, one {Importato # versi da Genius.} many {Importato # versi da Genius.} other {Importato # versi da Genius.}}",
       "howToGetKey": "Come creare un Client Access Token di Genius"
     },
     "openLink": "Apri link",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Traduzione:",
     "romanLabel": "Romanizzazione:",
     "empty": "Nessuno",
-    "duplicateLinesHere": "Duplica {count} verso/i selezionato/i qua",
-    "applyTimingsHere": "Applica {count} tempi da qui",
+    "duplicateLinesHere": "{count, plural, one {Duplica # verso/i selezionato/i qua} many {Duplica # verso/i selezionato/i qua} other {Duplica # verso/i selezionato/i qua}}",
+    "applyTimingsHere": "{count, plural, one {Applica # tempi da qui} many {Applica # tempi da qui} other {Applica # tempi da qui}}",
     "applyPartialTimingsHere": "Applica {applied} di {total} tempi iniziando da qui",
-    "timingsApplied": "Tempi applicati a {count} versi.",
+    "timingsApplied": "{count, plural, one {Tempi applicati a # versi.} many {Tempi applicati a # versi.} other {Tempi applicati a # versi.}}",
     "partialTimingCopy": "Solo {applied} dei {total} tempi di origine rientrano prima della fine del testo.",
-    "wordTimingMismatch": "{count} versi avevano un numero diverso di parole; sono state copiate solo le posizioni corrispondenti.",
+    "wordTimingMismatch": "{count, plural, one {# versi avevano un numero diverso di parole; sono state copiate solo le posizioni corrispondenti.} many {# versi avevano un numero diverso di parole; sono state copiate solo le posizioni corrispondenti.} other {# versi avevano un numero diverso di parole; sono state copiate solo le posizioni corrispondenti.}}",
     "insertLine": "Inserisci un nuovo verso qui",
     "insertWord": "Inserisci una parola qui…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Anteprima del Testo",
     "back": "Indietro",
     "previewSubtitle": "Puoi modificare il testo qui sotto prima dell'importazione.",
-    "linesCount": "{count} versi",
+    "linesCount": "{count, plural, one {# versi} many {# versi} other {# versi}}",
     "importButton": "Importa Testo",
     "importTitle": "Importa Testo da Genius",
     "searchPlaceholder": "Artista – Titolo brano…",
@@ -1286,11 +1286,11 @@
     "description": "Controlla le categorie e i metadati normalizzati prima di sostituire i testi.",
     "sourceLyrics": "Testi di origine",
     "structure": "Struttura",
-    "sectionCount": "{count} sezioni",
+    "sectionCount": "{count, plural, one {# sezioni} many {# sezioni} other {# sezioni}}",
     "vocalist": "Cantante/ruolo",
     "color": "Colore della sezione",
     "notes": "Note",
-    "lineCount": "{count} versi",
+    "lineCount": "{count, plural, one {# versi} many {# versi} other {# versi}}",
     "import": "Importa testi revisionati"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Progetto Senza Titolo"
   },
   "time": {
-    "daysAgo": "{count} giorni fa",
-    "hoursAgo": "{count} ore fa",
-    "minutesAgo": "{count} minuti fa",
+    "daysAgo": "{count, plural, one {# giorni fa} many {# giorni fa} other {# giorni fa}}",
+    "hoursAgo": "{count, plural, one {# ore fa} many {# ore fa} other {# ore fa}}",
+    "minutesAgo": "{count, plural, one {# minuti fa} many {# minuti fa} other {# minuti fa}}",
     "justNow": "Adesso"
   },
   "metadata": {

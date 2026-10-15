@@ -258,7 +258,7 @@ export function useAudioSpectrogram() {
 			editingTimeField.field === "startTime"
 				? t("ribbonBar.editMode.startTime", "起始时间")
 				: t("ribbonBar.editMode.endTime", "结束时间");
-		hoverTimeFormatted = `${t("common.clickToSet", "点击设置")}${fieldName}: ${hoverTimeFormatted}`;
+		hoverTimeFormatted = `${t("common.clickToSet", "Click to set")}${fieldName}: ${hoverTimeFormatted}`;
 		tooltipBgColor = "var(--accent-9)";
 	}
 

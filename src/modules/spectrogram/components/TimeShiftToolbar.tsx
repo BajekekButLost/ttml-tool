@@ -327,7 +327,7 @@ export const TimeShiftToolbar: FC = () => {
 						<Tooltip
 							content={t(
 								"timeShiftDialog.snapToPlayhead",
-								"Snap start of affected lines to current playback time",
+								"Start the affected lines at the playhead",
 							)}
 						>
 							<IconButton
@@ -355,16 +355,19 @@ export const TimeShiftToolbar: FC = () => {
 							<Select.Trigger variant="soft" style={{ minWidth: 100 }} />
 							<Select.Content>
 								<Select.Item value="all">
-									{t("timeShiftDialog.scope.all", "All")}
+									{t("timeShiftDialog.scope.all", "All lines")}
 								</Select.Item>
 								<Select.Item value="selected">
-									{t("timeShiftDialog.scope.selected", "Selected")}
+									{t("timeShiftDialog.scope.selected", "Selected lines")}
 								</Select.Item>
 								<Select.Item value="selected-following">
-									{t("timeShiftDialog.scope.selectedFollowing", "Following")}
+									{t(
+										"timeShiftDialog.scope.selectedFollowing",
+										"Selected and following lines",
+									)}
 								</Select.Item>
 								<Select.Item value="custom">
-									{t("timeShiftDialog.scope.custom", "Custom")}
+									{t("timeShiftDialog.scope.custom", "Custom range")}
 								</Select.Item>
 							</Select.Content>
 						</Select.Root>

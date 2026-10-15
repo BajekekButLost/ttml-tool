@@ -270,7 +270,7 @@ export const SplitWordDialog = memo(() => {
 	return (
 		<Dialog.Root open={splitWordDialog} onOpenChange={splitWordDialogOpen}>
 			<Dialog.Content>
-				<Dialog.Title>{t("splitWordDialog.title", "拆分单词")}</Dialog.Title>
+				<Dialog.Title>{t("splitWordDialog.title", "Split word")}</Dialog.Title>
 				<Flex direction="column" gap="2">
 					<Callout.Root color="blue">
 						<Callout.Icon>
@@ -308,7 +308,7 @@ export const SplitWordDialog = memo(() => {
 									setSplitIndices(indices);
 								}}
 							>
-								{t("splitWordDialog.syllableSplit", "音节拆分")}
+								{t("splitWordDialog.syllableSplit", "Syllable split")}
 							</Button>
 						</Flex>
 					</Box>
@@ -322,7 +322,7 @@ export const SplitWordDialog = memo(() => {
 								/>
 								{t(
 									"splitWordDialog.applyToAll",
-									"将此拆分规则应用于所有相同的单词",
+									"Apply this split to all identical words",
 								)}
 							</Flex>
 						</Text>

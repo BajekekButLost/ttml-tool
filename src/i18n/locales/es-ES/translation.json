@@ -215,7 +215,7 @@
     "close": "Cerrar",
     "autoDetect": "Detección automática",
     "about": "Acerca de",
-    "resultsFound": "Se encontraron resultados de {count}",
+    "resultsFound": "{count, plural, one {Se encontraron resultados de #} many {Se encontraron resultados de #} other {Se encontraron resultados de #}}",
     "cancel": "Cancelar",
     "save": "Guardar",
     "search": "Buscar",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "No se encontraron proyectos. Selecciona una carpeta de espacio de trabajo para escanear.",
-    "foundCount": "{count} proyecto(s) encontrados",
+    "foundCount": "{count, plural, one {# proyecto(s) encontrados} many {# proyecto(s) encontrados} other {# proyecto(s) encontrados}}",
     "importable": "importable",
     "scanning": "Escaneando…",
     "selectFolder": "Seleccionar carpeta de espacio de trabajo…",
     "unknown": "Desconocido",
     "noProjectsFound": "No se encontraron proyectos en esta carpeta",
-    "projectsFound": "Proyectos encontrados: {count}",
+    "projectsFound": "{count, plural, one {Proyectos encontrados: #} many {Proyectos encontrados: #} other {Proyectos encontrados: #}}",
     "scanFailed": "No se pudo examinar la carpeta del espacio de trabajo"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Claves de API"
       },
       "hint": {
-        "settings": "{count} valores guardados",
-        "keybindings": "{count} atajos",
+        "settings": "{count, plural, one {# valores guardados} many {# valores guardados} other {# valores guardados}}",
+        "keybindings": "{count, plural, one {# atajos} many {# atajos} other {# atajos}}",
         "assetsSet": "Fondo personalizado configurado",
         "assetsNone": "Sin recursos personalizados",
-        "presetsCount": "{count} preajustes",
+        "presetsCount": "{count, plural, one {# preajustes} many {# preajustes} other {# preajustes}}",
         "backgroundSet": "Fondo personalizado",
         "fontSet": "Fuente personalizada",
-        "projects": "{count} proyectos",
-        "apiKeys": "{count} claves"
+        "projects": "{count, plural, one {# proyectos} many {# proyectos} other {# proyectos}}",
+        "apiKeys": "{count, plural, one {# claves} many {# claves} other {# claves}}"
       },
       "exportSuccess": "Copia de seguridad exportada",
       "exportFailed": "Error al exportar la copia de seguridad",
@@ -709,7 +709,7 @@
       "previewTotal": "Tamaño total estimado",
       "previewPresetPrefix": "Preajuste",
       "previewFontPrefix": "Fuente personalizada",
-      "previewVersions": "{count} versiones",
+      "previewVersions": "{count, plural, one {# versiones} many {# versiones} other {# versiones}}",
       "apiKeysWarning": "Las claves de API se guardan en texto plano en el archivo de copia. Mantenlo privado.",
       "importTitle": "Importar",
       "importDesc": "Restaura ajustes y datos desde un archivo de copia de seguridad. Los valores existentes serán reemplazados.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Eliminar {count} palabra(s)",
+    "deleteWords": "{count, plural, one {Eliminar # palabra(s)} many {Eliminar # palabra(s)} other {Eliminar # palabra(s)}}",
     "bgLyric": "Línea de fondo",
     "duetLyric": "linea dueto",
     "moveLineToPlayhead": "Mover línea al cabezal de reproducción",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Ajustar líneas seleccionadas al cabezal de reproducción",
     "insertLineBefore": "Insertar nueva línea antes",
     "insertLineAfter": "Insertar nueva línea después",
-    "copyLine": "Línea(s) {count} duplicadas",
+    "copyLine": "{count, plural, one {Línea(s) # duplicadas} many {Línea(s) # duplicadas} other {Línea(s) # duplicadas}}",
     "duplicateTo": "Duplicar a...",
     "combineLine": "combinar líneas",
-    "deleteLine": "Eliminar {count} línea(s)",
+    "deleteLine": "{count, plural, one {Eliminar # línea(s)} many {Eliminar # línea(s)} other {Eliminar # línea(s)}}",
     "splitWord": "Palabra dividida…",
     "noSyllablesFound": "No se encontraron varias sílabas.",
     "splitIntoSyllables": "Dividir en sílabas (romanización)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Reemplazar la romanización…",
     "combineWords": "combinar palabras",
     "moveFollowingWordToNewLine": "Mover lo siguiente a una nueva línea",
-    "moveWordToNewLine": "Mover palabra(s) {count} a una nueva línea"
+    "moveWordToNewLine": "{count, plural, one {Mover palabra(s) # a una nueva línea} many {Mover palabra(s) # a una nueva línea} other {Mover palabra(s) # a una nueva línea}}"
   },
   "settingsDialog": {
     "search": "Configuración de búsqueda",
@@ -1053,7 +1053,7 @@
       "searchError": "La búsqueda falló: {error}",
       "fetchError": "No se pudo recuperar la letra: {error}",
       "noLyricsError": "No hay letras para importar.",
-      "importSuccess": "Se importaron {count} líneas de Genius.",
+      "importSuccess": "{count, plural, one {Se importaron # líneas de Genius.} many {Se importaron # líneas de Genius.} other {Se importaron # líneas de Genius.}}",
       "howToGetKey": "Cómo crear un Client Access Token de Genius"
     },
     "openLink": "Abrir enlace",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Traducción:",
     "romanLabel": "Romanización:",
     "empty": "Ninguno",
-    "duplicateLinesHere": "Duplicar {count} línea(s) seleccionada(s) aquí",
-    "applyTimingsHere": "Aplicar {count} sincronización(s) comenzando aquí",
+    "duplicateLinesHere": "{count, plural, one {Duplicar # línea(s) seleccionada(s) aquí} many {Duplicar # línea(s) seleccionada(s) aquí} other {Duplicar # línea(s) seleccionada(s) aquí}}",
+    "applyTimingsHere": "{count, plural, one {Aplicar # sincronización(s) comenzando aquí} many {Aplicar # sincronización(s) comenzando aquí} other {Aplicar # sincronización(s) comenzando aquí}}",
     "applyPartialTimingsHere": "Aplicar {applied} de {total} tiempos comenzando aquí",
-    "timingsApplied": "Temporización aplicada a {count} línea(s).",
+    "timingsApplied": "{count, plural, one {Temporización aplicada a # línea(s).} many {Temporización aplicada a # línea(s).} other {Temporización aplicada a # línea(s).}}",
     "partialTimingCopy": "Solo {applied} de {total} tiempos de origen encajan antes del final de la letra.",
-    "wordTimingMismatch": "{count} líneas tenían distinta cantidad de palabras; solo se copiaron las posiciones coincidentes.",
+    "wordTimingMismatch": "{count, plural, one {# líneas tenían distinta cantidad de palabras; solo se copiaron las posiciones coincidentes.} many {# líneas tenían distinta cantidad de palabras; solo se copiaron las posiciones coincidentes.} other {# líneas tenían distinta cantidad de palabras; solo se copiaron las posiciones coincidentes.}}",
     "insertLine": "Insertar nueva línea aquí",
     "insertWord": "Inserte palabra aquí..."
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Vista previa de la letra",
     "back": "Atrás",
     "previewSubtitle": "Puede editar la letra a continuación antes de importarla.",
-    "linesCount": "{count} líneas",
+    "linesCount": "{count, plural, one {# líneas} many {# líneas} other {# líneas}}",
     "importButton": "Importar letras",
     "importTitle": "Importar letras de Genius",
     "searchPlaceholder": "Artista – Título de la canción…",
@@ -1286,11 +1286,11 @@
     "description": "Verifique las categorías y metadatos normalizados antes de reemplazar la letra.",
     "sourceLyrics": "Letras fuente",
     "structure": "Estructura",
-    "sectionCount": "{count} secciones",
+    "sectionCount": "{count, plural, one {# secciones} many {# secciones} other {# secciones}}",
     "vocalist": "Vocalista / rol",
     "color": "Color de sección",
     "notes": "Notas",
-    "lineCount": "{count} líneas líricas",
+    "lineCount": "{count, plural, one {# líneas líricas} many {# líneas líricas} other {# líneas líricas}}",
     "import": "Importar letras revisadas"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Proyecto sin título"
   },
   "time": {
-    "daysAgo": "Hace {count} días",
-    "hoursAgo": "Hace {count} horas",
-    "minutesAgo": "Hace {count} minutos",
+    "daysAgo": "{count, plural, one {Hace # días} many {Hace # días} other {Hace # días}}",
+    "hoursAgo": "{count, plural, one {Hace # horas} many {Hace # horas} other {Hace # horas}}",
+    "minutesAgo": "{count, plural, one {Hace # minutos} many {Hace # minutos} other {Hace # minutos}}",
     "justNow": "Justo ahora"
   },
   "metadata": {

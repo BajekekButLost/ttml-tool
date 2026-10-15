@@ -16,7 +16,7 @@ export const CustomFontSection = ({
 			<Flex align="center" justify="between">
 				<Flex direction="column">
 					<Text size="1" color="indigo" weight="bold">
-						{t("settings.appearance.customFontActive", "LOCAL CUSTOM FONT")}
+						{t("settings.appearance.customFontActive", "Local custom font")}
 					</Text>
 					<Text
 						size="3"

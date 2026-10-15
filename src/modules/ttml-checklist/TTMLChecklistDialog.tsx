@@ -209,7 +209,7 @@ export const TTMLChecklistDialog = () => {
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Content style={{ maxWidth: 620 }}>
 				<Dialog.Title>
-					{t("ttmlChecklist.title", "TTML Checklist")}
+					{t("ttmlChecklist.title", "TTML checklist")}
 				</Dialog.Title>
 				<Dialog.Description size="2" color="gray" mb="4">
 					{t(

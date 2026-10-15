@@ -27,7 +27,7 @@ export const getDisplayWordText = (
 		return romanWord;
 	if (word === "") return t("lyricWordView.empty", "空白");
 	if (isWordBlank)
-		return t("lyricWordView.spaceCount", "空格 x{count}", {
+		return t("lyricWordView.spaceCount", "Space ×{count}", {
 			count: word.length,
 		});
 	return word;

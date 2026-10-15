@@ -10,7 +10,7 @@ export const CreditsSection = ({ t }: Pick<AboutSettings, "t">) => (
 	<Card>
 		<Flex direction="column" gap="3">
 			<Heading size="3">
-				{t("aboutModal.credits", "Credits & Third-Party Notices")}
+				{t("aboutModal.credits", "Credits & third-party notices")}
 			</Heading>
 			<Text size="2" color="gray">
 				{t(

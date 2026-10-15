@@ -55,7 +55,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 								size="1"
 								style={{ color: "var(--ribbon-label-color)" }}
 							>
-								{t("ribbonBar.previewMode.simpleLyrics", "Simple lyrics")}
+								{t("ribbonBar.previewMode.simpleLyrics", "Simple Lyrics mode")}
 							</Text>
 							<SettingToggle setting={spicySimpleLyricsModeAtom} compact />
 							<Text
@@ -65,7 +65,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							>
 								{t(
 									"ribbonBar.previewMode.forceLineRendering",
-									"Force line rendering",
+									"Show as line-synced",
 								)}
 							</Text>
 							<SettingToggle setting={spicyForceLineSyncedAtom} compact />
@@ -94,7 +94,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 								size="1"
 								style={{ color: "var(--ribbon-label-color)" }}
 							>
-								{t("ribbonBar.previewMode.autoScroll", "Auto-Scroll")}
+								{t("ribbonBar.previewMode.autoScroll", "Auto-scroll")}
 							</Text>
 							<SettingToggle setting={timingOverviewAutoScrollAtom} compact />
 						</Grid>
@@ -114,7 +114,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 								size="1"
 								style={{ color: "var(--ribbon-label-color)" }}
 							>
-								{t("ribbonBar.previewMode.showTranslation", "显示翻译")}
+								{t("ribbonBar.previewMode.showTranslation", "Show translation")}
 							</Text>
 							<SettingToggle setting={showTranslationLinesAtom} compact />
 							<Text
@@ -122,7 +122,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 								size="1"
 								style={{ color: "var(--ribbon-label-color)" }}
 							>
-								{t("ribbonBar.previewMode.showRoman", "显示音译")}
+								{t("ribbonBar.previewMode.showRoman", "Show romanization")}
 							</Text>
 							<SettingToggle setting={showRomanLinesAtom} compact />
 						</Grid>
@@ -132,7 +132,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 					<Tooltip
 						content={t(
 							"ribbonBar.advancedTooltip",
-							"Applies to all toolbars: Edit, Time, and Preview.",
+							"Applies to the Edit, Time and Preview ribbons.",
 						)}
 					>
 						<Switch checked={showAdvanced} onCheckedChange={setShowAdvanced} />

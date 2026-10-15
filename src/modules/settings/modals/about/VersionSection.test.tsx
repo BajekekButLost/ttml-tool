@@ -29,7 +29,7 @@ describe("VersionSection", () => {
 		const root = createRoot(container);
 		act(() => root.render(<VersionSection t={t} />));
 
-		expect(container.textContent).toContain("Git Commit: abc1234");
+		expect(container.textContent).toContain("Git commit: abc1234");
 		expect(container.querySelector("a")?.textContent).toBe("abc1234");
 		expect(errors).not.toHaveBeenCalled();
 		act(() => root.unmount());

@@ -365,7 +365,10 @@ const MetadataEntry = memo(
 							)}
 							{rowHasDuplicate && (
 								<Text color="red" size="1" mb="1" mt="1" wrap="wrap">
-									{t("metadataDialog.duplicateMsg", "存在重复的元数据值")}
+									{t(
+										"metadataDialog.duplicateMsg",
+										"Some metadata values are duplicated",
+									)}
 								</Text>
 							)}
 							<Button
@@ -416,20 +419,20 @@ export const MetadataEditor = () => {
 		return [
 			{
 				// 歌词所匹配的歌曲名
-				label: t("metadataDialog.builtinOptions.musicName", "歌曲名称"),
+				label: t("metadataDialog.builtinOptions.musicName", "Song title"),
 				value: "musicName",
 				icon: <MusicNote1Regular />,
 			},
 			{
 				// 歌词所匹配的歌手名
-				label: t("metadataDialog.builtinOptions.artists", "歌曲的艺术家"),
+				label: t("metadataDialog.builtinOptions.artists", "Artists"),
 				value: "artists",
 				icon: <Person16Regular />,
 				validation: {
 					verifier: (value: string) => !/^.+[,;&，；、].+$/.test(value),
 					message: t(
 						"metadataDialog.builtinOptions.artistsInvalidMsg",
-						"如果有多个艺术家，请多次添加该键值，避免使用分隔符",
+						"Add one entry per artist instead of separating names with commas or slashes. Ignore this if an artist's name really contains one.",
 					),
 				},
 			},
@@ -441,18 +444,18 @@ export const MetadataEditor = () => {
 					verifier: (value: string) => !/^.+[,;&，；、].+$/.test(value),
 					message: t(
 						"metadataDialog.builtinOptions.songwriterInvalidMsg",
-						"如果有多个词曲作者，请多次添加该键值，避免使用分隔符",
+						"Add one entry per songwriter instead of separating names with commas or slashes.",
 					),
 				},
 			},
 			{
 				// 歌词所匹配的专辑名
-				label: t("metadataDialog.builtinOptions.album", "歌曲的专辑名"),
+				label: t("metadataDialog.builtinOptions.album", "Album"),
 				value: "album",
 				icon: <AlbumRegular />,
 			},
 			{
-				label: t("metadataDialog.builtinOptions.coverArt", "Cover URL"),
+				label: t("metadataDialog.builtinOptions.coverArt", "Cover image URL"),
 				value: "cover_art",
 				icon: <Image16Regular />,
 			},
@@ -479,7 +482,7 @@ export const MetadataEditor = () => {
 				<div className={styles.dialogHeader}>
 					<Flex align="center" gap="2" justify="between">
 						<Dialog.Title style={{ margin: 0 }}>
-							{t("metadataDialog.title", "元数据编辑器")}
+							{t("metadataDialog.title", "Metadata")}
 						</Dialog.Title>
 						<IconButton variant="ghost" color="gray" asChild>
 							<a
@@ -543,7 +546,7 @@ export const MetadataEditor = () => {
 							}}
 						>
 							<Button variant="soft" ref={addKeyButtonRef}>
-								{t("metadataDialog.addKeyValue", "添加新键值")}
+								{t("metadataDialog.addKeyValue", "Add field")}
 								<DropdownMenu.TriggerIcon />
 							</Button>
 						</DropdownMenu.Trigger>
@@ -553,7 +556,7 @@ export const MetadataEditor = () => {
 									style={{
 										flexGrow: "1",
 									}}
-									placeholder={t("metadataDialog.customKey", "自定义键名")}
+									placeholder={t("metadataDialog.customKey", "Custom field")}
 									value={customKey}
 									onChange={(e) => setCustomKey(e.currentTarget.value)}
 								/>
@@ -616,7 +619,7 @@ export const MetadataEditor = () => {
 						<Search16Regular />
 						{t(
 							"metadataDialog.fetchSongwriters.button",
-							"Fetch Songwriters from Genius",
+							"Fetch songwriters from Genius",
 						)}
 					</Button>
 					<Button
@@ -640,7 +643,7 @@ export const MetadataEditor = () => {
 							});
 						}}
 					>
-						{t("metadataDialog.addPresets", "一键添加所有预设键")}
+						{t("metadataDialog.addPresets", "Add all standard fields")}
 					</Button>
 					<Button
 						style={{ flex: "1 0 auto" }}

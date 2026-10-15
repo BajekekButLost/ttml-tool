@@ -30,7 +30,7 @@ export const AuxiliaryDisplayField: FC = () => {
 		<Grid columns="1fr auto" gapX="4" gapY="1" flexGrow="1" align="center">
 			<Text size="1" asChild style={{ color: "var(--ribbon-label-color)" }}>
 				<label htmlFor={idTranslation}>
-					{t("ribbonBar.editMode.showTranslation", "显示翻译行")}
+					{t("ribbonBar.editMode.showTranslation", "Show translation line")}
 				</label>
 			</Text>
 			<SettingToggle
@@ -40,7 +40,7 @@ export const AuxiliaryDisplayField: FC = () => {
 			/>
 			<Text size="1" asChild style={{ color: "var(--ribbon-label-color)" }}>
 				<label htmlFor={idRomanization}>
-					{t("ribbonBar.editMode.showRomanization", "显示音译行")}
+					{t("ribbonBar.editMode.showRomanization", "Show romanization line")}
 				</label>
 			</Text>
 			<SettingToggle
@@ -50,7 +50,10 @@ export const AuxiliaryDisplayField: FC = () => {
 			/>
 			<Text size="1" asChild style={{ color: "var(--ribbon-label-color)" }}>
 				<label htmlFor={idPerWord}>
-					{t("ribbonBar.editMode.showWordRomanizationInput", "显示逐字音译")}
+					{t(
+						"ribbonBar.editMode.showWordRomanizationInput",
+						"Show per-word romanization",
+					)}
 				</label>
 			</Text>
 			<SettingToggle

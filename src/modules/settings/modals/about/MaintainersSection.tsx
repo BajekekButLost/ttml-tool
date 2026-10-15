@@ -19,7 +19,7 @@ export const MaintainersSection = ({
 	<Card>
 		<Flex direction="column" gap="3">
 			<Heading size="3">
-				{t("aboutModal.maintainers", "Fork Maintainers & Contributors")}
+				{t("aboutModal.maintainers", "Fork maintainers & contributors")}
 			</Heading>
 			<Text size="2" color="gray">
 				{t(

@@ -77,9 +77,13 @@ export async function openWorkspaceDialog(
 					);
 				} else {
 					toast.success(
-						t("workspace.projectsFound", "Found {count} project(s)", {
-							count: results.length,
-						}),
+						t(
+							"workspace.projectsFound",
+							"{count, plural, one {Found # project} other {Found # projects}}",
+							{
+								count: results.length,
+							},
+						),
 					);
 				}
 			} finally {
@@ -95,7 +99,7 @@ export async function openWorkspaceDialog(
 	if (store.get(isDirtyAtom)) {
 		store.set(confirmDialogAtom, {
 			open: true,
-			title: t("confirmDialog.openFile.title", "Confirm Open File"),
+			title: t("confirmDialog.openFile.title", "Open another file?"),
 			description: t(
 				"confirmDialog.openFile.description",
 				"You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to open a new file?",

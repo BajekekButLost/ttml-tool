@@ -73,7 +73,7 @@ export const SuggestedSplitsDialog = memo(() => {
 		>
 			<Dialog.Content size="3">
 				<Dialog.Title>
-					{t("suggestedSplits.title", "Suggested Splits")}
+					{t("suggestedSplits.title", "Suggested splits")}
 				</Dialog.Title>
 				<Dialog.Description>
 					{t(
@@ -87,7 +87,7 @@ export const SuggestedSplitsDialog = memo(() => {
 				<Flex direction="column" gap="4" mt="4">
 					{isLoading ? (
 						<Text color="gray" align="center">
-							{t("common.loading", "Loading...")}
+							{t("common.loading", "Loading…")}
 						</Text>
 					) : (
 						<>
@@ -116,7 +116,7 @@ export const SuggestedSplitsDialog = memo(() => {
 										))}
 									</Flex>
 									<Button size="1" onClick={() => handleApply(option)}>
-										{t("suggestedSplits.apply", "Apply Suggestion")}
+										{t("suggestedSplits.apply", "Apply suggestion")}
 									</Button>
 								</Box>
 							))}

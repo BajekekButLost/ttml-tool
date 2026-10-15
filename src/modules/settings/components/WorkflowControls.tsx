@@ -77,10 +77,10 @@ export function SyncLevelControl() {
 			size="1"
 		>
 			<SegmentedControl.Item value="word">
-				{t("ribbonBar.syncMode.syncLevelWord", "Word Sync")}
+				{t("ribbonBar.syncMode.syncLevelWord", "Word")}
 			</SegmentedControl.Item>
 			<SegmentedControl.Item value="line">
-				{t("ribbonBar.syncMode.syncLevelLine", "Line Sync")}
+				{t("ribbonBar.syncMode.syncLevelLine", "Line")}
 			</SegmentedControl.Item>
 		</SegmentedControl.Root>
 	);

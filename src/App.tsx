@@ -143,12 +143,12 @@ const AppErrorPage = ({
 	return (
 		<Flex direction="column" align="center" justify="center" height="100vh">
 			<Flex direction="column" align="start" justify="center" gap="2">
-				<Heading>{t("app.error.title", "诶呀，出错了！")}</Heading>
+				<Heading>{t("app.error.title", "Something went wrong")}</Heading>
 				<Text>
-					{t("app.error.description", "AMLL TTML Tool 在运行时出现了错误")}
+					{t("app.error.description", "NaeNae's TTML Tool ran into an error.")}
 				</Text>
 				<Text>
-					{t("app.error.checkDevTools", "具体错误详情可以在开发者工具中查询")}
+					{t("app.error.checkDevTools", "Details are in the developer tools.")}
 				</Text>
 				<Flex gap="2">
 					<Button
@@ -163,7 +163,7 @@ const AppErrorPage = ({
 							});
 						}}
 					>
-						{t("app.error.saveLyrics", "尝试保存当前歌词")}
+						{t("app.error.saveLyrics", "Try saving your lyrics")}
 					</Button>
 					<Button
 						onClick={() => {
@@ -175,7 +175,7 @@ const AppErrorPage = ({
 					</Button>
 				</Flex>
 				{exportWarning && <Text role="status">{exportWarning}</Text>}
-				<Text>{t("app.error.details", "大致错误信息：")}</Text>
+				<Text>{t("app.error.details", "Error details:")}</Text>
 				<TextArea
 					readOnly
 					value={String(error)}

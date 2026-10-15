@@ -32,7 +32,7 @@ export const FontSelectionDialog = () => {
 					<Dialog.Description>
 						{t(
 							"settings.appearance.fontDialogDescription",
-							"Select a font from standard, system, or Google fonts library.",
+							"Choose a standard, system or Google font.",
 						)}
 					</Dialog.Description>
 				</VisuallyHidden>
@@ -40,7 +40,7 @@ export const FontSelectionDialog = () => {
 					<Flex align="center" gap="3">
 						<TextFont24Regular />
 						<Dialog.Title mb="0" style={{ fontSize: "32px" }}>
-							{state.t("settings.appearance.fontLibrary", "Font Library")}
+							{state.t("settings.appearance.fontLibrary", "Font library")}
 						</Dialog.Title>
 					</Flex>
 					<Dialog.Close>

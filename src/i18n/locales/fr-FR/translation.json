@@ -215,7 +215,7 @@
     "close": "Fermer",
     "autoDetect": "Détection automatique",
     "about": "À propos",
-    "resultsFound": "Résultats {count} trouvés",
+    "resultsFound": "{count, plural, one {Résultats # trouvés} many {Résultats # trouvés} other {Résultats # trouvés}}",
     "cancel": "Annuler",
     "save": "Enregistrer",
     "search": "Rechercher",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Aucun projet trouvé. Sélectionnez un dossier d'espace de travail à analyser.",
-    "foundCount": "Projet(s) {count} trouvé(s)",
+    "foundCount": "{count, plural, one {Projet(s) # trouvé(s)} many {Projet(s) # trouvé(s)} other {Projet(s) # trouvé(s)}}",
     "importable": "Importable",
     "scanning": "Numérisation...",
     "selectFolder": "Sélectionnez le dossier de l'espace de travail...",
     "unknown": "Inconnu",
     "noProjectsFound": "Aucun projet trouvé dans ce dossier",
-    "projectsFound": "Projets trouvés : {count}",
+    "projectsFound": "{count, plural, one {Projets trouvés : #} many {Projets trouvés : #} other {Projets trouvés : #}}",
     "scanFailed": "Impossible d'analyser le dossier de l'espace de travail"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Clés API"
       },
       "hint": {
-        "settings": "{count} valeurs stockées",
-        "keybindings": "Raccourcis clavier {count}",
+        "settings": "{count, plural, one {# valeurs stockées} many {# valeurs stockées} other {# valeurs stockées}}",
+        "keybindings": "{count, plural, one {Raccourcis clavier #} many {Raccourcis clavier #} other {Raccourcis clavier #}}",
         "assetsSet": "Ensemble d'images d'arrière-plan personnalisées",
         "assetsNone": "No custom background image",
-        "presetsCount": "Préréglages {count}",
+        "presetsCount": "{count, plural, one {Préréglages #} many {Préréglages #} other {Préréglages #}}",
         "backgroundSet": "Arrière-plan personnalisé",
         "fontSet": "Police personnalisée",
-        "projects": "Projets {count}",
-        "apiKeys": "{count} clés"
+        "projects": "{count, plural, one {Projets #} many {Projets #} other {Projets #}}",
+        "apiKeys": "{count, plural, one {# clés} many {# clés} other {# clés}}"
       },
       "exportSuccess": "Sauvegarde exportée",
       "exportFailed": "Échec de l'exportation de la sauvegarde",
@@ -709,7 +709,7 @@
       "previewTotal": "Taille totale estimée",
       "previewPresetPrefix": "Préréglage",
       "previewFontPrefix": "Police personnalisée",
-      "previewVersions": "Versions {count}",
+      "previewVersions": "{count, plural, one {Versions #} many {Versions #} other {Versions #}}",
       "apiKeysWarning": "Les clés API sont enregistrées sous forme de texte brut dans le fichier de sauvegarde. Gardez-le privé.",
       "importTitle": "Importer",
       "importDesc": "Restaurez les paramètres et les données à partir d'un fichier de sauvegarde. Les valeurs existantes seront remplacées.",
@@ -1053,7 +1053,7 @@
       "searchError": "Échec de la recherche : {error}",
       "fetchError": "Impossible de récupérer les paroles : {error}",
       "noLyricsError": "Aucune parole à importer.",
-      "importSuccess": "Lignes {count} importées de Genius.",
+      "importSuccess": "{count, plural, one {Lignes # importées de Genius.} many {Lignes # importées de Genius.} other {Lignes # importées de Genius.}}",
       "howToGetKey": "Comment créer un Client Access Token Genius"
     },
     "openLink": "Ouvrir le lien",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Traduction :",
     "romanLabel": "Romanisation :",
     "empty": "Aucun",
-    "duplicateLinesHere": "Dupliquer la ou les lignes sélectionnées {count} ici",
-    "applyTimingsHere": "Appliquez les timings {count} à partir d'ici",
+    "duplicateLinesHere": "{count, plural, one {Dupliquer la ou les lignes sélectionnées # ici} many {Dupliquer la ou les lignes sélectionnées # ici} other {Dupliquer la ou les lignes sélectionnées # ici}}",
+    "applyTimingsHere": "{count, plural, one {Appliquez les timings # à partir d'ici} many {Appliquez les timings # à partir d'ici} other {Appliquez les timings # à partir d'ici}}",
     "applyPartialTimingsHere": "Appliquer les timings {applied} ou {total} à partir d'ici",
-    "timingsApplied": "Synchronisation appliquée aux lignes {count}.",
+    "timingsApplied": "{count, plural, one {Synchronisation appliquée aux lignes #.} many {Synchronisation appliquée aux lignes #.} other {Synchronisation appliquée aux lignes #.}}",
     "partialTimingCopy": "Seuls les timings des sources {applied} des {total} correspondent avant la fin des paroles.",
-    "wordTimingMismatch": "{count} lignes avaient un nombre de mots différent ; seules les positions correspondantes ont été copiées.",
+    "wordTimingMismatch": "{count, plural, one {# lignes avaient un nombre de mots différent ; seules les positions correspondantes ont été copiées.} many {# lignes avaient un nombre de mots différent ; seules les positions correspondantes ont été copiées.} other {# lignes avaient un nombre de mots différent ; seules les positions correspondantes ont été copiées.}}",
     "insertLine": "Insérer une nouvelle ligne ici",
     "insertWord": "Insérer un mot ici…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Aperçu des paroles",
     "back": "Retour",
     "previewSubtitle": "Vous pouvez modifier les paroles ci-dessous avant de les importer.",
-    "linesCount": "Lignes {count}",
+    "linesCount": "{count, plural, one {Lignes #} many {Lignes #} other {Lignes #}}",
     "importButton": "Importer les paroles",
     "importTitle": "Importer les paroles de Genius",
     "searchPlaceholder": "Artiste – Titre de la chanson…",
@@ -1286,11 +1286,11 @@
     "description": "Vérifiez les catégories et les métadonnées normalisées avant de remplacer les paroles.",
     "sourceLyrics": "Paroles sources",
     "structure": "Structure",
-    "sectionCount": "Sections {count}",
+    "sectionCount": "{count, plural, one {Sections #} many {Sections #} other {Sections #}}",
     "vocalist": "Chanteur / rôle",
     "color": "Couleur des sections",
     "notes": "Remarques",
-    "lineCount": "Lignes de paroles {count}",
+    "lineCount": "{count, plural, one {Lignes de paroles #} many {Lignes de paroles #} other {Lignes de paroles #}}",
     "import": "Importer les paroles révisées"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Projet sans titre"
   },
   "time": {
-    "daysAgo": "Il y a {count} jours",
-    "hoursAgo": "Il y a {count} heures",
-    "minutesAgo": "Il y a {count} minutes",
+    "daysAgo": "{count, plural, one {Il y a # jours} many {Il y a # jours} other {Il y a # jours}}",
+    "hoursAgo": "{count, plural, one {Il y a # heures} many {Il y a # heures} other {Il y a # heures}}",
+    "minutesAgo": "{count, plural, one {Il y a # minutes} many {Il y a # minutes} other {Il y a # minutes}}",
     "justNow": "À l'instant"
   },
   "metadata": {

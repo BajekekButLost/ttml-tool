@@ -54,16 +54,11 @@ export const SyncingSection = ({
 				<Box flexGrow="1">
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
-							<Text>
-								{t(
-									"settings.common.syncJudgeMode",
-									"Sync Timestamp Judgment Mode",
-								)}
-							</Text>
+							<Text>{t("settings.common.syncJudgeMode", "Key timing")}</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.syncJudgeModeDesc",
-									'Set the sync timestamp judgment mode, default is "First Key Down Time".',
+									"Which moment of a key press becomes the timestamp. Default: When pressed.",
 								)}
 							</Text>
 						</Flex>
@@ -77,25 +72,25 @@ export const SyncingSection = ({
 								<Select.Item value={SyncJudgeMode.FirstKeyDownTime}>
 									{t(
 										"settings.common.syncJudgeModeOptions.firstKeyDown",
-										"First Key Down Time",
+										"When pressed",
 									)}
 								</Select.Item>
 								<Select.Item value={SyncJudgeMode.LastKeyUpTime}>
 									{t(
 										"settings.common.syncJudgeModeOptions.lastKeyUp",
-										"Last Key Up Time",
+										"When released",
 									)}
 								</Select.Item>
 								<Select.Item value={SyncJudgeMode.MiddleKeyTime}>
 									{t(
 										"settings.common.syncJudgeModeOptions.middleKey",
-										"Average of Key Down and Key Up Time",
+										"Halfway between press and release",
 									)}
 								</Select.Item>
 								<Select.Item value={SyncJudgeMode.FirstKeyDownTimeLegacy}>
 									{t(
 										"settings.common.syncJudgeModeOptions.firstKeyDownLegacy",
-										"First Key Down Time (Legacy)",
+										"When pressed (legacy)",
 									)}
 								</Select.Item>
 							</Select.Content>
@@ -112,15 +107,12 @@ export const SyncingSection = ({
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
 							<Text>
-								{t(
-									"settings.common.keyBindingTrigger",
-									"Keybinding Trigger Timing",
-								)}
+								{t("settings.common.keyBindingTrigger", "Run shortcuts on")}
 							</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.keyBindingTriggerDesc",
-									"Whether keybindings are triggered on key down or key up",
+									"Whether shortcuts run when a key is pressed or when it's released.",
 								)}
 							</Text>
 						</Flex>
@@ -136,13 +128,13 @@ export const SyncingSection = ({
 								<Select.Item value={KeyBindingTriggerMode.KeyDown}>
 									{t(
 										"settings.common.keyBindingTriggerOptions.keyDown",
-										"Trigger on Key Down",
+										"Key press",
 									)}
 								</Select.Item>
 								<Select.Item value={KeyBindingTriggerMode.KeyUp}>
 									{t(
 										"settings.common.keyBindingTriggerOptions.keyUp",
-										"Trigger on Key Up",
+										"Key release",
 									)}
 								</Select.Item>
 							</Select.Content>
@@ -159,15 +151,12 @@ export const SyncingSection = ({
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
 							<Text>
-								{t(
-									"settings.common.syncTimeOffset",
-									"Global Sync Time Offset (ms)",
-								)}
+								{t("settings.common.syncTimeOffset", "Sync offset (ms)")}
 							</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.syncTimeOffsetDesc",
-									"Adjust all sync timestamps by this amount to compensate for audio latency.",
+									"Shifts every timestamp you record by this amount, to make up for audio or input delay.",
 								)}
 							</Text>
 						</Flex>
@@ -184,15 +173,12 @@ export const SyncingSection = ({
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
 							<Text>
-								{t(
-									"settings.common.syncCommitOffset",
-									"Commit Input Offset (ms)",
-								)}
+								{t("settings.common.syncCommitOffset", "Next key offset (ms)")}
 							</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.syncCommitOffsetDesc",
-									"Specific offset for the 'Commit' action to fix delayed audio issues.",
+									"Extra offset for the Next key only (G by default), for when it lands consistently early or late.",
 								)}
 							</Text>
 						</Flex>
@@ -210,12 +196,12 @@ export const SyncingSection = ({
 						<Flex gap="2" align="center" justify="between">
 							<Flex direction="column" gap="1">
 								<Text>
-									{t("settings.common.smartFirstWord", "Smart First Word")}
+									{t("settings.common.smartFirstWord", "Start-only first word")}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.smartFirstWordDesc",
-										"When syncing the first syllable of a line, pressing the Start trigger records its start time but not its end time.",
+										"On the first word of a line, the first key press only sets its start time, not its end time.",
 									)}
 								</Text>
 							</Flex>
@@ -237,12 +223,12 @@ export const SyncingSection = ({
 						<Flex gap="2" align="center" justify="between">
 							<Flex direction="column" gap="1">
 								<Text>
-									{t("settings.common.smartLastWord", "Smart Last Word")}
+									{t("settings.common.smartLastWord", "End-only last word")}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.smartLastWordDesc",
-										"When syncing the last syllable of a line, pressing the End trigger records its end time without starting the next syllable.",
+										"On the last word of a line, the key press only sets its end time and doesn't start the next line's first word.",
 									)}
 								</Text>
 							</Flex>
@@ -266,13 +252,13 @@ export const SyncingSection = ({
 								<Text>
 									{t(
 										"settings.common.spectrogramHoverSync",
-										"Sync to Spectrogram Cursor",
+										"Sync at mouse position",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.spectrogramHoverSyncDesc",
-										"When hovering over the spectrogram in Sync mode, trigger keys (F, G, H) record the hover position timestamp instead of the playback time.",
+										"While the mouse is over the spectrogram in Time mode, the sync keys record the time under the mouse instead of the playback time.",
 									)}
 								</Text>
 							</Flex>

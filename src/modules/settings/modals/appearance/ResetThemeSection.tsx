@@ -29,7 +29,7 @@ export const ResetThemeSection = (props: ResetThemeProps) => {
 	return (
 		<Flex direction="column" gap="3">
 			<Heading size="4">
-				{t("settings.appearance.resetTitle", "Reset Theme")}
+				{t("settings.appearance.resetTitle", "Reset theme")}
 			</Heading>
 			<Card>
 				<Flex direction="column" gap="2">
@@ -62,7 +62,7 @@ export const ResetThemeSection = (props: ResetThemeProps) => {
 						}}
 					>
 						<History24Regular />
-						{t("settings.appearance.resetTheme", "Reset Theme to Default")}
+						{t("settings.appearance.resetTheme", "Reset theme to default")}
 					</Button>
 				</Flex>
 			</Card>

@@ -58,7 +58,7 @@ export const ReplaceRomanizationDialog = memo(() => {
 		>
 			<Dialog.Content maxWidth="400px">
 				<Dialog.Title>
-					{t("replaceRomanizationDialog.title", "Replace Romanization")}
+					{t("replaceRomanizationDialog.title", "Replace romanization")}
 				</Dialog.Title>
 				<Dialog.Description size="2" mb="4">
 					{t("replaceRomanizationDialog.description", "New romanization:")}
@@ -108,10 +108,7 @@ export const ReplaceRomanizationDialog = memo(() => {
 									}
 									disabled={!applyToAll}
 								/>
-								{t(
-									"replaceRomanizationDialog.caseSensitive",
-									"Match case (exact match)",
-								)}
+								{t("replaceRomanizationDialog.caseSensitive", "Match case")}
 							</Flex>
 						</Text>
 					</Flex>

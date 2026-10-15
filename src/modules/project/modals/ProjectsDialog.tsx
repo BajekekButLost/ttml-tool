@@ -64,10 +64,24 @@ const RelativeTime = ({ timestamp }: { timestamp: number }) => {
 	const minutes = Math.floor(diff / 60000);
 	const hours = Math.floor(minutes / 60);
 	const days = Math.floor(hours / 24);
-	if (days > 0) return t("time.daysAgo", "{count}d ago", { count: days });
-	if (hours > 0) return t("time.hoursAgo", "{count}h ago", { count: hours });
+	if (days > 0)
+		return t(
+			"time.daysAgo",
+			"{count, plural, one {# day ago} other {# days ago}}",
+			{ count: days },
+		);
+	if (hours > 0)
+		return t(
+			"time.hoursAgo",
+			"{count, plural, one {# hour ago} other {# hours ago}}",
+			{ count: hours },
+		);
 	if (minutes > 0)
-		return t("time.minutesAgo", "{count}m ago", { count: minutes });
+		return t(
+			"time.minutesAgo",
+			"{count, plural, one {# minute ago} other {# minutes ago}}",
+			{ count: minutes },
+		);
 	return t("time.justNow", "just now");
 };
 
@@ -238,11 +252,11 @@ const ProjectTab = ({ onClose }: { onClose: () => void }) => {
 				</Text>
 				<Flex gap="2">
 					<Button variant="soft" onClick={handleCreate}>
-						{t("projectsDialog.createNew", "New Project")}
+						{t("projectsDialog.createNew", "New project")}
 					</Button>
 					<Button variant="soft" onClick={handleBrowse}>
 						<FolderOpenRegular />{" "}
-						{t("projectsDialog.openFolder", "Open Folder")}
+						{t("projectsDialog.openFolder", "Open folder")}
 					</Button>
 				</Flex>
 			</Flex>
@@ -323,7 +337,7 @@ const ProjectTab = ({ onClose }: { onClose: () => void }) => {
 			)}
 			<Flex justify="end" gap="2">
 				<Button variant="soft" onClick={handleBrowse}>
-					<FolderOpenRegular /> {t("projectsDialog.browse", "Browse...")}
+					<FolderOpenRegular /> {t("projectsDialog.browse", "Browse…")}
 				</Button>
 				<Button
 					onClick={handleSave}
@@ -413,7 +427,7 @@ const RecentTab = ({
 				{visible.length === 0 ? (
 					<Text size="2" color="gray" align="center" my="4" as="div">
 						{loading
-							? t("projectsDialog.loading", "Loading...")
+							? t("projectsDialog.loading", "Loading…")
 							: projects.length > 0
 								? t("projectsDialog.noMatches", "No projects match your search")
 								: t("projectsDialog.noRecent", "No recent projects")}
@@ -627,7 +641,7 @@ const LinkedTab = ({
 						{visible.length === 0 ? (
 							<Text size="2" color="gray" align="center" my="4" as="div">
 								{loading
-									? t("projectsDialog.loading", "Loading...")
+									? t("projectsDialog.loading", "Loading…")
 									: projects.length > 0
 										? t(
 												"projectsDialog.noMatches",
@@ -786,7 +800,7 @@ const WorkspaceTab = ({
 						{visible.length === 0 ? (
 							<Text size="2" color="gray" align="center" my="4" as="div">
 								{scanning
-									? t("workspace.scanning", "Scanning...")
+									? t("workspace.scanning", "Scanning…")
 									: projects.length > 0
 										? t(
 												"projectsDialog.noMatches",
@@ -855,14 +869,18 @@ const WorkspaceTab = ({
 			<Flex justify="between" align="center">
 				<Text size="1" color="gray">
 					{projects.length > 0
-						? t("workspace.foundCount", "{count} project(s) found", {
-								count: projects.length,
-							})
+						? t(
+								"workspace.foundCount",
+								"{count, plural, one {# project found} other {# projects found}}",
+								{
+									count: projects.length,
+								},
+							)
 						: ""}
 				</Text>
 				<Button variant="soft" onClick={handleScan}>
 					<FolderOpenRegular />
-					{t("workspace.selectFolder", "Select workspace folder...")}
+					{t("workspace.selectFolder", "Select workspace folder…")}
 				</Button>
 			</Flex>
 		</Flex>

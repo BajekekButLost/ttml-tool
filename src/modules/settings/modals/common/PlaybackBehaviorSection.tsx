@@ -48,9 +48,7 @@ export const PlaybackBehaviorSection = ({
 	| "t"
 >) => (
 	<Flex direction="column" gap="3">
-		<Heading size="4">
-			{t("settings.group.syncWordWrap", "Time Mode / Sync Tab")}
-		</Heading>
+		<Heading size="4">{t("settings.group.syncWordWrap", "Time mode")}</Heading>
 		<Card>
 			<Text as="label">
 				<Flex gap="3" align="center">
@@ -59,12 +57,12 @@ export const PlaybackBehaviorSection = ({
 						<Flex gap="2" align="center" justify="between">
 							<Flex direction="column" gap="1">
 								<Text>
-									{t("settings.common.syncWordWrap", "Wrap Words in Time Mode")}
+									{t("settings.common.syncWordWrap", "Wrap words in Time mode")}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.syncWordWrapDesc",
-										"Wraps word cards to the next line instead of showing a horizontal scrollbar in Time / Sync tab.",
+										"Wrap word cards onto the next line in Time mode instead of scrolling sideways.",
 									)}
 								</Text>
 							</Flex>
@@ -106,13 +104,13 @@ export const PlaybackBehaviorSection = ({
 								<Text>
 									{t(
 										"settings.common.syncAutoScroll",
-										"Auto-Scroll to Active Line During Playback",
+										"Auto-scroll to active line during playback",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.syncAutoScrollDesc",
-										"Automatically scrolls the editor view to follow the currently active lyric line during playback.",
+										"Scrolls the editor to follow the line that is playing.",
 									)}
 								</Text>
 							</Flex>
@@ -148,13 +146,13 @@ export const PlaybackBehaviorSection = ({
 								>
 									{t(
 										"settings.common.syncFocusMainLine",
-										"Focus Main Line During Playback",
+										"Focus main line during playback",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.syncFocusMainLineDesc",
-										"When playing back, focuses on active main lines and ignores background lines unless no main line is active.",
+										"During playback, follow the main line and ignore background lines unless no main line is playing.",
 									)}
 								</Text>
 							</Flex>
@@ -178,13 +176,13 @@ export const PlaybackBehaviorSection = ({
 								<Text>
 									{t(
 										"settings.common.highlightActiveLine",
-										"Highlight Active Line During Playback",
+										"Highlight active line during playback",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.highlightActiveLineDesc",
-										"Visually highlights the lyric line currently being played in the selected mode.",
+										"Highlights the line that is playing in the selected mode.",
 									)}
 								</Text>
 							</Flex>
@@ -210,13 +208,13 @@ export const PlaybackBehaviorSection = ({
 								<Text>
 									{t(
 										"settings.common.syncTabPosition",
-										"Sync Position Across Tabs",
+										"Sync position across tabs",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.syncTabPositionDesc",
-										"Maintain song playback and center the active lyric line when switching between Edit, Time, and Preview tabs.",
+										"Keeps playback going and the active line centered when you switch between Edit, Time and Preview.",
 									)}
 								</Text>
 							</Flex>

@@ -12,10 +12,10 @@ export const AppearanceEditorModeSection = ({
 			onValueChange={(v) => setEditorMode(v as AppearanceEditorMode)}
 		>
 			<SegmentedControl.Item value={AppearanceEditorMode.Basic}>
-				{t("settings.appearance.mode.basic", "Basic Editor")}
+				{t("settings.appearance.mode.basic", "Simple layout")}
 			</SegmentedControl.Item>
 			<SegmentedControl.Item value={AppearanceEditorMode.Advanced}>
-				{t("settings.appearance.mode.advanced", "Advanced Editor")}
+				{t("settings.appearance.mode.advanced", "Advanced layout")}
 			</SegmentedControl.Item>
 		</SegmentedControl.Root>
 	</Flex>

@@ -203,7 +203,7 @@ export const AutoKeyBindingSettingsPanel = () => {
 						<span>
 							{t(
 								"settingsDialog.keybindings.autoSegmentOptions",
-								"Auto Segment",
+								"Auto segment",
 							)}
 						</span>
 					</Flex>
@@ -219,7 +219,7 @@ export const AutoKeyBindingSettingsPanel = () => {
 						<Text as="div" size="1" color="gray">
 							{t(
 								"settingsDialog.keybindings.autoSegmentDoublePressDesc",
-								"Run Auto Segment only after pressing its shortcut twice quickly.",
+								"Only run quick auto segment when you press its shortcut twice quickly.",
 							)}
 						</Text>
 					</Box>

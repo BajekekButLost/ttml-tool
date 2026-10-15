@@ -17,7 +17,7 @@ export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
 		<Flex direction="column" gap="2">
 			<Flex direction="column" gap="1">
 				<Text as="div" size="2">
-					{t("aboutModal.buildDate", "Build Date: {date}", {
+					{t("aboutModal.buildDate", "Build date: {date}", {
 						date: BUILD_TIME,
 					})}
 				</Text>
@@ -28,7 +28,7 @@ export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
 				</Text>
 				<Text as="div" size="2">
 					{keyedParts(
-						t("aboutModal.gitCommit", "Git Commit: {commit}", {
+						t("aboutModal.gitCommit", "Git commit: {commit}", {
 							commit:
 								GIT_COMMIT === "unknown" ? (
 									t("aboutModal.unknown", "Unknown")

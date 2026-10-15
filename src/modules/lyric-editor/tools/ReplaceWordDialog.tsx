@@ -68,7 +68,9 @@ export const ReplaceWordDialog = memo(() => {
 	return (
 		<Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
 			<Dialog.Content maxWidth="400px">
-				<Dialog.Title>{t("replaceWordDialog.title", "替换单词")}</Dialog.Title>
+				<Dialog.Title>
+					{t("replaceWordDialog.title", "Replace word")}
+				</Dialog.Title>
 				<Dialog.Description size="2" mb="4">
 					{t("replaceWordDialog.description", "新的单词内容:")}
 				</Dialog.Description>
@@ -93,7 +95,7 @@ export const ReplaceWordDialog = memo(() => {
 								/>
 								{t(
 									"replaceWordDialog.applyToAll",
-									"将替换应用于所有相同的单词",
+									"Replace all identical words",
 								)}
 							</Flex>
 						</Text>
@@ -112,7 +114,7 @@ export const ReplaceWordDialog = memo(() => {
 									onCheckedChange={(c) => setCaseSensitive(c as boolean)}
 									disabled={!applyToAll}
 								/>
-								{t("replaceWordDialog.caseSensitive", "区分大小写（完全一致）")}
+								{t("replaceWordDialog.caseSensitive", "Match case")}
 							</Flex>
 						</Text>
 					</Flex>

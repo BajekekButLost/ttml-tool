@@ -49,10 +49,7 @@ export function useFontSelection() {
 			setCustomFontName(fontName);
 			setAppFont(`"${fontName}", sans-serif`);
 			toast.success(
-				t(
-					"settings.appearance.fontImportSuccess",
-					"Font imported successfully!",
-				),
+				t("settings.appearance.fontImportSuccess", "Font imported"),
 			);
 		};
 		reader.readAsDataURL(file);

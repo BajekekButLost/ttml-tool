@@ -77,7 +77,7 @@ export const LyricWordViewEdit = ({
 		false,
 	);
 	const spaceLabel = isSpaceWord
-		? t("lyricWordView.spaceCount", "空格 x{count}", {
+		? t("lyricWordView.spaceCount", "Space ×{count}", {
 				count: word.word.length,
 			})
 		: undefined;

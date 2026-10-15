@@ -88,7 +88,7 @@ const editModeToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.editMode.showTranslation",
-		"Show Translation Line",
+		"Show translation line",
 		"settings.workflow.showTranslationDesc",
 		"Show a translation field under each lyric line.",
 		<Translate24Regular key="icon" />,
@@ -96,7 +96,7 @@ const editModeToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.editMode.showRomanization",
-		"Show Romanization Line",
+		"Show romanization line",
 		"settings.workflow.showRomanizationDesc",
 		"Show a romanization field under each lyric line.",
 		<TextCaseTitle24Regular key="icon" />,
@@ -104,7 +104,7 @@ const editModeToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.editMode.showWordRomanizationInput",
-		"Show Per-Word Romanization",
+		"Show per-word romanization",
 		"settings.workflow.showWordRomanizationInputDesc",
 		"Show a romanization field on each word.",
 		<TextEditStyle24Regular key="icon" />,
@@ -115,7 +115,7 @@ const editModeToggles: readonly ToggleRow[] = [
 const timeModeDisplayToggles: readonly ToggleRow[] = [
 	[
 		"ribbonBar.syncMode.showTimestamps",
-		"Show Timestamps",
+		"Show timestamps",
 		"settings.workflow.showTimestampsDesc",
 		"Show start and end times on each word.",
 		<Clock24Regular key="icon" />,
@@ -123,7 +123,7 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.syncMode.highlightActiveWord",
-		"Highlight Active Word",
+		"Highlight active word",
 		"settings.workflow.highlightActiveWordDesc",
 		"Highlight the word that is playing right now.",
 		<Highlight24Regular key="icon" />,
@@ -131,7 +131,7 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.syncMode.enableGlowAnimation",
-		"Enable Glow Animation",
+		"Enable glow animation",
 		"settings.workflow.enableGlowAnimationDesc",
 		"Fill each word with a glow as it plays.",
 		<Sparkle24Regular key="icon" />,
@@ -139,23 +139,23 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 	],
 	[
 		"settings.assistant.highlightErrors",
-		"Highlight Timing Errors",
+		"Highlight timing errors",
 		"settings.assistant.highlightErrorsDesc",
-		"Visually mark words where start time is greater than end time.",
+		"Mark words whose start time is after their end time.",
 		<ErrorCircle24Regular key="icon" />,
 		highlightErrorsAtom,
 	],
 	[
 		"settings.assistant.visualizeTimestampUpdate",
-		"Visualize Timestamp Updates",
+		"Visualize timestamp updates",
 		"settings.assistant.visualizeTimestampUpdateDesc",
-		"Show a brief flash on timestamps when they are updated via shortcuts.",
+		"Briefly flash a timestamp when a shortcut changes it.",
 		<Flash24Regular key="icon" />,
 		visualizeTimestampUpdateAtom,
 	],
 	[
 		"ribbonBar.syncMode.showPerWordRomanization",
-		"Show Per-Word Romanization",
+		"Show per-word romanization",
 		"settings.workflow.showPerWordRomanizationDesc",
 		"Show each word's romanization under it.",
 		<TextCaseTitle24Regular key="icon" />,
@@ -163,7 +163,7 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.editMode.previewPanel",
-		"Preview Panel",
+		"Preview panel",
 		"settings.workflow.previewPanelDesc",
 		"Show a live lyric preview next to the word list.",
 		<PanelRight24Regular key="icon" />,
@@ -174,7 +174,7 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 const syncAidToggles: readonly ToggleRow[] = [
 	[
 		"ribbonBar.syncMode.bgLyricIgnoreSync",
-		"Ignore Background Vocals",
+		"Skip background lines",
 		"settings.workflow.bgLyricIgnoreSyncDesc",
 		"Skip background lines while syncing with the keyboard. Applies to the background lines you already have, too.",
 		<EyeOff24Regular key="icon" />,
@@ -182,15 +182,15 @@ const syncAidToggles: readonly ToggleRow[] = [
 	],
 	[
 		"settings.assistant.manualTimestampEdit",
-		"Manual Timestamp Editing",
+		"Manual timestamp editing",
 		"settings.assistant.manualTimestampEditDesc",
-		"Allow clicking on timestamps in Sync mode to manually type values.",
+		"Click a timestamp in Time mode to type a new value.",
 		<NumberSymbol24Regular key="icon" />,
 		enableManualTimestampEditAtom,
 	],
 	[
 		"ribbonBar.syncMode.doubleClickEdit",
-		"Double-Click Word Editing",
+		"Double-click word editing",
 		"settings.workflow.doubleClickEditDesc",
 		"Double-click a word to fix its text while syncing.",
 		<Rename24Regular key="icon" />,
@@ -198,9 +198,9 @@ const syncAidToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.syncMode.touchSyncPanel",
-		"Touch Sync Panel",
+		"Touch sync panel",
 		"settings.workflow.touchSyncPanelDesc",
-		"Show on-screen sync buttons for touch screens.",
+		"Show on-screen Start, Next and End buttons for touch screens.",
 		<TapSingle24Regular key="icon" />,
 		showTouchSyncPanelAtom,
 	],
@@ -209,7 +209,7 @@ const syncAidToggles: readonly ToggleRow[] = [
 const previewToggles: readonly ToggleRow[] = [
 	[
 		"ribbonBar.previewMode.showTranslation",
-		"Show Translation",
+		"Show translation",
 		"settings.workflow.previewShowTranslationDesc",
 		"Show translation lines in the preview.",
 		<Translate24Regular key="icon" />,
@@ -217,7 +217,7 @@ const previewToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.previewMode.showRoman",
-		"Show Romanization",
+		"Show romanization",
 		"settings.workflow.previewShowRomanDesc",
 		"Show romanization in the preview.",
 		<TextCaseTitle24Regular key="icon" />,
@@ -225,7 +225,7 @@ const previewToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.previewMode.simpleLyrics",
-		"Simple lyrics",
+		"Simple Lyrics mode",
 		"settings.workflow.simpleLyricsDesc",
 		"Match Spicy Lyrics' Simple Lyrics mode, with calmer word animations.",
 		<TextDescription24Regular key="icon" />,
@@ -233,7 +233,7 @@ const previewToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.previewMode.forceLineRendering",
-		"Force line rendering",
+		"Show as line-synced",
 		"settings.workflow.forceLineRenderingDesc",
 		"Show every line in the Spicy preview as line-synced, without word timing.",
 		<TextLineSpacing24Regular key="icon" />,
@@ -241,7 +241,7 @@ const previewToggles: readonly ToggleRow[] = [
 	],
 	[
 		"ribbonBar.previewMode.instantFade",
-		"Instant Fade Out",
+		"Instant fade-out",
 		"settings.workflow.instantFadeDesc",
 		"Drop a word's highlight as soon as it ends instead of fading it out slowly.",
 		<Blur24Regular key="icon" />,
@@ -260,7 +260,7 @@ const previewToggles: readonly ToggleRow[] = [
 const performanceToggles: readonly ToggleRow[] = [
 	[
 		"settings.preview.vsync",
-		"V-Sync",
+		"Smooth preview (every frame)",
 		"settings.workflow.vsyncDesc",
 		"Update the Standard and Toxi previews every frame instead of about 30 times per second. Smoother, but uses more CPU.",
 		<TopSpeed24Regular key="icon" />,
@@ -343,10 +343,10 @@ export const WorkflowSettings = () => {
 				</Heading>
 				<SettingRow
 					icon={<Timeline24Regular />}
-					title={t("ribbonBar.syncMode.syncLevel", "Sync Level")}
+					title={t("ribbonBar.syncMode.syncLevel", "Sync by")}
 					description={t(
 						"settings.workflow.syncLevelDesc",
-						"Word sync times every word. Line sync times whole lines only.",
+						"Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
 					)}
 				>
 					<SyncLevelControl />
@@ -380,7 +380,7 @@ export const WorkflowSettings = () => {
 				{toggles(previewToggles)}
 				<SettingRow
 					icon={<ArrowAutofitWidth24Regular />}
-					title={t("ribbonBar.previewMode.fadeWidth", "Fade Width")}
+					title={t("ribbonBar.previewMode.fadeWidth", "Fade width")}
 					description={t(
 						"settings.workflow.fadeWidthDesc",
 						"How soft the edge of the highlight is as a word fills in the Standard and Toxi previews.",

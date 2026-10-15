@@ -20,7 +20,7 @@ export const SettingsAboutTab = () => {
 				<Text as="div" size="2" color="gray">
 					{state.t(
 						"aboutModal.description",
-						"A TTML lyric and timing editor designed for the Apple Music-like lyrics ecosystem",
+						"A word-by-word TTML editor and timing tool for Apple Music-like lyrics",
 					)}
 				</Text>
 			</Flex>

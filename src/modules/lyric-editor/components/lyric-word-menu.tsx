@@ -108,7 +108,7 @@ export const LyricWordMenu = ({
 								toast.info(
 									t(
 										"contextMenu.noSyllablesFound",
-										"No multiple syllables found.",
+										"No syllables found to split.",
 									),
 								);
 								return;
@@ -143,13 +143,15 @@ export const LyricWordMenu = ({
 							});
 						} catch (e) {
 							console.error("Failed to split syllables", e);
-							toast.error(t("common.error", "An error occurred"));
+							toast.error(
+								t("common.error", "The data is corrupted or missing"),
+							);
 						}
 					}}
 				>
 					{t(
 						"contextMenu.splitIntoSyllables",
-						"Split into Syllables (Romanized)",
+						"Split into syllables (romanized)",
 					)}
 				</ContextMenu.Item>
 			)}
@@ -256,7 +258,10 @@ export const LyricWordMenu = ({
 				disabled={selectedWordsSize !== 1}
 				onSelect={() => afterToNewLine()}
 			>
-				{t("contextMenu.moveFollowingWordToNewLine", "此后单词拆至新行")}
+				{t(
+					"contextMenu.moveFollowingWordToNewLine",
+					"Move following words to new line",
+				)}
 			</ContextMenu.Item>
 
 			<ContextMenu.Item

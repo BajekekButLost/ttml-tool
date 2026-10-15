@@ -59,7 +59,7 @@ export const AutoSegmentDialog = () => {
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Content maxWidth="500px">
 				<Dialog.Title>
-					{t("autoSegmentDialog.title", "Auto Segment")}
+					{t("autoSegmentDialog.title", "Auto segment")}
 				</Dialog.Title>
 				<Dialog.Description>
 					{t(

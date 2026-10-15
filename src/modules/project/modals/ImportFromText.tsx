@@ -274,7 +274,7 @@ export const ImportFromText = () => {
 		toast.success(
 			t(
 				"textImportDialog.processedSuccess",
-				"Lyrics automated for syllable sync.",
+				"Lyrics prepared for syllable syncing.",
 			),
 		);
 	}, [
@@ -325,7 +325,7 @@ export const ImportFromText = () => {
 								style={{ borderBottom: "1px solid var(--gray-5)" }}
 							>
 								<Dialog.Title style={{ marginBottom: 0 }}>
-									{t("textImportDialog.title", "导入纯文本歌词")}
+									{t("textImportDialog.title", "Import lyrics from plain text")}
 								</Dialog.Title>
 								<Tabs.List size="2">
 									<Tabs.Trigger value="import">
@@ -349,7 +349,7 @@ export const ImportFromText = () => {
 								<Flex direction="column" gap="4">
 									<Flex justify="end" gap="2">
 										<Button variant="soft" onClick={handleProcessLyrics}>
-											{t("textImportDialog.processLyrics", "Process Lyrics")}
+											{t("textImportDialog.processLyrics", "Process lyrics")}
 										</Button>
 										<Button
 											onClick={() => {
@@ -371,7 +371,7 @@ export const ImportFromText = () => {
 															open: true,
 															title: t(
 																"confirmDialog.importFile.title",
-																"确认导入歌词",
+																"Import new lyrics?",
 															),
 															description: t(
 																"confirmDialog.importFile.description",
@@ -421,7 +421,10 @@ export const ImportFromText = () => {
 												<Select.Trigger />
 												<Select.Content>
 													<Select.Item value={ImportMode.Lyric}>
-														{t("textImportDialog.contentMode.lyric", "仅歌词")}
+														{t(
+															"textImportDialog.contentMode.lyric",
+															"Lyrics only",
+														)}
 													</Select.Item>
 													<Select.Item value={ImportMode.LyricTrans}>
 														{t(
@@ -438,7 +441,7 @@ export const ImportFromText = () => {
 													<Select.Item value={ImportMode.LyricTransRoman}>
 														{t(
 															"textImportDialog.contentMode.withBoth",
-															"歌词和翻译、音译歌词",
+															"Lyrics with translation and romanization",
 														)}
 													</Select.Item>
 												</Select.Content>
@@ -447,7 +450,7 @@ export const ImportFromText = () => {
 											<PrefText>
 												{t(
 													"textImportDialog.separationMode.caption",
-													"歌词分行（翻译和音译）模式",
+													"Translation and romanization layout",
 												)}
 											</PrefText>
 											<Select.Root
@@ -462,7 +465,7 @@ export const ImportFromText = () => {
 													<Select.Item value={LineSeparatorMode.Interleaved}>
 														{t(
 															"textImportDialog.separationMode.multipleLine",
-															"多行交错分隔",
+															"On separate lines",
 														)}
 													</Select.Item>
 													<Select.Item
@@ -470,14 +473,14 @@ export const ImportFromText = () => {
 													>
 														{t(
 															"textImportDialog.separationMode.sameLine",
-															"同行分隔",
+															"On the same line",
 														)}
 													</Select.Item>
 												</Select.Content>
 											</Select.Root>
 
 											<PrefText>
-												{t("textImportDialog.separator", "歌词行分隔符")}
+												{t("textImportDialog.separator", "Line separator")}
 											</PrefText>
 											<TextField.Root
 												disabled={
@@ -503,7 +506,7 @@ export const ImportFromText = () => {
 											/>
 
 											<PrefText>
-												{t("textImportDialog.wordSeparator", "单词分隔符")}
+												{t("textImportDialog.wordSeparator", "Word separator")}
 											</PrefText>
 											<TextField.Root
 												value={wordSeparator}
@@ -515,7 +518,7 @@ export const ImportFromText = () => {
 											<PrefText>
 												{t(
 													"textImportDialog.enableSpecialPrefix",
-													"启用特殊前缀",
+													"Use line prefixes",
 												)}
 											</PrefText>
 											<Switch
@@ -524,7 +527,10 @@ export const ImportFromText = () => {
 											/>
 
 											<PrefText>
-												{t("textImportDialog.bgLyricPrefix", "背景歌词前缀")}
+												{t(
+													"textImportDialog.bgLyricPrefix",
+													"Background line prefix",
+												)}
 											</PrefText>
 											<TextField.Root
 												disabled={!enableSpecialPrefix}
@@ -535,7 +541,10 @@ export const ImportFromText = () => {
 											/>
 
 											<PrefText>
-												{t("textImportDialog.duetLyricPrefix", "对唱歌词前缀")}
+												{t(
+													"textImportDialog.duetLyricPrefix",
+													"Duet line prefix",
+												)}
 											</PrefText>
 											<TextField.Root
 												disabled={!enableSpecialPrefix}
@@ -549,7 +558,7 @@ export const ImportFromText = () => {
 											<PrefText>
 												{t(
 													"experimentalFeatures.geniusCategorization.title",
-													"Genius Header Categorization",
+													"Genius sections",
 												)}
 											</PrefText>
 											<Switch
@@ -572,19 +581,19 @@ export const ImportFromText = () => {
 												<Text size="5" weight="bold">
 													{t(
 														"textImportDialog.guide.prepare.title",
-														"1. 准备歌词",
+														"1. Prepare lyrics",
 													)}
 												</Text>
 												<Text color="gray">
 													{t(
 														"textImportDialog.guide.prepare.desc",
-														"推荐使用 Lyrprep 工具来准备您的歌词。您可以搜索歌曲、选择版本并复制输出文本。",
+														"We recommend Lyrprep for preparing lyrics: search for the song, pick a version and copy the output.",
 													)}
 												</Text>
 												<Button variant="soft" onClick={handleProcessLyrics}>
 													{t(
 														"textImportDialog.processLyrics",
-														"Process Lyrics",
+														"Process lyrics",
 													)}
 												</Button>
 											</Flex>
@@ -601,7 +610,7 @@ export const ImportFromText = () => {
 												<Text color="gray">
 													{t(
 														"textImportDialog.guide.import.desc",
-														"将准备好的文本粘贴到左侧编辑器中。确保根据您的文本格式选择正确的“导入模式”。如果文本包含特殊前缀（如背景人声标识），请确保启用“特殊前缀”。",
+														"Paste the prepared text into the editor on the left and pick the matching Text content option. If your text marks background or duet lines with prefixes, turn on Use line prefixes.",
 													)}
 												</Text>
 											</Flex>
@@ -612,13 +621,13 @@ export const ImportFromText = () => {
 												<Text size="5" weight="bold">
 													{t(
 														"textImportDialog.guide.sync.title",
-														"3. 开始打轴",
+														"3. Start syncing",
 													)}
 												</Text>
 												<Text color="gray">
 													{t(
 														"textImportDialog.guide.sync.desc",
-														"点击“导入”后，切换到“打轴”模式（Time）。使用快捷键进行精准对齐：",
+														"After importing, switch to Time mode and sync with these keys:",
 													)}
 												</Text>
 												<Grid columns="2" gap="2">
@@ -627,7 +636,7 @@ export const ImportFromText = () => {
 														<Text size="2">
 															{t(
 																"textImportDialog.guide.sync.f",
-																"设置单词开始时间",
+																"Start the word",
 															)}
 														</Text>
 													</Flex>
@@ -636,7 +645,7 @@ export const ImportFromText = () => {
 														<Text size="2">
 															{t(
 																"textImportDialog.guide.sync.g",
-																"开启下一单词开始时间 (无停顿)",
+																"End the word and start the next",
 															)}
 														</Text>
 													</Flex>
@@ -645,7 +654,7 @@ export const ImportFromText = () => {
 														<Text size="2">
 															{t(
 																"textImportDialog.guide.sync.h",
-																"设置单词结束时间 (有停顿)",
+																"End the word only",
 															)}
 														</Text>
 													</Flex>
@@ -668,7 +677,7 @@ export const ImportFromText = () => {
 													<Text size="5" weight="bold">
 														{t(
 															"textImportDialog.guide.community.title",
-															"Community Guides & Cheat Sheets",
+															"Community guides & cheat sheets",
 														)}
 													</Text>
 													<Badge color="crimson">GENIUS</Badge>
@@ -813,7 +822,7 @@ export const ImportFromText = () => {
 											}
 										>
 											<Open16Regular />{" "}
-											{t("textImportDialog.guidesMenu.full", "Full TTML Guide")}
+											{t("textImportDialog.guidesMenu.full", "Full TTML guide")}
 										</Button>
 									</Flex>
 								</ScrollArea>
@@ -839,10 +848,7 @@ export const ImportFromText = () => {
 						setSectionReviewOpen(false);
 						setConfirmDialog({
 							open: true,
-							title: t(
-								"confirmDialog.importFile.title",
-								"Confirm lyric import",
-							),
+							title: t("confirmDialog.importFile.title", "Import new lyrics?"),
 							description: t(
 								"confirmDialog.importFile.description",
 								"This project has unsaved changes. Importing will replace its lyrics. Continue?",

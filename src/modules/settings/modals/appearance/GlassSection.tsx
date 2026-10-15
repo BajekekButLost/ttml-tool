@@ -20,7 +20,7 @@ export const GlassSection = ({
 							<Flex align="center" justify="between">
 								<Flex direction="column" gap="1">
 									<Text>
-										{t("settings.appearance.glassBlur", "Glass Intensity")}
+										{t("settings.appearance.glassBlur", "Glass intensity")}
 									</Text>
 									<Text size="1" color="gray">
 										{t(

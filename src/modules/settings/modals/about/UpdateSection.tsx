@@ -70,7 +70,7 @@ export const UpdateSection = ({
 						<Flex direction="column" gap="2">
 							<Flex justify="between">
 								<Text size="2">
-									{t("settings.about.downloading", "Downloading update...")}
+									{t("settings.about.downloading", "Downloading update…")}
 								</Text>
 								<Text size="2">{progress.toFixed(0)}%</Text>
 							</Flex>

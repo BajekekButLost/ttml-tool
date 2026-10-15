@@ -49,7 +49,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 
 	return (
 		<RibbonFrame ref={ref}>
-			<RibbonSection label={t("ribbonBar.syncMode.syncAdjustment", "打轴调整")}>
+			<RibbonSection label={t("ribbonBar.syncMode.syncAdjustment", "Offsets")}>
 				<Grid
 					columns="max-content auto"
 					gap="4"
@@ -62,7 +62,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.syncMode.timeOffset", "时间戳位移")}
+						{t("ribbonBar.syncMode.timeOffset", "Sync offset")}
 					</Text>
 					<SyncOffsetControl compact />
 					<Text
@@ -70,12 +70,12 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.syncMode.commitOffset", "Commit Offset")}
+						{t("ribbonBar.syncMode.commitOffset", "Next key offset")}
 					</Text>
 					<SyncOffsetControl commit compact />
 				</Grid>
 			</RibbonSection>
-			<RibbonSection label={t("ribbonBar.syncMode.syncLevel", "Sync Level")}>
+			<RibbonSection label={t("ribbonBar.syncMode.syncLevel", "Sync by")}>
 				<Flex
 					direction="column"
 					gap="2"
@@ -102,7 +102,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.syncMode.autoScroll", "Auto-Scroll")}
+						{t("ribbonBar.syncMode.autoScroll", "Auto-scroll")}
 					</Text>
 					<SettingToggle setting={syncAutoScrollAtom} compact />
 					<Text
@@ -110,14 +110,14 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.syncMode.highlightActiveLine", "Highlight Line")}
+						{t("ribbonBar.syncMode.highlightActiveLine", "Highlight line")}
 					</Text>
 					<SettingToggle setting={syncActiveLineHighlightAtom} compact />
 				</Grid>
 			</RibbonSection>
 			{showAdvanced && (
 				<RibbonSection
-					label={t("ribbonBar.syncMode.assistSettings", "辅助设置")}
+					label={t("ribbonBar.syncMode.assistSettings", "Sync aids")}
 				>
 					<Grid
 						columns="max-content auto"
@@ -131,7 +131,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.touchSyncPanel", "触控打轴辅助面板")}
+							{t("ribbonBar.syncMode.touchSyncPanel", "Touch sync panel")}
 						</Text>
 						<SettingToggle setting={showTouchSyncPanelAtom} compact />
 						<Text
@@ -139,7 +139,10 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.bgLyricIgnoreSync", "背景歌词忽略打轴")}
+							{t(
+								"ribbonBar.syncMode.bgLyricIgnoreSync",
+								"Skip background lines",
+							)}
 						</Text>
 						<SettingToggle setting={backgroundSyncSettingAtom} compact />
 						<Text
@@ -149,7 +152,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						>
 							{t(
 								"ribbonBar.syncMode.spectrogramHoverSync",
-								"Sync to Spectrogram Cursor",
+								"Sync at mouse position",
 							)}
 						</Text>
 						<SettingToggle setting={spectrogramHoverSyncEnabledAtom} compact />
@@ -158,7 +161,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			)}
 			{showAdvanced && (
 				<RibbonSection
-					label={t("ribbonBar.syncMode.displayOptions", "显示选项")}
+					label={t("ribbonBar.syncMode.displayOptions", "Display options")}
 				>
 					<Grid
 						columns="max-content auto"
@@ -172,7 +175,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.showTimestamps", "显示时间戳")}
+							{t("ribbonBar.syncMode.showTimestamps", "Show timestamps")}
 						</Text>
 						<SettingToggle setting={showTimestampsAtom} compact />
 						<Text
@@ -180,7 +183,10 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.highlightActiveWord", "高亮当前音节")}
+							{t(
+								"ribbonBar.syncMode.highlightActiveWord",
+								"Highlight active word",
+							)}
 						</Text>
 						<SettingToggle setting={highlightActiveWordAtom} compact />
 
@@ -189,7 +195,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.highlightErrors", "高亮错误")}
+							{t("ribbonBar.syncMode.highlightErrors", "Highlight errors")}
 						</Text>
 						<SettingToggle setting={highlightErrorsAtom} compact />
 
@@ -202,7 +208,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 								>
 									{t(
 										"ribbonBar.syncMode.showPerWordRomanization",
-										"显示逐字音译",
+										"Show per-word romanization",
 									)}
 								</Text>
 								<SettingToggle
@@ -215,7 +221,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 				</RibbonSection>
 			)}
 			<RibbonSection
-				label={t("ribbonBar.syncMode.keyBindingReference", "打轴键位速查")}
+				label={t("ribbonBar.syncMode.keyBindingReference", "Shortcut list")}
 			>
 				<Flex gap="4">
 					<Grid
@@ -231,7 +237,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.startSync", "起始轴")}
+							{t("ribbonBar.syncMode.startSync", "Start")}
 						</Text>
 						<KeyBinding kbdAtom={keySyncStartAtom} />
 						<Text
@@ -239,7 +245,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.continuousSync", "连续轴")}
+							{t("ribbonBar.syncMode.continuousSync", "Next")}
 						</Text>
 						<KeyBinding kbdAtom={keySyncNextAtom} />
 						<Text
@@ -247,14 +253,16 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							size="1"
 							style={{ color: "var(--ribbon-label-color)" }}
 						>
-							{t("ribbonBar.syncMode.endSync", "结束轴")}
+							{t("ribbonBar.syncMode.endSync", "End")}
 						</Text>
 						<KeyBinding kbdAtom={keySyncEndAtom} />
 					</Grid>
 				</Flex>
 			</RibbonSection>
 			{showAdvanced && (
-				<RibbonSection label={t("ribbonBar.editMode.previewPanel", "预览面板")}>
+				<RibbonSection
+					label={t("ribbonBar.editMode.previewPanel", "Preview panel")}
+				>
 					<Flex direction="column" align="center" gap="1">
 						<SettingToggle setting={showPreviewPanelAtom} />
 					</Flex>
@@ -264,7 +272,7 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 				<Tooltip
 					content={t(
 						"ribbonBar.advancedTooltip",
-						"Applies to all toolbars: Edit, Time, and Preview.",
+						"Applies to the Edit, Time and Preview ribbons.",
 					)}
 				>
 					<Switch checked={showAdvanced} onCheckedChange={setShowAdvanced} />

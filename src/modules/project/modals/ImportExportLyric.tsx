@@ -60,7 +60,7 @@ export const ImportExportLyric = ({
 				const confirm = window.confirm(
 					t(
 						"confirmDialog.noSongwriter.description",
-						"The song has no songwriters. Do you want to continue saving?",
+						"This song has no songwriters. Save anyway?",
 					),
 				);
 				if (!confirm) return;
@@ -106,12 +106,12 @@ export const ImportExportLyric = ({
 						{t("topBar.menu.importLyric.fromPlainText", "从纯文本导入")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={() => setImportFromLRCLIBDialog(true)}>
-						{t("topBar.menu.importLyric.fromLRCLIB", "从 LRCLIB 导入...")}
+						{t("topBar.menu.importLyric.fromLRCLIB", "Import from LRCLIB…")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={() => setLyricallyImportDialog(true)}>
 						{t(
 							"topBar.menu.importLyric.fromLyrically",
-							"Import from Lyrically...",
+							"Import from Lyrically…",
 						)}
 					</DropdownMenu.Item>
 
@@ -135,19 +135,16 @@ export const ImportExportLyric = ({
 						{t("topBar.menu.exportLyric.toESLRC", "ESLRC")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={onExportLyric(stringifyQrc, "qrc")}>
-						{t("topBar.menu.exportLyric.toQRC", "导出到 QRC")}
+						{t("topBar.menu.exportLyric.toQRC", "QRC")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={onExportLyric(stringifyYrc, "yrc")}>
-						{t("topBar.menu.exportLyric.toYRC", "导出到 YRC")}
+						{t("topBar.menu.exportLyric.toYRC", "YRC")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={onExportLyric(stringifyLys, "lys")}>
-						{t(
-							"topBar.menu.exportLyric.toLrcfySylb",
-							"导出到 Lyricify Syllable",
-						)}
+						{t("topBar.menu.exportLyric.toLrcfySylb", "Lyricify Syllable")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={onExportLyric(stringifyAss, "ass")}>
-						{t("topBar.menu.exportLyric.toASS", "导出到 ASS 字幕")}
+						{t("topBar.menu.exportLyric.toASS", "ASS subtitles")}
 					</DropdownMenu.Item>
 				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>

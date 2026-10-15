@@ -5,7 +5,7 @@ export const CommunitySection = ({ t }: Pick<AboutSettings, "t">) => (
 	<Card>
 		<Flex direction="column" gap="3">
 			<Heading size="3">
-				{t("aboutModal.community", "Community & Contributions")}
+				{t("aboutModal.community", "Community & contributions")}
 			</Heading>
 			<Text size="2" color="gray">
 				{t(
@@ -20,7 +20,7 @@ export const CommunitySection = ({ t }: Pick<AboutSettings, "t">) => (
 						openExternal("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL")
 					}
 				>
-					{t("aboutModal.github", "GitHub Repository")}
+					{t("aboutModal.github", "GitHub repository")}
 				</Button>
 				<Button
 					variant="soft"

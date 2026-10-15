@@ -398,7 +398,7 @@ export const TimingOverview = memo(() => {
 		<Card className={styles.timingOverview}>
 			<div className={styles.header}>
 				<Text size="2" weight="bold" style={{ minWidth: 0 }}>
-					{t("timingOverview.title", "Technical Timing Overview")}
+					{t("timingOverview.title", "Technical timing overview")}
 				</Text>
 				<div
 					className={styles.stats}
@@ -448,7 +448,7 @@ export const TimingOverview = memo(() => {
 						}}
 					>
 						<Text size="1">
-							{t("timingOverview.autoScroll", "Auto-Scroll")}:
+							{t("timingOverview.autoScroll", "Auto-scroll")}:
 						</Text>
 						<Checkbox
 							checked={autoScroll}
@@ -530,7 +530,7 @@ export const TimingOverview = memo(() => {
 								fontSize: "12px",
 							}}
 						>
-							{t("timingOverview.lyricsAndTimings", "Lyrics & Word Timings")}
+							{t("timingOverview.lyricsAndTimings", "Lyrics & word timings")}
 						</div>
 					</div>
 					<ViewportList

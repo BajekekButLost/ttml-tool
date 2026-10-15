@@ -33,7 +33,7 @@ export const AutosaveSection = ({
 	| "t"
 >) => (
 	<Flex direction="column" gap="2">
-		<Heading size="4">{t("settings.group.autosave", "Auto Save")}</Heading>
+		<Heading size="4">{t("settings.group.autosave", "Autosave")}</Heading>
 
 		<Card>
 			<Text as="label">
@@ -42,7 +42,7 @@ export const AutosaveSection = ({
 					<Box flexGrow="1">
 						<Flex gap="2" align="center" justify="between">
 							<Text>
-								{t("settings.common.autosave.enable", "Enable Auto Save")}
+								{t("settings.common.autosave.enable", "Enable autosave")}
 							</Text>
 							<Switch
 								checked={autosaveEnabled}
@@ -61,10 +61,7 @@ export const AutosaveSection = ({
 					<Box flexGrow="1">
 						<Flex direction="column" gap="2" align="start">
 							<Text>
-								{t(
-									"settings.common.autosave.interval",
-									"Save Interval (minutes)",
-								)}
+								{t("settings.common.autosave.interval", "Save every (minutes)")}
 							</Text>
 							<TextField.Root
 								type="number"

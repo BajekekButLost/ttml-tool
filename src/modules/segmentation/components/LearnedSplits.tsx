@@ -81,7 +81,7 @@ export const LearnedSplitsDialog = memo(() => {
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Content maxWidth="700px">
 				<Dialog.Title>
-					{t("advancedSegmentDialog.learned.title", "Learned Split Rules")}
+					{t("advancedSegmentDialog.learned.title", "Learned split rules")}
 				</Dialog.Title>
 				<Text size="2" color="gray">
 					{t(
@@ -94,7 +94,7 @@ export const LearnedSplitsDialog = memo(() => {
 					<TextField.Root
 						placeholder={t(
 							"advancedSegmentDialog.learned.input",
-							"Enter a word to teach the splitter...",
+							"Type a word to teach the splitter…",
 						)}
 						value={word}
 						onChange={(event) => {
@@ -144,7 +144,7 @@ export const LearnedSplitsDialog = memo(() => {
 						<TextField.Root
 							placeholder={t(
 								"advancedSegmentDialog.learned.search",
-								"Search saved rules...",
+								"Search saved rules…",
 							)}
 							value={search}
 							onChange={(event) => setSearch(event.target.value)}

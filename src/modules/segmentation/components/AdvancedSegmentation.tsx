@@ -164,7 +164,7 @@ export const AdvancedSegmentationDialog = memo(() => {
 							{w.word.trim() === "" ? (
 								<Text color="gray" as="span">
 									{w.word.length > 0
-										? t("splitWordDialog.spaceCount", "空格x{count}", {
+										? t("splitWordDialog.spaceCount", "Space ×{count}", {
 												count: w.word.length,
 											})
 										: t("splitWordDialog.empty", "空白")}
@@ -226,12 +226,12 @@ export const AdvancedSegmentationDialog = memo(() => {
 		<Dialog.Root open={open} onOpenChange={setOpen}>
 			<Dialog.Content maxWidth="800px">
 				<Dialog.Title>
-					{t("advancedSegmentDialog.title", "高级分词")}
+					{t("advancedSegmentDialog.title", "Advanced segmentation")}
 				</Dialog.Title>
 
 				<Flex direction="column" gap="4">
 					<Flex direction="column" gap="2">
-						<Text>{t("advancedSegmentDialog.scope.title", "应用范围")}</Text>
+						<Text>{t("advancedSegmentDialog.scope.title", "Apply to")}</Text>
 						<Text as="label" size="2">
 							<RadioGroup.Root
 								value={scope}
@@ -280,7 +280,10 @@ export const AdvancedSegmentationDialog = memo(() => {
 					</Flex>
 					<Flex direction="column" gap="2">
 						<Text>
-							{t("advancedSegmentDialog.rules.title", "自动分词规则")}
+							{t(
+								"advancedSegmentDialog.rules.title",
+								"Auto segmentation rules",
+							)}
 						</Text>
 						<Text as="label" size="2">
 							<Flex gap="2" align="center">
@@ -301,7 +304,7 @@ export const AdvancedSegmentationDialog = memo(() => {
 									/>
 									{t(
 										"advancedSegmentDialog.rules.syllable",
-										"西文单词按音节分词",
+										"Split Western words into syllables",
 									)}
 								</Flex>
 							</Text>
@@ -421,12 +424,15 @@ export const AdvancedSegmentationDialog = memo(() => {
 
 					<Flex direction="column" gap="2">
 						<Text>
-							{t("advancedSegmentDialog.custom.title", "自定义分词规则")}
+							{t(
+								"advancedSegmentDialog.custom.title",
+								"Custom segmentation rules",
+							)}
 						</Text>
 						<TextField.Root
 							placeholder={t(
 								"advancedSegmentDialog.custom.input",
-								"输入单词进行手动分割...",
+								"Type a word to split by hand…",
 							)}
 							value={manualWordInput}
 							onChange={(e) => {
@@ -478,7 +484,7 @@ export const AdvancedSegmentationDialog = memo(() => {
 																{part.length > 0
 																	? t(
 																			"splitWordDialog.spaceCount",
-																			"空格x{count}",
+																			"Space ×{count}",
 																			{
 																				count: part.length,
 																			},
@@ -519,11 +525,13 @@ export const AdvancedSegmentationDialog = memo(() => {
 
 					<Text as="label" size="2">
 						<Flex direction="column" gap="2">
-							<Text>{t("advancedSegmentDialog.ignore.title", "忽略列表")}</Text>
+							<Text>
+								{t("advancedSegmentDialog.ignore.title", "Ignore list")}
+							</Text>
 							<TextArea
 								placeholder={t(
 									"advancedSegmentDialog.ignore.placeholder",
-									"每行一个单词，在此列表中的单词将不会被自动分词",
+									"One word per line. These words are never auto-segmented.",
 								)}
 								value={ignoreListText}
 								onChange={(e) => setIgnoreListText(e.target.value)}
@@ -534,11 +542,13 @@ export const AdvancedSegmentationDialog = memo(() => {
 
 					<Text as="label" size="2">
 						<Flex direction="column" gap="2">
-							<Text>{t("advancedSegmentDialog.test.title", "分词测试")}</Text>
+							<Text>
+								{t("advancedSegmentDialog.test.title", "Splitting test")}
+							</Text>
 							<TextField.Root
 								placeholder={t(
 									"advancedSegmentDialog.test.input",
-									"输入一行歌词或单词进行测试...",
+									"Type a line or word to test…",
 								)}
 								value={testInput}
 								onChange={(e) => setTestInput(e.target.value)}

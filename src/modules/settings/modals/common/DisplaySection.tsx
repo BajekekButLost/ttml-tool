@@ -46,7 +46,7 @@ export const DisplaySection = ({
 				<Box flexGrow="1">
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
-							<Text>{t("settings.common.language", "Interface Language")}</Text>
+							<Text>{t("settings.common.language", "Interface language")}</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.languageDesc",
@@ -116,18 +116,16 @@ export const DisplaySection = ({
 				<Box flexGrow="1">
 					<Flex align="center" justify="between" gap="4">
 						<Flex direction="column" gap="1">
-							<Text>
-								{t("settings.common.layoutMode", "Editor Layout Mode")}
-							</Text>
+							<Text>{t("settings.common.layoutMode", "Editor layout")}</Text>
 							<Text size="1" color="gray">
 								{t(
 									"settings.common.layoutModeDesc.line1",
-									"Simple layout meets the basic needs of most users",
+									"The simple layout covers most needs.",
 								)}
 								<br />
 								{t(
 									"settings.common.layoutModeDesc.line2",
-									"If you require higher syncing efficiency, consider switching to advanced mode",
+									"Switch to the advanced layout for faster syncing.",
 								)}
 							</Text>
 						</Flex>
@@ -139,13 +137,10 @@ export const DisplaySection = ({
 							<Select.Trigger />
 							<Select.Content>
 								<Select.Item value={LayoutMode.Simple}>
-									{t("settings.common.layoutModeOptions.simple", "Simple Mode")}
+									{t("settings.common.layoutModeOptions.simple", "Simple")}
 								</Select.Item>
 								<Select.Item value={LayoutMode.Advance}>
-									{t(
-										"settings.common.layoutModeOptions.advance",
-										"Advanced Mode",
-									)}
+									{t("settings.common.layoutModeOptions.advance", "Advanced")}
 								</Select.Item>
 							</Select.Content>
 						</Select.Root>
@@ -163,13 +158,13 @@ export const DisplaySection = ({
 								<Text>
 									{t(
 										"settings.common.compactBGInSync",
-										"Compact Background Vocals (Sync Mode)",
+										"Compact background lines in Time mode",
 									)}
 								</Text>
 								<Text size="1" color="gray">
 									{t(
 										"settings.common.compactBGInSyncDesc",
-										"Automatically compress vertical space for background vocal lines during synchronization.",
+										"Use less vertical space for background lines while syncing.",
 									)}
 								</Text>
 							</Flex>

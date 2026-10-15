@@ -104,7 +104,7 @@ export const AudioSettingsTab = () => {
 			<Box>
 				<Flex align="center" gap="4" mb="2">
 					<Text weight="bold" size="3">
-						{t("settings.audio.equalizer", "Audio Equalizer")}
+						{t("settings.audio.equalizer", "Audio equalizer")}
 					</Text>
 					<Flex align="center" gap="2">
 						<Switch checked={enabled} onCheckedChange={handleToggle} />
@@ -118,7 +118,7 @@ export const AudioSettingsTab = () => {
 				<Text size="2" color="gray" mb="4">
 					{t(
 						"settings.audio.eqDescription",
-						"Adjust gains for different frequencies to optimize your audio experience.",
+						"Boost or cut frequency ranges to make vocals easier to hear. This doesn't change your TTML.",
 					)}
 				</Text>
 			</Box>
@@ -191,7 +191,7 @@ export const AudioSettingsTab = () => {
 
 				<Flex align="center" gap="2" mb="2">
 					<TextField.Root
-						placeholder={t("settings.audio.newPresetName", "New Preset Name")}
+						placeholder={t("settings.audio.newPresetName", "New preset name")}
 						value={newPresetName}
 						onChange={(e) => setNewPresetName(e.target.value)}
 						size="1"
@@ -207,7 +207,7 @@ export const AudioSettingsTab = () => {
 						disabled={!newPresetName.trim()}
 					>
 						<SaveRegular fontSize="14" />
-						{t("settings.audio.save", "Save Preset")}
+						{t("settings.audio.save", "Save preset")}
 					</Button>
 				</Flex>
 

@@ -215,7 +215,7 @@
     "close": "Zavrieť",
     "autoDetect": "Automatická detekcia",
     "about": "O aplikácii",
-    "resultsFound": "Počet nájdených výsledkov: {count}",
+    "resultsFound": "{count, plural, one {Počet nájdených výsledkov: #} few {Počet nájdených výsledkov: #} many {Počet nájdených výsledkov: #} other {Počet nájdených výsledkov: #}}",
     "cancel": "Zrušiť",
     "save": "Save & Continue",
     "search": "Hľadať",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Nenašli sa žiadne projekty. Vyberte priečinok pracovného priestoru, ktorý chcete skenovať.",
-    "foundCount": "Počet nájdených projektov: {count}",
+    "foundCount": "{count, plural, one {Počet nájdených projektov: #} few {Počet nájdených projektov: #} many {Počet nájdených projektov: #} other {Počet nájdených projektov: #}}",
     "importable": "Importovateľné",
     "scanning": "Skenuje sa...",
     "selectFolder": "Vybrať priečinok pracovného priestoru...",
     "unknown": "Neznámy",
     "noProjectsFound": "V tomto priečinku sa nenašli žiadne projekty",
-    "projectsFound": "Nájdené projekty: {count}",
+    "projectsFound": "{count, plural, one {Nájdené projekty: #} few {Nájdené projekty: #} many {Nájdené projekty: #} other {Nájdené projekty: #}}",
     "scanFailed": "Priečinok pracovného priestoru sa nepodarilo prehľadať"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Kľúče API"
       },
       "hint": {
-        "settings": "{count} uložených hodnôt",
-        "keybindings": "{count} klávesové skratky",
+        "settings": "{count, plural, one {# uložených hodnôt} few {# uložených hodnôt} many {# uložených hodnôt} other {# uložených hodnôt}}",
+        "keybindings": "{count, plural, one {# klávesové skratky} few {# klávesové skratky} many {# klávesové skratky} other {# klávesové skratky}}",
         "assetsSet": "Vlastná sada obrázkov na pozadí",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} predvolieb",
+        "presetsCount": "{count, plural, one {# predvolieb} few {# predvolieb} many {# predvolieb} other {# predvolieb}}",
         "backgroundSet": "Vlastné pozadie",
         "fontSet": "Vlastné písmo",
-        "projects": "{count} projektov",
-        "apiKeys": "Počet kľúčov: {count}"
+        "projects": "{count, plural, one {# projektov} few {# projektov} many {# projektov} other {# projektov}}",
+        "apiKeys": "{count, plural, one {Počet kľúčov: #} few {Počet kľúčov: #} many {Počet kľúčov: #} other {Počet kľúčov: #}}"
       },
       "exportSuccess": "Záloha bola exportovaná",
       "exportFailed": "Export zálohy zlyhal",
@@ -709,7 +709,7 @@
       "previewTotal": "Odhadovaná celková veľkosť",
       "previewPresetPrefix": "Prednastavené",
       "previewFontPrefix": "Vlastné písmo",
-      "previewVersions": "{count} verzií",
+      "previewVersions": "{count, plural, one {# verzií} few {# verzií} many {# verzií} other {# verzií}}",
       "apiKeysWarning": "Kľúče API sú uložené ako obyčajný text v záložnom súbore. Udržujte to v súkromí.",
       "importTitle": "Importovať",
       "importDesc": "Obnovte nastavenia a údaje zo záložného súboru. Existujúce hodnoty budú nahradené.",
@@ -1053,7 +1053,7 @@
       "searchError": "Vyhľadávanie zlyhalo: {error}",
       "fetchError": "Nepodarilo sa načítať text: {error}",
       "noLyricsError": "Žiadne texty na import.",
-      "importSuccess": "Importovalo sa {count} riadkov z Genius.",
+      "importSuccess": "{count, plural, one {Importovalo sa # riadkov z Genius.} few {Importovalo sa # riadkov z Genius.} many {Importovalo sa # riadkov z Genius.} other {Importovalo sa # riadkov z Genius.}}",
       "howToGetKey": "Ako vytvoriť Genius Client Access Token"
     },
     "openLink": "Otvoriť odkaz",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Preklad:",
     "romanLabel": "Romanizácia:",
     "empty": "Žiadny",
-    "duplicateLinesHere": "Tu duplikujte {count} vybraté riadky",
-    "applyTimingsHere": "Použiť {count} časovanie od tohto miesta",
+    "duplicateLinesHere": "{count, plural, one {Tu duplikujte # vybraté riadky} few {Tu duplikujte # vybraté riadky} many {Tu duplikujte # vybraté riadky} other {Tu duplikujte # vybraté riadky}}",
+    "applyTimingsHere": "{count, plural, one {Použiť # časovanie od tohto miesta} few {Použiť # časovanie od tohto miesta} many {Použiť # časovanie od tohto miesta} other {Použiť # časovanie od tohto miesta}}",
     "applyPartialTimingsHere": "Použiť {applied} z {total} časovaní počnúc tu",
-    "timingsApplied": "Použilo sa časovanie na {count} riadkoch.",
+    "timingsApplied": "{count, plural, one {Použilo sa časovanie na # riadkoch.} few {Použilo sa časovanie na # riadkoch.} many {Použilo sa časovanie na # riadkoch.} other {Použilo sa časovanie na # riadkoch.}}",
     "partialTimingCopy": "Len {applied} z {total} zdrojových časovaní sa zmestí pred koniec textov.",
-    "wordTimingMismatch": "Počet riadkov s odlišným počtom slov: {count}. Skopírované boli len zodpovedajúce pozície slov.",
+    "wordTimingMismatch": "{count, plural, one {Počet riadkov s odlišným počtom slov: #. Skopírované boli len zodpovedajúce pozície slov.} few {Počet riadkov s odlišným počtom slov: #. Skopírované boli len zodpovedajúce pozície slov.} many {Počet riadkov s odlišným počtom slov: #. Skopírované boli len zodpovedajúce pozície slov.} other {Počet riadkov s odlišným počtom slov: #. Skopírované boli len zodpovedajúce pozície slov.}}",
     "insertLine": "Vložiť nový riadok tu",
     "insertWord": "Vložiť slovo tu…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Ukážka textu",
     "back": "← Back",
     "previewSubtitle": "Text in parentheses will be separated as background lyrics.",
-    "linesCount": "{count} riadkov",
+    "linesCount": "{count, plural, one {# riadkov} few {# riadkov} many {# riadkov} other {# riadkov}}",
     "importButton": "Importovať texty",
     "importTitle": "Importovať texty z Genius",
     "searchPlaceholder": "Interpret – názov piesne…",
@@ -1286,11 +1286,11 @@
     "description": "Pred nahradením textov skontrolujte normalizované kategórie a metadáta.",
     "sourceLyrics": "Zdroj textov",
     "structure": "Štruktúra",
-    "sectionCount": "{count} sekcií",
+    "sectionCount": "{count, plural, one {# sekcií} few {# sekcií} many {# sekcií} other {# sekcií}}",
     "vocalist": "Spevák / rola",
     "color": "Farba sekcie",
     "notes": "Poznámky",
-    "lineCount": "{count} lyrické riadky",
+    "lineCount": "{count, plural, one {# lyrické riadky} few {# lyrické riadky} many {# lyrické riadky} other {# lyrické riadky}}",
     "import": "Importovať recenzované texty"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Projekt bez názvu"
   },
   "time": {
-    "daysAgo": "Pred {count} dňami",
-    "hoursAgo": "Pred {count} hodinami",
-    "minutesAgo": "Pred {count} minútami",
+    "daysAgo": "{count, plural, one {Pred # dňami} few {Pred # dňami} many {Pred # dňami} other {Pred # dňami}}",
+    "hoursAgo": "{count, plural, one {Pred # hodinami} few {Pred # hodinami} many {Pred # hodinami} other {Pred # hodinami}}",
+    "minutesAgo": "{count, plural, one {Pred # minútami} few {Pred # minútami} many {Pred # minútami} other {Pred # minútami}}",
     "justNow": "Práve teraz"
   },
   "metadata": {

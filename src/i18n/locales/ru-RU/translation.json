@@ -215,7 +215,7 @@
     "close": "Закрыть",
     "autoDetect": "Автоопределение",
     "about": "О программе",
-    "resultsFound": "Найдено результатов: {count}",
+    "resultsFound": "{count, plural, one {Найдено результатов: #} few {Найдено результатов: #} many {Найдено результатов: #} other {Найдено результатов: #}}",
     "cancel": "Отмена",
     "save": "Сохранить",
     "search": "Искать",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Проекты не найдены. Выберите папку рабочей области для сканирования.",
-    "foundCount": "Найдено проектов {count}",
+    "foundCount": "{count, plural, one {Найдено проектов #} few {Найдено проектов #} many {Найдено проектов #} other {Найдено проектов #}}",
     "importable": "Импортируемый",
     "scanning": "Сканирование...",
     "selectFolder": "Выберите папку рабочей области...",
     "unknown": "Неизвестно",
     "noProjectsFound": "В этой папке не найдено проектов",
-    "projectsFound": "Найдено проектов: {count}",
+    "projectsFound": "{count, plural, one {Найдено проектов: #} few {Найдено проектов: #} many {Найдено проектов: #} other {Найдено проектов: #}}",
     "scanFailed": "Не удалось просканировать папку рабочего пространства"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Ключи API"
       },
       "hint": {
-        "settings": "{count} сохраненные значения",
-        "keybindings": "{count} сочетания клавиш",
+        "settings": "{count, plural, one {# сохраненные значения} few {# сохраненные значения} many {# сохраненные значения} other {# сохраненные значения}}",
+        "keybindings": "{count, plural, one {# сочетания клавиш} few {# сочетания клавиш} many {# сочетания клавиш} other {# сочетания клавиш}}",
         "assetsSet": "Пользовательский набор фоновых изображений",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} пресеты",
+        "presetsCount": "{count, plural, one {# пресеты} few {# пресеты} many {# пресеты} other {# пресеты}}",
         "backgroundSet": "Пользовательский фон",
         "fontSet": "Пользовательский шрифт",
-        "projects": "{count} проектов",
-        "apiKeys": "Ключей: {count}"
+        "projects": "{count, plural, one {# проектов} few {# проектов} many {# проектов} other {# проектов}}",
+        "apiKeys": "{count, plural, one {Ключей: #} few {Ключей: #} many {Ключей: #} other {Ключей: #}}"
       },
       "exportSuccess": "Резервная копия экспортирована.",
       "exportFailed": "Не удалось экспортировать резервную копию.",
@@ -709,7 +709,7 @@
       "previewTotal": "Предполагаемый общий размер",
       "previewPresetPrefix": "Предустановка",
       "previewFontPrefix": "Пользовательский шрифт",
-      "previewVersions": "{count} версий",
+      "previewVersions": "{count, plural, one {# версий} few {# версий} many {# версий} other {# версий}}",
       "apiKeysWarning": "Ключи API сохраняются в виде обычного текста в файле резервной копии. Держите это в тайне.",
       "importTitle": "Импорт",
       "importDesc": "Восстановление настроек и данных из файла резервной копии. Существующие значения будут заменены.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Удалить {count} слов(о)",
+    "deleteWords": "{count, plural, one {Удалить # слов(о)} few {Удалить # слов(о)} many {Удалить # слов(о)} other {Удалить # слов(о)}}",
     "bgLyric": "Бэк-вокал",
     "duetLyric": "Дуэтная строка",
     "moveLineToPlayhead": "Переместить строку к курсору воспроизведения",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Привязать выделенные строки к курсору воспроизведения",
     "insertLineBefore": "Вставить новую строку перед",
     "insertLineAfter": "Вставить новую строку после",
-    "copyLine": "Дублировать {count} строк(у)",
+    "copyLine": "{count, plural, one {Дублировать # строк(у)} few {Дублировать # строк(у)} many {Дублировать # строк(у)} other {Дублировать # строк(у)}}",
     "duplicateTo": "Дублировать в...",
     "combineLine": "Объединить строки",
-    "deleteLine": "Удалить {count} строк(у)",
+    "deleteLine": "{count, plural, one {Удалить # строк(у)} few {Удалить # строк(у)} many {Удалить # строк(у)} other {Удалить # строк(у)}}",
     "splitWord": "Разделить слово…",
     "noSyllablesFound": "Многосложных слов не обнаружено.",
     "splitIntoSyllables": "Разделить на слоги (романизация)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Заменить латинизацию…",
     "combineWords": "Объединить слова",
     "moveFollowingWordToNewLine": "Переместить следующие слова в новую строку",
-    "moveWordToNewLine": "Переместить {count} слов(а) в новую строку"
+    "moveWordToNewLine": "{count, plural, one {Переместить # слов(а) в новую строку} few {Переместить # слов(а) в новую строку} many {Переместить # слов(а) в новую строку} other {Переместить # слов(а) в новую строку}}"
   },
   "settingsDialog": {
     "search": "Настройки поиска",
@@ -1053,7 +1053,7 @@
       "searchError": "Ошибка поиска: {error}",
       "fetchError": "Не удалось получить текст песни: {error}",
       "noLyricsError": "Нет текстов для импорта.",
-      "importSuccess": "Импортировано {count} строк из Genius.",
+      "importSuccess": "{count, plural, one {Импортировано # строк из Genius.} few {Импортировано # строк из Genius.} many {Импортировано # строк из Genius.} other {Импортировано # строк из Genius.}}",
       "howToGetKey": "Как создать Client Access Token для Genius"
     },
     "openLink": "Открыть ссылку",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Перевод:",
     "romanLabel": "романизация:",
     "empty": "Нет",
-    "duplicateLinesHere": "Дублировать {count} выбранную строку(и) здесь",
-    "applyTimingsHere": "Примените время {count}, начиная здесь.",
+    "duplicateLinesHere": "{count, plural, one {Дублировать # выбранную строку(и) здесь} few {Дублировать # выбранную строку(и) здесь} many {Дублировать # выбранную строку(и) здесь} other {Дублировать # выбранную строку(и) здесь}}",
+    "applyTimingsHere": "{count, plural, one {Примените время #, начиная здесь.} few {Примените время #, начиная здесь.} many {Примените время #, начиная здесь.} other {Примените время #, начиная здесь.}}",
     "applyPartialTimingsHere": "Примените тайминги {applied} из {total}, начиная здесь.",
-    "timingsApplied": "Применено время к строкам {count}.",
+    "timingsApplied": "{count, plural, one {Применено время к строкам #.} few {Применено время к строкам #.} many {Применено время к строкам #.} other {Применено время к строкам #.}}",
     "partialTimingCopy": "Только {applied} из {total} исходных таймингов подходят до конца текста.",
-    "wordTimingMismatch": "В строках ({count}) различалось число слов; скопированы только совпадающие позиции слов.",
+    "wordTimingMismatch": "{count, plural, one {В строках (#) различалось число слов; скопированы только совпадающие позиции слов.} few {В строках (#) различалось число слов; скопированы только совпадающие позиции слов.} many {В строках (#) различалось число слов; скопированы только совпадающие позиции слов.} other {В строках (#) различалось число слов; скопированы только совпадающие позиции слов.}}",
     "insertLine": "Вставить новую строку здесь",
     "insertWord": "Вставьте слово здесь…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Предпросмотр текста",
     "back": "Назад",
     "previewSubtitle": "Ниже вы можете отредактировать текст перед импортом.",
-    "linesCount": "{count} строк",
+    "linesCount": "{count, plural, one {# строк} few {# строк} many {# строк} other {# строк}}",
     "importButton": "Импорт текста",
     "importTitle": "Импорт текста песни из Genius",
     "searchPlaceholder": "Исполнитель – Название песни…",
@@ -1286,11 +1286,11 @@
     "description": "Прежде чем заменять тексты песен, проверьте нормализованные категории и метаданные.",
     "sourceLyrics": "Исходный текст",
     "structure": "Структура",
-    "sectionCount": "{count} разделов",
+    "sectionCount": "{count, plural, one {# разделов} few {# разделов} many {# разделов} other {# разделов}}",
     "vocalist": "Вокалист / роль",
     "color": "Цвет раздела",
     "notes": "Примечания",
-    "lineCount": "{count} лирические строки",
+    "lineCount": "{count, plural, one {# лирические строки} few {# лирические строки} many {# лирические строки} other {# лирические строки}}",
     "import": "Импортировать проверенные тексты песен"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Проект без названия"
   },
   "time": {
-    "daysAgo": "{count} дней назад",
-    "hoursAgo": "{count} дней назад",
-    "minutesAgo": "{count} минут назад",
+    "daysAgo": "{count, plural, one {# дней назад} few {# дней назад} many {# дней назад} other {# дней назад}}",
+    "hoursAgo": "{count, plural, one {# дней назад} few {# дней назад} many {# дней назад} other {# дней назад}}",
+    "minutesAgo": "{count, plural, one {# минут назад} few {# минут назад} many {# минут назад} other {# минут назад}}",
     "justNow": "Только что"
   },
   "metadata": {

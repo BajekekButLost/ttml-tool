@@ -18,7 +18,7 @@ export const ResetAdvancedSection = (
 					<Text size="2" color="gray">
 						{t(
 							"settings.appearance.advanced.masterResetNote",
-							"This will reset all 20+ granular overrides.",
+							"Resets every advanced override on this page.",
 						)}
 					</Text>
 				</Flex>
@@ -31,7 +31,7 @@ export const ResetAdvancedSection = (
 					<ArrowReset24Regular />
 					{t(
 						"settings.appearance.advanced.resetMaster",
-						"Master Reset Advanced Config",
+						"Reset all advanced overrides",
 					)}
 				</Button>
 			</Flex>

@@ -22,13 +22,13 @@ export const GeniusHeaderDetectionDialog = () => {
 				<Dialog.Title>
 					{t(
 						"experimentalFeatures.geniusCategorization.dialogTitle",
-						"Genius Headers Detected!",
+						"Genius section headers found",
 					)}
 				</Dialog.Title>
 				<Dialog.Description mb="4">
 					{t(
 						"experimentalFeatures.geniusCategorization.dialogDesc",
-						"We've detected section headers in your lyrics. Would you like to enable the experimental 'Genius Header Categorization' feature to help with your workflow?",
+						"Your lyrics have section headers like [Verse] and [Chorus]. Turn on the experimental Genius sections feature to use them?",
 					)}
 				</Dialog.Description>
 
@@ -47,7 +47,7 @@ export const GeniusHeaderDetectionDialog = () => {
 							<Text size="1">
 								{t(
 									"experimentalFeatures.geniusCategorization.usageInfo",
-									"Once enabled, section headers will be styled differently in the editor. You can click on them to access specialized tools like 'Copy Previous Timing' and 'Snap to Playhead'.",
+									"Section headers then get their own style in the editor. Click one for tools like Copy previous timing and Snap to playhead.",
 								)}
 							</Text>
 						</Flex>
@@ -64,7 +64,7 @@ export const GeniusHeaderDetectionDialog = () => {
 						>
 							{t(
 								"experimentalFeatures.geniusCategorization.maybeLater",
-								"Maybe Later",
+								"Maybe later",
 							)}
 						</Button>
 						<Button
@@ -76,7 +76,7 @@ export const GeniusHeaderDetectionDialog = () => {
 						>
 							{t(
 								"experimentalFeatures.geniusCategorization.enableNow",
-								"Enable Now",
+								"Enable now",
 							)}
 						</Button>
 					</Flex>

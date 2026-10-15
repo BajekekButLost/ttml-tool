@@ -62,7 +62,8 @@ export const InsertLineButton = ({
 			{selectedLinesCount > 0
 				? t("lyricLineView.duplicateLinesHere", {
 						count: selectedLinesCount,
-						defaultValue: "Duplicate {count} selected line(s) here",
+						defaultValue:
+							"{count, plural, one {Duplicate the selected line here} other {Duplicate # selected lines here}}",
 					})
 				: t("lyricLineView.insertLine", "在此插入新行")}
 		</Button>

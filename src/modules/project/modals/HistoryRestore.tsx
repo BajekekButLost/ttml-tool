@@ -74,11 +74,11 @@ export const HistoryRestoreDialog = () => {
 			return t("autosave.legacyProjectName", "旧版本快照");
 		}
 		if (project.id === "untitled_project") {
-			return t("autosave.untitledProjectName", "未命名项目");
+			return t("autosave.untitledProjectName", "Untitled project");
 		}
 
-		if (project.name === "Untitled Project") {
-			return t("autosave.untitledProjectName", "未命名项目");
+		if (project.name === "Untitled project") {
+			return t("autosave.untitledProjectName", "Untitled project");
 		}
 
 		return project.name;
@@ -87,10 +87,10 @@ export const HistoryRestoreDialog = () => {
 	const handleRestoreLatest = (project: ProjectInfo) => {
 		setConfirmDialog({
 			open: true,
-			title: t("historyRestoreDialog.confirm.title", "确认恢复"),
+			title: t("historyRestoreDialog.confirm.title", "Confirm restore"),
 			description: t(
 				"historyRestoreDialog.confirm.description",
-				"此操作将覆盖当前编辑器中的所有内容，确定要恢复此快照吗？",
+				"This replaces everything in the editor with this snapshot. Continue?",
 			),
 			onConfirm: async () => {
 				const latestLyric = await getProjectLatestState(project.id);
@@ -98,9 +98,9 @@ export const HistoryRestoreDialog = () => {
 					setProjectId(project.id);
 					setNewLyrics(latestLyric);
 					setIsOpen(false);
-					toast.success(t("common.success", "恢复成功"));
+					toast.success(t("common.success", "Restored"));
 				} else {
-					toast.error(t("common.error", "数据已损坏或丢失"));
+					toast.error(t("common.error", "The data is corrupted or missing"));
 				}
 			},
 		});
@@ -109,16 +109,16 @@ export const HistoryRestoreDialog = () => {
 	const handleRestoreVersion = (version: ProjectVersion) => {
 		setConfirmDialog({
 			open: true,
-			title: t("historyRestoreDialog.confirm.title", "确认恢复"),
+			title: t("historyRestoreDialog.confirm.title", "Confirm restore"),
 			description: t(
 				"historyRestoreDialog.confirm.description",
-				"此操作将覆盖当前编辑器中的所有内容，确定要恢复此快照吗？",
+				"This replaces everything in the editor with this snapshot. Continue?",
 			),
 			onConfirm: () => {
 				setProjectId(version.projectId);
 				setNewLyrics(version.data);
 				setIsOpen(false);
-				toast.success(t("common.success", "恢复成功"));
+				toast.success(t("common.success", "Restored"));
 			},
 		});
 	};
@@ -138,7 +138,7 @@ export const HistoryRestoreDialog = () => {
 				if (selectedProjectId === projectId) {
 					setSelectedProjectId(null);
 				}
-				toast.success(t("common.deleteSuccess", "删除成功"));
+				toast.success(t("common.deleteSuccess", "Deleted"));
 			},
 		});
 	};
@@ -149,10 +149,24 @@ export const HistoryRestoreDialog = () => {
 		const hours = Math.floor(minutes / 60);
 		const days = Math.floor(hours / 24);
 
-		if (days > 0) return t("time.daysAgo", "{count}天前", { count: days });
-		if (hours > 0) return t("time.hoursAgo", "{count}小时前", { count: hours });
+		if (days > 0)
+			return t(
+				"time.daysAgo",
+				"{count, plural, one {# day ago} other {# days ago}}",
+				{ count: days },
+			);
+		if (hours > 0)
+			return t(
+				"time.hoursAgo",
+				"{count, plural, one {# hour ago} other {# hours ago}}",
+				{ count: hours },
+			);
 		if (minutes > 0)
-			return t("time.minutesAgo", "{count}分钟前", { count: minutes });
+			return t(
+				"time.minutesAgo",
+				"{count, plural, one {# minute ago} other {# minutes ago}}",
+				{ count: minutes },
+			);
 		return t("time.justNow", "刚刚");
 	};
 
@@ -187,12 +201,12 @@ export const HistoryRestoreDialog = () => {
 			>
 				<VisuallyHidden>
 					<Dialog.Title>
-						{t("historyRestoreDialog.projects", "最近项目")}
+						{t("historyRestoreDialog.projects", "Recent projects")}
 					</Dialog.Title>
 					<Dialog.Description>
 						{t(
 							"historyRestoreDialog.confirm.description",
-							"恢复或管理项目历史快照",
+							"This replaces everything in the editor with this snapshot. Continue?",
 						)}
 					</Dialog.Description>
 				</VisuallyHidden>
@@ -213,7 +227,7 @@ export const HistoryRestoreDialog = () => {
 							style={{ borderBottom: "1px solid var(--gray-5)" }}
 						>
 							<Heading size="3">
-								{t("historyRestoreDialog.projects", "最近项目")}
+								{t("historyRestoreDialog.projects", "Recent projects")}
 							</Heading>
 						</Flex>
 
@@ -229,7 +243,7 @@ export const HistoryRestoreDialog = () => {
 											<Text size="2" color="gray" align="center">
 												{t(
 													"historyRestoreDialog.noProjects",
-													"暂无自动保存记录",
+													"No autosaved projects yet.",
 												)}
 											</Text>
 										</Box>
@@ -434,7 +448,7 @@ export const HistoryRestoreDialog = () => {
 								<Text mt="2">
 									{t(
 										"historyRestoreDialog.selectProject",
-										"请从左侧选择一个项目",
+										"Select an item on the left",
 									)}
 								</Text>
 							</Flex>

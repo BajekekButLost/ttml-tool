@@ -76,9 +76,13 @@ export const GeniusSearchDialog = () => {
 			setResults(hits);
 			if (hits.length > 0) {
 				toast.success(
-					t("common.resultsFound", "Found {count} results", {
-						count: hits.length,
-					}),
+					t(
+						"common.resultsFound",
+						"{count, plural, one {Found # result} other {Found # results}}",
+						{
+							count: hits.length,
+						},
+					),
 				);
 			}
 		} catch (e: unknown) {
@@ -125,7 +129,7 @@ export const GeniusSearchDialog = () => {
 						setProcessingMessage(
 							t(
 								"metadataDialog.fetchSongwriters.findingRealName",
-								"Finding real name for {name} ({current}/{total})...",
+								"Finding real name for {name} ({current}/{total})…",
 								{
 									name: artist.name,
 									current: i + 1,
@@ -250,7 +254,7 @@ export const GeniusSearchDialog = () => {
 				toast.success(
 					t(
 						"metadataDialog.fetchSongwriters.success",
-						"Songwriters successfully fetched from Genius",
+						"Fetched songwriters from Genius",
 					),
 				);
 				setIsOpen(false);
@@ -283,14 +287,14 @@ export const GeniusSearchDialog = () => {
 					<Dialog.Title>
 						{t(
 							"metadataDialog.fetchSongwriters.setupTitle",
-							"Genius API Key Setup",
+							"Genius access token",
 						)}
 					</Dialog.Title>
 					<Flex direction="column" gap="4">
 						<Text>
 							{t(
 								"metadataDialog.fetchSongwriters.setupDesc",
-								'To use this feature, please configure your Genius API Key (specifically, you need the "CLIENT ACCESS TOKEN"). You can generate one from the ',
+								"To fetch songwriters, add your Genius access token (Genius calls it the Client Access Token). You can create one in the ",
 							)}
 							<a
 								href="https://genius.com/api-clients"
@@ -312,14 +316,14 @@ export const GeniusSearchDialog = () => {
 							>
 								{t(
 									"metadataDialog.fetchSongwriters.howToGetKey",
-									"How to create a Genius Client Access Token",
+									"How to get a Genius access token",
 								)}
 							</a>
 						</Text>
 						<TextField.Root
 							placeholder={t(
 								"metadataDialog.fetchSongwriters.keyPlaceholder",
-								"Enter CLIENT ACCESS TOKEN",
+								"Paste your Genius access token",
 							)}
 							value={tempApiKey}
 							onChange={(e) => setTempApiKey(e.target.value)}
@@ -353,7 +357,7 @@ export const GeniusSearchDialog = () => {
 				<Dialog.Title>
 					{t(
 						"metadataDialog.fetchSongwriters.button",
-						"Fetch Songwriters from Genius",
+						"Fetch songwriters from Genius",
 					)}
 				</Dialog.Title>
 
@@ -361,7 +365,7 @@ export const GeniusSearchDialog = () => {
 					<TextField.Root
 						ref={inputRef}
 						className={styles.searchBar}
-						placeholder={t("lrclib.placeholder", "Title Artist...")}
+						placeholder={t("lrclib.placeholder", "Song title and artist…")}
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 						onKeyDown={onKeyDown}
@@ -438,10 +442,7 @@ export const GeniusSearchDialog = () => {
 							<Flex className={styles.emptyState}>
 								<Search24Regular className={styles.emptyStateIcon} />
 								<Text>
-									{t(
-										"lrclib.notFound",
-										"No results found, please try different keywords",
-									)}
+									{t("lrclib.notFound", "No results. Try different keywords.")}
 								</Text>
 							</Flex>
 						)}
@@ -450,7 +451,7 @@ export const GeniusSearchDialog = () => {
 							<Flex className={styles.emptyState}>
 								<Search24Regular className={styles.emptyStateIcon} />
 								<Text>
-									{t("lrclib.noResult", "Enter keywords to start searching")}
+									{t("lrclib.noResult", "Type a song or artist to search")}
 								</Text>
 							</Flex>
 						)}
@@ -467,7 +468,7 @@ export const GeniusSearchDialog = () => {
 								/>
 								{t(
 									"metadataDialog.fetchSongwriters.tryFindRealNames",
-									"Try to find real names (Legal Names)",
+									"Look up real (legal) names",
 								)}
 							</Flex>
 						</Text>

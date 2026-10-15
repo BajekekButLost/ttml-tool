@@ -55,7 +55,7 @@ describe("getDisplayWordText", () => {
 		);
 		expect(t).toHaveBeenCalledWith(
 			"lyricWordView.spaceCount",
-			"空格 x{count}",
+			"Space ×{count}",
 			{
 				count: 3,
 			},

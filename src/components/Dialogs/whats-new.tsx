@@ -81,7 +81,7 @@ export function WhatsNewDialog() {
 				<Flex justify="between" align="center" mb="4">
 					<Flex direction="column">
 						<Dialog.Title mb="1">
-							{t("changeNotes.whatsNewTitle", "What's New in NaeNae's Fork")}
+							{t("changeNotes.whatsNewTitle", "What's new in NaeNae's fork")}
 						</Dialog.Title>
 						<Text size="2" color="gray">
 							{t("changeNotes.highlightsDescription")}
@@ -163,7 +163,7 @@ export function WhatsNewDialog() {
 
 						<Box mt="2" mb="4">
 							<Heading size="3" mb="2">
-								{t("changeNotes.otherEnhancements", "Other Enhancements")}
+								{t("changeNotes.otherEnhancements", "Other enhancements")}
 							</Heading>
 							<Flex direction="column" gap="2">
 								{whatsNew.enhancements.map((entry) => (

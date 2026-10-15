@@ -455,7 +455,7 @@ export async function openProjectFromDir(
 	if (store.get(isDirtyAtom)) {
 		store.set(confirmDialogAtom, {
 			open: true,
-			title: t("confirmDialog.openFile.title", "Confirm Open File"),
+			title: t("confirmDialog.openFile.title", "Open another file?"),
 			description: t(
 				"confirmDialog.openFile.description",
 				"You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to open a new file?",
@@ -504,7 +504,7 @@ export async function openProject(store: Store, t: TFunc): Promise<void> {
 	if (store.get(isDirtyAtom)) {
 		store.set(confirmDialogAtom, {
 			open: true,
-			title: t("confirmDialog.openFile.title", "Confirm Open File"),
+			title: t("confirmDialog.openFile.title", "Open another file?"),
 			description: t(
 				"confirmDialog.openFile.description",
 				"You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to open a new file?",

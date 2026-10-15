@@ -27,14 +27,14 @@ export const WorkspaceSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<Layer24Regular />{" "}
-			{t("settings.appearance.advanced.workspace", "Workspace Theme")}
+			{t("settings.appearance.advanced.workspace", "Workspace theme")}
 		</Heading>
 		<Card>
 			<Grid columns="2" gap="3">
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.titlebarBackground",
-						"Titlebar Background",
+						"Titlebar background",
 					)}
 					value={vTitlebarBg}
 					onChange={setVTitlebarBg}
@@ -42,7 +42,7 @@ export const WorkspaceSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.sidebarBackground",
-						"Sidebar Background",
+						"Sidebar background",
 					)}
 					value={vSidebarBg}
 					onChange={setVSidebarBg}
@@ -50,7 +50,7 @@ export const WorkspaceSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.activeItemHighlight",
-						"Active Item Highlight",
+						"Active item highlight",
 					)}
 					value={vSidebarActive}
 					onChange={setVSidebarActive}
@@ -58,7 +58,7 @@ export const WorkspaceSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.menuHoverColor",
-						"Menu Hover Color",
+						"Menu hover color",
 					)}
 					value={vMenuHover}
 					onChange={setVMenuHover}

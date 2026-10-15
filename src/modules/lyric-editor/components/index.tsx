@@ -157,7 +157,7 @@ export const LyricLinesView: FC = forwardRef<HTMLDivElement>((_props, ref) => {
 				<Text color="gray" align="center">
 					{t(
 						"app.empty.description",
-						"在顶部面板中添加新歌词行或从菜单栏打开 / 导入已有歌词",
+						"Add lines from the ribbon above, or open or import lyrics from the File menu.",
 					)}
 				</Text>
 				<Flex gap="2" wrap="wrap" justify="center" mt="2">
@@ -168,10 +168,10 @@ export const LyricLinesView: FC = forwardRef<HTMLDivElement>((_props, ref) => {
 							setGuideWelcome(true);
 						}}
 					>
-						{t("beginnerGuide.empty.start", "Start Guide")}
+						{t("beginnerGuide.empty.start", "Start guide")}
 					</Button>
 					<Button variant="soft" onClick={() => setImportChooser(true)}>
-						{t("beginnerGuide.empty.import", "Import Lyrics")}
+						{t("beginnerGuide.empty.import", "Import lyrics")}
 					</Button>
 					<Button variant="outline" onClick={onOpenFile}>
 						{t("beginnerGuide.empty.open", "Open lyrics file")}

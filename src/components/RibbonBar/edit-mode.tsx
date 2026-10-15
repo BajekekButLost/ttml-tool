@@ -53,7 +53,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							})
 						}
 					>
-						{t("ribbonBar.editMode.lyricLine", "歌词行")}
+						{t("ribbonBar.editMode.lyricLine", "Lyric line")}
 					</Button>
 				</Grid>
 			</RibbonSection>
@@ -72,7 +72,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.editMode.autoScroll", "Auto-Scroll")}
+						{t("ribbonBar.editMode.autoScroll", "Auto-scroll")}
 					</Text>
 					<SettingToggle setting={editAutoScrollAtom} compact />
 					<Text
@@ -80,13 +80,15 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						size="1"
 						style={{ color: "var(--ribbon-label-color)" }}
 					>
-						{t("ribbonBar.editMode.highlightActiveLine", "Highlight Line")}
+						{t("ribbonBar.editMode.highlightActiveLine", "Highlight line")}
 					</Text>
 					<SettingToggle setting={editActiveLineHighlightAtom} compact />
 				</Grid>
 			</RibbonSection>
 			{selectedLines.size > 0 && (
-				<RibbonSection label={t("ribbonBar.editMode.lineTiming", "行时间戳")}>
+				<RibbonSection
+					label={t("ribbonBar.editMode.lineTiming", "Line timing")}
+				>
 					<Grid
 						columns="max-content 1fr"
 						gap="2"
@@ -110,7 +112,9 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 				</RibbonSection>
 			)}
 			{selectedLines.size > 0 && (
-				<RibbonSection label={t("ribbonBar.editMode.lineProperties", "行属性")}>
+				<RibbonSection
+					label={t("ribbonBar.editMode.lineProperties", "Line properties")}
+				>
 					<Grid
 						columns="max-content max-content"
 						gap="4"
@@ -119,19 +123,19 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						align="center"
 					>
 						<CheckboxField
-							label={t("ribbonBar.editMode.bgLyric", "背景歌词")}
+							label={t("ribbonBar.editMode.bgLyric", "Background vocal")}
 							defaultValue={false}
 							isWordField={false}
 							fieldName="isBG"
 						/>
 						<CheckboxField
-							label={t("ribbonBar.editMode.duetLyric", "对唱歌词")}
+							label={t("ribbonBar.editMode.duetLyric", "Duet vocal")}
 							isWordField={false}
 							fieldName="isDuet"
 							defaultValue={false}
 						/>
 						<CheckboxField
-							label={t("ribbonBar.editMode.ignoreSync", "忽略打轴")}
+							label={t("ribbonBar.editMode.ignoreSync", "Skip when syncing")}
 							isWordField={false}
 							fieldName="ignoreSync"
 							defaultValue={false}
@@ -143,7 +147,9 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 				<PhoneticSection />
 			)}
 			{selectedWords.size > 0 && (
-				<RibbonSection label={t("ribbonBar.editMode.wordTiming", "词时间戳")}>
+				<RibbonSection
+					label={t("ribbonBar.editMode.wordTiming", "Word timing")}
+				>
 					<Grid
 						columns="max-content 1fr"
 						gap="2"
@@ -170,7 +176,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			)}
 			{selectedWords.size > 0 && (
 				<RibbonSection
-					label={t("ribbonBar.editMode.wordProperties", "单词属性")}
+					label={t("ribbonBar.editMode.wordProperties", "Word properties")}
 				>
 					<Grid
 						columns="max-content 1fr"
@@ -180,14 +186,14 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 						align="center"
 					>
 						<EditField
-							label={t("ribbonBar.editMode.wordContent", "单词内容")}
+							label={t("ribbonBar.editMode.wordContent", "Word content")}
 							fieldName="word"
 							isWordField
 							parser={(v) => v}
 							formatter={(v) => v}
 						/>
 						<EditField
-							label={t("ribbonBar.editMode.romanWord", "单词音译")}
+							label={t("ribbonBar.editMode.romanWord", "Word romanization")}
 							fieldName="romanWord"
 							isWordField
 							parser={(v) => v}
@@ -198,7 +204,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			)}
 			{showAdvanced && selectedLines.size > 0 && (
 				<RibbonSection
-					label={t("ribbonBar.editMode.secondaryContent", "次要内容")}
+					label={t("ribbonBar.editMode.secondaryContent", "Secondary content")}
 				>
 					<Grid
 						columns="max-content 1fr"
@@ -226,7 +232,10 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			)}
 			{showAdvanced && (
 				<RibbonSection
-					label={t("ribbonBar.editMode.auxiliaryLineDisplay", "辅助行显示")}
+					label={t(
+						"ribbonBar.editMode.auxiliaryLineDisplay",
+						"Auxiliary line display",
+					)}
 				>
 					<AuxiliaryDisplayField />
 				</RibbonSection>
@@ -235,7 +244,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 				<Tooltip
 					content={t(
 						"ribbonBar.advancedTooltip",
-						"Applies to all toolbars: Edit, Time, and Preview.",
+						"Applies to the Edit, Time and Preview ribbons.",
 					)}
 				>
 					<Switch checked={showAdvanced} onCheckedChange={setShowAdvanced} />

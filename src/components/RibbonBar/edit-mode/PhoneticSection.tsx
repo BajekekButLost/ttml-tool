@@ -56,19 +56,19 @@ export const PhoneticSection = () => {
 								<Text size="2" weight="bold">
 									{t(
 										"ribbonBar.editMode.romanization.info.title",
-										"About Romanization",
+										"About romanization",
 									)}
 								</Text>
 								<Text size="1">
 									{t(
 										"ribbonBar.editMode.romanization.info.canDo",
-										"✓ Can do: Auto-generate Romaji (JA), Pinyin (ZH), and Romaji (KO). Supports Kanji!",
+										"✓ Can do: Japanese romaji, Mandarin pinyin, Cantonese jyutping and Korean romanization, including kanji.",
 									)}
 								</Text>
 								<Text size="1">
 									{t(
 										"ribbonBar.editMode.romanization.info.cannotDo",
-										"✗ Cannot do: 100% accuracy for rare Kanji or proper names. CJK only. Minor errors may occur.",
+										"✗ Can't do: guarantee rare kanji or names are right. CJK only, so expect small mistakes.",
 									)}
 								</Text>
 							</Flex>
@@ -96,7 +96,7 @@ export const PhoneticSection = () => {
 					<Select.Trigger />
 					<Select.Content>
 						<Select.Item value="auto">
-							{t("common.autoDetect", "Auto Detect")}
+							{t("common.autoDetect", "Auto-detect")}
 						</Select.Item>
 						<Select.Item value="ja">
 							{t("ribbonBar.editMode.romanization.ja", "Japanese (Romaji)")}
@@ -108,7 +108,10 @@ export const PhoneticSection = () => {
 							{t("ribbonBar.editMode.romanization.yue", "Cantonese (Jyutping)")}
 						</Select.Item>
 						<Select.Item value="ko">
-							{t("ribbonBar.editMode.romanization.ko", "Korean (Romaji)")}
+							{t(
+								"ribbonBar.editMode.romanization.ko",
+								"Korean (Revised Romanization)",
+							)}
 						</Select.Item>
 					</Select.Content>
 				</Select.Root>

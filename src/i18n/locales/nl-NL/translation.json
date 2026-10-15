@@ -215,7 +215,7 @@
     "close": "Afsluiten",
     "autoDetect": "Automatische detectie",
     "about": "Informatie",
-    "resultsFound": "{count} resultaten gevonden",
+    "resultsFound": "{count, plural, one {# resultaten gevonden} other {# resultaten gevonden}}",
     "cancel": "annuleren",
     "save": "Opslaan",
     "search": "Zoeken",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Geen projecten gevonden. Selecteer een werkruimtemap om te scannen.",
-    "foundCount": "{count} project(en) gevonden",
+    "foundCount": "{count, plural, one {# project(en) gevonden} other {# project(en) gevonden}}",
     "importable": "Importeerbaar",
     "scanning": "Scannen...",
     "selectFolder": "Werkruimtemap selecteren...",
     "unknown": "Onbekend",
     "noProjectsFound": "Geen projecten gevonden in deze map",
-    "projectsFound": "Gevonden projecten: {count}",
+    "projectsFound": "{count, plural, one {Gevonden projecten: #} other {Gevonden projecten: #}}",
     "scanFailed": "Werkruimtemap scannen mislukt"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "API-sleutels"
       },
       "hint": {
-        "settings": "{count} opgeslagen waarden",
-        "keybindings": "{count} sneltoetsen",
+        "settings": "{count, plural, one {# opgeslagen waarden} other {# opgeslagen waarden}}",
+        "keybindings": "{count, plural, one {# sneltoetsen} other {# sneltoetsen}}",
         "assetsSet": "Aangepaste achtergrondafbeelding ingesteld",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} voorinstellingen",
+        "presetsCount": "{count, plural, one {# voorinstellingen} other {# voorinstellingen}}",
         "backgroundSet": "Aangepaste achtergrond",
         "fontSet": "Aangepast lettertype",
-        "projects": "{count} projecten",
-        "apiKeys": "{count} sleutels"
+        "projects": "{count, plural, one {# projecten} other {# projecten}}",
+        "apiKeys": "{count, plural, one {# sleutels} other {# sleutels}}"
       },
       "exportSuccess": "Back-up geëxporteerd",
       "exportFailed": "Kan back-up niet exporteren",
@@ -709,7 +709,7 @@
       "previewTotal": "Geschatte totale grootte",
       "previewPresetPrefix": "Voorinstelling",
       "previewFontPrefix": "Aangepast lettertype",
-      "previewVersions": "{count} versies",
+      "previewVersions": "{count, plural, one {# versies} other {# versies}}",
       "apiKeysWarning": "API-sleutels worden als platte tekst in het back-upbestand opgeslagen. Houd het privé.",
       "importTitle": "Importeren",
       "importDesc": "Herstel instellingen en gegevens vanuit een back-upbestand. Bestaande waarden worden vervangen.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "{count} woord(en) verwijderen",
+    "deleteWords": "{count, plural, one {# woord(en) verwijderen} other {# woord(en) verwijderen}}",
     "bgLyric": "Achtergrond lijn",
     "duetLyric": "Duet Lijn",
     "moveLineToPlayhead": "Verplaats lijn naar afspeelkop",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Zet geselecteerde regels vast op de afspeelkop",
     "insertLineBefore": "Voeg nieuwe regel toe voor",
     "insertLineAfter": "Nieuwe regel invoegen na",
-    "copyLine": "Dubbele {count} regel(s)",
+    "copyLine": "{count, plural, one {Dubbele # regel(s)} other {Dubbele # regel(s)}}",
     "duplicateTo": "Dupliceren naar...",
     "combineLine": "Regels combineren",
-    "deleteLine": "Verwijder {count} regel(s)",
+    "deleteLine": "{count, plural, one {Verwijder # regel(s)} other {Verwijder # regel(s)}}",
     "splitWord": "Woord splitsen...",
     "noSyllablesFound": "Er zijn geen meerdere lettergrepen gevonden.",
     "splitIntoSyllables": "Splits in lettergrepen (geromaniseerd)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Romanisering vervangen…",
     "combineWords": "Woorden combineren",
     "moveFollowingWordToNewLine": "Verplaats de volgers naar de nieuwe lijn",
-    "moveWordToNewLine": "Verplaats {count} woord(en) naar nieuwe regel"
+    "moveWordToNewLine": "{count, plural, one {Verplaats # woord(en) naar nieuwe regel} other {Verplaats # woord(en) naar nieuwe regel}}"
   },
   "settingsDialog": {
     "search": "Zoekinstellingen",
@@ -1053,7 +1053,7 @@
       "searchError": "Zoeken mislukt: {error}",
       "fetchError": "Kan de songteksten niet ophalen: {error}",
       "noLyricsError": "Geen songteksten om te importeren.",
-      "importSuccess": "Geïmporteerde {count} lijnen uit Genius.",
+      "importSuccess": "{count, plural, one {Geïmporteerde # lijnen uit Genius.} other {Geïmporteerde # lijnen uit Genius.}}",
       "howToGetKey": "Een Genius Client Access Token aanmaken"
     },
     "openLink": "Koppeling openen",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Vertaling:",
     "romanLabel": "Romanisatie:",
     "empty": "geen",
-    "duplicateLinesHere": "Dupliceer {count} geselecteerde regel(s) hier",
-    "applyTimingsHere": "Pas vanaf hier {count} timing(en) toe",
+    "duplicateLinesHere": "{count, plural, one {Dupliceer # geselecteerde regel(s) hier} other {Dupliceer # geselecteerde regel(s) hier}}",
+    "applyTimingsHere": "{count, plural, one {Pas vanaf hier # timing(en) toe} other {Pas vanaf hier # timing(en) toe}}",
     "applyPartialTimingsHere": "Pas vanaf hier {applied} van {total} timings toe",
-    "timingsApplied": "Toegepaste timing op {count} lijn(en).",
+    "timingsApplied": "{count, plural, one {Toegepaste timing op # lijn(en).} other {Toegepaste timing op # lijn(en).}}",
     "partialTimingCopy": "Slechts {applied} van {total} brontiming past vóór het einde van de songtekst.",
-    "wordTimingMismatch": "{count} regel(s) hadden een ander aantal woorden; alleen overeenkomende woordposities zijn gekopieerd.",
+    "wordTimingMismatch": "{count, plural, one {# regel(s) hadden een ander aantal woorden; alleen overeenkomende woordposities zijn gekopieerd.} other {# regel(s) hadden een ander aantal woorden; alleen overeenkomende woordposities zijn gekopieerd.}}",
     "insertLine": "Voeg hier een nieuwe regel in",
     "insertWord": "Woord hier invoegen…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Songtekst Voorbeeld",
     "back": "Achterzijde",
     "previewSubtitle": "Je kunt onderstaande songtekst bewerken voordat je importeert.",
-    "linesCount": "{count} regels",
+    "linesCount": "{count, plural, one {# regels} other {# regels}}",
     "importButton": "Songteksten importeren",
     "importTitle": "Importeer songteksten van Genius",
     "searchPlaceholder": "Kunstenaar - Nummer titel…",
@@ -1286,11 +1286,11 @@
     "description": "Controleer genormaliseerde categorieën en metadata voordat u de songtekst vervangt.",
     "sourceLyrics": "Bron songteksten",
     "structure": "Structuur",
-    "sectionCount": "{count} secties",
+    "sectionCount": "{count, plural, one {# secties} other {# secties}}",
     "vocalist": "Zanger / rol",
     "color": "Sectie kleur",
     "notes": "Opmerkingen",
-    "lineCount": "{count} tekstregels",
+    "lineCount": "{count, plural, one {# tekstregels} other {# tekstregels}}",
     "import": "Importeer beoordeelde songteksten"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Naamloze Project"
   },
   "time": {
-    "daysAgo": "{count} dagen geleden",
-    "hoursAgo": "{count} uur geleden",
-    "minutesAgo": "{count} minuten geleden",
+    "daysAgo": "{count, plural, one {# dagen geleden} other {# dagen geleden}}",
+    "hoursAgo": "{count, plural, one {# uur geleden} other {# uur geleden}}",
+    "minutesAgo": "{count, plural, one {# minuten geleden} other {# minuten geleden}}",
     "justNow": "Op dit moment"
   },
   "metadata": {

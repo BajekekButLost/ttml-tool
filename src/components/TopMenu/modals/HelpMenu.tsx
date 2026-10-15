@@ -33,18 +33,18 @@ const HelpMenuItems = () => {
 	return (
 		<>
 			<DropdownMenu.Item onSelect={() => setGuideWelcomeOpen(true)}>
-				{t("beginnerGuide.menu", "Start Guide")}
+				{t("beginnerGuide.menu", "Start guide")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={menu.onOpenGitHub}>GitHub</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={menu.onOpenWiki}>
-				{t("topBar.menu.helpDoc", "使用说明")}
+				{t("topBar.menu.helpDoc", "Upstream documentation (Chinese)")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={() => setWhatsNewOpen(true)}>
-				{t("topBar.menu.whatsNew", "What's New")}
+				{t("topBar.menu.whatsNew", "What's new")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={() => setChangelogOpen(true)}>
-				{t("topBar.menu.changelog", "Changelog & Updates")}
+				{t("topBar.menu.changelog", "Changelog & updates")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={openAbout}>

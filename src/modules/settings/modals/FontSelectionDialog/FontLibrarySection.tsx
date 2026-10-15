@@ -31,7 +31,7 @@ export const FontLibrarySection = ({
 		<Flex direction="column" gap="4" pr="4" pb="6">
 			<Box>
 				<Heading size="3" mb="2">
-					{t("settings.appearance.defaultFonts", "Standard Stacks")}
+					{t("settings.appearance.defaultFonts", "Standard font stacks")}
 				</Heading>
 				<Grid columns="repeat(auto-fill, minmax(280px, 1fr))" gap="3">
 					{DEFAULT_FONTS.map((font) => (
@@ -59,7 +59,7 @@ export const FontLibrarySection = ({
 			{filteredSystemFonts.length > 0 && (
 				<Box>
 					<Heading size="3" mb="2">
-						{t("settings.appearance.systemFonts", "System Fonts")}
+						{t("settings.appearance.systemFonts", "System fonts")}
 					</Heading>
 					<Grid columns="repeat(auto-fill, minmax(280px, 1fr))" gap="3">
 						{filteredSystemFonts.map((font) => (
@@ -94,7 +94,7 @@ export const FontLibrarySection = ({
 
 			<Box>
 				<Heading size="3" mb="2">
-					{t("settings.appearance.googleFonts", "Google Fonts Library")}
+					{t("settings.appearance.googleFonts", "Google Fonts library")}
 				</Heading>
 				<Grid columns="repeat(auto-fill, minmax(280px, 1fr))" gap="3">
 					{filteredGoogleFonts.map((font) => (

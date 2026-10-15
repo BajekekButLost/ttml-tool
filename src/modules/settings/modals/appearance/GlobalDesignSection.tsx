@@ -44,7 +44,7 @@ export const GlobalDesignSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<Sparkle24Regular />{" "}
-			{t("settings.appearance.advanced.global", "Global Design System")}
+			{t("settings.appearance.advanced.global", "Global design system")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="4">
@@ -53,7 +53,7 @@ export const GlobalDesignSection = ({
 						<Text>
 							{t(
 								"settings.appearance.advanced.legacyDarkTheme",
-								"Classic Dark Theme",
+								"Classic dark theme",
 							)}
 						</Text>
 						<Text size="1" color="gray">
@@ -72,7 +72,7 @@ export const GlobalDesignSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.scrollbarThumb",
-							"Scrollbar Thumb",
+							"Scrollbar thumb",
 						)}
 						value={vScrollbar}
 						onChange={setVScrollbar}
@@ -80,7 +80,7 @@ export const GlobalDesignSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.dialogBackground",
-							"Dialog Background",
+							"Dialog background",
 						)}
 						value={vDialogBg}
 						onChange={setVDialogBg}
@@ -88,7 +88,7 @@ export const GlobalDesignSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.dialogBorder",
-							"Dialog Border",
+							"Dialog border",
 						)}
 						value={vDialogBorder}
 						onChange={setVDialogBorder}
@@ -97,7 +97,7 @@ export const GlobalDesignSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.globalBorderRadius",
-						"Global Border Radius",
+						"Global border radius",
 					)}
 					icon={<Stack24Regular />}
 					value={vGlobalRadius}
@@ -109,7 +109,7 @@ export const GlobalDesignSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.globalBorderWidth",
-						"Global Border Width",
+						"Global border width",
 					)}
 					icon={<LineThickness24Regular />}
 					value={vGlobalBorderWidth}
@@ -121,7 +121,7 @@ export const GlobalDesignSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.shadowIntensity",
-						"Shadow Intensity",
+						"Shadow intensity",
 					)}
 					icon={<VideoBackgroundEffect24Regular />}
 					value={vShadow}

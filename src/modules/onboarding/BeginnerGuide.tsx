@@ -511,7 +511,7 @@ export const BeginnerGuide = () => {
 											<Text size="1" color="gray">
 												{t(
 													"beginnerGuide.beforeStart.text",
-													"You can change the appearance of the editor to suit your preference. Click below to open settings. Feel free to try the Basic Editor, or check out the Advanced Editor for complete detail control.",
+													"You can change how the editor looks to suit you. Click below to open the settings. Try the simple layout, or switch to the advanced layout for full control.",
 												)}{" "}
 												<a
 													href="#"
@@ -528,7 +528,7 @@ export const BeginnerGuide = () => {
 												>
 													{t(
 														"beginnerGuide.beforeStart.link",
-														"Customize Editor Appearance",
+														"Customize editor appearance",
 													)}
 												</a>
 											</Text>
@@ -615,7 +615,7 @@ export const BeginnerGuide = () => {
 												<Text weight="bold">
 													{t(
 														"beginnerGuide.genius.title",
-														"Create a Genius Client Access Token",
+														"Create a Genius access token",
 													)}
 												</Text>
 												<Button

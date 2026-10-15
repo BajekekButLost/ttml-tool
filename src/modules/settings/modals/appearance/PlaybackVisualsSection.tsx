@@ -39,7 +39,7 @@ export const PlaybackVisualsSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<Speaker224Regular />{" "}
-			{t("settings.appearance.advanced.audioVisuals", "Playback & Visuals")}
+			{t("settings.appearance.advanced.audioVisuals", "Playback & visuals")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="4">
@@ -47,7 +47,7 @@ export const PlaybackVisualsSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.audioBarColor",
-							"Audio Bar Color",
+							"Audio bar color",
 						)}
 						value={vAudioBarBg}
 						onChange={setVAudioBarBg}
@@ -55,7 +55,7 @@ export const PlaybackVisualsSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.audioBarText",
-							"Audio Bar Text",
+							"Audio bar text",
 						)}
 						value={vAudioBarText}
 						onChange={setVAudioBarText}
@@ -63,7 +63,7 @@ export const PlaybackVisualsSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.waveformInactive",
-							"Waveform Inactive",
+							"Waveform inactive",
 						)}
 						value={advWaveformColor}
 						onChange={setAdvWaveformColor}
@@ -71,7 +71,7 @@ export const PlaybackVisualsSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.waveformProgress",
-							"Waveform Progress",
+							"Waveform progress",
 						)}
 						value={advWaveformProgress}
 						onChange={setAdvWaveformProgress}
@@ -80,7 +80,7 @@ export const PlaybackVisualsSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.romanizationText",
-						"Romanization Text",
+						"Romanization text",
 					)}
 					value={vRomanColor}
 					onChange={setVRomanColor}
@@ -88,7 +88,7 @@ export const PlaybackVisualsSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.translationText",
-						"Translation Text",
+						"Translation text",
 					)}
 					value={vTransColor}
 					onChange={setVTransColor}
@@ -96,7 +96,7 @@ export const PlaybackVisualsSection = ({
 				<AdvancedColorItem
 					label={t(
 						"settings.appearance.advanced.geniusHeaderColor",
-						"Genius Header Color",
+						"Genius header color",
 					)}
 					value={vGeniusHeaderColor}
 					onChange={setVGeniusHeaderColor}

@@ -215,7 +215,7 @@
     "close": "Inchide",
     "autoDetect": "Detectare automată",
     "about": "Despre",
-    "resultsFound": "{count} rezultate găsite",
+    "resultsFound": "{count, plural, one {# rezultate găsite} few {# rezultate găsite} other {# rezultate găsite}}",
     "cancel": "Anulează",
     "save": "Salvează",
     "search": "Caută",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Nu au fost găsite proiecte. Selectați un folder de spațiu de lucru pentru scanare.",
-    "foundCount": "{count} proiect(e) găsit(e).",
+    "foundCount": "{count, plural, one {# proiect(e) găsit(e).} few {# proiect(e) găsit(e).} other {# proiect(e) găsit(e).}}",
     "importable": "Importabil",
     "scanning": "Se scanează...",
     "selectFolder": "Selectați dosarul spațiului de lucru...",
     "unknown": "Necunoscut",
     "noProjectsFound": "Nu s-au găsit proiecte în acest folder",
-    "projectsFound": "Proiecte găsite: {count}",
+    "projectsFound": "{count, plural, one {Proiecte găsite: #} few {Proiecte găsite: #} other {Proiecte găsite: #}}",
     "scanFailed": "Folderul spațiului de lucru nu a putut fi scanat"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Chei API"
       },
       "hint": {
-        "settings": "{count} valori stocate",
-        "keybindings": "{count} legături de taste",
+        "settings": "{count, plural, one {# valori stocate} few {# valori stocate} other {# valori stocate}}",
+        "keybindings": "{count, plural, one {# legături de taste} few {# legături de taste} other {# legături de taste}}",
         "assetsSet": "Set de imagini de fundal personalizate",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} presetări",
+        "presetsCount": "{count, plural, one {# presetări} few {# presetări} other {# presetări}}",
         "backgroundSet": "Fundal personalizat",
         "fontSet": "Font personalizat",
-        "projects": "{count} proiecte",
-        "apiKeys": "{count} chei"
+        "projects": "{count, plural, one {# proiecte} few {# proiecte} other {# proiecte}}",
+        "apiKeys": "{count, plural, one {# chei} few {# chei} other {# chei}}"
       },
       "exportSuccess": "Backup exportat",
       "exportFailed": "Nu s-a putut exporta backupul",
@@ -709,7 +709,7 @@
       "previewTotal": "Dimensiunea totală estimată",
       "previewPresetPrefix": "Presetat",
       "previewFontPrefix": "Font personalizat",
-      "previewVersions": "{count} versiuni",
+      "previewVersions": "{count, plural, one {# versiuni} few {# versiuni} other {# versiuni}}",
       "apiKeysWarning": "Cheile API sunt salvate ca text simplu în fișierul de rezervă. Păstrează-l privat.",
       "importTitle": "Importă",
       "importDesc": "Restaurați setările și datele dintr-un fișier de rezervă. Valorile existente vor fi înlocuite.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Ștergere {count} cuvinte",
+    "deleteWords": "{count, plural, one {Ștergere # cuvinte} few {Ștergere # cuvinte} other {Ștergere # cuvinte}}",
     "bgLyric": "Linie de fundal",
     "duetLyric": "Linie Duet",
     "moveLineToPlayhead": "Mutați linia în capul de redare",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Fixați liniile selectate în capul de redare",
     "insertLineBefore": "Introduceți o linie nouă înainte de",
     "insertLineAfter": "Introduceți o linie nouă după",
-    "copyLine": "Duplicați {count} rând(e)",
+    "copyLine": "{count, plural, one {Duplicați # rând(e)} few {Duplicați # rând(e)} other {Duplicați # rând(e)}}",
     "duplicateTo": "Duplică lui...",
     "combineLine": "Combină linii",
-    "deleteLine": "Ștergere {count} linie",
+    "deleteLine": "{count, plural, one {Ștergere # linie} few {Ștergere # linie} other {Ștergere # linie}}",
     "splitWord": "Împarte cuvântul…",
     "noSyllablesFound": "Nu s-au găsit mai multe silabe.",
     "splitIntoSyllables": "Împarte în silabe (romanizare)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Înlocuiește romanizarea...",
     "combineWords": "Combina cuvinte",
     "moveFollowingWordToNewLine": "Mutați următoarele pe noua linie",
-    "moveWordToNewLine": "Mutați {count} cuvinte pe linia nouă"
+    "moveWordToNewLine": "{count, plural, one {Mutați # cuvinte pe linia nouă} few {Mutați # cuvinte pe linia nouă} other {Mutați # cuvinte pe linia nouă}}"
   },
   "settingsDialog": {
     "search": "Setări de căutare",
@@ -1053,7 +1053,7 @@
       "searchError": "Căutare eșuată: {error}",
       "fetchError": "Nu s-au putut prelua versurile: {error}",
       "noLyricsError": "Nu sunt lyric-uri de importat.",
-      "importSuccess": "Importat {count} de linii din Geniu.",
+      "importSuccess": "{count, plural, one {Importat # de linii din Geniu.} few {Importat # de linii din Geniu.} other {Importat # de linii din Geniu.}}",
       "howToGetKey": "Cum creezi un Client Access Token Genius"
     },
     "openLink": "Deschide link-ul",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Traducere:",
     "romanLabel": "Romanizare:",
     "empty": "Niciunul",
-    "duplicateLinesHere": "Duplică {count} linie selectată aici",
-    "applyTimingsHere": "Aplicați {count} sincronizaje începând de aici",
+    "duplicateLinesHere": "{count, plural, one {Duplică # linie selectată aici} few {Duplică # linie selectată aici} other {Duplică # linie selectată aici}}",
+    "applyTimingsHere": "{count, plural, one {Aplicați # sincronizaje începând de aici} few {Aplicați # sincronizaje începând de aici} other {Aplicați # sincronizaje începând de aici}}",
     "applyPartialTimingsHere": "Aplicați {applied} din {total} timpi începând de aici",
-    "timingsApplied": "Sincronizarea aplicată liniei {count}.",
+    "timingsApplied": "{count, plural, one {Sincronizarea aplicată liniei #.} few {Sincronizarea aplicată liniei #.} other {Sincronizarea aplicată liniei #.}}",
     "partialTimingCopy": "Doar {applied} din {total} timpi sursă se potrivesc înainte de sfârșitul versurilor.",
-    "wordTimingMismatch": "{count} linii aveau un număr diferit de cuvinte; au fost copiate doar pozițiile corespunzătoare.",
+    "wordTimingMismatch": "{count, plural, one {# linii aveau un număr diferit de cuvinte; au fost copiate doar pozițiile corespunzătoare.} few {# linii aveau un număr diferit de cuvinte; au fost copiate doar pozițiile corespunzătoare.} other {# linii aveau un număr diferit de cuvinte; au fost copiate doar pozițiile corespunzătoare.}}",
     "insertLine": "Introduceți o linie nouă aici",
     "insertWord": "Introduceți cuvântul…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Geniu - Previzualizare versuri",
     "back": "Înapoi",
     "previewSubtitle": "Puteţi edita versurile de mai jos înainte de import.",
-    "linesCount": "{count} linii",
+    "linesCount": "{count, plural, one {# linii} few {# linii} other {# linii}}",
     "importButton": "Importă versuri",
     "importTitle": "Importă versuri din Genius",
     "searchPlaceholder": "Artist – Titlul melodiei…",
@@ -1286,11 +1286,11 @@
     "description": "Verificați categoriile și metadatele normalizate înainte de a înlocui versurile.",
     "sourceLyrics": "Versuri sursă",
     "structure": "Structura",
-    "sectionCount": "{count} secțiuni",
+    "sectionCount": "{count, plural, one {# secțiuni} few {# secțiuni} other {# secțiuni}}",
     "vocalist": "Vocalist / rol",
     "color": "Culoarea secțiunii",
     "notes": "Note",
-    "lineCount": "{count} versuri",
+    "lineCount": "{count, plural, one {# versuri} few {# versuri} other {# versuri}}",
     "import": "Importă versuri revizuite"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Proiect fără titlu"
   },
   "time": {
-    "daysAgo": "{count} zile acum",
-    "hoursAgo": "{count} ore în urmă",
-    "minutesAgo": "{count} minute în urmă",
+    "daysAgo": "{count, plural, one {# zile acum} few {# zile acum} other {# zile acum}}",
+    "hoursAgo": "{count, plural, one {# ore în urmă} few {# ore în urmă} other {# ore în urmă}}",
+    "minutesAgo": "{count, plural, one {# minute în urmă} few {# minute în urmă} other {# minute în urmă}}",
     "justNow": "Chiar acum"
   },
   "metadata": {

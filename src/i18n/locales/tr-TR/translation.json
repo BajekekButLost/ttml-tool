@@ -215,7 +215,7 @@
     "close": "Kapat",
     "autoDetect": "Otomatik Algıla",
     "about": "Hakkında",
-    "resultsFound": "{count} tane sonuç bulundu",
+    "resultsFound": "{count, plural, one {# tane sonuç bulundu} other {# tane sonuç bulundu}}",
     "cancel": "İptal",
     "save": "Kaydet",
     "search": "Ara",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Hiçbir proje bulunamadı. Taranacak bir çalışma alanı klasörü seçin.",
-    "foundCount": "{count} proje(ler) bulundu",
+    "foundCount": "{count, plural, one {# proje(ler) bulundu} other {# proje(ler) bulundu}}",
     "importable": "İthal edilebilir",
     "scanning": "Taranıyor...",
     "selectFolder": "Çalışma alanı klasörünü seçin...",
     "unknown": "Bilinmiyor",
     "noProjectsFound": "Bu klasörde proje bulunamadı",
-    "projectsFound": "{count} proje bulundu",
+    "projectsFound": "{count, plural, one {# proje bulundu} other {# proje bulundu}}",
     "scanFailed": "Çalışma alanı klasörü taranamadı"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "API anahtarları"
       },
       "hint": {
-        "settings": "{count} saklanan değerler",
-        "keybindings": "{count} tuş atamaları",
+        "settings": "{count, plural, one {# saklanan değerler} other {# saklanan değerler}}",
+        "keybindings": "{count, plural, one {# tuş atamaları} other {# tuş atamaları}}",
         "assetsSet": "Özel arka plan resmi seti",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} ön ayarlar",
+        "presetsCount": "{count, plural, one {# ön ayarlar} other {# ön ayarlar}}",
         "backgroundSet": "Özel arka plan",
         "fontSet": "Özel yazı tipi",
-        "projects": "{count} projeleri",
-        "apiKeys": "{count} anahtar"
+        "projects": "{count, plural, one {# projeleri} other {# projeleri}}",
+        "apiKeys": "{count, plural, one {# anahtar} other {# anahtar}}"
       },
       "exportSuccess": "Yedekleme dışa aktarıldı",
       "exportFailed": "Yedekleme dışa aktarılamadı",
@@ -709,7 +709,7 @@
       "previewTotal": "Tahmini toplam boyut",
       "previewPresetPrefix": "Ön ayar",
       "previewFontPrefix": "Özel Yazı Tipi",
-      "previewVersions": "{count} sürümleri",
+      "previewVersions": "{count, plural, one {# sürümleri} other {# sürümleri}}",
       "apiKeysWarning": "API anahtarları yedekleme dosyasına düz metin olarak kaydedilir. Bunu özel tut.",
       "importTitle": "İçe Aktar",
       "importDesc": "Ayarları ve verileri bir yedekleme dosyasından geri yükleyin. Mevcut değerler değiştirilecek.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "{count} tane kelime sil",
+    "deleteWords": "{count, plural, one {# tane kelime sil} other {# tane kelime sil}}",
     "bgLyric": "Arka Plan Satırı",
     "duetLyric": "Düet Satırı",
     "moveLineToPlayhead": "Satırı oynatma kafasına taşı",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Seçili satırları oynatma kafasına yapıştır",
     "insertLineBefore": "Öncesine yeni satır ekle",
     "insertLineAfter": "Sonrasına yeni satır ekle",
-    "copyLine": "{count} tane satırı çoğalt",
+    "copyLine": "{count, plural, one {# tane satırı çoğalt} other {# tane satırı çoğalt}}",
     "duplicateTo": "Şuraya çoğalt...",
     "combineLine": "Satırları birleştir",
-    "deleteLine": "{count} tane satırı sil",
+    "deleteLine": "{count, plural, one {# tane satırı sil} other {# tane satırı sil}}",
     "splitWord": "Kelimeyi böl…",
     "noSyllablesFound": "Birden fazla hece bulunamadı.",
     "splitIntoSyllables": "Hecelere ayır (romanizasyon)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Romanizasyonu değiştirin…",
     "combineWords": "Kelimeleri birleştir",
     "moveFollowingWordToNewLine": "Sonrakileri yeni satıra taşı",
-    "moveWordToNewLine": "{count} tane kelimeyi yeni satıra taşı"
+    "moveWordToNewLine": "{count, plural, one {# tane kelimeyi yeni satıra taşı} other {# tane kelimeyi yeni satıra taşı}}"
   },
   "settingsDialog": {
     "search": "Arama ayarları",
@@ -1053,7 +1053,7 @@
       "searchError": "Arama yapılamadı: {error}",
       "fetchError": "Şarkı sözü alınamadı: {error}",
       "noLyricsError": "İçe aktarmak için şarkı sözü yok.",
-      "importSuccess": "Genius'tan {count} tane satır içe aktarıldı.",
+      "importSuccess": "{count, plural, one {Genius'tan # tane satır içe aktarıldı.} other {Genius'tan # tane satır içe aktarıldı.}}",
       "howToGetKey": "Genius Client Access Token nasıl oluşturulur"
     },
     "openLink": "Linki aç",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Çeviri:",
     "romanLabel": "Romanizasyon:",
     "empty": "Hiçbiri",
-    "duplicateLinesHere": "Buraya seçili {count} taner satırı çoğalt",
-    "applyTimingsHere": "Buradan başlayarak {count} zamanlamaları uygulayın",
+    "duplicateLinesHere": "{count, plural, one {Buraya seçili # taner satırı çoğalt} other {Buraya seçili # taner satırı çoğalt}}",
+    "applyTimingsHere": "{count, plural, one {Buradan başlayarak # zamanlamaları uygulayın} other {Buradan başlayarak # zamanlamaları uygulayın}}",
     "applyPartialTimingsHere": "Buradan başlayarak {applied} / {total} zamanlamalarını uygulayın",
-    "timingsApplied": "{count} satırlarına zamanlama uygulandı.",
+    "timingsApplied": "{count, plural, one {# satırlarına zamanlama uygulandı.} other {# satırlarına zamanlama uygulandı.}}",
     "partialTimingCopy": "{total} kaynak zamanlamalarından yalnızca {applied} tanesi şarkı sözlerinin sonuna uyuyor.",
-    "wordTimingMismatch": "{count} satırda kelime sayısı farklıydı; yalnızca eşleşen kelime konumları kopyalandı.",
+    "wordTimingMismatch": "{count, plural, one {# satırda kelime sayısı farklıydı; yalnızca eşleşen kelime konumları kopyalandı.} other {# satırda kelime sayısı farklıydı; yalnızca eşleşen kelime konumları kopyalandı.}}",
     "insertLine": "Buraya yeni satır ekle",
     "insertWord": "Buraya kelime ekle…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius - Şarkı Sözü Ön İzlemesi",
     "back": "Geri",
     "previewSubtitle": "Şarkı sözlerini içe aktarmadan önce aşağıda düzenleyebilirsiniz.",
-    "linesCount": "{count} satır",
+    "linesCount": "{count, plural, one {# satır} other {# satır}}",
     "importButton": "Şarkı Sözlerini İçe Aktar",
     "importTitle": "Genius'tan şarkı sözü içe aktar",
     "searchPlaceholder": "Sanatçı - Şarkı Başlığı…",
@@ -1286,11 +1286,11 @@
     "description": "Şarkı sözlerini değiştirmeden önce normalleştirilmiş kategorileri ve meta verileri kontrol edin.",
     "sourceLyrics": "Kaynak şarkı sözleri",
     "structure": "Yapı",
-    "sectionCount": "{count} bölümleri",
+    "sectionCount": "{count, plural, one {# bölümleri} other {# bölümleri}}",
     "vocalist": "Vokalist / rol",
     "color": "Bölüm rengi",
     "notes": "Notlar",
-    "lineCount": "{count} şarkı sözü satırları",
+    "lineCount": "{count, plural, one {# şarkı sözü satırları} other {# şarkı sözü satırları}}",
     "import": "İncelenen şarkı sözlerini içe aktar"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "İsimsiz Proje"
   },
   "time": {
-    "daysAgo": "{count} gün önce",
-    "hoursAgo": "{count} saat önce",
-    "minutesAgo": "{count} dakika önce",
+    "daysAgo": "{count, plural, one {# gün önce} other {# gün önce}}",
+    "hoursAgo": "{count, plural, one {# saat önce} other {# saat önce}}",
+    "minutesAgo": "{count, plural, one {# dakika önce} other {# dakika önce}}",
     "justNow": "Az önce"
   },
   "metadata": {

@@ -30,7 +30,7 @@ function useCategoryLabels() {
 	const { t } = useTranslation();
 	return {
 		settings: t("settings.backup.category.settings", "Settings"),
-		keybindings: t("settings.backup.category.keybindings", "Keybindings"),
+		keybindings: t("settings.backup.category.keybindings", "Shortcuts"),
 		assets: t("settings.backup.category.assets", "Appearance assets"),
 		projects: t("settings.backup.category.projects", "Projects & history"),
 		apiKeys: t("settings.backup.category.apiKeys", "API keys"),
@@ -79,9 +79,13 @@ export function useBackupSettings() {
 	const previewLabels = useMemo<ExportPreviewLabels>(
 		() => ({
 			preset: t("settings.backup.previewPresetPrefix", "Preset"),
-			customFont: t("settings.backup.previewFontPrefix", "Custom Font"),
+			customFont: t("settings.backup.previewFontPrefix", "Custom font"),
 			versions: (count) =>
-				t("settings.backup.previewVersions", "{count} versions", { count }),
+				t(
+					"settings.backup.previewVersions",
+					"{count, plural, one {# version} other {# versions}}",
+					{ count },
+				),
 		}),
 		[t],
 	);
@@ -112,9 +116,13 @@ export function useBackupSettings() {
 			const parts: string[] = [];
 			if (assets.presets > 0) {
 				parts.push(
-					t("settings.backup.hint.presetsCount", "{count} presets", {
-						count: assets.presets,
-					}),
+					t(
+						"settings.backup.hint.presetsCount",
+						"{count, plural, one {# preset} other {# presets}}",
+						{
+							count: assets.presets,
+						},
+					),
 				);
 			}
 			if (assets.background) {
@@ -137,23 +145,39 @@ export function useBackupSettings() {
 			if (!counts) return "";
 			switch (id) {
 				case "settings":
-					return t("settings.backup.hint.settings", "{count} stored values", {
-						count: counts.settings,
-					});
+					return t(
+						"settings.backup.hint.settings",
+						"{count, plural, one {# stored value} other {# stored values}}",
+						{
+							count: counts.settings,
+						},
+					);
 				case "keybindings":
-					return t("settings.backup.hint.keybindings", "{count} keybindings", {
-						count: counts.keybindings,
-					});
+					return t(
+						"settings.backup.hint.keybindings",
+						"{count, plural, one {# shortcut} other {# shortcuts}}",
+						{
+							count: counts.keybindings,
+						},
+					);
 				case "assets":
 					return formatAssetsHint(counts.assets);
 				case "projects":
-					return t("settings.backup.hint.projects", "{count} projects", {
-						count: counts.projects,
-					});
+					return t(
+						"settings.backup.hint.projects",
+						"{count, plural, one {# project} other {# projects}}",
+						{
+							count: counts.projects,
+						},
+					);
 				case "apiKeys":
-					return t("settings.backup.hint.apiKeys", "{count} keys", {
-						count: counts.apiKeys,
-					});
+					return t(
+						"settings.backup.hint.apiKeys",
+						"{count, plural, one {# key} other {# keys}}",
+						{
+							count: counts.apiKeys,
+						},
+					);
 			}
 		},
 		[counts, formatAssetsHint, t],

@@ -39,7 +39,7 @@ export const PresetsSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<Save24Regular />{" "}
-			{t("settings.appearance.presets.title", "Appearance Presets")}
+			{t("settings.appearance.presets.title", "Appearance presets")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="3">
@@ -47,7 +47,7 @@ export const PresetsSection = ({
 					<TextField.Root
 						placeholder={t(
 							"settings.appearance.presets.namePlaceholder",
-							"Theme Name...",
+							"Theme name…",
 						)}
 						value={newPresetName}
 						onChange={(e) => setNewPresetName(e.target.value)}
@@ -58,7 +58,7 @@ export const PresetsSection = ({
 						</TextField.Slot>
 					</TextField.Root>
 					<Button onClick={handleSavePreset} disabled={!newPresetName.trim()}>
-						{t("settings.appearance.presets.save", "Save Current")}
+						{t("settings.appearance.presets.save", "Save current")}
 					</Button>
 				</Flex>
 

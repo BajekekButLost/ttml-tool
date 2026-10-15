@@ -215,7 +215,7 @@
     "close": "Zamknij",
     "autoDetect": "Automatyczne wykrywanie",
     "about": "O aplikacji",
-    "resultsFound": "Znaleziono {count} wyników",
+    "resultsFound": "{count, plural, one {Znaleziono # wyników} few {Znaleziono # wyników} many {Znaleziono # wyników} other {Znaleziono # wyników}}",
     "cancel": "Anuluj",
     "save": "Zapisz",
     "search": "Szukaj",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Nie znaleziono projektów. Wybierz folder obszaru roboczego do przeskanowania.",
-    "foundCount": "Znaleziono projekty {count}",
+    "foundCount": "{count, plural, one {Znaleziono projekty #} few {Znaleziono projekty #} many {Znaleziono projekty #} other {Znaleziono projekty #}}",
     "importable": "Importowalne",
     "scanning": "Skanowanie...",
     "selectFolder": "Wybierz folder obszaru roboczego...",
     "unknown": "Nieznany",
     "noProjectsFound": "W tym folderze nie znaleziono projektów",
-    "projectsFound": "Znalezione projekty: {count}",
+    "projectsFound": "{count, plural, one {Znalezione projekty: #} few {Znalezione projekty: #} many {Znalezione projekty: #} other {Znalezione projekty: #}}",
     "scanFailed": "Nie udało się przeskanować folderu obszaru roboczego"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Klucze API"
       },
       "hint": {
-        "settings": "{count} zapisane wartości",
-        "keybindings": "{count} skróty klawiszowe",
+        "settings": "{count, plural, one {# zapisane wartości} few {# zapisane wartości} many {# zapisane wartości} other {# zapisane wartości}}",
+        "keybindings": "{count, plural, one {# skróty klawiszowe} few {# skróty klawiszowe} many {# skróty klawiszowe} other {# skróty klawiszowe}}",
         "assetsSet": "Niestandardowy zestaw obrazów tła",
         "assetsNone": "No custom background image",
-        "presetsCount": "Ustawienia wstępne {count}",
+        "presetsCount": "{count, plural, one {Ustawienia wstępne #} few {Ustawienia wstępne #} many {Ustawienia wstępne #} other {Ustawienia wstępne #}}",
         "backgroundSet": "Niestandardowe tło",
         "fontSet": "Niestandardowa czcionka",
-        "projects": "{count} projektów",
-        "apiKeys": "Liczba kluczy: {count}"
+        "projects": "{count, plural, one {# projektów} few {# projektów} many {# projektów} other {# projektów}}",
+        "apiKeys": "{count, plural, one {Liczba kluczy: #} few {Liczba kluczy: #} many {Liczba kluczy: #} other {Liczba kluczy: #}}"
       },
       "exportSuccess": "Kopia zapasowa wyeksportowana",
       "exportFailed": "Nie udało się wyeksportować kopii zapasowej",
@@ -709,7 +709,7 @@
       "previewTotal": "Szacunkowy rozmiar całkowity",
       "previewPresetPrefix": "Wstępnie ustawione",
       "previewFontPrefix": "Niestandardowa czcionka",
-      "previewVersions": "{count} wersje",
+      "previewVersions": "{count, plural, one {# wersje} few {# wersje} many {# wersje} other {# wersje}}",
       "apiKeysWarning": "Klucze API są zapisywane jako zwykły tekst w pliku kopii zapasowej. Zachowaj prywatność.",
       "importTitle": "Importuj",
       "importDesc": "Przywróć ustawienia i dane z pliku kopii zapasowej. Istniejące wartości zostaną zastąpione.",
@@ -1053,7 +1053,7 @@
       "searchError": "Wyszukiwanie nie powiodło się: {error}",
       "fetchError": "Nie udało się pobrać tekstu: {error}",
       "noLyricsError": "Brak tekstów do zaimportowania.",
-      "importSuccess": "Zaimportowano linie {count} z Genius.",
+      "importSuccess": "{count, plural, one {Zaimportowano linie # z Genius.} few {Zaimportowano linie # z Genius.} many {Zaimportowano linie # z Genius.} other {Zaimportowano linie # z Genius.}}",
       "howToGetKey": "Jak utworzyć Client Access Token Genius"
     },
     "openLink": "Otwórz link",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Tłumaczenie:",
     "romanLabel": "Romanizacja:",
     "empty": "Brak",
-    "duplicateLinesHere": "Zduplikuj tutaj {count} wybrane linie",
-    "applyTimingsHere": "Zastosuj taktowanie {count}, zaczynając tutaj",
+    "duplicateLinesHere": "{count, plural, one {Zduplikuj tutaj # wybrane linie} few {Zduplikuj tutaj # wybrane linie} many {Zduplikuj tutaj # wybrane linie} other {Zduplikuj tutaj # wybrane linie}}",
+    "applyTimingsHere": "{count, plural, one {Zastosuj taktowanie #, zaczynając tutaj} few {Zastosuj taktowanie #, zaczynając tutaj} many {Zastosuj taktowanie #, zaczynając tutaj} other {Zastosuj taktowanie #, zaczynając tutaj}}",
     "applyPartialTimingsHere": "Zastosuj taktowanie {applied} z {total}, zaczynając tutaj",
-    "timingsApplied": "Zastosowano taktowanie do linii {count}.",
+    "timingsApplied": "{count, plural, one {Zastosowano taktowanie do linii #.} few {Zastosowano taktowanie do linii #.} many {Zastosowano taktowanie do linii #.} other {Zastosowano taktowanie do linii #.}}",
     "partialTimingCopy": "Tylko {applied} z {total} źródeł pasuje przed końcem tekstu.",
-    "wordTimingMismatch": "Liczba linii z inną liczbą słów: {count}. Skopiowano tylko pasujące pozycje słów.",
+    "wordTimingMismatch": "{count, plural, one {Liczba linii z inną liczbą słów: #. Skopiowano tylko pasujące pozycje słów.} few {Liczba linii z inną liczbą słów: #. Skopiowano tylko pasujące pozycje słów.} many {Liczba linii z inną liczbą słów: #. Skopiowano tylko pasujące pozycje słów.} other {Liczba linii z inną liczbą słów: #. Skopiowano tylko pasujące pozycje słów.}}",
     "insertLine": "Wstaw nową linię tutaj",
     "insertWord": "Wstaw słowo tutaj…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — podgląd tekstu",
     "back": "Powrót",
     "previewSubtitle": "Przed zaimportowaniem możesz edytować poniższe teksty.",
-    "linesCount": "Linie {count}",
+    "linesCount": "{count, plural, one {Linie #} few {Linie #} many {Linie #} other {Linie #}}",
     "importButton": "Importuj teksty",
     "importTitle": "Importuj teksty z Genius",
     "searchPlaceholder": "Artysta – tytuł utworu…",
@@ -1286,11 +1286,11 @@
     "description": "Przed zastąpieniem tekstu sprawdź znormalizowane kategorie i metadane.",
     "sourceLyrics": "Tekst źródłowy",
     "structure": "Struktura",
-    "sectionCount": "{count} sekcje",
+    "sectionCount": "{count, plural, one {# sekcje} few {# sekcje} many {# sekcje} other {# sekcje}}",
     "vocalist": "Wokalista / rola",
     "color": "Kolor sekcji",
     "notes": "Notatki",
-    "lineCount": "{count} linie tekstowe",
+    "lineCount": "{count, plural, one {# linie tekstowe} few {# linie tekstowe} many {# linie tekstowe} other {# linie tekstowe}}",
     "import": "Importuj sprawdzone teksty"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Projekt bez tytułu"
   },
   "time": {
-    "daysAgo": "{count} dni temu",
-    "hoursAgo": "{count} godzin temu",
-    "minutesAgo": "{count} minut temu",
+    "daysAgo": "{count, plural, one {# dni temu} few {# dni temu} many {# dni temu} other {# dni temu}}",
+    "hoursAgo": "{count, plural, one {# godzin temu} few {# godzin temu} many {# godzin temu} other {# godzin temu}}",
+    "minutesAgo": "{count, plural, one {# minut temu} few {# minut temu} many {# minut temu} other {# minut temu}}",
     "justNow": "Przed chwilą"
   },
   "metadata": {

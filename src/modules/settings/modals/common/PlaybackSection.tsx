@@ -28,7 +28,7 @@ export const PlaybackSection = ({
 							justify="between"
 							style={{ alignSelf: "stretch" }}
 						>
-							<Text>{t("settings.common.volume", "Music Volume")}</Text>
+							<Text>{t("settings.common.volume", "Music volume")}</Text>
 							<Text wrap="nowrap" color="gray" size="1">
 								{(volume * 100).toFixed()}%
 							</Text>
@@ -55,7 +55,7 @@ export const PlaybackSection = ({
 							justify="between"
 							style={{ alignSelf: "stretch" }}
 						>
-							<Text>{t("settings.common.playbackRate", "Playback Speed")}</Text>
+							<Text>{t("settings.common.playbackRate", "Playback speed")}</Text>
 							<Text wrap="nowrap" color="gray" size="1">
 								{playbackRate.toFixed(2)}x
 							</Text>

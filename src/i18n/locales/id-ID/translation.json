@@ -215,7 +215,7 @@
     "close": "Tutup",
     "autoDetect": "Deteksi Otomatis",
     "about": "Tentang",
-    "resultsFound": "Menemukan hasil {count}",
+    "resultsFound": "{count, plural, other {Menemukan hasil #}}",
     "cancel": "Batal",
     "save": "Simpan",
     "search": "Cari",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Tidak ada proyek yang ditemukan. Pilih folder ruang kerja untuk dipindai.",
-    "foundCount": "Proyek {count} ditemukan",
+    "foundCount": "{count, plural, other {Proyek # ditemukan}}",
     "importable": "Dapat diimpor",
     "scanning": "Memindai...",
     "selectFolder": "Pilih folder ruang kerja...",
     "unknown": "Tidak diketahui",
     "noProjectsFound": "Tidak ada proyek di folder ini",
-    "projectsFound": "Ditemukan {count} proyek",
+    "projectsFound": "{count, plural, other {Ditemukan # proyek}}",
     "scanFailed": "Gagal memindai folder ruang kerja"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "Kunci API"
       },
       "hint": {
-        "settings": "{count} menyimpan nilai",
-        "keybindings": "Ikatan kunci {count}",
+        "settings": "{count, plural, other {# menyimpan nilai}}",
+        "keybindings": "{count, plural, other {Ikatan kunci #}}",
         "assetsSet": "Kumpulan gambar latar belakang khusus",
         "assetsNone": "No custom background image",
-        "presetsCount": "Preset {count}",
+        "presetsCount": "{count, plural, other {Preset #}}",
         "backgroundSet": "Latar belakang khusus",
         "fontSet": "Font khusus",
-        "projects": "Proyek {count}",
-        "apiKeys": "{count} kunci"
+        "projects": "{count, plural, other {Proyek #}}",
+        "apiKeys": "{count, plural, other {# kunci}}"
       },
       "exportSuccess": "Cadangan diekspor",
       "exportFailed": "Gagal mengekspor cadangan",
@@ -709,7 +709,7 @@
       "previewTotal": "Perkiraan ukuran keseluruhan",
       "previewPresetPrefix": "Prasetel",
       "previewFontPrefix": "Font Khusus",
-      "previewVersions": "Versi {count}",
+      "previewVersions": "{count, plural, other {Versi #}}",
       "apiKeysWarning": "Kunci API disimpan sebagai teks biasa di file cadangan. Jaga kerahasiaannya.",
       "importTitle": "Impor Lirik",
       "importDesc": "Pulihkan pengaturan dan data dari file cadangan. Nilai-nilai yang ada akan diganti.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Hapus {count} kata",
+    "deleteWords": "{count, plural, other {Hapus # kata}}",
     "bgLyric": "Lirik Latar",
     "duetLyric": "Lirik Duet",
     "moveLineToPlayhead": "Pindahkan garis ke playhead",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Jepret baris yang dipilih ke playhead",
     "insertLineBefore": "Sisipkan Baris Sebelum",
     "insertLineAfter": "Sisipkan Baris Sesudah",
-    "copyLine": "Salin {count} baris",
+    "copyLine": "{count, plural, other {Salin # baris}}",
     "duplicateTo": "Gandakan ke...",
     "combineLine": "Gabungkan Baris",
-    "deleteLine": "Hapus {count} baris",
+    "deleteLine": "{count, plural, other {Hapus # baris}}",
     "splitWord": "Pecah Kata…",
     "noSyllablesFound": "Tidak ditemukan beberapa suku kata.",
     "splitIntoSyllables": "Pisahkan menjadi suku kata (romanisasi)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Ganti romanisasi…",
     "combineWords": "Gabungkan Kata",
     "moveFollowingWordToNewLine": "Pindahkan Kata Berikutnya ke Baris Baru",
-    "moveWordToNewLine": "Pindahkan {count} kata ke baris baru"
+    "moveWordToNewLine": "{count, plural, other {Pindahkan # kata ke baris baru}}"
   },
   "settingsDialog": {
     "search": "Pengaturan pencarian",
@@ -1053,7 +1053,7 @@
       "searchError": "Pencarian gagal: {error}",
       "fetchError": "Tidak dapat mengambil lirik: {error}",
       "noLyricsError": "Tidak ada lirik untuk diimpor.",
-      "importSuccess": "Garis {count} yang diimpor dari Genius.",
+      "importSuccess": "{count, plural, other {Garis # yang diimpor dari Genius.}}",
       "howToGetKey": "Cara membuat Genius Client Access Token"
     },
     "openLink": "Buka Tautan",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Terjemahan:",
     "romanLabel": "Romanisasi:",
     "empty": "Kosong",
-    "duplicateLinesHere": "Gandakan baris yang dipilih {count} di sini",
-    "applyTimingsHere": "Terapkan pengaturan waktu {count} mulai dari sini",
+    "duplicateLinesHere": "{count, plural, other {Gandakan baris yang dipilih # di sini}}",
+    "applyTimingsHere": "{count, plural, other {Terapkan pengaturan waktu # mulai dari sini}}",
     "applyPartialTimingsHere": "Terapkan pengaturan waktu {applied} dari {total} mulai dari sini",
-    "timingsApplied": "Pengaturan waktu yang diterapkan pada jalur {count}.",
+    "timingsApplied": "{count, plural, other {Pengaturan waktu yang diterapkan pada jalur #.}}",
     "partialTimingCopy": "Hanya {applied} dari {total} pengaturan waktu sumber yang cocok sebelum akhir lirik.",
-    "wordTimingMismatch": "{count} baris memiliki jumlah kata berbeda; hanya posisi kata yang cocok yang disalin.",
+    "wordTimingMismatch": "{count, plural, other {# baris memiliki jumlah kata berbeda; hanya posisi kata yang cocok yang disalin.}}",
     "insertLine": "Sisipkan baris baru di sini",
     "insertWord": "Sisipkan kata…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Pratinjau Lirik",
     "back": "Kembali",
     "previewSubtitle": "Anda dapat mengedit lirik di bawah ini sebelum mengimpor.",
-    "linesCount": "garis {count}",
+    "linesCount": "{count, plural, other {garis #}}",
     "importButton": "Impor Lirik",
     "importTitle": "Impor Lirik dari Genius",
     "searchPlaceholder": "Artis – Judul lagu…",
@@ -1286,11 +1286,11 @@
     "description": "Periksa kategori dan metadata yang dinormalisasi sebelum mengganti lirik.",
     "sourceLyrics": "Lirik sumber",
     "structure": "Struktur",
-    "sectionCount": "Bagian {count}",
+    "sectionCount": "{count, plural, other {Bagian #}}",
     "vocalist": "Vokalis / peran",
     "color": "Warna bagian",
     "notes": "Catatan",
-    "lineCount": "Baris lirik {count}",
+    "lineCount": "{count, plural, other {Baris lirik #}}",
     "import": "Impor lirik yang telah ditinjau"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Proyek Tanpa Nama"
   },
   "time": {
-    "daysAgo": "{count} hari yang lalu",
-    "hoursAgo": "{count} jam yang lalu",
-    "minutesAgo": "{count} menit yang lalu",
+    "daysAgo": "{count, plural, other {# hari yang lalu}}",
+    "hoursAgo": "{count, plural, other {# jam yang lalu}}",
+    "minutesAgo": "{count, plural, other {# menit yang lalu}}",
     "justNow": "Baru saja"
   },
   "metadata": {

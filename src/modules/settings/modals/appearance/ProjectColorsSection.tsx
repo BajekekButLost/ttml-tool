@@ -18,7 +18,7 @@ export const ProjectColorsSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<PaintBrush24Regular />{" "}
-			{t("settings.appearance.advanced.projectColors", "Project Colors")}
+			{t("settings.appearance.advanced.projectColors", "Project colors")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="4">
@@ -31,13 +31,13 @@ export const ProjectColorsSection = ({
 									<Text>
 										{t(
 											"settings.appearance.advanced.primaryText",
-											"Primary Text Color",
+											"Primary text color",
 										)}
 									</Text>
 									<Text size="1" color="gray">
 										{t(
 											"settings.appearance.advanced.primaryTextDesc",
-											"Global primary text override.",
+											"Overrides the main text color everywhere.",
 										)}
 									</Text>
 								</Flex>
@@ -54,13 +54,13 @@ export const ProjectColorsSection = ({
 									<Text>
 										{t(
 											"settings.appearance.advanced.secondaryText",
-											"Secondary Text Color",
+											"Secondary text color",
 										)}
 									</Text>
 									<Text size="1" color="gray">
 										{t(
 											"settings.appearance.secondaryDesc",
-											"Translations & Metadata.",
+											"Translations and metadata.",
 										)}
 									</Text>
 								</Flex>

@@ -32,10 +32,7 @@ export const GradientPositionControls = ({
 			<Popover.Trigger>
 				<Button variant="soft" style={{ flexGrow: 1 }}>
 					<CompassNorthwest24Regular />
-					{t(
-						"settings.appearance.gradientPositionSettings",
-						"Adjust Center & Angle",
-					)}
+					{t("settings.appearance.gradientPositionSettings", "Center & angle")}
 				</Button>
 			</Popover.Trigger>
 			<Popover.Content size="2" style={{ width: 300 }}>
@@ -43,7 +40,7 @@ export const GradientPositionControls = ({
 					<Text weight="bold" size="2">
 						{t(
 							"settings.appearance.gradientPositionSettings",
-							"Center & Angle",
+							"Center & angle",
 						)}
 					</Text>
 
@@ -52,7 +49,7 @@ export const GradientPositionControls = ({
 							<Text size="1" color="gray">
 								{t(
 									"settings.appearance.gradientCenterX",
-									"Center X (Horizontal)",
+									"Center X (horizontal)",
 								)}
 								: {customGradientCenter[0]}%
 							</Text>
@@ -69,7 +66,7 @@ export const GradientPositionControls = ({
 							<Text size="1" color="gray">
 								{t(
 									"settings.appearance.gradientCenterY",
-									"Center Y (Vertical)",
+									"Center Y (vertical)",
 								)}
 								: {customGradientCenter[1]}%
 							</Text>

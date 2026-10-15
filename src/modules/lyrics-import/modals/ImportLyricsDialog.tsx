@@ -416,7 +416,7 @@ export const ImportLyricsDialog = ({
 			toast.success(
 				t(
 					"metadataDialog.fetchSongwriters.importSuccess",
-					"Imported {count} lines from Genius.",
+					"{count, plural, one {Imported # line from Genius.} other {Imported # lines from Genius.}}",
 					{
 						count: processedLines.length,
 					},
@@ -448,7 +448,7 @@ export const ImportLyricsDialog = ({
 			if (isDirty) {
 				setConfirmDialog({
 					open: true,
-					title: t("confirmDialog.importFile.title", "Confirm lyric import"),
+					title: t("confirmDialog.importFile.title", "Import new lyrics?"),
 					description: t(
 						"confirmDialog.importFile.description",
 						"This project has unsaved changes. Importing will replace its lyrics. Continue?",
@@ -488,13 +488,13 @@ export const ImportLyricsDialog = ({
 			<Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
 				<Dialog.Content style={{ maxWidth: 500 }}>
 					<Dialog.Title>
-						{t("genius.setupTitle", "Genius API Key Setup")}
+						{t("genius.setupTitle", "Genius access token")}
 					</Dialog.Title>
 					<Flex direction="column" gap="4">
 						<Text>
 							{t(
 								"genius.setupDesc",
-								"To import lyrics from Genius you need a CLIENT ACCESS TOKEN.",
+								"To import from Genius you need a Genius access token (Genius calls it the Client Access Token). You can create one in the Genius developer portal.",
 							)}
 						</Text>
 						<Text size="2">
@@ -503,10 +503,7 @@ export const ImportLyricsDialog = ({
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								{t(
-									"genius.howToGetKey",
-									"How to create a Genius Client Access Token",
-								)}
+								{t("genius.howToGetKey", "How to get a Genius access token")}
 							</a>
 						</Text>
 						<TextField.Root
@@ -514,7 +511,7 @@ export const ImportLyricsDialog = ({
 							onChange={(e) => setTempApiKey(e.target.value)}
 							placeholder={t(
 								"genius.keyPlaceholder",
-								"Paste CLIENT ACCESS TOKEN here…",
+								"Paste your Genius access token…",
 							)}
 						/>
 						<Flex justify="end" gap="2">
@@ -555,13 +552,10 @@ export const ImportLyricsDialog = ({
 							<Flex direction="column">
 								<Dialog.Title mb="0">
 									{source === "genius"
-										? t("genius.previewTitle", "Genius — Lyrics Preview")
+										? t("genius.previewTitle", "Genius lyrics preview")
 										: source === "lrclib"
-											? t("lrclib.title", "LRCLIB — Lyrics Preview")
-											: t(
-													"lyrically.previewTitle",
-													"Lyrically — Lyrics Preview",
-												)}
+											? t("lrclib.title", "Import lyrics from LRCLIB")
+											: t("lyrically.previewTitle", "Lyrically lyrics preview")}
 								</Dialog.Title>
 								<Text size="1" color="gray" truncate style={{ maxWidth: 460 }}>
 									{selectedHit.name} - {selectedHit.artist}
@@ -588,7 +582,7 @@ export const ImportLyricsDialog = ({
 								<Flex justify="between" align="center" mb="2">
 									<Text size="1" color="gray">
 										{isEditing
-											? t("lyrically.editingRawText", "Editing Raw Text")
+											? t("lyrically.editingRawText", "Editing raw text")
 											: t(
 													"genius.previewSubtitle",
 													"Text in parentheses will be separated as background lyrics.",
@@ -660,11 +654,15 @@ export const ImportLyricsDialog = ({
 										style={{ flex: 1, minWidth: 0 }}
 									>
 										<Text size="1" color="gray">
-											{t("genius.linesCount", "{count} lines", {
-												count: editableLyrics
-													.split("\n")
-													.filter((line) => line.trim()).length,
-											})}
+											{t(
+												"genius.linesCount",
+												"{count, plural, one {# line} other {# lines}}",
+												{
+													count: editableLyrics
+														.split("\n")
+														.filter((line) => line.trim()).length,
+												},
+											)}
 										</Text>
 										<Flex direction="column" gap="2" align="start">
 											<Flex gap="3" align="center" wrap="wrap">
@@ -672,7 +670,7 @@ export const ImportLyricsDialog = ({
 													<Text size="1" color="gray">
 														{t(
 															"textImportDialog.processLyrics",
-															"Process Lyrics",
+															"Process lyrics",
 														)}
 													</Text>
 													<Checkbox
@@ -689,7 +687,7 @@ export const ImportLyricsDialog = ({
 														<Text size="1" color="gray">
 															{t(
 																"metadataDialog.fetchSongwriters.button",
-																"Fetch Songwriters",
+																"Fetch songwriters from Genius",
 															)}
 														</Text>
 														<Checkbox
@@ -717,7 +715,7 @@ export const ImportLyricsDialog = ({
 													<Text size="1" color="gray">
 														{t(
 															"experimentalFeatures.geniusCategorization.title",
-															"Genius Header Categorization",
+															"Genius sections",
 														)}
 													</Text>
 													<Checkbox
@@ -749,7 +747,7 @@ export const ImportLyricsDialog = ({
 													)
 											}
 										>
-											{t("genius.importButton", "Import Lyrics")}
+											{t("genius.importButton", "Import lyrics")}
 										</Button>
 									</Flex>
 								</Flex>
@@ -780,20 +778,17 @@ export const ImportLyricsDialog = ({
 			<Dialog.Content style={{ maxWidth: 620, height: "72vh" }}>
 				<Dialog.Title>
 					{source === "genius"
-						? t("genius.importTitle", "Import Lyrics from Genius")
+						? t("genius.importTitle", "Import lyrics from Genius")
 						: source === "lrclib"
-							? t("lrclib.title", "Import Lyrics from LRCLIB")
-							: t(
-									"lyrically.importTitle",
-									"Import Lyrics safely via Lyrically",
-								)}
+							? t("lrclib.title", "Import lyrics from LRCLIB")
+							: t("lyrically.importTitle", "Import lyrics from Lyrically")}
 				</Dialog.Title>
 
 				<Flex gap="3" mb="4">
 					<TextField.Root
 						ref={inputRef}
 						style={{ flex: 1 }}
-						placeholder={t("genius.searchPlaceholder", "Artist – Song title…")}
+						placeholder={t("genius.searchPlaceholder", "Artist – song title…")}
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 						onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -938,7 +933,7 @@ export const ImportLyricsDialog = ({
 							color="gray"
 							onClick={() => setGeniusApiKey("")}
 						>
-							{t("genius.changeKey", "Change API Key")}
+							{t("genius.changeKey", "Change access token")}
 						</Button>
 					)}
 					<Dialog.Close>

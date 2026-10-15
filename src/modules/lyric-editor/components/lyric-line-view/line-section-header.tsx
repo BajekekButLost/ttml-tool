@@ -83,7 +83,7 @@ export function LineSectionHeader({
 					>
 						{t(
 							"experimentalFeatures.geniusCategorization.snapToPlayhead",
-							"Snap to Playhead",
+							"Snap to playhead",
 						)}
 					</Button>
 				)}
@@ -109,7 +109,7 @@ export function LineSectionHeader({
 										previousSection,
 									);
 								});
-								toast.success(t("common.success", "Success"));
+								toast.success(t("common.success", "Restored"));
 								if (copyResult && !copyResult.lengthsMatch) {
 									toast.info(
 										"Section lengths differ; copied matching lines only.",
@@ -119,7 +119,7 @@ export function LineSectionHeader({
 								toast.info(
 									t(
 										"experimentalFeatures.geniusCategorization.noPreviousFound",
-										"No previous identical header found with timing.",
+										"No earlier matching section with timing found.",
 									),
 								);
 							}
@@ -127,7 +127,7 @@ export function LineSectionHeader({
 					>
 						{t(
 							"experimentalFeatures.geniusCategorization.copyPrevious",
-							"Copy Previous Timing",
+							"Copy previous timing",
 						)}
 					</Button>
 				)}

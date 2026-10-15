@@ -103,7 +103,7 @@ export const BackgroundSection = ({
 										<Text>
 											{t(
 												"settings.appearance.useCustomGradient",
-												"Custom Gradient Color",
+												"Custom gradient color",
 											)}
 										</Text>
 										<Text size="1" color="gray">
@@ -192,14 +192,14 @@ export const BackgroundSection = ({
 												>
 													{t(
 														"settings.appearance.addGradientColor",
-														"Add Color",
+														"Add color",
 													)}
 												</Button>
 											)}
 										</Flex>
 										<Flex align="center" justify="between">
 											<Text>
-												{t("settings.appearance.gradientType", "Gradient Type")}
+												{t("settings.appearance.gradientType", "Gradient type")}
 											</Text>
 											<SegmentedControl.Root
 												value={customGradientType}
@@ -225,7 +225,7 @@ export const BackgroundSection = ({
 												<Text>
 													{t(
 														"settings.appearance.gradientOpacity",
-														"Gradient Opacity",
+														"Gradient opacity",
 													)}
 												</Text>
 												<Text wrap="nowrap" color="gray" size="1">
@@ -245,7 +245,7 @@ export const BackgroundSection = ({
 												<Text>
 													{t(
 														"settings.appearance.gradientSize",
-														"Gradient Scale",
+														"Gradient scale",
 													)}
 												</Text>
 												<Text wrap="nowrap" color="gray" size="1">

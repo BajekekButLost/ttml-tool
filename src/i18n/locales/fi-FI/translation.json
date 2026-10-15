@@ -215,7 +215,7 @@
     "close": "Sulje",
     "autoDetect": "Automaattinen tunnistus",
     "about": "Tietoja",
-    "resultsFound": "Löytyi {count} tulokset",
+    "resultsFound": "{count, plural, one {Löytyi # tulokset} other {Löytyi # tulokset}}",
     "cancel": "Peruuta",
     "save": "Tallenna",
     "search": "Etsi",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Projekteja ei löytynyt. Valitse skannattava työtilakansio.",
-    "foundCount": "{count}-projekti(t) löydetty",
+    "foundCount": "{count, plural, one {#-projekti(t) löydetty} other {#-projekti(t) löydetty}}",
     "importable": "Tuotava",
     "scanning": "Skannataan...",
     "selectFolder": "Valitse työtilan kansio...",
     "unknown": "Tuntematon",
     "noProjectsFound": "Tästä kansiosta ei löytynyt projekteja",
-    "projectsFound": "Löydetyt projektit: {count}",
+    "projectsFound": "{count, plural, one {Löydetyt projektit: #} other {Löydetyt projektit: #}}",
     "scanFailed": "Työtilakansion läpikäynti epäonnistui"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "API-avaimet"
       },
       "hint": {
-        "settings": "{count} tallennetut arvot",
-        "keybindings": "{count} näppäinsidokset",
+        "settings": "{count, plural, one {# tallennetut arvot} other {# tallennetut arvot}}",
+        "keybindings": "{count, plural, one {# näppäinsidokset} other {# näppäinsidokset}}",
         "assetsSet": "Mukautettu taustakuvasarja",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} esiasetukset",
+        "presetsCount": "{count, plural, one {# esiasetukset} other {# esiasetukset}}",
         "backgroundSet": "Mukautettu tausta",
         "fontSet": "Mukautettu fontti",
-        "projects": "{count} projektit",
-        "apiKeys": "{count} avainta"
+        "projects": "{count, plural, one {# projektit} other {# projektit}}",
+        "apiKeys": "{count, plural, one {# avainta} other {# avainta}}"
       },
       "exportSuccess": "Varmuuskopio viety",
       "exportFailed": "Varmuuskopion vienti epäonnistui",
@@ -709,7 +709,7 @@
       "previewTotal": "Arvioitu kokonaiskoko",
       "previewPresetPrefix": "Esiasetettu",
       "previewFontPrefix": "Mukautettu fontti",
-      "previewVersions": "{count} versiot",
+      "previewVersions": "{count, plural, one {# versiot} other {# versiot}}",
       "apiKeysWarning": "API-avaimet tallennetaan pelkkänä tekstinä varmuuskopiotiedostoon. Pidä se yksityisenä.",
       "importTitle": "Tuo",
       "importDesc": "Palauta asetukset ja tiedot varmuuskopiotiedostosta. Nykyiset arvot korvataan.",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "Poista {count} sanaa",
+    "deleteWords": "{count, plural, one {Poista # sanaa} other {Poista # sanaa}}",
     "bgLyric": "Taustaviiva",
     "duetLyric": "Duettilinja",
     "moveLineToPlayhead": "Siirrä rivi toistopaikkaan",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "Napsauta valitut rivit toistopaikkaan",
     "insertLineBefore": "Lisää uusi rivi ennen",
     "insertLineAfter": "Lisää uusi rivi perään",
-    "copyLine": "Päällekkäiset {count}-rivit",
+    "copyLine": "{count, plural, one {Päällekkäiset #-rivit} other {Päällekkäiset #-rivit}}",
     "duplicateTo": "Kopioi kohteeseen...",
     "combineLine": "Yhdistä rivit",
-    "deleteLine": "Poista {count} rivi(ä)",
+    "deleteLine": "{count, plural, one {Poista # rivi(ä)} other {Poista # rivi(ä)}}",
     "splitWord": "Jaa sana…",
     "noSyllablesFound": "Useita tavuja ei löytynyt.",
     "splitIntoSyllables": "Jaa tavuiksi (romanisoitu)",
@@ -868,7 +868,7 @@
     "replaceRomanization": "Korvaa latinisointi…",
     "combineWords": "Yhdistä sanoja",
     "moveFollowingWordToNewLine": "Siirrä seuraavat uudelle riville",
-    "moveWordToNewLine": "Siirrä {count} sana(t) uudelle riville"
+    "moveWordToNewLine": "{count, plural, one {Siirrä # sana(t) uudelle riville} other {Siirrä # sana(t) uudelle riville}}"
   },
   "settingsDialog": {
     "search": "Hakuasetukset",
@@ -1053,7 +1053,7 @@
       "searchError": "Haku epäonnistui: {error}",
       "fetchError": "Sanoitusta ei voitu hakea: {error}",
       "noLyricsError": "Ei tuodattavia sanoituksia.",
-      "importSuccess": "Tuodut {count}-linjat Genius:sta.",
+      "importSuccess": "{count, plural, one {Tuodut #-linjat Genius:sta.} other {Tuodut #-linjat Genius:sta.}}",
       "howToGetKey": "Genius Client Access Tokenin luominen"
     },
     "openLink": "Avaa linkki",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Käännös:",
     "romanLabel": "Romanisointi:",
     "empty": "Ei mitään",
-    "duplicateLinesHere": "Kopioi {count} valitut rivit tähän",
-    "applyTimingsHere": "Käytä {count}-ajoitusta alkaen tästä",
+    "duplicateLinesHere": "{count, plural, one {Kopioi # valitut rivit tähän} other {Kopioi # valitut rivit tähän}}",
+    "applyTimingsHere": "{count, plural, one {Käytä #-ajoitusta alkaen tästä} other {Käytä #-ajoitusta alkaen tästä}}",
     "applyPartialTimingsHere": "Käytä {applied}/{total}-ajoitusta alkaen tästä",
-    "timingsApplied": "Käytetty ajoitus {count}-linjoille.",
+    "timingsApplied": "{count, plural, one {Käytetty ajoitus #-linjoille.} other {Käytetty ajoitus #-linjoille.}}",
     "partialTimingCopy": "Vain {applied} {total}:n lähdeajoitukset mahtuvat ennen sanoituksen loppua.",
-    "wordTimingMismatch": "{count} rivillä oli eri sanamäärä; vain vastaavat sanapaikat kopioitiin.",
+    "wordTimingMismatch": "{count, plural, one {# rivillä oli eri sanamäärä; vain vastaavat sanapaikat kopioitiin.} other {# rivillä oli eri sanamäärä; vain vastaavat sanapaikat kopioitiin.}}",
     "insertLine": "Lisää uusi rivi tähän",
     "insertWord": "Lisää sana tähän…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Sanoitusten esikatselu",
     "back": "Takaisin",
     "previewSubtitle": "Voit muokata alla olevia sanoituksia ennen tuontia.",
-    "linesCount": "{count} linjat",
+    "linesCount": "{count, plural, one {# linjat} other {# linjat}}",
     "importButton": "Tuo sanoituksia",
     "importTitle": "Tuo sanat Genius:sta",
     "searchPlaceholder": "Artisti – Kappaleen nimi…",
@@ -1286,11 +1286,11 @@
     "description": "Tarkista normalisoidut luokat ja metatiedot ennen sanoitusten vaihtamista.",
     "sourceLyrics": "Lähde sanoitukset",
     "structure": "Rakenne",
-    "sectionCount": "{count} osat",
+    "sectionCount": "{count, plural, one {# osat} other {# osat}}",
     "vocalist": "Laulaja / rooli",
     "color": "Osion väri",
     "notes": "Huomautuksia",
-    "lineCount": "{count} lyriikat",
+    "lineCount": "{count, plural, one {# lyriikat} other {# lyriikat}}",
     "import": "Tuo tarkistetut sanoitukset"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Nimetön projekti"
   },
   "time": {
-    "daysAgo": "{count} päivää sitten",
-    "hoursAgo": "{count} tuntia sitten",
-    "minutesAgo": "{count} minuuttia sitten",
+    "daysAgo": "{count, plural, one {# päivää sitten} other {# päivää sitten}}",
+    "hoursAgo": "{count, plural, one {# tuntia sitten} other {# tuntia sitten}}",
+    "minutesAgo": "{count, plural, one {# minuuttia sitten} other {# minuuttia sitten}}",
     "justNow": "Juuri nyt"
   },
   "metadata": {

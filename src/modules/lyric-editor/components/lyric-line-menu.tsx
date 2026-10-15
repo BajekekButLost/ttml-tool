@@ -111,7 +111,7 @@ export const LyricLineMenu = ({ lineIndex }: { lineIndex: number }) => {
 				}}
 				disabled={selectedLinesSize === 0}
 			>
-				{t("contextMenu.duplicateTo", "Duplicate to...")}
+				{t("contextMenu.duplicateTo", "Duplicate to…")}
 			</ContextMenu.Item>
 			<ContextMenu.Item onSelect={combineLines} disabled={!combineEnabled}>
 				{t("contextMenu.combineLine", "合并行")}

@@ -16,13 +16,13 @@ export const LayoutSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<ArrowSortDownLines24Regular />{" "}
-			{t("settings.appearance.layout.title", "Application Layout")}
+			{t("settings.appearance.layout.title", "Application layout")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="4">
 				<Flex direction="column" gap="1">
 					<Text weight="bold">
-						{t("settings.appearance.layout.order", "Element Order")}
+						{t("settings.appearance.layout.order", "Element order")}
 					</Text>
 					<Text size="1" color="gray">
 						{t(
@@ -56,7 +56,7 @@ export const LayoutSection = ({
 													<Window24Regular />{" "}
 													{t(
 														"settings.appearance.layout.titlebar",
-														"Title Bar",
+														"Title bar",
 													)}
 												</>
 											)}
@@ -67,7 +67,7 @@ export const LayoutSection = ({
 													/>{" "}
 													{t(
 														"settings.appearance.layout.ribbonbar",
-														"Toolbar (Ribbon)",
+														"Toolbar (ribbon)",
 													)}
 												</>
 											)}
@@ -76,7 +76,7 @@ export const LayoutSection = ({
 													<TextT24Regular />{" "}
 													{t(
 														"settings.appearance.layout.editor",
-														"Main Editor Area",
+														"Main editor area",
 													)}
 												</>
 											)}
@@ -85,7 +85,7 @@ export const LayoutSection = ({
 													<Speaker224Regular />{" "}
 													{t(
 														"settings.appearance.layout.audio",
-														"Audio Controls",
+														"Audio controls",
 													)}
 												</>
 											)}

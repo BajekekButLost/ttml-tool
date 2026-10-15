@@ -91,7 +91,7 @@ export async function withTTMLExport(
 			notify(
 				t(
 					"export.sectionReview",
-					"Section review: {count} non-blocking issues.",
+					"Section check: {count, plural, one {# warning} other {# warnings}}. Saving isn't blocked.",
 					{ count: review.sectionIssueCount },
 				),
 			);
@@ -122,7 +122,7 @@ export async function withTTMLExport(
 			const { line, unit } = review.untimed;
 			const description = t(
 				"confirmDialog.untimedLyrics.description",
-				"There is an untimed line or word in your lyrics. Would you like to fix it or export anyway?",
+				"Some lines or words have no timing yet. Fix them, or export anyway?",
 			);
 			if (recovery)
 				notify(
@@ -134,16 +134,13 @@ export async function withTTMLExport(
 			else {
 				store.set(confirmDialogAtom, {
 					open: true,
-					title: t(
-						"confirmDialog.untimedLyrics.title",
-						"Untimed Lyrics Detected",
-					),
+					title: t("confirmDialog.untimedLyrics.title", "Untimed lyrics found"),
 					description,
 					confirmText: t(
 						"confirmDialog.untimedLyrics.exportAnyway",
-						"Export Anyway",
+						"Export anyway",
 					),
-					cancelText: t("confirmDialog.untimedLyrics.fixIt", "Fix It"),
+					cancelText: t("confirmDialog.untimedLyrics.fixIt", "Fix it"),
 					onConfirm: () => {
 						void execute();
 					},

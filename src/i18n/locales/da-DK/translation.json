@@ -215,7 +215,7 @@
     "close": "Luk",
     "autoDetect": "Automatisk registrering",
     "about": "Om",
-    "resultsFound": "Fundet {count} resultater",
+    "resultsFound": "{count, plural, one {Fundet # resultater} other {Fundet # resultater}}",
     "cancel": "Annuller",
     "save": "Gem",
     "search": "Søg",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "Ingen projekter fundet. Vælg en arbejdsområdemappe, der skal scannes.",
-    "foundCount": "{count} projekt(er) fundet",
+    "foundCount": "{count, plural, one {# projekt(er) fundet} other {# projekt(er) fundet}}",
     "importable": "Importerbar",
     "scanning": "Scanner...",
     "selectFolder": "Vælg arbejdsområdemappe...",
     "unknown": "Ukendt",
     "noProjectsFound": "Der blev ikke fundet nogen projekter i denne mappe",
-    "projectsFound": "Fundne projekter: {count}",
+    "projectsFound": "{count, plural, one {Fundne projekter: #} other {Fundne projekter: #}}",
     "scanFailed": "Arbejdsområdemappen kunne ikke scannes"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "API-nøgler"
       },
       "hint": {
-        "settings": "{count} lagrede værdier",
-        "keybindings": "{count} nøglebindinger",
+        "settings": "{count, plural, one {# lagrede værdier} other {# lagrede værdier}}",
+        "keybindings": "{count, plural, one {# nøglebindinger} other {# nøglebindinger}}",
         "assetsSet": "Brugerdefineret baggrundsbillede sæt",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} forudindstillinger",
+        "presetsCount": "{count, plural, one {# forudindstillinger} other {# forudindstillinger}}",
         "backgroundSet": "Brugerdefineret baggrund",
         "fontSet": "Brugerdefineret skrifttype",
-        "projects": "{count} projekter",
-        "apiKeys": "{count} nøgler"
+        "projects": "{count, plural, one {# projekter} other {# projekter}}",
+        "apiKeys": "{count, plural, one {# nøgler} other {# nøgler}}"
       },
       "exportSuccess": "Backup eksporteret",
       "exportFailed": "Kunne ikke eksportere backup",
@@ -709,7 +709,7 @@
       "previewTotal": "Anslået samlet størrelse",
       "previewPresetPrefix": "Forudindstillet",
       "previewFontPrefix": "Brugerdefineret skrifttype",
-      "previewVersions": "{count} versioner",
+      "previewVersions": "{count, plural, one {# versioner} other {# versioner}}",
       "apiKeysWarning": "API-nøgler gemmes som almindelig tekst i backup-filen. Hold det privat.",
       "importTitle": "Importér",
       "importDesc": "Gendan indstillinger og data fra en sikkerhedskopifil. Eksisterende værdier vil blive erstattet.",
@@ -1053,7 +1053,7 @@
       "searchError": "Søgning mislykkedes: {error}",
       "fetchError": "Kunne ikke hente sangtekster: {error}",
       "noLyricsError": "Ingen sangtekster at importere.",
-      "importSuccess": "Importerede {count} linjer fra Genius.",
+      "importSuccess": "{count, plural, one {Importerede # linjer fra Genius.} other {Importerede # linjer fra Genius.}}",
       "howToGetKey": "Sådan opretter du et Genius Client Access Token"
     },
     "openLink": "Åbn link",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "Oversættelse:",
     "romanLabel": "Romanisering:",
     "empty": "Ingen",
-    "duplicateLinesHere": "Dupliker {count} valgte linje(r) her",
-    "applyTimingsHere": "Anvend {count}-timing(er) startende her",
+    "duplicateLinesHere": "{count, plural, one {Dupliker # valgte linje(r) her} other {Dupliker # valgte linje(r) her}}",
+    "applyTimingsHere": "{count, plural, one {Anvend #-timing(er) startende her} other {Anvend #-timing(er) startende her}}",
     "applyPartialTimingsHere": "Anvend {applied} af {total} timings startende her",
-    "timingsApplied": "Anvendt timing på {count} linje(r).",
+    "timingsApplied": "{count, plural, one {Anvendt timing på # linje(r).} other {Anvendt timing på # linje(r).}}",
     "partialTimingCopy": "Kun {applied} af {total} kildetiminger passer før slutningen af ​​sangteksterne.",
-    "wordTimingMismatch": "{count} linje(r) havde forskelligt antal ord; kun matchende ordpositioner blev kopieret.",
+    "wordTimingMismatch": "{count, plural, one {# linje(r) havde forskelligt antal ord; kun matchende ordpositioner blev kopieret.} other {# linje(r) havde forskelligt antal ord; kun matchende ordpositioner blev kopieret.}}",
     "insertLine": "Indsæt ny linje her",
     "insertWord": "Indsæt ord her…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — Forhåndsvisning af sangtekst",
     "back": "Tilbage",
     "previewSubtitle": "Du kan redigere sangteksterne nedenfor, før du importerer.",
-    "linesCount": "{count} linjer",
+    "linesCount": "{count, plural, one {# linjer} other {# linjer}}",
     "importButton": "Importer sangtekster",
     "importTitle": "Importer sangtekster fra Genius",
     "searchPlaceholder": "Kunstner – Sangtitel...",
@@ -1286,11 +1286,11 @@
     "description": "Tjek normaliserede kategorier og metadata, før du udskifter sangteksterne.",
     "sourceLyrics": "Kilde tekster",
     "structure": "Struktur",
-    "sectionCount": "{count} sektioner",
+    "sectionCount": "{count, plural, one {# sektioner} other {# sektioner}}",
     "vocalist": "Vokalist/rolle",
     "color": "Sektionsfarve",
     "notes": "Noter",
-    "lineCount": "{count} lyriske linjer",
+    "lineCount": "{count, plural, one {# lyriske linjer} other {# lyriske linjer}}",
     "import": "Importer anmeldte sangtekster"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "Projekt uden titel"
   },
   "time": {
-    "daysAgo": "{count} dage siden",
-    "hoursAgo": "{count} timer siden",
-    "minutesAgo": "{count} minutter siden",
+    "daysAgo": "{count, plural, one {# dage siden} other {# dage siden}}",
+    "hoursAgo": "{count, plural, one {# timer siden} other {# timer siden}}",
+    "minutesAgo": "{count, plural, one {# minutter siden} other {# minutter siden}}",
     "justNow": "Lige nu"
   },
   "metadata": {

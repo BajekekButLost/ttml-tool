@@ -17,11 +17,14 @@ export const useAudioFeedback = () => {
 		const getMessage = (type: string) => {
 			switch (type) {
 				case "TRANSCODING":
-					return t("audio.status.transcoding", "解码失败，正在尝试转码音频...");
+					return t(
+						"audio.status.transcoding",
+						"Decoding failed, converting the audio…",
+					);
 				case "LOADING":
-					return t("audio.status.loading", "正在加载音频...");
+					return t("audio.status.loading", "Loading audio…");
 				default:
-					return t("audio.status.processing", "正在处理...");
+					return t("audio.status.processing", "Processing…");
 			}
 		};
 

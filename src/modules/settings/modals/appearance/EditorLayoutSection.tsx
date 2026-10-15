@@ -52,7 +52,7 @@ export const EditorLayoutSection = ({
 	<Flex direction="column" gap="3">
 		<Heading size="4">
 			<Edit24Regular />{" "}
-			{t("settings.appearance.advanced.editor", "Editor Layout")}
+			{t("settings.appearance.advanced.editor", "Editor layout")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="4">
@@ -60,7 +60,7 @@ export const EditorLayoutSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.editorCanvas",
-							"Editor Canvas",
+							"Editor canvas",
 						)}
 						value={vEditorBg}
 						onChange={setVEditorBg}
@@ -68,7 +68,7 @@ export const EditorLayoutSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.activeLineHighlight",
-							"Active Line Highlight",
+							"Active line highlight",
 						)}
 						value={vActiveLine}
 						onChange={setVActiveLine}
@@ -76,7 +76,7 @@ export const EditorLayoutSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.lineHoverEffect",
-							"Line Hover Effect",
+							"Line hover effect",
 						)}
 						value={vLineHover}
 						onChange={setVLineHover}
@@ -84,7 +84,7 @@ export const EditorLayoutSection = ({
 					<AdvancedColorItem
 						label={t(
 							"settings.appearance.advanced.selectionHighlight",
-							"Selection Highlight",
+							"Selection highlight",
 						)}
 						value={vSelection}
 						onChange={setVSelection}
@@ -93,7 +93,7 @@ export const EditorLayoutSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.chipBorderRadius",
-						"Chip Border Radius",
+						"Chip border radius",
 					)}
 					icon={<Stack24Regular />}
 					value={vChipRadius}
@@ -105,7 +105,7 @@ export const EditorLayoutSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.chipSpacing",
-						"Chip Spacing (Gap)",
+						"Chip spacing (gap)",
 					)}
 					icon={<Stack24Regular />}
 					value={vChipGap}
@@ -117,7 +117,7 @@ export const EditorLayoutSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.chipPaddingVertical",
-						"Chip Padding (V)",
+						"Chip padding (V)",
 					)}
 					icon={<ArrowBidirectionalUpDown24Regular />}
 					value={vChipPaddingV}
@@ -129,7 +129,7 @@ export const EditorLayoutSection = ({
 				<AdvancedSliderItem
 					label={t(
 						"settings.appearance.advanced.chipPaddingHorizontal",
-						"Chip Padding (H)",
+						"Chip padding (H)",
 					)}
 					icon={<ArrowBidirectionalLeftRight24Regular />}
 					value={vChipPaddingH}
@@ -143,13 +143,13 @@ export const EditorLayoutSection = ({
 						<Text>
 							{t(
 								"settings.appearance.advanced.legacySpaceLabels",
-								"Legacy Space Labels",
+								"Legacy space labels",
 							)}
 						</Text>
 						<Text size="1" color="gray">
 							{t(
 								"settings.appearance.advanced.legacySpaceLabelsDesc",
-								"Show Space xN instead of compact empty space cells.",
+								"Show “Space ×N” instead of compact empty space cells.",
 							)}
 						</Text>
 					</Flex>

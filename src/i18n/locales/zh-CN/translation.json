@@ -215,7 +215,7 @@
     "close": "关闭",
     "autoDetect": "自动检测",
     "about": "关于",
-    "resultsFound": "找到 {count} 个结果",
+    "resultsFound": "{count, plural, other {找到 # 个结果}}",
     "cancel": "取消",
     "save": "保存",
     "search": "搜索",
@@ -295,13 +295,13 @@
   },
   "workspace": {
     "empty": "没有找到项目。选择要扫描的工作区文件夹。",
-    "foundCount": "找到 {count} 项目",
+    "foundCount": "{count, plural, other {找到 # 项目}}",
     "importable": "可导入",
     "scanning": "正在扫描...",
     "selectFolder": "选择工作区文件夹...",
     "unknown": "未知",
     "noProjectsFound": "此文件夹中未找到项目",
-    "projectsFound": "找到 {count} 个项目",
+    "projectsFound": "{count, plural, other {找到 # 个项目}}",
     "scanFailed": "扫描工作区文件夹失败"
   },
   "ribbonBar": {
@@ -682,15 +682,15 @@
         "apiKeys": "API 密钥"
       },
       "hint": {
-        "settings": "{count} 存储值",
-        "keybindings": "{count} 键绑定",
+        "settings": "{count, plural, other {# 存储值}}",
+        "keybindings": "{count, plural, other {# 键绑定}}",
         "assetsSet": "自定义背景图像集",
         "assetsNone": "No custom background image",
-        "presetsCount": "{count} 预设",
+        "presetsCount": "{count, plural, other {# 预设}}",
         "backgroundSet": "自定义背景",
         "fontSet": "自定义字体",
-        "projects": "{count} 项目",
-        "apiKeys": "{count} 个密钥"
+        "projects": "{count, plural, other {# 项目}}",
+        "apiKeys": "{count, plural, other {# 个密钥}}"
       },
       "exportSuccess": "备份导出",
       "exportFailed": "导出备份失败",
@@ -709,7 +709,7 @@
       "previewTotal": "预计总规模",
       "previewPresetPrefix": "预设",
       "previewFontPrefix": "自定义字体",
-      "previewVersions": "{count} 版本",
+      "previewVersions": "{count, plural, other {# 版本}}",
       "apiKeysWarning": "API 密钥以纯文本形式保存在备份文件中。保密。",
       "importTitle": "导入",
       "importDesc": "从备份文件恢复设置和数据。现有值将被替换。",
@@ -848,7 +848,7 @@
     }
   },
   "contextMenu": {
-    "deleteWords": "删除 {count} 个单词",
+    "deleteWords": "{count, plural, other {删除 # 个单词}}",
     "bgLyric": "背景行",
     "duetLyric": "合唱行",
     "moveLineToPlayhead": "将行移动到播放头",
@@ -857,10 +857,10 @@
     "snapSelectedLinesToPlayhead": "将选定的行对齐到播放头",
     "insertLineBefore": "在之前插入新行",
     "insertLineAfter": "在之后插入新行",
-    "copyLine": "复制 {count} 行",
+    "copyLine": "{count, plural, other {复制 # 行}}",
     "duplicateTo": "复制到...",
     "combineLine": "合并行",
-    "deleteLine": "删除 {count} 行",
+    "deleteLine": "{count, plural, other {删除 # 行}}",
     "splitWord": "分割单词...",
     "noSyllablesFound": "没有找到多音节。",
     "splitIntoSyllables": "按音节拆分（注音）",
@@ -868,7 +868,7 @@
     "replaceRomanization": "替换罗马字...",
     "combineWords": "合并单词",
     "moveFollowingWordToNewLine": "将后续单词移动到新行",
-    "moveWordToNewLine": "将 {count} 个单词移动到新行"
+    "moveWordToNewLine": "{count, plural, other {将 # 个单词移动到新行}}"
   },
   "settingsDialog": {
     "search": "搜索设置",
@@ -1053,7 +1053,7 @@
       "searchError": "搜索失败: {error}",
       "fetchError": "无法获取歌词: {error}",
       "noLyricsError": "没有可导入的歌词。",
-      "importSuccess": "从 Genius 导入了 {count} 行。",
+      "importSuccess": "{count, plural, other {从 Genius 导入了 # 行。}}",
       "howToGetKey": "如何创建 Genius Client Access Token"
     },
     "openLink": "打开链接",
@@ -1091,12 +1091,12 @@
     "translatedLabel": "翻译:",
     "romanLabel": "注音:",
     "empty": "无",
-    "duplicateLinesHere": "在此处复制 {count} 条选定行",
-    "applyTimingsHere": "从此处开始应用 {count} 计时",
+    "duplicateLinesHere": "{count, plural, other {在此处复制 # 条选定行}}",
+    "applyTimingsHere": "{count, plural, other {从此处开始应用 # 计时}}",
     "applyPartialTimingsHere": "从此处开始应用 {total} 计时中的 {applied}",
-    "timingsApplied": "对 {count} 行应用计时。",
+    "timingsApplied": "{count, plural, other {对 # 行应用计时。}}",
     "partialTimingCopy": "只有 {total} 源时序中的 {applied} 适合在歌词末尾之前。",
-    "wordTimingMismatch": "{count} 行的单词数不同；只复制了对应位置的单词时间。",
+    "wordTimingMismatch": "{count, plural, other {# 行的单词数不同；只复制了对应位置的单词时间。}}",
     "insertLine": "在此处插入新行",
     "insertWord": "在此处插入单词…"
   },
@@ -1218,7 +1218,7 @@
     "previewTitle": "Genius — 歌词预览",
     "back": "返回",
     "previewSubtitle": "在导入之前，您可以在下面编辑歌词。",
-    "linesCount": "{count} 行",
+    "linesCount": "{count, plural, other {# 行}}",
     "importButton": "导入歌词",
     "importTitle": "从 Genius 导入歌词",
     "searchPlaceholder": "艺术家 – 歌曲标题…",
@@ -1286,11 +1286,11 @@
     "description": "在替换歌词之前检查标准化类别和元数据。",
     "sourceLyrics": "来源歌词",
     "structure": "结构",
-    "sectionCount": "{count} 部分",
+    "sectionCount": "{count, plural, other {# 部分}}",
     "vocalist": "主唱/角色",
     "color": "断面颜色",
     "notes": "注释",
-    "lineCount": "{count} 歌词",
+    "lineCount": "{count, plural, other {# 歌词}}",
     "import": "导入审阅的歌词"
   },
   "globalDragOverlay": {
@@ -1319,9 +1319,9 @@
     "untitledProjectName": "未命名项目"
   },
   "time": {
-    "daysAgo": "{count} 天前",
-    "hoursAgo": "{count} 小时前",
-    "minutesAgo": "{count} 分钟前",
+    "daysAgo": "{count, plural, other {# 天前}}",
+    "hoursAgo": "{count, plural, other {# 小时前}}",
+    "minutesAgo": "{count, plural, other {# 分钟前}}",
     "justNow": "刚刚"
   },
   "metadata": {

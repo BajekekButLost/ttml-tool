@@ -330,7 +330,7 @@ export async function createProject(store: Store, t: TFunc): Promise<void> {
 	if (store.get(isDirtyAtom)) {
 		store.set(confirmDialogAtom, {
 			open: true,
-			title: t("confirmDialog.newProject.title", "Confirm Create Project"),
+			title: t("confirmDialog.newProject.title", "Create a new project?"),
 			description: t(
 				"confirmDialog.newProject.description",
 				"You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to create a new project?",

@@ -101,12 +101,12 @@ export const SettingsDialog = memo(() => {
 			{
 				value: "editor",
 				icon: <Edit24Regular />,
-				label: t("settingsDialog.tab.editor", "Editor & Sync"),
+				label: t("settingsDialog.tab.editor", "Editor & sync"),
 			},
 			{
 				value: "files",
 				icon: <Folder24Regular />,
-				label: t("settingsDialog.tab.files", "Files & Storage"),
+				label: t("settingsDialog.tab.files", "Files & storage"),
 			},
 			{
 				value: "audio",
@@ -116,7 +116,7 @@ export const SettingsDialog = memo(() => {
 			{
 				value: "keybinding",
 				icon: <Keyboard12324Regular />,
-				label: t("settingsDialog.tab.keybindings", "Keybindings"),
+				label: t("settingsDialog.tab.keybindings", "Shortcuts"),
 			},
 			{
 				value: "appearance",
@@ -273,7 +273,7 @@ export const SettingsDialog = memo(() => {
 						</Tabs.Content>
 						<Tabs.Content value="editor" className={styles.tabContent}>
 							<SettingsPage
-								title={t("settingsDialog.tab.editor", "Editor & Sync")}
+								title={t("settingsDialog.tab.editor", "Editor & sync")}
 								description={t(
 									"settingsDialog.page.editorDesc",
 									"Timing input, synchronization behavior, and visual cues.",
@@ -284,7 +284,7 @@ export const SettingsDialog = memo(() => {
 						</Tabs.Content>
 						<Tabs.Content value="files" className={styles.tabContent}>
 							<SettingsPage
-								title={t("settingsDialog.tab.files", "Files & Storage")}
+								title={t("settingsDialog.tab.files", "Files & storage")}
 								description={t(
 									"settingsDialog.page.filesDesc",
 									"Import cleanup, autosave history, and portable backups.",
@@ -309,7 +309,7 @@ export const SettingsDialog = memo(() => {
 						</Tabs.Content>
 						<Tabs.Content value="keybinding" className={styles.tabContent}>
 							<SettingsPage
-								title={t("settingsDialog.tab.keybindings", "Keybindings")}
+								title={t("settingsDialog.tab.keybindings", "Shortcuts")}
 							>
 								<SettingsKeyBindingsDialog />
 							</SettingsPage>

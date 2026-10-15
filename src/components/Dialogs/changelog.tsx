@@ -36,7 +36,7 @@ export function ChangelogDialog() {
 				<Flex justify="between" align="center" mb="4">
 					<Flex align="center" gap="3">
 						<Dialog.Title mb="0">
-							{t("changeNotes.changelogTitle", "Changelog & Updates")}
+							{t("changeNotes.changelogTitle", "Changelog & updates")}
 						</Dialog.Title>
 						<Button
 							variant="soft"

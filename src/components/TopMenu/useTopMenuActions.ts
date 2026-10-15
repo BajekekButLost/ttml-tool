@@ -123,7 +123,7 @@ export const useTopMenuActions = () => {
 		if (isDirty) {
 			setConfirmDialog({
 				open: true,
-				title: t("confirmDialog.newFile.title", "确认新建文件"),
+				title: t("confirmDialog.newFile.title", "Start new lyrics?"),
 				description: t(
 					"confirmDialog.newFile.description",
 					"当前文件有未保存的更改。如果继续，这些更改将会丢失。确定要新建文件吗？",
@@ -391,10 +391,13 @@ export const useTopMenuActions = () => {
 
 		setConfirmDialog({
 			open: true,
-			title: t("confirmDialog.syncLineTimestamps.title", "确认同步行时间戳"),
+			title: t(
+				"confirmDialog.syncLineTimestamps.title",
+				"Fit lines to their words?",
+			),
 			description: t(
 				"confirmDialog.syncLineTimestamps.description",
-				"此操作将根据每行单词的时间戳自动同步所有行的起始和结束时间为第一个和最后一个音节的开始和结束时间。确定要继续吗？",
+				"This sets every line's start and end time to match its first and last word. Continue?",
 			),
 			onConfirm: action,
 		});

@@ -230,7 +230,7 @@ export const AudioControls: FC = memo(() => {
 											{(volume * 100).toFixed()}%
 										</Text>
 										<Text wrap="nowrap">
-											{t("audioPanel.playbackRate", "播放速度")}
+											{t("audioPanel.playbackRate", "Playback speed")}
 										</Text>
 										<Slider
 											min={MIN_PLAYBACK_RATE}
@@ -243,7 +243,7 @@ export const AudioControls: FC = memo(() => {
 											{playbackRate.toFixed(2)}x
 										</Text>
 										<Text wrap="nowrap">
-											{t("audioPanel.preservesPitch", "Preserve Pitch")}
+											{t("audioPanel.preservesPitch", "Preserve pitch")}
 										</Text>
 										<Flex align="center" gap="2">
 											<Switch
@@ -262,7 +262,10 @@ export const AudioControls: FC = memo(() => {
 										size="1"
 										color="gray"
 									>
-										{t("audioPanel.clickToLoadMusic", "点击图标按钮以加载音乐")}
+										{t(
+											"audioPanel.clickToLoadMusic",
+											"Click the music icon to load audio",
+										)}
 									</Text>
 								</Flex>
 							</HoverCard.Content>

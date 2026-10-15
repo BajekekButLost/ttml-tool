@@ -11,13 +11,13 @@ export const FontSection = ({
 >) => (
 	<Flex direction="column" gap="3">
 		<Heading size="4">
-			{t("settings.appearance.font", "Application Font")}
+			{t("settings.appearance.font", "Application font")}
 		</Heading>
 		<Card>
 			<Flex direction="column" gap="3">
 				<Flex direction="column" gap="1">
 					<Text size="2" weight="bold">
-						{t("settings.appearance.currentFont", "Current Font")}
+						{t("settings.appearance.currentFont", "Current font")}
 					</Text>
 					<Text size="1" color="gray" style={{ fontFamily: appFont }}>
 						{appFont.split(",")[0].replace(/"/g, "")}
@@ -29,7 +29,7 @@ export const FontSection = ({
 					onClick={() => setIsFontSelectionOpen(true)}
 				>
 					<TextT24Regular />
-					{t("settings.appearance.changeFont", "Change Font...")}
+					{t("settings.appearance.changeFont", "Change font…")}
 				</Button>
 			</Flex>
 		</Card>

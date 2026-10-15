@@ -23,34 +23,34 @@ const ToolMenuItems = () => {
 		<>
 			<DropdownMenu.Sub>
 				<DropdownMenu.SubTrigger>
-					{t("topBar.menu.segmentationTools", "分词")}
+					{t("topBar.menu.segmentationTools", "Segmentation tools")}
 				</DropdownMenu.SubTrigger>
 				<DropdownMenu.SubContent>
 					<DropdownMenu.Item onSelect={menu.onAutoSegment}>
-						{t("topBar.menu.autoSegment", "自动分词")}
+						{t("topBar.menu.autoSegment", "Auto segment…")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onSelect={menu.onOpenAdvancedSegmentation}>
-						{t("topBar.menu.advancedSegment", "高级分词...")}
+						{t("topBar.menu.advancedSegment", "Advanced segmentation…")}
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onSelect={menu.onOpenLearnedSplits}>
-						{t("topBar.menu.learnedSplits", "Learned Splits...")}
+						{t("topBar.menu.learnedSplits", "Learned splits…")}
 					</DropdownMenu.Item>
 				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
 			<DropdownMenu.Item onSelect={menu.onSyncLineTimestamps}>
-				{t("topBar.menu.syncLineTimestamps", "同步行时间戳")}
+				{t("topBar.menu.syncLineTimestamps", "Fit lines to their words")}
 			</DropdownMenu.Item>
 			<DropdownMenu.CheckboxItem
 				checked={spectrogramHoverSyncEnabled}
 				onCheckedChange={setSpectrogramHoverSyncEnabled}
 			>
-				{t("topBar.menu.spectrogramHoverSync", "Sync to Spectrogram Cursor")}
+				{t("topBar.menu.spectrogramHoverSync", "Sync at mouse position")}
 			</DropdownMenu.CheckboxItem>
 			<DropdownMenu.Item onSelect={menu.onOpenLatencyTest}>
 				{t("settingsDialog.common.latencyTest", "音频/输入延迟测试")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={menu.onOpenTTMLChecklist}>
-				{t("topBar.menu.ttmlChecklist", "TTML Checklist")}
+				{t("topBar.menu.ttmlChecklist", "TTML checklist")}
 			</DropdownMenu.Item>
 		</>
 	);

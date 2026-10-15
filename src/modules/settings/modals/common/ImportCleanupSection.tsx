@@ -66,7 +66,7 @@ export const ImportCleanupSection = ({
 								<Text>
 									{t(
 										"settings.common.normalizeCyrillicEsOnImport",
-										"Fix isolated Cyrillic Е/е in Latin words",
+										"Fix stray Cyrillic Е/е in Latin words",
 									)}
 								</Text>
 								<Switch

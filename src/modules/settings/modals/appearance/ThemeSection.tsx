@@ -46,13 +46,13 @@ export const ThemeSection = ({
 									<Text>
 										{t(
 											"settings.appearance.useCustomAccent",
-											"Custom Accent Color",
+											"Custom accent color",
 										)}
 									</Text>
 									<Text size="1" color="gray">
 										{t(
 											"settings.appearance.useCustomAccentDesc",
-											"Set Accent color",
+											"Pick your own accent color.",
 										)}
 									</Text>
 								</Flex>

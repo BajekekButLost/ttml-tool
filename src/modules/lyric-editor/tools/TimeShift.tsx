@@ -233,10 +233,10 @@ export const TimeShiftDialog = () => {
 							style={{ flexDirection: "row", gap: "16px" }}
 						>
 							<RadioGroup.Item value="advance">
-								{t("timeShiftDialog.advance", "提前 (-)")}
+								{t("timeShiftDialog.advance", "Earlier (−)")}
 							</RadioGroup.Item>
 							<RadioGroup.Item value="delay">
-								{t("timeShiftDialog.delay", "延后 (+)")}
+								{t("timeShiftDialog.delay", "Later (+)")}
 							</RadioGroup.Item>
 						</RadioGroup.Root>
 					</Flex>
@@ -250,11 +250,11 @@ export const TimeShiftDialog = () => {
 							onValueChange={(v) => setScope(v as ShiftScope)}
 						>
 							<RadioGroup.Item value="all">
-								{t("timeShiftDialog.scope.all", "所有行")}
+								{t("timeShiftDialog.scope.all", "All lines")}
 							</RadioGroup.Item>
 
 							<RadioGroup.Item value="selected" disabled={!hasSelection}>
-								{t("timeShiftDialog.scope.selected", "所选行")}
+								{t("timeShiftDialog.scope.selected", "Selected lines")}
 								{hasSelection && ` (${selectedLines.size})`}
 							</RadioGroup.Item>
 
@@ -262,11 +262,14 @@ export const TimeShiftDialog = () => {
 								value="selected-following"
 								disabled={!hasSelection}
 							>
-								{t("timeShiftDialog.scope.selectedFollowing", "所选行及其后续")}
+								{t(
+									"timeShiftDialog.scope.selectedFollowing",
+									"Selected and following lines",
+								)}
 							</RadioGroup.Item>
 
 							<RadioGroup.Item value="custom">
-								{t("timeShiftDialog.scope.custom", "自定义范围")}
+								{t("timeShiftDialog.scope.custom", "Custom range")}
 							</RadioGroup.Item>
 						</RadioGroup.Root>
 					</Flex>
