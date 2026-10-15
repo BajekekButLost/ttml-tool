@@ -1,19 +1,19 @@
 {
   "changeNotes": {
     "highlightsDescription": "Sorotan rilis dan peningkatan terkini untuk pengguna NaeNae",
-    "changelogTitle": "Log Perubahan & Pembaruan",
-    "viewCommits": "Lihat Commit di GitHub",
-    "whatsNewTitle": "Yang Baru di NaeNae's Fork",
-    "otherEnhancements": "Peningkatan Lainnya"
+    "changelogTitle": "Log perubahan & pembaruan",
+    "viewCommits": "Lihat commit di GitHub",
+    "whatsNewTitle": "Yang baru di fork NaeNae",
+    "otherEnhancements": "Peningkatan lainnya"
   },
   "app": {
     "error": {
       "title": "Aduh, terjadi kesalahan!",
-      "description": "AMLL TTML Tool mengalami kesalahan saat dijalankan",
-      "checkDevTools": "Detail kesalahan dapat diperiksa di alat pengembang (DevTools)",
+      "description": "NaeNae's TTML Tool mengalami kesalahan.",
+      "checkDevTools": "Detail tersedia di alat pengembang.",
       "saveLyrics": "Coba simpan lirik saat ini",
-      "tryRestart": "Coba masuk kembali ke aplikasi",
-      "details": "Informasi kesalahan umum:"
+      "tryRestart": "Coba muat ulang aplikasi",
+      "details": "Detail kesalahan:"
     },
     "update": {
       "updateAvailable": "Versi baru tersedia: {version}",
@@ -21,7 +21,7 @@
     },
     "empty": {
       "title": "Tidak ada baris lirik",
-      "description": "Tambahkan baris lirik baru di panel atas atau buka / impor lirik yang sudah ada dari bilah menu"
+      "description": "Tambahkan baris dari pita di atas, atau buka atau impor lirik lewat menu File."
     },
     "window": {
       "minimize": "Perkecil jendela",
@@ -39,8 +39,8 @@
   "beginnerGuide": {
     "empty": {
       "open": "Buka file lirik",
-      "start": "Mulai Panduan",
-      "import": "Impor Lirik"
+      "start": "Mulai panduan",
+      "import": "Impor lirik"
     },
     "welcome": {
       "open": "Buka file lirik",
@@ -53,15 +53,15 @@
       "wordProgress": "Kata dengan penanda waktu: {timed} / {total}",
       "open": "Buka mode Sinkronisasi"
     },
-    "menu": "Mulai Panduan",
+    "menu": "Mulai panduan",
     "restore": "Tampilkan panduan",
     "progress": "Langkah {current} dari {total}",
     "tuck": "Sembunyikan",
     "exit": "Keluar dari panduan",
     "beforeStart": {
       "title": "Sebelum memulai:",
-      "text": "Anda dapat mengubah tampilan editor sesuai selera. Klik di bawah untuk membuka pengaturan. Silakan coba Editor Dasar, atau Penyunting Tingkat Lanjut untuk kontrol detail penuh.",
-      "link": "Sesuaikan Tampilan Editor"
+      "text": "Anda dapat menyesuaikan tampilan editor. Buka pengaturan di bawah. Coba tata letak sederhana, atau gunakan tata letak lanjutan untuk kontrol penuh.",
+      "link": "Sesuaikan tampilan editor"
     },
     "status": {
       "complete": "Selesai — alat mendeteksi langkah ini sudah selesai."
@@ -84,7 +84,7 @@
       "save": "Simpan TTML"
     },
     "genius": {
-      "title": "Buat Genius Client Access Token",
+      "title": "Buat token akses Genius",
       "step1": "1. Buka Genius API Clients dan masuk.",
       "step2": "2. Pilih New API Client, beri nama aplikasi yang mudah dikenali, lalu isi kolom situs web aplikasi yang wajib.",
       "step3": "3. Simpan klien, lalu pilih Generate Access Token.",
@@ -108,7 +108,7 @@
       "lyrics": {
         "title": "Impor lirik",
         "description": "Pilih sumber lirik di bawah. Tinjau hasilnya di jendela impor dan konfirmasi impor.",
-        "waiting": "Pilih satu sumber di bawah dan selesaikan jendela impornya."
+        "waiting": "Pilih sumber di bawah dan selesaikan proses impornya."
       },
       "review": {
         "title": "Periksa lirik dan jenis baris",
@@ -118,18 +118,18 @@
       },
       "sync": {
         "title": "Sinkronkan setiap kata",
-        "description": "Masuk ke mode Sinkronisasi, pilih kata pertama, tekan Spasi, lalu gunakan F untuk mulai, G di antara kata, dan H saat jeda atau akhir baris. Setiap kata harus mendapat waktu yang valid.",
-        "waiting": "Buka mode Sinkronisasi dan lanjutkan; langkah ini selesai saat setiap kata terkait memiliki awal dan akhir yang valid."
+        "description": "Buka mode Sinkronisasi, pilih kata pertama, lalu tekan Space. Gunakan F untuk mulai, G di antara kata, dan H saat jeda atau akhir baris. Setiap kata harus mendapat waktu yang valid.",
+        "waiting": "Buka mode Sinkronisasi dan lanjutkan memberi waktu. Langkah ini selesai saat setiap kata yang perlu disinkronkan memiliki waktu mulai dan akhir yang valid."
       },
       "songwriters": {
         "title": "Tambahkan penulis lagu",
-        "description": "Buka metadata dan gunakan “Ambil Penulis Lagu dari Genius”, atau tambahkan satu nilai Penulis Lagu untuk setiap nama asli. Panduan mendeteksi saat setidaknya satu tersimpan.",
-        "waiting": "Buka metadata dan tambahkan setidaknya satu nilai Penulis Lagu yang tidak kosong."
+        "description": "Buka metadata dan pilih “Ambil penulis lagu dari Genius”, atau tambahkan satu nilai Penulis lagu untuk setiap nama asli. Panduan mendeteksi saat setidaknya satu tersimpan.",
+        "waiting": "Buka metadata dan tambahkan setidaknya satu nilai Penulis lagu yang tidak kosong."
       },
       "export": {
         "title": "Ekspor TTML",
         "description": "Simpan TTML yang sudah selesai. Langkah ini hanya selesai setelah file benar-benar ditulis.",
-        "waiting": "Pilih Simpan TTML dan selesaikan pemilih file."
+        "waiting": "Pilih Simpan TTML dan simpan file lewat pemilih file."
       },
       "test": {
         "title": "Uji secara lokal",
@@ -139,16 +139,16 @@
     }
   },
   "importChooser": {
-    "title": "Impor Lirik",
+    "title": "Impor lirik",
     "description": "Pilih dari mana Anda ingin mengimpor lirik Anda.",
     "options": {
       "plainText": {
         "title": "Teks biasa",
-        "description": "Tempelkan lirik dan pilih bagaimana baris, terjemahan, romanisasi, dan pemisahan kata diinterpretasikan."
+        "description": "Tempel lirik dan pilih cara memproses baris, terjemahan, romanisasi, serta pemisahan kata."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Telusuri LRCLIB untuk lirik yang disinkronkan atau polos berdasarkan lagu dan artis."
+        "description": "Cari lirik dengan atau tanpa waktu di LRCLIB berdasarkan lagu dan artis."
       },
       "lyrically": {
         "title": "Lyrically",
@@ -156,7 +156,7 @@
       },
       "genius": {
         "title": "Genius",
-        "description": "Cari Genius untuk informasi lirik dan penulis lagu menggunakan token akses Anda."
+        "description": "Cari lirik dan informasi penulis lagu di Genius menggunakan token akses Anda."
       }
     }
   },
@@ -164,64 +164,64 @@
     "cancel": "Batal",
     "confirm": "Konfirmasi",
     "useMetadataName": {
-      "title": "Gunakan nama metadata?",
+      "title": "Gunakan nama dari metadata?",
       "description": "Gunakan \"{name}\" sebagai nama file?"
     },
     "newFile": {
-      "title": "Konfirmasi file baru",
+      "title": "Mulai lirik baru?",
       "description": "File saat ini memiliki perubahan yang belum disimpan. Jika dilanjutkan, perubahan ini akan hilang. Anda yakin ingin membuat file baru?"
     },
     "untimedLyrics": {
       "title": "Lirik belum diberi waktu",
       "description": "Ada baris atau kata yang belum diberi waktu. Perbaiki atau tetap ekspor?",
-      "exportAnyway": "Tetap Ekspor",
+      "exportAnyway": "Tetap ekspor",
       "fixIt": "Perbaiki"
     },
     "syncLineTimestamps": {
-      "title": "Konfirmasi sinkronisasi penanda waktu baris",
-      "description": "Tindakan ini akan secara otomatis menyinkronkan waktu awal dan akhir semua baris berdasarkan penanda waktu kata pertama dan terakhir dalam setiap baris. Lanjutkan?"
+      "title": "Sesuaikan baris dengan waktu katanya?",
+      "description": "Waktu mulai dan akhir setiap baris akan disesuaikan dengan kata pertama dan terakhirnya. Lanjutkan?"
     },
     "openFile": {
-      "title": "Konfirmasi buka file",
+      "title": "Buka file lain?",
       "description": "File saat ini memiliki perubahan yang belum disimpan. Jika dilanjutkan, perubahan ini akan hilang. Anda yakin ingin membuka file baru?"
     },
     "importFile": {
-      "title": "Konfirmasi impor lirik",
+      "title": "Impor lirik baru?",
       "description": "File saat ini memiliki perubahan yang belum disimpan. Jika dilanjutkan, perubahan ini akan hilang. Anda yakin ingin mengimpor lirik?"
     },
     "noSongwriter": {
-      "description": "Lagu tersebut tidak memiliki penulis lagu. Apakah Anda ingin terus menabung?"
+      "description": "Lagu ini belum memiliki penulis lagu. Tetap simpan?"
     },
     "newProject": {
-      "title": "Konfirmasi Pembuatan Proyek",
+      "title": "Buat proyek baru?",
       "description": "Ada perubahan yang belum disimpan. Jika Anda melanjutkan, perubahan ini akan hilang. Yakin ingin membuat proyek baru?"
     }
   },
   "experimentalFeatures": {
     "geniusCategorization": {
-      "dialogTitle": "Header Genius Terdeteksi!",
-      "dialogDesc": "Kami telah mendeteksi header bagian dalam lirik Anda. Apakah Anda ingin mengaktifkan fitur eksperimental 'Genius Header Categorization' untuk membantu alur kerja Anda?",
-      "usageInfo": "Setelah diaktifkan, tajuk bagian akan diberi gaya berbeda di editor. Anda dapat mengkliknya untuk mengakses alat khusus seperti 'Salin Waktu Sebelumnya' dan 'Jepret ke Playhead'.",
-      "maybeLater": "Mungkin Nanti",
-      "enableNow": "Aktifkan Sekarang",
-      "title": "Kategorisasi Tajuk Genius",
-      "snapToPlayhead": "Jepret ke Playhead",
-      "noPreviousFound": "Tidak ditemukan tajuk identik sebelumnya dengan pengaturan waktu.",
-      "copyPrevious": "Salin Waktu Sebelumnya",
-      "headersRestored": "Header bagian dipulihkan."
+      "dialogTitle": "Judul bagian Genius ditemukan",
+      "dialogDesc": "Lirik Anda memiliki judul bagian seperti [Verse] dan [Chorus]. Aktifkan fitur eksperimental Bagian Genius untuk menggunakannya?",
+      "usageInfo": "Judul bagian akan tampil dengan gaya tersendiri di editor. Klik judul untuk memakai alat seperti Salin waktu sebelumnya dan Paskan ke penunjuk putar.",
+      "maybeLater": "Mungkin nanti",
+      "enableNow": "Aktifkan sekarang",
+      "title": "Bagian Genius",
+      "snapToPlayhead": "Paskan ke penunjuk putar",
+      "noPreviousFound": "Tidak ditemukan bagian sebelumnya yang cocok dan sudah diberi waktu.",
+      "copyPrevious": "Salin waktu sebelumnya",
+      "headersRestored": "Judul bagian dipulihkan."
     }
   },
   "common": {
     "close": "Tutup",
-    "autoDetect": "Deteksi Otomatis",
+    "autoDetect": "Deteksi otomatis",
     "about": "Tentang",
-    "resultsFound": "{count, plural, other {Menemukan hasil #}}",
+    "resultsFound": "{count, plural, other {Ditemukan # hasil}}",
     "cancel": "Batal",
     "save": "Simpan",
     "search": "Cari",
     "success": "Berhasil dipulihkan",
     "error": "Data rusak atau hilang",
-    "edit": "Sunting",
+    "edit": "Edit",
     "apply": "Terapkan",
     "confirm": "Konfirmasi",
     "back": "Kembali",
@@ -229,7 +229,7 @@
     "time": "Waktu",
     "restore": "Pulihkan",
     "loading": "Memuat...",
-    "sync": "Sinkronisasi",
+    "sync": "Sinkronkan",
     "remove": "Hapus",
     "clickToSet": "Klik untuk mengatur",
     "move": "Pindah",
@@ -244,11 +244,11 @@
       "ignore": "Abaikan",
       "create": "Buat folder",
       "link": "Simpan file di tempatnya",
-      "linkDescription": "Atau simpan file di tempatnya: proyek hanya mengingat lokasinya, dan hanya penyimpanan eksplisit yang akan menulis TTML kembali ke file aslinya."
+      "linkDescription": "Atau biarkan file di tempatnya: proyek hanya mengingat lokasinya. File TTML asli hanya ditulis ulang saat Anda menyimpannya sendiri."
     },
     "linkProject": {
       "audioTitle": "Pilih file audio yang Anda muat",
-      "lyricTitle": "Pilih file TTML tempat proyek ini disimpan"
+      "lyricTitle": "Pilih file TTML tujuan penyimpanan proyek ini"
     },
     "createProject": {
       "parentTitle": "Pilih lokasi untuk membuat folder proyek",
@@ -272,10 +272,10 @@
     "tabLinked": "Tertaut",
     "linkedHint": "Proyek yang menyimpan TTML dan audionya di folder aslinya. Buat satu dengan memilih Simpan file di tempatnya saat aplikasi menawarkan untuk membuat proyek.",
     "noLinked": "Belum ada proyek yang tertaut",
-    "createNew": "Proyek Baru",
+    "createNew": "Proyek baru",
     "folderBadge": "Folder proyek",
     "linkedBadge": "File tertaut",
-    "openFolder": "Buka Folder",
+    "openFolder": "Buka folder",
     "openLinkedFolder": "Buka folder proyek",
     "save": "Simpan",
     "browse": "Jelajahi...",
@@ -295,7 +295,7 @@
   },
   "workspace": {
     "empty": "Tidak ada proyek yang ditemukan. Pilih folder ruang kerja untuk dipindai.",
-    "foundCount": "{count, plural, other {Proyek # ditemukan}}",
+    "foundCount": "{count, plural, other {# proyek ditemukan}}",
     "importable": "Dapat diimpor",
     "scanning": "Memindai...",
     "selectFolder": "Pilih folder ruang kerja...",
@@ -305,7 +305,7 @@
     "scanFailed": "Gagal memindai folder ruang kerja"
   },
   "ribbonBar": {
-    "advancedTooltip": "Berlaku untuk semua toolbar: Edit, Waktu, dan Pratinjau.",
+    "advancedTooltip": "Berlaku untuk pita Edit, Sinkronisasi, dan Pratinjau.",
     "editMode": {
       "multipleValues": "Beberapa nilai…",
       "duration": "Durasi",
@@ -314,96 +314,96 @@
       "showWordRomanizationInput": "Tampilkan romanisasi per kata",
       "phonetic": {
         "noSelection": "Silakan pilih baris atau kata terlebih dahulu",
-        "success": "Fonetik berhasil diambil",
-        "error": "Gagal mengambil fonetik"
+        "success": "Pelafalan berhasil diambil",
+        "error": "Gagal mengambil pelafalan"
       },
       "romanization": {
         "section": "Romanisasi",
         "info": {
-          "title": "Tentang Romanisasi",
-          "canDo": "✓ Dapat melakukan: Pembuatan otomatis Romaji (JA), Pinyin (ZH), dan Romaji (KO). Mendukung Kanji!",
-          "cannotDo": "✗ Tidak dapat melakukan: Akurasi 100% untuk Kanji langka atau nama diri. CJK saja. Kesalahan kecil mungkin terjadi."
+          "title": "Tentang romanisasi",
+          "canDo": "✓ Mendukung romaji Jepang, pinyin Mandarin, jyutping Kanton, dan romanisasi Korea, termasuk kanji.",
+          "cannotDo": "✗ Tidak menjamin kanji langka atau nama selalu benar. Hanya bahasa Tionghoa, Jepang, dan Korea; kesalahan kecil mungkin terjadi."
         },
-        "ja": "Jepang (Romaji)",
-        "zh": "Cina (Pinyin)",
-        "yue": "Bahasa Kanton (Jyutping)",
-        "ko": "Korea (Romaji)",
-        "autoFetch": "Romanisasi"
+        "ja": "Jepang (romaji)",
+        "zh": "Mandarin (pinyin)",
+        "yue": "Kanton (jyutping)",
+        "ko": "Korea (romanisasi revisi)",
+        "autoFetch": "Romanisasikan"
       },
       "new": "Baru",
-      "lyricLine": "Baris Lirik",
-      "lineTiming": "Penanda Waktu Baris",
-      "startTime": "Waktu Mulai",
-      "endTime": "Waktu Selesai",
-      "lineProperties": "Properti Baris",
-      "bgLyric": "Lirik Latar",
-      "duetLyric": "Lirik Duet",
-      "ignoreSync": "Abaikan Sinkronisasi",
-      "wordTiming": "Penanda Waktu Kata",
-      "wordProperties": "Properti Kata",
-      "wordContent": "Isi Kata",
-      "romanWord": "Romanisasi Kata",
-      "secondaryContent": "Konten Sekunder",
-      "translatedLyric": "Lirik Terjemahan",
-      "romanLyric": "Lirik Romanisasi",
-      "auxiliaryLineDisplay": "Tampilan Baris Tambahan",
-      "previewPanel": "Panel Pratinjau",
+      "lyricLine": "Baris lirik",
+      "lineTiming": "Waktu baris",
+      "startTime": "Waktu mulai",
+      "endTime": "Waktu akhir",
+      "lineProperties": "Properti baris",
+      "bgLyric": "Vokal latar",
+      "duetLyric": "Vokal duet",
+      "ignoreSync": "Lewati saat sinkronisasi",
+      "wordTiming": "Waktu kata",
+      "wordProperties": "Properti kata",
+      "wordContent": "Isi kata",
+      "romanWord": "Romanisasi kata",
+      "secondaryContent": "Konten tambahan",
+      "translatedLyric": "Terjemahan",
+      "romanLyric": "Romanisasi",
+      "auxiliaryLineDisplay": "Tampilan baris tambahan",
+      "previewPanel": "Panel pratinjau",
       "playbackTracking": "Pelacakan",
-      "autoScroll": "Gulir Otomatis",
-      "highlightActiveLine": "Garis Sorot"
+      "autoScroll": "Gulir otomatis",
+      "highlightActiveLine": "Sorot baris"
     },
     "previewMode": {
       "mode": "Modus",
-      "standard": "Standar",
-      "timing": "Waktu",
+      "standard": "Standard",
+      "timing": "Sinkronisasi",
       "spicy": "Spicy",
-      "simpleLyrics": "Lirik yang sederhana",
-      "forceLineRendering": "Paksa render per baris",
-      "background": "Latar Belakang",
+      "simpleLyrics": "Mode lirik sederhana",
+      "forceLineRendering": "Tampilkan sinkronisasi per baris",
+      "background": "Latar belakang",
       "backgroundAnimated": "Animasi",
       "backgroundColor": "Warna",
       "backgroundStatic": "Statis",
       "lyrics": "Lirik",
-      "showTranslation": "Tampilkan Terjemahan",
-      "showRoman": "Tampilkan Romanisasi",
-      "fadeWidth": "Lebar Transisi",
-      "instantFade": "Memudar Seketika",
+      "showTranslation": "Tampilkan terjemahan",
+      "showRoman": "Tampilkan romanisasi",
+      "fadeWidth": "Lebar pemudaran",
+      "instantFade": "Hilangkan sorotan seketika",
       "showFps": "Tampilkan FPS",
-      "autoScroll": "Gulir Otomatis"
+      "autoScroll": "Gulir otomatis"
     },
     "syncMode": {
-      "syncAdjustment": "Penyesuaian Sinkronisasi",
-      "timeOffset": "Geser Penanda Waktu",
-      "commitOffset": "Offset konfirmasi",
-      "syncLevel": "Tingkat Sinkronisasi",
-      "syncLevelWord": "Sinkronisasi kata",
-      "syncLevelLine": "Sinkronisasi baris",
-      "assistSettings": "Pengaturan Bantuan",
-      "showTimestampUpdate": "Tampilkan Pembaruan Penanda Waktu",
-      "touchSyncPanel": "Panel Bantuan Sinkronisasi Sentuh",
-      "bgLyricIgnoreSync": "Abaikan Vokal Latar Belakang",
-      "quickFixes": "Perbaikan Cepat",
-      "manualTimestampEdit": "Pengeditan Stempel Waktu Manual",
-      "doubleClickEdit": "Klik dua kali Pengeditan Kata",
-      "displayOptions": "Opsi Tampilan",
-      "showTimestamps": "Tampilkan Penanda Waktu",
-      "highlightActiveWord": "Sorot Suku Kata Aktif",
-      "enableGlowAnimation": "Aktifkan Animasi Cahaya",
-      "highlightErrors": "Sorot Kesalahan",
-      "showPerWordRomanization": "Tampilkan Romanisasi Per Kata",
-      "keyBindingReference": "Referensi Pintasan Sinkronisasi",
-      "startSync": "Mulai Sinkronisasi",
-      "continuousSync": "Sinkronisasi Berlanjut",
-      "endSync": "Selesai Sinkronisasi",
+      "syncAdjustment": "Offset",
+      "timeOffset": "Offset sinkronisasi",
+      "commitOffset": "Offset tombol Berikutnya",
+      "syncLevel": "Sinkronkan per",
+      "syncLevelWord": "Kata",
+      "syncLevelLine": "Baris",
+      "assistSettings": "Bantuan sinkronisasi",
+      "showTimestampUpdate": "Tampilkan perubahan penanda waktu",
+      "touchSyncPanel": "Panel sinkronisasi sentuh",
+      "bgLyricIgnoreSync": "Lewati baris vokal latar",
+      "quickFixes": "Perbaikan cepat",
+      "manualTimestampEdit": "Edit penanda waktu manual",
+      "doubleClickEdit": "Edit kata dengan klik dua kali",
+      "displayOptions": "Opsi tampilan",
+      "showTimestamps": "Tampilkan penanda waktu",
+      "highlightActiveWord": "Sorot kata aktif",
+      "enableGlowAnimation": "Aktifkan animasi cahaya",
+      "highlightErrors": "Sorot kesalahan",
+      "showPerWordRomanization": "Tampilkan romanisasi per kata",
+      "keyBindingReference": "Daftar pintasan",
+      "startSync": "Mulai",
+      "continuousSync": "Berikutnya",
+      "endSync": "Akhiri",
       "manageQuickFixExclusions": {
-        "title": "Kelola Pengecualian Perbaikan Cepat",
+        "title": "Kelola pengecualian perbaikan cepat",
         "description": "Tambahkan kata-kata untuk diabaikan dalam perbaikan cepat.",
         "placeholder": "Masukkan kata untuk diabaikan"
       },
       "playbackTracking": "Pelacakan",
-      "autoScroll": "Gulir Otomatis",
-      "highlightActiveLine": "Garis Sorot",
-      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram"
+      "autoScroll": "Gulir otomatis",
+      "highlightActiveLine": "Sorot baris",
+      "spectrogramHoverSync": "Sinkronkan di posisi mouse"
     },
     "loading": "Memuat panel...",
     "advanced": "Lanjutan"
@@ -412,64 +412,64 @@
     "common": {
       "highlightActiveLineDesc": "Menyorot secara visual baris lirik yang sedang diputar dalam mode yang dipilih.",
       "playbackSettingsMode": "Perilaku pemutaran untuk",
-      "editMode": "Sunting",
-      "timeMode": "Waktu",
-      "enabled": "Diaktifkan",
+      "editMode": "Edit",
+      "timeMode": "Sinkronisasi",
+      "enabled": "Aktif",
       "layoutModeOptions": {
-        "simple": "Mode Sederhana",
-        "advance": "Mode Lanjutan"
+        "simple": "Sederhana",
+        "advance": "Lanjutan"
       },
-      "disabled": "Dengan disabilitas",
-      "advancedRibbonControls": "Tampilkan kontrol ribbon lanjutan",
-      "language": "Bahasa Antarmuka",
+      "disabled": "Nonaktif",
+      "advancedRibbonControls": "Tampilkan kontrol pita lanjutan",
+      "language": "Bahasa antarmuka",
       "languageDesc": "Pilih bahasa tampilan antarmuka",
       "helpTranslate": "Bantu terjemahkan aplikasi ini",
-      "layoutMode": "Mode Tata Letak Editor",
+      "layoutMode": "Tata letak editor",
       "layoutModeDesc": {
-        "line1": "Mode sederhana dapat memenuhi kebutuhan dasar sebagian besar pengguna",
-        "line2": "Jika Anda membutuhkan sinkronisasi yang lebih efisien, pertimbangkan untuk beralih ke mode lanjutan"
+        "line1": "Tata letak sederhana memenuhi sebagian besar kebutuhan.",
+        "line2": "Gunakan tata letak lanjutan agar sinkronisasi lebih cepat."
       },
-      "compactBGInSync": "Vokal Latar Belakang Ringkas (Mode Sinkronisasi)",
-      "compactBGInSyncDesc": "Secara otomatis memampatkan ruang vertikal untuk garis vokal latar belakang selama sinkronisasi.",
-      "syncJudgeMode": "Mode Penentuan Penanda Waktu Sinkronisasi",
-      "syncJudgeModeDesc": "Atur mode penentuan penanda waktu sinkronisasi, standarnya adalah \"waktu penekanan tombol pertama\".",
+      "compactBGInSync": "Ringkas baris vokal latar saat sinkronisasi",
+      "compactBGInSyncDesc": "Kurangi ruang vertikal baris vokal latar saat sinkronisasi.",
+      "syncJudgeMode": "Waktu tombol",
+      "syncJudgeModeDesc": "Pilih momen penekanan tombol yang menjadi penanda waktu. Default: Saat ditekan.",
       "syncJudgeModeOptions": {
-        "firstKeyDown": "Waktu Penekanan Tombol Pertama",
-        "lastKeyUp": "Waktu Pelepasan Tombol Terakhir",
-        "middleKey": "Ambil Nilai Tengah antara Penekanan dan Pelepasan",
-        "firstKeyDownLegacy": "Waktu Penekanan Tombol Pertama (Versi Lama)"
+        "firstKeyDown": "Saat ditekan",
+        "lastKeyUp": "Saat dilepas",
+        "middleKey": "Di tengah antara ditekan dan dilepas",
+        "firstKeyDownLegacy": "Saat ditekan (metode lama)"
       },
-      "keyBindingTrigger": "Pemicu Pintasan Keyboard",
+      "keyBindingTrigger": "Jalankan pintasan saat",
       "keyBindingTriggerDesc": "Atur apakah pintasan dipicu saat tombol ditekan atau dilepas.",
       "keyBindingTriggerOptions": {
-        "keyDown": "Dipicu Saat Ditekan",
-        "keyUp": "Dipicu Saat Dilepas"
+        "keyDown": "Tombol ditekan",
+        "keyUp": "Tombol dilepas"
       },
-      "syncTimeOffset": "Offset Waktu Sinkronisasi Global (ms)",
-      "syncTimeOffsetDesc": "Sesuaikan semua stempel waktu sinkronisasi dengan jumlah ini untuk mengimbangi latensi audio.",
-      "syncCommitOffset": "Komit Input Offset (ms)",
-      "syncCommitOffsetDesc": "Offset khusus tindakan sinkronisasi berlanjut untuk mengatasi latensi audio.",
-      "smartFirstWord": "Kata Pertama Cerdas",
-      "smartFirstWordDesc": "Saat menyinkronkan suku kata pertama baris, penekanan pertama pada tombol \"Mulai Sinkronisasi\" akan mengatur waktu mulainya, tetapi tidak waktu akhirnya.",
-      "smartLastWord": "Kata Terakhir Cerdas",
-      "smartLastWordDesc": "Saat menyinkronkan suku kata terakhir baris, penekanan terakhir pada tombol \"Selesai Sinkronisasi\" akan mengatur waktu akhirnya, tetapi tidak waktu mulai suku kata pertama baris berikutnya.",
-      "syncTabPosition": "Sinkronkan Posisi di Seluruh Tab",
-      "syncTabPositionDesc": "Mempertahankan pemutaran lagu dan memusatkan baris lirik aktif saat beralih antara tab Edit, Waktu, dan Pratinjau.",
-      "volume": "Volume Musik",
-      "playbackRate": "Kecepatan Putar",
+      "syncTimeOffset": "Offset sinkronisasi (ms)",
+      "syncTimeOffsetDesc": "Geser setiap penanda waktu yang Anda rekam sebesar nilai ini untuk mengimbangi keterlambatan audio atau input.",
+      "syncCommitOffset": "Offset tombol Berikutnya (ms)",
+      "syncCommitOffsetDesc": "Offset tambahan khusus tombol Berikutnya (default G), jika waktunya selalu terlalu awal atau terlambat.",
+      "smartFirstWord": "Kata pertama: hanya mulai",
+      "smartFirstWordDesc": "Pada kata pertama baris, penekanan tombol pertama hanya mengatur waktu mulai, bukan waktu akhir.",
+      "smartLastWord": "Kata terakhir: hanya akhir",
+      "smartLastWordDesc": "Pada kata terakhir baris, penekanan tombol hanya mengatur waktu akhir dan tidak memulai kata pertama baris berikutnya.",
+      "syncTabPosition": "Sinkronkan posisi antartab",
+      "syncTabPositionDesc": "Pertahankan pemutaran dan pusatkan baris aktif saat beralih antara tab Edit, Sinkronisasi, dan Pratinjau.",
+      "volume": "Volume musik",
+      "playbackRate": "Kecepatan putar",
       "autosave": {
-        "enable": "Aktifkan Simpan Otomatis",
-        "interval": "Interval Simpan (menit)",
-        "limit": "Jumlah Cadangan yang Disimpan"
+        "enable": "Aktifkan simpan otomatis",
+        "interval": "Simpan setiap (menit)",
+        "limit": "Jumlah snapshot yang disimpan"
       },
-      "customBackground": "Latar Belakang Kostum",
+      "customBackground": "Latar belakang kustom",
       "customBackgroundDesc": "Pilih gambar sebagai latar belakang.",
-      "customBackgroundPick": "Pilih Gambar",
+      "customBackgroundPick": "Pilih gambar",
       "customBackgroundClear": "Hapus",
       "customBackgroundOpacity": "Opasitas",
       "customBackgroundOpacityWarning": "Jika nilai ini terlalu tinggi, mungkin sulit untuk melihat konten di halaman.",
-      "customBackgroundMask": "Overlay",
-      "customBackgroundBlur": "Radius Blur",
+      "customBackgroundMask": "Lapisan penutup",
+      "customBackgroundBlur": "Radius pemburaman",
       "customBackgroundBrightness": "Kecerahan",
       "customBackgroundEnabled": "Latar belakang telah diatur",
       "customBackgroundManage": "Pengaturan",
@@ -493,25 +493,25 @@
       "normalizeCyrillicEsOnImportDesc": "Perbaiki karakter Sirilik yang mirip dan tersembunyi di kata Latin saat impor dan ekspor.",
       "allowConsecutiveBackgroundLines": "Izinkan vokal latar berurutan dan berdiri sendiri",
       "allowConsecutiveBackgroundLinesDesc": "Ekspor vokal latar berurutan bersama-sama dan pertahankan vokal latar yang berdiri sendiri demi kompatibilitas Spicy Lyrics. Pemutar lain mungkin tidak mendukung struktur ini.",
-      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram",
+      "spectrogramHoverSync": "Sinkronkan di posisi mouse",
       "spectrogramHoverSyncDesc": "Saat kursor berada di atas spektrogram dalam mode Sinkronisasi, tombol pemicu (F, G, H) mencatat waktu pada posisi kursor, bukan waktu pemutaran.",
-      "syncWordWrap": "Bungkus Kata dalam Mode Waktu",
-      "syncWordWrapDesc": "Membungkus kartu kata ke baris berikutnya alih-alih menampilkan bilah gulir horizontal di tab Waktu/Sinkronisasi.",
-      "syncAutoScroll": "Gulir Otomatis ke Jalur Aktif Selama Pemutaran",
+      "syncWordWrap": "Kata otomatis pindah baris saat sinkronisasi",
+      "syncWordWrapDesc": "Kartu kata pindah ke baris berikutnya dalam mode Sinkronisasi, tanpa perlu menggulir ke samping.",
+      "syncAutoScroll": "Gulir otomatis ke baris aktif saat pemutaran",
       "syncAutoScrollDesc": "Secara otomatis menggulir tampilan editor untuk mengikuti baris lirik yang sedang aktif selama pemutaran.",
-      "syncFocusMainLine": "Fokuskan Jalur Utama Selama Pemutaran",
-      "syncFocusMainLineDesc": "Saat memutar ulang, fokuskan pada jalur utama yang aktif dan abaikan jalur latar belakang kecuali tidak ada jalur utama yang aktif.",
-      "highlightActiveLine": "Sorot Jalur Aktif Selama Pemutaran"
+      "syncFocusMainLine": "Fokuskan baris utama saat pemutaran",
+      "syncFocusMainLineDesc": "Saat pemutaran, ikuti baris utama dan abaikan baris vokal latar kecuali tidak ada baris utama yang diputar.",
+      "highlightActiveLine": "Sorot baris aktif saat pemutaran"
     },
     "about": {
-      "update": "Pembaruan Perangkat Lunak",
-      "newVersion": "Versi Baru",
-      "updateNow": "Perbarui Sekarang",
+      "update": "Pembaruan",
+      "newVersion": "Versi baru",
+      "updateNow": "Perbarui sekarang",
       "downloading": "Mengunduh pembaruan...",
       "ready": "Pembaruan telah siap, mulai ulang aplikasi untuk menerapkan.",
-      "restart": "Mulai Ulang Aplikasi",
-      "websiteUpdate": "Pembaruan Situs Web",
-      "websiteUpdateDescription": "Refresh situs web untuk mengambil versi terbaru jika perintah pembaruan tidak muncul.",
+      "restart": "Mulai ulang",
+      "websiteUpdate": "Pembaruan situs web",
+      "websiteUpdateDescription": "Muat ulang situs web untuk mendapatkan versi terbaru jika pemberitahuan pembaruan tidak muncul.",
       "forceRefresh": "Paksa penyegaran",
       "clearWebsiteCache": "Hapus data situs web yang di-cache",
       "clearWebsiteCacheTitle": "Hapus data situs web yang di-cache?",
@@ -519,79 +519,79 @@
     },
     "appearance": {
       "mode": {
-        "basic": "Editor Dasar",
-        "advanced": "Penyunting Tingkat Lanjut",
-        "none": "Kosong",
+        "basic": "Tata letak sederhana",
+        "advanced": "Tata letak lanjutan",
+        "none": "Tidak ada",
         "image": "Gambar",
         "gradient": "Gradien"
       },
       "presets": {
         "missingBackground": "Gambar latar preset ini tidak tersedia di perangkat ini. Gambar saat ini dipertahankan.",
-        "title": "Preset Penampilan",
-        "namePlaceholder": "Nama Tema...",
-        "save": "Simpan Saat Ini",
+        "title": "Preset tampilan",
+        "namePlaceholder": "Nama tema…",
+        "save": "Simpan saat ini",
         "empty": "Belum ada preset yang disimpan.",
         "active": "Aktif",
         "load": "Terapkan preset",
         "delete": "Hapus preset"
       },
       "theme": "Tema",
-      "useCustomAccent": "Warna Aksen Kustom",
-      "useCustomAccentDesc": "Atur warna Aksen",
-      "glass": "Kacamorfisme",
-      "glassBlur": "Intensitas Kaca",
-      "glassBlurDesc": "Sesuaikan efek buram latar belakang untuk elemen kacamorfik.",
-      "background": "Latar Belakang",
-      "useCustomGradient": "Warna Gradien Kustom",
+      "useCustomAccent": "Warna aksen kustom",
+      "useCustomAccentDesc": "Pilih warna aksen Anda sendiri.",
+      "glass": "Efek kaca",
+      "glassBlur": "Intensitas efek kaca",
+      "glassBlurDesc": "Sesuaikan pemburaman latar belakang elemen berefek kaca.",
+      "background": "Latar belakang",
+      "useCustomGradient": "Warna gradien kustom",
       "useCustomGradientDesc": "Hasilkan gradien dari satu warna.",
-      "syncGradientToAccent": "Sinkronkan warna pertama dengan Aksen",
-      "addGradientColor": "Tambahkan Warna",
-      "gradientType": "Tipe Gradien",
+      "syncGradientToAccent": "Sinkronkan warna pertama dengan aksen",
+      "addGradientColor": "Tambahkan warna",
+      "gradientType": "Jenis gradien",
       "type": {
         "linear": "Linier",
         "radial": "Radial",
-        "conic": "berbentuk kerucut"
+        "conic": "Kerucut"
       },
-      "gradientOpacity": "Opasitas Gradien",
-      "gradientSize": "Skala Gradien",
-      "gradientPositionSettings": "Pusat & Sudut",
-      "gradientCenterX": "Pusat X (Horizontal)",
-      "gradientCenterY": "Pusat Y (Vertikal)",
+      "gradientOpacity": "Opasitas gradien",
+      "gradientSize": "Skala gradien",
+      "gradientPositionSettings": "Pusat & sudut",
+      "gradientCenterX": "Pusat X (horizontal)",
+      "gradientCenterY": "Pusat Y (vertikal)",
       "gradientAngle": "Sudut",
-      "font": "Font Aplikasi",
-      "currentFont": "Font Saat Ini",
-      "changeFont": "Ubah Font...",
+      "font": "Font aplikasi",
+      "currentFont": "Font saat ini",
+      "changeFont": "Ubah font…",
       "advanced": {
-        "resetToDefault": "Atur ulang ke default",
-        "projectColors": "Warna Proyek",
-        "primaryText": "Warna Teks Utama",
-        "primaryTextDesc": "Penggantian teks utama global.",
-        "secondaryText": "Warna Teks Sekunder",
-        "workspace": "Tema Ruang Kerja",
-        "titlebarBackground": "Latar Belakang Bilah Judul",
-        "sidebarBackground": "Latar Belakang Bilah Sisi",
-        "activeItemHighlight": "Sorotan Item Aktif",
-        "menuHoverColor": "Warna Arahkan Menu",
-        "editor": "Tata Letak Penyunting",
+        "resetToDefault": "Setel ulang ke bawaan",
+        "projectColors": "Warna proyek",
+        "primaryText": "Warna teks utama",
+        "primaryTextDesc": "Ganti warna teks utama di seluruh aplikasi.",
+        "secondaryText": "Warna teks tambahan",
+        "workspace": "Tema ruang kerja",
+        "titlebarBackground": "Latar bilah judul",
+        "sidebarBackground": "Latar bilah sisi",
+        "activeItemHighlight": "Sorotan item aktif",
+        "menuHoverColor": "Warna menu saat ditunjuk",
+        "editor": "Tata letak editor",
         "editorCanvas": "Area editor",
-        "activeLineHighlight": "Sorotan Garis Aktif",
-        "lineHoverEffect": "Efek Melayang Garis",
-        "selectionHighlight": "Sorotan Seleksi",
-        "chipBorderRadius": "Radius Perbatasan Chip",
-        "chipSpacing": "Jarak Chip (Kesenjangan)",
-        "chipPaddingVertical": "Bantalan Chip (V)",
-        "chipPaddingHorizontal": "Bantalan Chip (H)",
-        "legacySpaceLabels": "Label Ruang Warisan",
-        "legacySpaceLabelsDesc": "Tampilkan Spasi xN alih-alih sel spasi kosong yang ringkas.",
-        "audioVisuals": "Pemutaran & Visual",
-        "audioBarColor": "Warna Bilah Audio",
-        "audioBarText": "Teks Bilah Audio",
-        "waveformInactive": "Bentuk Gelombang Tidak Aktif",
-        "waveformProgress": "Kemajuan Bentuk Gelombang",
-        "global": "Sistem Desain Global",
-        "legacyDarkTheme": "Tema Gelap Klasik",
+        "activeLineHighlight": "Sorotan baris aktif",
+        "lineHoverEffect": "Efek baris saat ditunjuk",
+        "selectionHighlight": "Sorotan pilihan",
+        "chipBorderRadius": "Radius sudut kartu kata",
+        "chipSpacing": "Jarak antarkartu kata",
+        "chipPaddingVertical": "Ruang dalam kartu kata (V)",
+        "chipPaddingHorizontal": "Ruang dalam kartu kata (H)",
+        "legacySpaceLabels": "Label spasi lama",
+        "legacySpaceLabelsDesc": "Tampilkan “Space ×N” alih-alih sel spasi kosong yang ringkas.",
+        "audioVisuals": "Pemutaran & visual",
+        "audioBarColor": "Warna bilah audio",
+        "audioBarText": "Teks bilah audio",
+        "waveformInactive": "Gelombang belum diputar",
+        "waveformProgress": "Gelombang sudah diputar",
+        "global": "Sistem desain global",
+        "legacyDarkTheme": "Tema gelap klasik",
         "legacyDarkThemeDesc": "Gunakan palet gelap yang lebih terang dari sebelum desain ulang Intonated Black.",
-        "masterResetNote": "Ini akan mengatur ulang semua 20+ penggantian granular.",
+        "masterResetNote": "Setel ulang semua penyesuaian lanjutan di halaman ini.",
         "resetMaster": "Atur ulang semua pengaturan lanjutan",
         "scrollbarThumb": "Pegangan bilah gulir",
         "dialogBackground": "Latar dialog",
@@ -601,100 +601,100 @@
         "shadowIntensity": "Intensitas bayangan",
         "romanizationText": "Teks romanisasi",
         "translationText": "Teks terjemahan",
-        "geniusHeaderColor": "Warna header Genius"
+        "geniusHeaderColor": "Warna judul bagian Genius"
       },
-      "secondaryDesc": "Terjemahan & Metadata.",
+      "secondaryDesc": "Terjemahan dan metadata.",
       "layout": {
-        "title": "Tata Letak Aplikasi",
-        "order": "Urutan Elemen",
-        "orderDesc": "Seret untuk menyusun ulang elemen. Beberapa posisi mungkin dibatasi oleh kendala.",
-        "titlebar": "Bilah Judul",
-        "ribbonbar": "Bilah Alat (Pita)",
-        "editor": "Area Editor Utama",
-        "audio": "Kontrol Audio"
+        "title": "Tata letak aplikasi",
+        "order": "Urutan elemen",
+        "orderDesc": "Seret untuk mengurutkan ulang elemen. Beberapa posisi mungkin dibatasi.",
+        "titlebar": "Bilah judul",
+        "ribbonbar": "Bilah alat (pita)",
+        "editor": "Area editor utama",
+        "audio": "Kontrol audio"
       },
-      "fontImportSuccess": "Font berhasil diimpor!",
-      "fontLibrary": "Perpustakaan Font",
-      "fontWeight": "Berat Font",
+      "fontImportSuccess": "Font diimpor",
+      "fontLibrary": "Pustaka font",
+      "fontWeight": "Ketebalan font",
       "weight": {
-        "regular": "Reguler",
-        "bold": "Berani"
+        "regular": "Normal",
+        "bold": "Tebal"
       },
-      "fontStyle": "Gaya Font",
+      "fontStyle": "Gaya font",
       "style": {
         "normal": "Biasa",
-        "italic": "miring"
+        "italic": "Miring"
       },
-      "importFont": "Impor File Font",
-      "customFontActive": "FONT KUSTOM LOKAL",
-      "defaultFonts": "Tumpukan Standar",
-      "systemFonts": "Font Sistem",
-      "googleFonts": "Perpustakaan Google Font",
+      "importFont": "Impor file font",
+      "customFontActive": "Font kustom lokal",
+      "defaultFonts": "Susunan font standar",
+      "systemFonts": "Font sistem",
+      "googleFonts": "Pustaka Google Fonts",
       "fontDialogDescription": "Pilih font standar, font sistem, atau dari pustaka Google Fonts.",
       "interfaceScale": "Skala antarmuka",
       "interfaceScaleDesc": "Pilih skala, lalu terapkan. Anda juga bisa memakai Ctrl/Cmd +, -, atau 0.",
-      "resetTitle": "Setel Ulang Tema",
+      "resetTitle": "Setel ulang tema",
       "resetDesc": "Kembalikan semua warna, latar, gradien, dan penyesuaian kustom ke tema bawaan.",
-      "resetTheme": "Setel Ulang Tema ke Bawaan"
+      "resetTheme": "Pulihkan tema bawaan"
     },
     "group": {
       "display": "Tampilan",
       "timing": "Sinkronisasi",
       "playback": "Pemutaran",
-      "autosave": "Simpan Otomatis",
+      "autosave": "Simpan otomatis",
       "previewControls": "Pratinjau",
       "import": "Impor & ekspor",
-      "syncWordWrap": "Mode Sinkronisasi / Tab Sinkronisasi",
+      "syncWordWrap": "Mode Sinkronisasi",
       "privacy": "Privasi",
       "projects": "Proyek",
       "editModeDisplay": "Mode edit",
-      "timeModeDisplay": "Tampilan mode waktu",
+      "timeModeDisplay": "Tampilan mode Sinkronisasi",
       "syncAids": "Bantuan sinkronisasi",
       "previewPerformance": "Performa pratinjau"
     },
     "assistant": {
-      "manualTimestampEdit": "Pengeditan Stempel Waktu Manual",
-      "manualTimestampEditDesc": "Izinkan mengklik stempel waktu dalam mode Sinkronisasi untuk mengetikkan nilai secara manual.",
-      "visualizeTimestampUpdate": "Visualisasikan Pembaruan Stempel Waktu",
-      "visualizeTimestampUpdateDesc": "Tampilkan sekilas stempel waktu saat diperbarui melalui pintasan.",
-      "highlightErrors": "Sorot Kesalahan Waktu",
-      "highlightErrorsDesc": "Tandai secara visual kata-kata yang waktu mulainya lebih lama daripada waktu berakhirnya."
+      "manualTimestampEdit": "Edit penanda waktu manual",
+      "manualTimestampEditDesc": "Klik penanda waktu dalam mode Sinkronisasi untuk mengetik nilai baru.",
+      "visualizeTimestampUpdate": "Tampilkan perubahan penanda waktu",
+      "visualizeTimestampUpdateDesc": "Kedipkan penanda waktu saat diubah lewat pintasan.",
+      "highlightErrors": "Sorot kesalahan waktu",
+      "highlightErrorsDesc": "Tandai kata yang waktu mulainya setelah waktu akhirnya."
     },
     "audio": {
-      "equalizer": "Ekualiser Audio",
-      "eqDescription": "Sesuaikan penguatan untuk frekuensi berbeda untuk mengoptimalkan pengalaman audio Anda.",
+      "equalizer": "Ekualiser audio",
+      "eqDescription": "Perkuat atau kurangi rentang frekuensi agar vokal lebih jelas terdengar. Ini tidak mengubah TTML Anda.",
       "preset": "Preset",
       "standardPresets": "Standar",
       "presets": {
-        "custom": "petunjuk"
+        "custom": "Manual"
       },
-      "customPresets": "Kostum",
+      "customPresets": "Kustom",
       "reset": "Setel ulang",
-      "newPresetName": "Nama Preset Baru",
-      "save": "Simpan Prasetel"
+      "newPresetName": "Nama preset baru",
+      "save": "Simpan preset"
     },
     "backup": {
       "category": {
         "settings": "Pengaturan",
-        "keybindings": "Pintasan Keyboard",
-        "assets": "Aset penampilan",
-        "projects": "Proyek & sejarah",
+        "keybindings": "Pintasan",
+        "assets": "Aset tampilan",
+        "projects": "Proyek & riwayat",
         "apiKeys": "Kunci API"
       },
       "hint": {
-        "settings": "{count, plural, other {# menyimpan nilai}}",
-        "keybindings": "{count, plural, other {Ikatan kunci #}}",
-        "assetsSet": "Kumpulan gambar latar belakang khusus",
-        "assetsNone": "No custom background image",
-        "presetsCount": "{count, plural, other {Preset #}}",
-        "backgroundSet": "Latar belakang khusus",
-        "fontSet": "Font khusus",
-        "projects": "{count, plural, other {Proyek #}}",
+        "settings": "{count, plural, other {# nilai tersimpan}}",
+        "keybindings": "{count, plural, other {# pintasan}}",
+        "assetsSet": "Gambar latar kustom diatur",
+        "assetsNone": "Tidak ada aset kustom",
+        "presetsCount": "{count, plural, other {# preset}}",
+        "backgroundSet": "Latar belakang kustom",
+        "fontSet": "Font kustom",
+        "projects": "{count, plural, other {# proyek}}",
         "apiKeys": "{count, plural, other {# kunci}}"
       },
       "exportSuccess": "Cadangan diekspor",
       "exportFailed": "Gagal mengekspor cadangan",
-      "newerVersion": "Cadangan ini dibuat oleh aplikasi versi terbaru",
+      "newerVersion": "Cadangan ini dibuat dengan versi aplikasi yang lebih baru",
       "invalidFile": "File cadangan tidak valid atau rusak",
       "importSuccess": "Cadangan diimpor, memuat ulang…",
       "importFailed": "Gagal mengimpor cadangan. Beberapa data mungkin telah diterapkan sebagian.",
@@ -707,11 +707,11 @@
       "previewCategoryEmpty": "Tidak ada yang bisa diekspor dalam kategori ini",
       "previewMore": "+{count} lagi",
       "previewTotal": "Perkiraan ukuran keseluruhan",
-      "previewPresetPrefix": "Prasetel",
-      "previewFontPrefix": "Font Khusus",
-      "previewVersions": "{count, plural, other {Versi #}}",
+      "previewPresetPrefix": "Preset",
+      "previewFontPrefix": "Font kustom",
+      "previewVersions": "{count, plural, other {# versi}}",
       "apiKeysWarning": "Kunci API disimpan sebagai teks biasa di file cadangan. Jaga kerahasiaannya.",
-      "importTitle": "Impor Lirik",
+      "importTitle": "Impor",
       "importDesc": "Pulihkan pengaturan dan data dari file cadangan. Nilai-nilai yang ada akan diganti.",
       "importButton": "Pilih file cadangan…",
       "confirmTitle": "Konfirmasikan impor",
@@ -721,13 +721,13 @@
       "applyButton": "Impor & muat ulang"
     },
     "spectrogram": {
-      "palette": "Skema Warna",
-      "paletteCustom": "Kostum",
-      "gradientEditorDesc": "Pos 0.0 sesuai bagian paling sunyi, 1.0 sesuai bagian paling keras. Disarankan makin besar Pos, menggunakan warna yang lebih cerah.",
-      "addStop": "Tambah Warna"
+      "palette": "Palet warna",
+      "paletteCustom": "Kustom",
+      "gradientEditorDesc": "Posisi 0.0 menunjukkan bagian paling pelan, dan 1.0 paling keras. Warna lebih cerah di posisi lebih tinggi biasanya paling jelas.",
+      "addStop": "Tambah titik warna"
     },
     "preview": {
-      "vsync": "V-Sync"
+      "vsync": "Pratinjau mulus (setiap frame)"
     },
     "files": {
       "folderProjects": "Proyek folder",
@@ -740,14 +740,14 @@
       "showTranslationDesc": "Tampilkan kolom terjemahan di bawah setiap baris lirik.",
       "showRomanizationDesc": "Tampilkan kolom romanisasi di bawah setiap baris lirik.",
       "showWordRomanizationInputDesc": "Tampilkan kolom romanisasi pada setiap kata.",
-      "showTimestampsDesc": "Tampilkan waktu mulai dan selesai pada setiap kata.",
+      "showTimestampsDesc": "Tampilkan waktu mulai dan akhir pada setiap kata.",
       "highlightActiveWordDesc": "Sorot kata yang sedang diputar.",
       "enableGlowAnimationDesc": "Isi setiap kata dengan cahaya saat diputar.",
       "showPerWordRomanizationDesc": "Tampilkan romanisasi setiap kata di bawahnya.",
       "previewPanelDesc": "Tampilkan pratinjau lirik langsung di samping daftar kata.",
-      "bgLyricIgnoreSyncDesc": "Lewati baris latar saat menyinkronkan dengan keyboard. Juga berlaku untuk baris latar yang sudah ada.",
+      "bgLyricIgnoreSyncDesc": "Lewati baris vokal latar saat sinkronisasi dengan keyboard. Berlaku juga untuk baris vokal latar yang sudah ada.",
       "doubleClickEditDesc": "Klik dua kali sebuah kata untuk memperbaiki teksnya saat menyinkronkan.",
-      "touchSyncPanelDesc": "Tampilkan tombol sinkronisasi di layar untuk layar sentuh.",
+      "touchSyncPanelDesc": "Tampilkan tombol Mulai, Berikutnya, dan Akhiri di layar untuk layar sentuh.",
       "previewShowTranslationDesc": "Tampilkan baris terjemahan di pratinjau.",
       "previewShowRomanDesc": "Tampilkan romanisasi di pratinjau.",
       "simpleLyricsDesc": "Tiru mode Simple Lyrics di Spicy Lyrics, dengan animasi kata yang lebih tenang.",
@@ -756,89 +756,89 @@
       "timingOverviewAutoScrollDesc": "Jaga ikhtisar waktu tetap tergulir ke posisi pemutaran.",
       "vsyncDesc": "Perbarui pratinjau Standard dan Toxi setiap frame, bukan sekitar 30 kali per detik. Lebih mulus, tetapi memakai lebih banyak CPU.",
       "showFpsDesc": "Tampilkan penghitung frame rate di pratinjau.",
-      "syncLevelDesc": "Sinkronisasi kata mengatur waktu setiap kata. Sinkronisasi baris hanya mengatur waktu seluruh baris.",
+      "syncLevelDesc": "Kata: beri waktu setiap kata. Baris: beri waktu seluruh baris dan sebarkan kata secara merata sebagai waktu awal yang bisa disempurnakan di spektrogram.",
       "previewModeDesc": "Pilih pratinjau yang ditampilkan tab Pratinjau.",
       "spicyBackgroundDesc": "Apa yang tampil di belakang pratinjau Spicy.",
       "fadeWidthDesc": "Seberapa lembut tepi sorotan saat kata terisi di pratinjau Standard dan Toxi."
     }
   },
   "timingOverview": {
-    "start": "Mulai",
+    "start": "Awal",
     "end": "Akhir",
     "duration": "Durasi",
     "romanization": "Romanisasi",
     "backgroundVocal": "Latar",
-    "title": "Ikhtisar Waktu Teknis",
-    "lines": "Garis",
-    "words": "Kata-kata",
-    "lyricsAndTimings": "Lirik & Pengaturan Waktu Kata",
-    "autoScroll": "Gulir Otomatis",
+    "title": "Ikhtisar waktu teknis",
+    "lines": "Baris",
+    "words": "Kata",
+    "lyricsAndTimings": "Lirik & waktu kata",
+    "autoScroll": "Gulir otomatis",
     "orderChronological": "Kronologis",
-    "orderTextual": "Tekstual"
+    "orderTextual": "Urutan teks"
   },
   "topBar": {
     "modeBtns": {
-      "edit": "Sunting",
+      "edit": "Edit",
       "sync": "Sinkronisasi",
       "preview": "Pratinjau"
     },
-    "appName": "Garpu AMLL TTML Tool NaeNae",
+    "appName": "NaeNae's AMLL TTML Tool Fork",
     "menu": {
       "undo": "Urungkan",
       "redo": "Ulangi",
-      "selectAllLines": "Pilih Semua Baris",
-      "unselectAllLines": "Batalkan Pilihan Semua Baris",
-      "timeShift": "Geser Waktu...",
-      "timeStretch": "Peregangan Waktu...",
-      "editMetadata": "Edit Metadata Lirik",
-      "edit": "Sunting",
-      "newLyric": "File TTML Baru",
-      "openLyric": "Buka File TTML",
-      "openFromClipboard": "Buka File TTML dari Clipboard",
-      "saveLyric": "Simpan File TTML",
-      "restoreFromHistory": "Pulihkan dari Riwayat…",
-      "saveLyricToClipboard": "Simpan File TTML ke Clipboard",
-      "file": "Berkas",
-      "helpDoc": "Panduan Pengguna",
+      "selectAllLines": "Pilih semua baris",
+      "unselectAllLines": "Batalkan pilihan semua baris",
+      "timeShift": "Geser waktu…",
+      "timeStretch": "Regangkan waktu…",
+      "editMetadata": "Edit metadata…",
+      "edit": "Edit",
+      "newLyric": "Lirik baru",
+      "openLyric": "Buka lirik",
+      "openFromClipboard": "Buka TTML dari clipboard",
+      "saveLyric": "Simpan TTML",
+      "restoreFromHistory": "Pulihkan dari riwayat…",
+      "saveLyricToClipboard": "Salin TTML ke clipboard",
+      "file": "File",
+      "helpDoc": "Dokumentasi proyek asal (bahasa Tionghoa)",
       "help": "Bantuan",
       "segmentationTools": "Segmentasi",
-      "autoSegment": "Segmentasi Otomatis",
-      "advancedSegment": "Segmentasi Lanjutan...",
-      "learnedSplits": "Perpecahan yang Dipelajari...",
-      "syncLineTimestamps": "Sinkronkan Penanda Waktu Baris",
-      "ttmlChecklist": "Daftar Periksa TTML",
+      "autoSegment": "Segmentasi otomatis…",
+      "advancedSegment": "Segmentasi lanjutan…",
+      "learnedSplits": "Pemisahan yang dipelajari…",
+      "syncLineTimestamps": "Sesuaikan baris dengan waktu katanya",
+      "ttmlChecklist": "Daftar periksa TTML",
       "tool": "Alat",
       "importLyric": {
-        "import": "Impor Lirik",
-        "fromPlainText": "Impor dari Teks Polos…",
+        "import": "Impor lirik",
+        "fromPlainText": "Impor dari teks biasa…",
         "fromLRCLIB": "Impor dari LRCLIB...",
         "fromLyrically": "Impor dari Lyrically...",
         "fromGenius": "Impor dari Genius…"
       },
       "exportLyric": {
-        "export": "Ekspor Lirik…",
+        "export": "Ekspor lirik",
         "toTTML": "TTML",
         "toLRC": "LRC",
         "toESLRC": "ESLRC",
-        "toQRC": "Ekspor ke QRC",
-        "toYRC": "Ekspor ke YRC",
-        "toLrcfySylb": "Ekspor ke Lyricify Syllable",
-        "toASS": "Ekspor ke Subtitle ASS"
+        "toQRC": "QRC",
+        "toYRC": "YRC",
+        "toLrcfySylb": "Lyricify Syllable",
+        "toASS": "Subtitle ASS"
       },
-      "spectrogramHoverSync": "Sinkronkan ke kursor spektrogram",
-      "whatsNew": "Yang Baru",
-      "changelog": "Log Perubahan & Pembaruan",
+      "spectrogramHoverSync": "Sinkronkan di posisi mouse",
+      "whatsNew": "Yang baru",
+      "changelog": "Log perubahan & pembaruan",
       "projects": "Proyek"
     }
   },
   "header": {
     "status": {
-      "autoSavedAt": "Disimpan otomatis di {time}",
+      "autoSavedAt": "Disimpan otomatis pukul {time}",
       "unsavedChanges": "Perubahan yang belum disimpan"
     },
     "project": {
       "linked": "Proyek tertaut",
-      "folder": "Proyek map",
+      "folder": "Proyek folder",
       "namePlaceholder": "Nama proyek"
     },
     "backup": {
@@ -849,120 +849,120 @@
   },
   "contextMenu": {
     "deleteWords": "{count, plural, other {Hapus # kata}}",
-    "bgLyric": "Lirik Latar",
-    "duetLyric": "Lirik Duet",
-    "moveLineToPlayhead": "Pindahkan garis ke playhead",
+    "bgLyric": "Baris vokal latar",
+    "duetLyric": "Baris duet",
+    "moveLineToPlayhead": "Pindahkan baris ke penunjuk putar",
     "copyTimingsTo": "Salin waktu ke…",
-    "cancelCopyTimings": "Batalkan salinan waktu",
-    "snapSelectedLinesToPlayhead": "Jepret baris yang dipilih ke playhead",
-    "insertLineBefore": "Sisipkan Baris Sebelum",
-    "insertLineAfter": "Sisipkan Baris Sesudah",
-    "copyLine": "{count, plural, other {Salin # baris}}",
+    "cancelCopyTimings": "Batalkan penyalinan waktu",
+    "snapSelectedLinesToPlayhead": "Paskan baris terpilih ke penunjuk putar",
+    "insertLineBefore": "Sisipkan baris sebelum",
+    "insertLineAfter": "Sisipkan baris sesudah",
+    "copyLine": "{count, plural, other {Gandakan # baris}}",
     "duplicateTo": "Gandakan ke...",
-    "combineLine": "Gabungkan Baris",
+    "combineLine": "Gabungkan baris",
     "deleteLine": "{count, plural, other {Hapus # baris}}",
-    "splitWord": "Pecah Kata…",
-    "noSyllablesFound": "Tidak ditemukan beberapa suku kata.",
+    "splitWord": "Pisahkan kata…",
+    "noSyllablesFound": "Tidak ada suku kata untuk dipisahkan.",
     "splitIntoSyllables": "Pisahkan menjadi suku kata (romanisasi)",
-    "replaceWord": "Ganti Kata…",
+    "replaceWord": "Ganti kata…",
     "replaceRomanization": "Ganti romanisasi…",
-    "combineWords": "Gabungkan Kata",
-    "moveFollowingWordToNewLine": "Pindahkan Kata Berikutnya ke Baris Baru",
+    "combineWords": "Gabungkan kata",
+    "moveFollowingWordToNewLine": "Pindahkan kata selanjutnya ke baris baru",
     "moveWordToNewLine": "{count, plural, other {Pindahkan # kata ke baris baru}}"
   },
   "settingsDialog": {
-    "search": "Pengaturan pencarian",
+    "search": "Cari pengaturan",
     "clearSearch": "Hapus pencarian",
     "noSearchResults": "Tidak ada kategori yang cocok",
     "title": "Preferensi",
     "common": {
-      "latencyTest": "Tes Latensi Audio/Input"
+      "latencyTest": "Tes latensi audio/input"
     },
     "keybindings": {
-      "newFile": "File Baru",
-      "openFile": "Buka File",
-      "saveFile": "Simpan File",
+      "newFile": "File baru",
+      "openFile": "Buka file",
+      "saveFile": "Simpan file",
       "undo": "Urungkan",
       "redo": "Ulangi",
       "redoAlternate": "Ulangi (pintasan alternatif)",
-      "selectAll": "Pilih Semua",
-      "unselectAll": "Batal Pilih Semua",
-      "deleteSelection": "Hapus Pilihan",
-      "autoSegment": "Pemisahan otomatis cepat",
-      "autoSegmentDialog": "Segmentasi Otomatis",
-      "switchEditMode": "Ganti Mode - Beralih ke Mode Edit",
-      "switchSyncMode": "Ganti Mode - Beralih ke Mode Sinkronisasi",
-      "switchPreviewMode": "Ganti Mode - Beralih ke Mode Pratinjau",
-      "locateActiveLine": "Lihat - Temukan Jalur Aktif",
+      "selectAll": "Pilih semua",
+      "unselectAll": "Batalkan semua pilihan",
+      "deleteSelection": "Hapus pilihan",
+      "autoSegment": "Segmentasi otomatis cepat",
+      "autoSegmentDialog": "Segmentasi otomatis…",
+      "switchEditMode": "Mode - Beralih ke Edit",
+      "switchSyncMode": "Mode - Beralih ke Sinkronisasi",
+      "switchPreviewMode": "Mode - Beralih ke Pratinjau",
+      "locateActiveLine": "Tampilan - Temukan baris aktif",
       "interfaceScaleUp": "Desktop - Tingkatkan skala antarmuka",
       "interfaceScaleUpAlternate": "Desktop - Tingkatkan skala antarmuka (pintasan alternatif)",
       "interfaceScaleDown": "Desktop - Kurangi skala antarmuka",
       "interfaceScaleReset": "Desktop - Setel ulang skala antarmuka",
-      "moveNextWord": "Sinkronisasi - Pindah ke Kata Berikutnya",
-      "movePrevWord": "Sinkronisasi - Pindah ke Kata Sebelumnya",
-      "moveNextLine": "Sinkronisasi - Pindah ke Awal Baris Berikutnya",
-      "movePrevLine": "Sinkronisasi - Pindah ke Awal Baris Sebelumnya",
-      "movePrevWordAndPlay": "Sinkronisasi - Pindah ke Kata Sebelumnya dan Putar",
-      "moveNextWordAndPlay": "Sinkronisasi - Pindah ke Kata Berikutnya dan Putar",
-      "syncStart": "Sinkronisasi - Sinkronisasi Awal",
-      "syncNext": "Sinkronisasi - Sinkronisasi Bertahap",
-      "syncEnd": "Sinkronisasi - Sinkronisasi Interlude",
-      "toggleWordHighlight": "Pengaturan Waktu - Mengalihkan sorotan kata aktif",
-      "urbanDictionary": "Sunting - Cari di Urban Dictionary",
-      "urbanDictionarySync": "Waktu - Cari di Urban Dictionary",
-      "moveFirstWordAndPlay": "Sinkronisasi - Pindah ke Kata Pertama Baris dan Putar",
-      "moveLastWordAndPlay": "Sinkronisasi - Pindah ke Kata Terakhir Baris dan Putar",
-      "playPause": "Pemutaran - Jeda/Lanjutkan",
-      "seekForward": "Pemutaran - Maju 5 Detik",
-      "seekBackward": "Pemutaran - Mundur 5 Detik",
-      "volumeUp": "Pemutaran - Naikkan Volume",
-      "volumeDown": "Pemutaran - Turunkan Volume",
-      "playbackRateUp": "Pemutaran - Tingkatkan Kecepatan Putar",
-      "playbackRateDown": "Pemutaran - Kurangi Kecepatan Putar",
-      "playbackRateReset": "Pemutaran - Reset Kecepatan Putar",
-      "duplicatePaste": "Sunting - Duplikat ke waktu sekarang",
-      "auditionSelectionBefore": "Spektrogram - Dengar 500ms Sebelum Suku Kata yang Dipilih",
-      "auditionSelection": "Spektrogram - Dengar Suku Kata yang Dipilih",
-      "auditionSelectionAfter": "Spektrogram - Dengar 500ms Sesudah Suku Kata yang Dipilih",
-      "cancelTimelineEditing": "Spectogram - Batalkan pengeditan garis waktu",
-      "resetDefault": "Atur ulang ke default",
+      "moveNextWord": "Sinkronisasi - Pindah ke kata berikutnya",
+      "movePrevWord": "Sinkronisasi - Pindah ke kata sebelumnya",
+      "moveNextLine": "Sinkronisasi - Pindah ke awal baris berikutnya",
+      "movePrevLine": "Sinkronisasi - Pindah ke awal baris sebelumnya",
+      "movePrevWordAndPlay": "Sinkronisasi - Pindah ke kata sebelumnya dan putar",
+      "moveNextWordAndPlay": "Sinkronisasi - Pindah ke kata berikutnya dan putar",
+      "syncStart": "Sinkronisasi - Mulai",
+      "syncNext": "Sinkronisasi - Berikutnya",
+      "syncEnd": "Sinkronisasi - Akhiri",
+      "toggleWordHighlight": "Sinkronisasi - Alihkan sorotan kata aktif",
+      "urbanDictionary": "Edit - Cari di Urban Dictionary",
+      "urbanDictionarySync": "Sinkronisasi - Cari di Urban Dictionary",
+      "moveFirstWordAndPlay": "Sinkronisasi - Pindah ke kata pertama dan putar",
+      "moveLastWordAndPlay": "Sinkronisasi - Pindah ke kata terakhir dan putar",
+      "playPause": "Pemutaran - Putar/jeda",
+      "seekForward": "Pemutaran - Maju 5 detik",
+      "seekBackward": "Pemutaran - Mundur 5 detik",
+      "volumeUp": "Pemutaran - Naikkan volume",
+      "volumeDown": "Pemutaran - Turunkan volume",
+      "playbackRateUp": "Pemutaran - Tingkatkan kecepatan",
+      "playbackRateDown": "Pemutaran - Kurangi kecepatan",
+      "playbackRateReset": "Pemutaran - Setel ulang kecepatan",
+      "duplicatePaste": "Edit - Gandakan di penunjuk putar",
+      "auditionSelectionBefore": "Spektrogram - Putar pilihan (+0,5 dtk sebelum)",
+      "auditionSelection": "Spektrogram - Putar pilihan",
+      "auditionSelectionAfter": "Spektrogram - Putar pilihan (+0,5 dtk sesudah)",
+      "cancelTimelineEditing": "Spektrogram - Batalkan pengeditan linimasa",
+      "resetDefault": "Setel ulang ke bawaan",
       "clear": "Hapus",
-      "unbound": "Tidak terikat",
+      "unbound": "Belum diatur",
       "recording": "Tekan pintasan (Esc untuk membatalkan)",
       "conflict": "Juga ditetapkan ke {commands} dalam mode yang sama. Petakan ulang atau hapus salah satu pintasan ini.",
       "category": {
-        "File": "Berkas",
-        "Edit": "Sunting",
+        "File": "File",
+        "Edit": "Edit",
         "View": "Tampilan",
         "Sync": "Sinkronisasi",
         "Audio": "Audio",
         "Spectrogram": "Spektrogram"
       },
-      "autoSegmentOptions": "Segmen Otomatis",
+      "autoSegmentOptions": "Segmentasi otomatis",
       "autoSegmentDoublePress": "Perlu tekan dua kali",
-      "autoSegmentDoublePressDesc": "Run Auto Segment only after pressing its shortcut twice quickly."
+      "autoSegmentDoublePressDesc": "Jalankan segmentasi otomatis cepat hanya saat pintasannya ditekan dua kali dengan cepat."
     },
     "tab": {
       "common": "Umum",
       "appearance": "Penampilan",
       "audio": "Audio",
-      "keybindings": "Pintasan Keyboard",
+      "keybindings": "Pintasan",
       "spectrogram": "Spektrogram",
       "backup": "Cadangan",
-      "editor": "Editor & Sinkronisasi",
-      "files": "File & Penyimpanan"
+      "editor": "Editor & sinkronisasi",
+      "files": "File & penyimpanan"
     },
     "page": {
       "generalDesc": "Bahasa, tata letak, privasi, dan perilaku seluruh aplikasi.",
       "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
       "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
-      "audioDesc": "Pemutaran, equalizer, dan tampilan spektrogram."
+      "audioDesc": "Pemutaran, ekualiser, dan tampilan spektrogram."
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",
   "error": {
     "unsupportedFileFormat": "Format file tidak didukung: {ext}",
-    "openFileFailed": "Gagal membuka berkas",
+    "openFileFailed": "Gagal membuka file",
     "linkedProjectInvalidPath": "File yang dipilih tidak dapat ditautkan. Pilih file .ttml dan file audio di drive lokal. Berbagi jaringan tidak didukung.",
     "linkedProjectBackupFailed": "Tidak dapat mencadangkan file TTML asli, sehingga tidak ditimpa",
     "linkedProjectNoBackup": "Tidak ada cadangan yang ditemukan untuk proyek ini",
@@ -994,37 +994,37 @@
   },
   "audio": {
     "marker": "Penanda",
-    "markerLabel": "Label (misalnya Ayat 1 Mulai)",
+    "markerLabel": "Label (mis. awal bait 1)",
     "markerDescription": "Deskripsi...",
-    "deleteMarker": "Hapus Penanda",
-    "waveform": "Bentuk Gelombang Audio",
+    "deleteMarker": "Hapus penanda",
+    "waveform": "Bentuk gelombang audio",
     "status": {
-      "transcoding": "Gagal mendekode, mencoba melakukan transkode audio...",
+      "transcoding": "Dekode gagal, mengonversi audio…",
       "loading": "Memuat audio...",
       "processing": "Sedang memproses..."
     },
     "error": {
       "workerError": "Terjadi kesalahan saat memproses audio",
       "noAudio": "Silakan muat file audio terlebih dahulu.",
-      "contextStart": "Audio tidak dapat dimulai. Coba tekan Mainkan lagi.",
-      "workletInit": "Pemutar audio tidak dapat menginisialisasi.",
+      "contextStart": "Audio tidak dapat dimulai. Coba tekan Putar lagi.",
+      "workletInit": "Pemutar audio tidak dapat diinisialisasi.",
       "workletStart": "Pemutar audio tidak memulai pemutaran."
     }
   },
   "audioPanel": {
     "volume": "Volume",
-    "playbackRate": "Kecepatan Putar",
-    "preservesPitch": "Pertahankan Pitch",
-    "clickToLoadMusic": "Klik ikon untuk memuat musik",
-    "playPause": "Putar / Jeda Musik",
-    "expandSpectrogram": "Buka / Tutup Spektrogram"
+    "playbackRate": "Kecepatan putar",
+    "preservesPitch": "Pertahankan nada",
+    "clickToLoadMusic": "Klik ikon musik untuk memuat audio",
+    "playPause": "Putar / jeda musik",
+    "expandSpectrogram": "Perluas / ciutkan spektrogram"
   },
   "latencyTestDialog": {
-    "title": "Tes Latensi Offset Waktu",
+    "title": "Tes latensi",
     "latencyDisplay": {
       "fastest": "Tercepat",
       "current": {
-        "none": "Tidak Diukur",
+        "none": "Belum diukur",
         "fast": "Awal",
         "slow": "Terlambat",
         "perfect": "Sempurna"
@@ -1041,46 +1041,46 @@
   "metadataDialog": {
     "fetchSongwriters": {
       "error": "Gagal mengambil penulis lagu",
-      "noSongwriters": "Tidak ada kredit penulisan lagu yang direkam untuk lagu ini",
+      "noSongwriters": "Tidak ada informasi penulis lagu untuk lagu ini",
       "findingRealName": "Menemukan nama asli untuk {name} ({current}/{total})...",
       "success": "Penulis lagu berhasil diambil dari Genius",
-      "setupTitle": "Genius API Pengaturan Kunci",
-      "setupDesc": "Untuk menggunakan fitur ini, silakan konfigurasikan Kunci Genius API Anda (khususnya, Anda memerlukan \"CLIENT ACCESS TOKEN\"). Anda dapat membuatnya dari",
-      "setupDescEnd": "portal pengembang.",
-      "keyPlaceholder": "Masukkan TOKEN AKSES KLIEN",
-      "button": "Ambil Penulis Lagu dari Genius",
-      "tryFindRealNames": "Cobalah untuk mencari nama asli (Nama Resmi)",
+      "setupTitle": "Token akses Genius",
+      "setupDesc": "Untuk mengambil penulis lagu, tambahkan token akses Genius Anda (disebut Client Access Token oleh Genius). Anda dapat membuatnya di portal pengembang ",
+      "setupDescEnd": ".",
+      "keyPlaceholder": "Tempel token akses Genius Anda",
+      "button": "Ambil penulis lagu dari Genius",
+      "tryFindRealNames": "Cari nama asli (resmi)",
       "searchError": "Pencarian gagal: {error}",
       "fetchError": "Tidak dapat mengambil lirik: {error}",
       "noLyricsError": "Tidak ada lirik untuk diimpor.",
-      "importSuccess": "{count, plural, other {Garis # yang diimpor dari Genius.}}",
-      "howToGetKey": "Cara membuat Genius Client Access Token"
+      "importSuccess": "{count, plural, other {# baris diimpor dari Genius.}}",
+      "howToGetKey": "Cara mendapatkan token akses Genius"
     },
-    "openLink": "Buka Tautan",
+    "openLink": "Buka tautan",
     "duplicateMsg": "Ada nilai metadata yang duplikat",
     "addValue": "Tambah",
     "builtinOptions": {
-      "musicName": "Judul Lagu",
-      "artists": "Artis Lagu",
-      "artistsInvalidMsg": "Jika ada lebih dari satu artis, silakan tambahkan kunci ini beberapa kali tanpa tanda pemisah; abaikan jika nama artis itu sendiri mengandung tanda pemisah",
-      "songwriter": "Penulis Lagu",
-      "songwriterInvalidMsg": "Jika ada lebih dari satu penulis lagu, silakan tambahkan kunci ini beberapa kali tanpa tanda pemisah",
-      "album": "Nama Album Lagu",
-      "coverArt": "URL sampul"
+      "musicName": "Judul lagu",
+      "artists": "Artis",
+      "artistsInvalidMsg": "Tambahkan satu entri per artis, jangan pisahkan nama dengan koma atau garis miring. Abaikan jika tanda tersebut memang bagian dari nama artis.",
+      "songwriter": "Penulis lagu",
+      "songwriterInvalidMsg": "Tambahkan satu entri per penulis lagu, jangan pisahkan nama dengan koma atau garis miring.",
+      "album": "Album",
+      "coverArt": "URL gambar sampul"
     },
-    "title": "Editor Metadata",
-    "key": "Tipe Metadata",
+    "title": "Metadata",
+    "key": "Kunci",
     "value": "Nilai",
     "empty": "Tidak ada metadata",
-    "addKeyValue": "Tambah Key-Value Baru",
-    "customKey": "Nama Kunci Kustom",
-    "addPresets": "Tambah Semua Kunci Standar",
+    "addKeyValue": "Tambah kolom",
+    "customKey": "Kolom kustom",
+    "addPresets": "Tambah semua kolom standar",
     "clear": "Kosongkan"
   },
   "lrclib": {
-    "placeholder": "Judul Lagu, Artis...",
+    "placeholder": "Judul lagu dan artis…",
     "notFound": "Hasil tidak ditemukan, silakan coba ganti kata kunci",
-    "noResult": "Masukkan kata kunci untuk mulai mencari",
+    "noResult": "Ketik lagu atau artis untuk mencari",
     "title": "Impor lirik dari LRCLIB",
     "matchesAudio": "Cocok dengan audio Anda"
   },
@@ -1090,53 +1090,53 @@
   "lyricLineView": {
     "translatedLabel": "Terjemahan:",
     "romanLabel": "Romanisasi:",
-    "empty": "Kosong",
-    "duplicateLinesHere": "{count, plural, other {Gandakan baris yang dipilih # di sini}}",
-    "applyTimingsHere": "{count, plural, other {Terapkan pengaturan waktu # mulai dari sini}}",
-    "applyPartialTimingsHere": "Terapkan pengaturan waktu {applied} dari {total} mulai dari sini",
-    "timingsApplied": "{count, plural, other {Pengaturan waktu yang diterapkan pada jalur #.}}",
-    "partialTimingCopy": "Hanya {applied} dari {total} pengaturan waktu sumber yang cocok sebelum akhir lirik.",
+    "empty": "Tidak ada",
+    "duplicateLinesHere": "{count, plural, other {Gandakan # baris terpilih di sini}}",
+    "applyTimingsHere": "{count, plural, other {Terapkan # set waktu dari sini}}",
+    "applyPartialTimingsHere": "Terapkan {applied} dari {total} set waktu dari sini",
+    "timingsApplied": "{count, plural, other {Waktu diterapkan ke # baris.}}",
+    "partialTimingCopy": "Hanya {applied} dari {total} waktu sumber yang muat sebelum akhir lirik.",
     "wordTimingMismatch": "{count, plural, other {# baris memiliki jumlah kata berbeda; hanya posisi kata yang cocok yang disalin.}}",
     "insertLine": "Sisipkan baris baru di sini",
-    "insertWord": "Sisipkan kata…"
+    "insertWord": "Sisipkan kata di sini…"
   },
   "lyricWordView": {
     "empty": "Kosong",
-    "spaceCount": "Spasi x{count}",
-    "removeWord": "Hapus Kata Duplikat",
-    "editingWordTitle": "Mengedit Kata",
+    "spaceCount": "Spasi ×{count}",
+    "removeWord": "Hapus kata duplikat",
+    "editingWordTitle": "Pengeditan kata",
     "editingWordDesc": "Edit kata atau terapkan perbaikan cepat yang disarankan.",
     "correctedWordPlaceholder": "Ketikkan kata yang dikoreksi",
     "noSuggestions": "Tidak ada saran"
   },
   "sectionActions": {
-    "categorizeSelected": "Kategorikan {count, plural, other {baris yang dipilih}}",
+    "categorizeSelected": "{count, plural, other {Kategorikan # baris terpilih}}",
     "categorizeTitle": "Kategorikan baris yang dipilih",
     "categorize": "Kategorikan",
     "expand": "Perluas bagian",
     "collapse": "Ciutkan bagian",
-    "editTitle": "Sunting bagian",
+    "editTitle": "Edit bagian",
     "vocalist": "Vokalis / peran",
     "notes": "Catatan",
     "manage": "Kelola bagian",
     "goPrevious": "Buka bagian sebelumnya",
     "goNext": "Lanjutkan ke bagian berikutnya",
-    "editMetadata": "Sunting metadata",
+    "editMetadata": "Edit metadata",
     "split": "Pisahkan pada baris yang dipilih",
-    "mergePrevious": "Gabung dengan sebelumnya",
+    "mergePrevious": "Gabungkan dengan sebelumnya",
     "mergeNext": "Gabungkan dengan berikutnya",
-    "moveUp": "Naik",
+    "moveUp": "Pindahkan ke atas",
     "moveDown": "Pindah ke bawah",
-    "linkPrevious": "Tautan ke {category} sebelumnya",
-    "unlinkRepeat": "Batalkan tautan, ulangi",
-    "removeHeader": "Hapus header (simpan lirik)",
+    "linkPrevious": "Tautkan ke {category} sebelumnya",
+    "unlinkRepeat": "Lepas tautan pengulangan",
+    "removeHeader": "Hapus judul (pertahankan lirik)",
     "addToPrevious": "Tambahkan baris yang belum ditetapkan ke bagian sebelumnya",
     "addToNext": "Tambahkan baris yang belum ditetapkan ke bagian berikutnya",
     "section": "Bagian"
   },
   "touchSyncPanel": {
-    "prevWord": "Ke Kata Seb.",
-    "nextWord": "Ke Kata Ber."
+    "prevWord": "Kata sebelumnya",
+    "nextWord": "Kata berikutnya"
   },
   "urbanDictionary": {
     "title": "Urban Dictionary",
@@ -1146,133 +1146,133 @@
     "viewOnline": "Lihat daring"
   },
   "replaceWordDialog": {
-    "title": "Ganti Kata",
-    "description": "Isi kata baru:",
+    "title": "Ganti kata",
+    "description": "Kata baru:",
     "placeholder": "Kata baru",
-    "applyToAll": "Terapkan aturan penggantian ini ke semua kata yang sama",
-    "caseSensitive": "Kasus pencocokan (Pencocokan tepat)"
+    "applyToAll": "Ganti semua kata yang sama",
+    "caseSensitive": "Cocokkan huruf besar/kecil"
   },
   "replaceRomanizationDialog": {
-    "title": "Gantikan Romanisasi",
+    "title": "Ganti romanisasi",
     "description": "Romanisasi baru:",
     "placeholder": "Romanisasi baru",
-    "applyToAll": "Berlaku untuk semua kata yang identik",
-    "caseSensitive": "Kasus pencocokan (pencocokan persis)"
+    "applyToAll": "Terapkan ke semua kata yang sama",
+    "caseSensitive": "Cocokkan huruf besar/kecil"
   },
   "timeShiftDialog": {
-    "title": "Geser Waktu",
-    "amount": "Besaran Geser (ms)",
+    "title": "Geser waktu",
+    "amount": "Offset (ms)",
     "direction": "Arah",
-    "advance": "Lebih Awal (-)",
-    "delay": "Lebih Lambat (+)",
+    "advance": "Lebih awal (−)",
+    "delay": "Lebih lambat (+)",
     "scopeLabel": "Diterapkan pada",
     "scope": {
-      "all": "Semua Baris",
-      "selected": "Baris yang Dipilih",
-      "selectedFollowing": "Baris yang Dipilih dan Seterusnya",
-      "custom": "Rentang Kustom"
+      "all": "Semua baris",
+      "selected": "Baris terpilih",
+      "selectedFollowing": "Baris terpilih dan seterusnya",
+      "custom": "Rentang kustom"
     },
     "fromLine": "Dari baris",
-    "toLine": "Sampai baris",
+    "toLine": "sampai baris",
     "line": "",
-    "snapToPlayhead": "Jepret awal baris yang terpengaruh ke waktu pemutaran saat ini"
+    "snapToPlayhead": "Mulai baris terkait di penunjuk putar"
   },
   "timeStretchDialog": {
     "durationPlaceholder": "MM:SS.mmm atau detik",
     "useCurrentSong": "Gunakan lagu saat ini",
-    "audioReadError": "Could not read the selected audio file's duration.",
+    "audioReadError": "Tidak dapat membaca durasi file audio yang dipilih.",
     "invalidDuration": "Masukkan durasi yang valid.",
     "positiveDuration": "Durasi harus lebih besar dari nol.",
-    "title": "Ubah durasi",
-    "description": "Regangkan atau peras setiap stempel waktu TTML agar sesuai dengan durasi lagu baru.",
+    "title": "Regangkan waktu",
+    "description": "Regangkan atau padatkan semua penanda waktu TTML agar sesuai dengan durasi lagu yang baru.",
     "oldDuration": "Durasi lagu lama",
     "readingAudio": "Membaca audio...",
-    "chooseAudio": "Unggah audio...",
+    "chooseAudio": "Pilih audio…",
     "newDuration": "Durasi lagu baru",
     "noChange": "Durasinya cocok; tidak diperlukan perubahan waktu.",
     "scaleFactor": "Faktor skala: {factor}×",
     "scopeLabel": "Terapkan ke",
     "scope": {
-      "all": "Semua lini",
-      "selected": "Garis yang dipilih",
-      "selectedFollowing": "Baris yang dipilih dan berikut ini",
-      "custom": "Rentang khusus"
+      "all": "Semua baris",
+      "selected": "Baris terpilih",
+      "selectedFollowing": "Baris terpilih dan seterusnya",
+      "custom": "Rentang kustom"
     },
     "fromLine": "Dari",
-    "toLine": "untuk",
-    "line": "garis"
+    "toLine": "sampai",
+    "line": "baris"
   },
   "lyrically": {
     "noLyricsLabel": "Tidak ada lirik yang tersedia untuk lagu ini.",
-    "previewTitle": "Lyrically — Pratinjau Lirik",
-    "editingRawText": "Mengedit Teks Mentah",
-    "backToPreview": "Kembali ke Pratinjau",
-    "manualEdit": "Pengeditan Manual",
-    "importTitle": "Import Lyrics safely via Lyrically (No CORS via API endpoint)",
-    "source": "Sumber:"
+    "previewTitle": "Lyrically — Pratinjau lirik",
+    "editingRawText": "Mengedit teks mentah",
+    "backToPreview": "Kembali ke pratinjau",
+    "manualEdit": "Edit manual",
+    "importTitle": "Impor lirik dari Lyrically",
+    "source": "Sumber: "
   },
   "genius": {
-    "setupTitle": "Genius API Pengaturan Kunci",
-    "setupDesc": "Untuk mengimpor lirik dari Genius Anda memerlukan TOKEN AKSES KLIEN. Anda dapat membuatnya dari portal pengembang Genius.",
-    "keyPlaceholder": "Tempel TOKEN AKSES KLIEN di sini…",
-    "previewTitle": "Genius — Pratinjau Lirik",
+    "setupTitle": "Token akses Genius",
+    "setupDesc": "Untuk mengimpor dari Genius, Anda memerlukan token akses Genius (disebut Client Access Token oleh Genius). Anda dapat membuatnya di portal pengembang Genius.",
+    "keyPlaceholder": "Tempel token akses Genius Anda…",
+    "previewTitle": "Genius — Pratinjau lirik",
     "back": "Kembali",
     "previewSubtitle": "Anda dapat mengedit lirik di bawah ini sebelum mengimpor.",
-    "linesCount": "{count, plural, other {garis #}}",
-    "importButton": "Impor Lirik",
-    "importTitle": "Impor Lirik dari Genius",
+    "linesCount": "{count, plural, other {# baris}}",
+    "importButton": "Impor lirik",
+    "importTitle": "Impor lirik dari Genius",
     "searchPlaceholder": "Artis – Judul lagu…",
     "notFound": "Tidak ada hasil yang ditemukan. Coba kata kunci yang berbeda.",
     "noResult": "Masukkan nama lagu atau artis untuk memulai.",
-    "howToGetKey": "Cara membuat Genius Client Access Token",
-    "changeKey": "Ubah Kunci API"
+    "howToGetKey": "Cara mendapatkan token akses Genius",
+    "changeKey": "Ubah token akses"
   },
   "textImportDialog": {
-    "processLyrics": "Lirik Proses",
-    "processedSuccess": "Lirik otomatis untuk sinkronisasi suku kata.",
-    "title": "Impor Lirik Teks Polos",
+    "processLyrics": "Proses lirik",
+    "processedSuccess": "Lirik siap untuk sinkronisasi suku kata.",
+    "title": "Impor lirik dari teks biasa",
     "tab": {
-      "import": "Impor Lirik"
+      "import": "Impor"
     },
     "guides": "Panduan",
-    "actionButton": "Impor Lirik",
+    "actionButton": "Impor",
     "contentMode": {
-      "caption": "Mode Impor",
-      "lyric": "Hanya Lirik",
-      "withTranslation": "Lirik dan Terjemahan",
-      "withRoman": "Lirik dan Romanisasi",
-      "withBoth": "Lirik, Terjemahan, dan Romanisasi"
+      "caption": "Isi teks",
+      "lyric": "Hanya lirik",
+      "withTranslation": "Lirik dengan terjemahan",
+      "withRoman": "Lirik dengan romanisasi",
+      "withBoth": "Lirik dengan terjemahan dan romanisasi"
     },
     "separationMode": {
-      "caption": "Mode Pemisah Baris (Terjemahan dan Romanisasi)",
-      "multipleLine": "Pemisah Baris Berselang-seling",
-      "sameLine": "Pemisah di Baris yang Sama"
+      "caption": "Tata letak terjemahan dan romanisasi",
+      "multipleLine": "Di baris terpisah",
+      "sameLine": "Di baris yang sama"
     },
-    "separator": "Pemisah Baris Lirik",
-    "swapTransAndRoman": "Tukarkan Baris Terjemahan dan Romanisasi",
-    "wordSeparator": "Pemisah Kata",
-    "enableSpecialPrefix": "Aktifkan Prefiks Khusus",
-    "bgLyricPrefix": "Prefiks Lirik Latar",
-    "duetLyricPrefix": "Prefiks Lirik Duet",
+    "separator": "Pemisah baris",
+    "swapTransAndRoman": "Tukar baris terjemahan dan romanisasi",
+    "wordSeparator": "Pemisah kata",
+    "enableSpecialPrefix": "Gunakan prefiks baris",
+    "bgLyricPrefix": "Prefiks baris vokal latar",
+    "duetLyricPrefix": "Prefiks baris duet",
     "guide": {
       "prepare": {
-        "title": "1. Siapkan Lirik",
+        "title": "1. Siapkan lirik",
         "desc": "Disarankan untuk menggunakan alat Lyrprep untuk menyiapkan lirik Anda. Anda dapat mencari lagu, memilih versi, dan menyalin teks keluaran."
       },
       "import": {
         "title": "2. Impor ke TTML Tool",
-        "desc": "Tempelkan teks yang sudah disiapkan ke editor di sebelah kiri. Pastikan untuk memilih \"Mode Impor\" yang benar berdasarkan format teks Anda. Jika teks Anda berisi awalan khusus (seperti penanda vokal latar belakang), pastikan \"Awalan Khusus\" diaktifkan."
+        "desc": "Tempel teks yang sudah disiapkan ke editor di kiri dan pilih opsi Isi teks yang sesuai. Jika teks memakai prefiks untuk menandai baris vokal latar atau duet, aktifkan Gunakan prefiks baris."
       },
       "sync": {
-        "title": "3. Mulai Sinkronisasi",
-        "desc": "Setelah mengklik \"Impor\", alihkan ke mode \"Waktu\" (Sinkronisasi). Gunakan tombol pintas untuk penyelarasan yang tepat:",
-        "f": "Tetapkan waktu mulai kata",
-        "g": "Tetapkan akhir kata & mulai berikutnya",
-        "h": "Tetapkan akhir kata saja",
+        "title": "3. Mulai sinkronisasi",
+        "desc": "Setelah impor, buka mode Sinkronisasi dan sinkronkan dengan tombol berikut:",
+        "f": "Mulai kata",
+        "g": "Akhiri kata dan mulai kata berikutnya",
+        "h": "Akhiri kata saja",
         "ad": "Beralih antar kata"
       },
       "community": {
-        "title": "Panduan Komunitas & Lembar Curang",
+        "title": "Panduan & lembar ringkasan komunitas",
         "desc": "Sumber daya bermanfaat dari komunitas untuk bahasa dan genre tertentu."
       }
     },
@@ -1286,11 +1286,11 @@
     "description": "Periksa kategori dan metadata yang dinormalisasi sebelum mengganti lirik.",
     "sourceLyrics": "Lirik sumber",
     "structure": "Struktur",
-    "sectionCount": "{count, plural, other {Bagian #}}",
+    "sectionCount": "{count, plural, other {# bagian}}",
     "vocalist": "Vokalis / peran",
     "color": "Warna bagian",
     "notes": "Catatan",
-    "lineCount": "{count, plural, other {Baris lirik #}}",
+    "lineCount": "{count, plural, other {# baris lirik}}",
     "import": "Impor lirik yang telah ditinjau"
   },
   "globalDragOverlay": {
@@ -1299,24 +1299,24 @@
   "historyRestoreDialog": {
     "loadError": "Gagal memuat riwayat",
     "confirm": {
-      "title": "Konfirmasi Pemulihan",
-      "description": "Tindakan ini akan menimpa seluruh konten di editor saat ini, yakin ingin memulihkan cadangan ini?"
+      "title": "Konfirmasi pemulihan",
+      "description": "Tindakan ini mengganti semua isi editor dengan snapshot ini. Lanjutkan?"
     },
     "deleteProject": {
-      "title": "Hapus Catatan Proyek",
+      "title": "Hapus riwayat proyek",
       "description": "Yakin ingin menghapus semua catatan simpan otomatis untuk proyek ini? Tindakan ini tidak dapat dibatalkan."
     },
-    "projects": "Proyek Terbaru",
-    "noProjects": "Belum ada catatan simpan otomatis",
-    "latestState": "Versi Terbaru",
-    "restoreLatest": "Pulihkan Versi Ini",
-    "historyVersions": "Versi Lainnya",
+    "projects": "Proyek terbaru",
+    "noProjects": "Belum ada proyek yang disimpan otomatis.",
+    "latestState": "Versi terbaru",
+    "restoreLatest": "Pulihkan versi ini",
+    "historyVersions": "Versi lainnya",
     "noHistory": "Tidak ada riwayat yang tersedia",
     "selectProject": "Silakan pilih proyek dari sisi kiri"
   },
   "autosave": {
-    "legacyProjectName": "Cadangan Versi Lama",
-    "untitledProjectName": "Proyek Tanpa Nama"
+    "legacyProjectName": "Snapshot lama",
+    "untitledProjectName": "Proyek tanpa nama"
   },
   "time": {
     "daysAgo": "{count, plural, other {# hari yang lalu}}",
@@ -1325,89 +1325,89 @@
     "justNow": "Baru saja"
   },
   "metadata": {
-    "title": "Informasi Metadata"
+    "title": "Metadata"
   },
   "splitWordDialog": {
-    "spaceCount": "Spasi x{count}",
+    "spaceCount": "Spasi ×{count}",
     "empty": "Kosong",
-    "title": "Pecah Kata",
-    "tip": "Setelah dipecah, kata baru akan membagi rata waktu awal dan akhir dari kata aslinya berdasarkan jumlah karakter.",
+    "title": "Pisahkan kata",
+    "tip": "Setelah dipisahkan, rentang waktu kata asli dibagi rata ke kata-kata baru.",
     "syllableSplit": "Pemisahan suku kata",
-    "applyToAll": "Terapkan aturan pemecahan ini ke semua kata yang sama",
-    "remember": "Ingat perpecahan ini",
+    "applyToAll": "Terapkan pemisahan ini ke semua kata yang sama",
+    "remember": "Ingat pemisahan ini",
     "ignoreCase": "Abaikan huruf besar/kecil",
     "actionButton": "Konfirmasi"
   },
   "combineWordsDialog": {
-    "title": "Gabungkan Kata-kata",
+    "title": "Gabungkan kata",
     "description": "Konfirmasikan bagaimana kata-kata yang dipilih harus digabungkan.",
     "preview": "Pratinjau",
-    "applyToAll": "Terapkan kombinasi ini ke semua rangkaian kata yang identik",
+    "applyToAll": "Terapkan penggabungan ini ke semua rangkaian kata yang sama",
     "ignoreCase": "Abaikan huruf besar/kecil",
     "adjacentOnly": "Terapkan ke semua hanya tersedia untuk kata-kata terpilih yang berdekatan."
   },
   "advancedSegmentDialog": {
     "test": {
       "outputError": "Terjadi kesalahan pada pratinjau segmentasi",
-      "title": "Tes Segmentasi",
+      "title": "Tes segmentasi",
       "input": "Masukkan baris lirik atau kata untuk mengetes...",
       "output": "Hasil pratinjau:"
     },
-    "title": "Segmentasi Lanjutan",
+    "title": "Segmentasi lanjutan",
     "scope": {
-      "title": "Rentang Terapan",
-      "all": "Semua Baris Lirik",
+      "title": "Terapkan ke",
+      "all": "Semua baris lirik",
       "range": {
-        "from": "Dari baris ke-",
-        "to": "Sampai baris ke-",
+        "from": "Dari baris",
+        "to": "sampai baris",
         "end": ""
       }
     },
     "rules": {
-      "title": "Aturan Segmentasi Otomatis",
+      "title": "Aturan segmentasi otomatis",
       "cjk": "Segmentasi CJK berdasarkan karakter",
       "syllable": "Segmentasi kata Barat berdasarkan suku kata"
     },
     "engine": {
-      "select": "Pilih mesin silabifikasi:"
+      "select": "Pilih mesin pemisah suku kata:"
     },
-    "tip": "Setelah segmentasi, durasi suku kata asli akan dialokasikan ulang ke suku kata baru berdasarkan jumlah karakter dan bobotnya.",
+    "tip": "Setelah pemisahan, durasi total kata asli dibagi ulang berdasarkan jumlah karakter dan bobotnya.",
     "postProcess": {
-      "title": "Pasca Pemrosesan",
+      "title": "Pascapemrosesan",
       "punct": {
         "caption": "Penanganan tanda baca:",
         "merge": "Gabungkan ke suku kata terdekat",
-        "standalone": "Jadikan suku kata sendiri",
+        "standalone": "Jadikan segmen tersendiri",
         "weight": "Bobot durasi tanda baca:"
       },
-      "empty": "Hapus suku kata kosong"
+      "empty": "Hapus segmen kosong"
     },
     "custom": {
-      "title": "Aturan Segmentasi Kustom",
+      "title": "Aturan segmentasi kustom",
       "input": "Masukkan kata untuk segmentasi manual...",
       "add": "Tambahkan ke aturan kustom",
       "list": "Daftar aturan kustom:"
     },
     "ignore": {
-      "title": "Daftar Abaikan",
+      "title": "Daftar pengecualian",
       "placeholder": "Satu kata per baris. Kata dalam daftar ini tidak akan disegmentasi otomatis."
     },
     "learned": {
-      "title": "Aturan Perpecahan yang Dipelajari",
+      "title": "Aturan pemisahan yang dipelajari",
       "description": "Aturan ini mengabaikan huruf besar/kecil dan tanda baca di sekitar kata.",
       "input": "Masukkan kata untuk mengajarkan pemisahan…",
       "saveHint": "Menyimpan menggantikan aturan yang ada untuk kata ini.",
-      "save": "Simpan perpecahan yang dipelajari",
+      "save": "Simpan pemisahan yang dipelajari",
       "saved": "Aturan tersimpan ({count})",
       "clear": "Hapus semuanya",
       "search": "Telusuri aturan tersimpan...",
-      "noResults": "Tidak ada pemisahan pembelajaran yang cocok.",
+      "noResults": "Tidak ada pemisahan yang dipelajari yang cocok.",
       "clearTitle": "Hapus semua pemisahan yang dipelajari?",
       "clearDescription": "Tindakan ini secara permanen menghapus setiap aturan pemisahan yang dipelajari dari perangkat ini."
     }
   },
   "ttmlChecklist": {
-    "title": "Daftar Periksa TTML",
+    "title": "Daftar periksa TTML",
     "description": "Lacak lagu dan ide yang ingin Anda sinkronkan nanti.",
     "songPlaceholder": "Judul lagu *",
     "artistPlaceholder": "Artis (opsional)",
@@ -1415,43 +1415,43 @@
     "add": "Tambahkan ke daftar periksa",
     "save": "Simpan",
     "cancel": "Batal",
-    "empty": "Belum ada TTML masa depan. Tambahkan lagu berikutnya sebelum ide itu hilang.",
+    "empty": "Belum ada rencana TTML. Tambahkan lagu berikutnya sebelum idenya terlupakan.",
     "showNotes": "Tampilkan catatan",
     "showCompleted": "Selesai ({count})",
-    "hideCompleted": "Sembunyikan selesai",
+    "hideCompleted": "Sembunyikan yang selesai",
     "markDone": "Selesai",
     "reopen": "Buka kembali",
     "edit": "Edit item daftar periksa",
     "delete": "Hapus item daftar periksa"
   },
   "autoSegmentDialog": {
-    "title": "Segmen Otomatis",
-    "description": "Pilih mesin silabifikasi untuk semua baris lirik.",
+    "title": "Segmentasi otomatis",
+    "description": "Pilih mesin pemisah suku kata untuk semua baris lirik.",
     "suggested": "Disarankan dari lirik:",
-    "applyAll": "Berlaku untuk semua lini"
+    "applyAll": "Terapkan ke semua baris"
   },
   "suggestedSplits": {
-    "title": "Perpecahan yang Disarankan",
-    "description": "Pilih pola pemisahan yang disarankan untuk {type} ini.",
-    "apply": "Terapkan Saran",
+    "title": "Pemisahan yang disarankan",
+    "description": "{type, select, word {Pilih pemisahan yang disarankan untuk kata ini.} other {Pilih pemisahan yang disarankan untuk baris ini.}}",
+    "apply": "Terapkan saran",
     "noSuggestions": "Tidak ada saran pemisahan otomatis yang tersedia untuk konten ini."
   },
   "aboutModal": {
     "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
-    "description": "Alat pengeditan dan penyelarasan waktu lirik TTML untuk ekosistem lirik bergaya Apple Music",
-    "maintainers": "Pemelihara & Kontributor Fork",
-    "maintainersDesc": "Garpu ini dipelihara dan dikembangkan oleh:",
-    "forkMaintainer": "Pemelihara & kontributor garpu",
+    "description": "Editor TTML dan alat sinkronisasi lirik per kata bergaya Apple Music",
+    "maintainers": "Pengelola & kontributor fork",
+    "maintainersDesc": "Fork ini dikelola dan dikembangkan oleh:",
+    "forkMaintainer": "Pengelola & kontributor fork",
     "visitWebsite": "Kunjungi situs web",
-    "credits": "Kredit & Pemberitahuan Pihak Ketiga",
+    "credits": "Kredit & pemberitahuan pihak ketiga",
     "creditsIntro": "Proyek ini mencakup pekerjaan yang diadaptasi dari proyek sumber terbuka berikut.",
-    "community": "Komunitas & Kontribusi",
+    "community": "Komunitas & kontribusi",
     "communityDesc": "Bantu kami menjadikan alat ini lebih baik dengan menyumbangkan kode, melaporkan masalah, atau menyediakan terjemahan.",
     "github": "Repositori GitHub",
-    "crowdin": "Bantuan Menerjemahkan di Crowdin",
-    "buildDate": "Tanggal Pembuatan: {date}",
-    "gitCommit": "Komit Git: {commit}",
-    "platform": "Peron: {platform}",
+    "crowdin": "Bantu terjemahkan di Crowdin",
+    "buildDate": "Tanggal build: {date}",
+    "gitCommit": "Commit Git: {commit}",
+    "platform": "Platform: {platform}",
     "contributors": "Kontributor",
     "viewContributors": "Lihat kontributor",
     "contributorProfiles": "Profil kontributor",
@@ -1461,28 +1461,28 @@
   },
   "spectrogram": {
     "invalidEndTime": "Tidak dapat memilih waktu akhir ini",
-    "noAudioLoaded": "Mohon muat file audio terlebih dahulu untuk merender spektrogram",
+    "noAudioLoaded": "Muat file audio untuk menampilkan spektrogram",
     "loadAudio": "Muat file audio",
-    "showUnselectedLines": "Tampilkan Baris yang Tidak Dipilih",
-    "settings": "Pengaturan Spektogram",
+    "showUnselectedLines": "Tampilkan baris yang tidak dipilih",
+    "settings": "Pengaturan spektrogram",
     "fftSize": "Ukuran FFT",
     "resolution": "Resolusi FFT",
     "fftSizeOption": {
-      "512": "512 (Cepat)",
-      "1024": "1024 (Biasa)",
-      "2048": "2048 (Frekuensi Lebih Baik)",
-      "4096": "4096 (Resolusi Tinggi)"
+      "512": "512 (tercepat)",
+      "1024": "1024 (seimbang)",
+      "2048": "2048 (detail frekuensi lebih tinggi)",
+      "4096": "4096 (detail terbanyak)"
     },
-    "height": "Tinggi Tampilan"
+    "height": "Tinggi tampilan"
   },
   "pwa": {
-    "offlineReady": "Situs berhasil disimpan dalam cache offline, Anda bisa mengaksesnya tanpa internet nanti",
-    "updateRefresh": "Situs telah diperbarui, segarkan halaman untuk menggunakan versi terbaru!",
+    "offlineReady": "Siap digunakan offline",
+    "updateRefresh": "Pembaruan siap. Muat ulang untuk memakai versi terbaru.",
     "refresh": "Segarkan"
   },
   "export": {
-    "sectionReview": "Tinjauan bagian: {count, plural, other {# masalah tidak memblokir}}.",
-    "recoveryUntimed": "Ekspor pemulihan ini berisi lirik yang belum diberi waktu. Periksa timing sebelum mengirim.",
-    "recoveryReviewFailed": "Pemeriksaan timing tidak dapat dijalankan. Tinjau lirik yang dipulihkan sebelum mengirim."
+    "sectionReview": "Pemeriksaan bagian: {count, plural, other {# peringatan}}. Anda tetap bisa menyimpan.",
+    "recoveryUntimed": "Ekspor pemulihan ini berisi lirik yang belum diberi waktu. Periksa waktunya sebelum mengirim.",
+    "recoveryReviewFailed": "Pemeriksaan waktu tidak dapat dijalankan. Tinjau lirik yang dipulihkan sebelum mengirim."
   }
 }

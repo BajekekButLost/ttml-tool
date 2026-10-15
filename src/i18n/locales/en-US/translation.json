@@ -1432,7 +1432,7 @@
   },
   "suggestedSplits": {
     "title": "Suggested splits",
-    "description": "Choose a suggested split pattern for this {type}.",
+    "description": "{type, select, word {Choose a suggested split for this word.} other {Choose a suggested split for this line.}}",
     "apply": "Apply suggestion",
     "noSuggestions": "No automated split suggestions available for this content."
   },

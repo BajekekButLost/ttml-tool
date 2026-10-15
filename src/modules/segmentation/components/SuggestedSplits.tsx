@@ -78,7 +78,7 @@ export const SuggestedSplitsDialog = memo(() => {
 				<Dialog.Description>
 					{t(
 						"suggestedSplits.description",
-						"Choose a suggested split pattern for this {type}.",
+						"{type, select, word {Choose a suggested split for this word.} other {Choose a suggested split for this line.}}",
 						{
 							type: dialog.wordIndex !== undefined ? "word" : "line",
 						},
