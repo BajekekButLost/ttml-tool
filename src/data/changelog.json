@@ -1,5 +1,127 @@
 [
 	{
+		"version": "0.12.0",
+		"summary": "Clearer names and translations",
+		"color": "violet",
+		"date": "2026-10-15",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "Clearer names for sync tools and settings",
+				"body": "Names that people found confusing now say what they do. The F, G and H actions are **Start**, **Next** and **End**. **Time Offset** and **Commit Offset** are now **Sync offset** and **Next key offset**, **Sync Level** is **Sync by: Word / Line**, and **Sync to Spectrogram Cursor** is **Sync at mouse position**. **Sync Line Timestamps** is now **Fit lines to their words**, **Ignore Sync** is **Skip when syncing**, and **V-Sync** is **Smooth preview (every frame)**. Shortcuts, layouts and metadata fields use one name each, and the interface now uses sentence case throughout.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Removed tools Spicy Lyrics doesn't use",
+				"body": "Obscene marks, empty beats, the NetEase, QQ Music, Spotify, Apple Music, ISRC and TTML-author fields in the metadata editor, and the upcoming-word highlight in Time mode are gone. Spicy Lyrics ignores all of them, so they only added clutter. TTML files that contain these marks still open normally; they're just left out when you save. Metadata already in a file still shows and saves as a regular metadata entry.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Ruby editing removed",
+				"body": "Ruby editing is removed because Spicy Lyrics doesn't display it. Files with ruby still open and keep their words and timing; readings are discarded. The `|` character now stays part of your text when inserting or editing words.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Translations that fit the app",
+				"body": "All 15 languages were retranslated with the context of where each string appears, instead of word by word. Settings, buttons and messages now use natural wording and the same terms throughout, the new Start, Next and End names are translated everywhere, and counts like \"3 words\" use each language's proper plural forms. The language picker no longer marks names like TTML or Genius as untranslated, so complete languages show 100%.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Complete translations for all supported languages",
+				"body": "Fill missing translations and correct misplaced Chinese text and romanization labels. Remove joke languages; saved selections of those languages fall back to English.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Make lyric and audio imports consistent",
+				"body": "LRC imports recognize repeated timestamps and metadata tags in every entry point. Online imports now keep the text importer's hyphen boundaries, and **Process lyrics** uses the same background-vocal rules throughout. All load audio buttons accept the same formats, including AAC, and failed loads no longer become pending project audio. New suggested file and folder names preserve Unicode and avoid Windows-invalid names.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Consistent TTML saving and recovery",
+				"body": "Save, guided export, clipboard copy, and project saves now share timing and section checks. Guided and recovery saves use the document name and update saved state after success; clipboard copy keeps unsaved changes. Recovery exports warn without waiting for an app dialog and can rescue a standalone copy if project saving fails.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Updates on Windows stop putting the desktop shortcut back",
+				"body": "Windows updates always ran the MSI installer, which re-creates its desktop shortcut on every upgrade, so deleting it never stuck. Updates now go through the regular setup installer, which leaves your shortcuts alone. If your copy was updated through the MSI before, the next update switches it over once: Windows asks to remove the old version (choose Yes and allow the admin prompt), and after that updates are quiet.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Keep lyric previews aligned with audible playback",
+				"body": "All previews now share the editor's playback clock, including paused seeks and speed changes. Auto-scroll respects manual scrolling, follows offscreen active lines, and centers paused seeks consistently while retaining each preview's layout.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "The beginner guide, project folders and the new Preferences pages are translated",
+				"body": "About 170 pieces of text showed in English (or Chinese) in every language: the whole beginner guide, folder and linked project messages, the Editor & Sync and Files & Storage pages in Preferences, Discord Rich Presence settings, window buttons, the font picker and several appearance options. They are now translated in all 15 languages. The guide's empty-line warning also keeps its own message instead of being replaced by the \"structure is valid\" text once translated.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Theme resets and presets cover every appearance setting",
+				"body": "**Reset theme** and **Reset all advanced overrides** now also reset the Genius header color and legacy space labels, and appearance presets save legacy space labels too. Four fonts no longer appear twice in the font library.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Reliable draft word timings",
+				"body": "Segmentation, line sync, and spectrogram initialization now distribute whole-millisecond times without rounding gaps, overlaps, or negative final durations. Whitespace gets zero duration, and zero-weight segments are preserved.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Escape cancels word edits, and clicked dividers take arrow keys",
+				"body": "Pressing Escape while editing a word in Edit mode now cancels the edit instead of being ignored, and canceling in Time mode can no longer save the text by accident. Clicking a word divider on the spectrogram now selects it, so holding the left or right arrow keeps nudging it; clicking anywhere else or pressing Escape hands the arrows back to audio seeking. The line count shown while dragging several lines sits in its own badge again instead of overlapping the line number.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Section color and line focus fixes",
+				"body": "**Focus main line during playback** turned off now follows background lines too, post-chorus sections are purple instead of chorus pink, and changing a line to or from a section header updates its words right away.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Importing with Process lyrics off keeps hyphenated words whole",
+				"body": "With Process lyrics turned off, the lyrics import used to split every line after its hyphens, so \"twenty-one\" came in as two words. Those lines now import as-is. With Process lyrics on, hyphenated words are still split as before.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "One full home for workflow settings",
+				"body": "Preferences now includes the editor and preview options previously available only in ribbons, grouped into Edit mode, Time mode display, Syncing aids, Preview and Preview performance, each with an icon and a short description of what it does. Set-and-forget options such as layout, wrapping, FPS, fades, and editing gestures live in Preferences, while ribbons retain controls useful during lyric work. Sync offsets use the same whole-millisecond input behavior in both places.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Edit menu shows the right shortcuts",
+				"body": "**Deselect all lines** now shows its own shortcut instead of the one for Select all, and **Delete selection** shows its shortcut too.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Highlight the selected system font in Preferences",
+				"body": "The font library now marks a system font as selected after you apply it.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Ignore invisible cover colors in Spicy highlights",
+				"body": "Fully transparent cover-art pixels no longer determine the Spicy preview's highlight color.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.11.1",
 		"summary": "Sync Next fix",
 		"color": "cyan",
