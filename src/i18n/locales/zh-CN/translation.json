@@ -643,11 +643,14 @@
       "playback": "播放",
       "autosave": "自动保存",
       "previewControls": "预览",
-      "editorControls": "编辑器显示与控件",
       "import": "导入与导出",
       "syncWordWrap": "打轴模式 / 打轴标签页",
       "privacy": "隐私",
-      "projects": "项目"
+      "projects": "项目",
+      "editModeDisplay": "编辑模式",
+      "timeModeDisplay": "时间模式显示",
+      "syncAids": "同步辅助",
+      "previewPerformance": "预览性能"
     },
     "assistant": {
       "manualTimestampEdit": "手动时间戳编辑",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "以带有 project.json 清单的项目文件夹形式打开、保存和整理歌词。",
       "folderProjectsAutosave": "自动保存时保存项目文件",
       "folderProjectsAutosaveDesc": "每次自动保存时，将当前项目的歌词文件写入磁盘。"
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "在功能区中显示更多控件。",
+      "showTranslationDesc": "在每行歌词下方显示翻译输入框。",
+      "showRomanizationDesc": "在每行歌词下方显示罗马音输入框。",
+      "showWordRomanizationInputDesc": "在每个单词上显示罗马音输入框。",
+      "showTimestampsDesc": "在每个单词上显示开始和结束时间。",
+      "highlightActiveWordDesc": "高亮当前正在播放的单词。",
+      "enableGlowAnimationDesc": "单词播放时以发光效果逐渐填充。",
+      "showPerWordRomanizationDesc": "在每个单词下方显示其罗马音。",
+      "previewPanelDesc": "在单词列表旁显示实时歌词预览。",
+      "bgLyricIgnoreSyncDesc": "使用键盘同步时跳过背景行。也会应用到已有的背景行。",
+      "doubleClickEditDesc": "双击单词即可在同步时修改其文本。",
+      "touchSyncPanelDesc": "为触摸屏显示屏幕上的同步按钮。",
+      "previewShowTranslationDesc": "在预览中显示翻译行。",
+      "previewShowRomanDesc": "在预览中显示罗马音。",
+      "simpleLyricsDesc": "模拟 Spicy Lyrics 的 Simple Lyrics 模式，单词动画更平缓。",
+      "forceLineRenderingDesc": "在 Spicy 预览中将所有行显示为逐行同步，不使用逐词时间。",
+      "instantFadeDesc": "单词结束后立即取消高亮，而不是缓慢淡出。",
+      "timingOverviewAutoScrollDesc": "让时间轴概览始终滚动到播放位置。",
+      "vsyncDesc": "每帧更新 Standard 和 Toxi 预览，而不是每秒约 30 次。更流畅，但占用更多 CPU。",
+      "showFpsDesc": "在预览上显示帧率计数器。",
+      "syncLevelDesc": "逐词同步为每个单词计时。逐行同步只为整行计时。",
+      "previewModeDesc": "选择预览标签页显示哪种预览。",
+      "spicyBackgroundDesc": "Spicy 预览背后显示的内容。",
+      "fadeWidthDesc": "在 Standard 和 Toxi 预览中，单词填充时高亮边缘的柔和程度。"
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "语言、布局、隐私及应用全局行为。",
       "editorDesc": "时间输入、打轴行为与视觉提示。",
       "filesDesc": "导入清理、自动保存历史与可移植备份。",
-      "audioDesc": "播放、转换、均衡器与频谱图显示。"
+      "audioDesc": "播放、均衡器和频谱图显示。"
     }
   },
   "autoSegmentApplied": "使用 {engine} 自动分段",

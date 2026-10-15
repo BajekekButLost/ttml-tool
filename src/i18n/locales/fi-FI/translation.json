@@ -643,11 +643,14 @@
       "playback": "Toisto",
       "autosave": "Automaattinen tallennus",
       "previewControls": "Esikatselu",
-      "editorControls": "Editorin näkymä ja säätimet",
       "import": "Tuonti ja vienti",
       "syncWordWrap": "Aika-tila / synkronointivälilehti",
       "privacy": "Yksityisyys",
-      "projects": "Projektit"
+      "projects": "Projektit",
+      "editModeDisplay": "Muokkaustila",
+      "timeModeDisplay": "Ajoitustilan näkymä",
+      "syncAids": "Synkronoinnin apuvälineet",
+      "previewPerformance": "Esikatselun suorituskyky"
     },
     "assistant": {
       "manualTimestampEdit": "Manuaalinen aikaleiman muokkaus",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Avaa, tallenna ja järjestä sanoituksia projektikansioina, joissa on project.json-luettelo.",
       "folderProjectsAutosave": "Tallenna projektitiedosto automaattitallennuksessa",
       "folderProjectsAutosaveDesc": "Kirjoittaa avoimen projektin sanoitustiedoston levylle jokaisella automaattitallennuksella."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Näytä lisää säätimiä valintanauhassa.",
+      "showTranslationDesc": "Näytä käännöskenttä jokaisen sanoitusrivin alla.",
+      "showRomanizationDesc": "Näytä latinisointikenttä jokaisen sanoitusrivin alla.",
+      "showWordRomanizationInputDesc": "Näytä latinisointikenttä jokaisessa sanassa.",
+      "showTimestampsDesc": "Näytä jokaisen sanan alku- ja loppuaika.",
+      "highlightActiveWordDesc": "Korosta parhaillaan soiva sana.",
+      "enableGlowAnimationDesc": "Täytä jokainen sana hehkulla sen soidessa.",
+      "showPerWordRomanizationDesc": "Näytä jokaisen sanan latinisointi sen alla.",
+      "previewPanelDesc": "Näytä sanoitusten reaaliaikainen esikatselu sanaluettelon vieressä.",
+      "bgLyricIgnoreSyncDesc": "Ohita taustarivit, kun synkronoit näppäimistöllä. Koskee myös jo olemassa olevia taustarivejä.",
+      "doubleClickEditDesc": "Korjaa sanan teksti synkronoinnin aikana kaksoisnapsauttamalla sitä.",
+      "touchSyncPanelDesc": "Näytä synkronointipainikkeet näytöllä kosketusnäyttöjä varten.",
+      "previewShowTranslationDesc": "Näytä käännösrivit esikatselussa.",
+      "previewShowRomanDesc": "Näytä latinisointi esikatselussa.",
+      "simpleLyricsDesc": "Jäljittele Spicy Lyricsin Simple Lyrics -tilaa rauhallisemmilla sana-animaatioilla.",
+      "forceLineRenderingDesc": "Näytä kaikki Spicy-esikatselun rivit rivitason synkronointina ilman sanojen ajoitusta.",
+      "instantFadeDesc": "Poista sanan korostus heti sen päätyttyä hitaan häivytyksen sijaan.",
+      "timingOverviewAutoScrollDesc": "Pidä ajoituskatsaus vieritettynä toistokohtaan.",
+      "vsyncDesc": "Päivitä Standard- ja Toxi-esikatselut joka ruudulla noin 30 kertaa sekunnissa tapahtuvan päivityksen sijaan. Sulavampi, mutta kuormittaa suoritinta enemmän.",
+      "showFpsDesc": "Näytä esikatselussa kuvataajuuslaskuri.",
+      "syncLevelDesc": "Sanasynkronointi ajoittaa jokaisen sanan. Rivisynkronointi ajoittaa vain kokonaiset rivit.",
+      "previewModeDesc": "Valitse, mikä esikatselu näkyy Esikatselu-välilehdellä.",
+      "spicyBackgroundDesc": "Mitä Spicy-esikatselun taustalla näkyy.",
+      "fadeWidthDesc": "Kuinka pehmeä korostuksen reuna on, kun sana täyttyy Standard- ja Toxi-esikatseluissa."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Kieli, asettelu, yksityisyys ja koko sovelluksen toiminta.",
       "editorDesc": "Ajoitussyöte, synkronoinnin toiminta ja visuaaliset vihjeet.",
       "filesDesc": "Tuonnin siivous, automaattitallennuksen historia ja siirrettävät varmuuskopiot.",
-      "audioDesc": "Toisto, muunnos, taajuuskorjain ja spektrogrammin näyttö."
+      "audioDesc": "Toisto, taajuuskorjain ja spektrogrammin näyttö."
     }
   },
   "autoSegmentApplied": "Automaattisesti segmentoitu {engine}:lla",

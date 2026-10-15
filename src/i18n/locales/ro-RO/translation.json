@@ -643,11 +643,14 @@
       "playback": "Redare",
       "autosave": "Salvare automată",
       "previewControls": "Previzualizare",
-      "editorControls": "Afișare și controale editor",
       "import": "Import și export",
       "syncWordWrap": "Modul Timp / fila de sincronizare",
       "privacy": "Confidențialitate",
-      "projects": "Proiecte"
+      "projects": "Proiecte",
+      "editModeDisplay": "Mod editare",
+      "timeModeDisplay": "Afișare mod timp",
+      "syncAids": "Ajutoare pentru sincronizare",
+      "previewPerformance": "Performanța previzualizării"
     },
     "assistant": {
       "manualTimestampEdit": "Modificare Manual Timestamp",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Deschide, salvează și organizează versurile ca foldere de proiect cu un manifest project.json.",
       "folderProjectsAutosave": "Salvează fișierul proiectului la salvarea automată",
       "folderProjectsAutosaveDesc": "Scrie pe disc fișierul cu versuri al proiectului deschis la fiecare salvare automată."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Afișează mai multe comenzi în panglică.",
+      "showTranslationDesc": "Afișează un câmp de traducere sub fiecare rând de versuri.",
+      "showRomanizationDesc": "Afișează un câmp de romanizare sub fiecare rând de versuri.",
+      "showWordRomanizationInputDesc": "Afișează un câmp de romanizare pe fiecare cuvânt.",
+      "showTimestampsDesc": "Afișează timpul de început și de sfârșit pe fiecare cuvânt.",
+      "highlightActiveWordDesc": "Evidențiază cuvântul care se redă acum.",
+      "enableGlowAnimationDesc": "Umple fiecare cuvânt cu o strălucire în timp ce se redă.",
+      "showPerWordRomanizationDesc": "Afișează romanizarea fiecărui cuvânt sub el.",
+      "previewPanelDesc": "Afișează o previzualizare live a versurilor lângă lista de cuvinte.",
+      "bgLyricIgnoreSyncDesc": "Sare peste rândurile de fundal la sincronizarea cu tastatura. Se aplică și rândurilor de fundal pe care le ai deja.",
+      "doubleClickEditDesc": "Fă dublu clic pe un cuvânt pentru a-i corecta textul în timpul sincronizării.",
+      "touchSyncPanelDesc": "Afișează butoane de sincronizare pe ecran pentru ecrane tactile.",
+      "previewShowTranslationDesc": "Afișează rândurile de traducere în previzualizare.",
+      "previewShowRomanDesc": "Afișează romanizarea în previzualizare.",
+      "simpleLyricsDesc": "Imită modul Simple Lyrics din Spicy Lyrics, cu animații mai calme ale cuvintelor.",
+      "forceLineRenderingDesc": "Afișează fiecare rând din previzualizarea Spicy ca sincronizat pe rând, fără temporizarea cuvintelor.",
+      "instantFadeDesc": "Elimină evidențierea unui cuvânt imediat ce se termină, în loc să o estompeze lent.",
+      "timingOverviewAutoScrollDesc": "Menține prezentarea temporizării derulată la poziția de redare.",
+      "vsyncDesc": "Actualizează previzualizările Standard și Toxi la fiecare cadru în loc de aproximativ 30 de ori pe secundă. Mai fluid, dar folosește mai mult procesorul.",
+      "showFpsDesc": "Afișează un contor de cadre pe secundă pe previzualizare.",
+      "syncLevelDesc": "Sincronizarea pe cuvinte temporizează fiecare cuvânt. Sincronizarea pe rânduri temporizează doar rânduri întregi.",
+      "previewModeDesc": "Alege ce previzualizare afișează fila Previzualizare.",
+      "spicyBackgroundDesc": "Ce se afișează în spatele previzualizării Spicy.",
+      "fadeWidthDesc": "Cât de moale este marginea evidențierii când un cuvânt se umple în previzualizările Standard și Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Limbă, aspect, confidențialitate și comportamentul general al aplicației.",
       "editorDesc": "Introducerea timpilor, comportamentul sincronizării și indicii vizuale.",
       "filesDesc": "Curățare la import, istoricul salvărilor automate și copii de rezervă portabile.",
-      "audioDesc": "Redare, conversie, egalizator și afișarea spectrogramei."
+      "audioDesc": "Redare, egalizator și afișarea spectrogramei."
     }
   },
   "autoSegmentApplied": "Segmentat automat cu {engine}",

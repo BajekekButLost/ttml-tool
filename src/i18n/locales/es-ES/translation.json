@@ -643,11 +643,14 @@
       "playback": "Reproducción",
       "autosave": "Guardar automáticamente",
       "previewControls": "Vista previa",
-      "editorControls": "Visualización y controles del editor",
       "import": "Importación y exportación",
       "syncWordWrap": "Modo Tiempo / pestaña de sincronización",
       "privacy": "Privacidad",
-      "projects": "Proyectos"
+      "projects": "Proyectos",
+      "editModeDisplay": "Modo de edición",
+      "timeModeDisplay": "Visualización del modo de tiempo",
+      "syncAids": "Ayudas de sincronización",
+      "previewPerformance": "Rendimiento de la vista previa"
     },
     "assistant": {
       "manualTimestampEdit": "Edición manual de marcas de tiempo",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Abre, guarda y organiza letras como carpetas de proyecto con un manifiesto project.json.",
       "folderProjectsAutosave": "Guardar el archivo del proyecto con el autoguardado",
       "folderProjectsAutosaveDesc": "Escribe en el disco el archivo de letra del proyecto abierto en cada autoguardado."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Muestra más controles en la cinta.",
+      "showTranslationDesc": "Muestra un campo de traducción bajo cada línea de la letra.",
+      "showRomanizationDesc": "Muestra un campo de romanización bajo cada línea de la letra.",
+      "showWordRomanizationInputDesc": "Muestra un campo de romanización en cada palabra.",
+      "showTimestampsDesc": "Muestra el tiempo de inicio y fin en cada palabra.",
+      "highlightActiveWordDesc": "Resalta la palabra que se está reproduciendo.",
+      "enableGlowAnimationDesc": "Llena cada palabra con un brillo mientras suena.",
+      "showPerWordRomanizationDesc": "Muestra la romanización de cada palabra debajo de ella.",
+      "previewPanelDesc": "Muestra una vista previa en vivo de la letra junto a la lista de palabras.",
+      "bgLyricIgnoreSyncDesc": "Omite las líneas de fondo al sincronizar con el teclado. También se aplica a las líneas de fondo que ya tienes.",
+      "doubleClickEditDesc": "Haz doble clic en una palabra para corregir su texto mientras sincronizas.",
+      "touchSyncPanelDesc": "Muestra botones de sincronización en pantalla para pantallas táctiles.",
+      "previewShowTranslationDesc": "Muestra las líneas de traducción en la vista previa.",
+      "previewShowRomanDesc": "Muestra la romanización en la vista previa.",
+      "simpleLyricsDesc": "Imita el modo Simple Lyrics de Spicy Lyrics, con animaciones de palabras más suaves.",
+      "forceLineRenderingDesc": "Muestra todas las líneas de la vista previa de Spicy como sincronizadas por línea, sin tiempos por palabra.",
+      "instantFadeDesc": "Quita el resaltado de una palabra en cuanto termina en lugar de desvanecerlo lentamente.",
+      "timingOverviewAutoScrollDesc": "Mantiene la vista general de tiempos desplazada hasta el cabezal de reproducción.",
+      "vsyncDesc": "Actualiza las vistas previas Standard y Toxi en cada fotograma en lugar de unas 30 veces por segundo. Más fluido, pero usa más CPU.",
+      "showFpsDesc": "Muestra un contador de fotogramas por segundo en la vista previa.",
+      "syncLevelDesc": "La sincronización por palabra marca cada palabra. La sincronización por línea solo marca líneas completas.",
+      "previewModeDesc": "Elige qué vista previa muestra la pestaña Vista previa.",
+      "spicyBackgroundDesc": "Lo que se muestra detrás de la vista previa de Spicy.",
+      "fadeWidthDesc": "Qué tan suave es el borde del resaltado mientras se llena una palabra en las vistas previas Standard y Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Idioma, diseño, privacidad y comportamiento general de la aplicación.",
       "editorDesc": "Entrada de tiempos, comportamiento de la sincronización y señales visuales.",
       "filesDesc": "Limpieza al importar, historial de autoguardado y copias de seguridad portátiles.",
-      "audioDesc": "Reproducción, conversión, ecualizador y visualización del espectrograma."
+      "audioDesc": "Reproducción, ecualizador y visualización del espectrograma."
     }
   },
   "autoSegmentApplied": "Autosegmentado con {engine}",

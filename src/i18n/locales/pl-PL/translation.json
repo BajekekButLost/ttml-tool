@@ -643,11 +643,14 @@
       "playback": "Odtwarzanie",
       "autosave": "Automatyczny zapis",
       "previewControls": "Podgląd",
-      "editorControls": "Wyświetlanie i sterowanie edytora",
       "import": "Import i eksport",
       "syncWordWrap": "Tryb Synchronizacja / karta synchronizacji",
       "privacy": "Prywatność",
-      "projects": "Projekty"
+      "projects": "Projekty",
+      "editModeDisplay": "Tryb edycji",
+      "timeModeDisplay": "Wyświetlanie trybu czasu",
+      "syncAids": "Pomoce do synchronizacji",
+      "previewPerformance": "Wydajność podglądu"
     },
     "assistant": {
       "manualTimestampEdit": "Ręczna edycja znacznika czasu",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Otwieraj, zapisuj i porządkuj teksty jako foldery projektów z manifestem project.json.",
       "folderProjectsAutosave": "Zapisuj plik projektu przy autozapisie",
       "folderProjectsAutosaveDesc": "Przy każdym autozapisie zapisuje na dysk plik tekstu otwartego projektu."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Pokaż więcej elementów sterujących na wstążce.",
+      "showTranslationDesc": "Pokaż pole tłumaczenia pod każdą linią tekstu.",
+      "showRomanizationDesc": "Pokaż pole romanizacji pod każdą linią tekstu.",
+      "showWordRomanizationInputDesc": "Pokaż pole romanizacji przy każdym słowie.",
+      "showTimestampsDesc": "Pokaż czas początku i końca przy każdym słowie.",
+      "highlightActiveWordDesc": "Wyróżnij słowo, które jest teraz odtwarzane.",
+      "enableGlowAnimationDesc": "Wypełniaj każde słowo poświatą podczas odtwarzania.",
+      "showPerWordRomanizationDesc": "Pokaż romanizację każdego słowa pod nim.",
+      "previewPanelDesc": "Pokaż podgląd tekstu na żywo obok listy słów.",
+      "bgLyricIgnoreSyncDesc": "Pomijaj linie wokali w tle podczas synchronizacji klawiaturą. Dotyczy też istniejących już linii w tle.",
+      "doubleClickEditDesc": "Kliknij dwukrotnie słowo, aby poprawić jego tekst podczas synchronizacji.",
+      "touchSyncPanelDesc": "Pokaż na ekranie przyciski synchronizacji dla ekranów dotykowych.",
+      "previewShowTranslationDesc": "Pokaż linie tłumaczenia w podglądzie.",
+      "previewShowRomanDesc": "Pokaż romanizację w podglądzie.",
+      "simpleLyricsDesc": "Odwzoruj tryb Simple Lyrics ze Spicy Lyrics ze spokojniejszymi animacjami słów.",
+      "forceLineRenderingDesc": "Pokaż każdą linię w podglądzie Spicy jako synchronizowaną liniowo, bez czasów słów.",
+      "instantFadeDesc": "Usuń wyróżnienie słowa od razu po jego zakończeniu zamiast powoli je wygaszać.",
+      "timingOverviewAutoScrollDesc": "Utrzymuj przegląd czasów przewinięty do pozycji odtwarzania.",
+      "vsyncDesc": "Aktualizuj podglądy Standard i Toxi w każdej klatce zamiast około 30 razy na sekundę. Płynniej, ale większe użycie CPU.",
+      "showFpsDesc": "Pokaż licznik klatek na sekundę w podglądzie.",
+      "syncLevelDesc": "Synchronizacja słów ustawia czas każdego słowa. Synchronizacja linii ustawia czas tylko całych linii.",
+      "previewModeDesc": "Wybierz, który podgląd pokazuje karta Podgląd.",
+      "spicyBackgroundDesc": "Co jest wyświetlane za podglądem Spicy.",
+      "fadeWidthDesc": "Jak miękka jest krawędź wyróżnienia podczas wypełniania słowa w podglądach Standard i Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Język, układ, prywatność i ogólne działanie aplikacji.",
       "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
       "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
-      "audioDesc": "Odtwarzanie, konwersja, korektor i wyświetlanie spektrogramu."
+      "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automatyczna segmentacja za pomocą {engine}",

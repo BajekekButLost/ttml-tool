@@ -22,7 +22,6 @@ import {
 } from "$/modules/settings/states/sync";
 import { ToolMode } from "$/states/main";
 import { SettingToggle } from "../../components/WorkflowControls";
-import { WorkflowSettings } from "../workflow";
 import type { CommonSettings } from "./useCommonSettings";
 export const PlaybackBehaviorSection = ({
 	syncWordWrap,
@@ -230,6 +229,5 @@ export const PlaybackBehaviorSection = ({
 				</Flex>
 			</Text>
 		</Card>
-		<WorkflowSettings />
 	</Flex>
 );

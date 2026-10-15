@@ -643,11 +643,14 @@
       "playback": "Playback",
       "autosave": "Auto Save",
       "previewControls": "Preview",
-      "editorControls": "Editor display & controls",
       "import": "Import & export",
       "syncWordWrap": "Time Mode / Sync Tab",
       "privacy": "Privacy",
-      "projects": "Projects"
+      "projects": "Projects",
+      "editModeDisplay": "Edit mode",
+      "timeModeDisplay": "Time mode display",
+      "syncAids": "Syncing aids",
+      "previewPerformance": "Preview performance"
     },
     "assistant": {
       "manualTimestampEdit": "Manual Timestamp Editing",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Open, save, and organize lyrics as project folders with a project.json manifest.",
       "folderProjectsAutosave": "Save project file on auto save",
       "folderProjectsAutosaveDesc": "Write the open project lyric file to disk on every auto save."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Show more controls in the ribbon toolbar.",
+      "showTranslationDesc": "Show a translation field under each lyric line.",
+      "showRomanizationDesc": "Show a romanization field under each lyric line.",
+      "showWordRomanizationInputDesc": "Show a romanization field on each word.",
+      "showTimestampsDesc": "Show start and end times on each word.",
+      "highlightActiveWordDesc": "Highlight the word that is playing right now.",
+      "enableGlowAnimationDesc": "Fill each word with a glow as it plays.",
+      "showPerWordRomanizationDesc": "Show each word's romanization under it.",
+      "previewPanelDesc": "Show a live lyric preview next to the word list.",
+      "bgLyricIgnoreSyncDesc": "Skip background lines while syncing with the keyboard. Applies to the background lines you already have, too.",
+      "doubleClickEditDesc": "Double-click a word to fix its text while syncing.",
+      "touchSyncPanelDesc": "Show on-screen sync buttons for touch screens.",
+      "previewShowTranslationDesc": "Show translation lines in the preview.",
+      "previewShowRomanDesc": "Show romanization in the preview.",
+      "simpleLyricsDesc": "Match Spicy Lyrics' Simple Lyrics mode, with calmer word animations.",
+      "forceLineRenderingDesc": "Show every line in the Spicy preview as line-synced, without word timing.",
+      "instantFadeDesc": "Drop a word's highlight as soon as it ends instead of fading it out slowly.",
+      "timingOverviewAutoScrollDesc": "Keep the timing overview scrolled to the playhead.",
+      "vsyncDesc": "Update the Standard and Toxi previews every frame instead of about 30 times per second. Smoother, but uses more CPU.",
+      "showFpsDesc": "Show a frame rate counter on the preview.",
+      "syncLevelDesc": "Word sync times every word. Line sync times whole lines only.",
+      "previewModeDesc": "Choose which preview the Preview tab shows.",
+      "spicyBackgroundDesc": "What shows behind the Spicy preview.",
+      "fadeWidthDesc": "How soft the edge of the highlight is as a word fills in the Standard and Toxi previews."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Language, layout, privacy, and app-wide behavior.",
       "editorDesc": "Timing input, synchronization behavior, and visual cues.",
       "filesDesc": "Import cleanup, autosave history, and portable backups.",
-      "audioDesc": "Playback, conversion, equalizer, and spectrogram display."
+      "audioDesc": "Playback, equalizer, and spectrogram display."
     }
   },
   "autoSegmentApplied": "Auto-segmented with {engine}",

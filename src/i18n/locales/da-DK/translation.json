@@ -643,11 +643,14 @@
       "playback": "Afspilning",
       "autosave": "Automatisk lagring",
       "previewControls": "Forhåndsvisning",
-      "editorControls": "Editorvisning og -kontroller",
       "import": "Import og eksport",
       "syncWordWrap": "Tid-tilstand / synkroniseringsfane",
       "privacy": "Privatliv",
-      "projects": "Projekter"
+      "projects": "Projekter",
+      "editModeDisplay": "Redigeringstilstand",
+      "timeModeDisplay": "Visning i tidstilstand",
+      "syncAids": "Synkroniseringshjælp",
+      "previewPerformance": "Forhåndsvisningens ydeevne"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel redigering af tidsstempel",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Åbn, gem og organisér sangtekster som projektmapper med et project.json-manifest.",
       "folderProjectsAutosave": "Gem projektfilen ved automatisk lagring",
       "folderProjectsAutosaveDesc": "Skriv den åbne projekts sangtekstfil til disken ved hver automatisk lagring."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Vis flere kontroller i båndet.",
+      "showTranslationDesc": "Vis et oversættelsesfelt under hver tekstlinje.",
+      "showRomanizationDesc": "Vis et romaniseringsfelt under hver tekstlinje.",
+      "showWordRomanizationInputDesc": "Vis et romaniseringsfelt på hvert ord.",
+      "showTimestampsDesc": "Vis start- og sluttid på hvert ord.",
+      "highlightActiveWordDesc": "Fremhæv det ord, der spilles lige nu.",
+      "enableGlowAnimationDesc": "Fyld hvert ord med en glød, mens det spilles.",
+      "showPerWordRomanizationDesc": "Vis hvert ords romanisering under det.",
+      "previewPanelDesc": "Vis en live forhåndsvisning af teksten ved siden af ordlisten.",
+      "bgLyricIgnoreSyncDesc": "Spring baggrundslinjer over, når du synkroniserer med tastaturet. Gælder også dine eksisterende baggrundslinjer.",
+      "doubleClickEditDesc": "Dobbeltklik på et ord for at rette teksten, mens du synkroniserer.",
+      "touchSyncPanelDesc": "Vis synkroniseringsknapper på skærmen til touchskærme.",
+      "previewShowTranslationDesc": "Vis oversættelseslinjer i forhåndsvisningen.",
+      "previewShowRomanDesc": "Vis romanisering i forhåndsvisningen.",
+      "simpleLyricsDesc": "Efterlign Spicy Lyrics' Simple Lyrics-tilstand med roligere ordanimationer.",
+      "forceLineRenderingDesc": "Vis alle linjer i Spicy-forhåndsvisningen som linjesynkroniserede uden ordtiming.",
+      "instantFadeDesc": "Fjern et ords fremhævning, så snart det slutter, i stedet for at tone det langsomt ud.",
+      "timingOverviewAutoScrollDesc": "Hold tidsoversigten rullet til afspilningspositionen.",
+      "vsyncDesc": "Opdater Standard- og Toxi-forhåndsvisningerne hvert billede i stedet for cirka 30 gange i sekundet. Mere flydende, men bruger mere CPU.",
+      "showFpsDesc": "Vis en billedfrekvenstæller på forhåndsvisningen.",
+      "syncLevelDesc": "Ordsynkronisering timer hvert ord. Linjesynkronisering timer kun hele linjer.",
+      "previewModeDesc": "Vælg, hvilken forhåndsvisning fanen Forhåndsvisning viser.",
+      "spicyBackgroundDesc": "Hvad der vises bag Spicy-forhåndsvisningen.",
+      "fadeWidthDesc": "Hvor blød kanten af fremhævningen er, når et ord fyldes i Standard- og Toxi-forhåndsvisningerne."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Sprog, layout, privatliv og adfærd for hele appen.",
       "editorDesc": "Tidsinput, synkroniseringsadfærd og visuelle signaler.",
       "filesDesc": "Oprydning ved import, historik for automatisk lagring og flytbare sikkerhedskopier.",
-      "audioDesc": "Afspilning, konvertering, equalizer og spektrogramvisning."
+      "audioDesc": "Afspilning, equalizer og spektrogramvisning."
     }
   },
   "autoSegmentApplied": "Autosegmenteret med {engine}",

@@ -643,11 +643,14 @@
       "playback": "Riproduzione",
       "autosave": "Salvataggio Automatico",
       "previewControls": "Anteprima",
-      "editorControls": "Visualizzazione e controlli dell'editor",
       "import": "Importazione ed esportazione",
       "syncWordWrap": "Modalità Tempo / scheda Sincronizzazione",
       "privacy": "Privacy",
-      "projects": "Progetti"
+      "projects": "Progetti",
+      "editModeDisplay": "Modalità modifica",
+      "timeModeDisplay": "Visualizzazione modalità tempo",
+      "syncAids": "Aiuti alla sincronizzazione",
+      "previewPerformance": "Prestazioni dell'anteprima"
     },
     "assistant": {
       "manualTimestampEdit": "Modifica Manuale del Tempo",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Apri, salva e organizza i testi come cartelle di progetto con un manifest project.json.",
       "folderProjectsAutosave": "Salva il file del progetto con il salvataggio automatico",
       "folderProjectsAutosaveDesc": "Scrive su disco il file del testo del progetto aperto a ogni salvataggio automatico."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Mostra più controlli nella barra multifunzione.",
+      "showTranslationDesc": "Mostra un campo di traduzione sotto ogni riga del testo.",
+      "showRomanizationDesc": "Mostra un campo di romanizzazione sotto ogni riga del testo.",
+      "showWordRomanizationInputDesc": "Mostra un campo di romanizzazione su ogni parola.",
+      "showTimestampsDesc": "Mostra il tempo di inizio e di fine su ogni parola.",
+      "highlightActiveWordDesc": "Evidenzia la parola in riproduzione.",
+      "enableGlowAnimationDesc": "Riempie ogni parola con un bagliore mentre viene riprodotta.",
+      "showPerWordRomanizationDesc": "Mostra la romanizzazione di ogni parola sotto di essa.",
+      "previewPanelDesc": "Mostra un'anteprima live del testo accanto all'elenco delle parole.",
+      "bgLyricIgnoreSyncDesc": "Salta le righe di sottofondo durante la sincronizzazione con la tastiera. Vale anche per le righe di sottofondo già presenti.",
+      "doubleClickEditDesc": "Fai doppio clic su una parola per correggerne il testo durante la sincronizzazione.",
+      "touchSyncPanelDesc": "Mostra pulsanti di sincronizzazione sullo schermo per i touchscreen.",
+      "previewShowTranslationDesc": "Mostra le righe di traduzione nell'anteprima.",
+      "previewShowRomanDesc": "Mostra la romanizzazione nell'anteprima.",
+      "simpleLyricsDesc": "Riproduce la modalità Simple Lyrics di Spicy Lyrics, con animazioni delle parole più tranquille.",
+      "forceLineRenderingDesc": "Mostra ogni riga dell'anteprima Spicy come sincronizzata per riga, senza tempi delle parole.",
+      "instantFadeDesc": "Rimuove l'evidenziazione di una parola appena finisce invece di sfumarla lentamente.",
+      "timingOverviewAutoScrollDesc": "Mantiene la panoramica dei tempi scorsa fino alla testina di riproduzione.",
+      "vsyncDesc": "Aggiorna le anteprime Standard e Toxi a ogni fotogramma invece di circa 30 volte al secondo. Più fluido, ma usa più CPU.",
+      "showFpsDesc": "Mostra un contatore dei fotogrammi al secondo sull'anteprima.",
+      "syncLevelDesc": "La sincronizzazione per parola temporizza ogni parola. La sincronizzazione per riga temporizza solo righe intere.",
+      "previewModeDesc": "Scegli quale anteprima mostra la scheda Anteprima.",
+      "spicyBackgroundDesc": "Cosa viene mostrato dietro l'anteprima Spicy.",
+      "fadeWidthDesc": "Quanto è morbido il bordo dell'evidenziazione mentre una parola si riempie nelle anteprime Standard e Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Lingua, layout, privacy e comportamento generale dell'app.",
       "editorDesc": "Inserimento dei tempi, comportamento della sincronizzazione e indicatori visivi.",
       "filesDesc": "Pulizia all'importazione, cronologia dei salvataggi automatici e backup portatili.",
-      "audioDesc": "Riproduzione, conversione, equalizzatore e visualizzazione dello spettrogramma."
+      "audioDesc": "Riproduzione, equalizzatore e visualizzazione dello spettrogramma."
     }
   },
   "autoSegmentApplied": "Segmentazione automatica con {engine}",

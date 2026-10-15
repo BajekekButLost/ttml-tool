@@ -643,11 +643,14 @@
       "playback": "Lecture",
       "autosave": "Sauvegarde auto",
       "previewControls": "Aperçu",
-      "editorControls": "Affichage et contrôles de l'éditeur",
       "import": "Import et export",
       "syncWordWrap": "Mode Temps / onglet de synchronisation",
       "privacy": "Confidentialité",
-      "projects": "Projets"
+      "projects": "Projets",
+      "editModeDisplay": "Mode édition",
+      "timeModeDisplay": "Affichage du mode temps",
+      "syncAids": "Aides à la synchronisation",
+      "previewPerformance": "Performances de l'aperçu"
     },
     "assistant": {
       "manualTimestampEdit": "Modification manuelle de l'horodatage",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Ouvrez, enregistrez et organisez les paroles sous forme de dossiers de projet avec un manifeste project.json.",
       "folderProjectsAutosave": "Enregistrer le fichier du projet lors de l'enregistrement automatique",
       "folderProjectsAutosaveDesc": "Écrit le fichier de paroles du projet ouvert sur le disque à chaque enregistrement automatique."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Affiche plus de commandes dans le ruban.",
+      "showTranslationDesc": "Affiche un champ de traduction sous chaque ligne de paroles.",
+      "showRomanizationDesc": "Affiche un champ de romanisation sous chaque ligne de paroles.",
+      "showWordRomanizationInputDesc": "Affiche un champ de romanisation sur chaque mot.",
+      "showTimestampsDesc": "Affiche les temps de début et de fin sur chaque mot.",
+      "highlightActiveWordDesc": "Surligne le mot en cours de lecture.",
+      "enableGlowAnimationDesc": "Remplit chaque mot d'une lueur pendant sa lecture.",
+      "showPerWordRomanizationDesc": "Affiche la romanisation de chaque mot en dessous.",
+      "previewPanelDesc": "Affiche un aperçu en direct des paroles à côté de la liste des mots.",
+      "bgLyricIgnoreSyncDesc": "Ignore les lignes de fond lors de la synchronisation au clavier. S'applique aussi aux lignes de fond existantes.",
+      "doubleClickEditDesc": "Double-cliquez sur un mot pour corriger son texte pendant la synchronisation.",
+      "touchSyncPanelDesc": "Affiche des boutons de synchronisation à l'écran pour les écrans tactiles.",
+      "previewShowTranslationDesc": "Affiche les lignes de traduction dans l'aperçu.",
+      "previewShowRomanDesc": "Affiche la romanisation dans l'aperçu.",
+      "simpleLyricsDesc": "Reproduit le mode Simple Lyrics de Spicy Lyrics, avec des animations de mots plus calmes.",
+      "forceLineRenderingDesc": "Affiche toutes les lignes de l'aperçu Spicy comme synchronisées par ligne, sans minutage des mots.",
+      "instantFadeDesc": "Retire le surlignage d'un mot dès qu'il se termine au lieu de l'estomper lentement.",
+      "timingOverviewAutoScrollDesc": "Garde la vue d'ensemble du minutage défilée jusqu'à la tête de lecture.",
+      "vsyncDesc": "Met à jour les aperçus Standard et Toxi à chaque image au lieu d'environ 30 fois par seconde. Plus fluide, mais consomme plus de CPU.",
+      "showFpsDesc": "Affiche un compteur d'images par seconde sur l'aperçu.",
+      "syncLevelDesc": "La synchronisation par mot minute chaque mot. La synchronisation par ligne ne minute que des lignes entières.",
+      "previewModeDesc": "Choisissez l'aperçu affiché dans l'onglet Aperçu.",
+      "spicyBackgroundDesc": "Ce qui s'affiche derrière l'aperçu Spicy.",
+      "fadeWidthDesc": "Douceur du bord du surlignage lorsqu'un mot se remplit dans les aperçus Standard et Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Langue, disposition, confidentialité et comportement général de l'application.",
       "editorDesc": "Saisie des temps, comportement de la synchronisation et repères visuels.",
       "filesDesc": "Nettoyage à l'import, historique d'enregistrement automatique et sauvegardes portables.",
-      "audioDesc": "Lecture, conversion, égaliseur et affichage du spectrogramme."
+      "audioDesc": "Lecture, égaliseur et affichage du spectrogramme."
     }
   },
   "autoSegmentApplied": "Segmentation automatique avec {engine}",

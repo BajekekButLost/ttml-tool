@@ -643,11 +643,14 @@
       "playback": "Afspelen",
       "autosave": "Automatisch opslaan",
       "previewControls": "Voorbeeld",
-      "editorControls": "Editorweergave en -bediening",
       "import": "Importeren en exporteren",
       "syncWordWrap": "Tijdmodus / synchronisatietabblad",
       "privacy": "Privacy",
-      "projects": "Projecten"
+      "projects": "Projecten",
+      "editModeDisplay": "Bewerkmodus",
+      "timeModeDisplay": "Weergave tijdmodus",
+      "syncAids": "Synchronisatiehulp",
+      "previewPerformance": "Prestaties van voorbeeld"
     },
     "assistant": {
       "manualTimestampEdit": "Handmatige tijdsaanduiding bewerken",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Open, bewaar en orden songteksten als projectmappen met een project.json-manifest.",
       "folderProjectsAutosave": "Projectbestand opslaan bij automatisch opslaan",
       "folderProjectsAutosaveDesc": "Schrijft het songtekstbestand van het geopende project bij elke automatische opslag naar schijf."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Toon meer bedieningselementen in het lint.",
+      "showTranslationDesc": "Toon een vertaalveld onder elke tekstregel.",
+      "showRomanizationDesc": "Toon een romanisatieveld onder elke tekstregel.",
+      "showWordRomanizationInputDesc": "Toon een romanisatieveld bij elk woord.",
+      "showTimestampsDesc": "Toon begin- en eindtijden bij elk woord.",
+      "highlightActiveWordDesc": "Markeer het woord dat nu speelt.",
+      "enableGlowAnimationDesc": "Vul elk woord met een gloed terwijl het speelt.",
+      "showPerWordRomanizationDesc": "Toon de romanisatie van elk woord eronder.",
+      "previewPanelDesc": "Toon een live voorbeeld van de tekst naast de woordenlijst.",
+      "bgLyricIgnoreSyncDesc": "Sla achtergrondregels over bij synchroniseren met het toetsenbord. Geldt ook voor je bestaande achtergrondregels.",
+      "doubleClickEditDesc": "Dubbelklik op een woord om de tekst te verbeteren tijdens het synchroniseren.",
+      "touchSyncPanelDesc": "Toon synchronisatieknoppen op het scherm voor touchscreens.",
+      "previewShowTranslationDesc": "Toon vertaalregels in het voorbeeld.",
+      "previewShowRomanDesc": "Toon romanisatie in het voorbeeld.",
+      "simpleLyricsDesc": "Volg de Simple Lyrics-modus van Spicy Lyrics, met rustigere woordanimaties.",
+      "forceLineRenderingDesc": "Toon elke regel in het Spicy-voorbeeld als regelgesynchroniseerd, zonder woordtiming.",
+      "instantFadeDesc": "Haal de markering van een woord weg zodra het eindigt in plaats van het langzaam te laten vervagen.",
+      "timingOverviewAutoScrollDesc": "Houd het timingoverzicht gescrold naar de afspeelpositie.",
+      "vsyncDesc": "Werk de Standard- en Toxi-voorbeelden elk frame bij in plaats van ongeveer 30 keer per seconde. Vloeiender, maar gebruikt meer CPU.",
+      "showFpsDesc": "Toon een framerateteller op het voorbeeld.",
+      "syncLevelDesc": "Woordsynchronisatie timet elk woord. Regelsynchronisatie timet alleen hele regels.",
+      "previewModeDesc": "Kies welk voorbeeld het tabblad Voorbeeld toont.",
+      "spicyBackgroundDesc": "Wat er achter het Spicy-voorbeeld te zien is.",
+      "fadeWidthDesc": "Hoe zacht de rand van de markering is terwijl een woord vult in de Standard- en Toxi-voorbeelden."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Taal, indeling, privacy en algemeen gedrag van de app.",
       "editorDesc": "Tijdinvoer, synchronisatiegedrag en visuele hints.",
       "filesDesc": "Opschonen bij importeren, geschiedenis van automatisch opslaan en draagbare back-ups.",
-      "audioDesc": "Afspelen, conversie, equalizer en spectrogramweergave."
+      "audioDesc": "Afspelen, equalizer en spectrogramweergave."
     }
   },
   "autoSegmentApplied": "Automatisch gesegmenteerd met {engine}",

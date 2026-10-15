@@ -643,11 +643,14 @@
       "playback": "Oynatma",
       "autosave": "Otomatik Kaydet",
       "previewControls": "Önizleme",
-      "editorControls": "Düzenleyici görünümü ve denetimleri",
       "import": "İçe ve dışa aktarma",
       "syncWordWrap": "Zamanla Modu / Senkronizasyon Sekmesi",
       "privacy": "Gizlilik",
-      "projects": "Projeler"
+      "projects": "Projeler",
+      "editModeDisplay": "Düzenleme modu",
+      "timeModeDisplay": "Zaman modu görünümü",
+      "syncAids": "Senkronizasyon yardımcıları",
+      "previewPerformance": "Önizleme performansı"
     },
     "assistant": {
       "manualTimestampEdit": "Manuel Zaman Damgası Düzenleme",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Şarkı sözlerini project.json bildirimine sahip proje klasörleri olarak açın, kaydedin ve düzenleyin.",
       "folderProjectsAutosave": "Otomatik kaydetmede proje dosyasını kaydet",
       "folderProjectsAutosaveDesc": "Her otomatik kaydetmede açık projenin şarkı sözü dosyasını diske yazar."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Şeritte daha fazla denetim göster.",
+      "showTranslationDesc": "Her şarkı sözü satırının altında bir çeviri alanı göster.",
+      "showRomanizationDesc": "Her şarkı sözü satırının altında bir romanizasyon alanı göster.",
+      "showWordRomanizationInputDesc": "Her kelimede bir romanizasyon alanı göster.",
+      "showTimestampsDesc": "Her kelimede başlangıç ve bitiş zamanlarını göster.",
+      "highlightActiveWordDesc": "Şu anda çalan kelimeyi vurgula.",
+      "enableGlowAnimationDesc": "Her kelimeyi çalarken bir parıltıyla doldur.",
+      "showPerWordRomanizationDesc": "Her kelimenin romanizasyonunu altında göster.",
+      "previewPanelDesc": "Kelime listesinin yanında sözlerin canlı önizlemesini göster.",
+      "bgLyricIgnoreSyncDesc": "Klavyeyle senkronize ederken arka plan satırlarını atla. Mevcut arka plan satırlarına da uygulanır.",
+      "doubleClickEditDesc": "Senkronize ederken bir kelimenin metnini düzeltmek için üzerine çift tıklayın.",
+      "touchSyncPanelDesc": "Dokunmatik ekranlar için ekranda senkronizasyon düğmeleri göster.",
+      "previewShowTranslationDesc": "Önizlemede çeviri satırlarını göster.",
+      "previewShowRomanDesc": "Önizlemede romanizasyonu göster.",
+      "simpleLyricsDesc": "Spicy Lyrics'in Simple Lyrics modunu daha sakin kelime animasyonlarıyla taklit et.",
+      "forceLineRenderingDesc": "Spicy önizlemesindeki her satırı kelime zamanlaması olmadan satır senkronlu göster.",
+      "instantFadeDesc": "Kelimenin vurgusunu yavaşça soldurmak yerine biter bitmez kaldır.",
+      "timingOverviewAutoScrollDesc": "Zamanlama genel görünümünü oynatma konumuna kaydırılmış tut.",
+      "vsyncDesc": "Standard ve Toxi önizlemelerini saniyede yaklaşık 30 kez yerine her karede güncelle. Daha akıcı ama daha fazla CPU kullanır.",
+      "showFpsDesc": "Önizlemede kare hızı sayacı göster.",
+      "syncLevelDesc": "Kelime senkronizasyonu her kelimeyi zamanlar. Satır senkronizasyonu yalnızca tüm satırları zamanlar.",
+      "previewModeDesc": "Önizleme sekmesinin hangi önizlemeyi göstereceğini seçin.",
+      "spicyBackgroundDesc": "Spicy önizlemesinin arkasında ne görüneceği.",
+      "fadeWidthDesc": "Standard ve Toxi önizlemelerinde bir kelime dolarken vurgunun kenarının ne kadar yumuşak olacağı."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Dil, düzen, gizlilik ve uygulama genelindeki davranış.",
       "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
       "filesDesc": "İçe aktarma temizliği, otomatik kaydetme geçmişi ve taşınabilir yedekler.",
-      "audioDesc": "Oynatma, dönüştürme, ekolayzır ve spektrogram görünümü."
+      "audioDesc": "Oynatma, ekolayzer ve spektrogram görünümü."
     }
   },
   "autoSegmentApplied": "{engine} ile otomatik olarak segmentlere ayrıldı",

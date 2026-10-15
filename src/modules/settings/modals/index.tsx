@@ -299,7 +299,7 @@ export const SettingsDialog = memo(() => {
 								title={t("settingsDialog.tab.audio", "Audio")}
 								description={t(
 									"settingsDialog.page.audioDesc",
-									"Playback, conversion, equalizer, and spectrogram display.",
+									"Playback, equalizer, and spectrogram display.",
 								)}
 							>
 								<SettingsCommonTab section="audio" />

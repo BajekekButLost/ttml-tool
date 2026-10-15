@@ -643,11 +643,14 @@
       "playback": "Pemutaran",
       "autosave": "Simpan Otomatis",
       "previewControls": "Pratinjau",
-      "editorControls": "Tampilan & kontrol editor",
       "import": "Impor & ekspor",
       "syncWordWrap": "Mode Sinkronisasi / Tab Sinkronisasi",
       "privacy": "Privasi",
-      "projects": "Proyek"
+      "projects": "Proyek",
+      "editModeDisplay": "Mode edit",
+      "timeModeDisplay": "Tampilan mode waktu",
+      "syncAids": "Bantuan sinkronisasi",
+      "previewPerformance": "Performa pratinjau"
     },
     "assistant": {
       "manualTimestampEdit": "Pengeditan Stempel Waktu Manual",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Buka, simpan, dan atur lirik sebagai folder proyek dengan manifes project.json.",
       "folderProjectsAutosave": "Simpan file proyek saat simpan otomatis",
       "folderProjectsAutosaveDesc": "Tulis file lirik proyek yang terbuka ke disk setiap kali simpan otomatis."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Tampilkan lebih banyak kontrol di pita.",
+      "showTranslationDesc": "Tampilkan kolom terjemahan di bawah setiap baris lirik.",
+      "showRomanizationDesc": "Tampilkan kolom romanisasi di bawah setiap baris lirik.",
+      "showWordRomanizationInputDesc": "Tampilkan kolom romanisasi pada setiap kata.",
+      "showTimestampsDesc": "Tampilkan waktu mulai dan selesai pada setiap kata.",
+      "highlightActiveWordDesc": "Sorot kata yang sedang diputar.",
+      "enableGlowAnimationDesc": "Isi setiap kata dengan cahaya saat diputar.",
+      "showPerWordRomanizationDesc": "Tampilkan romanisasi setiap kata di bawahnya.",
+      "previewPanelDesc": "Tampilkan pratinjau lirik langsung di samping daftar kata.",
+      "bgLyricIgnoreSyncDesc": "Lewati baris latar saat menyinkronkan dengan keyboard. Juga berlaku untuk baris latar yang sudah ada.",
+      "doubleClickEditDesc": "Klik dua kali sebuah kata untuk memperbaiki teksnya saat menyinkronkan.",
+      "touchSyncPanelDesc": "Tampilkan tombol sinkronisasi di layar untuk layar sentuh.",
+      "previewShowTranslationDesc": "Tampilkan baris terjemahan di pratinjau.",
+      "previewShowRomanDesc": "Tampilkan romanisasi di pratinjau.",
+      "simpleLyricsDesc": "Tiru mode Simple Lyrics di Spicy Lyrics, dengan animasi kata yang lebih tenang.",
+      "forceLineRenderingDesc": "Tampilkan setiap baris di pratinjau Spicy sebagai sinkron per baris, tanpa waktu per kata.",
+      "instantFadeDesc": "Hapus sorotan kata segera setelah selesai, bukan memudarkannya perlahan.",
+      "timingOverviewAutoScrollDesc": "Jaga ikhtisar waktu tetap tergulir ke posisi pemutaran.",
+      "vsyncDesc": "Perbarui pratinjau Standard dan Toxi setiap frame, bukan sekitar 30 kali per detik. Lebih mulus, tetapi memakai lebih banyak CPU.",
+      "showFpsDesc": "Tampilkan penghitung frame rate di pratinjau.",
+      "syncLevelDesc": "Sinkronisasi kata mengatur waktu setiap kata. Sinkronisasi baris hanya mengatur waktu seluruh baris.",
+      "previewModeDesc": "Pilih pratinjau yang ditampilkan tab Pratinjau.",
+      "spicyBackgroundDesc": "Apa yang tampil di belakang pratinjau Spicy.",
+      "fadeWidthDesc": "Seberapa lembut tepi sorotan saat kata terisi di pratinjau Standard dan Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Bahasa, tata letak, privasi, dan perilaku seluruh aplikasi.",
       "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
       "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
-      "audioDesc": "Pemutaran, konversi, equalizer, dan tampilan spektrogram."
+      "audioDesc": "Pemutaran, equalizer, dan tampilan spektrogram."
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",

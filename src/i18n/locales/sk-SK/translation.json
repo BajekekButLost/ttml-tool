@@ -643,11 +643,14 @@
       "playback": "Prehrávanie",
       "autosave": "Automatické ukladanie",
       "previewControls": "Náhľad",
-      "editorControls": "Zobrazenie a ovládanie editora",
       "import": "Import a export",
       "syncWordWrap": "Režim Čas / karta synchronizácie",
       "privacy": "Súkromie",
-      "projects": "projekty"
+      "projects": "projekty",
+      "editModeDisplay": "Režim úprav",
+      "timeModeDisplay": "Zobrazenie režimu časovania",
+      "syncAids": "Pomôcky na synchronizáciu",
+      "previewPerformance": "Výkon náhľadu"
     },
     "assistant": {
       "manualTimestampEdit": "Manuálna úprava časovej pečiatky",
@@ -731,6 +734,32 @@
       "folderProjectsDesc": "Otvárajte, ukladajte a organizujte texty ako priečinky projektov s manifestom project.json.",
       "folderProjectsAutosave": "Ukladať súbor projektu pri automatickom ukladaní",
       "folderProjectsAutosaveDesc": "Pri každom automatickom uložení zapíše súbor s textom otvoreného projektu na disk."
+    },
+    "workflow": {
+      "advancedRibbonControlsDesc": "Zobraziť ďalšie ovládacie prvky na páse s nástrojmi.",
+      "showTranslationDesc": "Zobraziť pole na preklad pod každým riadkom textu.",
+      "showRomanizationDesc": "Zobraziť pole na romanizáciu pod každým riadkom textu.",
+      "showWordRomanizationInputDesc": "Zobraziť pole na romanizáciu pri každom slove.",
+      "showTimestampsDesc": "Zobraziť pri každom slove čas začiatku a konca.",
+      "highlightActiveWordDesc": "Zvýrazniť slovo, ktoré práve hrá.",
+      "enableGlowAnimationDesc": "Počas prehrávania postupne rozžiariť každé slovo.",
+      "showPerWordRomanizationDesc": "Zobraziť romanizáciu každého slova pod ním.",
+      "previewPanelDesc": "Zobraziť živý náhľad textu vedľa zoznamu slov.",
+      "bgLyricIgnoreSyncDesc": "Pri synchronizácii klávesnicou preskakovať riadky vokálov v pozadí. Platí aj pre už existujúce riadky v pozadí.",
+      "doubleClickEditDesc": "Dvojklikom na slovo opravíte jeho text aj počas synchronizácie.",
+      "touchSyncPanelDesc": "Zobraziť tlačidlá synchronizácie na obrazovke pre dotykové displeje.",
+      "previewShowTranslationDesc": "Zobraziť v náhľade riadky prekladu.",
+      "previewShowRomanDesc": "Zobraziť v náhľade romanizáciu.",
+      "simpleLyricsDesc": "Napodobniť režim Simple Lyrics v Spicy Lyrics s pokojnejšími animáciami slov.",
+      "forceLineRenderingDesc": "Zobraziť v náhľade Spicy všetky riadky ako synchronizované po riadkoch, bez časovania slov.",
+      "instantFadeDesc": "Zrušiť zvýraznenie slova hneď po jeho skončení namiesto pomalého vyblednutia.",
+      "timingOverviewAutoScrollDesc": "Udržiavať prehľad časovania posunutý na pozíciu prehrávania.",
+      "vsyncDesc": "Aktualizovať náhľady Standard a Toxi v každej snímke namiesto približne 30-krát za sekundu. Plynulejšie, ale náročnejšie na CPU.",
+      "showFpsDesc": "Zobraziť v náhľade počítadlo snímok za sekundu.",
+      "syncLevelDesc": "Synchronizácia slov časuje každé slovo. Synchronizácia riadkov časuje iba celé riadky.",
+      "previewModeDesc": "Vyberte, ktorý náhľad sa zobrazí na karte Náhľad.",
+      "spicyBackgroundDesc": "Čo sa zobrazuje za náhľadom Spicy.",
+      "fadeWidthDesc": "Aký mäkký je okraj zvýraznenia pri vypĺňaní slova v náhľadoch Standard a Toxi."
     }
   },
   "timingOverview": {
@@ -927,7 +956,7 @@
       "generalDesc": "Jazyk, rozloženie, súkromie a správanie celej aplikácie.",
       "editorDesc": "Zadávanie časov, správanie synchronizácie a vizuálne podnety.",
       "filesDesc": "Čistenie pri importe, história automatického ukladania a prenosné zálohy.",
-      "audioDesc": "Prehrávanie, prevod, ekvalizér a zobrazenie spektrogramu."
+      "audioDesc": "Prehrávanie, ekvalizér a zobrazenie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automaticky segmentované pomocou {engine}",

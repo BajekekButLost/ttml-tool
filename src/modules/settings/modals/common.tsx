@@ -8,6 +8,7 @@ import { PrivacySection } from "./common/PrivacySection";
 import { ProjectsSection } from "./common/ProjectsSection";
 import { SyncingSection } from "./common/SyncingSection";
 import { useCommonSettings } from "./common/useCommonSettings";
+import { WorkflowSettings } from "./workflow";
 export type CommonSettingsSection = "general" | "editor" | "files" | "audio";
 export const SettingsCommonTab = ({
 	section = "general",
@@ -22,6 +23,8 @@ export const SettingsCommonTab = ({
 			{section === "editor" && <SyncingSection {...state} />}
 
 			{section === "editor" && <PlaybackBehaviorSection {...state} />}
+
+			{section === "editor" && <WorkflowSettings />}
 
 			{section === "general" && import.meta.env.TAURI_ENV_PLATFORM && (
 				<PrivacySection {...state} />
