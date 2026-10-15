@@ -41,13 +41,16 @@ const EditMenuItems = () => {
 			</DropdownMenu.Item>
 			<DropdownMenu.Item
 				onSelect={menu.onUnselectAll}
-				shortcut={getShortcut(menu.selectAllLinesKey)}
+				shortcut={getShortcut(menu.unselectAllLinesKey)}
 			>
 				<Trans i18nKey="topBar.menu.unselectAllLines">取消选中所有歌词行</Trans>
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item onSelect={menu.onDeleteSelection}>
-				<Trans i18nKey="contextMenu.deleteWords">删除选定单词</Trans>
+			<DropdownMenu.Item
+				onSelect={menu.onDeleteSelection}
+				shortcut={getShortcut(menu.deleteSelectionKey)}
+			>
+				{t("settingsDialog.keybindings.deleteSelection", "Delete selection")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={menu.onOpenTimeShift}>

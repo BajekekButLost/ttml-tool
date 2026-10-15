@@ -46,6 +46,7 @@ import {
 	keySaveFileAtom,
 	keySelectAllAtom,
 	keyUndoAtom,
+	keyUnselectAllAtom,
 } from "$/states/keybindings.ts";
 import {
 	isDirtyAtom,
@@ -101,6 +102,7 @@ export const useTopMenuActions = () => {
 	const undoKey = useAtomValue(keyUndoAtom);
 	const redoKey = useAtomValue(keyRedoAtom);
 	const selectAllLinesKey = useAtomValue(keySelectAllAtom);
+	const unselectAllLinesKey = useAtomValue(keyUnselectAllAtom);
 	const deleteSelectionKey = useAtomValue(keyDeleteSelectionAtom);
 	const runHistoryAction = useMemo(
 		() => createHistoryActionGate(requestAnimationFrame),
@@ -417,7 +419,7 @@ export const useTopMenuActions = () => {
 		undoKey,
 		redoKey,
 		selectAllLinesKey,
-		unselectAllLinesKey: selectAllLinesKey,
+		unselectAllLinesKey,
 		deleteSelectionKey,
 		undoDisabled: !undoLyricLines.canUndo,
 		redoDisabled: !undoLyricLines.canRedo,
