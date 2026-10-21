@@ -174,7 +174,7 @@ export default function exportTTMLText(
 
 	if (hasOtherPerson) {
 		const otherPersonAgent = doc.createElement("ttm:agent");
-		otherPersonAgent.setAttribute("type", "other");
+		otherPersonAgent.setAttribute("type", "person");
 		otherPersonAgent.setAttribute("xml:id", "v2");
 
 		metadataEl.appendChild(otherPersonAgent);

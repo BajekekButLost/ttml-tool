@@ -1,5 +1,19 @@
 [
 	{
+		"version": "0.12.1",
+		"summary": "Duet agent fix",
+		"color": "orange",
+		"date": "2026-10-21",
+		"entries": [
+			{
+				"type": "fix",
+				"title": "Duet singers are saved as people",
+				"body": "Exported TTML now marks the second singer as `type=\"person\"` instead of `type=\"other\"`, and opening a file keeps `v1` as the main singer even when its agents are declared in a different order.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.12.0",
 		"summary": "Clearer names and translations",
 		"color": "violet",

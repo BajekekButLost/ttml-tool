@@ -398,16 +398,14 @@ export function parseLyric(ttmlText: string): TTMLLyric {
 		}
 	}
 
-	const agents = ttmlDoc.getElementsByTagNameNS("*", "agent");
-	for (let i = 0; i < agents.length; i++) {
-		const agent = agents[i];
-		if (getAttr(agent, "type") === "person") {
-			const id = getAttr(agent, "id");
-			if (id) {
-				mainAgentId = id;
-				break;
-			}
-		}
+	// Duet singers are both "person" agents, so declaration order can't pick
+	// the main one. Prefer v1 when it exists; otherwise use the first person.
+	const agentIds = Array.from(ttmlDoc.getElementsByTagNameNS("*", "agent"))
+		.filter((agent) => getAttr(agent, "type") === "person")
+		.map((agent) => getAttr(agent, "id"))
+		.filter((id): id is string => !!id);
+	if (agentIds.length > 0 && !agentIds.includes("v1")) {
+		mainAgentId = agentIds[0];
 	}
 
 	const lyricLines: LyricLine[] = [];

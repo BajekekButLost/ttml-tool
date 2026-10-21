@@ -70,4 +70,21 @@ describe("TTML round trip", () => {
 		expect(exported).not.toContain("obscene");
 		expect(exported).not.toContain("empty-beat");
 	});
+
+	it("writes the duet singer as a person and keeps duets on reimport", () => {
+		const xml = ttml(
+			'<p begin="00:01.000" end="00:02.000" ttm:agent="v1">main</p><p begin="00:02.000" end="00:03.000" ttm:agent="v2">duet</p>',
+		);
+		const exported = exportTTMLText(parseLyric(xml));
+		expect(exported).toMatch(/<ttm:agent type="person" xml:id="v2"\/>/);
+		expect(exported).not.toContain('type="other"');
+		const lines = roundTrip(xml);
+		expect(lines.map((line) => line.isDuet)).toEqual([false, true]);
+	});
+
+	it("treats v1 as the main singer whatever order agents are declared in", () => {
+		const xml = `<tt xmlns="http://www.w3.org/ns/ttml" xmlns:ttm="http://www.w3.org/ns/ttml#metadata"><head><metadata><ttm:agent type="person" xml:id="v2"/><ttm:agent type="person" xml:id="v1"/></metadata></head><body><div><p begin="00:01.000" end="00:02.000" ttm:agent="v1">main</p><p begin="00:02.000" end="00:03.000" ttm:agent="v2">duet</p></div></body></tt>`;
+		const lines = parseLyric(xml).lyricLines;
+		expect(lines.map((line) => line.isDuet)).toEqual([false, true]);
+	});
 });
