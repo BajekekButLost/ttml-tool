@@ -183,6 +183,8 @@ export default defineConfig({
 			"scripts/version-utils.test.mjs",
 			"scripts/generate-contributors.test.mjs",
 			"scripts/check-locales.test.mjs",
+			// Session worktrees are full checkouts of the repo.
+			".claude/**",
 		],
 	},
 });
