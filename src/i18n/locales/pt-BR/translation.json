@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Desloca cada marca de tempo gravada por esse valor para compensar o atraso do áudio ou da entrada.",
       "syncCommitOffset": "Deslocamento da tecla Próxima (ms)",
       "syncCommitOffsetDesc": "Deslocamento extra apenas para Próxima (G por padrão), caso você sempre pressione cedo ou tarde demais.",
-      "smartFirstWord": "Primeira palavra: só início",
-      "smartFirstWordDesc": "Ao sincronizar a primeira palavra de uma linha, o primeiro pressionamento define apenas seu tempo de início, sem definir imediatamente seu tempo de fim.",
       "smartLastWord": "Última palavra: só fim",
       "smartLastWordDesc": "Ao sincronizar a última palavra de uma linha, o pressionamento define seu tempo de fim sem definir automaticamente o tempo de início da primeira palavra da próxima linha.",
       "syncTabPosition": "Sincronizar posição entre guias",

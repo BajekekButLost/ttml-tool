@@ -114,7 +114,6 @@ export const enableSyncGlowAnimationAtom = atomWithStorage(
 
 export const highlightErrorsAtom = atomWithStorage("highlightErrors", true);
 
-export const smartFirstWordAtom = atomWithStorage("smartFirstWord", false);
 export const smartLastWordAtom = atomWithStorage("smartLastWord", false);
 export const compactBGInSyncAtom = atomWithStorage("compactBGInSync", true);
 

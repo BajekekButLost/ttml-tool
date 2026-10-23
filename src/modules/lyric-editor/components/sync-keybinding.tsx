@@ -14,12 +14,10 @@ import {
 import { calculateSyncTime } from "$/modules/lyric-editor/utils/sync-timing";
 import {
 	highlightActiveWordAtom,
-	smartFirstWordAtom,
 	smartLastWordAtom,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
 import {
-	smartFirstWordActiveIdAtom,
 	spectrogramHoverSyncEnabledAtom,
 	syncCommitOffsetAtom,
 	syncLevelModeAtom,
@@ -266,11 +264,6 @@ export const SyncKeyBinding: FC = () => {
 			if (!location) return;
 			const currentTime = calcJudgeTime(evt);
 
-			const smartFirstWord = store.get(smartFirstWordAtom);
-			if (smartFirstWord && location.isFirstWord) {
-				store.set(smartFirstWordActiveIdAtom, location.word.id);
-			}
-
 			store.set(lyricLinesAtom, (prev) => {
 				const state: LyricsState = prev;
 				const prevLine = state.lyricLines[location.lineIndex];
@@ -377,30 +370,6 @@ export const SyncKeyBinding: FC = () => {
 				return;
 			}
 
-			// 智能首字
-			const smartFirstWord = store.get(smartFirstWordAtom);
-			if (smartFirstWord && location.isFirstWord) {
-				const activeId = store.get(smartFirstWordActiveIdAtom);
-				if (activeId !== location.word.id) {
-					store.set(lyricLinesAtom, (prev) => {
-						const state: LyricsState = prev;
-						const prevLine = state.lyricLines[location.lineIndex];
-						if (!prevLine) return prev;
-
-						const nextLines = state.lyricLines.slice();
-						const nextLine = cloneLineWithWords(prevLine);
-						nextLine.startTime = currentTime;
-						setUnitStartTimeCloned(nextLine, location.wordIndex, currentTime);
-						nextLines[location.lineIndex] = nextLine;
-
-						return { ...state, lyricLines: nextLines };
-					});
-					store.set(smartFirstWordActiveIdAtom, location.word.id);
-					return;
-				}
-			}
-			store.set(smartFirstWordActiveIdAtom, null);
-
 			// 智能尾字
 			const smartLastWord = store.get(smartLastWordAtom);
 			if (smartLastWord && location.isLastWord) {
@@ -504,14 +473,6 @@ export const SyncKeyBinding: FC = () => {
 					selectedLinesAtom,
 					new Set([(targetSelection as { id: string; lineId: string }).lineId]),
 				);
-			}
-
-			// 开了智能首字后，连轴打到下一行时跳过智能首字
-			if (smartFirstWord) {
-				const newLocation = getCurrentLocation(store);
-				if (newLocation?.isFirstWord) {
-					store.set(smartFirstWordActiveIdAtom, newLocation.word.id);
-				}
 			}
 
 			const _t4 = performance.now();

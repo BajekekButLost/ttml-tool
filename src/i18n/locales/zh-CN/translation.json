@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "将录入的所有时间戳偏移此数值，以补偿音频或输入延迟。",
       "syncCommitOffset": "下一个键偏移（ms）",
       "syncCommitOffsetDesc": "仅为“下一个”键（默认 G）设置额外偏移，用于修正总是偏早或偏晚的情况。",
-      "smartFirstWord": "首字仅设开始时间",
-      "smartFirstWordDesc": "每行首字的第一次按键只设置开始时间，不设置结束时间。",
       "smartLastWord": "末字仅设结束时间",
       "smartLastWordDesc": "每行末字的按键只设置结束时间，不开始下一行的首字。",
       "syncTabPosition": "跨选项卡同步位置",

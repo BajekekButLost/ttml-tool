@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Siirtää jokaista tallennettavaa aikaleimaa tämän verran äänen tai syötteen viiveen korjaamiseksi.",
       "syncCommitOffset": "Seuraava-näppäimen siirtymä (ms)",
       "syncCommitOffsetDesc": "Lisäsiirtymä vain Seuraava-näppäimelle (oletuksena G), jos se osuu aina liian aikaisin tai myöhään.",
-      "smartFirstWord": "Ensimmäisestä sanasta vain alku",
-      "smartFirstWordDesc": "Rivin ensimmäisen sanan kohdalla ensimmäinen painallus asettaa vain alkuajan, ei loppuaikaa.",
       "smartLastWord": "Viimeisestä sanasta vain loppu",
       "smartLastWordDesc": "Rivin viimeisen sanan kohdalla painallus asettaa vain loppuajan eikä aloita seuraavan rivin ensimmäistä sanaa.",
       "syncTabPosition": "Synkronoi sijainti välilehtien välillä",

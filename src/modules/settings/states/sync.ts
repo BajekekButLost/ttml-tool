@@ -1,6 +1,5 @@
 // Syncing settings
 
-import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { atomWithMigratedStorage } from "./migrated-storage";
 
@@ -70,5 +69,3 @@ export const syncLevelModeAtom = atomWithStorage<SyncLevelMode>(
 	"syncLevelMode",
 	"word",
 );
-
-export const smartFirstWordActiveIdAtom = atom<string | null>(null);

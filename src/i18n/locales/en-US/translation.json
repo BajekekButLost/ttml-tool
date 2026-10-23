@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Shifts every timestamp you record by this amount, to make up for audio or input delay.",
       "syncCommitOffset": "Next key offset (ms)",
       "syncCommitOffsetDesc": "Extra offset for the Next key only (G by default), for when it lands consistently early or late.",
-      "smartFirstWord": "Start-only first word",
-      "smartFirstWordDesc": "On the first word of a line, the first key press only sets its start time, not its end time.",
       "smartLastWord": "End-only last word",
       "smartLastWordDesc": "On the last word of a line, the key press only sets its end time and doesn't start the next line's first word.",
       "syncTabPosition": "Sync position across tabs",

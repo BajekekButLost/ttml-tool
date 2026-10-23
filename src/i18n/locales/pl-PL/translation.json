@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Przesuwa każdy zapisywany znacznik czasu o tę wartość, aby skompensować opóźnienie dźwięku lub wejścia.",
       "syncCommitOffset": "Przesunięcie klawisza Dalej (ms)",
       "syncCommitOffsetDesc": "Dodatkowe przesunięcie tylko dla klawisza Dalej (domyślnie G), gdy regularnie naciskasz go za wcześnie lub za późno.",
-      "smartFirstWord": "Pierwsze słowo: tylko początek",
-      "smartFirstWordDesc": "Przy synchronizacji pierwszego słowa wersu pierwsze naciśnięcie ustawia tylko czas początku, bez czasu końca.",
       "smartLastWord": "Ostatnie słowo: tylko koniec",
       "smartLastWordDesc": "Przy synchronizacji ostatniego słowa wersu naciśnięcie ustawia tylko czas końca, bez rozpoczynania pierwszego słowa następnego wersu.",
       "syncTabPosition": "Synchronizuj pozycję na kartach",

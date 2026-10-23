@@ -14,7 +14,6 @@ import {
 	layoutModeAtom,
 	normalizeApostrophesOnImportAtom,
 	normalizeCyrillicEsOnImportAtom,
-	smartFirstWordAtom,
 	smartLastWordAtom,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
@@ -35,7 +34,6 @@ export function useCommonSettings() {
 	const [keyBindingTriggerMode, setKeyBindingTriggerMode] = useAtom(
 		keyBindingTriggerModeAtom,
 	);
-	const [smartFirstWord, setSmartFirstWord] = useAtom(smartFirstWordAtom);
 	const [smartLastWord, setSmartLastWord] = useAtom(smartLastWordAtom);
 	const [volume, setVolume] = useAtom(volumeAtom);
 	const [playbackRate, setPlaybackRate] = useAtom(playbackRateAtom);
@@ -84,8 +82,6 @@ export function useCommonSettings() {
 		setSyncJudgeMode,
 		keyBindingTriggerMode,
 		setKeyBindingTriggerMode,
-		smartFirstWord,
-		setSmartFirstWord,
 		smartLastWord,
 		setSmartLastWord,
 		volume,

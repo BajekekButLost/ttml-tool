@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Flytter alle tidsstempler, du registrerer, med denne værdi for at kompensere for lyd- eller inputforsinkelse.",
       "syncCommitOffset": "Forskydning for Næste (ms)",
       "syncCommitOffsetDesc": "Ekstra forskydning kun for Næste-tasten (som standard G), hvis den konsekvent rammer for tidligt eller sent.",
-      "smartFirstWord": "Første ord: kun start",
-      "smartFirstWordDesc": "På linjens første ord sætter det første tastetryk kun starttiden, ikke sluttiden.",
       "smartLastWord": "Sidste ord: kun slut",
       "smartLastWordDesc": "På linjens sidste ord sætter tastetrykket kun sluttiden og starter ikke næste linjes første ord.",
       "syncTabPosition": "Synkronisér position mellem faner",

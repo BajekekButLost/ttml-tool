@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Verschuift elk opgenomen tijdstempel met deze waarde om vertraging van audio of invoer te compenseren.",
       "syncCommitOffset": "Verschuiving voor Volgende (ms)",
       "syncCommitOffsetDesc": "Extra verschuiving voor alleen de toets Volgende (standaard G), als die steeds te vroeg of te laat valt.",
-      "smartFirstWord": "Eerste woord: alleen begin",
-      "smartFirstWordDesc": "Bij het eerste woord van een regel stelt de eerste toetsaanslag alleen de begintijd in, zonder eindtijd.",
       "smartLastWord": "Laatste woord: alleen einde",
       "smartLastWordDesc": "Bij het laatste woord van een regel stelt de toetsaanslag alleen de eindtijd in, zonder het eerste woord van de volgende regel te starten.",
       "syncTabPosition": "Positie tussen tabbladen synchroniseren",

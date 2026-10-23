@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Deplasează fiecare marcaj temporal înregistrat cu această valoare pentru a compensa întârzierea sunetului sau a comenzilor.",
       "syncCommitOffset": "Decalajul tastei Următorul (ms)",
       "syncCommitOffsetDesc": "Decalaj suplimentar doar pentru Următorul (implicit G), dacă apeși mereu prea devreme sau prea târziu.",
-      "smartFirstWord": "Primul cuvânt: doar începutul",
-      "smartFirstWordDesc": "La primul cuvânt al unui vers, prima apăsare setează doar timpul de început, nu și pe cel de sfârșit.",
       "smartLastWord": "Ultimul cuvânt: doar sfârșitul",
       "smartLastWordDesc": "La ultimul cuvânt al unui vers, apăsarea setează doar sfârșitul, fără să înceapă primul cuvânt al versului următor.",
       "syncTabPosition": "Sincronizează poziția între file",

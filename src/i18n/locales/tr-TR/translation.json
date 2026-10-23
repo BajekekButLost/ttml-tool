@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Ses veya giriş gecikmesini telafi etmek için kaydettiğiniz her zaman damgasını bu miktarda kaydırır.",
       "syncCommitOffset": "Sonraki tuşu kayması (ms)",
       "syncCommitOffsetDesc": "Sürekli erken veya geç basıldığında yalnızca Sonraki tuşuna (varsayılan G) uygulanan ek kayma.",
-      "smartFirstWord": "İlk kelimede yalnızca başlat",
-      "smartFirstWordDesc": "Bir satırın ilk kelimesi senkronize edilirken, ilk tuşa basıldığında yalnızca başlangıç zamanı ayarlanır; bitiş zamanı hemen belirlenmez.",
       "smartLastWord": "Son kelimede yalnızca bitir",
       "smartLastWordDesc": "Bir satırın son kelimesi senkronize edilirken, tuşa basıldığında bitiş zamanı ayarlanır; sonraki satırın ilk kelimesinin başlangıç zamanı otomatik olarak belirlenmez.",
       "syncTabPosition": "Sekmeler arasında konumu senkronize et",

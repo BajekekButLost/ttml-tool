@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Geser setiap penanda waktu yang Anda rekam sebesar nilai ini untuk mengimbangi keterlambatan audio atau input.",
       "syncCommitOffset": "Offset tombol Berikutnya (ms)",
       "syncCommitOffsetDesc": "Offset tambahan khusus tombol Berikutnya (default G), jika waktunya selalu terlalu awal atau terlambat.",
-      "smartFirstWord": "Kata pertama: hanya mulai",
-      "smartFirstWordDesc": "Pada kata pertama baris, penekanan tombol pertama hanya mengatur waktu mulai, bukan waktu akhir.",
       "smartLastWord": "Kata terakhir: hanya akhir",
       "smartLastWordDesc": "Pada kata terakhir baris, penekanan tombol hanya mengatur waktu akhir dan tidak memulai kata pertama baris berikutnya.",
       "syncTabPosition": "Sinkronkan posisi antartab",

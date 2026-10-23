@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Posune každou zaznamenanou časovou značku o tuto hodnotu pro vyrovnání zpoždění zvuku nebo vstupu.",
       "syncCommitOffset": "Posun klávesy Další (ms)",
       "syncCommitOffsetDesc": "Dodatečný posun jen pro klávesu Další (výchozí G), pokud ji soustavně tisknete příliš brzy nebo pozdě.",
-      "smartFirstWord": "První slovo jen začít",
-      "smartFirstWordDesc": "Při synchronizaci prvního slova řádku první stisk nastaví pouze čas začátku, aniž by okamžitě nastavil čas konce.",
       "smartLastWord": "Poslední slovo jen ukončit",
       "smartLastWordDesc": "Při synchronizaci posledního slova řádku stisk nastaví čas konce bez automatického nastavení času začátku prvního slova dalšího řádku.",
       "syncTabPosition": "Synchronizovat pozici napříč kartami",

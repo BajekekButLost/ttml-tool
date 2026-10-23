@@ -3,10 +3,7 @@ import { createStore, Provider } from "jotai";
 import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { describe, expect, it, vi } from "vitest";
-import {
-	smartFirstWordAtom,
-	smartLastWordAtom,
-} from "$/modules/settings/states";
+import { smartLastWordAtom } from "$/modules/settings/states";
 import {
 	syncCommitOffsetAtom,
 	syncLevelModeAtom,
@@ -59,7 +56,6 @@ function mount(mode: "word" | "line" = "word") {
 	store.set(syncLevelModeAtom, mode);
 	store.set(syncTimeOffsetAtom, 0);
 	store.set(syncCommitOffsetAtom, 0);
-	store.set(smartFirstWordAtom, false);
 	store.set(smartLastWordAtom, false);
 	const root = createRoot(globalThis.document.createElement("div"));
 	act(() =>

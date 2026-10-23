@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Sposta ogni riferimento temporale registrato di questo valore per compensare il ritardo dell’audio o dei comandi.",
       "syncCommitOffset": "Scostamento del tasto Avanti (ms)",
       "syncCommitOffsetDesc": "Scostamento aggiuntivo solo per Avanti (G predefinito), se lo premi sempre in anticipo o in ritardo.",
-      "smartFirstWord": "Prima parola: solo inizio",
-      "smartFirstWordDesc": "Quando si sincronizza la prima parola di un verso, il primo tasto imposta solo il tempo d'inizio senza impostare immediatamente il tempo di fine.",
       "smartLastWord": "Ultima parola: solo fine",
       "smartLastWordDesc": "Sull’ultima parola di un verso, la pressione imposta solo la fine senza avviare la prima parola del verso successivo.",
       "syncTabPosition": "Sincronizza la posizione tra le schede",

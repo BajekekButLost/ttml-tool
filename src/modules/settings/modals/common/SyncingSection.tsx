@@ -2,7 +2,6 @@ import {
 	ArrowEnterLeft24Regular,
 	CursorClick24Regular,
 	Keyboard12324Regular,
-	PaddingLeft24Regular,
 	PaddingRight24Regular,
 	Timer24Regular,
 } from "@fluentui/react-icons";
@@ -28,8 +27,6 @@ export const SyncingSection = ({
 	setSyncJudgeMode,
 	keyBindingTriggerMode,
 	setKeyBindingTriggerMode,
-	smartFirstWord,
-	setSmartFirstWord,
 	smartLastWord,
 	setSmartLastWord,
 	t,
@@ -39,8 +36,6 @@ export const SyncingSection = ({
 	| "setSyncJudgeMode"
 	| "keyBindingTriggerMode"
 	| "setKeyBindingTriggerMode"
-	| "smartFirstWord"
-	| "setSmartFirstWord"
 	| "smartLastWord"
 	| "setSmartLastWord"
 	| "t"
@@ -186,33 +181,6 @@ export const SyncingSection = ({
 					</Flex>
 				</Box>
 			</Flex>
-		</Card>
-
-		<Card>
-			<Text as="label">
-				<Flex gap="3" align="center">
-					<PaddingLeft24Regular />
-					<Box flexGrow="1">
-						<Flex gap="2" align="center" justify="between">
-							<Flex direction="column" gap="1">
-								<Text>
-									{t("settings.common.smartFirstWord", "Start-only first word")}
-								</Text>
-								<Text size="1" color="gray">
-									{t(
-										"settings.common.smartFirstWordDesc",
-										"On the first word of a line, the first key press only sets its start time, not its end time.",
-									)}
-								</Text>
-							</Flex>
-							<Switch
-								checked={smartFirstWord}
-								onCheckedChange={setSmartFirstWord}
-							/>
-						</Flex>
-					</Box>
-				</Flex>
-			</Text>
 		</Card>
 
 		<Card>

@@ -446,8 +446,6 @@
       "syncTimeOffsetDesc": "Décale chaque horodatage enregistré de cette valeur pour compenser le retard audio ou de saisie.",
       "syncCommitOffset": "Décalage de la touche Suivant (ms)",
       "syncCommitOffsetDesc": "Décalage supplémentaire pour Suivant uniquement (G par défaut), si vous appuyez toujours trop tôt ou trop tard.",
-      "smartFirstWord": "Premier mot : début seul",
-      "smartFirstWordDesc": "Lors de la synchronisation du premier mot d'une ligne, la première pression définit uniquement son temps de début, sans définir immédiatement son temps de fin.",
       "smartLastWord": "Dernier mot : fin seule",
       "smartLastWordDesc": "Lors de la synchronisation du dernier mot d'une ligne, la pression définit son temps de fin sans définir automatiquement le temps de début du premier mot de la ligne suivante.",
       "syncTabPosition": "Synchroniser la position entre les onglets",
