@@ -35,7 +35,10 @@ import {
 	combineSelectedWords,
 	getCombineWordSelection,
 } from "../utils/combine-words";
-import { normalizeLineTime } from "../utils/normalize-line-time";
+import {
+	deleteWordsFromLines,
+	normalizeLineTime,
+} from "../utils/normalize-line-time";
 
 const selectedLinesSizeAtom = atom((get) => get(selectedLinesAtom).size);
 const selectedWordsSizeAtom = atom((get) => get(selectedWordsAtom).size);
@@ -270,16 +273,10 @@ export const LyricWordMenu = ({
 				disabled={selectedWordsSize === 0}
 				onSelect={() => {
 					editLyricLines((state) => {
-						const selectedWords = store.get(selectedWordsAtom);
-						for (const line of state.lyricLines) {
-							const originalLength = line.words.length;
-							const filteredWords = line.words.filter(
-								(w) => !selectedWords.has(w.id),
-							);
-							line.words = filteredWords;
-							if (originalLength !== filteredWords.length)
-								normalizeLineTime(line);
-						}
+						deleteWordsFromLines(
+							state.lyricLines,
+							store.get(selectedWordsAtom),
+						);
 					});
 				}}
 			>

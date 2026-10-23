@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { uid } from "uid";
 import { useFileOpener } from "$/hooks/useFileOpener.ts";
+import { deleteWordsFromLines } from "$/modules/lyric-editor/utils/normalize-line-time";
 import {
 	activeProjectDirAtom,
 	activeProjectManifestAtom,
@@ -305,9 +306,7 @@ export const useTopMenuActions = () => {
 			});
 		} else {
 			editLyricLines((prev) => {
-				for (const line of prev.lyricLines) {
-					line.words = line.words.filter((w) => !selectedWordIds.has(w.id));
-				}
+				deleteWordsFromLines(prev.lyricLines, selectedWordIds);
 			});
 		}
 		store.set(selectedWordsAtom, new Set());
