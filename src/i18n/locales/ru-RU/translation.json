@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "При импорте текст разбивается на слова, очищаются пунктуация и пробелы, а вокал в скобках становится строками бэк-вокала."
+    "processDescription": "При импорте текст разбивается на слова, очищаются пунктуация и пробелы, а вокал в скобках становится строками бэк-вокала.",
+    "noLyricsLabel": "Для этого трека нет текстов.",
+    "editingRawText": "Редактирование необработанного текста",
+    "backToPreview": "К предпросмотру",
+    "manualEdit": "Ручное редактирование",
+    "source": "Источник:"
   },
   "preview": {
     "untimedLines": "{count, plural, one {# строка ещё без временных меток} few {# строки ещё без временных меток} many {# строк ещё без временных меток} other {# строки ещё без временных меток}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Найдите в LRCLIB текст с синхронизацией или без неё по названию песни и исполнителю."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Ищите тексты в доступных источниках Lyrically без настройки токена Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Импортировать текст",
         "fromPlainText": "Импортировать из обычного текста…",
         "fromLRCLIB": "Импортировать из LRCLIB…",
-        "fromLyrically": "Импортировать из Lyrically…",
         "fromGenius": "Импортировать из Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "От",
     "toLine": "до",
     "line": "строки"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Для этого трека нет текстов.",
-    "previewTitle": "Предпросмотр текста из Lyrically",
-    "editingRawText": "Редактирование необработанного текста",
-    "backToPreview": "К предпросмотру",
-    "manualEdit": "Ручное редактирование",
-    "importTitle": "Импорт текста из Lyrically",
-    "source": "Источник:"
   },
   "genius": {
     "setupTitle": "Токен доступа Genius",

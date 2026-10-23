@@ -9,7 +9,6 @@ import { ReplaceRomanizationDialog } from "$/modules/lyric-editor/tools/ReplaceR
 import { ReplaceWordDialog } from "$/modules/lyric-editor/tools/ReplaceWordDialog.tsx";
 import { TimeShiftDialog } from "$/modules/lyric-editor/tools/TimeShift.tsx";
 import { TimeStretchDialog } from "$/modules/lyric-editor/tools/TimeStretch.tsx";
-import { ImportLyricsDialog } from "$/modules/lyrics-import/modals/ImportLyricsDialog.tsx";
 import { HistoryRestoreDialog } from "$/modules/project/modals/HistoryRestore.tsx";
 import { ImportFromText } from "$/modules/project/modals/ImportFromText.tsx";
 import { MetadataEditor } from "$/modules/project/modals/MetadataEditor.tsx";
@@ -40,7 +39,6 @@ export const Dialogs = () => {
 			<ImportLyricsChooserDialog />
 			<ImportFromText />
 			<ImportFromLRCLIB />
-			<ImportLyricsDialog />
 			<MetadataEditor />
 			<SettingsDialog />
 			<SplitWordDialog />

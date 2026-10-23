@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Przy imporcie dzieli tekst na słowa, porządkuje interpunkcję i odstępy oraz zamienia wokale w nawiasach na wersy wokalu w tle."
+    "processDescription": "Przy imporcie dzieli tekst na słowa, porządkuje interpunkcję i odstępy oraz zamienia wokale w nawiasach na wersy wokalu w tle.",
+    "noLyricsLabel": "Brak tekstu dla tego utworu.",
+    "editingRawText": "Edycja surowego tekstu",
+    "backToPreview": "Powrót do podglądu",
+    "manualEdit": "Edycja ręczna",
+    "source": "Źródło:"
   },
   "preview": {
     "untimedLines": "{count, plural, one {# wers nie ma jeszcze synchronizacji} few {# wersy nie mają jeszcze synchronizacji} many {# wersów nie ma jeszcze synchronizacji} other {# wersu nie ma jeszcze synchronizacji}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Wyszukaj w LRCLIB zsynchronizowany lub zwykły tekst według utworu i wykonawcy."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Przeszukuj źródła tekstów w Lyrically bez konfigurowania tokena Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importuj tekst",
         "fromPlainText": "Importuj ze zwykłego tekstu…",
         "fromLRCLIB": "Importuj z LRCLIB...",
-        "fromLyrically": "Importuj z Lyrically...",
         "fromGenius": "Importuj z Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Od",
     "toLine": "do",
     "line": "wersy"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Brak tekstu dla tego utworu.",
-    "previewTitle": "Podgląd tekstu z Lyrically",
-    "editingRawText": "Edycja surowego tekstu",
-    "backToPreview": "Powrót do podglądu",
-    "manualEdit": "Edycja ręczna",
-    "importTitle": "Importuj tekst z Lyrically",
-    "source": "Źródło:"
   },
   "genius": {
     "setupTitle": "Token dostępu Genius",

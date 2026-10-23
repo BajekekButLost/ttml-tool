@@ -17,7 +17,6 @@ import {
 	geniusImportLyricsDialogAtom,
 	importFromLRCLIBDialogAtom,
 	importFromTextDialogAtom,
-	lyricallyImportLyricsDialogAtom,
 } from "$/states/dialogs.ts";
 import { lyricLinesAtom, saveFileNameAtom } from "$/states/main.ts";
 import { normalizeLyricText } from "$/utils/apostrophe-normalization";
@@ -33,7 +32,6 @@ export const ImportExportLyric = ({
 	const setImportFromTextDialog = useSetAtom(importFromTextDialogAtom);
 	const setImportFromLRCLIBDialog = useSetAtom(importFromLRCLIBDialogAtom);
 	const setGeniusImportLyricsDialog = useSetAtom(geniusImportLyricsDialogAtom);
-	const setLyricallyImportDialog = useSetAtom(lyricallyImportLyricsDialogAtom);
 	const { t } = useTranslation();
 	const notifySectionIssues = () => {
 		const count = validateSections(store.get(lyricLinesAtom)).length;
@@ -107,12 +105,6 @@ export const ImportExportLyric = ({
 					</DropdownMenu.Item>
 					<DropdownMenu.Item onClick={() => setImportFromLRCLIBDialog(true)}>
 						{t("topBar.menu.importLyric.fromLRCLIB", "Import from LRCLIB…")}
-					</DropdownMenu.Item>
-					<DropdownMenu.Item onClick={() => setLyricallyImportDialog(true)}>
-						{t(
-							"topBar.menu.importLyric.fromLyrically",
-							"Import from Lyrically…",
-						)}
 					</DropdownMenu.Item>
 
 					<DropdownMenu.Item onClick={() => setGeniusImportLyricsDialog(true)}>

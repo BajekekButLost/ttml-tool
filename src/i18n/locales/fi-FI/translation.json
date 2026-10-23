@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Tuonti jakaa tekstin sanoiksi, siistii välimerkit ja välilyönnit sekä muuttaa sulkeissa olevan laulun taustalauluriveiksi."
+    "processDescription": "Tuonti jakaa tekstin sanoiksi, siistii välimerkit ja välilyönnit sekä muuttaa sulkeissa olevan laulun taustalauluriveiksi.",
+    "noLyricsLabel": "Tälle kappaleelle ei ole saatavilla sanoituksia.",
+    "editingRawText": "Raakatekstin muokkaaminen",
+    "backToPreview": "Takaisin esikatseluun",
+    "manualEdit": "Manuaalinen muokkaus",
+    "source": "Lähde: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# riviltä puuttuu ajoitus} other {# riviltä puuttuu ajoitus}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Etsi LRCLIB-palvelusta ajoitettuja tai ajoittamattomia sanoituksia kappaleen ja esittäjän perusteella."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Hae Lyricallyn sanoituslähteistä ilman Genius-käyttöoikeustunnusta."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Tuo sanoituksia",
         "fromPlainText": "Tuo pelkästä tekstistä…",
         "fromLRCLIB": "Tuo LRCLIB-palvelusta…",
-        "fromLyrically": "Tuo Lyrically-palvelusta…",
         "fromGenius": "Tuo Genius-palvelusta…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Alkaen",
     "toLine": "asti",
     "line": "rivit"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Tälle kappaleelle ei ole saatavilla sanoituksia.",
-    "previewTitle": "Lyrically — Sanoitusten esikatselu",
-    "editingRawText": "Raakatekstin muokkaaminen",
-    "backToPreview": "Takaisin esikatseluun",
-    "manualEdit": "Manuaalinen muokkaus",
-    "importTitle": "Tuo sanoitukset Lyrically-palvelusta",
-    "source": "Lähde: "
   },
   "genius": {
     "setupTitle": "Genius-käyttöoikeustunnus",

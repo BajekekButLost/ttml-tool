@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Al importar, divide el texto en palabras, limpia la puntuación y los espacios y convierte las voces entre paréntesis en líneas de voces de fondo."
+    "processDescription": "Al importar, divide el texto en palabras, limpia la puntuación y los espacios y convierte las voces entre paréntesis en líneas de voces de fondo.",
+    "noLyricsLabel": "No hay letras disponibles para esta pista.",
+    "editingRawText": "Edición de texto sin formato",
+    "backToPreview": "Volver a vista previa",
+    "manualEdit": "Edición manual",
+    "source": "Fuente: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# línea aún no tiene sincronización} many {# líneas aún no tienen sincronización} other {# líneas aún no tienen sincronización}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Busca en LRCLIB letras sincronizadas o sin sincronizar por canción y artista."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Busca en las fuentes de letras de Lyrically sin configurar un token de Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importar letras",
         "fromPlainText": "Importar desde texto sin formato…",
         "fromLRCLIB": "Importar desde LRCLIB...",
-        "fromLyrically": "Importar desde Lyrically...",
         "fromGenius": "Importar desde Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "De la línea",
     "toLine": "a la línea",
     "line": "incluida"
-  },
-  "lyrically": {
-    "noLyricsLabel": "No hay letras disponibles para esta pista.",
-    "previewTitle": "Vista previa de letras de Lyrically",
-    "editingRawText": "Edición de texto sin formato",
-    "backToPreview": "Volver a vista previa",
-    "manualEdit": "Edición manual",
-    "importTitle": "Importar letras desde Lyrically",
-    "source": "Fuente: "
   },
   "genius": {
     "setupTitle": "Token de acceso de Genius",

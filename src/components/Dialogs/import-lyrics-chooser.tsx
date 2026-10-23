@@ -11,7 +11,6 @@ import {
 	importFromLRCLIBDialogAtom,
 	importFromTextDialogAtom,
 	importLyricsChooserDialogAtom,
-	lyricallyImportLyricsDialogAtom,
 } from "$/states/dialogs.ts";
 
 export function ImportLyricsChooserDialog() {
@@ -19,14 +18,12 @@ export function ImportLyricsChooserDialog() {
 	const [isOpen, setIsOpen] = useAtom(importLyricsChooserDialogAtom);
 	const setImportFromText = useSetAtom(importFromTextDialogAtom);
 	const setImportFromLRCLIB = useSetAtom(importFromLRCLIBDialogAtom);
-	const setImportFromLyrically = useSetAtom(lyricallyImportLyricsDialogAtom);
 	const setImportFromGenius = useSetAtom(geniusImportLyricsDialogAtom);
 
 	const openChoice = (source: ImportSourceId) => {
 		setIsOpen(false);
 		if (source === "plainText") setImportFromText(true);
 		if (source === "lrclib") setImportFromLRCLIB(true);
-		if (source === "lyrically") setImportFromLyrically(true);
 		if (source === "genius") setImportFromGenius(true);
 	};
 

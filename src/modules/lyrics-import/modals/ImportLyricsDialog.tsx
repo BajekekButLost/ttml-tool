@@ -24,7 +24,6 @@ import { GeniusApi } from "$/modules/genius/api/client";
 import { getBetterGeniusCoverArt } from "$/modules/genius/utils/image";
 import { LrcLibApi } from "$/modules/lrclib/api/client";
 import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system.ts";
-import { LyricallyApi } from "$/modules/lyrically/api/client";
 import {
 	categorizeGeniusHeadersOnImportAtom,
 	fetchImportedSongwritersAtom,
@@ -46,7 +45,6 @@ import {
 	confirmDialogAtom,
 	geniusImportLyricsDialogAtom,
 	importFromLRCLIBDialogAtom,
-	lyricallyImportLyricsDialogAtom,
 } from "$/states/dialogs.ts";
 import {
 	isDirtyAtom,
@@ -71,7 +69,7 @@ import {
 	SectionImportReviewDialog,
 } from "./SectionImportReviewDialog";
 
-type ImportSource = "lyrically" | "genius" | "lrclib";
+type ImportSource = "genius" | "lrclib";
 
 type ImportTrack = {
 	id: string | number;
@@ -86,11 +84,7 @@ type ImportTrack = {
 	fetchSongwriters?: () => Promise<string[]>;
 };
 
-export const ImportLyricsDialog = ({
-	source = "lyrically",
-}: {
-	source?: ImportSource;
-}) => {
+export const ImportLyricsDialog = ({ source }: { source: ImportSource }) => {
 	const { t } = useTranslation();
 	const store = useStore();
 	const audio = useAtomValue(loadedAudioAtom);
@@ -107,9 +101,7 @@ export const ImportLyricsDialog = ({
 	const dialogAtom =
 		source === "genius"
 			? geniusImportLyricsDialogAtom
-			: source === "lrclib"
-				? importFromLRCLIBDialogAtom
-				: lyricallyImportLyricsDialogAtom;
+			: importFromLRCLIBDialogAtom;
 	const [isOpen, setIsOpen] = useAtom(dialogAtom);
 	const [, setLyricLines] = useImmerAtom(lyricLinesAtom);
 	const applyImportMetadata = useSetAtom(applyConfirmedImportMetadataAtom);
@@ -257,30 +249,21 @@ export const ImportLyricsDialog = ({
 								},
 							}),
 						)
-					: source === "lrclib"
-						? (await LrcLibApi.search(query)).map((track) => ({
-								id: track.id,
-								name: track.name,
-								artist: track.artistName,
-								album: track.albumName,
-								duration: track.duration,
-								lyrics:
-									track.plainLyrics ||
-									(track.syncedLyrics
-										? lrcToPlainLyrics(track.syncedLyrics)
-										: ""),
-								source: track.syncedLyrics
-									? "LRCLIB • synced lyrics available"
-									: "LRCLIB",
-							}))
-						: (await LyricallyApi.search(query)).map((track, index) => ({
-								id: `${track.artist}-${track.name}-${index}`,
-								...track,
-								fetchLyrics: () =>
-									LyricallyApi.getLyrics(track.name, track.artist).then(
-										(detail) => detail.lyrics || "",
-									),
-							}));
+					: (await LrcLibApi.search(query)).map((track) => ({
+							id: track.id,
+							name: track.name,
+							artist: track.artistName,
+							album: track.albumName,
+							duration: track.duration,
+							lyrics:
+								track.plainLyrics ||
+								(track.syncedLyrics
+									? lrcToPlainLyrics(track.syncedLyrics)
+									: ""),
+							source: track.syncedLyrics
+								? "LRCLIB • synced lyrics available"
+								: "LRCLIB",
+						}));
 			setResults(hits);
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
@@ -309,7 +292,10 @@ export const ImportLyricsDialog = ({
 					(hit.fetchLyrics ? await hit.fetchLyrics() : "");
 				setEditableLyrics(
 					lyrics ||
-						t("lyrically.noLyricsLabel", "No lyrics available for this track."),
+						t(
+							"onlineImport.noLyricsLabel",
+							"No lyrics available for this track.",
+						),
 				);
 			} catch (e) {
 				const msg = e instanceof Error ? e.message : String(e);
@@ -553,9 +539,7 @@ export const ImportLyricsDialog = ({
 								<Dialog.Title mb="0">
 									{source === "genius"
 										? t("genius.previewTitle", "Genius lyrics preview")
-										: source === "lrclib"
-											? t("lrclib.title", "Import lyrics from LRCLIB")
-											: t("lyrically.previewTitle", "Lyrically lyrics preview")}
+										: t("lrclib.title", "Import lyrics from LRCLIB")}
 								</Dialog.Title>
 								<Text size="1" color="gray" truncate style={{ maxWidth: 460 }}>
 									{selectedHit.name} - {selectedHit.artist}
@@ -582,7 +566,7 @@ export const ImportLyricsDialog = ({
 								<Flex justify="between" align="center" mb="2">
 									<Text size="1" color="gray">
 										{isEditing
-											? t("lyrically.editingRawText", "Editing raw text")
+											? t("onlineImport.editingRawText", "Editing raw text")
 											: t(
 													"genius.previewSubtitle",
 													"Text in parentheses will be separated as background lyrics.",
@@ -594,8 +578,8 @@ export const ImportLyricsDialog = ({
 										onClick={() => setIsEditing(!isEditing)}
 									>
 										{isEditing
-											? t("lyrically.backToPreview", "Back to Preview")
-											: t("lyrically.manualEdit", "Manual Edit")}
+											? t("onlineImport.backToPreview", "Back to Preview")
+											: t("onlineImport.manualEdit", "Manual Edit")}
 									</Button>
 								</Flex>
 
@@ -742,7 +726,7 @@ export const ImportLyricsDialog = ({
 												!editableLyrics.trim() ||
 												editableLyrics ===
 													t(
-														"lyrically.noLyricsLabel",
+														"onlineImport.noLyricsLabel",
 														"No lyrics available for this track.",
 													)
 											}
@@ -779,9 +763,7 @@ export const ImportLyricsDialog = ({
 				<Dialog.Title>
 					{source === "genius"
 						? t("genius.importTitle", "Import lyrics from Genius")
-						: source === "lrclib"
-							? t("lrclib.title", "Import lyrics from LRCLIB")
-							: t("lyrically.importTitle", "Import lyrics from Lyrically")}
+						: t("lrclib.title", "Import lyrics from LRCLIB")}
 				</Dialog.Title>
 
 				<Flex gap="3" mb="4">
@@ -860,7 +842,7 @@ export const ImportLyricsDialog = ({
 											</Text>
 											{hit.source && (
 												<Text size="1" color="gray" style={{ opacity: 0.6 }}>
-													{t("lyrically.source", "Source: ")}
+													{t("onlineImport.source", "Source: ")}
 													{hit.source}
 												</Text>
 											)}

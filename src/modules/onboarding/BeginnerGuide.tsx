@@ -34,7 +34,6 @@ import {
 	geniusImportLyricsDialogAtom,
 	importFromLRCLIBDialogAtom,
 	importFromTextDialogAtom,
-	lyricallyImportLyricsDialogAtom,
 	metadataEditorDialogAtom,
 	settingsDialogAtom,
 	settingsTabAtom,
@@ -130,7 +129,6 @@ export const BeginnerGuide = () => {
 	const setImportText = useSetAtom(importFromTextDialogAtom);
 	const setImportGenius = useSetAtom(geniusImportLyricsDialogAtom);
 	const setImportLrclib = useSetAtom(importFromLRCLIBDialogAtom);
-	const setImportLyrically = useSetAtom(lyricallyImportLyricsDialogAtom);
 	const setMetadata = useSetAtom(metadataEditorDialogAtom);
 	const setToolMode = useSetAtom(toolModeAtom);
 	const setSettingsOpen = useSetAtom(settingsDialogAtom);
@@ -218,19 +216,12 @@ export const BeginnerGuide = () => {
 		(source: ImportSourceId) => {
 			if (source === "plainText") setImportText(true);
 			if (source === "lrclib") setImportLrclib(true);
-			if (source === "lyrically") setImportLyrically(true);
 			if (source === "genius") {
 				if (geniusApiKey) setImportGenius(true);
 				else setShowGeniusSetup(true);
 			}
 		},
-		[
-			geniusApiKey,
-			setImportGenius,
-			setImportLrclib,
-			setImportLyrically,
-			setImportText,
-		],
+		[geniusApiKey, setImportGenius, setImportLrclib, setImportText],
 	);
 
 	const doAction = useCallback(async () => {

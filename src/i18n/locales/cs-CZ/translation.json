@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Při importu rozdělí text na slova, upraví interpunkci a mezery a převede vokály v závorkách na řádky doprovodných vokálů."
+    "processDescription": "Při importu rozdělí text na slova, upraví interpunkci a mezery a převede vokály v závorkách na řádky doprovodných vokálů.",
+    "noLyricsLabel": "Pro tuto skladbu nejsou k dispozici žádné texty.",
+    "editingRawText": "Úprava prostého textu",
+    "backToPreview": "Zpět na náhled",
+    "manualEdit": "Ruční úprava",
+    "source": "Zdroj:"
   },
   "preview": {
     "untimedLines": "{count, plural, one {# řádek zatím nemá časování} few {# řádky zatím nemají časování} many {# řádku zatím nemá časování} other {# řádků zatím nemá časování}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Vyhledejte v LRCLIB časovaný nebo prostý text podle skladby a interpreta."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Prohledávejte zdroje textů v Lyrically bez nastavování tokenu Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importovat text písně",
         "fromPlainText": "Importovat z prostého textu…",
         "fromLRCLIB": "Importovat z LRCLIB...",
-        "fromLyrically": "Importovat z Lyrically…",
         "fromGenius": "Importovat z Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Od",
     "toLine": "do",
     "line": "řádky"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Pro tuto skladbu nejsou k dispozici žádné texty.",
-    "previewTitle": "Náhled textu z Lyrically",
-    "editingRawText": "Úprava prostého textu",
-    "backToPreview": "Zpět na náhled",
-    "manualEdit": "Ruční úprava",
-    "importTitle": "Importovat text z Lyrically",
-    "source": "Zdroj:"
   },
   "genius": {
     "setupTitle": "Přístupový token Genius",

@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "On import, splits text into words, cleans punctuation and spacing, and turns parenthesized vocals into background lines."
+    "processDescription": "On import, splits text into words, cleans punctuation and spacing, and turns parenthesized vocals into background lines.",
+    "noLyricsLabel": "No lyrics available for this track.",
+    "editingRawText": "Editing raw text",
+    "backToPreview": "Back to Preview",
+    "manualEdit": "Manual Edit",
+    "source": "Source: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# line has no timing yet} other {# lines have no timing yet}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Search LRCLIB for synced or plain lyrics by song and artist."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Search Lyrically's available lyric sources without setting up a Genius token."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Import lyrics",
         "fromPlainText": "Import from plain text…",
         "fromLRCLIB": "Import from LRCLIB…",
-        "fromLyrically": "Import from Lyrically…",
         "fromGenius": "Import from Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "From",
     "toLine": "to",
     "line": "lines"
-  },
-  "lyrically": {
-    "noLyricsLabel": "No lyrics available for this track.",
-    "previewTitle": "Lyrically lyrics preview",
-    "editingRawText": "Editing raw text",
-    "backToPreview": "Back to Preview",
-    "manualEdit": "Manual Edit",
-    "importTitle": "Import lyrics from Lyrically",
-    "source": "Source: "
   },
   "genius": {
     "setupTitle": "Genius access token",

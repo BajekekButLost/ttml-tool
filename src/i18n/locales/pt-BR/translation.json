@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Ao importar, divide o texto em palavras, ajusta a pontuação e os espaços e transforma os vocais entre parênteses em linhas de vocais de apoio."
+    "processDescription": "Ao importar, divide o texto em palavras, ajusta a pontuação e os espaços e transforma os vocais entre parênteses em linhas de vocais de apoio.",
+    "noLyricsLabel": "Nenhuma letra disponível para esta faixa.",
+    "editingRawText": "Editando texto bruto",
+    "backToPreview": "Voltar à prévia",
+    "manualEdit": "Edição manual",
+    "source": "Fonte: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# linha ainda não foi sincronizada} many {# linhas ainda não foram sincronizadas} other {# linhas ainda não foram sincronizadas}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Busque letras sincronizadas ou sem sincronização no LRCLIB por música e artista."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Busque nas fontes de letras do Lyrically sem configurar um token do Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importar letras",
         "fromPlainText": "Importar de texto simples…",
         "fromLRCLIB": "Importar do LRCLIB...",
-        "fromLyrically": "Importar de Lyrically...",
         "fromGenius": "Importar de Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Da linha",
     "toLine": "até a linha",
     "line": "inclusive"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Nenhuma letra disponível para esta faixa.",
-    "previewTitle": "Prévia da letra do Lyrically",
-    "editingRawText": "Editando texto bruto",
-    "backToPreview": "Voltar à prévia",
-    "manualEdit": "Edição manual",
-    "importTitle": "Importar letras do Lyrically",
-    "source": "Fonte: "
   },
   "genius": {
     "setupTitle": "Token de acesso do Genius",

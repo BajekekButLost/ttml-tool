@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "İçe aktarırken metni kelimelere böler, noktalama ve boşlukları temizler, parantez içindeki vokalleri arka vokal satırlarına dönüştürür."
+    "processDescription": "İçe aktarırken metni kelimelere böler, noktalama ve boşlukları temizler, parantez içindeki vokalleri arka vokal satırlarına dönüştürür.",
+    "noLyricsLabel": "Bu parça için şarkı sözü mevcut değil.",
+    "editingRawText": "Ham metin düzenleme",
+    "backToPreview": "Önizlemeye dön",
+    "manualEdit": "Elle düzenleme",
+    "source": "Kaynak:"
   },
   "preview": {
     "untimedLines": "{count, plural, one {# satır henüz zamanlanmamış} other {# satır henüz zamanlanmamış}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "LRCLIB'de şarkıya ve sanatçıya göre zamanlanmış veya düz şarkı sözleri arayın."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Genius belirteci ayarlamadan Lyrically'deki şarkı sözü kaynaklarını arayın."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Şarkı sözlerini içe aktar",
         "fromPlainText": "Düz metinden içe aktar…",
         "fromLRCLIB": "LRCLIB'den içe aktar...",
-        "fromLyrically": "Lyrically'den içe aktar...",
         "fromGenius": "Genius'tan içe aktar…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Başlangıç",
     "toLine": "bitiş",
     "line": "satırları"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Bu parça için şarkı sözü mevcut değil.",
-    "previewTitle": "Lyrically şarkı sözü önizlemesi",
-    "editingRawText": "Ham metin düzenleme",
-    "backToPreview": "Önizlemeye dön",
-    "manualEdit": "Elle düzenleme",
-    "importTitle": "Lyrically'den şarkı sözlerini içe aktar",
-    "source": "Kaynak:"
   },
   "genius": {
     "setupTitle": "Genius erişim belirteci",

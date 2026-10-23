@@ -1,6 +1,5 @@
 import {
 	DocumentText24Regular,
-	GlobeSearch24Regular,
 	MusicNote1Regular,
 	Search24Regular,
 } from "@fluentui/react-icons";
@@ -9,7 +8,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./ImportSourceCards.module.css";
 
-export type ImportSourceId = "plainText" | "lrclib" | "lyrically" | "genius";
+export type ImportSourceId = "plainText" | "lrclib" | "genius";
 
 type ImportSource = {
 	id: ImportSourceId;
@@ -31,12 +30,6 @@ const IMPORT_SOURCES: Record<ImportSourceId, ImportSource> = {
 		color: "var(--green-11)",
 		background: "var(--green-3)",
 	},
-	lyrically: {
-		id: "lyrically",
-		icon: <GlobeSearch24Regular />,
-		color: "var(--purple-11)",
-		background: "var(--purple-3)",
-	},
 	genius: {
 		id: "genius",
 		icon: <MusicNote1Regular />,
@@ -48,15 +41,9 @@ const IMPORT_SOURCES: Record<ImportSourceId, ImportSource> = {
 const CHOOSER_SOURCE_ORDER: ImportSourceId[] = [
 	"plainText",
 	"lrclib",
-	"lyrically",
 	"genius",
 ];
-const GUIDE_SOURCE_ORDER: ImportSourceId[] = [
-	"genius",
-	"lrclib",
-	"plainText",
-	"lyrically",
-];
+const GUIDE_SOURCE_ORDER: ImportSourceId[] = ["genius", "lrclib", "plainText"];
 
 export function ImportSourceCards({
 	compact = false,
@@ -76,10 +63,6 @@ export function ImportSourceCards({
 				title: t("importChooser.options.lrclib.title"),
 				description: t("importChooser.options.lrclib.description"),
 			},
-			lyrically: {
-				title: t("importChooser.options.lyrically.title"),
-				description: t("importChooser.options.lyrically.description"),
-			},
 			genius: {
 				title: t("importChooser.options.genius.title"),
 				description: t("importChooser.options.genius.description"),
@@ -89,7 +72,7 @@ export function ImportSourceCards({
 
 	return (
 		<Grid
-			columns={compact ? "2" : { initial: "1", sm: "2" }}
+			columns={compact ? "2" : { initial: "1", sm: "3" }}
 			gap={compact ? "2" : "3"}
 		>
 			{sourceOrder.map((sourceId) => {

@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Saat diimpor, teks dipisah menjadi kata, tanda baca dan spasi dirapikan, lalu vokal dalam kurung dijadikan baris lirik latar."
+    "processDescription": "Saat diimpor, teks dipisah menjadi kata, tanda baca dan spasi dirapikan, lalu vokal dalam kurung dijadikan baris lirik latar.",
+    "noLyricsLabel": "Tidak ada lirik yang tersedia untuk lagu ini.",
+    "editingRawText": "Mengedit teks mentah",
+    "backToPreview": "Kembali ke pratinjau",
+    "manualEdit": "Edit manual",
+    "source": "Sumber: "
   },
   "preview": {
     "untimedLines": "{count, plural, other {# baris belum diberi waktu}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Cari lirik dengan atau tanpa waktu di LRCLIB berdasarkan lagu dan artis."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Telusuri sumber lirik Lyrically yang tersedia tanpa menyiapkan token Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Impor lirik",
         "fromPlainText": "Impor dari teks biasa…",
         "fromLRCLIB": "Impor dari LRCLIB...",
-        "fromLyrically": "Impor dari Lyrically...",
         "fromGenius": "Impor dari Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Dari",
     "toLine": "sampai",
     "line": "baris"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Tidak ada lirik yang tersedia untuk lagu ini.",
-    "previewTitle": "Lyrically — Pratinjau lirik",
-    "editingRawText": "Mengedit teks mentah",
-    "backToPreview": "Kembali ke pratinjau",
-    "manualEdit": "Edit manual",
-    "importTitle": "Impor lirik dari Lyrically",
-    "source": "Sumber: "
   },
   "genius": {
     "setupTitle": "Token akses Genius",

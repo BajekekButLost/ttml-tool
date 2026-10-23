@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "À l’importation, sépare le texte en mots, corrige la ponctuation et les espaces et transforme les voix entre parenthèses en lignes de chœurs."
+    "processDescription": "À l’importation, sépare le texte en mots, corrige la ponctuation et les espaces et transforme les voix entre parenthèses en lignes de chœurs.",
+    "noLyricsLabel": "Aucune parole disponible pour ce morceau.",
+    "editingRawText": "Modification du texte brut",
+    "backToPreview": "Retour à l'aperçu",
+    "manualEdit": "Modification manuelle",
+    "source": "Source : "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# ligne n’est pas encore minutée} many {# lignes ne sont pas encore minutées} other {# lignes ne sont pas encore minutées}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Recherchez dans LRCLIB des paroles synchronisées ou brutes par chanson et artiste."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Recherchez dans les sources de paroles de Lyrically sans configurer de jeton Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importer des paroles",
         "fromPlainText": "Importer depuis du texte brut…",
         "fromLRCLIB": "Importer depuis LRCLIB...",
-        "fromLyrically": "Importer depuis Lyrically...",
         "fromGenius": "Importer depuis Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "De la ligne",
     "toLine": "à la ligne",
     "line": "incluse"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Aucune parole disponible pour ce morceau.",
-    "previewTitle": "Lyrically — Aperçu des paroles",
-    "editingRawText": "Modification du texte brut",
-    "backToPreview": "Retour à l'aperçu",
-    "manualEdit": "Modification manuelle",
-    "importTitle": "Importer des paroles depuis Lyrically",
-    "source": "Source : "
   },
   "genius": {
     "setupTitle": "Jeton d’accès Genius",

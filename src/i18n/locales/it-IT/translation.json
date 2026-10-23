@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "All’importazione, divide il testo in parole, sistema punteggiatura e spazi e trasforma le voci tra parentesi in versi dei cori."
+    "processDescription": "All’importazione, divide il testo in parole, sistema punteggiatura e spazi e trasforma le voci tra parentesi in versi dei cori.",
+    "noLyricsLabel": "Nessun testo disponibile per questo brano.",
+    "editingRawText": "Modifica del testo grezzo",
+    "backToPreview": "Torna all'anteprima",
+    "manualEdit": "Modifica manuale",
+    "source": "Fonte: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# verso non è ancora sincronizzato} many {# versi non sono ancora sincronizzati} other {# versi non sono ancora sincronizzati}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Cerca in LRCLIB testi sincronizzati o semplici per brano e artista."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Cerca nelle fonti di testi di Lyrically senza configurare un token Genius."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Importa testo",
         "fromPlainText": "Importa da testo semplice…",
         "fromLRCLIB": "Importa da LRCLIB...",
-        "fromLyrically": "Importa da Lyrically...",
         "fromGenius": "Importa da Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Dal verso",
     "toLine": "al verso",
     "line": "incluso"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Nessun testo disponibile per questo brano.",
-    "previewTitle": "Anteprima del testo da Lyrically",
-    "editingRawText": "Modifica del testo grezzo",
-    "backToPreview": "Torna all'anteprima",
-    "manualEdit": "Modifica manuale",
-    "importTitle": "Importa testo da Lyrically",
-    "source": "Fonte: "
   },
   "genius": {
     "setupTitle": "Token di accesso Genius",

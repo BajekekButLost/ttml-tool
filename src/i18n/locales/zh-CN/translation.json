@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "导入时按单词拆分文本，清理标点和空格，并将括号内的人声转为背景歌词行。"
+    "processDescription": "导入时按单词拆分文本，清理标点和空格，并将括号内的人声转为背景歌词行。",
+    "noLyricsLabel": "此曲目没有可用的歌词。",
+    "editingRawText": "编辑原始文本",
+    "backToPreview": "返回预览",
+    "manualEdit": "手动编辑",
+    "source": "来源："
   },
   "preview": {
     "untimedLines": "{count, plural, other {# 行尚未打轴}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "按歌曲和歌手在 LRCLIB 中搜索带时间戳或纯文本歌词。"
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "搜索 Lyrically 的可用歌词源，无需设置 Genius 令牌。"
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "导入歌词",
         "fromPlainText": "从纯文本导入...",
         "fromLRCLIB": "从 LRCLIB 导入...",
-        "fromLyrically": "从 Lyrically 导入...",
         "fromGenius": "从 Genius 导入..."
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "从",
     "toLine": "到",
     "line": "行"
-  },
-  "lyrically": {
-    "noLyricsLabel": "此曲目没有可用的歌词。",
-    "previewTitle": "Lyrically — 歌词预览",
-    "editingRawText": "编辑原始文本",
-    "backToPreview": "返回预览",
-    "manualEdit": "手动编辑",
-    "importTitle": "从 Lyrically 导入歌词",
-    "source": "来源："
   },
   "genius": {
     "setupTitle": "Genius 访问令牌",

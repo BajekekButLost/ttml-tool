@@ -27,7 +27,12 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Bij import wordt de tekst in woorden gesplitst, worden leestekens en spaties opgeschoond en wordt zang tussen haakjes omgezet in regels voor achtergrondzang."
+    "processDescription": "Bij import wordt de tekst in woorden gesplitst, worden leestekens en spaties opgeschoond en wordt zang tussen haakjes omgezet in regels voor achtergrondzang.",
+    "noLyricsLabel": "Geen songteksten beschikbaar voor dit nummer.",
+    "editingRawText": "Ruwe tekst bewerken",
+    "backToPreview": "Terug naar voorbeeld",
+    "manualEdit": "Handmatig bewerken",
+    "source": "Bron: "
   },
   "preview": {
     "untimedLines": "{count, plural, one {# regel heeft nog geen timing} other {# regels hebben nog geen timing}}",
@@ -146,10 +151,6 @@
       "lrclib": {
         "title": "LRCLIB",
         "description": "Zoek in LRCLIB op nummer en artiest naar songteksten met of zonder timing."
-      },
-      "lyrically": {
-        "title": "Lyrically",
-        "description": "Doorzoek de beschikbare songtekstbronnen van Lyrically zonder een Genius-token in te stellen."
       },
       "genius": {
         "title": "Genius",
@@ -809,7 +810,6 @@
         "import": "Songteksten importeren",
         "fromPlainText": "Importeren uit onopgemaakte tekst…",
         "fromLRCLIB": "Importeren uit LRCLIB...",
-        "fromLyrically": "Importeren uit Lyrically...",
         "fromGenius": "Importeren uit Genius…"
       },
       "exportLyric": {
@@ -1197,15 +1197,6 @@
     "fromLine": "Van",
     "toLine": "tot",
     "line": "regels"
-  },
-  "lyrically": {
-    "noLyricsLabel": "Geen songteksten beschikbaar voor dit nummer.",
-    "previewTitle": "Lyrically — Songtekstvoorbeeld",
-    "editingRawText": "Ruwe tekst bewerken",
-    "backToPreview": "Terug naar voorbeeld",
-    "manualEdit": "Handmatig bewerken",
-    "importTitle": "Songteksten importeren van Lyrically",
-    "source": "Bron: "
   },
   "genius": {
     "setupTitle": "Genius-toegangstoken",
