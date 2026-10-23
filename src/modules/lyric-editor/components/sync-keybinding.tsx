@@ -459,6 +459,9 @@ export const SyncKeyBinding: FC = () => {
 					}
 				}
 
+				// The song's last word has no next line to close this one, so close it here.
+				if (!targetSelection) nextLines[iterLineIndex].endTime = currentTime;
+
 				return { ...state, lyricLines: nextLines };
 			});
 			const _t3 = performance.now();

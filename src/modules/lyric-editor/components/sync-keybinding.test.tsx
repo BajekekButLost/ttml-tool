@@ -116,6 +116,21 @@ describe("normal-word sync controls", () => {
 		}
 	});
 
+	it("G on the song's last word ends the last line", () => {
+		const view = mount();
+		try {
+			view.store.set(selectedLinesAtom, new Set([view.second.id]));
+			view.store.set(selectedWordsAtom, new Set([view.second.words[0].id]));
+			press(keySyncStartAtom, 4);
+			press(keySyncNextAtom, 5);
+			const second = view.store.get(lyricLinesAtom).lyricLines[1];
+			expect(second.words[0]).toMatchObject({ startTime: 4000, endTime: 5000 });
+			expect(second).toMatchObject({ startTime: 4000, endTime: 5000 });
+		} finally {
+			view.cleanup();
+		}
+	});
+
 	it.each([
 		keySyncNextAtom,
 		keySyncEndAtom,

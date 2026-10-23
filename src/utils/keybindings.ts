@@ -155,6 +155,34 @@ export function getShortcutKey(cfg: KeyBindingsConfig | Set<string>) {
 	return keys.join(" + ");
 }
 
+const keyDownTimes = new Map<string, number>();
+
+function clearPressingKeys() {
+	pressingKeys.clear();
+	keyDownTimes.clear();
+}
+
+/**
+ * Fast syncing rolls keys: G goes down before H comes up. The held H would turn
+ * the press into an unbound "G + H" and drop it, so fall back to the pressed key
+ * with only the held modifiers.
+ */
+function dispatchPressingKeys(code: string, evt: KeyboardEvent) {
+	const joined = getShortcutKey(pressingKeys);
+	if (registeredKeyBindings.has(joined) || MODIFIER_ORDER.includes(code)) {
+		triggerCallbacks(joined, evt, downTime);
+		return;
+	}
+	const modifiers = [...pressingKeys].filter((key) =>
+		MODIFIER_ORDER.includes(key),
+	);
+	triggerCallbacks(
+		getShortcutKey([...modifiers, code]),
+		evt,
+		keyDownTimes.get(code) ?? evt.timeStamp,
+	);
+}
+
 function triggerCallbacks(
 	joinedKey: string,
 	evt: KeyboardEvent,
@@ -184,7 +212,7 @@ function triggerCallbacks(
 window.addEventListener("keydown", (evt) => {
 	if (evt.repeat) return;
 	if (isEditing(evt)) {
-		pressingKeys.clear();
+		clearPressingKeys();
 		return;
 	}
 	if (pressingKeys.size === 0) {
@@ -192,6 +220,7 @@ window.addEventListener("keydown", (evt) => {
 	}
 
 	const code = normalizeKeyCode(evt.code);
+	keyDownTimes.set(code, evt.timeStamp);
 
 	// 阻止空格滚动
 	if (
@@ -205,32 +234,27 @@ window.addEventListener("keydown", (evt) => {
 	pressingKeys.add(code);
 
 	if (currentTriggerMode === KeyBindingTriggerMode.KeyDown) {
-		const joined = getShortcutKey(pressingKeys);
-		triggerCallbacks(joined, evt, downTime);
+		dispatchPressingKeys(code, evt);
 	}
 });
 
 window.addEventListener("keyup", (evt) => {
 	if (isEditing(evt)) {
-		pressingKeys.clear();
+		clearPressingKeys();
 		return;
 	}
 
 	const code = normalizeKeyCode(evt.code);
 
 	if (currentTriggerMode === KeyBindingTriggerMode.KeyUp) {
-		const joined = getShortcutKey(pressingKeys);
-		triggerCallbacks(joined, evt, downTime);
+		dispatchPressingKeys(code, evt);
 	}
 
 	pressingKeys.delete(code);
+	keyDownTimes.delete(code);
 });
-window.addEventListener("blur", () => {
-	pressingKeys.clear();
-});
-window.addEventListener("focus", () => {
-	pressingKeys.clear();
-});
+window.addEventListener("blur", clearPressingKeys);
+window.addEventListener("focus", clearPressingKeys);
 
 export function forceInvokeKeyBindingAtom(
 	store: ReturnType<typeof createStore>,
@@ -473,7 +497,7 @@ export function stopRecordingShortcut() {
 		window.removeEventListener("keyup", currentKeyUpEvent, { capture: true });
 		currentKeyUpEvent = undefined;
 	}
-	pressingKeys.clear();
+	clearPressingKeys();
 	currentRecordingReject?.(new Error("User canceled"));
 	currentRecordingReject = undefined;
 }

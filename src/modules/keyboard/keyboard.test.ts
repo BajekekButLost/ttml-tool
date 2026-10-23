@@ -196,6 +196,55 @@ describe("shortcut normalization and dispatch", () => {
 	});
 });
 
+describe("rolled sync keys", () => {
+	it.each([
+		"keydown",
+		"keyup",
+	] as const)("fires every press when keys overlap in %s mode", (mode) => {
+		createStore().set(
+			keyboard.keyBindingTriggerModeAtom,
+			mode === "keyup"
+				? keyboard.KeyBindingTriggerMode.KeyUp
+				: keyboard.KeyBindingTriggerMode.KeyDown,
+		);
+		const next = vi.fn();
+		const end = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["KeyG"], next));
+		cleanups.push(keyboard.registerKeyBindings(["KeyH"], end));
+		key("keydown", "KeyH", 0);
+		key("keydown", "KeyG", 40);
+		key("keyup", "KeyH", 60);
+		key("keydown", "KeyH", 80);
+		key("keyup", "KeyG", 100);
+		key("keyup", "KeyH", 120);
+		expect(next).toHaveBeenCalledOnce();
+		expect(end).toHaveBeenCalledTimes(2);
+		expect(next).toHaveBeenCalledWith({
+			downTime: 40,
+			downTimeOffset: mode === "keyup" ? 60 : 0,
+			triggerTime: mode === "keyup" ? 100 : 40,
+		});
+	});
+
+	it("keeps held modifiers and exact chords", () => {
+		const plain = vi.fn();
+		const shifted = vi.fn();
+		const chord = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["KeyF"], plain));
+		cleanups.push(keyboard.registerKeyBindings(["Shift", "KeyF"], shifted));
+		cleanups.push(keyboard.registerKeyBindings(["KeyA", "KeyS"], chord));
+		key("keydown", "KeyG");
+		key("keydown", "ShiftLeft");
+		key("keydown", "KeyF");
+		expect(shifted).toHaveBeenCalledOnce();
+		expect(plain).not.toHaveBeenCalled();
+		window.dispatchEvent(new Event("blur"));
+		key("keydown", "KeyA");
+		key("keydown", "KeyS");
+		expect(chord).toHaveBeenCalledOnce();
+	});
+});
+
 describe("shortcut recording and storage", () => {
 	it("unbinding a shortcut keeps its on-screen timing action available", async () => {
 		const store = createStore();
