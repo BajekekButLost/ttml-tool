@@ -1465,7 +1465,6 @@
     "refresh": "Ricarica"
   },
   "export": {
-    "sectionReview": "Controllo sezioni: {count, plural, one {# avviso} many {# avvisi} other {# avvisi}}. Puoi comunque salvare.",
     "recoveryUntimed": "Questa esportazione di recupero contiene testi non sincronizzati. Controlla la sincronizzazione prima di inviarla.",
     "recoveryReviewFailed": "Non è stato possibile eseguire i controlli di sincronizzazione. Rivedi i testi recuperati prima di inviarli."
   }

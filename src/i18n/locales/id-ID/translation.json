@@ -1465,7 +1465,6 @@
     "refresh": "Segarkan"
   },
   "export": {
-    "sectionReview": "Pemeriksaan bagian: {count, plural, other {# peringatan}}. Anda tetap bisa menyimpan.",
     "recoveryUntimed": "Ekspor pemulihan ini berisi lirik yang belum diberi waktu. Periksa waktunya sebelum mengirim.",
     "recoveryReviewFailed": "Pemeriksaan waktu tidak dapat dijalankan. Tinjau lirik yang dipulihkan sebelum mengirim."
   }

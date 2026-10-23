@@ -1,5 +1,4 @@
 import { getSynchronizableUnits } from "$/modules/lyric-editor/utils/lyric-states";
-import { validateSections } from "$/modules/lyric-editor/utils/section-system";
 import type { TTMLLyric } from "$/types/ttml";
 import type { LyricTextNormalizationOptions } from "$/utils/apostrophe-normalization";
 import exportTTMLText, { type TTMLExportOptions } from "./ttml-writer";
@@ -29,7 +28,6 @@ export function reviewTTMLExport(lyric: TTMLLyric) {
 			: getSynchronizableUnits(line).find((unit) => unit.word.endTime === 0));
 	return {
 		untimed: line && unit ? { line, unit } : undefined,
-		sectionIssueCount: validateSections(lyric).length,
 	};
 }
 

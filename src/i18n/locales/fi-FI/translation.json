@@ -1465,7 +1465,6 @@
     "refresh": "Päivitä"
   },
   "export": {
-    "sectionReview": "Osioiden tarkistus: {count, plural, one {# varoitus} other {# varoitusta}}. Tallennus on silti sallittu.",
     "recoveryUntimed": "Tämä palautusvienti sisältää ajoittamattomia sanoituksia. Tarkista ajoitus ennen lähettämistä.",
     "recoveryReviewFailed": "Ajoitustarkistuksia ei voitu suorittaa. Tarkista palautetut sanoitukset ennen lähettämistä."
   }

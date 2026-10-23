@@ -1465,7 +1465,6 @@
     "refresh": "Recargar"
   },
   "export": {
-    "sectionReview": "Revisión de secciones: {count, plural, one {# advertencia} many {# advertencias} other {# advertencias}}. Puedes guardar igualmente.",
     "recoveryUntimed": "Esta exportación recuperada contiene letras sin sincronizar. Revisa la sincronización antes de enviarla.",
     "recoveryReviewFailed": "No se pudieron ejecutar las comprobaciones de sincronización. Revisa las letras recuperadas antes de enviarlas."
   }

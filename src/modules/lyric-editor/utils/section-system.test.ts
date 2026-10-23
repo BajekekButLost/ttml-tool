@@ -14,7 +14,6 @@ import {
 	removeSectionMetadata,
 	repairSectionIntegrity,
 	splitSection,
-	validateSections,
 } from "./section-system";
 
 const line = (text: string, header?: string) => ({
@@ -135,28 +134,6 @@ describe("first-class sections", () => {
 		]);
 	});
 
-	it("reports broken references and low-confidence categories without throwing", () => {
-		const lyrics = {
-			metadata: [],
-			sections: [
-				{
-					id: "unknown",
-					label: "[Drop]",
-					category: "other",
-					confidence: 0.35,
-				},
-			],
-			lyricLines: [
-				{ ...line("a"), sectionId: "missing" },
-				{ ...line("b"), sectionId: "unknown" },
-			],
-		} as TTMLLyric;
-
-		expect(validateSections(lyrics).map((issue) => issue.code)).toEqual(
-			expect.arrayContaining(["broken-reference", "low-confidence-category"]),
-		);
-	});
-
 	it("creates separately numbered sections for non-contiguous selected lines", () => {
 		const lyrics = {
 			metadata: [],
@@ -218,9 +195,14 @@ describe("first-class sections", () => {
 		expect(lyrics.sections?.[1].repeatGroupId).toBe(
 			lyrics.sections?.[0].repeatGroupId,
 		);
-		expect(validateSections(lyrics).map((issue) => issue.code)).not.toContain(
-			"noncontiguous-section",
-		);
+		const ids = lyrics.lyricLines.map((item) => item.sectionId);
+		for (const section of lyrics.sections ?? []) {
+			const run = ids.slice(
+				ids.indexOf(section.id),
+				ids.lastIndexOf(section.id) + 1,
+			);
+			expect(run.every((id) => id === section.id)).toBe(true);
+		}
 	});
 
 	it("repairs non-contiguous section ids and merges unassigned blocks", () => {

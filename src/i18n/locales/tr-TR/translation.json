@@ -1465,7 +1465,6 @@
     "refresh": "Yenile"
   },
   "export": {
-    "sectionReview": "Bölüm kontrolü: {count, plural, one {# uyarı} other {# uyarı}}. Kaydetme engellenmez.",
     "recoveryUntimed": "Bu kurtarma dışa aktarımı zamanlanmamış sözler içeriyor. Göndermeden önce zamanlamayı kontrol edin.",
     "recoveryReviewFailed": "Zamanlama kontrolleri çalıştırılamadı. Göndermeden önce kurtarılan sözleri gözden geçirin."
   }

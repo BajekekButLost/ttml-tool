@@ -1465,7 +1465,6 @@
     "refresh": "Refresh"
   },
   "export": {
-    "sectionReview": "Section check: {count, plural, one {# warning} other {# warnings}}. Saving isn't blocked.",
     "recoveryUntimed": "This recovery export contains untimed lyrics. Check timing before submitting.",
     "recoveryReviewFailed": "Timing checks could not run. Review the recovered lyrics before submitting."
   }

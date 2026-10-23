@@ -1465,7 +1465,6 @@
     "refresh": "Opdater"
   },
   "export": {
-    "sectionReview": "Sektionskontrol: {count, plural, one {# advarsel} other {# advarsler}}. Du kan stadig gemme.",
     "recoveryUntimed": "Denne gendannede eksport indeholder tekster uden timing. Tjek timingen, før du indsender.",
     "recoveryReviewFailed": "Timingtjek kunne ikke køres. Gennemgå de gendannede tekster, før du indsender."
   }

@@ -1,5 +1,4 @@
 import {
-	Badge,
 	Button,
 	ContextMenu,
 	Dialog,
@@ -11,7 +10,7 @@ import {
 } from "@radix-ui/themes";
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { uid } from "uid";
 import {
@@ -33,7 +32,6 @@ import {
 	moveSection,
 	removeSectionMetadata,
 	splitSection,
-	validateSections,
 } from "../utils/section-system";
 
 const editingSectionIdAtom = atom<string | null>(null);
@@ -112,15 +110,7 @@ export function CategorizeSelectionDialog() {
 
 export function SectionActions({ section }: { section: LyricSection }) {
 	const { t } = useTranslation();
-	const lyrics = useAtomValue(lyricLinesAtom);
 	const [collapsed, setCollapsed] = useAtom(collapsedSectionIdsAtom);
-	const issues = useMemo(
-		() =>
-			validateSections(lyrics).filter(
-				(issue) => issue.sectionId === section.id,
-			),
-		[lyrics, section.id],
-	);
 
 	const toggleCollapsed = (event: React.MouseEvent) => {
 		event.preventDefault();
@@ -135,14 +125,6 @@ export function SectionActions({ section }: { section: LyricSection }) {
 
 	return (
 		<>
-			{issues.length > 0 && (
-				<Badge
-					color="orange"
-					title={issues.map((issue) => issue.message).join("\n")}
-				>
-					{issues.length}
-				</Badge>
-			)}
 			<IconButton
 				size="1"
 				variant="ghost"

@@ -1465,7 +1465,6 @@
     "refresh": "Vernieuwen"
   },
   "export": {
-    "sectionReview": "Sectiecontrole: {count, plural, one {# waarschuwing} other {# waarschuwingen}}. Opslaan blijft mogelijk.",
     "recoveryUntimed": "Deze herstelexport bevat ongetimede songteksten. Controleer de timing voordat je instuurt.",
     "recoveryReviewFailed": "Timingcontroles konden niet worden uitgevoerd. Controleer de herstelde songteksten voordat je instuurt."
   }

@@ -1465,7 +1465,6 @@
     "refresh": "Obnoviť"
   },
   "export": {
-    "sectionReview": "Kontrola sekcií: {count, plural, one {# upozornenie} few {# upozornenia} many {# upozornenia} other {# upozornení}}. Ukladanie nie je blokované.",
     "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Pred odoslaním skontrolujte časovanie.",
     "recoveryReviewFailed": "Kontroly časovania sa nepodarilo spustiť. Pred odoslaním skontrolujte obnovené texty."
   }

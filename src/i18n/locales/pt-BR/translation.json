@@ -1465,7 +1465,6 @@
     "refresh": "Recarregar"
   },
   "export": {
-    "sectionReview": "Revisão de seções: {count, plural, one {# aviso} many {# avisos} other {# avisos}}. Você ainda pode salvar.",
     "recoveryUntimed": "Esta exportação de recuperação contém letras sem sincronização. Verifique a sincronização antes de enviar.",
     "recoveryReviewFailed": "Não foi possível executar as verificações de sincronização. Revise as letras recuperadas antes de enviar."
   }

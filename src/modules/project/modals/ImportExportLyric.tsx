@@ -10,8 +10,6 @@ import {
 import { DropdownMenu } from "@radix-ui/themes";
 import { useSetAtom, useStore } from "jotai";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
-import { validateSections } from "$/modules/lyric-editor/utils/section-system";
 import { lyricTextNormalizationOptionsAtom } from "$/modules/settings/states";
 import {
 	geniusImportLyricsDialogAtom,
@@ -33,19 +31,9 @@ export const ImportExportLyric = ({
 	const setImportFromLRCLIBDialog = useSetAtom(importFromLRCLIBDialogAtom);
 	const setGeniusImportLyricsDialog = useSetAtom(geniusImportLyricsDialogAtom);
 	const { t } = useTranslation();
-	const notifySectionIssues = () => {
-		const count = validateSections(store.get(lyricLinesAtom)).length;
-		if (count > 0) {
-			toast.info(
-				`Section review: ${count} non-blocking issue${count === 1 ? "" : "s"}.`,
-			);
-		}
-	};
-
 	const onExportLyric =
 		(stringifier: (lines: LyricLine[]) => string, extension: string) =>
 		async () => {
-			notifySectionIssues();
 			const lyricState = normalizeLyricText(
 				store.get(lyricLinesAtom),
 				store.get(lyricTextNormalizationOptionsAtom),

@@ -1465,7 +1465,6 @@
     "refresh": "刷新"
   },
   "export": {
-    "sectionReview": "分段检查：{count, plural, other {# 条警告}}。不影响保存。",
     "recoveryUntimed": "此恢复导出包含未打轴的歌词。提交前请检查时间轴。",
     "recoveryReviewFailed": "无法运行时间检查。提交前请检查恢复的歌词。"
   }

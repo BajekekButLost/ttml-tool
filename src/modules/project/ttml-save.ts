@@ -65,7 +65,6 @@ export async function withTTMLExport(
 		const lyric = store.get(lyricLinesAtom);
 		let review: ReturnType<typeof reviewTTMLExport> = {
 			untimed: undefined,
-			sectionIssueCount: 0,
 		};
 		try {
 			review = reviewTTMLExport(lyric);
@@ -87,14 +86,6 @@ export async function withTTMLExport(
 				error(message, e);
 			}
 		};
-		if (review.sectionIssueCount > 0)
-			notify(
-				t(
-					"export.sectionReview",
-					"Section check: {count, plural, one {# warning} other {# warnings}}. Saving isn't blocked.",
-					{ count: review.sectionIssueCount },
-				),
-			);
 		const execute = async () => {
 			try {
 				return await write({

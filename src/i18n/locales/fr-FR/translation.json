@@ -1465,7 +1465,6 @@
     "refresh": "Actualiser"
   },
   "export": {
-    "sectionReview": "Vérification des sections : {count, plural, one {# avertissement} many {# avertissements} other {# avertissements}}. L’enregistrement reste possible.",
     "recoveryUntimed": "Cet export de récupération contient des paroles non synchronisées. Vérifiez la synchronisation avant de l'envoyer.",
     "recoveryReviewFailed": "Les vérifications de synchronisation n'ont pas pu s'exécuter. Relisez les paroles récupérées avant de les envoyer."
   }

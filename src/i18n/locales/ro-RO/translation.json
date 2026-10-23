@@ -1465,7 +1465,6 @@
     "refresh": "Reîncarcă"
   },
   "export": {
-    "sectionReview": "Verificarea secțiunilor: {count, plural, one {# avertisment} few {# avertismente} other {# de avertismente}}. Poți salva în continuare.",
     "recoveryUntimed": "Acest export de recuperare conține versuri nesincronizate. Verifică sincronizarea înainte de trimitere.",
     "recoveryReviewFailed": "Verificările de sincronizare nu au putut rula. Revizuiește versurile recuperate înainte de trimitere."
   }

@@ -1465,7 +1465,6 @@
     "refresh": "Odśwież"
   },
   "export": {
-    "sectionReview": "Kontrola sekcji: {count, plural, one {# ostrzeżenie} few {# ostrzeżenia} many {# ostrzeżeń} other {# ostrzeżenia}}. Zapis nie jest blokowany.",
     "recoveryUntimed": "Ten odzyskany eksport zawiera niezsynchronizowane teksty. Sprawdź synchronizację przed wysłaniem.",
     "recoveryReviewFailed": "Nie udało się uruchomić sprawdzania synchronizacji. Przejrzyj odzyskane teksty przed wysłaniem."
   }
