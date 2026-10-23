@@ -412,20 +412,11 @@
       "editMode": "Edit",
       "timeMode": "Sinkronisasi",
       "enabled": "Aktif",
-      "layoutModeOptions": {
-        "simple": "Sederhana",
-        "advance": "Lanjutan"
-      },
       "disabled": "Nonaktif",
       "advancedRibbonControls": "Tampilkan kontrol pita lanjutan",
       "language": "Bahasa antarmuka",
       "languageDesc": "Pilih bahasa tampilan antarmuka",
       "helpTranslate": "Bantu terjemahkan aplikasi ini",
-      "layoutMode": "Tata letak editor",
-      "layoutModeDesc": {
-        "line1": "Tata letak sederhana memenuhi sebagian besar kebutuhan.",
-        "line2": "Gunakan tata letak lanjutan agar sinkronisasi lebih cepat."
-      },
       "compactBGInSync": "Ringkas baris vokal latar saat sinkronisasi",
       "compactBGInSyncDesc": "Kurangi ruang vertikal baris vokal latar saat sinkronisasi.",
       "syncJudgeMode": "Waktu tombol",
@@ -946,7 +937,7 @@
       "files": "File & penyimpanan"
     },
     "page": {
-      "generalDesc": "Bahasa, tata letak, privasi, dan perilaku seluruh aplikasi.",
+      "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
       "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
       "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
       "audioDesc": "Pemutaran, ekualiser, dan tampilan spektrogram."

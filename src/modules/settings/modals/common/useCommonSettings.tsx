@@ -11,7 +11,6 @@ import {
 	compactBGInSyncAtom,
 	folderProjectsAutosaveAtom,
 	folderProjectsEnabledAtom,
-	layoutModeAtom,
 	normalizeApostrophesOnImportAtom,
 	normalizeCyrillicEsOnImportAtom,
 	smartLastWordAtom,
@@ -29,7 +28,6 @@ import { ToolMode, toolModeAtom } from "$/states/main";
 import { keyBindingTriggerModeAtom } from "$/utils/keybindings";
 export function useCommonSettings() {
 	const languageOptions: readonly string[] = Object.keys(resources);
-	const [layoutMode, setLayoutMode] = useAtom(layoutModeAtom);
 	const [syncJudgeMode, setSyncJudgeMode] = useAtom(syncJudgeModeAtom);
 	const [keyBindingTriggerMode, setKeyBindingTriggerMode] = useAtom(
 		keyBindingTriggerModeAtom,
@@ -76,8 +74,6 @@ export function useCommonSettings() {
 	const currentLanguage = i18n.resolvedLanguage || i18n.language;
 	return {
 		languageOptions,
-		layoutMode,
-		setLayoutMode,
 		syncJudgeMode,
 		setSyncJudgeMode,
 		keyBindingTriggerMode,

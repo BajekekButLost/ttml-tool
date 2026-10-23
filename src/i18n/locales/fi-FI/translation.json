@@ -412,20 +412,11 @@
       "editMode": "Muokkaus",
       "timeMode": "Ajoitus",
       "enabled": "Käytössä",
-      "layoutModeOptions": {
-        "simple": "Yksinkertainen",
-        "advance": "Edistynyt"
-      },
       "disabled": "Ei käytössä",
       "advancedRibbonControls": "Näytä valintanauhan lisätoiminnot",
       "language": "Käyttöliittymän kieli",
       "languageDesc": "Valitse käyttöliittymän kieli",
       "helpTranslate": "Auta kääntämään tämä sovellus",
-      "layoutMode": "Editorin asettelu",
-      "layoutModeDesc": {
-        "line1": "Yksinkertainen asettelu sopii useimpiin tarpeisiin.",
-        "line2": "Vaihda edistyneeseen asetteluun nopeampaa ajoitusta varten."
-      },
       "compactBGInSync": "Tiiviit taustalaulurivit Ajoituksessa",
       "compactBGInSyncDesc": "Käytä vähemmän pystysuuntaista tilaa taustalauluriveille ajoitettaessa.",
       "syncJudgeMode": "Näppäimen ajoitus",
@@ -946,7 +937,7 @@
       "files": "Tiedostot ja tallennus"
     },
     "page": {
-      "generalDesc": "Kieli, asettelu, yksityisyys ja koko sovelluksen toiminta.",
+      "generalDesc": "Kieli, yksityisyys ja koko sovelluksen toiminta.",
       "editorDesc": "Ajoitussyöte, synkronoinnin toiminta ja visuaaliset vihjeet.",
       "filesDesc": "Tuonnin siivous, automaattitallennuksen historia ja siirrettävät varmuuskopiot.",
       "audioDesc": "Toisto, taajuuskorjain ja spektrogrammin näyttö."

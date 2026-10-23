@@ -412,20 +412,11 @@
       "editMode": "Edición",
       "timeMode": "Sincronización",
       "enabled": "Habilitado",
-      "layoutModeOptions": {
-        "simple": "Sencilla",
-        "advance": "Avanzada"
-      },
       "disabled": "Deshabilitado",
       "advancedRibbonControls": "Mostrar controles avanzados de la cinta",
       "language": "Idioma de la interfaz",
       "languageDesc": "Selecciona el idioma de la interfaz",
       "helpTranslate": "Ayuda a traducir esta aplicación",
-      "layoutMode": "Disposición del editor",
-      "layoutModeDesc": {
-        "line1": "La disposición sencilla cubre la mayoría de las necesidades.",
-        "line2": "Cambia a la disposición avanzada para sincronizar más rápido."
-      },
       "compactBGInSync": "Líneas de fondo compactas en Sincronización",
       "compactBGInSyncDesc": "Reduce el espacio vertical de las líneas de voces de fondo al sincronizar.",
       "syncJudgeMode": "Momento de la pulsación",
@@ -946,7 +937,7 @@
       "files": "Archivos y almacenamiento"
     },
     "page": {
-      "generalDesc": "Idioma, diseño, privacidad y comportamiento general de la aplicación.",
+      "generalDesc": "Idioma, privacidad y comportamiento general de la aplicación.",
       "editorDesc": "Entrada de tiempos, comportamiento de la sincronización y señales visuales.",
       "filesDesc": "Limpieza al importar, historial de autoguardado y copias de seguridad portátiles.",
       "audioDesc": "Reproducción, ecualizador y visualización del espectrograma."

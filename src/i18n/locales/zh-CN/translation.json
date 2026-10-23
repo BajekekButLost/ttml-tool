@@ -412,20 +412,11 @@
       "editMode": "编辑",
       "timeMode": "打轴",
       "enabled": "已启用",
-      "layoutModeOptions": {
-        "simple": "简洁",
-        "advance": "高级"
-      },
       "disabled": "已禁用",
       "advancedRibbonControls": "显示高级功能区控件",
       "language": "界面语言",
       "languageDesc": "选择界面显示的语言",
       "helpTranslate": "帮助翻译此程序",
-      "layoutMode": "编辑器布局",
-      "layoutModeDesc": {
-        "line1": "简洁布局可满足大多数需求。",
-        "line2": "切换到高级布局可更快地打轴。"
-      },
       "compactBGInSync": "打轴时紧凑显示背景人声行",
       "compactBGInSyncDesc": "打轴时减少背景人声行占用的垂直空间。",
       "syncJudgeMode": "按键取时",
@@ -946,7 +937,7 @@
       "files": "文件与存储"
     },
     "page": {
-      "generalDesc": "语言、布局、隐私及应用全局行为。",
+      "generalDesc": "语言、隐私及应用全局行为。",
       "editorDesc": "时间输入、打轴行为与视觉提示。",
       "filesDesc": "导入清理、自动保存历史与可移植备份。",
       "audioDesc": "播放、均衡器和频谱图显示。"

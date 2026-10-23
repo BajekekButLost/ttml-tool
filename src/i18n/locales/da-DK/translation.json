@@ -412,20 +412,11 @@
       "editMode": "Redigering",
       "timeMode": "Timing",
       "enabled": "Aktiveret",
-      "layoutModeOptions": {
-        "simple": "Enkel",
-        "advance": "Avanceret"
-      },
       "disabled": "Deaktiveret",
       "advancedRibbonControls": "Vis avancerede værktøjer i båndet",
       "language": "Grænsefladesprog",
       "languageDesc": "Vælg sproget for grænsefladen",
       "helpTranslate": "Hjælp med at oversætte denne app",
-      "layoutMode": "Editorlayout",
-      "layoutModeDesc": {
-        "line1": "Det enkle layout dækker de fleste behov.",
-        "line2": "Skift til det avancerede layout for hurtigere synkronisering."
-      },
       "compactBGInSync": "Kompakte baggrundslinjer i Timing",
       "compactBGInSyncDesc": "Brug mindre lodret plads til baggrundslinjer ved synkronisering.",
       "syncJudgeMode": "Tidspunkt for tastetryk",
@@ -946,7 +937,7 @@
       "files": "Filer og lager"
     },
     "page": {
-      "generalDesc": "Sprog, layout, privatliv og adfærd for hele appen.",
+      "generalDesc": "Sprog, privatliv og adfærd for hele appen.",
       "editorDesc": "Tidsinput, synkroniseringsadfærd og visuelle signaler.",
       "filesDesc": "Oprydning ved import, historik for automatisk lagring og flytbare sikkerhedskopier.",
       "audioDesc": "Afspilning, equalizer og spektrogramvisning."

@@ -10,11 +10,6 @@ export enum SyncJudgeMode {
 	MiddleKeyTime = "middle-key-time",
 }
 
-export enum LayoutMode {
-	Simple = "simple",
-	Advance = "advance",
-}
-
 export const geniusApiKeyAtom = atomWithStorage<string>("geniusApiKey", "");
 
 export const latencyTestBPMAtom = atomWithStorage("latencyTestBPM", 120);
@@ -23,8 +18,6 @@ export const syncJudgeModeAtom = atomWithStorage(
 	"syncJudgeMode",
 	SyncJudgeMode.FirstKeyDownTime,
 );
-
-export const layoutModeAtom = atomWithStorage("layoutMode", LayoutMode.Simple);
 
 export const showWordRomanizationInputAtom = atomWithStorage(
 	"showWordRomanizationInput",

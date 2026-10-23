@@ -412,20 +412,11 @@
       "editMode": "Modifica",
       "timeMode": "Sincronizzazione",
       "enabled": "Abilitato",
-      "layoutModeOptions": {
-        "simple": "Semplice",
-        "advance": "Avanzato"
-      },
       "disabled": "Disabilitato",
       "advancedRibbonControls": "Mostra i controlli avanzati della barra multifunzione",
       "language": "Lingua dell'interfaccia",
       "languageDesc": "Seleziona la lingua per l'interfaccia",
       "helpTranslate": "Aiuta a tradurre questa app",
-      "layoutMode": "Layout dell’editor",
-      "layoutModeDesc": {
-        "line1": "Il layout semplice copre la maggior parte delle esigenze.",
-        "line2": "Passa al layout avanzato per sincronizzare più velocemente."
-      },
       "compactBGInSync": "Versi dei cori compatti in Sincronizzazione",
       "compactBGInSyncDesc": "Riduce lo spazio verticale dei versi dei cori durante la sincronizzazione.",
       "syncJudgeMode": "Momento della pressione",
@@ -946,7 +937,7 @@
       "files": "File e archiviazione"
     },
     "page": {
-      "generalDesc": "Lingua, layout, privacy e comportamento generale dell'app.",
+      "generalDesc": "Lingua, privacy e comportamento generale dell'app.",
       "editorDesc": "Inserimento dei tempi, comportamento della sincronizzazione e indicatori visivi.",
       "filesDesc": "Pulizia all'importazione, cronologia dei salvataggi automatici e backup portatili.",
       "audioDesc": "Riproduzione, equalizzatore e visualizzazione dello spettrogramma."

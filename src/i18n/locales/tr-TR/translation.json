@@ -412,20 +412,11 @@
       "editMode": "Düzenle",
       "timeMode": "Zamanla",
       "enabled": "Etkin",
-      "layoutModeOptions": {
-        "simple": "Basit",
-        "advance": "Gelişmiş"
-      },
       "disabled": "Devre dışı",
       "advancedRibbonControls": "Gelişmiş şerit denetimlerini göster",
       "language": "Arayüz dili",
       "languageDesc": "Arayüz dilini seçin",
       "helpTranslate": "Bu uygulamanın çevirisine yardım edin",
-      "layoutMode": "Düzenleyici düzeni",
-      "layoutModeDesc": {
-        "line1": "Basit düzen çoğu ihtiyacı karşılar.",
-        "line2": "Daha hızlı senkronizasyon için gelişmiş düzene geçin."
-      },
       "compactBGInSync": "Zamanla modunda kompakt arka vokal satırları",
       "compactBGInSyncDesc": "Senkronizasyon sırasında arka vokal satırları dikeyde daha az yer kaplar.",
       "syncJudgeMode": "Zamanın kaydedildiği an",
@@ -946,7 +937,7 @@
       "files": "Dosyalar ve depolama"
     },
     "page": {
-      "generalDesc": "Dil, düzen, gizlilik ve uygulama genelindeki davranış.",
+      "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
       "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
       "filesDesc": "İçe aktarma temizliği, otomatik kayıt geçmişi ve taşınabilir yedekler.",
       "audioDesc": "Oynatma, ekolayzer ve spektrogram görünümü."

@@ -1,6 +1,6 @@
 export const settingsSearchKeywords: Record<string, string> = {
 	common:
-		"interface language layout mode simple advanced privacy display discord presence compact background vocals sync",
+		"interface language privacy display discord presence compact background vocals sync",
 	editor:
 		"sync timing timestamp judgment keybinding trigger offset commit smart last word upcoming highlight threshold color wrap scroll focus spectrogram hover tab position preview fps vsync fade romanization translation glow manual double click background line rendering touch panel",
 	files:

@@ -412,20 +412,11 @@
       "editMode": "Edit",
       "timeMode": "Time",
       "enabled": "Enabled",
-      "layoutModeOptions": {
-        "simple": "Simple",
-        "advance": "Advanced"
-      },
       "disabled": "Disabled",
       "advancedRibbonControls": "Show advanced ribbon controls",
       "language": "Interface language",
       "languageDesc": "Select the language for the interface",
       "helpTranslate": "Help translate this app",
-      "layoutMode": "Editor layout",
-      "layoutModeDesc": {
-        "line1": "The simple layout covers most needs.",
-        "line2": "Switch to the advanced layout for faster syncing."
-      },
       "compactBGInSync": "Compact background lines in Time mode",
       "compactBGInSyncDesc": "Use less vertical space for background lines while syncing.",
       "syncJudgeMode": "Key timing",
@@ -946,7 +937,7 @@
       "files": "Files & storage"
     },
     "page": {
-      "generalDesc": "Language, layout, privacy, and app-wide behavior.",
+      "generalDesc": "Language, privacy, and app-wide behavior.",
       "editorDesc": "Timing input, synchronization behavior, and visual cues.",
       "filesDesc": "Import cleanup, autosave history, and portable backups.",
       "audioDesc": "Playback, equalizer, and spectrogram display."

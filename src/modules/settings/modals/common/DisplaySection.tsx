@@ -1,6 +1,5 @@
 import resources from "virtual:i18next-loader";
 import {
-	AppsListDetail24Regular,
 	LocalLanguage24Regular,
 	VideoBackgroundEffect24Regular,
 } from "@fluentui/react-icons";
@@ -14,13 +13,10 @@ import {
 	Switch,
 	Text,
 } from "@radix-ui/themes";
-import { LayoutMode } from "$/modules/settings/states";
 import { getLanguageName, getTranslationProgress } from "./language";
 import type { CommonSettings } from "./useCommonSettings";
 export const DisplaySection = ({
 	languageOptions,
-	layoutMode,
-	setLayoutMode,
 	compactBGInSync,
 	setCompactBGInSync,
 	t,
@@ -29,8 +25,6 @@ export const DisplaySection = ({
 }: Pick<
 	CommonSettings,
 	| "languageOptions"
-	| "layoutMode"
-	| "setLayoutMode"
 	| "compactBGInSync"
 	| "setCompactBGInSync"
 	| "t"
@@ -110,44 +104,6 @@ export const DisplaySection = ({
 			</Flex>
 		</Card>
 
-		<Card>
-			<Flex gap="3" align="center">
-				<AppsListDetail24Regular />
-				<Box flexGrow="1">
-					<Flex align="center" justify="between" gap="4">
-						<Flex direction="column" gap="1">
-							<Text>{t("settings.common.layoutMode", "Editor layout")}</Text>
-							<Text size="1" color="gray">
-								{t(
-									"settings.common.layoutModeDesc.line1",
-									"The simple layout covers most needs.",
-								)}
-								<br />
-								{t(
-									"settings.common.layoutModeDesc.line2",
-									"Switch to the advanced layout for faster syncing.",
-								)}
-							</Text>
-						</Flex>
-
-						<Select.Root
-							value={layoutMode}
-							onValueChange={(v) => setLayoutMode(v as LayoutMode)}
-						>
-							<Select.Trigger />
-							<Select.Content>
-								<Select.Item value={LayoutMode.Simple}>
-									{t("settings.common.layoutModeOptions.simple", "Simple")}
-								</Select.Item>
-								<Select.Item value={LayoutMode.Advance}>
-									{t("settings.common.layoutModeOptions.advance", "Advanced")}
-								</Select.Item>
-							</Select.Content>
-						</Select.Root>
-					</Flex>
-				</Box>
-			</Flex>
-		</Card>
 		<Card>
 			<Text as="label">
 				<Flex gap="3" align="center">

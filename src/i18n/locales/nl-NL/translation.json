@@ -412,20 +412,11 @@
       "editMode": "Bewerken",
       "timeMode": "Timing",
       "enabled": "Ingeschakeld",
-      "layoutModeOptions": {
-        "simple": "Eenvoudig",
-        "advance": "Geavanceerd"
-      },
       "disabled": "Uitgeschakeld",
       "advancedRibbonControls": "Geavanceerde lintknoppen tonen",
       "language": "Interfacetaal",
       "languageDesc": "Selecteer de taal voor de interface",
       "helpTranslate": "Help deze app te vertalen",
-      "layoutMode": "Editorindeling",
-      "layoutModeDesc": {
-        "line1": "De eenvoudige indeling voldoet aan de meeste behoeften.",
-        "line2": "Schakel naar de geavanceerde indeling om sneller te synchroniseren."
-      },
       "compactBGInSync": "Compacte achtergrondregels in Timing",
       "compactBGInSyncDesc": "Laat achtergrondregels minder verticale ruimte innemen tijdens het synchroniseren.",
       "syncJudgeMode": "Tijdstip van toetsaanslag",
@@ -946,7 +937,7 @@
       "files": "Bestanden en opslag"
     },
     "page": {
-      "generalDesc": "Taal, indeling, privacy en algemeen gedrag van de app.",
+      "generalDesc": "Taal, privacy en algemeen gedrag van de app.",
       "editorDesc": "Tijdinvoer, synchronisatiegedrag en visuele hints.",
       "filesDesc": "Opschonen bij importeren, geschiedenis van automatisch opslaan en draagbare back-ups.",
       "audioDesc": "Afspelen, equalizer en spectrogramweergave."

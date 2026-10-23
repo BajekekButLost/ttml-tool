@@ -412,20 +412,11 @@
       "editMode": "Édition",
       "timeMode": "Synchronisation",
       "enabled": "Activé",
-      "layoutModeOptions": {
-        "simple": "Simple",
-        "advance": "Avancée"
-      },
       "disabled": "Désactivé",
       "advancedRibbonControls": "Afficher les contrôles avancés du ruban",
       "language": "Langue de l'interface",
       "languageDesc": "Sélectionnez la langue de l'interface",
       "helpTranslate": "Aidez à traduire cette application",
-      "layoutMode": "Disposition de l’éditeur",
-      "layoutModeDesc": {
-        "line1": "La disposition simple couvre la plupart des besoins.",
-        "line2": "Passez à la disposition avancée pour synchroniser plus vite."
-      },
       "compactBGInSync": "Lignes de chœurs compactes en Synchronisation",
       "compactBGInSyncDesc": "Réduit l’espace vertical des lignes de chœurs pendant la synchronisation.",
       "syncJudgeMode": "Instant de la frappe",
@@ -946,7 +937,7 @@
       "files": "Fichiers et stockage"
     },
     "page": {
-      "generalDesc": "Langue, disposition, confidentialité et comportement général de l'application.",
+      "generalDesc": "Langue, confidentialité et comportement général de l'application.",
       "editorDesc": "Saisie des temps, comportement de la synchronisation et repères visuels.",
       "filesDesc": "Nettoyage à l'import, historique d'enregistrement automatique et sauvegardes portables.",
       "audioDesc": "Lecture, égaliseur et affichage du spectrogramme."

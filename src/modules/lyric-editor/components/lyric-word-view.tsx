@@ -11,12 +11,10 @@
 
 import { type Atom, useAtomValue } from "jotai";
 import { type FC, memo } from "react";
-import { LayoutMode, layoutModeAtom } from "$/modules/settings/states/index.ts";
 import { ToolMode, toolModeAtom } from "$/states/main.ts";
 import type { LyricLine, LyricWord } from "$/types/ttml.ts";
 import styles from "./index.module.css";
 import { LyricWordViewEdit } from "./lyric-word-view/LyricWordViewEdit";
-import { LyricWordViewEditAdvance } from "./lyric-word-view/LyricWordViewEditAdvance";
 import { LyricWordViewSync } from "./lyric-word-view/LyricWordViewSync";
 import { useWordBlank } from "./lyric-word-view/use-word-blank";
 
@@ -33,7 +31,6 @@ export const LyricWordView: FC<
 	({ wordAtom, wordIndex, line, lineIndex, isHeaderLine }) => {
 		const word = useAtomValue(wordAtom);
 		const toolMode = useAtomValue(toolModeAtom);
-		const layoutMode = useAtomValue(layoutModeAtom);
 
 		const isWordBlank = useWordBlank(word.word);
 
@@ -47,16 +44,8 @@ export const LyricWordView: FC<
 
 		return (
 			<div>
-				{toolMode === ToolMode.Edit && layoutMode === LayoutMode.Simple && (
+				{toolMode === ToolMode.Edit && (
 					<LyricWordViewEdit
-						wordAtom={wordAtom}
-						line={line}
-						lineIndex={lineIndex}
-						wordIndex={wordIndex}
-					/>
-				)}
-				{toolMode === ToolMode.Edit && layoutMode === LayoutMode.Advance && (
-					<LyricWordViewEditAdvance
 						wordAtom={wordAtom}
 						line={line}
 						lineIndex={lineIndex}

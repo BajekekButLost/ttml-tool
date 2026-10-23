@@ -412,20 +412,11 @@
       "editMode": "Editare",
       "timeMode": "Sincronizare",
       "enabled": "Activat",
-      "layoutModeOptions": {
-        "simple": "Simplă",
-        "advance": "Avansată"
-      },
       "disabled": "Dezactivat",
       "advancedRibbonControls": "Afișează controalele avansate din panglică",
       "language": "Limba interfeței",
       "languageDesc": "Selectează limba interfeței",
       "helpTranslate": "Ajută la traducerea aplicației",
-      "layoutMode": "Aranjarea editorului",
-      "layoutModeDesc": {
-        "line1": "Aranjarea simplă acoperă majoritatea nevoilor.",
-        "line2": "Treci la aranjarea avansată pentru a sincroniza mai repede."
-      },
       "compactBGInSync": "Versuri de fundal compacte în Sincronizare",
       "compactBGInSyncDesc": "Reduce spațiul vertical al versurilor vocilor de fundal în timpul sincronizării.",
       "syncJudgeMode": "Momentul apăsării",
@@ -946,7 +937,7 @@
       "files": "Fișiere și stocare"
     },
     "page": {
-      "generalDesc": "Limbă, aspect, confidențialitate și comportamentul general al aplicației.",
+      "generalDesc": "Limbă, confidențialitate și comportamentul general al aplicației.",
       "editorDesc": "Introducerea timpilor, comportamentul sincronizării și indicii vizuale.",
       "filesDesc": "Curățare la import, istoricul salvărilor automate și copii de rezervă portabile.",
       "audioDesc": "Redare, egalizator și afișarea spectrogramei."

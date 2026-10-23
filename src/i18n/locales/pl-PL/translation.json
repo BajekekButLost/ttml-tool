@@ -412,20 +412,11 @@
       "editMode": "Edycja",
       "timeMode": "Synchronizacja",
       "enabled": "Włączone",
-      "layoutModeOptions": {
-        "simple": "Prosty",
-        "advance": "Zaawansowany"
-      },
       "disabled": "Wyłączone",
       "advancedRibbonControls": "Pokaż zaawansowane elementy wstążki",
       "language": "Język interfejsu",
       "languageDesc": "Wybierz język interfejsu",
       "helpTranslate": "Pomóż przetłumaczyć tę aplikację",
-      "layoutMode": "Układ edytora",
-      "layoutModeDesc": {
-        "line1": "Prosty układ wystarcza do większości zadań.",
-        "line2": "Przełącz na zaawansowany układ, aby szybciej synchronizować."
-      },
       "compactBGInSync": "Kompaktowe wersy wokalu w tle w trybie Synchronizacja",
       "compactBGInSyncDesc": "Wersy wokalu w tle zajmują mniej miejsca w pionie podczas synchronizacji.",
       "syncJudgeMode": "Moment zapisu czasu",
@@ -946,7 +937,7 @@
       "files": "Pliki i przechowywanie"
     },
     "page": {
-      "generalDesc": "Język, układ, prywatność i ogólne działanie aplikacji.",
+      "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
       "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
       "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
       "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."

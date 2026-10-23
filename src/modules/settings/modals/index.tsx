@@ -265,7 +265,7 @@ export const SettingsDialog = memo(() => {
 								title={t("settingsDialog.tab.common", "General")}
 								description={t(
 									"settingsDialog.page.generalDesc",
-									"Language, layout, privacy, and app-wide behavior.",
+									"Language, privacy, and app-wide behavior.",
 								)}
 							>
 								<SettingsCommonTab section="general" />

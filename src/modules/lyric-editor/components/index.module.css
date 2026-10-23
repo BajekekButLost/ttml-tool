@@ -64,15 +64,6 @@
 	&.dropRight {
 		border-right: solid 3px var(--accent-a11);
 	}
-
-	&.advance {
-		display: flex;
-		flex-direction: column;
-		padding: 0.25em;
-		gap: 0.25em;
-		width: 100%;
-		box-sizing: border-box;
-	}
 }
 
 @keyframes laneItemFadeIn {
@@ -187,15 +178,6 @@
 	&[data-empty] :global(.rt-TextFieldInput) {
 		text-align: left;
 		text-indent: 0;
-	}
-}
-
-.advanceBar {
-	display: flex;
-	gap: 0.25em;
-
-	& :global(.rt-TextFieldRoot) {
-		min-width: 10em;
 	}
 }
 

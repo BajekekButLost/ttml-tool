@@ -412,20 +412,11 @@
       "editMode": "Úpravy",
       "timeMode": "Časování",
       "enabled": "Zapnuto",
-      "layoutModeOptions": {
-        "simple": "Jednoduché",
-        "advance": "Pokročilé"
-      },
       "disabled": "Vypnuto",
       "advancedRibbonControls": "Zobrazit pokročilé prvky pásu karet",
       "language": "Jazyk rozhraní",
       "languageDesc": "Vyberte jazyk rozhraní",
       "helpTranslate": "Pomozte přeložit tuto aplikaci",
-      "layoutMode": "Rozložení editoru",
-      "layoutModeDesc": {
-        "line1": "Jednoduché rozložení vyhovuje většině potřeb.",
-        "line2": "Pro rychlejší synchronizaci přepněte na pokročilé rozložení."
-      },
       "compactBGInSync": "Kompaktní doprovodné řádky při časování",
       "compactBGInSyncDesc": "Doprovodné řádky při synchronizaci zaberou méně místa na výšku.",
       "syncJudgeMode": "Okamžik záznamu klávesy",
@@ -946,7 +937,7 @@
       "files": "Soubory a úložiště"
     },
     "page": {
-      "generalDesc": "Jazyk, rozložení, soukromí a chování celé aplikace.",
+      "generalDesc": "Jazyk, soukromí a chování celé aplikace.",
       "editorDesc": "Zadávání časů, chování synchronizace a vizuální podněty.",
       "filesDesc": "Čištění při importu, historie automatického ukládání a přenosné zálohy.",
       "audioDesc": "Přehrávání, ekvalizér a zobrazení spektrogramu."
