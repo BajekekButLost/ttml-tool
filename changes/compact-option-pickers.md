@@ -3,6 +3,6 @@ type: feature
 impact: 2
 highlight: false
 ---
-Compact pickers replace wide button rows
+Compact pickers in the ribbon and toolbars
 
-Choices like **Sync by**, the Preview mode, the timing overview order and several Appearance options now use a small dropdown that shows the current value, instead of a row of buttons.
+Where space is tight, choices like **Time › Sync by**, **Background lines**, the Preview ribbon's mode and background, the timing overview order, spectrogram FFT size and Time Shift's move/copy now use a small dropdown that shows the current value instead of a row of buttons. Preferences keep the side-by-side buttons.

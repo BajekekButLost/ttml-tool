@@ -341,7 +341,7 @@ export const WorkflowSettings = () => {
 						"Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
 					)}
 				>
-					<SyncLevelControl />
+					<SyncLevelControl variant="segmented" />
 				</SettingRow>
 				<SettingRow
 					icon={<EyeOff24Regular />}
@@ -351,7 +351,7 @@ export const WorkflowSettings = () => {
 						"How G and H treat background lines while syncing.",
 					)}
 				>
-					<BackgroundSyncControl />
+					<BackgroundSyncControl variant="segmented" />
 				</SettingRow>
 				{toggles(syncAidToggles)}
 			</Flex>
@@ -367,7 +367,7 @@ export const WorkflowSettings = () => {
 						"Choose which preview the Preview tab shows.",
 					)}
 				>
-					<PreviewModeControl />
+					<PreviewModeControl variant="segmented" />
 				</SettingRow>
 				<SettingRow
 					icon={<Image24Regular />}
@@ -377,7 +377,7 @@ export const WorkflowSettings = () => {
 						"What shows behind the Spicy preview.",
 					)}
 				>
-					<SpicyBackgroundControl />
+					<SpicyBackgroundControl variant="segmented" />
 				</SettingRow>
 				{toggles(previewToggles)}
 				<SettingRow

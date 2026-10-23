@@ -9,6 +9,7 @@ export const AppearanceEditorModeSection = ({
 }: Pick<AppearanceSectionState, "editorMode" | "setEditorMode" | "t">) => (
 	<Flex direction="column" gap="2">
 		<OptionPicker
+			variant="segmented"
 			size="2"
 			value={editorMode}
 			onValueChange={setEditorMode}

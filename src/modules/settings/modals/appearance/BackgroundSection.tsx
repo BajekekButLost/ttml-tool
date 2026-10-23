@@ -69,6 +69,7 @@ export const BackgroundSection = ({
 		</Heading>
 
 		<OptionPicker<"none" | "image" | "gradient">
+			variant="segmented"
 			size="2"
 			value={backgroundMode}
 			onValueChange={setBackgroundMode}
@@ -200,6 +201,7 @@ export const BackgroundSection = ({
 												{t("settings.appearance.gradientType", "Gradient type")}
 											</Text>
 											<OptionPicker<"linear" | "radial" | "conic">
+												variant="segmented"
 												size="2"
 												value={customGradientType}
 												onValueChange={setCustomGradientType}

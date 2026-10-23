@@ -25,7 +25,9 @@ export const FontStyleSection = ({
 					{t("settings.appearance.fontWeight", "Font weight")}
 				</Text>
 				<OptionPicker
-					size="2"
+					variant="segmented"
+					size="3"
+					fullWidth
 					value={appFontWeight}
 					onValueChange={setAppFontWeight}
 					label={t("settings.appearance.fontWeight", "Font weight")}
@@ -46,7 +48,9 @@ export const FontStyleSection = ({
 					{t("settings.appearance.fontStyle", "Font style")}
 				</Text>
 				<OptionPicker
-					size="2"
+					variant="segmented"
+					size="3"
+					fullWidth
 					value={appFontStyle}
 					onValueChange={setAppFontStyle}
 					label={t("settings.appearance.fontStyle", "Font style")}

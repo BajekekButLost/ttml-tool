@@ -72,6 +72,7 @@ export const PlaybackBehaviorSection = ({
 			{t("settings.common.playbackSettingsMode", "Playback behavior for")}
 		</Text>
 		<OptionPicker
+			variant="segmented"
 			size="2"
 			value={
 				playbackSettingsMode === ToolMode.Edit ? ToolMode.Edit : ToolMode.Sync

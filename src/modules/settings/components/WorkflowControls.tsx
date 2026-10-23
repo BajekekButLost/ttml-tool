@@ -1,7 +1,10 @@
 import { Checkbox, Switch, TextField } from "@radix-ui/themes";
 import { useAtom, type WritableAtom } from "jotai";
 import { useTranslation } from "react-i18next";
-import { OptionPicker } from "$/components/OptionPicker";
+import {
+	OptionPicker,
+	type OptionPickerVariant,
+} from "$/components/OptionPicker";
 import { backgroundSyncLaneAtom } from "../states/background-sync";
 import {
 	PreviewModeType,
@@ -62,11 +65,16 @@ export function SyncOffsetControl({
 	);
 }
 
-export function SyncLevelControl() {
+export function SyncLevelControl({
+	variant,
+}: {
+	variant?: OptionPickerVariant;
+} = {}) {
 	const [value, setValue] = useAtom(syncLevelModeAtom);
 	const { t } = useTranslation();
 	return (
 		<OptionPicker
+			variant={variant}
 			value={value}
 			onValueChange={setValue}
 			label={t("ribbonBar.syncMode.syncLevel", "Sync by")}
@@ -78,11 +86,16 @@ export function SyncLevelControl() {
 	);
 }
 
-export function BackgroundSyncControl() {
+export function BackgroundSyncControl({
+	variant,
+}: {
+	variant?: OptionPickerVariant;
+} = {}) {
 	const [value, setValue] = useAtom(backgroundSyncLaneAtom);
 	const { t } = useTranslation();
 	return (
 		<OptionPicker
+			variant={variant}
 			value={value}
 			onValueChange={setValue}
 			label={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
@@ -108,11 +121,16 @@ export function BackgroundSyncControl() {
 	);
 }
 
-export function PreviewModeControl() {
+export function PreviewModeControl({
+	variant,
+}: {
+	variant?: OptionPickerVariant;
+} = {}) {
 	const [value, setValue] = useAtom(previewModeTypeAtom);
 	const { t } = useTranslation();
 	return (
 		<OptionPicker
+			variant={variant}
 			size="2"
 			value={value}
 			onValueChange={setValue}
@@ -133,11 +151,16 @@ export function PreviewModeControl() {
 	);
 }
 
-export function SpicyBackgroundControl() {
+export function SpicyBackgroundControl({
+	variant,
+}: {
+	variant?: OptionPickerVariant;
+} = {}) {
 	const [value, setValue] = useAtom(spicyBackgroundModeAtom);
 	const { t } = useTranslation();
 	return (
 		<OptionPicker
+			variant={variant}
 			value={value}
 			onValueChange={setValue}
 			label={t("ribbonBar.previewMode.background", "Background")}

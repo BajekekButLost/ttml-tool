@@ -1,5 +1,11 @@
 import { ChevronDownRegular } from "@fluentui/react-icons";
-import { Button, DropdownMenu, Flex, Text } from "@radix-ui/themes";
+import {
+	Button,
+	DropdownMenu,
+	Flex,
+	SegmentedControl,
+	Text,
+} from "@radix-ui/themes";
 import styles from "./index.module.css";
 
 export interface PickerOption<T extends string> {
@@ -9,10 +15,15 @@ export interface PickerOption<T extends string> {
 	description?: string;
 }
 
+export type OptionPickerVariant = "menu" | "segmented";
+
 /**
- * A compact choice between a few named modes: the trigger shows only the current
- * label, and the menu explains each option. Use it instead of a segmented control
- * where width is tight or the options need explaining.
+ * A choice between a few named modes.
+ *
+ * - `menu` (default): the trigger shows only the current label and the menu
+ *   explains each option. Use it where width is tight: ribbons, toolbars, popovers.
+ * - `segmented`: every option side by side. Use it where there is room, since a
+ *   dropdown for two or three options just hides them.
  */
 export function OptionPicker<T extends string>({
 	value,
@@ -20,22 +31,53 @@ export function OptionPicker<T extends string>({
 	onValueChange,
 	label,
 	size = "1",
+	variant = "menu",
+	fullWidth = false,
 }: {
 	value: T;
 	options: readonly PickerOption<T>[];
 	onValueChange: (value: T) => void;
 	/** Accessible name for the trigger, usually the setting's title. */
 	label: string;
-	size?: "1" | "2";
+	size?: "1" | "2" | "3";
+	variant?: OptionPickerVariant;
+	/** Segmented only: stretch to the container and share the width evenly. */
+	fullWidth?: boolean;
 }) {
 	const current = options.find((option) => option.value === value);
+	const select = (next: string) => {
+		const option = options.find((item) => item.value === next);
+		if (option) onValueChange(option.value);
+	};
+	if (variant === "segmented") {
+		return (
+			<SegmentedControl.Root
+				value={value}
+				onValueChange={select}
+				size={size}
+				aria-label={label}
+				className={fullWidth ? styles.fullWidth : undefined}
+			>
+				{options.map((option) => (
+					<SegmentedControl.Item
+						key={option.value}
+						value={option.value}
+						title={option.description}
+					>
+						{option.label}
+					</SegmentedControl.Item>
+				))}
+			</SegmentedControl.Root>
+		);
+	}
+	const menuSize = size === "1" ? "1" : "2";
 	return (
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
 				<Button
 					variant="soft"
 					color="gray"
-					size={size}
+					size={menuSize}
 					aria-label={`${label}: ${current?.label ?? value}`}
 					className={styles.trigger}
 				>
@@ -44,16 +86,10 @@ export function OptionPicker<T extends string>({
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content
-				size={size}
-				className={`${styles.content} ${size === "2" ? styles.size2 : styles.size1}`}
+				size={menuSize}
+				className={`${styles.content} ${menuSize === "2" ? styles.size2 : styles.size1}`}
 			>
-				<DropdownMenu.RadioGroup
-					value={value}
-					onValueChange={(next) => {
-						const option = options.find((item) => item.value === next);
-						if (option) onValueChange(option.value);
-					}}
-				>
+				<DropdownMenu.RadioGroup value={value} onValueChange={select}>
 					{options.map((option) => (
 						<DropdownMenu.RadioItem
 							key={option.value}
@@ -61,7 +97,7 @@ export function OptionPicker<T extends string>({
 							className={styles.item}
 						>
 							<Flex direction="column" gap="0">
-								<Text size={size} weight="medium">
+								<Text size={menuSize} weight="medium">
 									{option.label}
 								</Text>
 								{option.description && (
