@@ -6,7 +6,7 @@ import { newLyricLine } from "$/types/ttml";
 vi.mock("$/modules/audio/audio-engine", () => ({ audioEngine: {} }));
 
 import {
-	backgroundSyncLanesAtom,
+	backgroundSyncLaneAtom,
 	backgroundSyncModeAtom,
 	backgroundSyncSettingAtom,
 } from "../states/background-sync";
@@ -36,7 +36,7 @@ describe("shared workflow setting behavior", () => {
 		store.set(backgroundSyncSettingAtom, false);
 		expect(store.get(lyricLinesAtom).lyricLines[1].ignoreSync).toBe(false);
 	});
-	it("switches between inline, separate pass and skip", () => {
+	it("switches between inline, separate pass, only and skip", () => {
 		const store = createStore();
 		const bg = { ...newLyricLine(), isBG: true, ignoreSync: false };
 		const skippedByHand = { ...newLyricLine(), isBG: true, ignoreSync: true };
@@ -46,11 +46,14 @@ describe("shared workflow setting behavior", () => {
 		});
 		expect(store.get(backgroundSyncModeAtom)).toBe("inline");
 		store.set(backgroundSyncModeAtom, "separate");
-		expect(store.get(backgroundSyncLanesAtom)).toBe(true);
+		expect(store.get(backgroundSyncLaneAtom)).toBe("same");
 		expect(store.get(lyricLinesAtom).lyricLines[1].ignoreSync).toBe(true);
+		store.set(backgroundSyncModeAtom, "only");
+		expect(store.get(backgroundSyncModeAtom)).toBe("only");
+		expect(store.get(lyricLinesAtom).lyricLines[0].ignoreSync).toBe(false);
 		store.set(backgroundSyncModeAtom, "skip");
 		expect(store.get(backgroundSyncModeAtom)).toBe("skip");
-		expect(store.get(backgroundSyncLanesAtom)).toBe(false);
+		expect(store.get(backgroundSyncLaneAtom)).toBe("all");
 		expect(store.get(lyricLinesAtom).lyricLines[0].ignoreSync).toBe(true);
 		store.set(backgroundSyncModeAtom, "inline");
 		expect(store.get(bgLyricIgnoreSyncAtom)).toBe(false);

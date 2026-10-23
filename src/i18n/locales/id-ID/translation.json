@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Sinkronkan setiap baris vokal latar tepat setelah baris utamanya.",
       "bgSyncSeparate": "Terpisah",
       "bgSyncSeparateDesc": "G dan H tetap di baris utama. Klik baris vokal latar untuk menyinkronkan vokal latar secara terpisah.",
+      "bgSyncOnly": "Hanya latar",
+      "bgSyncOnlyDesc": "Lewati baris utama: G dan H hanya berpindah antarbaris vokal latar.",
       "bgSyncSkip": "Lewati",
       "bgSyncSkipDesc": "Baris vokal latar tidak ikut sinkronisasi keyboard.",
       "quickFixes": "Perbaikan cepat",

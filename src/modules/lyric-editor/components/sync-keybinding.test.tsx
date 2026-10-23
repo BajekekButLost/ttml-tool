@@ -3,8 +3,9 @@ import { createStore, Provider } from "jotai";
 import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { describe, expect, it, vi } from "vitest";
+import type { SyncLane } from "$/modules/lyric-editor/utils/lyric-states";
 import { smartLastWordAtom } from "$/modules/settings/states";
-import { backgroundSyncLanesAtom } from "$/modules/settings/states/background-sync";
+import { backgroundSyncLaneAtom } from "$/modules/settings/states/background-sync";
 import {
 	syncCommitOffsetAtom,
 	syncLevelModeAtom,
@@ -58,7 +59,7 @@ function mount(mode: "word" | "line" = "word") {
 	store.set(syncTimeOffsetAtom, 0);
 	store.set(syncCommitOffsetAtom, 0);
 	store.set(smartLastWordAtom, false);
-	store.set(backgroundSyncLanesAtom, false);
+	store.set(backgroundSyncLaneAtom, "all");
 	const root = createRoot(globalThis.document.createElement("div"));
 	act(() =>
 		root.render(
@@ -163,7 +164,7 @@ describe("normal-word sync controls", () => {
 	});
 });
 
-function mountWithBackground(lanes: boolean) {
+function mountWithBackground(lane: SyncLane) {
 	const view = mount();
 	const line = (word: string, isBG = false) => ({
 		...newLyricLine(),
@@ -177,7 +178,7 @@ function mountWithBackground(lanes: boolean) {
 		line("bg2", true),
 	];
 	view.store.set(lyricLinesAtom, { metadata: [], lyricLines: lines });
-	view.store.set(backgroundSyncLanesAtom, lanes);
+	view.store.set(backgroundSyncLaneAtom, lane);
 	const select = (index: number) => {
 		view.store.set(selectedLinesAtom, new Set([lines[index].id]));
 		view.store.set(selectedWordsAtom, new Set([lines[index].words[0].id]));
@@ -190,7 +191,7 @@ function mountWithBackground(lanes: boolean) {
 
 describe("background lines while syncing", () => {
 	it("inline: H on a main line's last word moves into its background line", () => {
-		const view = mountWithBackground(false);
+		const view = mountWithBackground("all");
 		try {
 			view.select(0);
 			press(keySyncEndAtom, 2);
@@ -201,7 +202,7 @@ describe("background lines while syncing", () => {
 	});
 
 	it("separate pass: H and G stay on main lines and leave background untouched", () => {
-		const view = mountWithBackground(true);
+		const view = mountWithBackground("same");
 		try {
 			view.select(0);
 			press(keySyncEndAtom, 2);
@@ -220,7 +221,7 @@ describe("background lines while syncing", () => {
 	});
 
 	it("separate pass: starting on a background line walks background lines only", () => {
-		const view = mountWithBackground(true);
+		const view = mountWithBackground("same");
 		try {
 			view.select(1);
 			press(keySyncEndAtom, 2);
@@ -235,13 +236,32 @@ describe("background lines while syncing", () => {
 	});
 
 	it("separate pass applies to Sync by: Line too", () => {
-		const view = mountWithBackground(true);
+		const view = mountWithBackground("same");
 		try {
 			view.store.set(syncLevelModeAtom, "line");
 			view.select(0);
 			press(keySyncNextAtom, 2);
 			expect(view.selectedLine()).toBe(2);
 			expect(view.synced()[1].startTime).toBe(0);
+		} finally {
+			view.cleanup();
+		}
+	});
+
+	it("only: G and H skip main lines and walk background lines", () => {
+		const view = mountWithBackground("background");
+		try {
+			view.select(1);
+			press(keySyncStartAtom, 2);
+			press(keySyncNextAtom, 3);
+			expect(view.selectedLine()).toBe(3);
+			const [, bg1, main2, bg2] = view.synced();
+			expect(bg1).toMatchObject({ startTime: 2000, endTime: 3000 });
+			expect(bg2).toMatchObject({ startTime: 3000 });
+			expect(main2.words[0]).toMatchObject({ startTime: 0, endTime: 0 });
+			view.select(0);
+			press(keySyncEndAtom, 4);
+			expect(view.selectedLine()).toBe(1);
 		} finally {
 			view.cleanup();
 		}

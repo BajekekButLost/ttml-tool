@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Ajoita jokainen taustalaulurivi heti päärivinsä jälkeen.",
       "bgSyncSeparate": "Erikseen",
       "bgSyncSeparateDesc": "G ja H pysyvät pääriveillä. Napsauta taustalauluriviä ajoittaaksesi taustalaulurivit omana kierroksenaan.",
+      "bgSyncOnly": "Vain tausta",
+      "bgSyncOnlyDesc": "Ohita päärivit: G ja H liikkuvat vain taustalaulurivien välillä.",
       "bgSyncSkip": "Ohita",
       "bgSyncSkipDesc": "Jätä taustalaulurivit pois näppäimistöajoituksesta.",
       "quickFixes": "Pikakorjaukset",

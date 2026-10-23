@@ -112,6 +112,14 @@ export function BackgroundSyncControl() {
 			),
 		},
 		{
+			value: "only",
+			label: t("ribbonBar.syncMode.bgSyncOnly", "Only"),
+			description: t(
+				"ribbonBar.syncMode.bgSyncOnlyDesc",
+				"Skip main lines: G and H only move between background lines.",
+			),
+		},
+		{
 			value: "skip",
 			label: t("ribbonBar.syncMode.bgSyncSkip", "Skip"),
 			description: t(

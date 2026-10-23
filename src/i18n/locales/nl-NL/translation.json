@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Synchroniseer elke achtergrondregel direct na de hoofdregel.",
       "bgSyncSeparate": "Aparte ronde",
       "bgSyncSeparateDesc": "G en H blijven op de hoofdregels. Klik op een achtergrondregel om de achtergrondregels apart te synchroniseren.",
+      "bgSyncOnly": "Alleen achtergrond",
+      "bgSyncOnlyDesc": "Sla hoofdregels over: G en H gaan alleen naar achtergrondregels.",
       "bgSyncSkip": "Overslaan",
       "bgSyncSkipDesc": "Achtergrondregels doen niet mee met synchroniseren via het toetsenbord.",
       "quickFixes": "Snelle correcties",

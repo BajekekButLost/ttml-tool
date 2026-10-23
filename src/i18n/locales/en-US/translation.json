@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Sync each background line right after its main line.",
       "bgSyncSeparate": "Separate pass",
       "bgSyncSeparateDesc": "G and H stay on main lines. Click a background line to sync the background lines on their own.",
+      "bgSyncOnly": "Only",
+      "bgSyncOnlyDesc": "Skip main lines: G and H only move between background lines.",
       "bgSyncSkip": "Skip",
       "bgSyncSkipDesc": "Leave background lines out of keyboard syncing.",
       "quickFixes": "Quick fixes",

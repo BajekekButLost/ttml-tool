@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Sincronize cada linha de vocais de apoio logo depois da linha principal.",
       "bgSyncSeparate": "Passada separada",
       "bgSyncSeparateDesc": "G e H ficam nas linhas principais. Clique em uma linha de vocais de apoio para sincronizá-las à parte.",
+      "bgSyncOnly": "Só apoio",
+      "bgSyncOnlyDesc": "Pula as linhas principais: G e H só passam entre linhas de vocais de apoio.",
       "bgSyncSkip": "Pular",
       "bgSyncSkipDesc": "Deixa as linhas de vocais de apoio fora da sincronização pelo teclado.",
       "quickFixes": "Correções rápidas",

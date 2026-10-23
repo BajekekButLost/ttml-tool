@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Her arka vokal satırını ana satırından hemen sonra senkronize edin.",
       "bgSyncSeparate": "Ayrı tur",
       "bgSyncSeparateDesc": "G ve H ana satırlarda kalır. Arka vokalleri ayrıca senkronize etmek için bir arka vokal satırına tıklayın.",
+      "bgSyncOnly": "Yalnız arka",
+      "bgSyncOnlyDesc": "Ana satırları atla: G ve H yalnızca arka vokal satırları arasında ilerler.",
       "bgSyncSkip": "Atla",
       "bgSyncSkipDesc": "Arka vokal satırları klavye senkronizasyonuna dahil edilmez.",
       "quickFixes": "Hızlı düzeltmeler",

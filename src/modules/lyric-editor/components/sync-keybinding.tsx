@@ -9,8 +9,9 @@ import {
 	getFirstSynchronizableUnit,
 	getLastSynchronizableUnit,
 	getSynchronizableUnits,
-	isSameSyncLane,
+	isInSyncLane,
 	isSynchronizableLine,
+	type SyncLane,
 } from "$/modules/lyric-editor/utils/lyric-states";
 import { calculateSyncTime } from "$/modules/lyric-editor/utils/sync-timing";
 import {
@@ -18,7 +19,7 @@ import {
 	smartLastWordAtom,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
-import { backgroundSyncLanesAtom } from "$/modules/settings/states/background-sync";
+import { backgroundSyncLaneAtom } from "$/modules/settings/states/background-sync";
 import {
 	spectrogramHoverSyncEnabledAtom,
 	syncCommitOffsetAtom,
@@ -62,14 +63,14 @@ type LyricsState = TTMLLyric;
 function findNextSyncLineIndex(
 	lines: LyricLine[],
 	lineIndex: number,
-	lanes: boolean,
+	lane: SyncLane,
 ) {
 	const from = lines[lineIndex];
 	return lines.findIndex(
 		(line, index) =>
 			index > lineIndex &&
 			isSynchronizableLine(line) &&
-			(!from || isSameSyncLane(from, line, lanes)) &&
+			(!from || isInSyncLane(from, line, lane)) &&
 			getSynchronizableUnits(line).length > 0,
 	);
 }
@@ -143,7 +144,7 @@ export const SyncKeyBinding: FC = () => {
 				location.lines,
 				location.lineIndex,
 				location.syncIndex,
-				store.get(backgroundSyncLanesAtom),
+				store.get(backgroundSyncLaneAtom),
 			);
 			if (!nextWord) return false;
 			store.set(selectedWordsAtom, new Set([nextWord.unit.id]));
@@ -179,10 +180,10 @@ export const SyncKeyBinding: FC = () => {
 					.find(
 						(line) =>
 							isSynchronizableLine(line) &&
-							isSameSyncLane(
+							isInSyncLane(
 								location.line,
 								line,
-								store.get(backgroundSyncLanesAtom),
+								store.get(backgroundSyncLaneAtom),
 							) &&
 							getSynchronizableUnits(line).length > 0,
 					);
@@ -311,7 +312,7 @@ export const SyncKeyBinding: FC = () => {
 			const location = getCurrentLocation(store);
 			if (!location) return;
 			const currentTime = calcJudgeTime(evt, store.get(syncCommitOffsetAtom));
-			const lanes = store.get(backgroundSyncLanesAtom);
+			const lane = store.get(backgroundSyncLaneAtom);
 			const _t1 = performance.now();
 
 			const syncLevelMode = store.get(syncLevelModeAtom);
@@ -349,7 +350,7 @@ export const SyncKeyBinding: FC = () => {
 					const absoluteNextLineIndex = findNextSyncLineIndex(
 						state.lyricLines,
 						location.lineIndex,
-						lanes,
+						lane,
 					);
 
 					if (absoluteNextLineIndex !== -1) {
@@ -375,7 +376,7 @@ export const SyncKeyBinding: FC = () => {
 				const absoluteNextLineIndex = findNextSyncLineIndex(
 					state.lyricLines,
 					location.lineIndex,
-					lanes,
+					lane,
 				);
 				if (absoluteNextLineIndex !== -1) {
 					const nextLine = state.lyricLines[absoluteNextLineIndex];
@@ -445,7 +446,7 @@ export const SyncKeyBinding: FC = () => {
 						nextLines,
 						iterLineIndex,
 						iterSyncIndex,
-						lanes,
+						lane,
 					);
 					if (!next) break;
 
@@ -514,7 +515,7 @@ export const SyncKeyBinding: FC = () => {
 			const location = getCurrentLocation(store);
 			if (!location) return;
 			const currentTime = calcJudgeTime(evt);
-			const lanes = store.get(backgroundSyncLanesAtom);
+			const lane = store.get(backgroundSyncLaneAtom);
 
 			const syncLevelMode = store.get(syncLevelModeAtom);
 			if (syncLevelMode === "line") {
@@ -556,7 +557,7 @@ export const SyncKeyBinding: FC = () => {
 				const absoluteNextLineIndex = findNextSyncLineIndex(
 					state.lyricLines,
 					location.lineIndex,
-					lanes,
+					lane,
 				);
 				if (absoluteNextLineIndex !== -1) {
 					const nextLine = state.lyricLines[absoluteNextLineIndex];

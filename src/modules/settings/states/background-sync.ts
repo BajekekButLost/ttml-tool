@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import type { SyncLane } from "$/modules/lyric-editor/utils/lyric-states";
 import { bgLyricIgnoreSyncAtom, lyricLinesAtom } from "$/states/main";
 
 /** The setting updates existing background lines as well as future sync behavior. */
@@ -17,23 +18,32 @@ export const backgroundSyncSettingAtom = atom(
 	},
 );
 
-/** Keyboard sync stays on main lines or on background lines, whichever it started on. */
-export const backgroundSyncLanesAtom = atomWithStorage(
-	"backgroundSyncLanes",
-	false,
+/** Which lines G, H and word navigation may move to. */
+export const backgroundSyncLaneAtom = atomWithStorage<SyncLane>(
+	"backgroundSyncLane",
+	"all",
 );
 
-export type BackgroundSyncMode = "inline" | "separate" | "skip";
+export type BackgroundSyncMode = "inline" | "separate" | "only" | "skip";
+
+const laneForMode = {
+	inline: "all",
+	separate: "same",
+	only: "background",
+	skip: "all",
+} as const satisfies Record<BackgroundSyncMode, SyncLane>;
 
 export const backgroundSyncModeAtom = atom(
 	(get): BackgroundSyncMode => {
 		if (get(bgLyricIgnoreSyncAtom)) return "skip";
-		return get(backgroundSyncLanesAtom) ? "separate" : "inline";
+		const lane = get(backgroundSyncLaneAtom);
+		if (lane === "same") return "separate";
+		return lane === "background" ? "only" : "inline";
 	},
 	(get, set, mode: BackgroundSyncMode) => {
 		// Only rewrite lines when skipping changes, so per-line "Skip when syncing" survives.
 		if (get(bgLyricIgnoreSyncAtom) !== (mode === "skip"))
 			set(backgroundSyncSettingAtom, mode === "skip");
-		set(backgroundSyncLanesAtom, mode === "separate");
+		set(backgroundSyncLaneAtom, laneForMode[mode]);
 	},
 );

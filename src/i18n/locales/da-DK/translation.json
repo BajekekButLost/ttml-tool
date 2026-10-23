@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Synkroniser hver baggrundslinje lige efter dens hovedlinje.",
       "bgSyncSeparate": "Separat gennemgang",
       "bgSyncSeparateDesc": "G og H bliver på hovedlinjerne. Klik på en baggrundslinje for at synkronisere baggrundslinjerne for sig.",
+      "bgSyncOnly": "Kun baggrund",
+      "bgSyncOnlyDesc": "Spring hovedlinjer over: G og H flytter kun mellem baggrundslinjer.",
       "bgSyncSkip": "Spring over",
       "bgSyncSkipDesc": "Udelad baggrundslinjer fra tastatursynkronisering.",
       "quickFixes": "Hurtige rettelser",

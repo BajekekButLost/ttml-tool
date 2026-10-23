@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Synchronizuj każdy wers wokalu w tle zaraz po jego głównym wersie.",
       "bgSyncSeparate": "Osobno",
       "bgSyncSeparateDesc": "G i H zostają na głównych wersach. Kliknij wers wokalu w tle, aby zsynchronizować wokal w tle osobno.",
+      "bgSyncOnly": "Tylko tło",
+      "bgSyncOnlyDesc": "Pomijaj główne wersy: G i H przechodzą tylko między wersami wokalu w tle.",
       "bgSyncSkip": "Pomiń",
       "bgSyncSkipDesc": "Wersy wokalu w tle są pomijane przy synchronizacji klawiaturą.",
       "quickFixes": "Szybkie poprawki",

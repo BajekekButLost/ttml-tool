@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Sincronizezi fiecare vers al vocilor de fundal imediat după versul principal.",
       "bgSyncSeparate": "Separat",
       "bgSyncSeparateDesc": "G și H rămân pe versurile principale. Dă clic pe un vers al vocilor de fundal pentru a le sincroniza separat.",
+      "bgSyncOnly": "Doar fundal",
+      "bgSyncOnlyDesc": "Omite versurile principale: G și H trec doar între versurile vocilor de fundal.",
       "bgSyncSkip": "Omite",
       "bgSyncSkipDesc": "Versurile vocilor de fundal sunt excluse din sincronizarea cu tastatura.",
       "quickFixes": "Corecții rapide",

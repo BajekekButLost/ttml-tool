@@ -384,6 +384,8 @@
       "bgSyncInlineDesc": "Sincroniza cada línea de voces de fondo justo después de su línea principal.",
       "bgSyncSeparate": "Pasada aparte",
       "bgSyncSeparateDesc": "G y H se quedan en las líneas principales. Haz clic en una línea de voces de fondo para sincronizarlas por separado.",
+      "bgSyncOnly": "Solo fondo",
+      "bgSyncOnlyDesc": "Omite las líneas principales: G y H solo se mueven entre líneas de voces de fondo.",
       "bgSyncSkip": "Omitir",
       "bgSyncSkipDesc": "Deja las voces de fondo fuera de la sincronización con el teclado.",
       "quickFixes": "Correcciones rápidas",
