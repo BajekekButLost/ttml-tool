@@ -125,10 +125,15 @@ export function useCurrentLocation(): LineAndWordLocationResult | undefined {
 
 export const isSynchronizableLine = (line: LyricLine) => !line.ignoreSync;
 
+/** With lanes on, line-to-line moves skip lines whose main/background kind differs. */
+export const isSameSyncLane = (a: LyricLine, b: LyricLine, lanes: boolean) =>
+	!lanes || !!a.isBG === !!b.isBG;
+
 export function findNextWord(
 	lyricLines: LyricLine[],
 	lineIndex: number,
 	syncIndex: number,
+	lanes = false,
 ):
 	| {
 			unit: SyncWordUnit;
@@ -154,6 +159,7 @@ export function findNextWord(
 		const nextLine = lyricLines[i];
 		if (
 			isSynchronizableLine(nextLine) &&
+			isSameSyncLane(line, nextLine, lanes) &&
 			getSynchronizableUnits(nextLine).length > 0
 		) {
 			absoluteIndex = i;

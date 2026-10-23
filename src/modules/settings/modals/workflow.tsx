@@ -31,6 +31,7 @@ import { useTranslation } from "react-i18next";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import { showPreviewPanelAtom } from "$/states/main";
 import {
+	BackgroundSyncControl,
 	PreviewModeControl,
 	SettingToggle,
 	SpicyBackgroundControl,
@@ -47,7 +48,6 @@ import {
 	showTimestampsAtom,
 	showWordRomanizationInputAtom,
 } from "../states";
-import { backgroundSyncSettingAtom } from "../states/background-sync";
 import {
 	instantHighlightFadeAtom,
 	lyricWordFadeWidthAtom,
@@ -172,14 +172,6 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 ];
 
 const syncAidToggles: readonly ToggleRow[] = [
-	[
-		"ribbonBar.syncMode.bgLyricIgnoreSync",
-		"Skip background lines",
-		"settings.workflow.bgLyricIgnoreSyncDesc",
-		"Skip background lines while syncing with the keyboard. Applies to the background lines you already have, too.",
-		<EyeOff24Regular key="icon" />,
-		backgroundSyncSettingAtom,
-	],
 	[
 		"settings.assistant.manualTimestampEdit",
 		"Manual timestamp editing",
@@ -350,6 +342,16 @@ export const WorkflowSettings = () => {
 					)}
 				>
 					<SyncLevelControl />
+				</SettingRow>
+				<SettingRow
+					icon={<EyeOff24Regular />}
+					title={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
+					description={t(
+						"settings.workflow.bgLyricSyncDesc",
+						"How G and H treat background lines while syncing.",
+					)}
+				>
+					<BackgroundSyncControl />
 				</SettingRow>
 				{toggles(syncAidToggles)}
 			</Flex>

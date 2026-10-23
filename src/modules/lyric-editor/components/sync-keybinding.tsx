@@ -9,6 +9,7 @@ import {
 	getFirstSynchronizableUnit,
 	getLastSynchronizableUnit,
 	getSynchronizableUnits,
+	isSameSyncLane,
 	isSynchronizableLine,
 } from "$/modules/lyric-editor/utils/lyric-states";
 import { calculateSyncTime } from "$/modules/lyric-editor/utils/sync-timing";
@@ -17,6 +18,7 @@ import {
 	smartLastWordAtom,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
+import { backgroundSyncLanesAtom } from "$/modules/settings/states/background-sync";
 import {
 	spectrogramHoverSyncEnabledAtom,
 	syncCommitOffsetAtom,
@@ -55,6 +57,22 @@ import {
 const getUnitStartTime = (unit: { word: LyricWord }) => unit.word.startTime;
 
 type LyricsState = TTMLLyric;
+
+/** Index of the next line after `lineIndex` that keyboard sync can land on, or -1. */
+function findNextSyncLineIndex(
+	lines: LyricLine[],
+	lineIndex: number,
+	lanes: boolean,
+) {
+	const from = lines[lineIndex];
+	return lines.findIndex(
+		(line, index) =>
+			index > lineIndex &&
+			isSynchronizableLine(line) &&
+			(!from || isSameSyncLane(from, line, lanes)) &&
+			getSynchronizableUnits(line).length > 0,
+	);
+}
 
 function cloneLineWithWords(line: LyricLine): LyricLine {
 	return { ...line, words: line.words.slice() };
@@ -125,6 +143,7 @@ export const SyncKeyBinding: FC = () => {
 				location.lines,
 				location.lineIndex,
 				location.syncIndex,
+				store.get(backgroundSyncLanesAtom),
 			);
 			if (!nextWord) return false;
 			store.set(selectedWordsAtom, new Set([nextWord.unit.id]));
@@ -160,6 +179,11 @@ export const SyncKeyBinding: FC = () => {
 					.find(
 						(line) =>
 							isSynchronizableLine(line) &&
+							isSameSyncLane(
+								location.line,
+								line,
+								store.get(backgroundSyncLanesAtom),
+							) &&
 							getSynchronizableUnits(line).length > 0,
 					);
 				if (!lastLine) return false;
@@ -287,6 +311,7 @@ export const SyncKeyBinding: FC = () => {
 			const location = getCurrentLocation(store);
 			if (!location) return;
 			const currentTime = calcJudgeTime(evt, store.get(syncCommitOffsetAtom));
+			const lanes = store.get(backgroundSyncLanesAtom);
 			const _t1 = performance.now();
 
 			const syncLevelMode = store.get(syncLevelModeAtom);
@@ -321,17 +346,13 @@ export const SyncKeyBinding: FC = () => {
 						curLine.endTime = timedLine.endTime;
 					}
 
-					const nextLineIndex = state.lyricLines
-						.slice(location.lineIndex + 1)
-						.findIndex(
-							(nextLine) =>
-								isSynchronizableLine(nextLine) &&
-								getSynchronizableUnits(nextLine).length > 0,
-						);
+					const absoluteNextLineIndex = findNextSyncLineIndex(
+						state.lyricLines,
+						location.lineIndex,
+						lanes,
+					);
 
-					if (nextLineIndex !== -1) {
-						const absoluteNextLineIndex =
-							location.lineIndex + 1 + nextLineIndex;
+					if (absoluteNextLineIndex !== -1) {
 						const prevNextLine = state.lyricLines[absoluteNextLineIndex];
 						const nextLine = cloneLineWithWords(prevNextLine);
 						nextLine.startTime = currentTime;
@@ -351,15 +372,12 @@ export const SyncKeyBinding: FC = () => {
 				});
 
 				const state = store.get(lyricLinesAtom);
-				const nextLineIndex = state.lyricLines
-					.slice(location.lineIndex + 1)
-					.findIndex(
-						(nextLine) =>
-							isSynchronizableLine(nextLine) &&
-							getSynchronizableUnits(nextLine).length > 0,
-					);
-				if (nextLineIndex !== -1) {
-					const absoluteNextLineIndex = location.lineIndex + 1 + nextLineIndex;
+				const absoluteNextLineIndex = findNextSyncLineIndex(
+					state.lyricLines,
+					location.lineIndex,
+					lanes,
+				);
+				if (absoluteNextLineIndex !== -1) {
 					const nextLine = state.lyricLines[absoluteNextLineIndex];
 					store.set(selectedLinesAtom, new Set([nextLine.id]));
 					const nextLineUnits = getSynchronizableUnits(nextLine);
@@ -423,7 +441,12 @@ export const SyncKeyBinding: FC = () => {
 				let iterSyncIndex = curSyncIndex;
 
 				while (true) {
-					const next = findNextWord(nextLines, iterLineIndex, iterSyncIndex);
+					const next = findNextWord(
+						nextLines,
+						iterLineIndex,
+						iterSyncIndex,
+						lanes,
+					);
 					if (!next) break;
 
 					const text = next.unit.word.word.trim();
@@ -491,6 +514,7 @@ export const SyncKeyBinding: FC = () => {
 			const location = getCurrentLocation(store);
 			if (!location) return;
 			const currentTime = calcJudgeTime(evt);
+			const lanes = store.get(backgroundSyncLanesAtom);
 
 			const syncLevelMode = store.get(syncLevelModeAtom);
 			if (syncLevelMode === "line") {
@@ -529,15 +553,12 @@ export const SyncKeyBinding: FC = () => {
 				});
 
 				const state = store.get(lyricLinesAtom);
-				const nextLineIndex = state.lyricLines
-					.slice(location.lineIndex + 1)
-					.findIndex(
-						(nextLine) =>
-							isSynchronizableLine(nextLine) &&
-							getSynchronizableUnits(nextLine).length > 0,
-					);
-				if (nextLineIndex !== -1) {
-					const absoluteNextLineIndex = location.lineIndex + 1 + nextLineIndex;
+				const absoluteNextLineIndex = findNextSyncLineIndex(
+					state.lyricLines,
+					location.lineIndex,
+					lanes,
+				);
+				if (absoluteNextLineIndex !== -1) {
 					const nextLine = state.lyricLines[absoluteNextLineIndex];
 					store.set(selectedLinesAtom, new Set([nextLine.id]));
 					const nextLineUnits = getSynchronizableUnits(nextLine);

@@ -1,9 +1,9 @@
 import {
+	BackgroundSyncControl,
 	SettingToggle,
 	SyncLevelControl,
 	SyncOffsetControl,
 } from "$/modules/settings/components/WorkflowControls";
-import { backgroundSyncSettingAtom } from "$/modules/settings/states/background-sync";
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -111,6 +111,22 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 			</RibbonSection>
 			{showAdvanced && (
 				<RibbonSection
+					label={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
+				>
+					<Flex
+						direction="column"
+						gap="2"
+						align="center"
+						justify="center"
+						px="2"
+						style={{ height: "100%" }}
+					>
+						<BackgroundSyncControl />
+					</Flex>
+				</RibbonSection>
+			)}
+			{showAdvanced && (
+				<RibbonSection
 					label={t("ribbonBar.syncMode.assistSettings", "Sync aids")}
 				>
 					<Grid
@@ -128,17 +144,6 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							{t("ribbonBar.syncMode.touchSyncPanel", "Touch sync panel")}
 						</Text>
 						<SettingToggle setting={showTouchSyncPanelAtom} compact />
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t(
-								"ribbonBar.syncMode.bgLyricIgnoreSync",
-								"Skip background lines",
-							)}
-						</Text>
-						<SettingToggle setting={backgroundSyncSettingAtom} compact />
 						<Text
 							wrap="nowrap"
 							size="1"

@@ -6,6 +6,11 @@ import {
 } from "@radix-ui/themes";
 import { useAtom, type WritableAtom } from "jotai";
 import { useTranslation } from "react-i18next";
+import { OptionPicker, type PickerOption } from "$/components/OptionPicker";
+import {
+	type BackgroundSyncMode,
+	backgroundSyncModeAtom,
+} from "../states/background-sync";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
@@ -83,6 +88,45 @@ export function SyncLevelControl() {
 				{t("ribbonBar.syncMode.syncLevelLine", "Line")}
 			</SegmentedControl.Item>
 		</SegmentedControl.Root>
+	);
+}
+
+export function BackgroundSyncControl() {
+	const [value, setValue] = useAtom(backgroundSyncModeAtom);
+	const { t } = useTranslation();
+	const options: readonly PickerOption<BackgroundSyncMode>[] = [
+		{
+			value: "inline",
+			label: t("ribbonBar.syncMode.bgSyncInline", "Inline"),
+			description: t(
+				"ribbonBar.syncMode.bgSyncInlineDesc",
+				"Sync each background line right after its main line.",
+			),
+		},
+		{
+			value: "separate",
+			label: t("ribbonBar.syncMode.bgSyncSeparate", "Separate pass"),
+			description: t(
+				"ribbonBar.syncMode.bgSyncSeparateDesc",
+				"G and H stay on main lines. Click a background line to sync the background lines on their own.",
+			),
+		},
+		{
+			value: "skip",
+			label: t("ribbonBar.syncMode.bgSyncSkip", "Skip"),
+			description: t(
+				"ribbonBar.syncMode.bgSyncSkipDesc",
+				"Leave background lines out of keyboard syncing.",
+			),
+		},
+	];
+	return (
+		<OptionPicker
+			value={value}
+			options={options}
+			onValueChange={setValue}
+			label={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
+		/>
 	);
 }
 
