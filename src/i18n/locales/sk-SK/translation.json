@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "To najlepšie z vydania a najnovšie vylepšenia pre používateľov NaeNae",
     "changelogTitle": "Zoznam zmien a aktualizácie",
-    "viewCommits": "Zobraziť commity na GitHube",
-    "whatsNewTitle": "Novinky vo forku NaeNae",
-    "otherEnhancements": "Ďalšie vylepšenia"
+    "viewCommits": "Zobraziť commity na GitHube"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "Titulky ASS"
       },
       "spectrogramHoverSync": "Synchronizovať na pozícii myši",
-      "whatsNew": "Čo je nové",
       "changelog": "Zoznam zmien a aktualizácie",
       "projects": "Projekty"
     }

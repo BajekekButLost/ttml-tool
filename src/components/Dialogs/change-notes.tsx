@@ -35,24 +35,6 @@ const colors = [
 export const releaseColor = (color: string) =>
 	colors.find((item) => item === color) ?? "blue";
 
-export function releaseHighlights(
-	releases: readonly {
-		version: string;
-		color: string;
-		entries: readonly { title: string; body?: string; highlight?: boolean }[];
-	}[],
-) {
-	return releases.flatMap((release) =>
-		release.entries
-			.filter((entry) => entry.highlight === true)
-			.map((entry) => ({
-				...entry,
-				color: release.color,
-				info: `v${release.version}`,
-			})),
-	);
-}
-
 // React escapes plain text; only this inline subset becomes markup.
 // Italics are retained for the migrated release history.
 export function ChangeMarkdown({ text }: { text: string }): ReactNode {

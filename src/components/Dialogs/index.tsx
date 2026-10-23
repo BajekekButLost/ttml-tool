@@ -33,7 +33,6 @@ import { ConfirmationDialog } from "./confirmation.tsx";
 import { CreateProjectPromptDialog } from "./create-project-prompt.tsx";
 import { GeniusHeaderDetectionDialog } from "./genius-header-detection.tsx";
 import { ImportLyricsChooserDialog } from "./import-lyrics-chooser.tsx";
-import { WhatsNewDialog } from "./whats-new.tsx";
 
 export const Dialogs = () => {
 	return (
@@ -65,7 +64,6 @@ export const Dialogs = () => {
 			<GeniusSearchDialog />
 			<GeniusImportLyricsDialog />
 			<ChangelogDialog />
-			<WhatsNewDialog />
 			<FontSelectionDialog />
 			<UrbanDictionaryDialog />
 			<SuggestedSplitsDialog />

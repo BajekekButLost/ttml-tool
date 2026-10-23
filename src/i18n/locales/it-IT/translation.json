@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Punti salienti della versione e miglioramenti recenti per gli utenti NaeNae",
     "changelogTitle": "Registro modifiche e aggiornamenti",
-    "viewCommits": "Visualizza i commit su GitHub",
-    "whatsNewTitle": "Novità della versione di NaeNae",
-    "otherEnhancements": "Altri miglioramenti"
+    "viewCommits": "Visualizza i commit su GitHub"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "Sottotitoli ASS"
       },
       "spectrogramHoverSync": "Sincronizza alla posizione del mouse",
-      "whatsNew": "Novità",
       "changelog": "Registro modifiche e aggiornamenti",
       "projects": "Progetti"
     }

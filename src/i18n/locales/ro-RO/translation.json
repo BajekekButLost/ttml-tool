@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Noutățile versiunii și îmbunătățiri recente pentru utilizatorii NaeNae",
     "changelogTitle": "Jurnal de modificări și actualizări",
-    "viewCommits": "Vezi commit-urile pe GitHub",
-    "whatsNewTitle": "Noutăți în versiunea NaeNae",
-    "otherEnhancements": "Alte îmbunătățiri"
+    "viewCommits": "Vezi commit-urile pe GitHub"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "Subtitrări ASS"
       },
       "spectrogramHoverSync": "Sincronizează la poziția mouse-ului",
-      "whatsNew": "Noutăți",
       "changelog": "Jurnal de modificări și actualizări",
       "projects": "Proiecte"
     }

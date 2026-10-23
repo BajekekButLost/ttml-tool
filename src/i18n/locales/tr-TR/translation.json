@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "NaeNae kullanıcıları için öne çıkan yenilikler ve son iyileştirmeler",
     "changelogTitle": "Değişiklik günlüğü ve güncellemeler",
-    "viewCommits": "GitHub'daki commit'leri görüntüle",
-    "whatsNewTitle": "NaeNae fork'undaki yenilikler",
-    "otherEnhancements": "Diğer iyileştirmeler"
+    "viewCommits": "GitHub'daki commit'leri görüntüle"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "ASS altyazıları"
       },
       "spectrogramHoverSync": "Fare konumunda senkronize et",
-      "whatsNew": "Yenilikler",
       "changelog": "Değişiklik günlüğü ve güncellemeler",
       "projects": "Projeler"
     }

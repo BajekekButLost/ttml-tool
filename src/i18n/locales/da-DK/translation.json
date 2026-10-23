@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Udgivelseshøjdepunkter og seneste forbedringer for NaeNae-brugere",
     "changelogTitle": "Ændringslog og opdateringer",
-    "viewCommits": "Se commits på GitHub",
-    "whatsNewTitle": "Nyheder i NaeNaes fork",
-    "otherEnhancements": "Andre forbedringer"
+    "viewCommits": "Se commits på GitHub"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "ASS-undertekster"
       },
       "spectrogramHoverSync": "Synkronisér ved musens position",
-      "whatsNew": "Nyheder",
       "changelog": "Ændringslog og opdateringer",
       "projects": "Projekter"
     }

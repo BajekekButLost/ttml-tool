@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "面向 NaeNae 用户的发布亮点和最新改进",
     "changelogTitle": "更新日志与更新",
-    "viewCommits": "在 GitHub 上查看提交",
-    "whatsNewTitle": "NaeNae 分支的新功能",
-    "otherEnhancements": "其他改进"
+    "viewCommits": "在 GitHub 上查看提交"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "ASS 字幕"
       },
       "spectrogramHoverSync": "按鼠标位置打轴",
-      "whatsNew": "新功能",
       "changelog": "更新日志与更新",
       "projects": "项目"
     }

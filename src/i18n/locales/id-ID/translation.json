@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Sorotan rilis dan peningkatan terkini untuk pengguna NaeNae",
     "changelogTitle": "Log perubahan & pembaruan",
-    "viewCommits": "Lihat commit di GitHub",
-    "whatsNewTitle": "Yang baru di fork NaeNae",
-    "otherEnhancements": "Peningkatan lainnya"
+    "viewCommits": "Lihat commit di GitHub"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "Subtitle ASS"
       },
       "spectrogramHoverSync": "Sinkronkan di posisi mouse",
-      "whatsNew": "Yang baru",
       "changelog": "Log perubahan & pembaruan",
       "projects": "Proyek"
     }

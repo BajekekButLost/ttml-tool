@@ -8,7 +8,6 @@ import {
 	changelogDialogAtom,
 	settingsDialogAtom,
 	settingsTabAtom,
-	whatsNewDialogAtom,
 } from "$/states/dialogs.ts";
 import { useTopMenuActions } from "../useTopMenuActions";
 
@@ -23,7 +22,6 @@ const HelpMenuItems = () => {
 	const setChangelogOpen = useSetAtom(changelogDialogAtom);
 	const setSettingsOpen = useSetAtom(settingsDialogAtom);
 	const setSettingsTab = useSetAtom(settingsTabAtom);
-	const setWhatsNewOpen = useSetAtom(whatsNewDialogAtom);
 	const setGuideWelcomeOpen = useSetAtom(guideWelcomeOpenAtom);
 	const openAbout = () => {
 		setSettingsTab("about");
@@ -40,9 +38,6 @@ const HelpMenuItems = () => {
 				{t("topBar.menu.helpDoc", "Upstream documentation (Chinese)")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item onSelect={() => setWhatsNewOpen(true)}>
-				{t("topBar.menu.whatsNew", "What's new")}
-			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={() => setChangelogOpen(true)}>
 				{t("topBar.menu.changelog", "Changelog & updates")}
 			</DropdownMenu.Item>

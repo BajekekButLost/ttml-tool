@@ -1,10 +1,7 @@
 {
   "changeNotes": {
-    "highlightsDescription": "Главные новинки и последние улучшения NaeNae",
     "changelogTitle": "Список изменений и обновления",
-    "viewCommits": "Коммиты на GitHub",
-    "whatsNewTitle": "Что нового в форке NaeNae",
-    "otherEnhancements": "Другие улучшения"
+    "viewCommits": "Коммиты на GitHub"
   },
   "app": {
     "error": {
@@ -826,7 +823,6 @@
         "toASS": "Субтитры ASS"
       },
       "spectrogramHoverSync": "Синхронизировать в позиции мыши",
-      "whatsNew": "Что нового",
       "changelog": "Список изменений и обновления",
       "projects": "Проекты"
     }
