@@ -15,7 +15,6 @@ import {
 	auditionTimeAtom,
 	currentTimeAtom,
 } from "$/modules/audio/states/index.ts";
-import { globalEnableInsertAtom } from "$/modules/lyric-editor/components/lyric-line-view-states.ts";
 import { useSpectrogramInteraction } from "$/modules/spectrogram/hooks/useSpectrogramInteraction.ts";
 import { useSpectrogramResize } from "$/modules/spectrogram/hooks/useSpectrogramResize.ts";
 import { useSpectrogramSelection } from "$/modules/spectrogram/hooks/useSpectrogramSelection.ts";
@@ -58,13 +57,9 @@ export function useAudioSpectrogram() {
 	const [showUnselectedLines, setShowUnselectedLines] = useAtom(
 		showUnselectedLinesAtom,
 	);
-	const globalEnableInsert = useAtomValue(globalEnableInsertAtom);
 	const setPreviewActive = useSetAtom(timeShiftPreviewActiveAtom);
 
-	const { handleDragOver, handleDrop } = useSpectrogramTransfers(
-		globalEnableInsert,
-		store,
-	);
+	const { handleDragOver, handleDrop } = useSpectrogramTransfers(store);
 
 	const {
 		height: uiHeight,

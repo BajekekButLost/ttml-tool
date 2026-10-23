@@ -397,6 +397,35 @@ export function segmentLyricLines(
 }
 
 /**
+ * Segments only the selected words, in place. Each word's time is spread over
+ * its segments the same way {@link segmentLyricLines} does it. Mutates `lines`
+ * (an Immer draft is fine) and returns how many words were split.
+ */
+export function segmentSelectedWords(
+	lines: LyricLine[],
+	selectedWordIds: ReadonlySet<string>,
+	config: SegmentationConfig,
+): number {
+	let splitCount = 0;
+	for (const line of lines) {
+		if (!line.words.some((w) => selectedWordIds.has(w.id))) continue;
+		const context: SegmentationContext = { isQuoteOpen: false };
+		const newWords: LyricWord[] = [];
+		for (const word of line.words) {
+			if (!selectedWordIds.has(word.id)) {
+				newWords.push(word);
+				continue;
+			}
+			const segments = segmentWord(word, config, context);
+			if (segments.length > 1) splitCount++;
+			newWords.push(...segments);
+		}
+		line.words = newWords;
+	}
+	return splitCount;
+}
+
+/**
  * 手动分词的时间重计算
  *
  * 用于当已经有了手动指定的分词结果，需要重新计算时间戳时

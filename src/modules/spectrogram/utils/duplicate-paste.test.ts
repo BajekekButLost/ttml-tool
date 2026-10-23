@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml";
-import { copyLinesAtTime, copyLinesIntoRange } from "./duplicate-paste";
+import {
+	copyLinesAtTime,
+	copyLinesIntoRange,
+	insertDuplicatedLines,
+} from "./duplicate-paste";
 
 const word = (text: string, start: number, end: number) => ({
 	...newLyricWord(),
@@ -51,5 +55,40 @@ describe("copyLinesAtTime", () => {
 		const [copy] = copyLinesAtTime([line([word("漢字", 100, 120)])], 1000);
 		expect(times([copy])).toEqual([[1000, 1020]]);
 		expect(times(copy.words)).toEqual([[1000, 1020]]);
+	});
+});
+
+describe("insertDuplicatedLines", () => {
+	it("inserts copies of the selected lines in time order at the target", () => {
+		const first = line([word("a", 0, 1000)]);
+		const second = line([word("b", 5000, 6000)]);
+		const lyricLines = [first, second];
+
+		const inserted = insertDuplicatedLines(lyricLines, new Set([first.id]), {
+			start: 3000,
+		});
+
+		expect(inserted).toBe(1);
+		expect(lyricLines.map((l) => l.words[0].word)).toEqual(["a", "a", "b"]);
+		expect(times(lyricLines[1].words)).toEqual([[3000, 4000]]);
+		expect(lyricLines[1].id).not.toBe(first.id);
+	});
+
+	it("fills a range when one is given", () => {
+		const source = line([word("a", 0, 1000)]);
+		const lyricLines = [source];
+
+		insertDuplicatedLines(lyricLines, new Set([source.id]), {
+			start: 2000,
+			end: 2600,
+		});
+
+		expect(times(lyricLines.slice(1))).toEqual([[2000, 2600]]);
+	});
+
+	it("does nothing without a selection", () => {
+		const lyricLines = [line([word("a", 0, 1000)])];
+		expect(insertDuplicatedLines(lyricLines, new Set(), { start: 0 })).toBe(0);
+		expect(lyricLines).toHaveLength(1);
 	});
 });

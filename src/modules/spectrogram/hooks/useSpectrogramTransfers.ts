@@ -3,48 +3,32 @@ import type { useStore } from "jotai";
 import { currentTimeAtom } from "$/modules/audio/states/index.ts";
 import { cmdDuplicatePaste } from "$/modules/keyboard/commands.ts";
 import { useCommand } from "$/modules/keyboard/hooks.ts";
-import { draggingIdAtom } from "$/modules/lyric-editor/components/lyric-line-view-states.ts";
-import { spectrogramSelectionAtom } from "$/modules/spectrogram/states";
 import {
-	copyLinesAtTime,
-	copyLinesIntoRange,
-} from "$/modules/spectrogram/utils/duplicate-paste";
+	draggingIdAtom,
+	globalEnableInsertAtom,
+} from "$/modules/lyric-editor/components/lyric-line-view-states.ts";
+import { spectrogramSelectionAtom } from "$/modules/spectrogram/states";
+import { insertDuplicatedLines } from "$/modules/spectrogram/utils/duplicate-paste";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main.ts";
 
-export function useSpectrogramTransfers(
-	globalEnableInsert: boolean,
-	store: ReturnType<typeof useStore>,
-) {
+export function useSpectrogramTransfers(store: ReturnType<typeof useStore>) {
+	// Works with any line selection, not only after "Duplicate to…", so the
+	// shortcut shown in the line context menu always does something.
 	useCommand(cmdDuplicatePaste, () => {
-		if (!globalEnableInsert) return;
-
 		const currentSelectedLines = store.get(selectedLinesAtom);
 		if (currentSelectedLines.size === 0) return;
-
-		const state = store.get(lyricLinesAtom);
-		const linesToCopy = state.lyricLines.filter((l) =>
-			currentSelectedLines.has(l.id),
-		);
-		if (linesToCopy.length === 0) return;
 
 		const selection = store.get(spectrogramSelectionAtom);
 		const currentTimeMs = store.get(currentTimeAtom);
 
-		const newLines = selection
-			? copyLinesIntoRange(linesToCopy, selection.start, selection.end)
-			: copyLinesAtTime(linesToCopy, currentTimeMs);
-
 		store.set(
 			lyricLinesAtom,
 			produce((draft) => {
-				const anchorTime = selection ? selection.start : currentTimeMs;
-				// Find insertion point to keep sorted
-				let insertIndex = draft.lyricLines.findIndex(
-					(l) => l.startTime > anchorTime,
+				insertDuplicatedLines(
+					draft.lyricLines,
+					currentSelectedLines,
+					selection ?? { start: currentTimeMs },
 				);
-				if (insertIndex === -1) insertIndex = draft.lyricLines.length;
-
-				draft.lyricLines.splice(insertIndex, 0, ...newLines);
 			}),
 		);
 
@@ -52,7 +36,8 @@ export function useSpectrogramTransfers(
 		if (selection) {
 			store.set(spectrogramSelectionAtom, null);
 		}
-	}, [globalEnableInsert, store]);
+		store.set(globalEnableInsertAtom, false);
+	}, [store]);
 
 	return {
 		handleDragOver: (e: React.DragEvent<HTMLDivElement>) => {

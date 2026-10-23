@@ -3,7 +3,11 @@ import { atom, useAtomValue, useSetAtom, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
 import { useTranslation } from "react-i18next";
 import { currentTimeAtom } from "$/modules/audio/states";
+import { cmdDuplicatePaste } from "$/modules/keyboard/commands";
+import { spectrogramSelectionAtom } from "$/modules/spectrogram/states";
+import { insertDuplicatedLines } from "$/modules/spectrogram/utils/duplicate-paste";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main";
+import { formatKeyBindings } from "$/utils/keybindings";
 import {
 	createLineTimingSnapshots,
 	snapSelectedLineTimingsToTime,
@@ -23,6 +27,8 @@ export function LineTimingMenuItems() {
 	const setTimingCopyPlacement = useSetAtom(timingCopyPlacementAtom);
 	const setGlobalEnableInsert = useSetAtom(globalEnableInsertAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
+	const duplicatePasteKeys = useAtomValue(cmdDuplicatePaste.atom);
+	const spectrogramSelection = useAtomValue(spectrogramSelectionAtom);
 
 	const toggleTimingCopy = () => {
 		if (timingCopyPlacement) {
@@ -56,6 +62,22 @@ export function LineTimingMenuItems() {
 		setTimingCopyPlacement(null);
 	};
 
+	const duplicateAtPlayhead = () => {
+		const selectedLineIds = store.get(selectedLinesAtom);
+		const selection = store.get(spectrogramSelectionAtom);
+		const currentTime = store.get(currentTimeAtom);
+		editLyricLines((state) => {
+			insertDuplicatedLines(
+				state.lyricLines,
+				selectedLineIds,
+				selection ?? { start: currentTime },
+			);
+		});
+		if (selection) store.set(spectrogramSelectionAtom, null);
+		setGlobalEnableInsert(false);
+		setTimingCopyPlacement(null);
+	};
+
 	return (
 		<>
 			<ContextMenu.Item
@@ -74,6 +96,20 @@ export function LineTimingMenuItems() {
 					"contextMenu.snapSelectedLinesToPlayhead",
 					"Snap selected lines to playhead",
 				)}
+			</ContextMenu.Item>
+			<ContextMenu.Item
+				disabled={selectedLinesSize === 0}
+				onSelect={duplicateAtPlayhead}
+				shortcut={
+					duplicatePasteKeys ? formatKeyBindings(duplicatePasteKeys) : undefined
+				}
+			>
+				{spectrogramSelection
+					? t(
+							"contextMenu.duplicateIntoSelection",
+							"Duplicate into spectrogram selection",
+						)
+					: t("contextMenu.duplicateAtPlayhead", "Duplicate at playhead")}
 			</ContextMenu.Item>
 		</>
 	);

@@ -77,3 +77,29 @@ export function copyLinesAtTime(
 		})),
 	}));
 }
+
+/**
+ * Copies the selected lines to a target and inserts the copies in time order.
+ * With a range, the copies fill it ({@link copyLinesIntoRange}); otherwise the
+ * earliest copy starts at `target.start` ({@link copyLinesAtTime}).
+ * Mutates `lyricLines` (an Immer draft is fine) and returns how many lines it
+ * inserted.
+ */
+export function insertDuplicatedLines(
+	lyricLines: LyricLine[],
+	selectedLineIds: ReadonlySet<string>,
+	target: { start: number; end?: number },
+): number {
+	const linesToCopy = lyricLines.filter((l) => selectedLineIds.has(l.id));
+	if (linesToCopy.length === 0) return 0;
+
+	const newLines =
+		target.end === undefined
+			? copyLinesAtTime(linesToCopy, target.start)
+			: copyLinesIntoRange(linesToCopy, target.start, target.end);
+
+	let insertIndex = lyricLines.findIndex((l) => l.startTime > target.start);
+	if (insertIndex === -1) insertIndex = lyricLines.length;
+	lyricLines.splice(insertIndex, 0, ...newLines);
+	return newLines.length;
+}

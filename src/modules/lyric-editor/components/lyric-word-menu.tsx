@@ -4,6 +4,9 @@ import { useSetImmerAtom } from "jotai-immer";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { segmentationEngineAtom } from "$/modules/segmentation/states";
+import { segmentSelectedWords } from "$/modules/segmentation/utils/segmentation";
+import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import {
 	combineWordsDialogAtom,
 	replaceRomanizationDialogAtom,
@@ -63,6 +66,9 @@ export const LyricWordMenu = ({
 	const combineApplyToAll = useAtomValue(combineWordsApplyToAllAtom);
 	const combineIgnoreCase = useAtomValue(combineWordsIgnoreCaseAtom);
 	const combineShiftClickRef = useRef(false);
+	const segmentationEngine = useAtomValue(segmentationEngineAtom);
+	const { config: segmentationConfig, isLoading: segmentationLoading } =
+		useSegmentationConfig();
 
 	return (
 		<>
@@ -78,6 +84,37 @@ export const LyricWordMenu = ({
 				}}
 			>
 				{t("contextMenu.splitWord", "拆分单词…")}
+			</ContextMenu.Item>
+			<ContextMenu.Item
+				disabled={selectedWordsSize === 0 || segmentationLoading}
+				onSelect={() => {
+					const selectedWordIds = store.get(selectedWordsAtom);
+					let splitCount = 0;
+					editLyricLines((state) => {
+						splitCount = segmentSelectedWords(
+							state.lyricLines,
+							selectedWordIds,
+							{
+								...segmentationConfig,
+								engine: segmentationEngine,
+								splitEnglish: segmentationEngine !== "none",
+							},
+						);
+					});
+					if (splitCount === 0) {
+						toast.info(
+							t(
+								"contextMenu.autoSegmentWordsNothing",
+								"Nothing to split in the selected words.",
+							),
+						);
+					}
+				}}
+			>
+				{t("contextMenu.autoSegmentWords", {
+					count: selectedWordsSize,
+					defaultValue: "Auto-segment selected words",
+				})}
 			</ContextMenu.Item>
 			{/[\u3040-\u309F\u30A0-\u30FF\uAC00-\uD7AF\u4E00-\u9FA5]/.test(
 				word.word,
