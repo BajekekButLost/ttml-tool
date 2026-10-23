@@ -33,13 +33,7 @@ import {
 	syncActiveLineHighlightAtom,
 	syncAutoScrollAtom,
 } from "$/modules/settings/states/sync.ts";
-import {
-	keySyncEndAtom,
-	keySyncNextAtom,
-	keySyncStartAtom,
-} from "$/states/keybindings.ts";
 import { showPreviewPanelAtom } from "$/states/main.ts";
-import { KeyBinding } from "../KeyBinding/index.tsx";
 import { RibbonFrame, RibbonSection } from "./common";
 
 export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
@@ -220,45 +214,6 @@ export const SyncModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					</Grid>
 				</RibbonSection>
 			)}
-			<RibbonSection
-				label={t("ribbonBar.syncMode.keyBindingReference", "Shortcut list")}
-			>
-				<Flex gap="4">
-					<Grid
-						columns="max-content auto"
-						gap="4"
-						gapY="1"
-						flexGrow="1"
-						align="center"
-						justify="center"
-					>
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t("ribbonBar.syncMode.startSync", "Start")}
-						</Text>
-						<KeyBinding kbdAtom={keySyncStartAtom} />
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t("ribbonBar.syncMode.continuousSync", "Next")}
-						</Text>
-						<KeyBinding kbdAtom={keySyncNextAtom} />
-						<Text
-							wrap="nowrap"
-							size="1"
-							style={{ color: "var(--ribbon-label-color)" }}
-						>
-							{t("ribbonBar.syncMode.endSync", "End")}
-						</Text>
-						<KeyBinding kbdAtom={keySyncEndAtom} />
-					</Grid>
-				</Flex>
-			</RibbonSection>
 			{showAdvanced && (
 				<RibbonSection
 					label={t("ribbonBar.editMode.previewPanel", "Preview panel")}
