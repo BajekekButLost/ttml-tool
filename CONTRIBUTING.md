@@ -26,7 +26,8 @@ pnpm run build
 - `src/modules` contains feature-specific UI and logic.
 - `src/states` contains shared Jotai atoms.
 - `src-tauri` contains the Rust/Tauri desktop app.
-- `locales` contains Crowdin-managed translations.
+- `src/i18n/locales/<lang>/translation.json` contains the UI translations.
+- `changes` contains one note per unreleased user-visible change.
 
 Keep feature-local state in its module. Put state shared by unrelated features
 in `src/states`.
@@ -43,19 +44,22 @@ in `src/states`.
 - Do not run a broad formatter over unrelated files. Do not hand-edit
   `pnpm-lock.yaml`.
 - Use the existing i18next pattern for new user-facing strings when practical.
-  Translation updates are managed through Crowdin; do not make bulk locale
-  rewrites unless the change requires them.
+  Add new keys to every locale and run `pnpm test:locales`, which fails on
+  missing, unused or out-of-order keys. Do not make bulk locale rewrites
+  unless the change requires them.
 
 ## Pull requests
 
-Use a focused branch and explain what changed, why, and how you tested it.
+Branch from `dev` and target `dev`; `main` only receives releases. Explain
+what changed, why, and how you tested it.
 Include screenshots for visual changes and clear reproduction steps for bug
 fixes. Do not mix refactors with unrelated feature work.
 
-Every user-visible feature or fix needs an entry in
-`src/components/Dialogs/changelog.tsx`. Keep entries ordered by user impact:
-features first, then fixes. A release tag should have a matching heading such
-as `v0.7.4 Updates`; GitHub Release notes are generated from that section.
+Every user-visible feature or fix needs a note in `changes/<short-slug>.md`
+(format in [`changes/README.md`](changes/README.md)). CI fails without one;
+PRs with no user-visible change get the `no-changelog` label instead. Notes are
+compiled into `src/data/changelog.json` at release time, and GitHub Release
+notes are generated from it.
 
 ## Releases and distribution
 
@@ -91,9 +95,13 @@ uses a patch bump to `0.7.8`; a new feature uses a minor bump to `0.8.0`.
    Replace `patch` with `minor` or `major` when appropriate. The command
    updates `package.json`, `src-tauri/tauri.conf.json`,
    `src-tauri/Cargo.toml`, and the app entry in `src-tauri/Cargo.lock`.
-2. Add a `v0.7.8 Updates` section at the top of
-   `src/components/Dialogs/changelog.tsx`. These entries become the GitHub
-   Release notes.
+2. Compile the pending `changes/` notes into `src/data/changelog.json`
+   (preview first). This deletes the compiled notes:
+
+   ```bash
+   pnpm changelog:compile --version 0.7.8 --summary "Short summary" --dry-run
+   pnpm changelog:compile --version 0.7.8 --summary "Short summary"
+   ```
 3. Run the relevant tests, `pnpm exec biome check <changed files>`, and
    `pnpm run build`.
 4. Commit and push the version and changelog changes.
