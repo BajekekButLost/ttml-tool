@@ -1,5 +1,85 @@
 [
 	{
+		"version": "0.13.0",
+		"summary": "Sections and background sync",
+		"color": "teal",
+		"date": "2026-10-23",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "Sync background lines in a separate pass",
+				"body": "**Time › Background lines** (also in **Preferences › Editor & sync**) replaces the \"Skip background lines\" checkbox. **Inline** works as before. **Separate pass** keeps **G** and **H** on whichever kind of line you start on: start on a main line and they skip background lines, so finishing a line jumps to the next main line; click a background line and they move between background lines only.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Duplicate at playhead and auto-segment words from the right-click menu",
+				"body": "The line menu has **Duplicate at playhead** (or **Duplicate into spectrogram selection** when one is active), showing its shortcut. **Ctrl+L** now works with any line selection, not only after **Duplicate to…**. The word menu in Edit mode has **Auto-segment selected words**, which splits just those words with your saved engine and Learned Splits.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Compact pickers in the ribbon and toolbars",
+				"body": "Where space is tight, choices like **Time › Sync by**, **Background lines**, the Preview ribbon's mode and background, the timing overview order, spectrogram FFT size and Time Shift's move/copy now use a small dropdown that shows the current value instead of a row of buttons. Preferences keep the side-by-side buttons.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Advanced editor layout removed",
+				"body": "**Preferences › General › Editor layout** is gone, and Edit mode always uses the regular layout. Everything the Advanced layout showed per word is still there: start and end times in the Edit ribbon, and split and delete in the word's right-click menu.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Lyrically import removed",
+				"body": "**Import from Lyrically** is gone from the import cards, the File menu and the guide. Use **Genius**, **LRCLIB** or **Plain text** instead. Existing projects aren't affected.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Section check warnings removed",
+				"body": "Saving or exporting no longer shows the **Section check** warning toast, and section headers no longer show an orange warning count. Sections themselves, and the section review when importing lyrics, are unchanged.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "What's New window removed",
+				"body": "The fork-vs-upstream **What's new** window is gone from the Help menu. Everything it covered is in **Changelog & updates**.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Shortcut list removed from the Time ribbon",
+				"body": "The **Shortcut list** section that showed the Start/Next/End keys is gone, freeing up ribbon space. The shortcuts themselves are unchanged and can still be viewed and rebound in **Preferences › Shortcuts**.",
+				"highlight": false
+			},
+			{
+				"type": "feature",
+				"title": "Start-only first word setting removed",
+				"body": "**Preferences › Editor & sync › Start-only first word** is gone. The first word of a line now always syncs like every other word. If you had it on, your existing timings are unchanged.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Editing lines inside Genius sections keeps the section together",
+				"body": "A line you insert, paste, duplicate or drag into the middle of a section now joins that section, instead of splitting it into extra headers. Deleting that line again leaves the section whole. **Insert new line before/after** and **Move words to new line** keep the line's section too. Section headers update right away instead of after switching tabs. **Snap to playhead** no longer gives untimed words a time, and **Copy previous timing** finds earlier sections that start on an untimed line and says so when no lines match.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Fast syncing no longer drops key presses",
+				"body": "Pressing **G** or **H** before letting go of the previous sync key now counts every press, and **G** on a song's last word sets the last line's end time.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Deleting words updates the line's start and end",
+				"body": "Deleting words with **Delete** now shrinks the line to the words that are left, like the right-click delete already did. Trailing spaces no longer hold the old end in place. Duplicating a line and trimming each copy no longer leaves both highlighted as current.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.12.1",
 		"summary": "Duet agent fix",
 		"color": "orange",
