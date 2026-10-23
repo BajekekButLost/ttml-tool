@@ -1,17 +1,10 @@
-import {
-	Box,
-	Card,
-	Checkbox,
-	Flex,
-	SegmentedControl,
-	Text,
-	Tooltip,
-} from "@radix-ui/themes";
+import { Box, Card, Checkbox, Flex, Text, Tooltip } from "@radix-ui/themes";
 import classNames from "classnames";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { memo, useCallback, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ViewportList, type ViewportListRef } from "react-viewport-list";
+import { OptionPicker } from "$/components/OptionPicker";
 import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { currentTimeAtom } from "$/modules/audio/states";
@@ -423,20 +416,24 @@ export const TimingOverview = memo(() => {
 						</Text>
 					</div>
 					<div className={styles.statItem}>
-						<SegmentedControl.Root
+						<OptionPicker<TimingOverviewOrderMode>
 							value={orderMode}
-							onValueChange={(v) => {
-								setOrderMode(v as TimingOverviewOrderMode);
-							}}
-							size="1"
-						>
-							<SegmentedControl.Item value="chronological">
-								{t("timingOverview.orderChronological", "Chronological")}
-							</SegmentedControl.Item>
-							<SegmentedControl.Item value="textual">
-								{t("timingOverview.orderTextual", "Textual")}
-							</SegmentedControl.Item>
-						</SegmentedControl.Root>
+							onValueChange={setOrderMode}
+							label={t("timingOverview.order", "Order")}
+							options={[
+								{
+									value: "chronological",
+									label: t(
+										"timingOverview.orderChronological",
+										"Chronological",
+									),
+								},
+								{
+									value: "textual",
+									label: t("timingOverview.orderTextual", "Textual"),
+								},
+							]}
+						/>
 					</div>
 					<div
 						className={styles.statItem}

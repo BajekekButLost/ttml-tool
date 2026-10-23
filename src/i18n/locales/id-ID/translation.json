@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Sinkronkan setiap baris vokal latar tepat setelah baris utamanya.",
       "bgSyncSeparate": "Terpisah",
       "bgSyncSeparateDesc": "G dan H tetap di baris utama. Klik baris vokal latar untuk menyinkronkan vokal latar secara terpisah.",
-      "bgSyncOnly": "Hanya latar",
-      "bgSyncOnlyDesc": "Lewati baris utama: G dan H hanya berpindah antarbaris vokal latar.",
-      "bgSyncSkip": "Lewati",
-      "bgSyncSkipDesc": "Baris vokal latar tidak ikut sinkronisasi keyboard.",
       "quickFixes": "Perbaikan cepat",
       "manualTimestampEdit": "Edit penanda waktu manual",
       "doubleClickEdit": "Edit kata dengan klik dua kali",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Editor tampilan",
         "basic": "Tata letak sederhana",
         "advanced": "Tata letak lanjutan",
         "none": "Tidak ada",
@@ -767,6 +764,7 @@
     "words": "Kata",
     "lyricsAndTimings": "Lirik & waktu kata",
     "autoScroll": "Gulir otomatis",
+    "order": "Urutan",
     "orderChronological": "Kronologis",
     "orderTextual": "Urutan teks"
   },

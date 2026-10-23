@@ -126,19 +126,13 @@ export function useCurrentLocation(): LineAndWordLocationResult | undefined {
 export const isSynchronizableLine = (line: LyricLine) => !line.ignoreSync;
 
 /**
- * Which lines keyboard sync may move to: any line, lines of the same main or
- * background kind as the current one, or background lines only.
+ * Which lines keyboard sync may move to: any line, or only lines of the same
+ * main or background kind as the current one.
  */
-export type SyncLane = "all" | "same" | "background";
+export type SyncLane = "all" | "same";
 
-export const isInSyncLane = (
-	from: LyricLine,
-	to: LyricLine,
-	lane: SyncLane,
-) => {
-	if (lane === "background") return !!to.isBG;
-	return lane === "all" || !!from.isBG === !!to.isBG;
-};
+export const isInSyncLane = (from: LyricLine, to: LyricLine, lane: SyncLane) =>
+	lane !== "same" || !!from.isBG === !!to.isBG;
 
 export function findNextWord(
 	lyricLines: LyricLine[],

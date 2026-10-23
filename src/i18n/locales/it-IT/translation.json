@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Sincronizza ogni verso dei cori subito dopo il suo verso principale.",
       "bgSyncSeparate": "Passata separata",
       "bgSyncSeparateDesc": "G e H restano sui versi principali. Fai clic su un verso dei cori per sincronizzare i cori a parte.",
-      "bgSyncOnly": "Solo cori",
-      "bgSyncOnlyDesc": "Salta i versi principali: G e H si spostano solo tra i versi dei cori.",
-      "bgSyncSkip": "Salta",
-      "bgSyncSkipDesc": "Esclude i versi dei cori dalla sincronizzazione con la tastiera.",
       "quickFixes": "Correzioni rapide",
       "manualTimestampEdit": "Modifica manuale dei tempi",
       "doubleClickEdit": "Modifica parole con doppio clic",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Editor dell'aspetto",
         "basic": "Layout semplice",
         "advanced": "Layout avanzato",
         "none": "Nessuna",
@@ -767,6 +764,7 @@
     "words": "Parole",
     "lyricsAndTimings": "Testi e tempi delle parole",
     "autoScroll": "Scorrimento automatico",
+    "order": "Ordine",
     "orderChronological": "Cronologico",
     "orderTextual": "Ordine del testo"
   },

@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Každý sprievodný riadok synchronizujte hneď po jeho hlavnom riadku.",
       "bgSyncSeparate": "Zvlášť",
       "bgSyncSeparateDesc": "G a H zostávajú na hlavných riadkoch. Kliknutím na sprievodný riadok synchronizujete sprievodné riadky samostatne.",
-      "bgSyncOnly": "Len sprievodné",
-      "bgSyncOnlyDesc": "Preskočiť hlavné riadky: G a H sa pohybujú len medzi sprievodnými riadkami.",
-      "bgSyncSkip": "Preskočiť",
-      "bgSyncSkipDesc": "Sprievodné riadky sa pri synchronizácii klávesnicou vynechajú.",
       "quickFixes": "Rýchle opravy",
       "manualTimestampEdit": "Ručná úprava časových značiek",
       "doubleClickEdit": "Úprava slov dvojklikom",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Editor vzhľadu",
         "basic": "Jednoduché rozloženie",
         "advanced": "Pokročilé rozloženie",
         "none": "Žiadny",
@@ -767,6 +764,7 @@
     "words": "Slová",
     "lyricsAndTimings": "Text a časovanie slov",
     "autoScroll": "Automatické posúvanie",
+    "order": "Poradie",
     "orderChronological": "Podľa času",
     "orderTextual": "Podľa textu"
   },

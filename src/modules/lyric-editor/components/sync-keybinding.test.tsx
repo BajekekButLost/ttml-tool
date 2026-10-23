@@ -247,23 +247,4 @@ describe("background lines while syncing", () => {
 			view.cleanup();
 		}
 	});
-
-	it("only: G and H skip main lines and walk background lines", () => {
-		const view = mountWithBackground("background");
-		try {
-			view.select(1);
-			press(keySyncStartAtom, 2);
-			press(keySyncNextAtom, 3);
-			expect(view.selectedLine()).toBe(3);
-			const [, bg1, main2, bg2] = view.synced();
-			expect(bg1).toMatchObject({ startTime: 2000, endTime: 3000 });
-			expect(bg2).toMatchObject({ startTime: 3000 });
-			expect(main2.words[0]).toMatchObject({ startTime: 0, endTime: 0 });
-			view.select(0);
-			press(keySyncEndAtom, 4);
-			expect(view.selectedLine()).toBe(1);
-		} finally {
-			view.cleanup();
-		}
-	});
 });

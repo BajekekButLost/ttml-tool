@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "每行背景人声紧跟其主行打轴。",
       "bgSyncSeparate": "单独一遍",
       "bgSyncSeparateDesc": "G 和 H 只在主行间移动。点击一行背景人声即可单独为背景人声打轴。",
-      "bgSyncOnly": "仅背景",
-      "bgSyncOnlyDesc": "跳过主行：G 和 H 只在背景人声行之间移动。",
-      "bgSyncSkip": "跳过",
-      "bgSyncSkipDesc": "键盘打轴时不包含背景人声行。",
       "quickFixes": "快速修复",
       "manualTimestampEdit": "手动编辑时间戳",
       "doubleClickEdit": "双击编辑字内容",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "外观编辑器",
         "basic": "简洁布局",
         "advanced": "高级布局",
         "none": "无",
@@ -767,6 +764,7 @@
     "words": "字",
     "lyricsAndTimings": "歌词与逐字时间",
     "autoScroll": "自动滚动",
+    "order": "顺序",
     "orderChronological": "按时间顺序",
     "orderTextual": "按文本顺序"
   },

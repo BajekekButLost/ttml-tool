@@ -6,12 +6,12 @@ import {
 	Flex,
 	Grid,
 	Heading,
-	SegmentedControl,
 	Slider,
 	Switch,
 	Text,
 	Tooltip,
 } from "@radix-ui/themes";
+import { OptionPicker } from "$/components/OptionPicker";
 import { backgroundGradients } from "$/modules/settings/states/gradients";
 import { generateGradient } from "$/utils/colorScale";
 import { SettingsCustomBackgroundCard } from "../customBackground";
@@ -68,22 +68,20 @@ export const BackgroundSection = ({
 			{t("settings.appearance.background", "Background")}
 		</Heading>
 
-		<SegmentedControl.Root
+		<OptionPicker<"none" | "image" | "gradient">
+			size="2"
 			value={backgroundMode}
-			onValueChange={(v) =>
-				setBackgroundMode(v as "none" | "image" | "gradient")
-			}
-		>
-			<SegmentedControl.Item value="none">
-				{t("settings.appearance.mode.none", "None")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value="image">
-				{t("settings.appearance.mode.image", "Image")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value="gradient">
-				{t("settings.appearance.mode.gradient", "Gradient")}
-			</SegmentedControl.Item>
-		</SegmentedControl.Root>
+			onValueChange={setBackgroundMode}
+			label={t("settings.appearance.background", "Background")}
+			options={[
+				{ value: "none", label: t("settings.appearance.mode.none", "None") },
+				{ value: "image", label: t("settings.appearance.mode.image", "Image") },
+				{
+					value: "gradient",
+					label: t("settings.appearance.mode.gradient", "Gradient"),
+				},
+			]}
+		/>
 
 		{backgroundMode === "image" && (
 			<SettingsCustomBackgroundCard
@@ -201,24 +199,35 @@ export const BackgroundSection = ({
 											<Text>
 												{t("settings.appearance.gradientType", "Gradient type")}
 											</Text>
-											<SegmentedControl.Root
+											<OptionPicker<"linear" | "radial" | "conic">
+												size="2"
 												value={customGradientType}
-												onValueChange={(v) =>
-													setCustomGradientType(
-														v as "linear" | "radial" | "conic",
-													)
-												}
-											>
-												<SegmentedControl.Item value="linear">
-													{t("settings.appearance.type.linear", "Linear")}
-												</SegmentedControl.Item>
-												<SegmentedControl.Item value="radial">
-													{t("settings.appearance.type.radial", "Radial")}
-												</SegmentedControl.Item>
-												<SegmentedControl.Item value="conic">
-													{t("settings.appearance.type.conic", "Conic")}
-												</SegmentedControl.Item>
-											</SegmentedControl.Root>
+												onValueChange={setCustomGradientType}
+												label={t(
+													"settings.appearance.gradientType",
+													"Gradient type",
+												)}
+												options={[
+													{
+														value: "linear",
+														label: t(
+															"settings.appearance.type.linear",
+															"Linear",
+														),
+													},
+													{
+														value: "radial",
+														label: t(
+															"settings.appearance.type.radial",
+															"Radial",
+														),
+													},
+													{
+														value: "conic",
+														label: t("settings.appearance.type.conic", "Conic"),
+													},
+												]}
+											/>
 										</Flex>
 										<Flex direction="column" gap="2">
 											<Flex align="center" justify="between">

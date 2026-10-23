@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Sync each background line right after its main line.",
       "bgSyncSeparate": "Separate pass",
       "bgSyncSeparateDesc": "G and H stay on main lines. Click a background line to sync the background lines on their own.",
-      "bgSyncOnly": "Only",
-      "bgSyncOnlyDesc": "Skip main lines: G and H only move between background lines.",
-      "bgSyncSkip": "Skip",
-      "bgSyncSkipDesc": "Leave background lines out of keyboard syncing.",
       "quickFixes": "Quick fixes",
       "manualTimestampEdit": "Manual timestamp editing",
       "doubleClickEdit": "Double-click word editing",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Appearance editor",
         "basic": "Simple layout",
         "advanced": "Advanced layout",
         "none": "None",
@@ -767,6 +764,7 @@
     "words": "Words",
     "lyricsAndTimings": "Lyrics & word timings",
     "autoScroll": "Auto-scroll",
+    "order": "Order",
     "orderChronological": "Chronological",
     "orderTextual": "Textual"
   },

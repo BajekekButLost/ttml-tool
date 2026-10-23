@@ -1,4 +1,5 @@
-import { Card, Flex, Grid, SegmentedControl, Text } from "@radix-ui/themes";
+import { Card, Flex, Grid, Text } from "@radix-ui/themes";
+import { OptionPicker } from "$/components/OptionPicker";
 import type { FontSelection } from "./useFontSelection";
 export const FontStyleSection = ({
 	t,
@@ -23,37 +24,43 @@ export const FontStyleSection = ({
 				<Text size="4" weight="bold" mb="2">
 					{t("settings.appearance.fontWeight", "Font weight")}
 				</Text>
-				<SegmentedControl.Root
-					size="3"
+				<OptionPicker
+					size="2"
 					value={appFontWeight}
 					onValueChange={setAppFontWeight}
-					style={{ width: "100%" }}
-				>
-					<SegmentedControl.Item value="400" style={{ flexGrow: 1 }}>
-						{t("settings.appearance.weight.regular", "Regular")}
-					</SegmentedControl.Item>
-					<SegmentedControl.Item value="700" style={{ flexGrow: 1 }}>
-						{t("settings.appearance.weight.bold", "Bold")}
-					</SegmentedControl.Item>
-				</SegmentedControl.Root>
+					label={t("settings.appearance.fontWeight", "Font weight")}
+					options={[
+						{
+							value: "400",
+							label: t("settings.appearance.weight.regular", "Regular"),
+						},
+						{
+							value: "700",
+							label: t("settings.appearance.weight.bold", "Bold"),
+						},
+					]}
+				/>
 			</Flex>
 			<Flex direction="column" gap="3">
 				<Text size="4" weight="bold" mb="2">
 					{t("settings.appearance.fontStyle", "Font style")}
 				</Text>
-				<SegmentedControl.Root
-					size="3"
+				<OptionPicker
+					size="2"
 					value={appFontStyle}
 					onValueChange={setAppFontStyle}
-					style={{ width: "100%" }}
-				>
-					<SegmentedControl.Item value="normal" style={{ flexGrow: 1 }}>
-						{t("settings.appearance.style.normal", "Normal")}
-					</SegmentedControl.Item>
-					<SegmentedControl.Item value="italic" style={{ flexGrow: 1 }}>
-						{t("settings.appearance.style.italic", "Italic")}
-					</SegmentedControl.Item>
-				</SegmentedControl.Root>
+					label={t("settings.appearance.fontStyle", "Font style")}
+					options={[
+						{
+							value: "normal",
+							label: t("settings.appearance.style.normal", "Normal"),
+						},
+						{
+							value: "italic",
+							label: t("settings.appearance.style.italic", "Italic"),
+						},
+					]}
+				/>
 			</Flex>
 		</Grid>
 	</Card>

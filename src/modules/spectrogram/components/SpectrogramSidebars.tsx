@@ -8,11 +8,11 @@ import {
 	Flex,
 	IconButton,
 	Popover,
-	SegmentedControl,
 	Slider,
 	Text,
 	Tooltip,
 } from "@radix-ui/themes";
+import { OptionPicker } from "$/components/OptionPicker";
 import type { useAudioSpectrogram } from "../hooks/useAudioSpectrogram";
 import styles from "./AudioSpectrogram.module.css";
 import { FrequencyRuler } from "./FrequencyRuler.tsx";
@@ -148,16 +148,15 @@ export function SpectrogramSettingsSidebar({
 								{t("spectrogram.fftSize", "FFT size")} (
 								{t("spectrogram.resolution", "FFT resolution")})
 							</Text>
-							<SegmentedControl.Root
-								size="1"
+							<OptionPicker
 								value={fftSize.toString()}
 								onValueChange={(v) => setFftSize(Number.parseInt(v, 10))}
-							>
-								<SegmentedControl.Item value="512">512</SegmentedControl.Item>
-								<SegmentedControl.Item value="1024">1024</SegmentedControl.Item>
-								<SegmentedControl.Item value="2048">2048</SegmentedControl.Item>
-								<SegmentedControl.Item value="4096">4096</SegmentedControl.Item>
-							</SegmentedControl.Root>
+								label={t("spectrogram.fftSize", "FFT size")}
+								options={["512", "1024", "2048", "4096"].map((size) => ({
+									value: size,
+									label: size,
+								}))}
+							/>
 						</Flex>
 
 						<Flex align="center" gap="2">

@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Synchronisez chaque ligne de chœurs juste après sa ligne principale.",
       "bgSyncSeparate": "Passe séparée",
       "bgSyncSeparateDesc": "G et H restent sur les lignes principales. Cliquez sur une ligne de chœurs pour synchroniser les chœurs à part.",
-      "bgSyncOnly": "Chœurs seuls",
-      "bgSyncOnlyDesc": "Ignore les lignes principales : G et H ne passent que d'une ligne de chœurs à l'autre.",
-      "bgSyncSkip": "Ignorer",
-      "bgSyncSkipDesc": "Exclut les lignes de chœurs de la synchronisation au clavier.",
       "quickFixes": "Corrections rapides",
       "manualTimestampEdit": "Modification manuelle de l'horodatage",
       "doubleClickEdit": "Modification des mots par double-clic",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Éditeur d'apparence",
         "basic": "Disposition simple",
         "advanced": "Disposition avancée",
         "none": "Aucun",
@@ -767,6 +764,7 @@
     "words": "Mots",
     "lyricsAndTimings": "Paroles et temps des mots",
     "autoScroll": "Défilement automatique",
+    "order": "Ordre",
     "orderChronological": "Chronologique",
     "orderTextual": "Ordre du texte"
   },

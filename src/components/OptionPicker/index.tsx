@@ -43,7 +43,10 @@ export function OptionPicker<T extends string>({
 					<ChevronDownRegular className={styles.chevron} />
 				</Button>
 			</DropdownMenu.Trigger>
-			<DropdownMenu.Content size={size} className={styles.content}>
+			<DropdownMenu.Content
+				size={size}
+				className={`${styles.content} ${size === "2" ? styles.size2 : styles.size1}`}
+			>
 				<DropdownMenu.RadioGroup
 					value={value}
 					onValueChange={(next) => {
@@ -57,7 +60,7 @@ export function OptionPicker<T extends string>({
 							value={option.value}
 							className={styles.item}
 						>
-							<Flex direction="column" gap="0" py="1">
+							<Flex direction="column" gap="0">
 								<Text size={size} weight="medium">
 									{option.label}
 								</Text>

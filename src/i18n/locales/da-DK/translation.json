@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Synkroniser hver baggrundslinje lige efter dens hovedlinje.",
       "bgSyncSeparate": "Separat gennemgang",
       "bgSyncSeparateDesc": "G og H bliver på hovedlinjerne. Klik på en baggrundslinje for at synkronisere baggrundslinjerne for sig.",
-      "bgSyncOnly": "Kun baggrund",
-      "bgSyncOnlyDesc": "Spring hovedlinjer over: G og H flytter kun mellem baggrundslinjer.",
-      "bgSyncSkip": "Spring over",
-      "bgSyncSkipDesc": "Udelad baggrundslinjer fra tastatursynkronisering.",
       "quickFixes": "Hurtige rettelser",
       "manualTimestampEdit": "Manuel redigering af tidsstempler",
       "doubleClickEdit": "Redigér ord med dobbeltklik",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Udseende-editor",
         "basic": "Enkelt layout",
         "advanced": "Avanceret layout",
         "none": "Ingen",
@@ -767,6 +764,7 @@
     "words": "Ord",
     "lyricsAndTimings": "Sangtekst og ordtiming",
     "autoScroll": "Automatisk rulning",
+    "order": "Rækkefølge",
     "orderChronological": "Kronologisk",
     "orderTextual": "Tekstrækkefølge"
   },

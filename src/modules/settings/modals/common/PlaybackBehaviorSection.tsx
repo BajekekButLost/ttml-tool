@@ -5,15 +5,8 @@ import {
 	Target24Regular,
 	TextWrap24Regular,
 } from "@fluentui/react-icons";
-import {
-	Box,
-	Card,
-	Flex,
-	Heading,
-	SegmentedControl,
-	Switch,
-	Text,
-} from "@radix-ui/themes";
+import { Box, Card, Flex, Heading, Switch, Text } from "@radix-ui/themes";
+import { OptionPicker } from "$/components/OptionPicker";
 import {
 	editActiveLineHighlightAtom,
 	editAutoScrollAtom,
@@ -78,21 +71,18 @@ export const PlaybackBehaviorSection = ({
 		<Text weight="bold">
 			{t("settings.common.playbackSettingsMode", "Playback behavior for")}
 		</Text>
-		<SegmentedControl.Root
-			value={playbackSettingsMode}
-			onValueChange={(value) =>
-				setPlaybackSettingsMode(
-					value === ToolMode.Edit ? ToolMode.Edit : ToolMode.Sync,
-				)
+		<OptionPicker
+			size="2"
+			value={
+				playbackSettingsMode === ToolMode.Edit ? ToolMode.Edit : ToolMode.Sync
 			}
-		>
-			<SegmentedControl.Item value={ToolMode.Edit}>
-				{t("settings.common.editMode", "Edit")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value={ToolMode.Sync}>
-				{t("settings.common.timeMode", "Time")}
-			</SegmentedControl.Item>
-		</SegmentedControl.Root>
+			onValueChange={setPlaybackSettingsMode}
+			label={t("settings.common.playbackSettingsMode", "Playback behavior for")}
+			options={[
+				{ value: ToolMode.Edit, label: t("settings.common.editMode", "Edit") },
+				{ value: ToolMode.Sync, label: t("settings.common.timeMode", "Time") },
+			]}
+		/>
 
 		<Card>
 			<Text as="label">

@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Ajoita jokainen taustalaulurivi heti päärivinsä jälkeen.",
       "bgSyncSeparate": "Erikseen",
       "bgSyncSeparateDesc": "G ja H pysyvät pääriveillä. Napsauta taustalauluriviä ajoittaaksesi taustalaulurivit omana kierroksenaan.",
-      "bgSyncOnly": "Vain tausta",
-      "bgSyncOnlyDesc": "Ohita päärivit: G ja H liikkuvat vain taustalaulurivien välillä.",
-      "bgSyncSkip": "Ohita",
-      "bgSyncSkipDesc": "Jätä taustalaulurivit pois näppäimistöajoituksesta.",
       "quickFixes": "Pikakorjaukset",
       "manualTimestampEdit": "Aikaleimojen manuaalinen muokkaus",
       "doubleClickEdit": "Muokkaa sanaa kaksoisnapsauttamalla",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Ulkoasun muokkain",
         "basic": "Yksinkertainen asettelu",
         "advanced": "Edistynyt asettelu",
         "none": "Ei mitään",
@@ -767,6 +764,7 @@
     "words": "Sanat",
     "lyricsAndTimings": "Sanoitukset ja sanojen ajoitukset",
     "autoScroll": "Automaattinen vieritys",
+    "order": "Järjestys",
     "orderChronological": "Kronologinen",
     "orderTextual": "Tekstijärjestys"
   },

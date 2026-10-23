@@ -1,16 +1,8 @@
-import {
-	Checkbox,
-	SegmentedControl,
-	Switch,
-	TextField,
-} from "@radix-ui/themes";
+import { Checkbox, Switch, TextField } from "@radix-ui/themes";
 import { useAtom, type WritableAtom } from "jotai";
 import { useTranslation } from "react-i18next";
-import { OptionPicker, type PickerOption } from "$/components/OptionPicker";
-import {
-	type BackgroundSyncMode,
-	backgroundSyncModeAtom,
-} from "../states/background-sync";
+import { OptionPicker } from "$/components/OptionPicker";
+import { backgroundSyncLaneAtom } from "../states/background-sync";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
@@ -74,66 +66,44 @@ export function SyncLevelControl() {
 	const [value, setValue] = useAtom(syncLevelModeAtom);
 	const { t } = useTranslation();
 	return (
-		<SegmentedControl.Root
+		<OptionPicker
 			value={value}
-			onValueChange={(next) => {
-				if (next === "word" || next === "line") setValue(next);
-			}}
-			size="1"
-		>
-			<SegmentedControl.Item value="word">
-				{t("ribbonBar.syncMode.syncLevelWord", "Word")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value="line">
-				{t("ribbonBar.syncMode.syncLevelLine", "Line")}
-			</SegmentedControl.Item>
-		</SegmentedControl.Root>
+			onValueChange={setValue}
+			label={t("ribbonBar.syncMode.syncLevel", "Sync by")}
+			options={[
+				{ value: "word", label: t("ribbonBar.syncMode.syncLevelWord", "Word") },
+				{ value: "line", label: t("ribbonBar.syncMode.syncLevelLine", "Line") },
+			]}
+		/>
 	);
 }
 
 export function BackgroundSyncControl() {
-	const [value, setValue] = useAtom(backgroundSyncModeAtom);
+	const [value, setValue] = useAtom(backgroundSyncLaneAtom);
 	const { t } = useTranslation();
-	const options: readonly PickerOption<BackgroundSyncMode>[] = [
-		{
-			value: "inline",
-			label: t("ribbonBar.syncMode.bgSyncInline", "Inline"),
-			description: t(
-				"ribbonBar.syncMode.bgSyncInlineDesc",
-				"Sync each background line right after its main line.",
-			),
-		},
-		{
-			value: "separate",
-			label: t("ribbonBar.syncMode.bgSyncSeparate", "Separate pass"),
-			description: t(
-				"ribbonBar.syncMode.bgSyncSeparateDesc",
-				"G and H stay on main lines. Click a background line to sync the background lines on their own.",
-			),
-		},
-		{
-			value: "only",
-			label: t("ribbonBar.syncMode.bgSyncOnly", "Only"),
-			description: t(
-				"ribbonBar.syncMode.bgSyncOnlyDesc",
-				"Skip main lines: G and H only move between background lines.",
-			),
-		},
-		{
-			value: "skip",
-			label: t("ribbonBar.syncMode.bgSyncSkip", "Skip"),
-			description: t(
-				"ribbonBar.syncMode.bgSyncSkipDesc",
-				"Leave background lines out of keyboard syncing.",
-			),
-		},
-	];
 	return (
 		<OptionPicker
 			value={value}
-			options={options}
 			onValueChange={setValue}
 			label={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
+			options={[
+				{
+					value: "all",
+					label: t("ribbonBar.syncMode.bgSyncInline", "Inline"),
+					description: t(
+						"ribbonBar.syncMode.bgSyncInlineDesc",
+						"Sync each background line right after its main line.",
+					),
+				},
+				{
+					value: "same",
+					label: t("ribbonBar.syncMode.bgSyncSeparate", "Separate pass"),
+					description: t(
+						"ribbonBar.syncMode.bgSyncSeparateDesc",
+						"G and H stay on main lines. Click a background line to sync the background lines on their own.",
+					),
+				},
+			]}
 		/>
 	);
 }
@@ -142,26 +112,24 @@ export function PreviewModeControl() {
 	const [value, setValue] = useAtom(previewModeTypeAtom);
 	const { t } = useTranslation();
 	return (
-		<SegmentedControl.Root
+		<OptionPicker
+			size="2"
 			value={value}
-			onValueChange={(next) => {
-				if (Object.values(PreviewModeType).some((mode) => mode === next))
-					setValue(next as PreviewModeType);
-			}}
-		>
-			<SegmentedControl.Item value={PreviewModeType.Standard}>
-				{t("ribbonBar.previewMode.standard", "Standard")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value={PreviewModeType.Toxi}>
-				Toxi
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value={PreviewModeType.Spicy}>
-				Spicy
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value={PreviewModeType.Timing}>
-				{t("ribbonBar.previewMode.timing", "Timing")}
-			</SegmentedControl.Item>
-		</SegmentedControl.Root>
+			onValueChange={setValue}
+			label={t("ribbonBar.previewMode.mode", "Mode")}
+			options={[
+				{
+					value: PreviewModeType.Standard,
+					label: t("ribbonBar.previewMode.standard", "Standard"),
+				},
+				{ value: PreviewModeType.Toxi, label: "Toxi" },
+				{ value: PreviewModeType.Spicy, label: "Spicy" },
+				{
+					value: PreviewModeType.Timing,
+					label: t("ribbonBar.previewMode.timing", "Timing"),
+				},
+			]}
+		/>
 	);
 }
 
@@ -169,23 +137,24 @@ export function SpicyBackgroundControl() {
 	const [value, setValue] = useAtom(spicyBackgroundModeAtom);
 	const { t } = useTranslation();
 	return (
-		<SegmentedControl.Root
+		<OptionPicker
 			value={value}
-			onValueChange={(next) => {
-				if (next === "animated" || next === "color" || next === "static")
-					setValue(next);
-			}}
-			size="1"
-		>
-			<SegmentedControl.Item value="animated">
-				{t("ribbonBar.previewMode.backgroundAnimated", "Animated")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value="color">
-				{t("ribbonBar.previewMode.backgroundColor", "Color")}
-			</SegmentedControl.Item>
-			<SegmentedControl.Item value="static">
-				{t("ribbonBar.previewMode.backgroundStatic", "Static")}
-			</SegmentedControl.Item>
-		</SegmentedControl.Root>
+			onValueChange={setValue}
+			label={t("ribbonBar.previewMode.background", "Background")}
+			options={[
+				{
+					value: "animated",
+					label: t("ribbonBar.previewMode.backgroundAnimated", "Animated"),
+				},
+				{
+					value: "color",
+					label: t("ribbonBar.previewMode.backgroundColor", "Color"),
+				},
+				{
+					value: "static",
+					label: t("ribbonBar.previewMode.backgroundStatic", "Static"),
+				},
+			]}
+		/>
 	);
 }

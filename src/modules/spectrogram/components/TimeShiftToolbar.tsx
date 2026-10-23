@@ -1,8 +1,6 @@
 import {
 	AddRegular,
-	ArrowRightRegular,
 	CheckmarkRegular,
-	CopyRegular,
 	DismissRegular,
 	RecordRegular,
 	SubtractRegular,
@@ -12,7 +10,6 @@ import {
 	Button,
 	Flex,
 	IconButton,
-	SegmentedControl,
 	Select,
 	Slider,
 	Text,
@@ -25,6 +22,7 @@ import { useSetImmerAtom } from "jotai-immer";
 import { type FC, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { uid } from "uid";
+import { OptionPicker } from "$/components/OptionPicker";
 import { currentTimeAtom } from "$/modules/audio/states/index.ts";
 import {
 	timeShiftDialogAtom,
@@ -228,25 +226,17 @@ export const TimeShiftToolbar: FC = () => {
 						>
 							{t("timeShiftDialog.title", "Time Shift")}
 						</Text>
-						<SegmentedControl.Root
-							size="1"
-							value={isCopyMode ? "copy" : "move"}
-							onValueChange={(v) => setIsCopyMode(v === "copy")}
-							style={{ marginTop: 4 }}
-						>
-							<SegmentedControl.Item value="move">
-								<Flex align="center" gap="1">
-									<ArrowRightRegular fontSize={12} />
-									{t("common.move", "Move")}
-								</Flex>
-							</SegmentedControl.Item>
-							<SegmentedControl.Item value="copy">
-								<Flex align="center" gap="1">
-									<CopyRegular fontSize={12} />
-									{t("common.copy", "Copy")}
-								</Flex>
-							</SegmentedControl.Item>
-						</SegmentedControl.Root>
+						<Box mt="1">
+							<OptionPicker
+								value={isCopyMode ? "copy" : "move"}
+								onValueChange={(v) => setIsCopyMode(v === "copy")}
+								label={t("timeShiftDialog.title", "Time Shift")}
+								options={[
+									{ value: "move", label: t("common.move", "Move") },
+									{ value: "copy", label: t("common.copy", "Copy") },
+								]}
+							/>
+						</Box>
 					</Flex>
 
 					<Box className={styles.divider} />

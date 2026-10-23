@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Sincronize cada linha de vocais de apoio logo depois da linha principal.",
       "bgSyncSeparate": "Passada separada",
       "bgSyncSeparateDesc": "G e H ficam nas linhas principais. Clique em uma linha de vocais de apoio para sincronizá-las à parte.",
-      "bgSyncOnly": "Só apoio",
-      "bgSyncOnlyDesc": "Pula as linhas principais: G e H só passam entre linhas de vocais de apoio.",
-      "bgSyncSkip": "Pular",
-      "bgSyncSkipDesc": "Deixa as linhas de vocais de apoio fora da sincronização pelo teclado.",
       "quickFixes": "Correções rápidas",
       "manualTimestampEdit": "Edição manual de marcas de tempo",
       "doubleClickEdit": "Edição de palavras com duplo clique",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Editor de aparência",
         "basic": "Layout simples",
         "advanced": "Layout avançado",
         "none": "Nenhum",
@@ -767,6 +764,7 @@
     "words": "Palavras",
     "lyricsAndTimings": "Letra e tempos das palavras",
     "autoScroll": "Rolagem automática",
+    "order": "Ordem",
     "orderChronological": "Cronológico",
     "orderTextual": "Ordem do texto"
   },

@@ -384,10 +384,6 @@
       "bgSyncInlineDesc": "Synchroniseer elke achtergrondregel direct na de hoofdregel.",
       "bgSyncSeparate": "Aparte ronde",
       "bgSyncSeparateDesc": "G en H blijven op de hoofdregels. Klik op een achtergrondregel om de achtergrondregels apart te synchroniseren.",
-      "bgSyncOnly": "Alleen achtergrond",
-      "bgSyncOnlyDesc": "Sla hoofdregels over: G en H gaan alleen naar achtergrondregels.",
-      "bgSyncSkip": "Overslaan",
-      "bgSyncSkipDesc": "Achtergrondregels doen niet mee met synchroniseren via het toetsenbord.",
       "quickFixes": "Snelle correcties",
       "manualTimestampEdit": "Tijdstempels handmatig bewerken",
       "doubleClickEdit": "Woorden bewerken met dubbelklik",
@@ -513,6 +509,7 @@
     },
     "appearance": {
       "mode": {
+        "label": "Weergave-editor",
         "basic": "Eenvoudige indeling",
         "advanced": "Geavanceerde indeling",
         "none": "Geen",
@@ -767,6 +764,7 @@
     "words": "Woorden",
     "lyricsAndTimings": "Songteksten en woordtimingen",
     "autoScroll": "Automatisch scrollen",
+    "order": "Volgorde",
     "orderChronological": "Chronologisch",
     "orderTextual": "Tekstvolgorde"
   },
