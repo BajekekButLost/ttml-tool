@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main";
 
 import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml";
+import { insertLinesInSection } from "../utils/section-system";
 import {
 	globalEnableInsertAtom,
 	timingCopyPlacementAtom,
@@ -83,7 +84,12 @@ export const LyricLineMenu = ({ lineIndex }: { lineIndex: number }) => {
 			<ContextMenu.Item
 				onSelect={() => {
 					editLyricLines((state) => {
-						state.lyricLines.splice(lineIndex, 0, newLyricLine());
+						insertLinesInSection(
+							state,
+							lineIndex,
+							[newLyricLine()],
+							state.lyricLines[lineIndex]?.sectionId,
+						);
 					});
 				}}
 			>
@@ -92,7 +98,12 @@ export const LyricLineMenu = ({ lineIndex }: { lineIndex: number }) => {
 			<ContextMenu.Item
 				onSelect={() => {
 					editLyricLines((state) => {
-						state.lyricLines.splice(lineIndex + 1, 0, newLyricLine());
+						insertLinesInSection(
+							state,
+							lineIndex + 1,
+							[newLyricLine()],
+							state.lyricLines[lineIndex]?.sectionId,
+						);
 					});
 				}}
 			>

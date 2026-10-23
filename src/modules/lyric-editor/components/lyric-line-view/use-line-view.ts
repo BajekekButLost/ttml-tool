@@ -127,14 +127,21 @@ export function useLineView(lineAtom: Atom<LyricLine>, lineIndex: number) {
 		[activeGeniusHeader, activeSection],
 	);
 
-	const isSectionStart = useMemo(() => {
-		if (!activeGeniusHeader) return false;
-		if (lineIndex === 0) return true;
-		const prevLine = store.get(lyricLinesAtom).lyricLines[lineIndex - 1];
-		return line.sectionId
-			? prevLine?.sectionId !== line.sectionId
-			: prevLine?.geniusHeader !== activeGeniusHeader;
-	}, [activeGeniusHeader, line.sectionId, lineIndex, store]);
+	// Subscribed, not read once: merging or moving the previous line into this
+	// line's section has to hide this header right away, not after a remount.
+	const isSectionStartAtom = useMemo(
+		() =>
+			atom((get) => {
+				if (!activeGeniusHeader) return false;
+				if (lineIndex === 0) return true;
+				const prevLine = get(lyricLinesAtom).lyricLines[lineIndex - 1];
+				return line.sectionId
+					? prevLine?.sectionId !== line.sectionId
+					: prevLine?.geniusHeader !== activeGeniusHeader;
+			}),
+		[activeGeniusHeader, line.sectionId, lineIndex],
+	);
+	const isSectionStart = useAtomValue(isSectionStartAtom);
 
 	const categoryColor = useMemo(
 		() => getCategoryColor(headerType),

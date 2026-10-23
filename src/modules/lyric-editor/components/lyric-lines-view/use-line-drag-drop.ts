@@ -14,7 +14,10 @@ import type { Atom, useStore } from "jotai";
 import { useEffect } from "react";
 import { lyricLinesAtom, selectedLinesAtom, ToolMode } from "$/states/main.ts";
 import type { LyricLine, TTMLLyric } from "$/types/ttml.ts";
-import { repairSectionIntegrity } from "../../utils/section-system.ts";
+import {
+	insertLinesInSection,
+	sectionIdAt,
+} from "../../utils/section-system.ts";
 import {
 	clampScrollTop,
 	DRAG_SCROLL_SPEED,
@@ -235,12 +238,14 @@ export function useLineDragDrop({
 					);
 					if (targetIndex < 0) return;
 					const insertionIndex = targetIndex + Number(insertAfter);
-					state.lyricLines = [
-						...filteredLines.slice(0, insertionIndex),
-						...targetLines,
-						...filteredLines.slice(insertionIndex),
-					];
-					repairSectionIntegrity(state);
+					state.lyricLines = filteredLines;
+					// Lines dropped inside a section join it instead of splitting it.
+					insertLinesInSection(
+						state,
+						insertionIndex,
+						targetLines,
+						sectionIdAt(filteredLines, insertionIndex),
+					);
 				});
 			}
 			clearDropTarget();

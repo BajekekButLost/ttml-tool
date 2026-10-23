@@ -205,6 +205,7 @@
       "title": "Secciones de Genius",
       "snapToPlayhead": "Ajustar al cabezal de reproducción",
       "noPreviousFound": "No se ha encontrado una sección anterior del mismo tipo con tiempos.",
+      "noMatchingLines": "Ninguna línea de esta sección coincide con la anterior, así que no se copió nada.",
       "copyPrevious": "Copiar tiempos anteriores",
       "headersRestored": "Encabezados de sección restaurados."
     }

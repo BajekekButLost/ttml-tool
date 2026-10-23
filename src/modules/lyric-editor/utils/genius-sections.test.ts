@@ -78,4 +78,35 @@ describe("Genius sections", () => {
 		expect(lines[3].startTime).toBe(700);
 		expect(lines[4].startTime).toBe(100);
 	});
+
+	it("snaps a section without giving untimed words a time", () => {
+		const untimed = { ...line("[Verse]", 0), endTime: 0 };
+		untimed.words = untimed.words.map((w) => ({
+			...w,
+			startTime: 0,
+			endTime: 0,
+		}));
+		const lines = [untimed, line("[Verse]", 1000), line("[Verse]", 1200)];
+
+		expect(shiftSectionToTime(lines, 0, 5000)).toBe(true);
+
+		expect([lines[0].startTime, lines[0].endTime]).toEqual([0, 0]);
+		expect(lines[0].words[0].startTime).toBe(0);
+		expect(lines[1].startTime).toBe(5000);
+		expect(lines[2].startTime).toBe(5200);
+	});
+
+	it("finds an earlier section whose first line is untimed", () => {
+		const untimed = { ...line("[Chorus]", 0), endTime: 0 };
+		const lines = [
+			untimed,
+			line("[Chorus]", 1000),
+			line("[Verse]", 2000),
+			line("[Chorus]", 0),
+		];
+		expect(findPreviousMatchingSection(lines, 3)).toMatchObject({
+			start: 0,
+			end: 2,
+		});
+	});
 });

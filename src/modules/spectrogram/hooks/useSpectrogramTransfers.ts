@@ -7,6 +7,7 @@ import {
 	draggingIdAtom,
 	globalEnableInsertAtom,
 } from "$/modules/lyric-editor/components/lyric-line-view-states.ts";
+import { repairSectionIntegrity } from "$/modules/lyric-editor/utils/section-system.ts";
 import { spectrogramSelectionAtom } from "$/modules/spectrogram/states";
 import { insertDuplicatedLines } from "$/modules/spectrogram/utils/duplicate-paste";
 import { lyricLinesAtom, selectedLinesAtom } from "$/states/main.ts";
@@ -29,6 +30,7 @@ export function useSpectrogramTransfers(store: ReturnType<typeof useStore>) {
 					currentSelectedLines,
 					selection ?? { start: currentTimeMs },
 				);
+				repairSectionIntegrity(draft);
 			}),
 		);
 

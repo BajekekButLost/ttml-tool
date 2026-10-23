@@ -205,6 +205,7 @@
       "title": "Genius-sektioner",
       "snapToPlayhead": "Flyt til afspilningsmarkør",
       "noPreviousFound": "Ingen tidligere tilsvarende sektion med timing fundet.",
+      "noMatchingLines": "Ingen linjer i denne sektion matcher den tidligere, så intet blev kopieret.",
       "copyPrevious": "Kopiér forrige timing",
       "headersRestored": "Sektionsoverskrifter gendannet."
     }

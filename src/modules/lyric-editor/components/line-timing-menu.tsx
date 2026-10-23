@@ -12,6 +12,7 @@ import {
 	createLineTimingSnapshots,
 	snapSelectedLineTimingsToTime,
 } from "../utils/line-timing";
+import { repairSectionIntegrity } from "../utils/section-system";
 import {
 	globalEnableInsertAtom,
 	timingCopyPlacementAtom,
@@ -72,6 +73,7 @@ export function LineTimingMenuItems() {
 				selectedLineIds,
 				selection ?? { start: currentTime },
 			);
+			repairSectionIntegrity(state);
 		});
 		if (selection) store.set(spectrogramSelectionAtom, null);
 		setGlobalEnableInsert(false);

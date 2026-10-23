@@ -91,4 +91,21 @@ describe("insertDuplicatedLines", () => {
 		expect(insertDuplicatedLines(lyricLines, new Set(), { start: 0 })).toBe(0);
 		expect(lyricLines).toHaveLength(1);
 	});
+
+	it("puts copies landing inside a section into that section", () => {
+		const inSection = (l: LyricLine, header: string) => ({
+			...l,
+			sectionId: "verse",
+			geniusHeader: header,
+		});
+		const source = line([word("x", 0, 500)]);
+		const first = inSection(line([word("a", 1000, 2000)]), "[Verse]");
+		const second = inSection(line([word("b", 5000, 6000)]), "[Verse]");
+		const lyricLines = [source, first, second];
+
+		insertDuplicatedLines(lyricLines, new Set([source.id]), { start: 3000 });
+
+		expect(lyricLines[2].sectionId).toBe("verse");
+		expect(lyricLines[2].geniusHeader).toBe("[Verse]");
+	});
 });

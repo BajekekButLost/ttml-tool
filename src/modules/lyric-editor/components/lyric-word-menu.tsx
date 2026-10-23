@@ -39,6 +39,7 @@ import {
 	deleteWordsFromLines,
 	normalizeLineTime,
 } from "../utils/normalize-line-time";
+import { insertLinesInSection } from "../utils/section-system";
 
 const selectedLinesSizeAtom = atom((get) => get(selectedLinesAtom).size);
 const selectedWordsSizeAtom = atom((get) => get(selectedWordsAtom).size);
@@ -339,7 +340,12 @@ export const LyricWordMenu = ({
 			} as LyricLine;
 			newLine.words.push(...selectedWords);
 			normalizeLineTime(newLine);
-			state.lyricLines.splice(lineIndex + 1, 0, newLine);
+			insertLinesInSection(
+				state,
+				lineIndex + 1,
+				[newLine],
+				state.lyricLines[lineIndex].sectionId,
+			);
 		});
 	}
 
@@ -360,7 +366,7 @@ export const LyricWordMenu = ({
 			newLine.words.push(...wordsToMove);
 			normalizeLineTime(line);
 			normalizeLineTime(newLine);
-			state.lyricLines.splice(lineIndex + 1, 0, newLine);
+			insertLinesInSection(state, lineIndex + 1, [newLine], line.sectionId);
 		});
 	}
 };

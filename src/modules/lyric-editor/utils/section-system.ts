@@ -243,9 +243,46 @@ export function repairSectionIntegrity(lyrics: TTMLLyric) {
 	return lyrics;
 }
 
+/**
+ * The section a line placed at `index` falls inside: the one shared by the
+ * lines on both sides of that spot. At a boundary between two sections, or
+ * next to unassigned lines, there's no section to join.
+ */
+export function sectionIdAt(lines: LyricLine[], index: number) {
+	const previous = lines[index - 1]?.sectionId;
+	return previous && previous === lines[index]?.sectionId
+		? previous
+		: undefined;
+}
+
+/**
+ * Inserts lines at `index` and puts them in `sectionId` when given, so a line
+ * added inside a section stays part of it instead of splitting the section
+ * into two headers. Mutates `lyrics` (an Immer draft is fine).
+ */
+export function insertLinesInSection(
+	lyrics: TTMLLyric,
+	index: number,
+	newLines: LyricLine[],
+	sectionId: string | undefined,
+) {
+	const section = sectionId
+		? lyrics.sections?.find((item) => item.id === sectionId)
+		: undefined;
+	if (section) {
+		for (const line of newLines) {
+			line.sectionId = section.id;
+			line.geniusHeader = section.label;
+		}
+	}
+	lyrics.lyricLines.splice(index, 0, ...newLines);
+	repairSectionIntegrity(lyrics);
+}
+
 export function duplicateLinesWithSections(
 	lyrics: TTMLLyric,
 	selectedLineIds: ReadonlySet<string>,
+	targetSectionId?: string,
 ) {
 	const sectionById = new Map(
 		(lyrics.sections ?? []).map((section) => [section.id, section]),
@@ -259,7 +296,9 @@ export function duplicateLinesWithSections(
 			id: uid(),
 			words: line.words.map((word) => ({ ...word, id: uid() })),
 		};
-		if (line.sectionId) {
+		// Copies placed inside a section join it; only copies placed elsewhere
+		// get a repeat of their original section.
+		if (line.sectionId && !targetSectionId) {
 			const source = sectionById.get(line.sectionId);
 			if (source) {
 				let clone = clones.get(source.id);

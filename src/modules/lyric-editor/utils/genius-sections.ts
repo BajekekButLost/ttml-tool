@@ -60,7 +60,11 @@ export function findPreviousMatchingSection(
 					sectionMap.get(candidate.sectionId)?.label ===
 						currentSection.label)) ||
 				(!currentSection && candidate.header === current.header)) &&
-			lines[candidate.start].endTime > lines[candidate.start].startTime
+			// Any timed line counts: a chorus that opens on an untimed or
+			// background line is still a usable source.
+			lines
+				.slice(candidate.start, candidate.end)
+				.some((line) => line.endTime > line.startTime)
 		) {
 			return candidate;
 		}
@@ -75,13 +79,22 @@ export function shiftSectionToTime(
 ) {
 	const section = getSectionBounds(lines, lineIndex);
 	if (!section) return false;
-	const offset = targetStartTime - lines[section.start].startTime;
+	const sectionLines = lines.slice(section.start, section.end);
+	// Untimed lines and words (0/0) stay untimed, and the offset is measured
+	// from the first timed line, not from a leading untimed one.
+	const isTimed = (item: { startTime: number; endTime: number }) =>
+		item.startTime > 0 || item.endTime > 0;
+	const firstTimed = sectionLines.find(isTimed);
+	if (!firstTimed) return false;
+	const offset = targetStartTime - firstTimed.startTime;
 
-	for (let index = section.start; index < section.end; index++) {
-		const line = lines[index];
-		line.startTime += offset;
-		line.endTime += offset;
+	for (const line of sectionLines) {
+		if (isTimed(line)) {
+			line.startTime += offset;
+			line.endTime += offset;
+		}
 		for (const word of line.words) {
+			if (!isTimed(word)) continue;
 			word.startTime += offset;
 			word.endTime += offset;
 		}

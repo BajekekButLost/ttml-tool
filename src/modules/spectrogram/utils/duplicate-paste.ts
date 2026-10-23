@@ -1,3 +1,4 @@
+import { sectionIdAt } from "$/modules/lyric-editor/utils/section-system.ts";
 import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml.ts";
 
 /**
@@ -100,6 +101,15 @@ export function insertDuplicatedLines(
 
 	let insertIndex = lyricLines.findIndex((l) => l.startTime > target.start);
 	if (insertIndex === -1) insertIndex = lyricLines.length;
+	// Copies landing inside a section join it. Elsewhere they keep their
+	// original's section, and repairSectionIntegrity turns that into a repeat.
+	const sectionId = sectionIdAt(lyricLines, insertIndex);
+	if (sectionId) {
+		for (const line of newLines) {
+			line.sectionId = sectionId;
+			line.geniusHeader = lyricLines[insertIndex].geniusHeader;
+		}
+	}
 	lyricLines.splice(insertIndex, 0, ...newLines);
 	return newLines.length;
 }

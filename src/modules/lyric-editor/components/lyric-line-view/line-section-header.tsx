@@ -109,8 +109,17 @@ export function LineSectionHeader({
 										previousSection,
 									);
 								});
+								if (!copyResult?.copiedLineCount) {
+									toast.info(
+										t(
+											"experimentalFeatures.geniusCategorization.noMatchingLines",
+											"No lines in this section match the earlier one, so nothing was copied.",
+										),
+									);
+									return;
+								}
 								toast.success(t("common.success", "Restored"));
-								if (copyResult && !copyResult.lengthsMatch) {
+								if (!copyResult.lengthsMatch) {
 									toast.info(
 										"Section lengths differ; copied matching lines only.",
 									);

@@ -205,6 +205,7 @@
       "title": "Sekcie Genius",
       "snapToPlayhead": "Zarovnať na pozíciu prehrávania",
       "noPreviousFound": "Nenašla sa skoršia zodpovedajúca sekcia s časovaním.",
+      "noMatchingLines": "Žiadne riadky v tejto sekcii nezodpovedajú tej skoršej, nič sa neskopírovalo.",
       "copyPrevious": "Kopírovať predchádzajúce časovanie",
       "headersRestored": "Hlavičky sekcií boli obnovené."
     }

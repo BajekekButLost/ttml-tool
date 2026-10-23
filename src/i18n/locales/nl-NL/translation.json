@@ -205,6 +205,7 @@
       "title": "Genius-secties",
       "snapToPlayhead": "Uitlijnen op afspeelkop",
       "noPreviousFound": "Geen eerdere overeenkomende sectie met timing gevonden.",
+      "noMatchingLines": "Geen regels in deze sectie komen overeen met de eerdere, dus er is niets gekopieerd.",
       "copyPrevious": "Vorige timing kopiëren",
       "headersRestored": "Sectiekoppen hersteld."
     }

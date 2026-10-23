@@ -205,6 +205,7 @@
       "title": "Sections Genius",
       "snapToPlayhead": "Aligner sur la tête de lecture",
       "noPreviousFound": "Aucune section précédente correspondante avec des temps n’a été trouvée.",
+      "noMatchingLines": "Aucune ligne de cette section ne correspond à la précédente, rien n'a été copié.",
       "copyPrevious": "Copier les temps précédents",
       "headersRestored": "En-têtes de section restaurés."
     }

@@ -14,7 +14,8 @@ import { selectedLinesAtom } from "$/states/main.ts";
 import { newLyricLine } from "$/types/ttml.ts";
 import {
 	duplicateLinesWithSections,
-	repairSectionIntegrity,
+	insertLinesInSection,
+	sectionIdAt,
 } from "../../utils/section-system.ts";
 import type { LyricLineViewState } from "./use-line-view";
 
@@ -54,11 +55,21 @@ export function LineTrailingInsert({
 					editLyricLines((state) => {
 						const selectedLines = store.get(selectedLinesAtom);
 						if (selectedLines.size > 0) {
-							const newLines = duplicateLinesWithSections(state, selectedLines);
-							state.lyricLines.splice(lineIndex + 1, 0, ...newLines);
-							repairSectionIntegrity(state);
+							const sectionId = sectionIdAt(state.lyricLines, lineIndex + 1);
+							const newLines = duplicateLinesWithSections(
+								state,
+								selectedLines,
+								sectionId,
+							);
+							insertLinesInSection(state, lineIndex + 1, newLines, sectionId);
 						} else {
-							state.lyricLines.splice(lineIndex + 1, 0, newLyricLine());
+							// A new line added after this one belongs to this line's section.
+							insertLinesInSection(
+								state,
+								lineIndex + 1,
+								[newLyricLine()],
+								state.lyricLines[lineIndex]?.sectionId,
+							);
 						}
 					});
 					// setInsertMode(InsertMode.None);

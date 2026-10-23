@@ -17,7 +17,8 @@ import { lyricLinesAtom, selectedLinesAtom } from "$/states/main.ts";
 import { newLyricLine } from "$/types/ttml.ts";
 import {
 	duplicateLinesWithSections,
-	repairSectionIntegrity,
+	insertLinesInSection,
+	sectionIdAt,
 } from "../../utils/section-system.ts";
 
 export const InsertLineButton = ({
@@ -46,13 +47,12 @@ export const InsertLineButton = ({
 			onClick={(evt) => {
 				editLyricLines((state) => {
 					const selectedLines = store.get(selectedLinesAtom);
-					if (selectedLines.size > 0) {
-						const newLines = duplicateLinesWithSections(state, selectedLines);
-						state.lyricLines.splice(lineIndex, 0, ...newLines);
-						repairSectionIntegrity(state);
-					} else {
-						state.lyricLines.splice(lineIndex, 0, newLyricLine());
-					}
+					const sectionId = sectionIdAt(state.lyricLines, lineIndex);
+					const newLines =
+						selectedLines.size > 0
+							? duplicateLinesWithSections(state, selectedLines, sectionId)
+							: [newLyricLine()];
+					insertLinesInSection(state, lineIndex, newLines, sectionId);
 				});
 				if (!evt.shiftKey) {
 					disableInsert();

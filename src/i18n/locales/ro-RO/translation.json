@@ -205,6 +205,7 @@
       "title": "Secțiuni Genius",
       "snapToPlayhead": "Aliniază la cursorul de redare",
       "noPreviousFound": "Nu s-a găsit nicio secțiune anterioară corespunzătoare cu timpi.",
+      "noMatchingLines": "Niciun rând din această secțiune nu se potrivește cu cea anterioară, așa că nu s-a copiat nimic.",
       "copyPrevious": "Copiază timpii anteriori",
       "headersRestored": "Antetele secțiunilor au fost restaurate."
     }

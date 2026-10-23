@@ -205,6 +205,7 @@
       "title": "Genius 分段",
       "snapToPlayhead": "吸附到播放指针",
       "noPreviousFound": "未找到已打轴且匹配的先前分段。",
+      "noMatchingLines": "此段落中没有与之前段落匹配的行，因此未复制任何内容。",
       "copyPrevious": "复制上一段时间",
       "headersRestored": "分段标题已恢复。"
     }

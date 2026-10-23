@@ -205,6 +205,7 @@
       "title": "Sekcje Genius",
       "snapToPlayhead": "Przyciągnij do pozycji odtwarzania",
       "noPreviousFound": "Nie znaleziono wcześniejszej pasującej sekcji z synchronizacją.",
+      "noMatchingLines": "Żaden wiersz w tej sekcji nie pasuje do wcześniejszej, więc nic nie skopiowano.",
       "copyPrevious": "Kopiuj poprzednie czasy",
       "headersRestored": "Przywrócono nagłówki sekcji."
     }

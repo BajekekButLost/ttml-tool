@@ -205,6 +205,7 @@
       "title": "Genius-osiot",
       "snapToPlayhead": "Kohdista toistokohdistimeen",
       "noPreviousFound": "Aiempaa vastaavaa ajoitettua osiota ei löytynyt.",
+      "noMatchingLines": "Mikään tämän osion rivi ei vastaa aiempaa, joten mitään ei kopioitu.",
       "copyPrevious": "Kopioi edellinen ajoitus",
       "headersRestored": "Osioiden otsikot palautettu."
     }

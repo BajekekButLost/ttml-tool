@@ -6,6 +6,7 @@ import {
 	createSectionsFromSelectedLines,
 	duplicateLinesWithSections,
 	getOrderedSections,
+	insertLinesInSection,
 	mergeSectionWithAdjacent,
 	mergeUnassignedBlock,
 	migrateLegacySections,
@@ -13,6 +14,7 @@ import {
 	normalizeSectionHeader,
 	removeSectionMetadata,
 	repairSectionIntegrity,
+	sectionIdAt,
 	splitSection,
 } from "./section-system";
 
@@ -219,5 +221,92 @@ describe("first-class sections", () => {
 		expect(lyrics.lyricLines[2].sectionId).not.toBe("verse");
 		expect(mergeUnassignedBlock(lyrics, 1, "previous")).toBe(true);
 		expect(lyrics.lyricLines[1].sectionId).toBe("verse");
+	});
+});
+
+// Discord report: inserting, pasting and deleting lines inside a Genius
+// section split it into extra headers.
+describe("editing lines inside a section", () => {
+	const song = () => {
+		const lyrics = {
+			metadata: [],
+			lyricLines: [
+				line("a", "[Verse 1]"),
+				line("b", "[Verse 1]"),
+				line("c", "[Verse 1]"),
+				line("d", "[Chorus]"),
+			],
+		} as TTMLLyric;
+		migrateLegacySections(lyrics);
+		return lyrics;
+	};
+	const headers = (lyrics: TTMLLyric) =>
+		lyrics.lyricLines.flatMap((item, index) =>
+			index === 0 || item.sectionId !== lyrics.lyricLines[index - 1].sectionId
+				? [item.geniusHeader]
+				: [],
+		);
+
+	it("finds the section only strictly inside it", () => {
+		const lyrics = song();
+		const verseId = lyrics.lyricLines[0].sectionId;
+		expect(sectionIdAt(lyrics.lyricLines, 1)).toBe(verseId);
+		expect(sectionIdAt(lyrics.lyricLines, 0)).toBeUndefined();
+		expect(sectionIdAt(lyrics.lyricLines, 3)).toBeUndefined();
+		expect(sectionIdAt(lyrics.lyricLines, 4)).toBeUndefined();
+	});
+
+	it("keeps a new line inserted inside a section in that section", () => {
+		const lyrics = song();
+		const verseId = sectionIdAt(lyrics.lyricLines, 2);
+		insertLinesInSection(lyrics, 2, [newLyricLine()], verseId);
+		expect(lyrics.lyricLines[2].sectionId).toBe(verseId);
+		expect(lyrics.lyricLines[2].geniusHeader).toBe("[Verse 1]");
+		expect(headers(lyrics)).toEqual(["[Verse 1]", "[Chorus]"]);
+	});
+
+	it("pastes a copy into the same section without a new header", () => {
+		const lyrics = song();
+		const verseId = sectionIdAt(lyrics.lyricLines, 2);
+		const copies = duplicateLinesWithSections(
+			lyrics,
+			new Set([lyrics.lyricLines[0].id]),
+			verseId,
+		);
+		insertLinesInSection(lyrics, 2, copies, verseId);
+		expect(lyrics.sections).toHaveLength(2);
+		expect(lyrics.sections?.[0].repeatGroupId).toBeUndefined();
+		expect(headers(lyrics)).toEqual(["[Verse 1]", "[Chorus]"]);
+
+		// Deleting the pasted line leaves the verse whole.
+		lyrics.lyricLines.splice(2, 1);
+		repairSectionIntegrity(lyrics);
+		expect(headers(lyrics)).toEqual(["[Verse 1]", "[Chorus]"]);
+	});
+
+	it("still repeats a section when its lines are pasted outside it", () => {
+		const lyrics = song();
+		const copies = duplicateLinesWithSections(
+			lyrics,
+			new Set([lyrics.lyricLines[0].id]),
+			sectionIdAt(lyrics.lyricLines, 4),
+		);
+		insertLinesInSection(lyrics, 4, copies, undefined);
+		expect(headers(lyrics)).toEqual(["[Verse 1]", "[Chorus]", "[Verse 1]"]);
+		expect(lyrics.sections?.[2].repeatGroupId).toBe(
+			lyrics.sections?.[0].repeatGroupId,
+		);
+	});
+
+	it("leaves a line inserted between two sections unassigned", () => {
+		const lyrics = song();
+		insertLinesInSection(
+			lyrics,
+			3,
+			[newLyricLine()],
+			sectionIdAt(lyrics.lyricLines, 3),
+		);
+		expect(lyrics.lyricLines[3].sectionId).toBeUndefined();
+		expect(lyrics.sections).toHaveLength(2);
 	});
 });
