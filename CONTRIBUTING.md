@@ -1,4 +1,4 @@
-# Contributing to NaeNae's AMLL TTML Tool Fork
+# Contributing to Spicy Lyrics TTML Tool
 
 Thanks for helping. Keep changes focused, tested, and easy to review.
 

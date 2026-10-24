@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Vaya, ¡ha ocurrido un error!",
-      "description": "Se ha producido un error en NaeNae AMLL TTML Tool.",
+      "description": "Se ha producido un error en TTML Tool.",
       "checkDevTools": "Los detalles están en las herramientas de desarrollo.",
       "saveLyrics": "Intentar guardar la letra",
       "tryRestart": "Intentar recargar la aplicación",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Mostrar controles avanzados de la cinta",
       "language": "Idioma de la interfaz",
       "languageDesc": "Selecciona el idioma de la interfaz",
-      "helpTranslate": "Ayuda a traducir esta aplicación",
       "compactBGInSync": "Líneas de fondo compactas en Sincronización",
       "compactBGInSyncDesc": "Reduce el espacio vertical de las líneas de voces de fondo al sincronizar.",
       "syncJudgeMode": "Momento de la pulsación",
@@ -775,7 +774,7 @@
       "sync": "Sincronización",
       "preview": "Vista previa"
     },
-    "appName": "AMLL TTML Tool, versión de NaeNae",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Deshacer",
       "redo": "Rehacer",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "No hay sugerencias de división automáticas disponibles para este contenido."
   },
   "aboutModal": {
-    "appName": "Apple Music-like Lyrics TTML Tool, versión de NaeNae",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Editor TTML para sincronizar letras palabra por palabra al estilo de Apple Music",
-    "maintainers": "Responsables y colaboradores de esta versión",
-    "maintainersDesc": "Esta versión se mantiene y desarrolla por:",
-    "forkMaintainer": "Responsable y colaborador de esta versión",
+    "maintainers": "Responsables y colaboradores",
+    "maintainersDesc": "El proyecto lo mantienen y desarrollan:",
+    "forkMaintainer": "Responsable y colaborador",
     "visitWebsite": "Visitar sitio web",
     "credits": "Créditos y avisos de terceros",
     "creditsIntro": "Este proyecto incluye trabajo adaptado de los siguientes proyectos de código abierto.",
     "community": "Comunidad y contribuciones",
     "communityDesc": "Ayúdanos a mejorar la herramienta aportando código, notificando errores o traduciendo.",
     "github": "Repositorio de GitHub",
-    "crowdin": "Ayuda a traducir en Crowdin",
     "buildDate": "Fecha de compilación: {date}",
     "gitCommit": "Commit de Git: {commit}",
     "platform": "Plataforma: {platform}",

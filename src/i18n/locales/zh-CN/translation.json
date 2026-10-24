@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "诶呀，出错了！",
-      "description": "NaeNae's TTML Tool 运行出错。",
+      "description": "TTML Tool 运行出错。",
       "checkDevTools": "可在开发者工具中查看详情。",
       "saveLyrics": "尝试保存当前歌词",
       "tryRestart": "尝试重新加载应用",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "显示高级功能区控件",
       "language": "界面语言",
       "languageDesc": "选择界面显示的语言",
-      "helpTranslate": "帮助翻译此程序",
       "compactBGInSync": "打轴时紧凑显示背景人声行",
       "compactBGInSyncDesc": "打轴时减少背景人声行占用的垂直空间。",
       "syncJudgeMode": "按键取时",
@@ -775,7 +774,7 @@
       "sync": "打轴",
       "preview": "预览"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "撤销",
       "redo": "重做",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "没有适用于此内容的自动拆分建议。"
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "用于制作 Apple Music 风格逐字歌词的 TTML 编辑与打轴工具",
-    "maintainers": "分支维护者与贡献者",
-    "maintainersDesc": "此分支由以下人员维护和开发：",
-    "forkMaintainer": "分支维护者与贡献者",
+    "maintainers": "维护者与贡献者",
+    "maintainersDesc": "本项目由以下人员维护和开发：",
+    "forkMaintainer": "维护者与贡献者",
     "visitWebsite": "访问网站",
     "credits": "致谢与第三方声明",
     "creditsIntro": "该项目包括改编自以下开源项目的工作。",
     "community": "社区与贡献",
     "communityDesc": "通过贡献代码、报告问题或提供翻译来帮助我们改进该工具。",
     "github": "GitHub 存储库",
-    "crowdin": "在 Crowdin 上协助翻译",
     "buildDate": "构建日期：{date}",
     "gitCommit": "Git 提交：{commit}",
     "platform": "平台：{platform}",

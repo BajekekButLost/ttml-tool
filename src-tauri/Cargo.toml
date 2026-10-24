@@ -1,7 +1,7 @@
 [package]
 name = "amll-ttml-tool"
 version = "0.13.0"
-description = "A brand-new syllable lyric editor for Apple Music-like lyrics"
+description = "A word-by-word TTML lyrics editor and timing tool for Spicy Lyrics"
 license = "AGPL-3.0"
 repository = "https://github.com/spicylyrics/ttml-tool"
 edition = "2024"

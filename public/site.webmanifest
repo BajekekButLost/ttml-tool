@@ -1,6 +1,6 @@
 {
-  "name": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
-  "short_name": "NaeNae's AMLL TTML Tool Fork",
+  "name": "Spicy Lyrics TTML Tool",
+  "short_name": "TTML Tool",
   "icons": [
     {
       "src": "/pwa-256x256.png",

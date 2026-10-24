@@ -17,9 +17,7 @@
 		"lint": "biome lint",
 		"fmt": "biome format --write ./src",
 		"preview": "vite preview",
-		"locale:gen": "i18next 'src/**/*.{ts,tsx}'",
-		"locale:pull": "crowdin download",
-		"locale:push": "crowdin upload"
+		"locale:gen": "i18next 'src/**/*.{ts,tsx}'"
 	},
 	"dependencies": {
 		"@applemusic-like-lyrics/core": "0.2.0",
@@ -89,7 +87,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.10",
-		"@crowdin/cli": "^4.14.1",
 		"@fluentui/react-icons": "^2.0.316",
 		"@tauri-apps/cli": "^2.11.4",
 		"@types/emscripten": "^1.41.5",

@@ -19,13 +19,10 @@ export const MaintainersSection = ({
 	<Card>
 		<Flex direction="column" gap="3">
 			<Heading size="3">
-				{t("aboutModal.maintainers", "Fork maintainers & contributors")}
+				{t("aboutModal.maintainers", "Maintainers & contributors")}
 			</Heading>
 			<Text size="2" color="gray">
-				{t(
-					"aboutModal.maintainersDesc",
-					"This fork is maintained and developed by:",
-				)}
+				{t("aboutModal.maintainersDesc", "Maintained and developed by:")}
 			</Text>
 			<Flex gap="2">
 				<Box
@@ -49,10 +46,7 @@ export const MaintainersSection = ({
 									NaeNaeTart
 								</Text>
 								<Text as="div" size="1" color="gray">
-									{t(
-										"aboutModal.forkMaintainer",
-										"Fork maintainer & contributor",
-									)}
+									{t("aboutModal.forkMaintainer", "Maintainer & contributor")}
 								</Text>
 							</Flex>
 						</Flex>
@@ -89,10 +83,7 @@ export const MaintainersSection = ({
 									TX24
 								</Text>
 								<Text as="div" size="1" color="gray">
-									{t(
-										"aboutModal.forkMaintainer",
-										"Fork maintainer & contributor",
-									)}
+									{t("aboutModal.forkMaintainer", "Maintainer & contributor")}
 								</Text>
 							</Flex>
 						</Flex>

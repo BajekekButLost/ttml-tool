@@ -84,7 +84,7 @@ export const TitleBar: FC = () => {
 								size="2"
 							>
 								<span className={styles.title}>
-									{t("topBar.appName", "NaeNae's AMLL TTML Tool Fork")}
+									{t("topBar.appName", "TTML Tool")}
 								</span>
 							</Text>
 						</Flex>

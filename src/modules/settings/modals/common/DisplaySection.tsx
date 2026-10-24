@@ -8,7 +8,6 @@ import {
 	Card,
 	Flex,
 	Heading,
-	Link,
 	Select,
 	Switch,
 	Text,
@@ -91,13 +90,6 @@ export const DisplaySection = ({
 									})}
 								</Select.Content>
 							</Select.Root>
-							<Link
-								size="1"
-								href="https://crowdin.com/project/very-cool-ttml-tool"
-								target="_blank"
-							>
-								{t("settings.common.helpTranslate", "Help translate this app")}
-							</Link>
 						</Flex>
 					</Flex>
 				</Box>

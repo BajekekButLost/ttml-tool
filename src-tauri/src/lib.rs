@@ -115,7 +115,7 @@ fn set_discord_activity(
 
     let mut assets = activity::Assets::new()
         .large_image(large_image)
-        .large_text("NaeNae's AMLL TTML Tool Fork");
+        .large_text("TTML Tool");
     if payload.show_status_badge {
         let small_image = if payload.playing {
             DISCORD_PLAY_URL

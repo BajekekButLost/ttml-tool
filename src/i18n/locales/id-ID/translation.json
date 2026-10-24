@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Aduh, terjadi kesalahan!",
-      "description": "NaeNae's TTML Tool mengalami kesalahan.",
+      "description": "TTML Tool mengalami kesalahan.",
       "checkDevTools": "Detail tersedia di alat pengembang.",
       "saveLyrics": "Coba simpan lirik saat ini",
       "tryRestart": "Coba muat ulang aplikasi",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Tampilkan kontrol pita lanjutan",
       "language": "Bahasa antarmuka",
       "languageDesc": "Pilih bahasa tampilan antarmuka",
-      "helpTranslate": "Bantu terjemahkan aplikasi ini",
       "compactBGInSync": "Ringkas baris vokal latar saat sinkronisasi",
       "compactBGInSyncDesc": "Kurangi ruang vertikal baris vokal latar saat sinkronisasi.",
       "syncJudgeMode": "Waktu tombol",
@@ -775,7 +774,7 @@
       "sync": "Sinkronisasi",
       "preview": "Pratinjau"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Urungkan",
       "redo": "Ulangi",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Tidak ada saran pemisahan otomatis yang tersedia untuk konten ini."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Editor TTML dan alat sinkronisasi lirik per kata bergaya Apple Music",
-    "maintainers": "Pengelola & kontributor fork",
-    "maintainersDesc": "Fork ini dikelola dan dikembangkan oleh:",
-    "forkMaintainer": "Pengelola & kontributor fork",
+    "maintainers": "Pengelola & kontributor",
+    "maintainersDesc": "Proyek ini dikelola dan dikembangkan oleh:",
+    "forkMaintainer": "Pengelola & kontributor",
     "visitWebsite": "Kunjungi situs web",
     "credits": "Kredit & pemberitahuan pihak ketiga",
     "creditsIntro": "Proyek ini mencakup pekerjaan yang diadaptasi dari proyek sumber terbuka berikut.",
     "community": "Komunitas & kontribusi",
     "communityDesc": "Bantu kami menjadikan alat ini lebih baik dengan menyumbangkan kode, melaporkan masalah, atau menyediakan terjemahan.",
     "github": "Repositori GitHub",
-    "crowdin": "Bantu terjemahkan di Crowdin",
     "buildDate": "Tanggal build: {date}",
     "gitCommit": "Commit Git: {commit}",
     "platform": "Platform: {platform}",

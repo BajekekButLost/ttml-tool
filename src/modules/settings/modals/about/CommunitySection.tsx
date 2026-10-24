@@ -22,15 +22,6 @@ export const CommunitySection = ({ t }: Pick<AboutSettings, "t">) => (
 				>
 					{t("aboutModal.github", "GitHub repository")}
 				</Button>
-				<Button
-					variant="soft"
-					color="indigo"
-					onClick={() =>
-						openExternal("https://crowdin.com/project/very-cool-ttml-tool")
-					}
-				>
-					{t("aboutModal.crowdin", "Help Translate in Crowdin")}
-				</Button>
 			</Flex>
 		</Flex>
 	</Card>

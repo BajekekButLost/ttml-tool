@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Ups, a apărut o eroare!",
-      "description": "A apărut o eroare în NaeNae AMLL TTML Tool.",
+      "description": "A apărut o eroare în TTML Tool.",
       "checkDevTools": "Detaliile sunt în instrumentele pentru dezvoltatori.",
       "saveLyrics": "Încearcă să salvezi versurile",
       "tryRestart": "Încearcă să reîncarci aplicația",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Afișează controalele avansate din panglică",
       "language": "Limba interfeței",
       "languageDesc": "Selectează limba interfeței",
-      "helpTranslate": "Ajută la traducerea aplicației",
       "compactBGInSync": "Versuri de fundal compacte în Sincronizare",
       "compactBGInSyncDesc": "Reduce spațiul vertical al versurilor vocilor de fundal în timpul sincronizării.",
       "syncJudgeMode": "Momentul apăsării",
@@ -775,7 +774,7 @@
       "sync": "Sincronizare",
       "preview": "Previzualizare"
     },
-    "appName": "AMLL TTML Tool, versiunea NaeNae",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Anulează",
       "redo": "Refă",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Nu sunt disponibile sugestii de împărțire automată pentru acest conținut."
   },
   "aboutModal": {
-    "appName": "Apple Music-like Lyrics TTML Tool, versiunea NaeNae",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Editor TTML pentru sincronizarea versurilor cuvânt cu cuvânt în stilul Apple Music",
-    "maintainers": "Responsabilii și contribuitorii acestei versiuni",
-    "maintainersDesc": "Această versiune este întreținută și dezvoltată de:",
-    "forkMaintainer": "Responsabil și contribuitor al acestei versiuni",
+    "maintainers": "Responsabili și contribuitori",
+    "maintainersDesc": "Proiectul este întreținut și dezvoltat de:",
+    "forkMaintainer": "Responsabil și contribuitor",
     "visitWebsite": "Vizitează site-ul",
     "credits": "Credite și notificări ale terților",
     "creditsIntro": "Acest proiect include lucrări adaptate din următoarele proiecte open-source.",
     "community": "Comunitate și contribuții",
     "communityDesc": "Ajută-ne să îmbunătățim instrumentul contribuind cu cod, raportând probleme sau oferind traduceri.",
     "github": "Depozit GitHub",
-    "crowdin": "Ajută la traducere pe Crowdin",
     "buildDate": "Data compilării: {date}",
     "gitCommit": "Commit Git: {commit}",
     "platform": "Platformă: {platform}",

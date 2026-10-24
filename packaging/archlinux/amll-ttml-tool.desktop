@@ -2,7 +2,7 @@
 Categories=AudioVideo;Audio;AudioVideoEditing;
 Exec=amll-ttml-tool %U
 Icon=amll-ttml-tool
-Name=NaeNae's AMLL TTML Tool Fork
+Name=Spicy Lyrics TTML Tool
 Comment=Syllable lyric editor for Apple Music-like lyrics
 Terminal=false
 Type=Application

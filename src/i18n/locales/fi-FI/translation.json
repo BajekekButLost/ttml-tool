@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Hups, tapahtui virhe!",
-      "description": "NaeNae's TTML Toolissa tapahtui virhe.",
+      "description": "TTML Toolissa tapahtui virhe.",
       "checkDevTools": "Lisätiedot ovat kehittäjätyökaluissa.",
       "saveLyrics": "Kokeile tallentaa sanoitukset",
       "tryRestart": "Kokeile ladata sovellus uudelleen",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Näytä valintanauhan lisätoiminnot",
       "language": "Käyttöliittymän kieli",
       "languageDesc": "Valitse käyttöliittymän kieli",
-      "helpTranslate": "Auta kääntämään tämä sovellus",
       "compactBGInSync": "Tiiviit taustalaulurivit Ajoituksessa",
       "compactBGInSyncDesc": "Käytä vähemmän pystysuuntaista tilaa taustalauluriveille ajoitettaessa.",
       "syncJudgeMode": "Näppäimen ajoitus",
@@ -775,7 +774,7 @@
       "sync": "Ajoitus",
       "preview": "Esikatselu"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Kumoa",
       "redo": "Tee uudelleen",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Tälle sisällölle ei ole saatavilla automaattisia jakoehdotuksia."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Sanakohtainen TTML-editori ja ajoitustyökalu Apple Musicin kaltaisille sanoituksille",
-    "maintainers": "Haaran ylläpitäjät ja avustajat",
-    "maintainersDesc": "Tätä haaraa ylläpitävät ja kehittävät:",
-    "forkMaintainer": "Haaran ylläpitäjä ja avustaja",
+    "maintainers": "Ylläpitäjät ja avustajat",
+    "maintainersDesc": "Projektia ylläpitävät ja kehittävät:",
+    "forkMaintainer": "Ylläpitäjä ja avustaja",
     "visitWebsite": "Vieraile verkkosivustolla",
     "credits": "Kiitokset ja kolmansien osapuolten ilmoitukset",
     "creditsIntro": "Tämä projekti sisältää työtä, joka on muokattu seuraavista avoimen lähdekoodin projekteista.",
     "community": "Yhteisö ja osallistuminen",
     "communityDesc": "Auta meitä parantamaan työkalua lisäämällä koodia, raportoimalla ongelmista tai toimittamalla käännöksiä.",
     "github": "GitHub-tietovarasto",
-    "crowdin": "Auta kääntämään Crowdinissa",
     "buildDate": "Koontipäivä: {date}",
     "gitCommit": "Git-commit: {commit}",
     "platform": "Alusta: {platform}",

@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Oeps, er is een fout opgetreden!",
-      "description": "Er is een fout opgetreden in NaeNae's TTML Tool.",
+      "description": "Er is een fout opgetreden in TTML Tool.",
       "checkDevTools": "Details staan in de ontwikkelaarstools.",
       "saveLyrics": "Probeer de huidige songteksten op te slaan",
       "tryRestart": "Probeer de app opnieuw te laden",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Geavanceerde lintknoppen tonen",
       "language": "Interfacetaal",
       "languageDesc": "Selecteer de taal voor de interface",
-      "helpTranslate": "Help deze app te vertalen",
       "compactBGInSync": "Compacte achtergrondregels in Timing",
       "compactBGInSyncDesc": "Laat achtergrondregels minder verticale ruimte innemen tijdens het synchroniseren.",
       "syncJudgeMode": "Tijdstip van toetsaanslag",
@@ -775,7 +774,7 @@
       "sync": "Timing",
       "preview": "Voorbeeld"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Ongedaan maken",
       "redo": "Opnieuw uitvoeren",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Er zijn geen automatische splitsingssuggesties beschikbaar voor deze inhoud."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Een TTML-editor om songteksten woord voor woord te bewerken en te synchroniseren in Apple Music-stijl",
-    "maintainers": "Onderhouders en bijdragers van deze fork",
-    "maintainersDesc": "Deze fork wordt onderhouden en ontwikkeld door:",
-    "forkMaintainer": "Onderhouder en bijdrager van deze fork",
+    "maintainers": "Onderhouders en bijdragers",
+    "maintainersDesc": "Het project wordt onderhouden en ontwikkeld door:",
+    "forkMaintainer": "Onderhouder en bijdrager",
     "visitWebsite": "Bezoek website",
     "credits": "Credits en mededelingen van derden",
     "creditsIntro": "Dit project omvat werk dat is aangepast van de volgende open-sourceprojecten.",
     "community": "Gemeenschap en bijdragen",
     "communityDesc": "Help ons de tool te verbeteren door code bij te dragen, problemen te melden of vertalingen te leveren.",
     "github": "GitHub-repository",
-    "crowdin": "Help vertalen op Crowdin",
     "buildDate": "Builddatum: {date}",
     "gitCommit": "Git-commit: {commit}",
     "platform": "Platform: {platform}",

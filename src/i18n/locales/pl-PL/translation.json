@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Ups, wystąpił błąd!",
-      "description": "W narzędziu NaeNae TTML Tool wystąpił błąd.",
+      "description": "W narzędziu TTML Tool wystąpił błąd.",
       "checkDevTools": "Szczegóły znajdziesz w narzędziach deweloperskich.",
       "saveLyrics": "Spróbuj zapisać tekst",
       "tryRestart": "Spróbuj ponownie załadować aplikację",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Pokaż zaawansowane elementy wstążki",
       "language": "Język interfejsu",
       "languageDesc": "Wybierz język interfejsu",
-      "helpTranslate": "Pomóż przetłumaczyć tę aplikację",
       "compactBGInSync": "Kompaktowe wersy wokalu w tle w trybie Synchronizacja",
       "compactBGInSyncDesc": "Wersy wokalu w tle zajmują mniej miejsca w pionie podczas synchronizacji.",
       "syncJudgeMode": "Moment zapisu czasu",
@@ -775,7 +774,7 @@
       "sync": "Synchronizacja",
       "preview": "Podgląd"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Cofnij",
       "redo": "Ponów",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Dla tej treści nie są dostępne żadne automatyczne sugestie podziału."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Edytor TTML i narzędzie do synchronizacji słowo po słowie w stylu Apple Music",
-    "maintainers": "Opiekunowie i współtwórcy forka",
-    "maintainersDesc": "Ten fork utrzymują i rozwijają:",
-    "forkMaintainer": "Opiekun i współtwórca forka",
+    "maintainers": "Opiekunowie i współtwórcy",
+    "maintainersDesc": "Projekt utrzymują i rozwijają:",
+    "forkMaintainer": "Opiekun i współtwórca",
     "visitWebsite": "Odwiedź stronę internetową",
     "credits": "Podziękowania i informacje o zewnętrznych składnikach",
     "creditsIntro": "Ten projekt obejmuje prace zaadaptowane z następujących projektów open source.",
     "community": "Społeczność i współpraca",
     "communityDesc": "Pomóż nam ulepszyć narzędzie, przesyłając kod, zgłaszając problemy lub udostępniając tłumaczenia.",
     "github": "Repozytorium GitHub",
-    "crowdin": "Pomóż w tłumaczeniu na Crowdin",
     "buildDate": "Data kompilacji: {date}",
     "gitCommit": "Commit Git: {commit}",
     "platform": "Platforma: {platform}",

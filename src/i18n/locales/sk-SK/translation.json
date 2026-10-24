@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Ojoj, vyskytla sa chyba!",
-      "description": "V nástroji NaeNae TTML Tool sa vyskytla chyba.",
+      "description": "V nástroji TTML Tool sa vyskytla chyba.",
       "checkDevTools": "Podrobnosti nájdete v nástrojoch pre vývojárov.",
       "saveLyrics": "Skúsiť uložiť text piesne",
       "tryRestart": "Skúsiť znova načítať aplikáciu",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Zobraziť pokročilé prvky pásu kariet",
       "language": "Jazyk rozhrania",
       "languageDesc": "Vyberte jazyk rozhrania",
-      "helpTranslate": "Pomôžte preložiť túto aplikáciu",
       "compactBGInSync": "Kompaktné sprievodné riadky pri časovaní",
       "compactBGInSyncDesc": "Sprievodné riadky pri synchronizácii zaberú menej miesta na výšku.",
       "syncJudgeMode": "Okamih záznamu klávesu",
@@ -775,7 +774,7 @@
       "sync": "Časovanie",
       "preview": "Náhľad"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Späť",
       "redo": "Znovu",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Pre tento obsah nie sú k dispozícii žiadne automatické návrhy na rozdelenie."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Editor TTML a nástroj na časovanie textov po slovách v štýle Apple Music",
-    "maintainers": "Správcovia a prispievatelia forku",
-    "maintainersDesc": "Tento fork spravujú a vyvíjajú:",
-    "forkMaintainer": "Správca a prispievateľ forku",
+    "maintainers": "Správcovia a prispievatelia",
+    "maintainersDesc": "Projekt spravujú a vyvíjajú:",
+    "forkMaintainer": "Správca a prispievateľ",
     "visitWebsite": "Navštíviť web",
     "credits": "Poďakovanie a informácie tretích strán",
     "creditsIntro": "Tento projekt zahŕňa prácu upravenú z nasledujúcich projektov s otvoreným zdrojom.",
     "community": "Komunita a spolupráca",
     "communityDesc": "Pomôžte nám vylepšiť tento nástroj prispievaním kódu, nahlasovaním problémov alebo poskytovaním prekladov.",
     "github": "Repozitár na GitHube",
-    "crowdin": "Pomôcť s prekladom na Crowdin",
     "buildDate": "Dátum zostavenia: {date}",
     "gitCommit": "Git commit: {commit}",
     "platform": "Platforma: {platform}",

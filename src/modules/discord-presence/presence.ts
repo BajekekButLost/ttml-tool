@@ -297,7 +297,7 @@ export function createDiscordTemplateContext({
 				: "",
 		playbackRate: `${Number(snapshot.playbackRate.toFixed(2))}×`,
 		projectElapsed: formatElapsed(snapshot.projectElapsedSeconds ?? 0),
-		appName: "NaeNae's AMLL TTML Tool Fork",
+		appName: "TTML Tool",
 	};
 }
 
@@ -347,7 +347,7 @@ export function formatNativeDiscordActivity(
 
 export function createInactiveDiscordActivity(): DiscordActivityPayload {
 	return {
-		details: "NaeNae's AMLL TTML Tool Fork",
+		details: "TTML Tool",
 		state: "Inactive",
 		playing: false,
 		showRepositoryButton: false,

@@ -4,7 +4,6 @@ import ICU from "i18next-icu";
 import { initReactI18next } from "react-i18next";
 
 // The repository is the translation source of truth; en-US defines the keys.
-// Crowdin is synced manually.
 type TranslationResource = typeof import("./locales/en-US/translation.json");
 
 declare module "i18next" {

@@ -145,7 +145,7 @@ const AppErrorPage = ({
 			<Flex direction="column" align="start" justify="center" gap="2">
 				<Heading>{t("app.error.title", "Something went wrong")}</Heading>
 				<Text>
-					{t("app.error.description", "NaeNae's TTML Tool ran into an error.")}
+					{t("app.error.description", "TTML Tool ran into an error.")}
 				</Text>
 				<Text>
 					{t("app.error.checkDevTools", "Details are in the developer tools.")}

@@ -81,10 +81,11 @@ const plugins: Plugin[] = [
 			maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
 		},
 		manifest: {
-			name: "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+			name: "Spicy Lyrics TTML Tool",
 			id: "amll-ttml-tool",
-			short_name: "NaeNae's AMLL TTML Tool Fork",
-			description: "一个用于 Apple Music 的逐词歌词 TTML 编辑和时间轴工具",
+			short_name: "TTML Tool",
+			description:
+				"A word-by-word TTML lyrics editor and timing tool for Spicy Lyrics",
 			theme_color: "#18a058",
 			icons: [
 				{

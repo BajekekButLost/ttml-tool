@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Something went wrong",
-      "description": "NaeNae's TTML Tool ran into an error.",
+      "description": "TTML Tool ran into an error.",
       "checkDevTools": "Details are in the developer tools.",
       "saveLyrics": "Try saving your lyrics",
       "tryRestart": "Try reloading the app",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Show advanced ribbon controls",
       "language": "Interface language",
       "languageDesc": "Select the language for the interface",
-      "helpTranslate": "Help translate this app",
       "compactBGInSync": "Compact background lines in Time mode",
       "compactBGInSyncDesc": "Use less vertical space for background lines while syncing.",
       "syncJudgeMode": "Key timing",
@@ -775,7 +774,7 @@
       "sync": "Time",
       "preview": "Preview"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Undo",
       "redo": "Redo",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "No automated split suggestions available for this content."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "A word-by-word TTML editor and timing tool for Apple Music-like lyrics",
-    "maintainers": "Fork maintainers & contributors",
-    "maintainersDesc": "This fork is maintained and developed by:",
-    "forkMaintainer": "Fork maintainer & contributor",
+    "maintainers": "Maintainers & contributors",
+    "maintainersDesc": "Maintained and developed by:",
+    "forkMaintainer": "Maintainer & contributor",
     "visitWebsite": "Visit website",
     "credits": "Credits & third-party notices",
     "creditsIntro": "This project includes work adapted from the following open-source projects.",
     "community": "Community & contributions",
     "communityDesc": "Help us make the tool better by contributing code, reporting issues, or providing translations.",
     "github": "GitHub repository",
-    "crowdin": "Help Translate in Crowdin",
     "buildDate": "Build date: {date}",
     "gitCommit": "Git commit: {commit}",
     "platform": "Platform: {platform}",

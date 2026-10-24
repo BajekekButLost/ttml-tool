@@ -6,7 +6,7 @@
   "app": {
     "error": {
       "title": "Hay aksi, bir hata oluştu!",
-      "description": "NaeNae TTML Tool'da bir hata oluştu.",
+      "description": "TTML Tool'da bir hata oluştu.",
       "checkDevTools": "Ayrıntılar geliştirici araçlarında bulunabilir.",
       "saveLyrics": "Şarkı sözlerini kaydetmeyi dene",
       "tryRestart": "Uygulamayı yeniden yüklemeyi dene",
@@ -421,7 +421,6 @@
       "advancedRibbonControls": "Gelişmiş şerit denetimlerini göster",
       "language": "Arayüz dili",
       "languageDesc": "Arayüz dilini seçin",
-      "helpTranslate": "Bu uygulamanın çevirisine yardım edin",
       "compactBGInSync": "Zamanla modunda kompakt arka vokal satırları",
       "compactBGInSyncDesc": "Senkronizasyon sırasında arka vokal satırları dikeyde daha az yer kaplar.",
       "syncJudgeMode": "Zamanın kaydedildiği an",
@@ -775,7 +774,7 @@
       "sync": "Zamanla",
       "preview": "Önizleme"
     },
-    "appName": "NaeNae's AMLL TTML Tool Fork",
+    "appName": "TTML Tool",
     "menu": {
       "undo": "Geri al",
       "redo": "İleri al",
@@ -1423,18 +1422,17 @@
     "noSuggestions": "Bu içerik için otomatik bölme önerisi yok."
   },
   "aboutModal": {
-    "appName": "NaeNae's Apple Music-like Lyrics TTML Tool Fork",
+    "appName": "Spicy Lyrics TTML Tool",
     "description": "Apple Music tarzı şarkı sözleri için kelime kelime TTML düzenleyicisi ve zamanlama aracı",
-    "maintainers": "Fork'un bakımcıları ve katkıda bulunanlar",
-    "maintainersDesc": "Bu fork'u geliştiren ve bakımını yapanlar:",
-    "forkMaintainer": "Fork bakımcısı ve katkıda bulunan",
+    "maintainers": "Bakımcılar ve katkıda bulunanlar",
+    "maintainersDesc": "Projenin geliştiricileri ve bakımcıları:",
+    "forkMaintainer": "Bakımcı ve katkıda bulunan",
     "visitWebsite": "Web sitesini aç",
     "credits": "Emeği geçenler ve üçüncü taraf bildirimleri",
     "creditsIntro": "Bu proje aşağıdaki açık kaynaklı projelerden uyarlanan çalışmaları içermektedir.",
     "community": "Topluluk ve katkılar",
     "communityDesc": "Kodla katkıda bulunarak, sorunları bildirerek veya çeviri yaparak aracı geliştirmemize yardımcı olun.",
     "github": "GitHub deposu",
-    "crowdin": "Crowdin'de çeviriye yardım et",
     "buildDate": "Derleme tarihi: {date}",
     "gitCommit": "Git commit'i: {commit}",
     "platform": "Platform: {platform}",
