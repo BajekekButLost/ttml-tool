@@ -1459,13 +1459,18 @@
     },
     "height": "Tinggi tampilan"
   },
-  "pwa": {
-    "offlineReady": "Siap digunakan offline",
-    "updateRefresh": "Pembaruan siap. Muat ulang untuk memakai versi terbaru.",
-    "refresh": "Segarkan"
-  },
   "export": {
     "recoveryUntimed": "Ekspor pemulihan ini berisi lirik yang belum diberi waktu. Periksa waktunya sebelum mengirim.",
     "recoveryReviewFailed": "Pemeriksaan waktu tidak dapat dijalankan. Tinjau lirik yang dipulihkan sebelum mengirim."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool punya alamat baru",
+      "description": "Pindahkan proyek dan pengaturanmu ke sana sekarang. Alamat ini akan segera dialihkan, dan data browser tidak ikut terbawa saat dialihkan.",
+      "counts": "Ditemukan {projects, plural, other {# proyek}} dan {settings, plural, other {# pengaturan}} di alamat ini.",
+      "backup": "Unduh cadangan",
+      "later": "Nanti",
+      "move": "Pindahkan dataku"
+    }
   }
 }

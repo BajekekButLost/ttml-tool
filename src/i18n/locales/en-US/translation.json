@@ -1459,13 +1459,18 @@
     },
     "height": "Display height"
   },
-  "pwa": {
-    "offlineReady": "Ready to work offline",
-    "updateRefresh": "Update ready. Refresh to use the latest version.",
-    "refresh": "Refresh"
-  },
   "export": {
     "recoveryUntimed": "This recovery export contains untimed lyrics. Check timing before submitting.",
     "recoveryReviewFailed": "Timing checks could not run. Review the recovered lyrics before submitting."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "The TTML Tool has a new address",
+      "description": "Move your projects and settings there now. This address will start redirecting soon, and browser data can't follow a redirect.",
+      "counts": "Found {projects, plural, one {# project} other {# projects}} and {settings, plural, one {# setting} other {# settings}} on this address.",
+      "backup": "Download backup",
+      "later": "Later",
+      "move": "Move my data"
+    }
   }
 }

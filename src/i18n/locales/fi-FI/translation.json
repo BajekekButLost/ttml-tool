@@ -1459,13 +1459,18 @@
     },
     "height": "Näyttökorkeus"
   },
-  "pwa": {
-    "offlineReady": "Valmis offline-käyttöön",
-    "updateRefresh": "Päivitys on valmis. Päivitä sivu käyttääksesi uusinta versiota.",
-    "refresh": "Päivitä"
-  },
   "export": {
     "recoveryUntimed": "Tämä palautusvienti sisältää ajoittamattomia sanoituksia. Tarkista ajoitus ennen lähettämistä.",
     "recoveryReviewFailed": "Ajoitustarkistuksia ei voitu suorittaa. Tarkista palautetut sanoitukset ennen lähettämistä."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Toolilla on uusi osoite",
+      "description": "Siirrä projektisi ja asetuksesi sinne nyt. Tämä osoite alkaa pian uudelleenohjata, eivätkä selaimen tiedot seuraa uudelleenohjausta.",
+      "counts": "Tästä osoitteesta löytyi {projects, plural, one {# projekti} other {# projektia}} ja {settings, plural, one {# asetus} other {# asetusta}}.",
+      "backup": "Lataa varmuuskopio",
+      "later": "Myöhemmin",
+      "move": "Siirrä tietoni"
+    }
   }
 }

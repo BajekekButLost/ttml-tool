@@ -1,75 +1,45 @@
-import { registerSW } from "virtual:pwa-register";
-import { Button, Flex } from "@radix-ui/themes";
-import { t } from "i18next";
-import { toast } from "react-toastify";
-
 const isWebsite = !import.meta.env.TAURI_ENV_PLATFORM;
-let updateServiceWorker: (() => Promise<void>) | undefined;
 
 const reloadPage = () => window.location.reload();
 
-if (isWebsite) {
-	updateServiceWorker = registerSW({
-		onOfflineReady() {
-			toast.info(t("pwa.offlineReady", "Ready to work offline"));
-		},
-		onNeedRefresh() {
-			toast.info(() => (
-				<Flex direction="column" gap="2" align="stretch">
-					<div>
-						{t(
-							"pwa.updateRefresh",
-							"Update ready. Refresh to use the latest version.",
-						)}
-					</div>
-					<Button
-						size="2"
-						onClick={() => {
-							void updateServiceWorker?.();
-						}}
-					>
-						{t("pwa.refresh", "刷新")}
-					</Button>
-				</Flex>
-			));
-		},
-	});
-}
-
-/** Check for a pending service worker update, then reload the website. */
-export async function forceWebsiteRefresh() {
-	if (!isWebsite || !("serviceWorker" in navigator)) {
-		return false;
-	}
-
-	const registration = await navigator.serviceWorker.getRegistration();
-	await registration?.update();
-
-	if (registration?.waiting && updateServiceWorker) {
-		await updateServiceWorker();
-		return true;
-	}
-
-	reloadPage();
-	return true;
-}
-
-/** Remove only this site's PWA Cache Storage data before reloading. */
-export async function clearWebsiteCache() {
-	if (!isWebsite || !("serviceWorker" in navigator) || !("caches" in window)) {
-		return false;
-	}
-
+/**
+ * Unregister any service worker and delete its caches. The website used to
+ * ship an offline worker; old installs get a self-destroying sw.js on their
+ * next update check, and this covers the page side.
+ */
+async function removeServiceWorkers() {
+	if (!("serviceWorker" in navigator)) return false;
 	const [registrations, cacheNames] = await Promise.all([
 		navigator.serviceWorker.getRegistrations(),
-		caches.keys(),
+		"caches" in window ? caches.keys() : Promise.resolve([]),
 	]);
-
 	await Promise.all([
 		...registrations.map((registration) => registration.unregister()),
 		...cacheNames.map((cacheName) => caches.delete(cacheName)),
 	]);
+	return registrations.length > 0 || cacheNames.length > 0;
+}
 
+if (isWebsite) {
+	void removeServiceWorkers().catch(() => undefined);
+}
+
+/** Reload the website, dropping any leftover service worker first. */
+export async function forceWebsiteRefresh() {
+	if (!isWebsite) {
+		return false;
+	}
+	await removeServiceWorkers().catch(() => undefined);
+	reloadPage();
+	return true;
+}
+
+/** Remove this site's service worker and Cache Storage data before reloading. */
+export async function clearWebsiteCache() {
+	if (!isWebsite || !("serviceWorker" in navigator)) {
+		return false;
+	}
+	await removeServiceWorkers();
 	reloadPage();
 	return true;
 }

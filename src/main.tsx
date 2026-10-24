@@ -23,6 +23,8 @@ import App from "./App.tsx";
 import "./i18n/index.ts";
 import "./index.css";
 import "./utils/pwa.tsx";
+import { isMigrationPath } from "$/modules/domain-migration/config";
+import { MigrationRouteApp } from "$/modules/domain-migration/MigrationRouteApp";
 import { globalStore } from "./states/store.ts";
 
 async function startApp() {
@@ -30,6 +32,15 @@ async function startApp() {
 
 	if (!rootEl) {
 		throw new Error("Could not find root element");
+	}
+
+	if (isMigrationPath(window.location.pathname)) {
+		createRoot(rootEl).render(
+			<StrictMode>
+				<MigrationRouteApp />
+			</StrictMode>,
+		);
+		return;
 	}
 
 	try {

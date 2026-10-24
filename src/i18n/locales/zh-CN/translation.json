@@ -1459,13 +1459,18 @@
     },
     "height": "显示高度"
   },
-  "pwa": {
-    "offlineReady": "可离线使用",
-    "updateRefresh": "更新已就绪。刷新以使用最新版本。",
-    "refresh": "刷新"
-  },
   "export": {
     "recoveryUntimed": "此恢复导出包含未打轴的歌词。提交前请检查时间轴。",
     "recoveryReviewFailed": "无法运行时间检查。提交前请检查恢复的歌词。"
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool 有了新地址",
+      "description": "请现在把你的项目和设置迁移过去。此地址很快将开始重定向，而浏览器数据无法随重定向迁移。",
+      "counts": "在此地址找到 {projects, plural, other {# 个项目}} 和 {settings, plural, other {# 项设置}}。",
+      "backup": "下载备份",
+      "later": "稍后",
+      "move": "迁移我的数据"
+    }
   }
 }

@@ -1459,13 +1459,18 @@
     },
     "height": "Görünüm yüksekliği"
   },
-  "pwa": {
-    "offlineReady": "Çevrimdışı çalışmaya hazır",
-    "updateRefresh": "Güncelleme hazır. Son sürümü kullanmak için sayfayı yenileyin.",
-    "refresh": "Yenile"
-  },
   "export": {
     "recoveryUntimed": "Bu kurtarma dışa aktarımı zamanlanmamış sözler içeriyor. Göndermeden önce zamanlamayı kontrol edin.",
     "recoveryReviewFailed": "Zamanlama kontrolleri çalıştırılamadı. Göndermeden önce kurtarılan sözleri gözden geçirin."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool'un yeni bir adresi var",
+      "description": "Projelerini ve ayarlarını şimdi oraya taşı. Bu adres yakında yönlendirmeye başlayacak ve tarayıcı verileri bir yönlendirmeyi takip edemez.",
+      "counts": "Bu adreste {projects, plural, one {# proje} other {# proje}} ve {settings, plural, one {# ayar} other {# ayar}} bulundu.",
+      "backup": "Yedeği indir",
+      "later": "Sonra",
+      "move": "Verilerimi taşı"
+    }
   }
 }

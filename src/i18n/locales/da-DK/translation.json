@@ -1459,13 +1459,18 @@
     },
     "height": "Visningshøjde"
   },
-  "pwa": {
-    "offlineReady": "Klar til offlinebrug",
-    "updateRefresh": "Opdateringen er klar. Genindlæs for at bruge den nyeste version.",
-    "refresh": "Opdater"
-  },
   "export": {
     "recoveryUntimed": "Denne gendannede eksport indeholder tekster uden timing. Tjek timingen, før du indsender.",
     "recoveryReviewFailed": "Timingtjek kunne ikke køres. Gennemgå de gendannede tekster, før du indsender."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool har fået en ny adresse",
+      "description": "Flyt dine projekter og indstillinger dertil nu. Denne adresse begynder snart at omdirigere, og browserdata kan ikke følge med en omdirigering.",
+      "counts": "Fandt {projects, plural, one {# projekt} other {# projekter}} og {settings, plural, one {# indstilling} other {# indstillinger}} på denne adresse.",
+      "backup": "Download sikkerhedskopi",
+      "later": "Senere",
+      "move": "Flyt mine data"
+    }
   }
 }

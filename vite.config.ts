@@ -76,10 +76,10 @@ const plugins: Plugin[] = [
 	VitePWA({
 		injectRegister: null,
 		disable: !!process.env.TAURI_PLATFORM,
-		workbox: {
-			globPatterns: ["**/*.{js,css,html,wasm}"],
-			maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
-		},
+		// The website no longer works offline (the desktop app does). This ships
+		// an sw.js that unregisters itself and clears its caches, so browsers
+		// still running the old offline worker drop it on their next update check.
+		selfDestroying: true,
 		manifest: {
 			name: "Spicy Lyrics TTML Tool",
 			id: "amll-ttml-tool",

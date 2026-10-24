@@ -1459,13 +1459,18 @@
     },
     "height": "Weergavehoogte"
   },
-  "pwa": {
-    "offlineReady": "Klaar voor offlinegebruik",
-    "updateRefresh": "Update klaar. Vernieuw om de nieuwste versie te gebruiken.",
-    "refresh": "Vernieuwen"
-  },
   "export": {
     "recoveryUntimed": "Deze herstelexport bevat ongetimede songteksten. Controleer de timing voordat je instuurt.",
     "recoveryReviewFailed": "Timingcontroles konden niet worden uitgevoerd. Controleer de herstelde songteksten voordat je instuurt."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool heeft een nieuw adres",
+      "description": "Verplaats je projecten en instellingen er nu naartoe. Dit adres gaat binnenkort doorverwijzen en browsergegevens gaan niet mee met een doorverwijzing.",
+      "counts": "{projects, plural, one {# project} other {# projecten}} en {settings, plural, one {# instelling} other {# instellingen}} gevonden op dit adres.",
+      "backup": "Back-up downloaden",
+      "later": "Later",
+      "move": "Mijn gegevens verplaatsen"
+    }
   }
 }

@@ -1459,13 +1459,18 @@
     },
     "height": "Výška zobrazení"
   },
-  "pwa": {
-    "offlineReady": "Připraveno k práci offline",
-    "updateRefresh": "Aktualizace je připravena. Obnovte stránku pro použití nejnovější verze.",
-    "refresh": "Obnovit"
-  },
   "export": {
     "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Před odesláním zkontrolujte časování.",
     "recoveryReviewFailed": "Kontrolu časování nebylo možné spustit. Před odesláním zkontrolujte obnovené texty."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool má novou adresu",
+      "description": "Přesuňte tam své projekty a nastavení hned teď. Tato adresa brzy začne přesměrovávat a data prohlížeče přesměrování nenásledují.",
+      "counts": "Na této adrese: {projects, plural, one {# projekt} few {# projekty} many {# projektu} other {# projektů}} a {settings, plural, one {# nastavení} few {# nastavení} many {# nastavení} other {# nastavení}}.",
+      "backup": "Stáhnout zálohu",
+      "later": "Později",
+      "move": "Přesunout moje data"
+    }
   }
 }

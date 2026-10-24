@@ -91,6 +91,7 @@ import { useFileOpener } from "./hooks/useFileOpener.ts";
 import AudioControls from "./modules/audio/components/index.tsx";
 import { useAudioFeedback } from "./modules/audio/hooks/useAudioFeedback.ts";
 import { DiscordPresence } from "./modules/discord-presence/DiscordPresence";
+import { MigrationNotice } from "./modules/domain-migration/MigrationNotice";
 import { SyncKeyBinding } from "./modules/lyric-editor/components/sync-keybinding.tsx";
 import { UrbanDictionaryKeybinding } from "./modules/lyric-editor/components/urban-dictionary-keybinding.tsx";
 import { BeginnerGuide } from "./modules/onboarding/BeginnerGuide";
@@ -593,6 +594,7 @@ function App() {
 			className={styles.radixTheme}
 		>
 			{import.meta.env.TAURI_ENV_PLATFORM && <InterfaceScaleManager />}
+			<MigrationNotice />
 			<DiscordPresence />
 			<BeginnerGuide />
 			<AudioMetadataPrefill />

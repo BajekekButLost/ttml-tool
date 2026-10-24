@@ -1,30 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const updateServiceWorker = vi.fn();
-
-vi.mock("virtual:pwa-register", () => ({
-	registerSW: vi.fn(() => updateServiceWorker),
-}));
-
 const { clearWebsiteCache, forceWebsiteRefresh } = await import("./pwa");
 
-describe("PWA recovery", () => {
+describe("website service worker removal", () => {
 	const reload = vi.fn();
-	const getRegistration =
-		vi.fn<
-			() => Promise<
-				{ update: () => Promise<void>; waiting?: object } | undefined
-			>
-		>();
 	const getRegistrations =
 		vi.fn<() => Promise<{ unregister: () => Promise<boolean> }[]>>();
 
 	beforeEach(() => {
 		vi.clearAllMocks();
-		getRegistration.mockReset();
 		getRegistrations.mockReset();
+		getRegistrations.mockResolvedValue([]);
 		const cacheStorage = {
-			keys: vi.fn(),
+			keys: vi.fn().mockResolvedValue([]),
 			delete: vi.fn(),
 		};
 		vi.stubGlobal("window", {
@@ -32,33 +20,18 @@ describe("PWA recovery", () => {
 			caches: cacheStorage,
 		});
 		vi.stubGlobal("navigator", {
-			serviceWorker: {
-				getRegistration,
-				getRegistrations,
-			},
+			serviceWorker: { getRegistrations },
 		});
 		vi.stubGlobal("caches", cacheStorage);
 	});
 
-	it("activates a waiting update instead of reloading the stale worker", async () => {
-		const update = vi.fn<() => Promise<void>>().mockResolvedValue();
-		const registration = { update, waiting: {} };
-		getRegistration.mockResolvedValue(registration);
+	it("drops a leftover offline worker before force-refreshing", async () => {
+		const unregister = vi.fn<() => Promise<boolean>>().mockResolvedValue(true);
+		getRegistrations.mockResolvedValue([{ unregister }]);
 
 		await expect(forceWebsiteRefresh()).resolves.toBe(true);
 
-		expect(update).toHaveBeenCalledOnce();
-		expect(updateServiceWorker).toHaveBeenCalledOnce();
-		expect(reload).not.toHaveBeenCalled();
-	});
-
-	it("reloads after checking when there is no waiting update", async () => {
-		const update = vi.fn<() => Promise<void>>().mockResolvedValue();
-		getRegistration.mockResolvedValue({ update });
-
-		await expect(forceWebsiteRefresh()).resolves.toBe(true);
-
-		expect(update).toHaveBeenCalledOnce();
+		expect(unregister).toHaveBeenCalledOnce();
 		expect(reload).toHaveBeenCalledOnce();
 	});
 

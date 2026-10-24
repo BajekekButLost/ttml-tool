@@ -1459,13 +1459,18 @@
     },
     "height": "Înălțimea afișajului"
   },
-  "pwa": {
-    "offlineReady": "Gata de lucru offline",
-    "updateRefresh": "Actualizarea este gata. Reîncarcă pentru a folosi ultima versiune.",
-    "refresh": "Reîncarcă"
-  },
   "export": {
     "recoveryUntimed": "Acest export de recuperare conține versuri nesincronizate. Verifică sincronizarea înainte de trimitere.",
     "recoveryReviewFailed": "Verificările de sincronizare nu au putut rula. Revizuiește versurile recuperate înainte de trimitere."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool are o adresă nouă",
+      "description": "Mută-ți acum proiectele și setările acolo. Această adresă va începe curând să redirecționeze, iar datele din browser nu urmează o redirecționare.",
+      "counts": "Pe această adresă: {projects, plural, one {# proiect} few {# proiecte} other {# de proiecte}} și {settings, plural, one {# setare} few {# setări} other {# de setări}}.",
+      "backup": "Descarcă backup",
+      "later": "Mai târziu",
+      "move": "Mută datele mele"
+    }
   }
 }

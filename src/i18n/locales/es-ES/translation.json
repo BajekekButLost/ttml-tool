@@ -1459,13 +1459,18 @@
     },
     "height": "Altura de visualización"
   },
-  "pwa": {
-    "offlineReady": "Listo para trabajar sin conexión",
-    "updateRefresh": "Actualización lista. Recarga para usar la última versión.",
-    "refresh": "Recargar"
-  },
   "export": {
     "recoveryUntimed": "Esta exportación recuperada contiene letras sin sincronizar. Revisa la sincronización antes de enviarla.",
     "recoveryReviewFailed": "No se pudieron ejecutar las comprobaciones de sincronización. Revisa las letras recuperadas antes de enviarlas."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool tiene una nueva dirección",
+      "description": "Mueve allí tus proyectos y ajustes ahora. Esta dirección pronto empezará a redirigir y los datos del navegador no pueden seguir una redirección.",
+      "counts": "Se encontraron {projects, plural, one {# proyecto} many {# proyectos} other {# proyectos}} y {settings, plural, one {# ajuste} many {# ajustes} other {# ajustes}} en esta dirección.",
+      "backup": "Descargar copia de seguridad",
+      "later": "Más tarde",
+      "move": "Mover mis datos"
+    }
   }
 }

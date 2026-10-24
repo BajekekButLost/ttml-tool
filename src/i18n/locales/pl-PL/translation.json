@@ -1459,13 +1459,18 @@
     },
     "height": "Wysokość widoku"
   },
-  "pwa": {
-    "offlineReady": "Gotowe do pracy offline",
-    "updateRefresh": "Aktualizacja gotowa. Odśwież stronę, aby używać najnowszej wersji.",
-    "refresh": "Odśwież"
-  },
   "export": {
     "recoveryUntimed": "Ten odzyskany eksport zawiera niezsynchronizowane teksty. Sprawdź synchronizację przed wysłaniem.",
     "recoveryReviewFailed": "Nie udało się uruchomić sprawdzania synchronizacji. Przejrzyj odzyskane teksty przed wysłaniem."
+  },
+  "domainMigration": {
+    "notice": {
+      "title": "TTML Tool ma nowy adres",
+      "description": "Przenieś tam teraz swoje projekty i ustawienia. Ten adres wkrótce zacznie przekierowywać, a dane przeglądarki nie przechodzą przez przekierowanie.",
+      "counts": "Na tym adresie: {projects, plural, one {# projekt} few {# projekty} many {# projektów} other {# projektu}} i {settings, plural, one {# ustawienie} few {# ustawienia} many {# ustawień} other {# ustawienia}}.",
+      "backup": "Pobierz kopię zapasową",
+      "later": "Później",
+      "move": "Przenieś moje dane"
+    }
   }
 }
