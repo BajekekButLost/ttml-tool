@@ -35,7 +35,7 @@ export const WebsiteRecoverySection = ({
 					<Text size="2" color="gray">
 						{t(
 							"settings.about.websiteUpdateDescription",
-							"Refresh the website to retrieve the latest version if an update prompt did not appear.",
+							"Reload the website to get the latest version.",
 						)}
 					</Text>
 					<Flex gap="3" wrap="wrap">

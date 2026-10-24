@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { uid } from "uid";
 import { useFileOpener } from "$/hooks/useFileOpener.ts";
 import { deleteWordsFromLines } from "$/modules/lyric-editor/utils/normalize-line-time";
+import { getGuideUrl } from "$/modules/onboarding/logic";
 import {
 	activeProjectDirAtom,
 	activeProjectManifestAtom,
@@ -227,11 +228,12 @@ export const useTopMenuActions = () => {
 		}
 	}, []);
 
-	const onOpenWiki = useCallback(async () => {
+	const onOpenGuides = useCallback(async () => {
+		const url = getGuideUrl("intro");
 		if (import.meta.env.TAURI_ENV_PLATFORM) {
-			await open("https://github.com/spicylyrics/ttml-tool/wiki");
+			await open(url);
 		} else {
-			window.open("https://github.com/spicylyrics/ttml-tool/wiki");
+			window.open(url);
 		}
 	}, []);
 
@@ -446,6 +448,6 @@ export const useTopMenuActions = () => {
 		onOpenLatencyTest,
 		onOpenTTMLChecklist,
 		onOpenGitHub,
-		onOpenWiki,
+		onOpenGuides,
 	};
 };

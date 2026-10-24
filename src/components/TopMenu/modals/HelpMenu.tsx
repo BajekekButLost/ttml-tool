@@ -34,8 +34,8 @@ const HelpMenuItems = () => {
 				{t("beginnerGuide.menu", "Start guide")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={menu.onOpenGitHub}>GitHub</DropdownMenu.Item>
-			<DropdownMenu.Item onSelect={menu.onOpenWiki}>
-				{t("topBar.menu.helpDoc", "Upstream documentation (Chinese)")}
+			<DropdownMenu.Item onSelect={menu.onOpenGuides}>
+				{t("topBar.menu.helpDoc", "TTML guides")}
 			</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={() => setChangelogOpen(true)}>
