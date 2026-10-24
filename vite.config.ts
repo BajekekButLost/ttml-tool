@@ -48,7 +48,9 @@ const plugins: Plugin[] = [
 		},
 		async load(id) {
 			if (id === "virtual:buildmeta") {
-				let gitCommit = process.env.VERCEL_GIT_COMMIT_SHA?.trim();
+				let gitCommit = (
+					process.env.WORKERS_CI_COMMIT_SHA ?? process.env.VERCEL_GIT_COMMIT_SHA
+				)?.trim();
 
 				if (!gitCommit) {
 					try {

@@ -11,8 +11,6 @@
 
 import * as AMLLLyric from "@applemusic-like-lyrics/lyric";
 import * as Sentry from "@sentry/react";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { enableMapSet } from "immer";
 import { Provider } from "jotai";
 import { StrictMode } from "react";
@@ -54,8 +52,6 @@ async function startApp() {
 
 	createRoot(rootEl).render(
 		<StrictMode>
-			<SpeedInsights />
-			<Analytics />
 			<Provider store={globalStore}>
 				<App />
 				{/* <DevTools position="bottom-right" /> */}

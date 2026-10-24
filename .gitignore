@@ -43,6 +43,7 @@ ffmpeg-core.js
 .env.test
 .env.production
 .vercel
+.wrangler
 .env*.local
 
 AGENTS.md
