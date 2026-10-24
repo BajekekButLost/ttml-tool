@@ -1,5 +1,43 @@
 [
 	{
+		"version": "0.13.1",
+		"summary": "Spicy Lyrics TTML Tool",
+		"color": "ruby",
+		"date": "2026-10-24",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "The website is moving to tool.spicylyrics.org",
+				"body": "Opening the old address shows a prompt to **move your projects, settings, shortcuts, appearance and Genius token** to the new one. The transfer goes straight between two browser windows and is never uploaded, and you can download a backup instead.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "The app is now called the Spicy Lyrics TTML Tool",
+				"body": "It's now the official Spicy Lyrics tool, so \"NaeNae's AMLL TTML Tool Fork\" is now **Spicy Lyrics TTML Tool**, or **TTML Tool** for short, in the title bar, About, Discord presence and link previews. The Crowdin translation links are gone; translations now happen directly in the [repository](https://github.com/spicylyrics/ttml-tool).",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "The website no longer works offline",
+				"body": "The website's offline mode removes itself on your next visit, so you always get the latest version. For offline use, install the [desktop app](https://github.com/spicylyrics/ttml-tool/releases/latest).",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Help → TTML guides opens the Spicy Lyrics guides",
+				"body": "It used to point at a documentation page that no longer exists.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "The project now lives at spicylyrics/ttml-tool on GitHub",
+				"body": "The source code moved to the [Spicy Lyrics organization](https://github.com/spicylyrics/ttml-tool). Links in the app point there, and desktop updates now come from the new address directly. Old links keep redirecting.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.13.0",
 		"summary": "Sections and background sync",
 		"color": "teal",
