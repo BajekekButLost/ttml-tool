@@ -486,7 +486,7 @@ export const MetadataEditor = () => {
 						</Dialog.Title>
 						<IconButton variant="ghost" color="gray" asChild>
 							<a
-								href="https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL"
+								href="https://github.com/spicylyrics/ttml-tool"
 								target="_blank"
 								rel="noreferrer"
 								title="GitHub"

@@ -5,8 +5,7 @@ export const PRESENCE_BRIDGE_VERSION = 1;
 export const PRESENCE_META_NAME = "amll-discord-presence";
 export const DISCORD_LOGO_URL =
 	"https://tool.community.spicylyrics.org/logo.png";
-export const REPOSITORY_URL =
-	"https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL";
+export const REPOSITORY_URL = "https://github.com/spicylyrics/ttml-tool";
 export const DEFAULT_DISCORD_DETAILS_TEMPLATE = "{{mode}} {{title}}";
 export const DEFAULT_DISCORD_STATE_TEMPLATE =
 	"[[{{artist}} • ]]{{lineProgress}} • {{playbackStatus}}";

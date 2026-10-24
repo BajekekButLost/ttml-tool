@@ -221,17 +221,17 @@ export const useTopMenuActions = () => {
 
 	const onOpenGitHub = useCallback(async () => {
 		if (import.meta.env.TAURI_ENV_PLATFORM) {
-			await open("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL");
+			await open("https://github.com/spicylyrics/ttml-tool");
 		} else {
-			window.open("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL");
+			window.open("https://github.com/spicylyrics/ttml-tool");
 		}
 	}, []);
 
 	const onOpenWiki = useCallback(async () => {
 		if (import.meta.env.TAURI_ENV_PLATFORM) {
-			await open("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/wiki");
+			await open("https://github.com/spicylyrics/ttml-tool/wiki");
 		} else {
-			window.open("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/wiki");
+			window.open("https://github.com/spicylyrics/ttml-tool/wiki");
 		}
 	}, []);
 

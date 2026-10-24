@@ -9,7 +9,7 @@ const DISCORD_CLIENT_ID: &str = "1250551199862624349";
 const DISCORD_LOGO_URL: &str = "https://tool.community.spicylyrics.org/logo.png";
 const DISCORD_PLAY_URL: &str = "https://cdn.rcd.gg/PreMiD/resources/play.png";
 const DISCORD_PAUSE_URL: &str = "https://cdn.rcd.gg/PreMiD/resources/pause.png";
-const REPOSITORY_URL: &str = "https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL";
+const REPOSITORY_URL: &str = "https://github.com/spicylyrics/ttml-tool";
 
 #[derive(serde::Deserialize)]
 #[serde(rename_all = "camelCase")]

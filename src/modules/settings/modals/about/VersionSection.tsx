@@ -34,14 +34,14 @@ export const VersionSection = ({ t }: Pick<AboutSettings, "t">) => (
 									t("aboutModal.unknown", "Unknown")
 								) : (
 									<Link
-										href={`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`}
+										href={`https://github.com/spicylyrics/ttml-tool/commit/${GIT_COMMIT}`}
 										target="_blank"
 										rel="noreferrer"
 										onClick={(event) => {
 											if (import.meta.env.TAURI_ENV_PLATFORM) {
 												event.preventDefault();
 												openExternal(
-													`https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commit/${GIT_COMMIT}`,
+													`https://github.com/spicylyrics/ttml-tool/commit/${GIT_COMMIT}`,
 												);
 											}
 										}}

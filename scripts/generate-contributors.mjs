@@ -9,7 +9,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const REPO = "NaeNaeTart/NaeNae-AMLL-TTML-TOOL";
+const REPO = "spicylyrics/ttml-tool";
 const FORK_POINT = "5d0e3387f013f4dbfdc0d0d6111bca8a74fd9449";
 // Upstream authors and bots whose commits reach main through the fork history.
 const EXCLUDED_IDS = new Set([39_523_898, 191_877_009, 55_551_133]);

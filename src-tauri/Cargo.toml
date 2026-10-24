@@ -3,7 +3,7 @@ name = "amll-ttml-tool"
 version = "0.13.0"
 description = "A brand-new syllable lyric editor for Apple Music-like lyrics"
 license = "AGPL-3.0"
-repository = "https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL"
+repository = "https://github.com/spicylyrics/ttml-tool"
 edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

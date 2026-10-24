@@ -17,7 +17,7 @@ export const CommunitySection = ({ t }: Pick<AboutSettings, "t">) => (
 				<Button
 					variant="soft"
 					onClick={() =>
-						openExternal("https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL")
+						openExternal("https://github.com/spicylyrics/ttml-tool")
 					}
 				>
 					{t("aboutModal.github", "GitHub repository")}

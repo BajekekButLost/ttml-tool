@@ -1,7 +1,7 @@
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  * This source code is part of AMLL TTML Tool and is licensed under GPLv3.
- * https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/blob/main/LICENSE
+ * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
 import { atom } from "jotai";

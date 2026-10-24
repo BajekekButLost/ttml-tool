@@ -21,8 +21,7 @@ export function ChangelogDialog() {
 	const [isOpen, setIsOpen] = useAtom(changelogDialogAtom);
 
 	const openGitHub = async () => {
-		const repoUrl =
-			"https://github.com/NaeNaeTart/NaeNae-AMLL-TTML-TOOL/commits/main";
+		const repoUrl = "https://github.com/spicylyrics/ttml-tool/commits/main";
 		if (import.meta.env.TAURI_ENV_PLATFORM) {
 			await open(repoUrl);
 		} else {
