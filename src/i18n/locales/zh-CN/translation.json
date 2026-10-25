@@ -1432,7 +1432,7 @@
     "creditsIntro": "该项目包括改编自以下开源项目的工作。",
     "community": "社区与贡献",
     "communityDesc": "通过贡献代码、报告问题或提供翻译来帮助我们改进该工具。",
-    "github": "GitHub 存储库",
+    "github": "在 GitHub 上点星",
     "buildDate": "构建日期：{date}",
     "gitCommit": "Git 提交：{commit}",
     "platform": "平台：{platform}",

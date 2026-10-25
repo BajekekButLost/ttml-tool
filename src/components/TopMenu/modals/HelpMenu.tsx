@@ -33,7 +33,9 @@ const HelpMenuItems = () => {
 			<DropdownMenu.Item onSelect={() => setGuideWelcomeOpen(true)}>
 				{t("beginnerGuide.menu", "Start guide")}
 			</DropdownMenu.Item>
-			<DropdownMenu.Item onSelect={menu.onOpenGitHub}>GitHub</DropdownMenu.Item>
+			<DropdownMenu.Item onSelect={menu.onOpenGitHub}>
+				{t("aboutModal.github", "Star on GitHub")}
+			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={menu.onOpenGuides}>
 				{t("topBar.menu.helpDoc", "TTML guides")}
 			</DropdownMenu.Item>

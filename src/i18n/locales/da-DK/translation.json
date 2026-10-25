@@ -1432,7 +1432,7 @@
     "creditsIntro": "Dette projekt omfatter arbejde tilpasset fra følgende open source-projekter.",
     "community": "Fællesskab og bidrag",
     "communityDesc": "Hjælp os med at gøre værktøjet bedre ved at bidrage med kode, rapportere problemer eller levere oversættelser.",
-    "github": "GitHub-kodelager",
+    "github": "Giv en stjerne på GitHub",
     "buildDate": "Byggedato: {date}",
     "gitCommit": "Git-commit: {commit}",
     "platform": "Platform: {platform}",

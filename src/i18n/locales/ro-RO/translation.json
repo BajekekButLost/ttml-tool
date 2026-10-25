@@ -1432,7 +1432,7 @@
     "creditsIntro": "Acest proiect include lucrări adaptate din următoarele proiecte open-source.",
     "community": "Comunitate și contribuții",
     "communityDesc": "Ajută-ne să îmbunătățim instrumentul contribuind cu cod, raportând probleme sau oferind traduceri.",
-    "github": "Depozit GitHub",
+    "github": "Dă o stea pe GitHub",
     "buildDate": "Data compilării: {date}",
     "gitCommit": "Commit Git: {commit}",
     "platform": "Platformă: {platform}",

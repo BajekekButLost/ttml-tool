@@ -1,3 +1,4 @@
+import { StarRegular } from "@fluentui/react-icons";
 import { Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { openExternal } from "./externalLinks";
 import type { AboutSettings } from "./useAboutSettings";
@@ -20,7 +21,8 @@ export const CommunitySection = ({ t }: Pick<AboutSettings, "t">) => (
 						openExternal("https://github.com/spicylyrics/ttml-tool")
 					}
 				>
-					{t("aboutModal.github", "GitHub repository")}
+					<StarRegular />
+					{t("aboutModal.github", "Star on GitHub")}
 				</Button>
 			</Flex>
 		</Flex>

@@ -1432,7 +1432,7 @@
     "creditsIntro": "Ce projet comprend des travaux adaptés des projets open source suivants.",
     "community": "Communauté et contributions",
     "communityDesc": "Aidez-nous à améliorer l'outil en contribuant au code, en signalant des problèmes ou en fournissant des traductions.",
-    "github": "Dépôt GitHub",
+    "github": "Mettre une étoile sur GitHub",
     "buildDate": "Date de compilation : {date}",
     "gitCommit": "Commit Git : {commit}",
     "platform": "Plateforme : {platform}",

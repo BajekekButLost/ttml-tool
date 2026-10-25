@@ -32,7 +32,7 @@ jobs:
         run: |
           gh release view "${{ github.ref_name }}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1 ||
             gh release create "${{ github.ref_name }}" --repo "$GITHUB_REPOSITORY" --verify-tag \
-              --title "AMLL TTML Tool ${{ github.ref_name }}" \
+              --title "Spicy Lyrics TTML Tool ${{ github.ref_name }}" \
               --notes "Desktop release ${{ github.ref_name }}. Release notes are finalized after all platform assets are uploaded."
         env:
           GH_TOKEN: ${{ github.token }}
@@ -135,7 +135,7 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: AMLL TTML Tool ${{ github.ref_name }}
+          releaseName: Spicy Lyrics TTML Tool ${{ github.ref_name }}
           releaseBody: Desktop release ${{ github.ref_name }}. Release notes are finalized after all platform assets are uploaded.
           includeUpdaterJson: true
           # Installed apps read the generic windows-x86_64 entry; point it at setup.exe (see lib.rs).
@@ -150,7 +150,7 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: AMLL TTML Tool ${{ github.ref_name }}
+          releaseName: Spicy Lyrics TTML Tool ${{ github.ref_name }}
           releaseBody: Desktop release ${{ github.ref_name }}. Release notes are finalized after all platform assets are uploaded.
           includeUpdaterJson: true
           # Installed apps read the generic windows-x86_64 entry; point it at setup.exe (see lib.rs).
@@ -196,7 +196,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-artifact@v6
         with:
-          name: AMLL TTML Tool ${{ matrix.name }}-${{ matrix.arch }}
+          name: Spicy Lyrics TTML Tool ${{ matrix.name }}-${{ matrix.arch }}
           path: |
             src-tauri/target/**/release/bundle/**/*
             src-tauri/target/**/release/amll-ttml-tool.exe
@@ -215,7 +215,7 @@ jobs:
           path: release-notes
       - name: Set changelog-derived release notes
         if: needs.prepare-release-notes.outputs.source == 'changelog'
-        run: gh release edit "${{ github.ref_name }}" --repo "$GITHUB_REPOSITORY" --title "AMLL TTML Tool ${{ github.ref_name }}" --notes-file release-notes/release-notes.md
+        run: gh release edit "${{ github.ref_name }}" --repo "$GITHUB_REPOSITORY" --title "Spicy Lyrics TTML Tool ${{ github.ref_name }}" --notes-file release-notes/release-notes.md
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Generate fallback release notes
@@ -225,7 +225,7 @@ jobs:
           gh api --method POST "repos/$GITHUB_REPOSITORY/releases/generate-notes" \
             -f tag_name="${{ github.ref_name }}" --jq .body > release-notes.md
           gh release edit "${{ github.ref_name }}" --repo "$GITHUB_REPOSITORY" \
-            --title "AMLL TTML Tool ${{ github.ref_name }}" --notes-file release-notes.md
+            --title "Spicy Lyrics TTML Tool ${{ github.ref_name }}" --notes-file release-notes.md
         env:
           GH_TOKEN: ${{ github.token }}
 

@@ -1432,7 +1432,7 @@
     "creditsIntro": "Dit project omvat werk dat is aangepast van de volgende open-sourceprojecten.",
     "community": "Gemeenschap en bijdragen",
     "communityDesc": "Help ons de tool te verbeteren door code bij te dragen, problemen te melden of vertalingen te leveren.",
-    "github": "GitHub-repository",
+    "github": "Geef een ster op GitHub",
     "buildDate": "Builddatum: {date}",
     "gitCommit": "Git-commit: {commit}",
     "platform": "Platform: {platform}",

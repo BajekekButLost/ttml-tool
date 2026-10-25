@@ -1432,7 +1432,7 @@
     "creditsIntro": "Tento projekt zahrnuje práci upravenou z následujících open-source projektů.",
     "community": "Komunita a spolupráce",
     "communityDesc": "Pomozte nám vylepšit nástroj tím, že přispějete kódem, nahlásíte problémy nebo poskytnete překlady.",
-    "github": "Repozitář na GitHubu",
+    "github": "Dát hvězdu na GitHubu",
     "buildDate": "Datum sestavení: {date}",
     "gitCommit": "Git commit: {commit}",
     "platform": "Platforma: {platform}",

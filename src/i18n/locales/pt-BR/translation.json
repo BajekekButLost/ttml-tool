@@ -1432,7 +1432,7 @@
     "creditsIntro": "Este projeto inclui trabalhos adaptados dos seguintes projetos de código aberto.",
     "community": "Comunidade e contribuições",
     "communityDesc": "Ajude-nos a melhorar a ferramenta contribuindo com código, relatando problemas ou fornecendo traduções.",
-    "github": "Repositório no GitHub",
+    "github": "Dar estrela no GitHub",
     "buildDate": "Data de compilação: {date}",
     "gitCommit": "Commit do Git: {commit}",
     "platform": "Plataforma: {platform}",

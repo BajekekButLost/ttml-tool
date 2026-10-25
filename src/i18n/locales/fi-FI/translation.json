@@ -1432,7 +1432,7 @@
     "creditsIntro": "Tämä projekti sisältää työtä, joka on muokattu seuraavista avoimen lähdekoodin projekteista.",
     "community": "Yhteisö ja osallistuminen",
     "communityDesc": "Auta meitä parantamaan työkalua lisäämällä koodia, raportoimalla ongelmista tai toimittamalla käännöksiä.",
-    "github": "GitHub-tietovarasto",
+    "github": "Anna tähti GitHubissa",
     "buildDate": "Koontipäivä: {date}",
     "gitCommit": "Git-commit: {commit}",
     "platform": "Alusta: {platform}",

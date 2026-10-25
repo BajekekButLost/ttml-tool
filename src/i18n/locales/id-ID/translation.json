@@ -1432,7 +1432,7 @@
     "creditsIntro": "Proyek ini mencakup pekerjaan yang diadaptasi dari proyek sumber terbuka berikut.",
     "community": "Komunitas & kontribusi",
     "communityDesc": "Bantu kami menjadikan alat ini lebih baik dengan menyumbangkan kode, melaporkan masalah, atau menyediakan terjemahan.",
-    "github": "Repositori GitHub",
+    "github": "Beri bintang di GitHub",
     "buildDate": "Tanggal build: {date}",
     "gitCommit": "Commit Git: {commit}",
     "platform": "Platform: {platform}",
