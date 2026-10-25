@@ -29,7 +29,14 @@ import {
 	Tooltip,
 } from "@radix-ui/themes";
 import { useAtom, useAtomValue, useStore } from "jotai";
-import { type FC, memo, useCallback, useEffect, useState } from "react";
+import {
+	type CSSProperties,
+	type FC,
+	memo,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useLoadAudio } from "$/hooks/useLoadAudio";
 import { audioEngine } from "$/modules/audio/audio-engine";
@@ -189,12 +196,16 @@ export const AudioControls: FC = memo(() => {
 		<Card
 			data-guide-target="audio"
 			m="0"
-			style={{
-				backgroundColor: "var(--audio-bar-bg, var(--rt-color-panel-solid))",
-				height: "100%",
-				minHeight: 0,
-				borderRadius: 0,
-			}}
+			style={
+				{
+					backgroundColor: "var(--audio-bar-bg, var(--rt-color-panel-solid))",
+					height: "100%",
+					minHeight: 0,
+					borderRadius: 0,
+					// borderRadius alone leaves the Inset and card background rounded.
+					"--card-border-radius": "0px",
+				} as CSSProperties
+			}
 		>
 			<Inset>
 				<AudioPlaybackKeyBinding />

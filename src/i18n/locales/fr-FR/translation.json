@@ -516,6 +516,13 @@
         "image": "Image",
         "gradient": "Dégradé"
       },
+      "design": {
+        "title": "Design Spicy Lyrics",
+        "description": "L'apparence sombre lavande et la police Geist du reste de Spicy Lyrics. Il est toujours sombre : désactivez-le pour suivre le mode clair ou sombre du système.",
+        "accentNote": "Le design Spicy Lyrics a sa propre couleur d'accent lavande. Activez une couleur d'accent personnalisée pour en utiliser une autre.",
+        "legacyDarkThemeNote": "Sans effet tant que le design Spicy Lyrics est activé.",
+        "fontNote": "Geist, du design Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "L'image d'arrière-plan de ce préréglage n'est pas disponible sur cet appareil. L'image actuelle a été conservée.",
         "title": "Préréglages d'apparence",

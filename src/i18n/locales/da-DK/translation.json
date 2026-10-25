@@ -516,6 +516,13 @@
         "image": "Billede",
         "gradient": "Gradient"
       },
+      "design": {
+        "title": "Spicy Lyrics-design",
+        "description": "Det mørke lavendelfarvede udseende og Geist-skriften fra resten af Spicy Lyrics. Det er altid mørkt, så slå det fra for at følge systemets lyse eller mørke tilstand.",
+        "accentNote": "Spicy Lyrics-designet har sin egen lavendelfarvede accent. Slå en brugerdefineret accentfarve til for at bruge en anden.",
+        "legacyDarkThemeNote": "Har ingen effekt, mens Spicy Lyrics-designet er slået til.",
+        "fontNote": "Geist, fra Spicy Lyrics-designet"
+      },
       "presets": {
         "missingBackground": "Denne forudindstillings baggrundsbillede er ikke tilgængelig på denne enhed. Det aktuelle billede blev bevaret.",
         "title": "Forudindstillinger for udseende",

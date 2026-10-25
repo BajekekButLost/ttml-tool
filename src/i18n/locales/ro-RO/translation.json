@@ -516,6 +516,13 @@
         "image": "Imagine",
         "gradient": "Gradient"
       },
+      "design": {
+        "title": "Designul Spicy Lyrics",
+        "description": "Aspectul întunecat în nuanțe de lavandă și fontul Geist din restul Spicy Lyrics. Este mereu întunecat, așa că dezactivează-l pentru a urma modul luminos sau întunecat al sistemului.",
+        "accentNote": "Designul Spicy Lyrics are propria culoare de accent lavandă. Activează o culoare de accent personalizată pentru a folosi alta.",
+        "legacyDarkThemeNote": "Nu are efect cât timp designul Spicy Lyrics este activat.",
+        "fontNote": "Geist, din designul Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "Imaginea de fundal a acestei presetări nu este disponibilă pe acest dispozitiv. Imaginea curentă a fost păstrată.",
         "title": "Presetări de aspect",
