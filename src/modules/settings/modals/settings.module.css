@@ -112,6 +112,17 @@
 	color: var(--accent-11);
 }
 
+/* Tabs aren't Radix buttons, so the global press scale skips them. Pointer
+   presses only, as with the buttons. */
+:global(:root[data-design="spicy-lyrics"]) .navigationItem {
+	transition: transform 150ms var(--sl-ease-out);
+}
+
+:global(:root[data-design="spicy-lyrics"])
+	.navigationItem:not(:focus-visible):active {
+	transform: scale(0.97);
+}
+
 .contentPane {
 	min-width: 0;
 	overflow-y: auto;
@@ -120,6 +131,20 @@
 
 .tabContent {
 	outline: none;
+}
+
+/* A clicked tab fades its pane in. Opacity only: the pane changed, nothing
+   travelled, so reduced motion keeps it too. data-instant is set in index.tsx. */
+:global(:root[data-design="spicy-lyrics"])
+	.contentPane:not([data-instant])
+	> .tabContent[data-state="active"] {
+	animation: settings-pane-in 140ms var(--sl-ease-out) both;
+}
+
+@keyframes settings-pane-in {
+	from {
+		opacity: 0;
+	}
 }
 
 .page {
@@ -133,6 +158,13 @@
 
 .page :global(.rt-Heading) {
 	line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:global(:root[data-design="spicy-lyrics"])
+		.navigationItem:not(:focus-visible):active {
+		transform: none;
+	}
 }
 
 @media (max-width: 720px) {

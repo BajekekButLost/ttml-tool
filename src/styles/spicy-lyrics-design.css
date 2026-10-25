@@ -446,6 +446,78 @@
 	:root[data-design="spicy-lyrics"] .sl-empty-panel {
 		animation: none;
 	}
+
+	/* Radix drops all dialog motion here. Keep the fade, without the rise or
+	   scale. The overlay holds while its subtree fades, so the close isn't cut. */
+	:root[data-design="spicy-lyrics"] .rt-BaseDialogContent[data-state="open"],
+	:root[data-design="spicy-lyrics"]
+		.rt-BaseDialogOverlay[data-state="open"]::before {
+		animation: sl-fade-in 200ms var(--sl-ease-out);
+	}
+
+	:root[data-design="spicy-lyrics"] .rt-BaseDialogContent[data-state="closed"],
+	:root[data-design="spicy-lyrics"]
+		.rt-BaseDialogOverlay[data-state="closed"]::before {
+		opacity: 0;
+		animation: sl-fade-out 150ms var(--sl-ease-out);
+	}
+
+	:root[data-design="spicy-lyrics"] .rt-BaseDialogOverlay[data-state="closed"] {
+		animation: sl-hold 150ms linear;
+	}
+
+	:root[data-design="spicy-lyrics"] :is(.sl-toast-enter, .sl-toast-exit) {
+		animation-name: sl-fade-in;
+	}
+
+	:root[data-design="spicy-lyrics"] .sl-toast-exit {
+		animation-name: sl-fade-out;
+	}
+}
+
+@keyframes sl-fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes sl-fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes sl-hold {
+	to {
+		opacity: 1;
+	}
+}
+
+/* Toasts (App.tsx swaps in this transition while the design is on): a short
+   slide from the edge they sit on and back out the same way, no bounce. Not
+   scoped, so a toast caught by a design toggle still finishes its exit. */
+.sl-toast-enter {
+	animation: sl-toast-in 240ms
+		var(--sl-ease-out, cubic-bezier(0.23, 1, 0.32, 1)) both;
+}
+
+.sl-toast-exit {
+	animation: sl-toast-out 160ms
+		var(--sl-ease-out, cubic-bezier(0.23, 1, 0.32, 1)) both;
+}
+
+@keyframes sl-toast-in {
+	from {
+		opacity: 0;
+		transform: translateX(16px);
+	}
+}
+
+@keyframes sl-toast-out {
+	to {
+		opacity: 0;
+		transform: translateX(16px);
+	}
 }
 
 /* The design toggle cross-fades the whole page (SpicyLyricsDesignSection), so a

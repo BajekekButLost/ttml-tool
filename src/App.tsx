@@ -37,7 +37,7 @@ import {
 } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
+import { Bounce, cssTransition, ToastContainer, toast } from "react-toastify";
 import semverGt from "semver/functions/gt";
 import { backgroundGradients } from "$/modules/settings/states/gradients";
 import {
@@ -137,6 +137,12 @@ const PreviewModeSwitcher = lazy(
 	() => import("./components/PreviewModeSwitcher"),
 );
 const Dialogs = lazy(() => import("./components/Dialogs"));
+
+// The default toast bounce overshoots; the design slides in and out instead.
+const spicyLyricsToastTransition = cssTransition({
+	enter: "sl-toast-enter",
+	exit: "sl-toast-exit",
+});
 
 const AppErrorPage = ({
 	error,
@@ -800,7 +806,10 @@ function App() {
 					<Suspense fallback={null}>
 						<Dialogs />
 					</Suspense>
-					<ToastContainer theme={effectiveTheme} />
+					<ToastContainer
+						theme={effectiveTheme}
+						transition={spicyLyricsDesign ? spicyLyricsToastTransition : Bounce}
+					/>
 				</div>
 			</ErrorBoundary>
 		</Theme>
