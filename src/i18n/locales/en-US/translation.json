@@ -516,6 +516,13 @@
         "image": "Image",
         "gradient": "Gradient"
       },
+      "design": {
+        "title": "Spicy Lyrics design",
+        "description": "The dark lavender look and Geist type from the rest of Spicy Lyrics. It is always dark, so turn it off to follow your system's light or dark mode.",
+        "accentNote": "The Spicy Lyrics design brings its own lavender accent. Turn on a custom accent color to use a different one.",
+        "legacyDarkThemeNote": "Has no effect while the Spicy Lyrics design is on.",
+        "fontNote": "Geist, from the Spicy Lyrics design"
+      },
       "presets": {
         "missingBackground": "This preset's background image is unavailable on this device. The current image was kept.",
         "title": "Appearance presets",

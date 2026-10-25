@@ -516,6 +516,13 @@
         "image": "Obrázek",
         "gradient": "Přechod"
       },
+      "design": {
+        "title": "Design Spicy Lyrics",
+        "description": "Tmavý levandulový vzhled a písmo Geist ze zbytku Spicy Lyrics. Je vždy tmavý, takže ho vypněte, pokud chcete světlý nebo tmavý režim podle systému.",
+        "accentNote": "Design Spicy Lyrics má vlastní levandulový akcent. Chcete-li jiný, zapněte vlastní barvu akcentu.",
+        "legacyDarkThemeNote": "Nemá vliv, dokud je zapnutý design Spicy Lyrics.",
+        "fontNote": "Geist, z designu Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "Obrázek na pozadí této předvolby není na tomto zařízení k dispozici. Aktuální obrázek byl zachován.",
         "title": "Předvolby vzhledu",

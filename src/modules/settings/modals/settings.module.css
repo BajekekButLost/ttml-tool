@@ -92,6 +92,26 @@
 	background: var(--accent-a4);
 }
 
+/* Under the design the active tab is a tinted 8px pill; a side stripe would
+   bend around the rounder corner. */
+:global(:root[data-design="spicy-lyrics"]) .navigationItem {
+	padding-left: var(--space-3);
+	border-left: 0;
+	border-radius: var(--radius-2);
+}
+
+:global(:root[data-design="spicy-lyrics"])
+	.navigationItem[data-state="active"] {
+	color: var(--sl-foreground);
+	background: var(--sl-accent-fill);
+}
+
+:global(:root[data-design="spicy-lyrics"])
+	.navigationItem[data-state="active"]
+	svg {
+	color: var(--accent-11);
+}
+
 .contentPane {
 	min-width: 0;
 	overflow-y: auto;

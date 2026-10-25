@@ -516,6 +516,13 @@
         "image": "Kuva",
         "gradient": "Liukuväri"
       },
+      "design": {
+        "title": "Spicy Lyrics -ulkoasu",
+        "description": "Tumma laventelinsävyinen ulkoasu ja Geist-fontti muualta Spicy Lyricsistä. Se on aina tumma, joten poista se käytöstä, jos haluat seurata järjestelmän vaaleaa tai tummaa tilaa.",
+        "accentNote": "Spicy Lyrics -ulkoasulla on oma laventelinsävyinen korostusväri. Ota mukautettu korostusväri käyttöön, jos haluat toisen.",
+        "legacyDarkThemeNote": "Ei vaikuta, kun Spicy Lyrics -ulkoasu on käytössä.",
+        "fontNote": "Geist, Spicy Lyrics -ulkoasusta"
+      },
       "presets": {
         "missingBackground": "Tämän esiasetuksen taustakuva ei ole käytettävissä tällä laitteella. Nykyinen kuva säilytettiin.",
         "title": "Ulkoasun esiasetukset",

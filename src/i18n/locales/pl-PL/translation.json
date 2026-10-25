@@ -516,6 +516,13 @@
         "image": "Obraz",
         "gradient": "Gradient"
       },
+      "design": {
+        "title": "Wygląd Spicy Lyrics",
+        "description": "Ciemny, lawendowy wygląd i krój Geist z reszty Spicy Lyrics. Jest zawsze ciemny, więc wyłącz go, aby korzystać z jasnego lub ciemnego trybu systemu.",
+        "accentNote": "Wygląd Spicy Lyrics ma własny lawendowy kolor akcentu. Włącz własny kolor akcentu, aby użyć innego.",
+        "legacyDarkThemeNote": "Nie działa, gdy wygląd Spicy Lyrics jest włączony.",
+        "fontNote": "Geist, z wyglądu Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "Obraz tła tego zestawu ustawień jest niedostępny na tym urządzeniu. Zachowano bieżący obraz.",
         "title": "Zestawy ustawień wyglądu",
