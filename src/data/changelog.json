@@ -1,5 +1,25 @@
 [
 	{
+		"version": "0.14.0",
+		"summary": "Spicy Lyrics design",
+		"color": "green",
+		"date": "2026-10-25",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "New Spicy Lyrics design, on by default",
+				"body": "The editor now uses the dark lavender look and Geist type from the rest of Spicy Lyrics. Turn it off in **Preferences → Appearance** to get the previous theme back. Preferences tabs fade in when clicked, toasts slide in without bouncing, and dialogs still fade with reduced motion on. The **Advanced** switch on the ribbons also stops showing as on when it's off.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Star the project on GitHub from Help or About",
+				"body": "Stars help more people find the tool.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.13.1",
 		"summary": "Spicy Lyrics TTML Tool",
 		"color": "ruby",
