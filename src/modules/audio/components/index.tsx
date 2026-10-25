@@ -222,7 +222,12 @@ export const AudioControls: FC = memo(() => {
 					>
 						<HoverCard.Root>
 							<HoverCard.Trigger>
-								<IconButton my="2" variant="soft" onClick={onLoadMusic}>
+								<IconButton
+									my="2"
+									variant="soft"
+									onClick={onLoadMusic}
+									aria-label={t("spectrogram.loadAudio", "Load audio file")}
+								>
 									<MusicNote2Filled />
 								</IconButton>
 							</HoverCard.Trigger>
@@ -288,6 +293,8 @@ export const AudioControls: FC = memo(() => {
 								variant="soft"
 								disabled={!audioLoaded}
 								onClick={onTogglePlay}
+								aria-label={t("audioPanel.playPause", "Play / pause music")}
+								aria-pressed={audioPlaying}
 							>
 								{audioPlaying ? <PauseFilled /> : <PlayFilled />}
 							</IconButton>
@@ -312,6 +319,11 @@ export const AudioControls: FC = memo(() => {
 								ml="0"
 								variant="soft"
 								onClick={() => setSpectrogramVisible(!spectrogramVisible)}
+								aria-label={t(
+									"audioPanel.expandSpectrogram",
+									"Expand / collapse spectrogram",
+								)}
+								aria-expanded={spectrogramVisible}
 							>
 								{spectrogramVisible ? (
 									<ChevronDownFilled />
