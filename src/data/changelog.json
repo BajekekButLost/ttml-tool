@@ -16,6 +16,12 @@
 				"title": "Star the project on GitHub from Help or About",
 				"body": "Stars help more people find the tool.",
 				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "The website can no longer be installed as an app",
+				"body": "Use the [desktop app](https://github.com/spicylyrics/ttml-tool/releases/latest) for an installed, offline TTML Tool. The website now always opens in a normal browser tab.",
+				"highlight": false
 			}
 		]
 	},
