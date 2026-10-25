@@ -93,7 +93,7 @@ export const LyricTimelineOverlay: FC<LyricTimelineOverlayProps> = ({
 
 			switch (timelineDrag.type) {
 				case "divider": {
-					const { lineId, segmentIndex, isGapCreation } = timelineDrag;
+					const { lineId, segmentIndex, edge, isGapCreation } = timelineDrag;
 					const lineBeingDragged = processedLines.find((l) => l.id === lineId);
 					if (!lineBeingDragged || dividerStartMouseTimeMs === null) return;
 
@@ -106,10 +106,13 @@ export const LyricTimelineOverlay: FC<LyricTimelineOverlayProps> = ({
 						else if (deltaX < -2) lockedGapDirection = "left";
 					}
 					if (isGapCreation && !lockedGapDirection) return;
-					let newTime =
-						(segmentIndex === -1
+					const handleTime =
+						segmentIndex === -1
 							? lineBeingDragged.startTime
-							: lineBeingDragged.segments[segmentIndex].endTime) + deltaTimeMs;
+							: edge === "start"
+								? lineBeingDragged.segments[segmentIndex + 1].startTime
+								: lineBeingDragged.segments[segmentIndex].endTime;
+					let newTime = handleTime + deltaTimeMs;
 
 					if (!shiftKey) {
 						let closestSnapTime: number | null = null;
@@ -134,6 +137,7 @@ export const LyricTimelineOverlay: FC<LyricTimelineOverlayProps> = ({
 						isGapCreation,
 						zoom,
 						lockedGapDirection,
+						edge,
 					);
 					setPreviewLine(preview);
 					break;
