@@ -1223,10 +1223,6 @@
     "processLyrics": "处理歌词",
     "processedSuccess": "歌词已处理，可按音节打轴。",
     "title": "从纯文本导入歌词",
-    "tab": {
-      "import": "导入"
-    },
-    "guides": "指南",
     "actionButton": "导入",
     "contentMode": {
       "caption": "文本内容",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "使用行前缀",
     "bgLyricPrefix": "背景人声行前缀",
     "duetLyricPrefix": "对唱行前缀",
-    "guide": {
-      "prepare": {
-        "title": "1. 准备歌词",
-        "desc": "推荐用 Lyrprep 准备歌词：搜索歌曲、选择版本并复制输出文本。"
-      },
-      "import": {
-        "title": "2. 导入到 TTML 工具",
-        "desc": "将准备好的文本粘贴到左侧编辑器，选择匹配的“文本内容”选项。若文本使用前缀标记背景人声或对唱行，请启用“使用行前缀”。"
-      },
-      "sync": {
-        "title": "3. 开始打轴",
-        "desc": "导入后切换到打轴模式，使用以下按键打轴：",
-        "f": "开始当前字",
-        "g": "结束当前字并开始下一个字",
-        "h": "仅结束当前字",
-        "ad": "在字之间切换"
-      },
-      "community": {
-        "title": "社区指南与速查表",
-        "desc": "来自社区的针对特定语言和流派的有用资源。"
-      }
-    },
-    "guidesMenu": {
-      "full": "完整 TTML 指南"
-    },
     "description": "从纯文本或其他格式导入歌词。"
   },
   "sectionImportReview": {
