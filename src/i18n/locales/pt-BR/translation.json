@@ -1223,10 +1223,6 @@
     "processLyrics": "Processar letra",
     "processedSuccess": "Letra preparada para sincronizar por sílabas.",
     "title": "Importar letras de texto simples",
-    "tab": {
-      "import": "Importar"
-    },
-    "guides": "Guias",
     "actionButton": "Importar",
     "contentMode": {
       "caption": "Conteúdo do texto",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "Usar prefixos de linha",
     "bgLyricPrefix": "Prefixo de linhas de vocais de apoio",
     "duetLyricPrefix": "Prefixo de linhas de dueto",
-    "guide": {
-      "prepare": {
-        "title": "1. Prepare as letras",
-        "desc": "Recomendamos o Lyrprep para preparar a letra: busque a música, escolha uma versão e copie o resultado."
-      },
-      "import": {
-        "title": "2. Importe para TTML Tool",
-        "desc": "Cole o texto preparado no editor à esquerda e escolha a opção correspondente em Conteúdo do texto. Se houver prefixos para linhas de vocais de apoio ou dueto, ative Usar prefixos de linha."
-      },
-      "sync": {
-        "title": "3. Comece a sincronizar",
-        "desc": "Após importar, mude para o modo Sincronização e use estas teclas:",
-        "f": "Iniciar a palavra",
-        "g": "Encerrar a palavra e iniciar a próxima",
-        "h": "Encerrar apenas a palavra",
-        "ad": "Alternar entre palavras"
-      },
-      "community": {
-        "title": "Guias da comunidade e folhas de dicas",
-        "desc": "Recursos úteis da comunidade para idiomas e gêneros específicos."
-      }
-    },
-    "guidesMenu": {
-      "full": "Guia TTML completo"
-    },
     "description": "Importe letras de texto simples ou de outros formatos."
   },
   "sectionImportReview": {
