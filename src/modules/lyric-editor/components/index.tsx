@@ -22,6 +22,7 @@ import {
 	useEffect,
 	useImperativeHandle,
 	useRef,
+	useState,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { ViewportList, type ViewportListRef } from "react-viewport-list";
@@ -65,7 +66,10 @@ export const LyricLinesView: FC = forwardRef<HTMLDivElement>((_props, ref) => {
 	const viewRef = useRef<ViewportListRef>(null);
 	const viewElRef = useRef<HTMLDivElement>(null);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
-	const toolMode = useAtomValue(toolModeAtom);
+	// Each mode mounts its own view (keyed by mode in App), and the old one
+	// keeps rendering while it fades out. Pin the mode so the leaving view
+	// doesn't adopt the next mode's layout and overwrite its scroll anchor.
+	const [toolMode] = useState(() => store.get(toolModeAtom));
 	const { t } = useTranslation();
 	const setGuideWelcome = useSetAtom(guideWelcomeOpenAtom);
 	const setGuidePanel = useSetAtom(guidePanelOpenAtom);
