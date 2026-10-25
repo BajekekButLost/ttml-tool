@@ -1223,10 +1223,6 @@
     "processLyrics": "Songteksten verwerken",
     "processedSuccess": "Songtekst voorbereid voor synchronisatie per lettergreep.",
     "title": "Importeer songteksten uit platte tekst",
-    "tab": {
-      "import": "Importeren"
-    },
-    "guides": "Handleidingen",
     "actionButton": "Importeren",
     "contentMode": {
       "caption": "Tekstinhoud",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "Regelvoorvoegsels gebruiken",
     "bgLyricPrefix": "Voorvoegsel achtergrondregel",
     "duetLyricPrefix": "Voorvoegsel duetregel",
-    "guide": {
-      "prepare": {
-        "title": "1. Bereid songteksten voor",
-        "desc": "Het wordt aanbevolen om de Lyrprep tool te gebruiken om je songtekst voor te bereiden. Je kunt zoeken naar nummers, een versie selecteren en de uitvoertekst kopiëren."
-      },
-      "import": {
-        "title": "2. Importeren naar TTML Tool",
-        "desc": "Plak de voorbereide tekst in de editor links en kies de bijpassende optie bij Tekstinhoud. Schakel Regelvoorvoegsels gebruiken in als je tekst achtergrond- of duetregels met voorvoegsels markeert."
-      },
-      "sync": {
-        "title": "3. Begin met synchroniseren",
-        "desc": "Ga na het importeren naar Timing en synchroniseer met deze toetsen:",
-        "f": "Woord starten",
-        "g": "Woord beëindigen en het volgende starten",
-        "h": "Alleen het woord beëindigen",
-        "ad": "Wissel tussen woorden"
-      },
-      "community": {
-        "title": "Handleidingen en spiekbriefjes van de community",
-        "desc": "Handige informatie van de community voor specifieke talen en genres."
-      }
-    },
-    "guidesMenu": {
-      "full": "Volledige TTML-handleiding"
-    },
     "description": "Importeer songteksten uit platte tekst of andere formaten."
   },
   "sectionImportReview": {

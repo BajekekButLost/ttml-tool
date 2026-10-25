@@ -1223,10 +1223,6 @@
     "processLyrics": "Process lyrics",
     "processedSuccess": "Lyrics prepared for syllable syncing.",
     "title": "Import lyrics from plain text",
-    "tab": {
-      "import": "Import"
-    },
-    "guides": "Guides",
     "actionButton": "Import",
     "contentMode": {
       "caption": "Text content",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "Use line prefixes",
     "bgLyricPrefix": "Background line prefix",
     "duetLyricPrefix": "Duet line prefix",
-    "guide": {
-      "prepare": {
-        "title": "1. Prepare lyrics",
-        "desc": "We recommend Lyrprep for preparing lyrics: search for the song, pick a version and copy the output."
-      },
-      "import": {
-        "title": "2. Import to TTML Tool",
-        "desc": "Paste the prepared text into the editor on the left and pick the matching Text content option. If your text marks background or duet lines with prefixes, turn on Use line prefixes."
-      },
-      "sync": {
-        "title": "3. Start syncing",
-        "desc": "After importing, switch to Time mode and sync with these keys:",
-        "f": "Start the word",
-        "g": "End the word and start the next",
-        "h": "End the word only",
-        "ad": "Switch between words"
-      },
-      "community": {
-        "title": "Community guides & cheat sheets",
-        "desc": "Helpful resources from the community for specific languages and genres."
-      }
-    },
-    "guidesMenu": {
-      "full": "Full TTML guide"
-    },
     "description": "Import lyrics from plain text or other formats."
   },
   "sectionImportReview": {

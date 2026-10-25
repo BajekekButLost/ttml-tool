@@ -1223,10 +1223,6 @@
     "processLyrics": "Spracovať text",
     "processedSuccess": "Text pripravený na synchronizáciu slabík.",
     "title": "Importovať text piesne z obyčajného textu",
-    "tab": {
-      "import": "Import"
-    },
-    "guides": "Sprievodcovia",
     "actionButton": "Importovať",
     "contentMode": {
       "caption": "Obsah textu",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "Použiť predpony riadkov",
     "bgLyricPrefix": "Predpona sprievodného riadka",
     "duetLyricPrefix": "Predpona duetového riadka",
-    "guide": {
-      "prepare": {
-        "title": "1. Pripravte text",
-        "desc": "Na prípravu textu odporúčame Lyrprep: vyhľadajte skladbu, vyberte verziu a skopírujte výsledok."
-      },
-      "import": {
-        "title": "2. Importujte do TTML Tool",
-        "desc": "Vložte pripravený text do editora vľavo a vyberte zodpovedajúcu možnosť „Obsah textu“. Ak text označuje sprievodné či duetové riadky predponami, zapnite „Použiť predpony riadkov“."
-      },
-      "sync": {
-        "title": "3. Spustite synchronizáciu",
-        "desc": "Po importe prepnite do režimu Časovanie a synchronizujte týmito klávesmi:",
-        "f": "Začať slovo",
-        "g": "Ukončiť slovo a začať ďalšie",
-        "h": "Iba ukončiť slovo",
-        "ad": "Prepínať medzi slovami"
-      },
-      "community": {
-        "title": "Sprievodcovia a prehľady od komunity",
-        "desc": "Užitočné zdroje od komunity pre konkrétne jazyky a žánre."
-      }
-    },
-    "guidesMenu": {
-      "full": "Úplný sprievodca TTML"
-    },
     "description": "Importovať text piesne z obyčajného textu alebo iných formátov."
   },
   "sectionImportReview": {

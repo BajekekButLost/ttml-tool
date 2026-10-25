@@ -1223,10 +1223,6 @@
     "processLyrics": "Préparer les paroles",
     "processedSuccess": "Paroles prêtes pour la synchronisation par syllabe.",
     "title": "Importer des paroles depuis du texte brut",
-    "tab": {
-      "import": "Importer"
-    },
-    "guides": "Guides",
     "actionButton": "Importer",
     "contentMode": {
       "caption": "Contenu du texte",
@@ -1246,31 +1242,6 @@
     "enableSpecialPrefix": "Utiliser des préfixes de ligne",
     "bgLyricPrefix": "Préfixe des lignes de chœurs",
     "duetLyricPrefix": "Préfixe des lignes de duo",
-    "guide": {
-      "prepare": {
-        "title": "1. Préparez les paroles",
-        "desc": "Nous recommandons Lyrprep pour préparer les paroles : cherchez la chanson, choisissez une version et copiez le résultat."
-      },
-      "import": {
-        "title": "2. Importer vers TTML Tool",
-        "desc": "Collez le texte préparé dans l’éditeur à gauche et choisissez l’option Contenu du texte correspondante. Si des préfixes indiquent les chœurs ou duos, activez Utiliser des préfixes de ligne."
-      },
-      "sync": {
-        "title": "3. Commencez la synchronisation",
-        "desc": "Après l’importation, passez en mode Synchronisation et utilisez ces touches :",
-        "f": "Démarrer le mot",
-        "g": "Terminer le mot et démarrer le suivant",
-        "h": "Terminer le mot uniquement",
-        "ad": "Basculer entre les mots"
-      },
-      "community": {
-        "title": "Guides communautaires et aide-mémoire",
-        "desc": "Ressources utiles de la communauté pour des langues et des genres spécifiques."
-      }
-    },
-    "guidesMenu": {
-      "full": "Guide complet du TTML"
-    },
     "description": "Importer des paroles depuis du texte brut ou d'autres formats."
   },
   "sectionImportReview": {
