@@ -516,6 +516,13 @@
         "image": "Gambar",
         "gradient": "Gradien"
       },
+      "design": {
+        "title": "Desain Spicy Lyrics",
+        "description": "Tampilan gelap bernuansa lavender dan huruf Geist dari bagian lain Spicy Lyrics. Selalu gelap, jadi matikan untuk mengikuti mode terang atau gelap sistem.",
+        "accentNote": "Desain Spicy Lyrics punya warna aksen lavender sendiri. Aktifkan warna aksen kustom untuk memakai warna lain.",
+        "legacyDarkThemeNote": "Tidak berpengaruh selama desain Spicy Lyrics aktif.",
+        "fontNote": "Geist, dari desain Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "Gambar latar preset ini tidak tersedia di perangkat ini. Gambar saat ini dipertahankan.",
         "title": "Preset tampilan",

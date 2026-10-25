@@ -516,6 +516,13 @@
         "image": "Imagem",
         "gradient": "Gradiente"
       },
+      "design": {
+        "title": "Visual do Spicy Lyrics",
+        "description": "O visual escuro em lavanda e a fonte Geist do restante do Spicy Lyrics. Ele é sempre escuro, então desative para seguir o modo claro ou escuro do sistema.",
+        "accentNote": "O visual do Spicy Lyrics tem sua própria cor de destaque lavanda. Ative uma cor de destaque personalizada para usar outra.",
+        "legacyDarkThemeNote": "Não tem efeito enquanto o visual do Spicy Lyrics estiver ativado.",
+        "fontNote": "Geist, do visual do Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "A imagem de fundo desta predefinição não está disponível neste dispositivo. A imagem atual foi mantida.",
         "title": "Predefinições de aparência",

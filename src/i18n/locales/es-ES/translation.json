@@ -516,6 +516,13 @@
         "image": "Imagen",
         "gradient": "Degradado"
       },
+      "design": {
+        "title": "Diseño de Spicy Lyrics",
+        "description": "El aspecto oscuro en lavanda y la tipografía Geist del resto de Spicy Lyrics. Siempre es oscuro, así que desactívalo para seguir el modo claro u oscuro del sistema.",
+        "accentNote": "El diseño de Spicy Lyrics trae su propio acento lavanda. Activa un color de acento personalizado para usar otro.",
+        "legacyDarkThemeNote": "No tiene efecto mientras el diseño de Spicy Lyrics esté activado.",
+        "fontNote": "Geist, del diseño de Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "La imagen de fondo de este ajuste preestablecido no está disponible en este dispositivo. Se mantuvo la imagen actual.",
         "title": "Ajustes preestablecidos de apariencia",

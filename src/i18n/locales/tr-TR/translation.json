@@ -516,6 +516,13 @@
         "image": "Resim",
         "gradient": "Gradyan"
       },
+      "design": {
+        "title": "Spicy Lyrics tasarımı",
+        "description": "Spicy Lyrics'in geri kalanındaki koyu lavanta görünüm ve Geist yazı tipi. Her zaman koyudur, bu yüzden sistemin açık veya koyu modunu izlemek için kapatın.",
+        "accentNote": "Spicy Lyrics tasarımının kendi lavanta vurgu rengi var. Başka bir renk kullanmak için özel vurgu rengini açın.",
+        "legacyDarkThemeNote": "Spicy Lyrics tasarımı açıkken etkisi yoktur.",
+        "fontNote": "Geist, Spicy Lyrics tasarımından"
+      },
       "presets": {
         "missingBackground": "Bu ön ayarın arka plan resmi bu cihazda kullanılamıyor. Mevcut görüntü korundu.",
         "title": "Görünüm ön ayarları",

@@ -516,6 +516,13 @@
         "image": "图像",
         "gradient": "渐变"
       },
+      "design": {
+        "title": "Spicy Lyrics 设计",
+        "description": "与 Spicy Lyrics 其他产品一致的深色薰衣草配色和 Geist 字体。它始终为深色，如需跟随系统的浅色或深色模式，请将其关闭。",
+        "accentNote": "Spicy Lyrics 设计自带薰衣草色强调色。如需使用其他颜色，请开启自定义强调色。",
+        "legacyDarkThemeNote": "开启 Spicy Lyrics 设计时此项无效。",
+        "fontNote": "Geist（来自 Spicy Lyrics 设计）"
+      },
       "presets": {
         "missingBackground": "此预设的背景图像在此设备上不可用。当前图像被保留。",
         "title": "外观预设",

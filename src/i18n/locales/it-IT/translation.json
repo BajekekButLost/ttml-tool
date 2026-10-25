@@ -516,6 +516,13 @@
         "image": "Immagine",
         "gradient": "Gradiente"
       },
+      "design": {
+        "title": "Design Spicy Lyrics",
+        "description": "L'aspetto scuro color lavanda e il carattere Geist del resto di Spicy Lyrics. È sempre scuro, quindi disattivalo per seguire la modalità chiara o scura del sistema.",
+        "accentNote": "Il design Spicy Lyrics ha il suo accento lavanda. Attiva un colore di accento personalizzato per usarne un altro.",
+        "legacyDarkThemeNote": "Non ha effetto mentre il design Spicy Lyrics è attivo.",
+        "fontNote": "Geist, dal design Spicy Lyrics"
+      },
       "presets": {
         "missingBackground": "L’immagine di sfondo di questo profilo non è disponibile sul dispositivo. È stata mantenuta l’immagine attuale.",
         "title": "Profili di aspetto",

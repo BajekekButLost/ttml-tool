@@ -516,6 +516,13 @@
         "image": "Afbeelding",
         "gradient": "Kleurovergang"
       },
+      "design": {
+        "title": "Spicy Lyrics-ontwerp",
+        "description": "De donkere lavendelkleurige stijl en het Geist-lettertype van de rest van Spicy Lyrics. Het is altijd donker, dus zet het uit om de lichte of donkere modus van je systeem te volgen.",
+        "accentNote": "Het Spicy Lyrics-ontwerp heeft een eigen lavendelkleurig accent. Zet een eigen accentkleur aan om een andere te gebruiken.",
+        "legacyDarkThemeNote": "Heeft geen effect zolang het Spicy Lyrics-ontwerp aan staat.",
+        "fontNote": "Geist, uit het Spicy Lyrics-ontwerp"
+      },
       "presets": {
         "missingBackground": "De achtergrondafbeelding van deze voorinstelling is niet beschikbaar op dit apparaat. Het huidige beeld werd behouden.",
         "title": "Voorinstellingen voor uiterlijk",
