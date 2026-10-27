@@ -57,12 +57,31 @@
 		animation: laneItemFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	&.dropLeft {
-		border-left: solid 3px var(--accent-a11);
+	/* Drawn in the gap rather than as a border: dark themes reset the chip
+	   border, and a border-width change would shift the line while dragging. */
+	&.dropLeft,
+	&.dropRight {
+		position: relative;
 	}
 
-	&.dropRight {
-		border-right: solid 3px var(--accent-a11);
+	&.dropLeft::after,
+	&.dropRight::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		border-radius: 9999px;
+		background-color: var(--accent-a11);
+		pointer-events: none;
+	}
+
+	&.dropLeft::after {
+		left: calc(var(--chip-gap, var(--space-2)) / -2 - 1.5px);
+	}
+
+	&.dropRight::after {
+		right: calc(var(--chip-gap, var(--space-2)) / -2 - 1.5px);
 	}
 }
 
