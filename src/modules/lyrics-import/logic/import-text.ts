@@ -238,18 +238,30 @@ export function segmentImportText(
 		// Never let a split change the text itself.
 		return parts.join("") === chunk ? parts : [chunk];
 	};
-	const splitBody = (body: string) =>
-		body
+	// A word already marked inside (other than right after a hyphen) was split
+	// by hand or by an earlier run, so it's left alone. That keeps this idempotent.
+	const splitWordTokens = (tokens: string[]) =>
+		tokens.some(
+			(token, index) => index < tokens.length - 1 && !token.endsWith("-"),
+		)
+			? tokens
+			: tokens.flatMap(splitChunk);
+	const splitBody = (body: string) => {
+		const tokens = body
 			.split(separator)
-			.flatMap((piece) =>
-				piece
-					.split(/(\s+)/)
-					.filter((chunk) => chunk.length > 0)
-					.flatMap((chunk) =>
-						/^\s+$/.test(chunk) ? [chunk] : splitChunk(chunk),
-					),
-			)
-			.join(separator);
+			.flatMap((piece) => piece.split(/(\s+)/))
+			.filter((token) => token.length > 0);
+		const output: string[] = [];
+		let word: string[] = [];
+		for (const token of tokens) {
+			if (/^\s+$/.test(token)) {
+				output.push(...splitWordTokens(word), token);
+				word = [];
+			} else word.push(token);
+		}
+		output.push(...splitWordTokens(word));
+		return output.join(separator);
+	};
 
 	const rows = text.split(/\r\n|\r|\n/);
 	const output: string[] = [];

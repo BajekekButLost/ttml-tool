@@ -284,3 +284,63 @@ describe("syllable splitting in the import text", () => {
 		]);
 	});
 });
+
+describe("text tools run twice", () => {
+	const segmentation: SegmentationConfig = {
+		engine: "basic",
+		splitCJK: true,
+		splitEnglish: true,
+		punctuationWeight: 0.2,
+		punctuationMode: "merge",
+		removeEmptySegments: true,
+		ignoreList: new Set(),
+		customRules: new Map(),
+		learnedRules: new Map([["beautiful", [4, 7]]]),
+	};
+	const autoSegment = (word: string) =>
+		segmentWord({ ...newLyricWord(), word }, segmentation).map(
+			(part) => part.word,
+		);
+	const translated: ImportTextFormat = { ...FORMAT, mode: "lyric-trans" };
+	const inputs: [string, string, ImportTextFormat][] = [
+		[
+			"Genius paste",
+			`[Intro: Singer]\nOoh (yeah)\n\n[Verse 1]\nHello beautiful world, it's me\nI-I can't stop (Can't stop)\nMm-hmm, la-la -- wait - no\n\n[Chorus]\n你好世界 (君、僕)`,
+			FORMAT,
+		],
+		[
+			"existing split marks",
+			"Hello \beau\ti\ful world\n<Twen\ty-one okay",
+			FORMAT,
+		],
+		[
+			"translations",
+			"Hello beautiful world\nHallo schöne Welt\nGood-bye (bye)\nAuf Wiedersehen",
+			translated,
+		],
+	];
+	const tools: [string, (text: string, format: ImportTextFormat) => string][] =
+		[
+			["Process lyrics", (text) => prepareTextImport(text, true)],
+			[
+				"Split syllables",
+				(text, format) => segmentImportText(text, format, autoSegment),
+			],
+			[
+				"Split syllables (pairs)",
+				(text, format) => segmentImportText(text, format, pairs),
+			],
+		];
+
+	for (const [toolName, tool] of tools) {
+		it.each(inputs)(`${toolName} on %s`, (_name, input, format) => {
+			const once = tool(input, format);
+			expect(tool(once, format)).toBe(once);
+		});
+	}
+
+	it("keeps split marks when processing after splitting", () => {
+		const split = segmentImportText("So beautiful", FORMAT, autoSegment);
+		expect(prepareTextImport(split, true)).toBe(split);
+	});
+});

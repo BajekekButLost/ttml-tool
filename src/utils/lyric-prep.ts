@@ -16,7 +16,10 @@ const normalize = (value: string) => {
 			continue;
 		}
 		const nextChar = chars[index + 1];
-		if (nextChar === " ") {
+		if (nextChar === "\\") {
+			// Already split after the hyphen by an earlier pass; keep it.
+			processed += "-";
+		} else if (nextChar === " ") {
 			processed += "— ";
 			index++;
 		} else if (nextChar === "-") {
@@ -56,14 +59,23 @@ const normalize = (value: string) => {
 		.trim();
 };
 
-/** Process one lyric line into the plain-text import representation. */
+/**
+ * Process one lyric line into the plain-text import representation.
+ * Running it on its own output gives the same output: escaped spaces are read
+ * back as spaces and existing split marks are kept.
+ */
 export const prepareLyricLine = (line: string, escapeSpaces = true) => {
 	const backgroundVocals: string[] = [];
 	let mainLine = "";
 	let currentParen = "";
 	let inParen = false;
+	const source = line
+		.replace(/\[.*?\]/g, "")
+		.replace(/\\? \\?/g, " ")
+		.replace(/^\\+|\\+$/g, "")
+		.trim();
 
-	for (const char of line.replace(/\[.*?\]/g, "").trim()) {
+	for (const char of source) {
 		if (["(", "（"].includes(char) && !inParen) {
 			inParen = true;
 			currentParen = "";
