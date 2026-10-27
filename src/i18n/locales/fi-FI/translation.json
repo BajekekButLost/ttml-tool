@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Koskee Muokkaus-, Ajoitus- ja Esikatselu-valintanauhoja.",
+    "tooltips": {
+      "newLyricLine": "Lisää tyhjän rivin sanoitusten loppuun.",
+      "bgLyric": "Merkitsee valitut rivit taustalauluksi.",
+      "duetLyric": "Merkitsee valitut rivit toisen laulajan laulamiksi.",
+      "ignoreSync": "Ajoitusnäppäimet hyppäävät valittujen rivien yli, joten niitä ei ajoiteta.",
+      "romanizationLanguage": "Latinalaistuksen kieli",
+      "romanizationLanguageDesc": "Valittujen sanoitusten kieli. Automaattinen tunnistus toimii useimmissa kappaleissa.",
+      "romanize": "Täyttää latinalaistuksen valituille riveille tai sanoille."
+    },
     "editMode": {
       "multipleValues": "Useita arvoja...",
       "duration": "Kesto",
@@ -381,10 +390,10 @@
       "showTimestampUpdate": "Näytä aikaleimapäivitykset",
       "touchSyncPanel": "Kosketusajoituspaneeli",
       "bgLyricSync": "Taustalaulurivit",
-      "bgSyncInline": "Samalla",
+      "bgSyncInline": "Päärivin kanssa",
       "bgSyncInlineDesc": "Ajoita jokainen taustalaulurivi heti päärivinsä jälkeen.",
-      "bgSyncSeparate": "Erikseen",
-      "bgSyncSeparateDesc": "G ja H pysyvät pääriveillä. Napsauta taustalauluriviä ajoittaaksesi taustalaulurivit omana kierroksenaan.",
+      "bgSyncSeparate": "Ohita ajoitettaessa",
+      "bgSyncSeparateDesc": "G ja H pysyvät pääriveillä. Napsauta taustalauluriviä ajoittaaksesi ne erikseen.",
       "quickFixes": "Pikakorjaukset",
       "manualTimestampEdit": "Aikaleimojen manuaalinen muokkaus",
       "doubleClickEdit": "Muokkaa sanaa kaksoisnapsauttamalla",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Muokkaus",
       "sync": "Ajoitus",
-      "preview": "Esikatselu"
+      "preview": "Esikatselu",
+      "editDesc": "Kirjoita, jaa ja merkitse sanoitukset.",
+      "syncDesc": "Ajoita jokainen sana ääneen.",
+      "previewDesc": "Toista sanoitukset niin kuin kuulijat ne näkevät."
     },
     "appName": "TTML Tool",
     "menu": {

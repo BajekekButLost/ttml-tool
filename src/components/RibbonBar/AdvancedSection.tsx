@@ -1,7 +1,8 @@
-import { Switch, Tooltip } from "@radix-ui/themes";
+import { Switch } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { ActionTooltip } from "$/components/ActionTooltip";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import { RibbonSection } from "./common";
 
@@ -13,22 +14,19 @@ export const AdvancedSection: FC = () => {
 
 	return (
 		<RibbonSection label={label}>
-			<Tooltip
-				content={t(
+			<ActionTooltip
+				label={label}
+				description={t(
 					"ribbonBar.advancedTooltip",
 					"Applies to the Edit, Time and Preview ribbons.",
 				)}
 			>
-				{/* The wrapper takes the tooltip's data-state, which would otherwise
-				    replace the switch's own "checked"/"unchecked" state. */}
-				<span style={{ display: "inline-flex" }}>
-					<Switch
-						checked={showAdvanced}
-						onCheckedChange={setShowAdvanced}
-						aria-label={label}
-					/>
-				</span>
-			</Tooltip>
+				<Switch
+					checked={showAdvanced}
+					onCheckedChange={setShowAdvanced}
+					aria-label={label}
+				/>
+			</ActionTooltip>
 		</RibbonSection>
 	);
 };

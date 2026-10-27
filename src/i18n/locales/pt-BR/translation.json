@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Aplica-se às faixas de Edição, Sincronização e Prévia.",
+    "tooltips": {
+      "newLyricLine": "Adiciona uma linha vazia no fim da letra.",
+      "bgLyric": "Marca as linhas selecionadas como vocal de apoio.",
+      "duetLyric": "Marca as linhas selecionadas como cantadas pelo segundo cantor.",
+      "ignoreSync": "As teclas de sincronização pulam as linhas selecionadas, então você não as sincroniza.",
+      "romanizationLanguage": "Idioma da romanização",
+      "romanizationLanguageDesc": "O idioma da letra selecionada. A detecção automática funciona na maioria das músicas.",
+      "romanize": "Preenche a romanização das linhas ou palavras selecionadas."
+    },
     "editMode": {
       "multipleValues": "Múltiplos valores…",
       "duration": "Duração",
@@ -381,9 +390,9 @@
       "showTimestampUpdate": "Mostrar atualizações de marca de tempo",
       "touchSyncPanel": "Painel de sincronização por toque",
       "bgLyricSync": "Linhas de vocais de apoio",
-      "bgSyncInline": "Junto",
+      "bgSyncInline": "Junto da principal",
       "bgSyncInlineDesc": "Sincronize cada linha de vocais de apoio logo depois da linha principal.",
-      "bgSyncSeparate": "Passada separada",
+      "bgSyncSeparate": "Pular ao sincronizar",
       "bgSyncSeparateDesc": "G e H ficam nas linhas principais. Clique em uma linha de vocais de apoio para sincronizá-las à parte.",
       "quickFixes": "Correções rápidas",
       "manualTimestampEdit": "Edição manual de marcas de tempo",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Edição",
       "sync": "Sincronização",
-      "preview": "Prévia"
+      "preview": "Prévia",
+      "editDesc": "Digite, divida e marque a letra.",
+      "syncDesc": "Sincronize cada palavra com o áudio.",
+      "previewDesc": "Reproduza a letra do jeito que os ouvintes vão ver."
     },
     "appName": "TTML Tool",
     "menu": {

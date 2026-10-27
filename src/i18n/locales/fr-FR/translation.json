@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "S’applique aux rubans Édition, Synchronisation et Aperçu.",
+    "tooltips": {
+      "newLyricLine": "Ajoute une ligne vide à la fin des paroles.",
+      "bgLyric": "Marque les lignes sélectionnées comme chœurs.",
+      "duetLyric": "Marque les lignes sélectionnées comme chantées par le second chanteur.",
+      "ignoreSync": "Les touches de synchronisation sautent les lignes sélectionnées, qui ne sont donc pas synchronisées.",
+      "romanizationLanguage": "Langue de romanisation",
+      "romanizationLanguageDesc": "La langue des paroles sélectionnées. La détection automatique convient à la plupart des chansons.",
+      "romanize": "Remplit la romanisation des lignes ou des mots sélectionnés."
+    },
     "editMode": {
       "multipleValues": "Valeurs multiples…",
       "duration": "Durée",
@@ -381,10 +390,10 @@
       "showTimestampUpdate": "Afficher les mises à jour d'horodatage",
       "touchSyncPanel": "Panneau de synchronisation tactile",
       "bgLyricSync": "Lignes de chœurs",
-      "bgSyncInline": "En ligne",
+      "bgSyncInline": "Avec la principale",
       "bgSyncInlineDesc": "Synchronisez chaque ligne de chœurs juste après sa ligne principale.",
-      "bgSyncSeparate": "Passe séparée",
-      "bgSyncSeparateDesc": "G et H restent sur les lignes principales. Cliquez sur une ligne de chœurs pour synchroniser les chœurs à part.",
+      "bgSyncSeparate": "Ignorer pendant la synchro",
+      "bgSyncSeparateDesc": "G et H restent sur les lignes principales. Cliquez sur une ligne de chœurs pour les synchroniser à part.",
       "quickFixes": "Corrections rapides",
       "manualTimestampEdit": "Modification manuelle de l'horodatage",
       "doubleClickEdit": "Modification des mots par double-clic",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Édition",
       "sync": "Synchronisation",
-      "preview": "Aperçu"
+      "preview": "Aperçu",
+      "editDesc": "Saisir, découper et annoter les paroles.",
+      "syncDesc": "Synchroniser chaque mot avec l’audio.",
+      "previewDesc": "Lire les paroles telles que les auditeurs les verront."
     },
     "appName": "TTML Tool",
     "menu": {

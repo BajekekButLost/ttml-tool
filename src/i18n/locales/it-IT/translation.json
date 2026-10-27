@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Si applica alle barre Modifica, Sincronizzazione e Anteprima.",
+    "tooltips": {
+      "newLyricLine": "Aggiunge una riga vuota alla fine del testo.",
+      "bgLyric": "Segna le righe selezionate come cori.",
+      "duetLyric": "Segna le righe selezionate come cantate dal secondo cantante.",
+      "ignoreSync": "I tasti di sincronizzazione saltano le righe selezionate, quindi non le sincronizzi.",
+      "romanizationLanguage": "Lingua della romanizzazione",
+      "romanizationLanguageDesc": "La lingua del testo selezionato. Il rilevamento automatico funziona con la maggior parte dei brani.",
+      "romanize": "Compila la romanizzazione delle righe o parole selezionate."
+    },
     "editMode": {
       "multipleValues": "Più valori…",
       "duration": "Durata",
@@ -381,10 +390,10 @@
       "showTimestampUpdate": "Mostra aggiornamenti dei tempi",
       "touchSyncPanel": "Pannello di sincronizzazione touch",
       "bgLyricSync": "Versi dei cori",
-      "bgSyncInline": "In linea",
+      "bgSyncInline": "Con il principale",
       "bgSyncInlineDesc": "Sincronizza ogni verso dei cori subito dopo il suo verso principale.",
-      "bgSyncSeparate": "Passata separata",
-      "bgSyncSeparateDesc": "G e H restano sui versi principali. Fai clic su un verso dei cori per sincronizzare i cori a parte.",
+      "bgSyncSeparate": "Salta durante la sincronia",
+      "bgSyncSeparateDesc": "G e H restano sui versi principali. Fai clic su un verso dei cori per sincronizzarli a parte.",
       "quickFixes": "Correzioni rapide",
       "manualTimestampEdit": "Modifica manuale dei tempi",
       "doubleClickEdit": "Modifica parole con doppio clic",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Modifica",
       "sync": "Sincronizzazione",
-      "preview": "Anteprima"
+      "preview": "Anteprima",
+      "editDesc": "Scrivi, dividi e annota il testo.",
+      "syncDesc": "Sincronizza ogni parola con l’audio.",
+      "previewDesc": "Riproduci il testo come lo vedranno gli ascoltatori."
     },
     "appName": "TTML Tool",
     "menu": {

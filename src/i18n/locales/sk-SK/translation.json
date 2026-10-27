@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Platí pre pásy kariet Úpravy, Časovanie a Náhľad.",
+    "tooltips": {
+      "newLyricLine": "Pridá prázdny riadok na koniec textu.",
+      "bgLyric": "Označí vybrané riadky ako sprievodný vokál.",
+      "duetLyric": "Označí vybrané riadky ako spievané druhým spevákom.",
+      "ignoreSync": "Klávesy synchronizácie vybrané riadky preskočia, takže ich nečasujete.",
+      "romanizationLanguage": "Jazyk prepisu",
+      "romanizationLanguageDesc": "Jazyk vybraného textu. Automatická detekcia funguje pri väčšine skladieb.",
+      "romanize": "Doplní prepis do latinky pre vybrané riadky alebo slová."
+    },
     "editMode": {
       "multipleValues": "Viacero hodnôt…",
       "duration": "Trvanie",
@@ -381,10 +390,10 @@
       "showTimestampUpdate": "Zobraziť aktualizácie časových značiek",
       "touchSyncPanel": "Dotykový panel synchronizácie",
       "bgLyricSync": "Sprievodné riadky",
-      "bgSyncInline": "Priebežne",
+      "bgSyncInline": "S hlavným riadkom",
       "bgSyncInlineDesc": "Každý sprievodný riadok synchronizujte hneď po jeho hlavnom riadku.",
-      "bgSyncSeparate": "Zvlášť",
-      "bgSyncSeparateDesc": "G a H zostávajú na hlavných riadkoch. Kliknutím na sprievodný riadok synchronizujete sprievodné riadky samostatne.",
+      "bgSyncSeparate": "Preskočiť pri synchronizácii",
+      "bgSyncSeparateDesc": "G a H zostávajú na hlavných riadkoch. Kliknutím na sprievodný riadok ich synchronizujete samostatne.",
       "quickFixes": "Rýchle opravy",
       "manualTimestampEdit": "Ručná úprava časových značiek",
       "doubleClickEdit": "Úprava slov dvojklikom",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Úpravy",
       "sync": "Časovanie",
-      "preview": "Náhľad"
+      "preview": "Náhľad",
+      "editDesc": "Písanie, delenie a označovanie textu.",
+      "syncDesc": "Časovanie každého slova podľa zvuku.",
+      "previewDesc": "Prehrá text tak, ako ho uvidia poslucháči."
     },
     "appName": "TTML Tool",
     "menu": {
