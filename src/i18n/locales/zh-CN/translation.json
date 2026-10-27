@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "高亮所选模式中正在播放的歌词行。",
       "playbackSettingsMode": "播放行为适用模式",
+      "playbackSettingsModeDesc": "自动滚动和跨选项卡位置会分别为“编辑”和“打轴”模式设置。请选择要修改的模式。",
       "editMode": "编辑",
       "timeMode": "打轴",
       "enabled": "已启用",
@@ -449,8 +450,11 @@
       "playbackRate": "播放倍速",
       "autosave": {
         "enable": "启用自动保存",
+        "enableDesc": "每次修改几秒后保存歌词，并保留快照，可从“文件”菜单恢复。",
         "interval": "保存间隔（分钟）",
-        "limit": "保留快照数量"
+        "intervalDesc": "两次快照之间的最短间隔。最新的修改仍会在每次编辑后保存。",
+        "limit": "保留快照数量",
+        "limitDesc": "每首歌保留的快照数量。超出时会先删除最早的快照。"
       },
       "customBackground": "自定义背景",
       "customBackgroundDesc": "选择一张图片作为背景。",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "外观编辑器",
+        "labelDesc": "简洁布局包含主题、背景、缩放和字体。高级布局可单独设置各处颜色、间距和面板顺序。",
         "basic": "简洁布局",
         "advanced": "高级布局",
         "none": "无",
@@ -540,6 +545,7 @@
       "glassBlur": "毛玻璃强度",
       "glassBlurDesc": "调整毛玻璃元素的背景模糊效果。",
       "background": "背景",
+      "backgroundDesc": "在程序背后显示图片或渐变。",
       "useCustomGradient": "自定义渐变颜色",
       "useCustomGradientDesc": "从单一颜色生成渐变。",
       "syncGradientToAccent": "将第一个颜色与强调色同步",

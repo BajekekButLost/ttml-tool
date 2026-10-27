@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Resalta visualmente la línea de letra que se reproduce actualmente en el modo seleccionado.",
       "playbackSettingsMode": "Comportamiento de reproducción para",
+      "playbackSettingsModeDesc": "El desplazamiento automático y la posición entre pestañas se ajustan por separado para Edición y Sincronización. Elige cuál cambiar.",
       "editMode": "Edición",
       "timeMode": "Sincronización",
       "enabled": "Habilitado",
@@ -449,8 +450,11 @@
       "playbackRate": "Velocidad de reproducción",
       "autosave": {
         "enable": "Habilitar guardado automático",
+        "enableDesc": "Guarda tus letras unos segundos después de cada cambio y conserva instantáneas que puedes restaurar desde el menú Archivo.",
         "interval": "Guardar cada (minutos)",
-        "limit": "Instantáneas para conservar"
+        "intervalDesc": "Tiempo mínimo entre instantáneas. Tus últimos cambios se siguen guardando tras cada edición.",
+        "limit": "Instantáneas para conservar",
+        "limitDesc": "Cuántas instantáneas conservar por canción. Las más antiguas se eliminan primero."
       },
       "customBackground": "Fondo personalizado",
       "customBackgroundDesc": "Elige una imagen para usarla como fondo.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor de apariencia",
+        "labelDesc": "Sencilla incluye tema, fondo, escala y fuente. Avanzada ajusta colores concretos, espaciado y el orden de los paneles.",
         "basic": "Disposición sencilla",
         "advanced": "Disposición avanzada",
         "none": "Ninguno",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensidad del efecto de cristal",
       "glassBlurDesc": "Ajusta el desenfoque del fondo de los elementos con efecto de cristal.",
       "background": "Fondo",
+      "backgroundDesc": "Muestra una imagen o un degradado detrás de la aplicación.",
       "useCustomGradient": "Color de degradado personalizado",
       "useCustomGradientDesc": "Genera un degradado a partir de un solo color.",
       "syncGradientToAccent": "Sincronizar el primer color con el acento",

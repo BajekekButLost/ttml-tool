@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Podświetla wers odtwarzany w wybranym trybie.",
       "playbackSettingsMode": "Zachowanie odtwarzania dla",
+      "playbackSettingsModeDesc": "Automatyczne przewijanie i pozycję na kartach ustawia się osobno dla trybów Edycja i Synchronizacja. Wybierz, który zmienić.",
       "editMode": "Edycja",
       "timeMode": "Synchronizacja",
       "enabled": "Włączone",
@@ -449,8 +450,11 @@
       "playbackRate": "Prędkość odtwarzania",
       "autosave": {
         "enable": "Włącz automatyczny zapis",
+        "enableDesc": "Zapisuje tekst kilka sekund po każdej zmianie i przechowuje migawki, które przywrócisz z menu Plik.",
         "interval": "Zapisuj co (minuty)",
-        "limit": "Liczba migawek do zachowania"
+        "intervalDesc": "Najkrótszy czas między migawkami. Ostatnie zmiany i tak są zapisywane po każdej edycji.",
+        "limit": "Liczba migawek do zachowania",
+        "limitDesc": "Ile migawek przechowywać dla każdego utworu. Najstarsze są usuwane jako pierwsze."
       },
       "customBackground": "Niestandardowe tło",
       "customBackgroundDesc": "Wybierz obraz, który ma zostać użyty jako tło.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Edytor wyglądu",
+        "labelDesc": "Prosty obejmuje motyw, tło, skalę i czcionkę. Zaawansowany ustawia poszczególne kolory, odstępy i kolejność paneli.",
         "basic": "Prosty układ",
         "advanced": "Zaawansowany układ",
         "none": "Brak",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensywność efektu szkła",
       "glassBlurDesc": "Dostosuj rozmycie tła elementów z efektem szkła.",
       "background": "Tło",
+      "backgroundDesc": "Pokazuj obraz lub gradient za aplikacją.",
       "useCustomGradient": "Niestandardowy kolor gradientu",
       "useCustomGradientDesc": "Wygeneruj gradient z jednego koloru.",
       "syncGradientToAccent": "Synchronizuj pierwszy kolor z akcentem",

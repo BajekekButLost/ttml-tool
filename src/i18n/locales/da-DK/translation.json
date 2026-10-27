@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Fremhæver linjen, der afspilles i den valgte tilstand.",
       "playbackSettingsMode": "Afspilningsadfærd for",
+      "playbackSettingsModeDesc": "Automatisk rulning og fanepositionen indstilles separat for Redigering og Timing. Vælg, hvilken du vil ændre.",
       "editMode": "Redigering",
       "timeMode": "Timing",
       "enabled": "Aktiveret",
@@ -449,8 +450,11 @@
       "playbackRate": "Afspilningshastighed",
       "autosave": {
         "enable": "Aktiver automatisk lagring",
+        "enableDesc": "Gemmer dine sangtekster et par sekunder efter hver ændring og beholder øjebliksbilleder, du kan gendanne fra menuen Filer.",
         "interval": "Gem hvert (minutter)",
-        "limit": "Antal øjebliksbilleder at beholde"
+        "intervalDesc": "Mindste tid mellem øjebliksbilleder. Dine seneste ændringer gemmes stadig efter hver redigering.",
+        "limit": "Antal øjebliksbilleder at beholde",
+        "limitDesc": "Hvor mange øjebliksbilleder der beholdes for hver sang. De ældste slettes først."
       },
       "customBackground": "Brugerdefineret baggrund",
       "customBackgroundDesc": "Vælg et billede, der skal bruges som baggrund.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Udseende-editor",
+        "labelDesc": "Enkelt dækker tema, baggrund, skala og skrifttype. Avanceret indstiller de enkelte farver, afstande og panelernes rækkefølge.",
         "basic": "Enkelt layout",
         "advanced": "Avanceret layout",
         "none": "Ingen",
@@ -540,6 +545,7 @@
       "glassBlur": "Glaseffektens styrke",
       "glassBlurDesc": "Juster baggrundssløring for elementer med glaseffekt.",
       "background": "Baggrund",
+      "backgroundDesc": "Vis et billede eller en gradient bag appen.",
       "useCustomGradient": "Brugerdefineret gradientfarve",
       "useCustomGradientDesc": "Generer en gradient fra en enkelt farve.",
       "syncGradientToAccent": "Synkronisér første farve med accentfarven",

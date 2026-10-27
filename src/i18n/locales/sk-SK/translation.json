@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Zvýrazní práve prehrávaný riadok vo zvolenom režime.",
       "playbackSettingsMode": "Správanie pri prehrávaní pre",
+      "playbackSettingsModeDesc": "Automatické posúvanie a pozícia na kartách sa nastavujú zvlášť pre Úpravy a Časovanie. Vyberte, čo chcete zmeniť.",
       "editMode": "Úpravy",
       "timeMode": "Časovanie",
       "enabled": "Zapnuté",
@@ -449,8 +450,11 @@
       "playbackRate": "Rýchlosť prehrávania",
       "autosave": {
         "enable": "Povoliť automatické ukladanie",
+        "enableDesc": "Uloží text pár sekúnd po každej zmene a uchováva snímky, ktoré obnovíte z ponuky Súbor.",
         "interval": "Ukladať každých (minúty)",
-        "limit": "Počet snímok na uchovanie"
+        "intervalDesc": "Najkratší čas medzi snímkami. Posledné zmeny sa aj tak ukladajú po každej úprave.",
+        "limit": "Počet snímok na uchovanie",
+        "limitDesc": "Koľko snímok uchovať pre každú skladbu. Najstaršie sa mažú ako prvé."
       },
       "customBackground": "Vlastné pozadie",
       "customBackgroundDesc": "Vyberte obrázok, ktorý sa použije ako pozadie.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor vzhľadu",
+        "labelDesc": "Jednoduché obsahuje motív, pozadie, mierku a písmo. Pokročilé nastavuje jednotlivé farby, rozostupy a poradie panelov.",
         "basic": "Jednoduché rozloženie",
         "advanced": "Pokročilé rozloženie",
         "none": "Žiadny",
@@ -540,6 +545,7 @@
       "glassBlur": "Intenzita efektu skla",
       "glassBlurDesc": "Upravte rozostrenie pozadia prvkov s efektom skla.",
       "background": "Pozadie",
+      "backgroundDesc": "Zobrazí za aplikáciou obrázok alebo prechod.",
       "useCustomGradient": "Vlastná farba prechodu",
       "useCustomGradientDesc": "Vytvorte prechod z jednej farby.",
       "syncGradientToAccent": "Zladiť prvú farbu so zvýraznením",

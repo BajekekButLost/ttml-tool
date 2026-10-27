@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Menyorot secara visual baris lirik yang sedang diputar dalam mode yang dipilih.",
       "playbackSettingsMode": "Perilaku pemutaran untuk",
+      "playbackSettingsModeDesc": "Gulir otomatis dan posisi antartab diatur terpisah untuk Edit dan Sinkronisasi. Pilih yang ingin diubah.",
       "editMode": "Edit",
       "timeMode": "Sinkronisasi",
       "enabled": "Aktif",
@@ -449,8 +450,11 @@
       "playbackRate": "Kecepatan putar",
       "autosave": {
         "enable": "Aktifkan simpan otomatis",
+        "enableDesc": "Menyimpan lirik beberapa detik setelah setiap perubahan dan menyimpan snapshot yang bisa dipulihkan lewat menu File.",
         "interval": "Simpan setiap (menit)",
-        "limit": "Jumlah snapshot yang disimpan"
+        "intervalDesc": "Jeda minimum antar-snapshot. Perubahan terbaru tetap disimpan setelah setiap edit.",
+        "limit": "Jumlah snapshot yang disimpan",
+        "limitDesc": "Jumlah snapshot yang disimpan untuk setiap lagu. Yang paling lama dihapus lebih dulu."
       },
       "customBackground": "Latar belakang kustom",
       "customBackgroundDesc": "Pilih gambar sebagai latar belakang.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor tampilan",
+        "labelDesc": "Sederhana berisi tema, latar, skala, dan font. Lanjutan mengatur setiap warna, jarak, dan urutan panel.",
         "basic": "Tata letak sederhana",
         "advanced": "Tata letak lanjutan",
         "none": "Tidak ada",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensitas efek kaca",
       "glassBlurDesc": "Sesuaikan pemburaman latar belakang elemen berefek kaca.",
       "background": "Latar belakang",
+      "backgroundDesc": "Tampilkan gambar atau gradien di belakang aplikasi.",
       "useCustomGradient": "Warna gradien kustom",
       "useCustomGradientDesc": "Hasilkan gradien dari satu warna.",
       "syncGradientToAccent": "Sinkronkan warna pertama dengan aksen",

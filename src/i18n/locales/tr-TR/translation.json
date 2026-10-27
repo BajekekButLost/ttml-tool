@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Seçili modda o anda çalınan satırı vurgular.",
       "playbackSettingsMode": "Şunun için oynatma davranışı:",
+      "playbackSettingsModeDesc": "Otomatik kaydırma ve sekmeler arası konum, Düzenle ve Zamanla modları için ayrı ayarlanır. Hangisini değiştireceğinizi seçin.",
       "editMode": "Düzenle",
       "timeMode": "Zamanla",
       "enabled": "Etkin",
@@ -449,8 +450,11 @@
       "playbackRate": "Oynatma hızı",
       "autosave": {
         "enable": "Otomatik kaydı etkinleştir",
+        "enableDesc": "Şarkı sözlerinizi her değişiklikten birkaç saniye sonra kaydeder ve Dosya menüsünden geri yükleyebileceğiniz anlık görüntüler tutar.",
         "interval": "Kayıt aralığı (dakika)",
-        "limit": "Tutulacak anlık görüntü sayısı"
+        "intervalDesc": "Anlık görüntüler arasındaki en kısa süre. Son değişiklikleriniz yine de her düzenlemeden sonra kaydedilir.",
+        "limit": "Tutulacak anlık görüntü sayısı",
+        "limitDesc": "Her şarkı için tutulacak anlık görüntü sayısı. En eskiler önce silinir."
       },
       "customBackground": "Özel arka plan",
       "customBackgroundDesc": "Arka plan olarak kullanılacak bir resim seçin.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Görünüm düzenleyici",
+        "labelDesc": "Basit; tema, arka plan, ölçek ve yazı tipini içerir. Gelişmiş; tek tek renkleri, boşlukları ve panel sırasını ayarlar.",
         "basic": "Basit düzen",
         "advanced": "Gelişmiş düzen",
         "none": "Hiçbiri",
@@ -540,6 +545,7 @@
       "glassBlur": "Cam efekti yoğunluğu",
       "glassBlurDesc": "Cam efektli öğelerin arka plan bulanıklığını ayarlayın.",
       "background": "Arka plan",
+      "backgroundDesc": "Uygulamanın arkasında bir görsel veya gradyan gösterir.",
       "useCustomGradient": "Özel gradyan rengi",
       "useCustomGradientDesc": "Tek bir renkten gradyan oluşturun.",
       "syncGradientToAccent": "İlk rengi vurgu rengiyle eşitle",

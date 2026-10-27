@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Evidenzia il verso in riproduzione nella modalità selezionata.",
       "playbackSettingsMode": "Comportamento di riproduzione per",
+      "playbackSettingsModeDesc": "Lo scorrimento automatico e la posizione tra le schede si impostano separatamente per Modifica e Sincronizzazione. Scegli quale cambiare.",
       "editMode": "Modifica",
       "timeMode": "Sincronizzazione",
       "enabled": "Abilitato",
@@ -449,8 +450,11 @@
       "playbackRate": "Velocità di riproduzione",
       "autosave": {
         "enable": "Abilita salvataggio automatico",
+        "enableDesc": "Salva il testo qualche secondo dopo ogni modifica e conserva istantanee che puoi ripristinare dal menu File.",
         "interval": "Salva ogni (minuti)",
-        "limit": "Istantanee da conservare"
+        "intervalDesc": "Tempo minimo tra un'istantanea e l'altra. Le ultime modifiche vengono comunque salvate dopo ogni cambiamento.",
+        "limit": "Istantanee da conservare",
+        "limitDesc": "Quante istantanee conservare per ogni brano. Le più vecchie vengono eliminate per prime."
       },
       "customBackground": "Sfondo personalizzato",
       "customBackgroundDesc": "Scegli un'immagine da usare come sfondo.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor dell'aspetto",
+        "labelDesc": "Semplice include tema, sfondo, scala e font. Avanzato regola i singoli colori, le spaziature e l'ordine dei pannelli.",
         "basic": "Layout semplice",
         "advanced": "Layout avanzato",
         "none": "Nessuna",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensità dell’effetto vetro",
       "glassBlurDesc": "Regola la sfocatura dello sfondo degli elementi con effetto vetro.",
       "background": "Sfondo",
+      "backgroundDesc": "Mostra un'immagine o un gradiente dietro l'app.",
       "useCustomGradient": "Colore del gradiente personalizzato",
       "useCustomGradientDesc": "Genera un gradiente da un singolo colore.",
       "syncGradientToAccent": "Sincronizza il primo colore con quello di risalto",
