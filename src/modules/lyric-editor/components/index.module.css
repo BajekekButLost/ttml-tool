@@ -814,3 +814,13 @@
 		background-color: var(--accent-a9);
 	}
 }
+
+/* Empty-state actions in a 2x2 grid: long translations wrap inside the button
+   instead of spilling out of its fixed height. */
+.emptyActions :global(.rt-Button) {
+	height: auto;
+	min-height: var(--base-button-height);
+	padding-block: var(--space-1);
+	white-space: normal;
+	text-wrap: balance;
+}
