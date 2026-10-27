@@ -10,13 +10,14 @@ import {
 	Text,
 } from "@radix-ui/themes";
 import { useAtomValue, useStore } from "jotai";
-import { type FC, useState } from "react";
+import { type FC, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	getShortcutKey,
 	normalizeKeyBindings,
 	RESET_KEYBINDING,
 	recordShortcut,
+	stopRecordingShortcut,
 } from "$/utils/keybindings";
 import { type KeyBindingList, keyBindingListAtom } from "../binding-list";
 import { findShortcutOwners } from "../conflicts";
@@ -60,12 +61,22 @@ const ActionRow: FC<{
 	const list = useAtomValue(listAtom);
 	const [recording, setRecording] = useState(false);
 	const [duplicate, setDuplicate] = useState(false);
+	const recordingRef = useRef(false);
 	const category = viewCategoryOf(command);
+	// Closing the panel or picking another key mid-recording must not leave the
+	// recorder listening, or the next press would bind to this hidden action.
+	useEffect(
+		() => () => {
+			if (recordingRef.current) stopRecordingShortcut();
+		},
+		[],
+	);
 
 	const record = async (target: number | "add") => {
 		if (recording) return;
 		setDuplicate(false);
 		setRecording(true);
+		recordingRef.current = true;
 		try {
 			const keys = normalizeKeyBindings(await recordShortcut());
 			const current = store.get(listAtom);
@@ -77,6 +88,7 @@ const ActionRow: FC<{
 		} catch {
 			// Escape or another recording cancels without changing anything.
 		} finally {
+			recordingRef.current = false;
 			setRecording(false);
 		}
 	};

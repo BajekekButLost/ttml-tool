@@ -4,8 +4,8 @@ import { createStore, Provider } from "jotai";
 import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cmdSyncStart } from "../commands";
 import { keyBindingListAtom } from "../binding-list";
+import { cmdSyncStart } from "../commands";
 import { keyboardViewEnabledAtom } from "../flags";
 import { KeyboardViewSection } from "./KeyboardViewSection";
 
@@ -108,6 +108,18 @@ describe("keyboard view", () => {
 			["KeyZ"],
 		]);
 		expect(cap(container, "KeyZ")?.dataset.category).toBe("sync");
+	});
+
+	it("stops recording when another key is picked mid-recording", async () => {
+		const { store, container } = mount(true);
+		act(() => cap(container, "KeyF")?.click());
+		act(() => buttonWithText(container, "keyboardView.addKey")?.click());
+		act(() => cap(container, "KeyG")?.click());
+		key("keydown", "KeyX");
+		key("keyup", "KeyX");
+		await act(async () => {});
+		expect(store.get(keyBindingListAtom(cmdSyncStart))).toEqual([["KeyF"]]);
+		expect(cap(container, "KeyX")?.dataset.category).toBeUndefined();
 	});
 
 	it("refuses a key the action already has", async () => {

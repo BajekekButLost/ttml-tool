@@ -129,7 +129,11 @@ describe("extra keys behind the flag", () => {
 		expect(store.get(commands.cmdSyncNext.atom)).toEqual(["KeyG"]);
 		await store.set(syncNext, keyboard.RESET_KEYBINDING);
 		expect(store.get(syncNext)).toEqual([["KeyG"]]);
-		expect(storage.get("keybindings:syncNextExtra")).toBe("[]");
+		// No stray empty key left behind to show up in backups.
+		expect(storage.has("keybindings:syncNextExtra")).toBe(false);
+		await store.set(syncNext, [["KeyG"], ["KeyX"]]);
+		await store.set(syncNext, [["KeyG"]]);
+		expect(storage.has("keybindings:syncNextExtra")).toBe(false);
 	});
 });
 

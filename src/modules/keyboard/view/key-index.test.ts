@@ -46,9 +46,9 @@ describe("key index", () => {
 
 	it("files every binding under its keys with its slot and modifiers", () => {
 		const keys = index.buildKeyIndex(bindings());
-		expect(keys.get("KeyZ")?.map((ref) => [ref.command.id, ref.slot])).toEqual(
-			[["syncStart", 1]],
-		);
+		expect(keys.get("KeyZ")?.map((ref) => [ref.command.id, ref.slot])).toEqual([
+			["syncStart", 1],
+		]);
 		expect(keys.get("KeyS")?.map((ref) => ref.command.id)).toEqual([
 			"saveFile",
 			"moveNextLine",

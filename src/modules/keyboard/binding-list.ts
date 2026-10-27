@@ -7,7 +7,7 @@
  * preview splits stored names on dots.
  */
 import { type Atom, atom, type WritableAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage, RESET } from "jotai/utils";
 import {
 	getShortcutKey,
 	normalizeKeyBindings,
@@ -59,10 +59,12 @@ export function dedupeKeyBindingList(
 	return result;
 }
 
-const extraStorageAtoms = new Map<
-	string,
-	WritableAtom<unknown, [KeyBindingList], void>
->();
+type ExtraStorageAtom = WritableAtom<
+	unknown,
+	[KeyBindingList | typeof RESET],
+	void
+>;
+const extraStorageAtoms = new Map<string, ExtraStorageAtom>();
 
 function extraStorageAtom(commandId: string) {
 	let stored = extraStorageAtoms.get(commandId);
@@ -72,10 +74,15 @@ function extraStorageAtom(commandId: string) {
 			NO_EXTRAS,
 			undefined,
 			{ getOnInit: true },
-		) as WritableAtom<unknown, [KeyBindingList], void>;
+		) as ExtraStorageAtom;
 		extraStorageAtoms.set(commandId, stored);
 	}
 	return stored;
+}
+
+/** Writes extras, removing the key when there are none (no stray backup rows). */
+function storedExtras(list: KeyBindingList): KeyBindingList | typeof RESET {
+	return list.length > 0 ? list : RESET;
 }
 
 const extraAtoms = new Map<string, Atom<KeyBindingList>>();
@@ -125,13 +132,13 @@ export function keyBindingListAtom(
 			(get) => [get(command.atom), ...get(extras)],
 			async (_get, set, update) => {
 				if (update === RESET_KEYBINDING) {
-					set(stored, NO_EXTRAS);
+					set(stored, RESET);
 					await set(command.atom, RESET_KEYBINDING);
 					return;
 				}
 				const [primary = [], ...rest] = update;
 				const normalized = normalizeKeyBindings(primary);
-				set(stored, dedupeKeyBindingList(rest, [normalized]));
+				set(stored, storedExtras(dedupeKeyBindingList(rest, [normalized])));
 				await set(command.atom, normalized);
 			},
 		);
