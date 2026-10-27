@@ -76,7 +76,7 @@ describe("ActionTooltip", () => {
 	it("follows a rebound shortcut", () => {
 		const { store, shortcut, shortcutText } = openTooltip(["KeyK"]);
 		act(() => store.set(shortcut, ["Shift", "KeyJ"]));
-		expect(shortcutText()).toBe("Shift + J");
+		expect(shortcutText()).toBe("Shift+J");
 	});
 
 	it("drops the shortcut when it is unbound", () => {
