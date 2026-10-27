@@ -102,6 +102,44 @@ describe("UI playback clock", () => {
 		clock.dispose();
 	});
 
+	it("draws one-shot frames on the lyrics' frame, playing or paused", () => {
+		const { clock, source, event, tick, pending } = setup();
+		const listener = vi.fn();
+		clock.subscribe(listener);
+		const order: string[] = [];
+		listener.mockImplementation(() => order.push("listener"));
+		// Paused: a one-shot gets a frame of its own, without a publish.
+		const paused = vi.fn();
+		clock.requestFrame(paused);
+		expect(pending.size).toBe(1);
+		tick(0);
+		expect(paused).toHaveBeenCalledTimes(1);
+		expect(listener).not.toHaveBeenCalled();
+		expect(pending.size).toBe(0);
+		// Cancelled before its frame: nothing runs, and the frame ends the chain.
+		clock.cancelFrame(clock.requestFrame(paused));
+		tick(0);
+		expect(paused).toHaveBeenCalledTimes(1);
+		expect(pending.size).toBe(0);
+		// Playing: it shares the listeners' frame and runs after them.
+		source.musicPlaying = true;
+		event("music-resume");
+		clock.requestFrame(() => order.push("one-shot"));
+		expect(pending.size).toBe(1);
+		order.length = 0;
+		tick(1);
+		expect(order).toEqual(["listener", "one-shot"]);
+		// A pending one-shot keeps its frame through a pause.
+		clock.requestFrame(paused);
+		source.musicPlaying = false;
+		event("music-pause");
+		expect(pending.size).toBe(1);
+		tick(1);
+		expect(paused).toHaveBeenCalledTimes(2);
+		expect(pending.size).toBe(0);
+		clock.dispose();
+	});
+
 	it("unsubscribes cleanly and retains seeks made without a mounted view", () => {
 		const { clock, event } = setup();
 		const oldView = vi.fn();
