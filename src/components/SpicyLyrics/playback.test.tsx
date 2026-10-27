@@ -30,6 +30,7 @@ vi.mock("$/modules/settings/modals/customBackground", async () => {
 vi.mock("$/modules/settings/states", async () => {
 	const { atom } = await import("jotai");
 	return {
+		allowConsecutiveBackgroundLinesAtom: atom(false),
 		useCustomAccentAtom: atom(false),
 		customAccentColorAtom: atom("#fff"),
 	};
@@ -183,6 +184,77 @@ describe("Spicy shared-clock rendering", () => {
 				testEngine.dispatchEvent(new Event("music-seeked"));
 			});
 			expect(line?.getAttribute("data-state")).toBe("not-sung");
+		} finally {
+			await act(async () => root.unmount());
+		}
+	});
+
+	it("leaves resting lines alone while playing and animates the active one", async () => {
+		vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
+		const frames = new Map<number, FrameRequestCallback>();
+		let frameId = 0;
+		vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
+			frames.set(++frameId, callback);
+			return frameId;
+		});
+		vi.stubGlobal("cancelAnimationFrame", (id: number) => frames.delete(id));
+		HTMLElement.prototype.scrollTo = vi.fn();
+		const line = (startTime: number, endTime: number, text: string) => ({
+			...newLyricLine(),
+			startTime,
+			endTime,
+			words: [{ ...newLyricWord(), word: text, startTime, endTime }],
+		});
+		globalStore.set(lyricLinesAtom, {
+			lyricLines: [line(1000, 1800, "Now"), line(2000, 2800, "Later")],
+			metadata: [],
+		});
+		globalStore.set(spicySimpleLyricsModeAtom, false);
+		testEngine.interpolatedCurrentTime = 1.2;
+		testEngine.dispatchEvent(new Event("music-seeked"));
+		const container = document.createElement("div");
+		const root = createRoot(container);
+		const tick = async (seconds: number, now: number) => {
+			await act(async () => {
+				testEngine.interpolatedCurrentTime = seconds;
+				const callbacks = [...frames.values()];
+				frames.clear();
+				for (const callback of callbacks) callback(now);
+			});
+		};
+		try {
+			await act(async () =>
+				root.render(
+					<Provider store={globalStore}>
+						<SpicyLyrics />
+					</Provider>,
+				),
+			);
+			await act(async () => {
+				testEngine.musicPlaying = true;
+				testEngine.dispatchEvent(new Event("music-resume"));
+			});
+			await tick(1.21, 16);
+			const [active, resting] = container.querySelectorAll("[data-state]");
+			expect(active.getAttribute("data-state")).toBe("active");
+			expect(resting.getAttribute("data-state")).toBe("not-sung");
+			const activeWord = active.querySelector("span") as HTMLElement;
+			const restingWord = resting.querySelector("span") as HTMLElement;
+			const activeWrites = vi.spyOn(activeWord.style, "setProperty");
+			const restingWrites = vi.spyOn(restingWord.style, "setProperty");
+			const restingLineWrites = vi.spyOn(
+				(resting as HTMLElement).style,
+				"setProperty",
+			);
+			await tick(1.3, 32);
+			await tick(1.4, 48);
+			expect(activeWrites).toHaveBeenCalled();
+			expect(restingWrites).not.toHaveBeenCalled();
+			expect(restingLineWrites).not.toHaveBeenCalled();
+			// Once it turns active it gets its first word pass.
+			await tick(2.1, 64);
+			expect(resting.getAttribute("data-state")).toBe("active");
+			expect(restingWrites).toHaveBeenCalled();
 		} finally {
 			await act(async () => root.unmount());
 		}
