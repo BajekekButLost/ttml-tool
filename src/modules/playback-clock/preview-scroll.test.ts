@@ -38,6 +38,52 @@ function setup(pauseMs = 750) {
 }
 
 describe("shared preview scroll", () => {
+	it("hands targets with a known position to a view's own scroller", () => {
+		vi.useFakeTimers();
+		vi.spyOn(performance, "now").mockImplementation(() => Date.now());
+		const viewport = document.createElement("div");
+		viewport.scrollTo = vi.fn();
+		const scroller = {
+			jump: vi.fn(),
+			glide: vi.fn(),
+			cancel: vi.fn(),
+			isGliding: vi.fn(() => false),
+		};
+		let id = "a";
+		const getTop = vi.fn((anchor: number, offset: number) => {
+			expect([anchor, offset]).toEqual([0.5, 30]);
+			return 640;
+		});
+		const scroll = createPreviewScroll(viewport, {
+			getTarget: () => ({ id, getNode: () => undefined, getTop }),
+			offset: 30,
+			scroller,
+		});
+		scroll.follow();
+		expect(scroller.glide).toHaveBeenCalledTimes(1);
+		expect(scroller.glide.mock.calls[0][0]()).toBe(640);
+		// Same line: no new glide. A seek always jumps.
+		scroll.follow();
+		expect(scroller.glide).toHaveBeenCalledTimes(1);
+		scroll.follow(true);
+		expect(scroller.jump).toHaveBeenCalledTimes(1);
+		expect(viewport.scrollTo).not.toHaveBeenCalled();
+		// The scroller's own writes are not user input.
+		scroller.isGliding.mockReturnValue(true);
+		viewport.dispatchEvent(new Event("scroll"));
+		expect(scroller.cancel).not.toHaveBeenCalled();
+		// The user taking over stops the glide and pauses following.
+		scroller.isGliding.mockReturnValue(false);
+		viewport.dispatchEvent(new Event("wheel"));
+		expect(scroller.cancel).toHaveBeenCalled();
+		id = "b";
+		scroll.follow();
+		expect(scroller.glide).toHaveBeenCalledTimes(1);
+		vi.advanceTimersByTime(750);
+		expect(scroller.glide).toHaveBeenCalledTimes(2);
+		scroll.dispose();
+	});
+
 	it("retains each renderer's placement and clamps both ends", () => {
 		expect(previewScrollTop(100, 600, 80, 400, 1600, 0.4, 0)).toBe(580);
 		expect(previewScrollTop(100, 600, 80, 400, 1600, 0.5, 30)).toBe(570);

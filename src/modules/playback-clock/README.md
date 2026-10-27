@@ -39,6 +39,13 @@ Standard/Toxi uses a 40% anchor, Spicy uses the center plus 30px, and Timing
 Overview uses the center. Standard/Toxi adopts Spicy's 750ms manual-scroll grace;
 Timing Overview retains its 3500ms grace and Auto-Scroll setting.
 
+A view can pass its own `scroller` (jump, glide, cancel). Spicy does: its
+virtual list knows a line's position without the row being mounted, and glides
+there with a spring. `playbackClock.requestFrame` gives that glide one-shot
+frames on the same frame the lyrics draw, after the listeners; it still gets a
+frame while paused, and the chain stops once nothing is pending. Standard/Toxi
+and Timing Overview pass no scroller and keep the native scroll.
+
 Renderer-specific target selection stays local: Standard/Toxi groups background
 vocals; Spicy retains adjacent-duet, separated-overlap and end-of-song choices;
 Timing Overview retains chronological/textual order and upcoming-line selection

@@ -3,6 +3,24 @@ export interface PreviewScrollTarget {
 	getNode: () => HTMLElement | null | undefined;
 	/** Virtual lists can mount an offscreen row before centering it. */
 	reveal?: () => void;
+	/**
+	 * Scroll position that centers this target, for lists that know it without
+	 * a mounted node. Used instead of measuring `getNode()`.
+	 */
+	getTop?: (anchor: number, offset: number) => number | undefined;
+}
+
+/**
+ * Replaces the native scroll for views that animate it themselves. `getTop`
+ * is re-read while moving, since rows mounting above can shift the target.
+ */
+export interface PreviewScroller {
+	jump: (getTop: () => number | undefined) => void;
+	glide: (getTop: () => number | undefined) => void;
+	/** Stops a glide in flight; the list stays where it is. */
+	cancel: () => void;
+	/** True while the scroller is moving the list, so its scrolls aren't user input. */
+	isGliding: () => boolean;
 }
 
 export function previewScrollTop(
@@ -35,6 +53,7 @@ export function createPreviewScroll(
 		anchor?: number;
 		offset?: number;
 		pauseMs?: number;
+		scroller?: PreviewScroller;
 	},
 ) {
 	let lastId: string | undefined;
@@ -66,6 +85,18 @@ export function createPreviewScroll(
 		viewport.style.scrollBehavior = behavior;
 	};
 	const center = (target: PreviewScrollTarget, seeked: boolean) => {
+		const scroller = options.scroller;
+		const targetTop = target.getTop;
+		if (scroller && targetTop) {
+			const getTop = () =>
+				targetTop(options.anchor ?? 0.5, options.offset ?? 0);
+			if (getTop() === undefined) return false;
+			markProgrammatic();
+			if (seeked) scroller.jump(getTop);
+			else scroller.glide(getTop);
+			lastId = target.id;
+			return true;
+		}
 		const node = target.getNode();
 		if (!node) return false;
 		const rect = node.getBoundingClientRect();
@@ -112,6 +143,7 @@ export function createPreviewScroll(
 	};
 	const pause = () => {
 		cancelReveal();
+		options.scroller?.cancel();
 		// Stop the native smooth scroll when the user takes control, just as
 		// Timing Overview used to cancel its private scroll animation.
 		if (programmatic) jumpTo(viewport.scrollTop);
@@ -138,7 +170,7 @@ export function createPreviewScroll(
 		// Native smooth-scroll events keep this guard alive until scrolling
 		// settles. Unsolicited scrolls (keyboard, scrollbar, accessibility)
 		// get the same grace period as wheel/touch without a polling loop.
-		if (programmatic) markProgrammatic();
+		if (programmatic || options.scroller?.isGliding()) markProgrammatic();
 		else pause();
 	};
 	const onKeyDown = (event: KeyboardEvent) => {
