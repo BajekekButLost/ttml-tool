@@ -5,6 +5,10 @@ import type { SegmentationConfig } from "$/modules/segmentation/types";
 import { segmentWord } from "$/modules/segmentation/utils/segmentation";
 import { newLyricWord, type TTMLLyric } from "$/types/ttml";
 import {
+	DEFAULT_LYRIC_PREP_OPTIONS,
+	type LyricPrepOptions,
+} from "$/utils/lyric-prep";
+import {
 	classifyImportRows,
 	detectSections,
 	DEFAULT_IMPORT_TEXT_FORMAT as FORMAT,
@@ -322,6 +326,24 @@ describe("text tools run twice", () => {
 	const tools: [string, (text: string, format: ImportTextFormat) => string][] =
 		[
 			["Process lyrics", (text) => prepareTextImport(text, true)],
+			...(
+				[
+					{ emDashes: false },
+					{ splitWords: false },
+					{ backgroundVocals: false, splitHyphens: false },
+					{ punctuationSpacing: false, collapseSpaces: false },
+					{ splitCjk: false, capitalizeBackground: false },
+					Object.fromEntries(
+						Object.keys(DEFAULT_LYRIC_PREP_OPTIONS).map((key) => [key, false]),
+					),
+				] as Partial<LyricPrepOptions>[]
+			).map(
+				(steps) =>
+					[
+						`Process lyrics with ${JSON.stringify(steps)}`,
+						(text: string) => prepareTextImport(text, true, steps),
+					] as [string, (text: string, format: ImportTextFormat) => string],
+			),
 			[
 				"Split syllables",
 				(text, format) => segmentImportText(text, format, autoSegment),

@@ -175,6 +175,27 @@
       "translation": "Traduction",
       "romanization": "Romanisation",
       "removed": "Retiré"
+    },
+    "processSteps": {
+      "advanced": "Avancé",
+      "removeInlineBrackets": "Retirer les notes en ligne",
+      "removeInlineBracketsHint": "Supprime les [notes] au milieu d'une ligne. Les lignes d'en-tête restent.",
+      "backgroundVocals": "Parenthèses en chœurs",
+      "backgroundVocalsHint": "Place les (voix) sur leur propre ligne de chœurs.",
+      "capitalizeBackground": "Majuscule aux chœurs",
+      "capitalizeBackgroundHint": "Commence chaque ligne de chœurs par une majuscule.",
+      "emDashes": "Tirets cadratins",
+      "emDashesHint": "Transforme les doubles tirets et les tirets isolés en tirets cadratins.",
+      "splitHyphens": "Couper les mots à trait d'union",
+      "splitHyphensHint": "Coupe les mots comme mm-hmm après le trait d'union.",
+      "splitCjk": "Découper les caractères CJK",
+      "splitCjkHint": "Découpe le texte chinois, japonais et coréen en caractères et aux changements d'écriture.",
+      "punctuationSpacing": "Ranger la ponctuation",
+      "punctuationSpacingHint": "Une espace après les virgules, aucune avant la ponctuation, et les guillemets restent sur leur mot.",
+      "collapseSpaces": "Réduire les espaces",
+      "collapseSpacesHint": "Remplace plusieurs espaces de suite par une seule.",
+      "splitWords": "Couper aux espaces",
+      "splitWordsHint": "Marque chaque espace comme limite de mot pour l'importation."
     }
   },
   "importChooser": {

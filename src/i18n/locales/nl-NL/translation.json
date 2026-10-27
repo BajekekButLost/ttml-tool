@@ -175,6 +175,27 @@
       "translation": "Vertaling",
       "romanization": "Romanisering",
       "removed": "Verwijderd"
+    },
+    "processSteps": {
+      "advanced": "Geavanceerd",
+      "removeInlineBrackets": "Notities in de regel verwijderen",
+      "removeInlineBracketsHint": "Haalt [notities] midden in een regel weg. Koprijen blijven staan.",
+      "backgroundVocals": "Haakjes naar achtergrond",
+      "backgroundVocalsHint": "Zet (zang) op een eigen achtergrondregel.",
+      "capitalizeBackground": "Hoofdletter voor achtergrond",
+      "capitalizeBackgroundHint": "Begint elke achtergrondregel met een hoofdletter.",
+      "emDashes": "Gedachtestreepjes",
+      "emDashesHint": "Maakt van dubbele en losse streepjes een lang gedachtestreepje.",
+      "splitHyphens": "Woorden met koppelteken splitsen",
+      "splitHyphensHint": "Splitst woorden als mm-hmm na het koppelteken.",
+      "splitCjk": "CJK-tekens splitsen",
+      "splitCjkHint": "Splitst Chinese, Japanse en Koreaanse tekst in tekens en bij schriftwisselingen.",
+      "punctuationSpacing": "Leestekens opschonen",
+      "punctuationSpacingHint": "Eén spatie na komma's, geen voor leestekens, en aanhalingstekens blijven bij hun woord.",
+      "collapseSpaces": "Spaties samenvoegen",
+      "collapseSpacesHint": "Maakt van meerdere spaties achter elkaar één.",
+      "splitWords": "Splitsen bij spaties",
+      "splitWordsHint": "Markeert elke spatie als woordgrens voor de import."
     }
   },
   "importChooser": {

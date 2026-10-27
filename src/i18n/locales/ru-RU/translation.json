@@ -175,6 +175,27 @@
       "translation": "Перевод",
       "romanization": "Транслит",
       "removed": "Удалено"
+    },
+    "processSteps": {
+      "advanced": "Дополнительно",
+      "removeInlineBrackets": "Убирать заметки в строке",
+      "removeInlineBracketsHint": "Удаляет [заметки] в середине строки. Строки заголовков остаются.",
+      "backgroundVocals": "Скобки в бэк-вокал",
+      "backgroundVocalsHint": "Переносит (вокал) на отдельную строку бэк-вокала.",
+      "capitalizeBackground": "Заглавная в бэк-вокале",
+      "capitalizeBackgroundHint": "Начинает каждую строку бэк-вокала с заглавной буквы.",
+      "emDashes": "Длинные тире",
+      "emDashesHint": "Превращает двойные и одиночные дефисы в длинные тире.",
+      "splitHyphens": "Делить слова с дефисом",
+      "splitHyphensHint": "Делит слова вроде mm-hmm после дефиса.",
+      "splitCjk": "Делить символы CJK",
+      "splitCjkHint": "Делит китайский, японский и корейский текст на символы и на сменах письма.",
+      "punctuationSpacing": "Порядок в пунктуации",
+      "punctuationSpacingHint": "Один пробел после запятой, ни одного перед знаками, кавычки остаются при слове.",
+      "collapseSpaces": "Сжимать пробелы",
+      "collapseSpacesHint": "Заменяет несколько пробелов подряд одним.",
+      "splitWords": "Делить по пробелам",
+      "splitWordsHint": "Отмечает каждый пробел как границу слова для импорта."
     }
   },
   "importChooser": {

@@ -175,6 +175,27 @@
       "translation": "Traducere",
       "romanization": "Romanizare",
       "removed": "Eliminat"
+    },
+    "processSteps": {
+      "advanced": "Avansat",
+      "removeInlineBrackets": "Elimină notele din rând",
+      "removeInlineBracketsHint": "Scoate [notele] din mijlocul unui rând. Rândurile de antet rămân.",
+      "backgroundVocals": "Parantezele în fundal",
+      "backgroundVocalsHint": "Mută (vocile) pe propriul vers de fundal.",
+      "capitalizeBackground": "Majusculă la fundal",
+      "capitalizeBackgroundHint": "Începe fiecare vers de fundal cu majusculă.",
+      "emDashes": "Linii de pauză",
+      "emDashesHint": "Transformă cratimele duble și izolate în linii de pauză.",
+      "splitHyphens": "Desparte cuvintele cu cratimă",
+      "splitHyphensHint": "Desparte cuvinte ca mm-hmm după cratimă.",
+      "splitCjk": "Desparte caracterele CJK",
+      "splitCjkHint": "Desparte textul chinezesc, japonez și coreean în caractere și la schimbarea scrierii.",
+      "punctuationSpacing": "Aranjează punctuația",
+      "punctuationSpacingHint": "Un spațiu după virgule, niciunul înainte de punctuație, iar ghilimelele rămân lângă cuvânt.",
+      "collapseSpaces": "Unește spațiile",
+      "collapseSpacesHint": "Transformă mai multe spații la rând într-unul.",
+      "splitWords": "Desparte la spații",
+      "splitWordsHint": "Marchează fiecare spațiu ca limită de cuvânt pentru import."
     }
   },
   "importChooser": {

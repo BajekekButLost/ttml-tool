@@ -3,6 +3,10 @@ import { atomWithStorage } from "jotai/utils";
 import type { ImportSourceId } from "$/modules/lyrics-import/components/ImportSourceCards";
 import { importLyricsDialogAtom } from "$/states/dialogs.ts";
 import {
+	DEFAULT_LYRIC_PREP_OPTIONS,
+	type LyricPrepOptions,
+} from "$/utils/lyric-prep";
+import {
 	DEFAULT_IMPORT_TEXT_FORMAT,
 	type ImportContentMode,
 	type ImportLineSeparatorMode,
@@ -69,6 +73,30 @@ export const bgLyricPrefixAtom = storage<string>(
 export const duetLyricPrefixAtom = storage<string>(
 	"duetLyricPrefix",
 	"duetLyricPrefix",
+);
+
+const processStepsStorageAtom = atomWithStorage<Partial<LyricPrepOptions>>(
+	"importFromText.processSteps",
+	{},
+	undefined,
+	{ getOnInit: true },
+);
+
+/** Which Process lyrics steps run. Missing keys keep today's default (on). */
+export const processStepsAtom = atom(
+	(get): LyricPrepOptions => ({
+		...DEFAULT_LYRIC_PREP_OPTIONS,
+		...get(processStepsStorageAtom),
+	}),
+	(get, set, patch: Partial<LyricPrepOptions>) =>
+		set(processStepsStorageAtom, { ...get(processStepsStorageAtom), ...patch }),
+);
+
+export const processStepsOpenAtom = atomWithStorage(
+	"importLyrics.processStepsOpen",
+	false,
+	undefined,
+	{ getOnInit: true },
 );
 
 export const importTextFormatAtom = atom(

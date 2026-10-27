@@ -73,6 +73,7 @@ import {
 	fetchImportedSongwritersAtom,
 	importLyricsSourceAtom,
 	importTextFormatAtom,
+	processStepsAtom,
 	wordSeparatorAtom,
 } from "../states";
 import { prioritizeMatchingTracks } from "../track-duration";
@@ -222,7 +223,7 @@ export const ImportLyricsDialog = () => {
 	};
 
 	const handleProcess = () => {
-		transformText(prepareTextImport(text, true));
+		transformText(prepareTextImport(text, true, store.get(processStepsAtom)));
 		// Process lyrics writes this format.
 		setWordSeparator("\\");
 		setEnableSpecialPrefix(true);

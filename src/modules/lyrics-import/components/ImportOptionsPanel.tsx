@@ -17,6 +17,7 @@ import { useAtom } from "jotai";
 import { type ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
+import type { LyricPrepOptions } from "$/utils/lyric-prep";
 import type {
 	ImportContentMode,
 	ImportLineSeparatorMode,
@@ -29,6 +30,8 @@ import {
 	importModeAtom,
 	lineSeparatorAtom,
 	lineSeparatorModeAtom,
+	processStepsAtom,
+	processStepsOpenAtom,
 	swapTransAndRomanAtom,
 	wordSeparatorAtom,
 } from "../states";
@@ -164,6 +167,7 @@ export function ImportOptionsPanel({
 						disabled={!hasText}
 						onClick={onProcess}
 					/>
+					<ProcessSteps />
 					<ToolButton
 						icon={<TextWordCountRegular />}
 						label={t("importLyrics.splitSyllables", "Split syllables")}
@@ -262,6 +266,90 @@ export function ImportOptionsPanel({
 				</button>
 				{formatOpen && <TextFormatFields />}
 			</Flex>
+		</Flex>
+	);
+}
+
+const PROCESS_STEPS: [keyof LyricPrepOptions, string, string][] = [
+	[
+		"removeInlineBrackets",
+		"Remove inline notes",
+		"Drops [notes] in the middle of a line. Header rows are kept.",
+	],
+	[
+		"backgroundVocals",
+		"Parentheses to background",
+		"Moves (vocals) to their own background line.",
+	],
+	[
+		"capitalizeBackground",
+		"Capitalize background lines",
+		"Starts each background line with a capital letter.",
+	],
+	[
+		"emDashes",
+		"Em dashes",
+		"Turns double hyphens and stray hyphens into em dashes.",
+	],
+	[
+		"splitHyphens",
+		"Split hyphenated words",
+		"Splits words like mm-hmm after the hyphen.",
+	],
+	[
+		"splitCjk",
+		"Split CJK characters",
+		"Splits Chinese, Japanese and Korean text into characters and at script changes.",
+	],
+	[
+		"punctuationSpacing",
+		"Tidy punctuation",
+		"One space after commas, none before punctuation, and quotes kept on their word.",
+	],
+	["collapseSpaces", "Collapse spaces", "Turns runs of spaces into one."],
+	[
+		"splitWords",
+		"Split at spaces",
+		"Marks each space as a word boundary for the import.",
+	],
+];
+
+/** The steps Process lyrics runs, each with its own switch. */
+function ProcessSteps() {
+	const { t } = useTranslation();
+	const [open, setOpen] = useAtom(processStepsOpenAtom);
+	const [steps, setSteps] = useAtom(processStepsAtom);
+	return (
+		<Flex direction="column" gap="2" className={styles.steps}>
+			<button
+				type="button"
+				className={styles.disclosure}
+				aria-expanded={open}
+				onClick={() => setOpen(!open)}
+			>
+				<ChevronRightRegular className={styles.chevron} />
+				<Text size="1" weight="medium">
+					{t("importLyrics.processSteps.advanced", "Advanced")}
+				</Text>
+			</button>
+			{open &&
+				PROCESS_STEPS.map(([key, label, description]) => (
+					<label key={key} className={styles.stepRow}>
+						<span className={styles.toolText}>
+							<Text size="2">
+								{t(`importLyrics.processSteps.${key}`, label)}
+							</Text>
+							<Text size="1" className={styles.hint}>
+								{t(`importLyrics.processSteps.${key}Hint`, description)}
+							</Text>
+						</span>
+						<Switch
+							size="1"
+							checked={steps[key]}
+							onCheckedChange={(checked) => setSteps({ [key]: checked })}
+						/>
+					</label>
+				))}
 		</Flex>
 	);
 }

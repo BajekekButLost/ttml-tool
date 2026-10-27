@@ -175,6 +175,27 @@
       "translation": "Tłumaczenie",
       "romanization": "Latynizacja",
       "removed": "Usunięto"
+    },
+    "processSteps": {
+      "advanced": "Zaawansowane",
+      "removeInlineBrackets": "Usuń wtrącone notatki",
+      "removeInlineBracketsHint": "Usuwa [notatki] w środku wersu. Wiersze nagłówków zostają.",
+      "backgroundVocals": "Nawiasy do tła",
+      "backgroundVocalsHint": "Przenosi (wokale) do osobnego wersu w tle.",
+      "capitalizeBackground": "Wielka litera w tle",
+      "capitalizeBackgroundHint": "Zaczyna każdy wers w tle wielką literą.",
+      "emDashes": "Pauzy",
+      "emDashesHint": "Zamienia podwójne i samotne łączniki na pauzy.",
+      "splitHyphens": "Dziel słowa z łącznikiem",
+      "splitHyphensHint": "Dzieli słowa takie jak mm-hmm po łączniku.",
+      "splitCjk": "Dziel znaki CJK",
+      "splitCjkHint": "Dzieli tekst chiński, japoński i koreański na znaki i przy zmianie pisma.",
+      "punctuationSpacing": "Uporządkuj interpunkcję",
+      "punctuationSpacingHint": "Jedna spacja po przecinku, żadnej przed interpunkcją, a cudzysłowy zostają przy słowie.",
+      "collapseSpaces": "Scal spacje",
+      "collapseSpacesHint": "Zamienia kilka spacji z rzędu na jedną.",
+      "splitWords": "Dziel na spacjach",
+      "splitWordsHint": "Oznacza każdą spację jako granicę słowa przy imporcie."
     }
   },
   "importChooser": {

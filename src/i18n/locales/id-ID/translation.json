@@ -175,6 +175,27 @@
       "translation": "Terjemahan",
       "romanization": "Romanisasi",
       "removed": "Dihapus"
+    },
+    "processSteps": {
+      "advanced": "Lanjutan",
+      "removeInlineBrackets": "Hapus catatan dalam baris",
+      "removeInlineBracketsHint": "Membuang [catatan] di tengah baris. Baris judul tetap ada.",
+      "backgroundVocals": "Kurung jadi vokal latar",
+      "backgroundVocalsHint": "Memindahkan (vokal) ke baris latarnya sendiri.",
+      "capitalizeBackground": "Kapitalkan baris latar",
+      "capitalizeBackgroundHint": "Memulai setiap baris latar dengan huruf kapital.",
+      "emDashes": "Tanda pisah panjang",
+      "emDashesHint": "Mengubah tanda hubung ganda dan yang berdiri sendiri menjadi tanda pisah panjang.",
+      "splitHyphens": "Pisahkan kata bertanda hubung",
+      "splitHyphensHint": "Memisahkan kata seperti mm-hmm setelah tanda hubung.",
+      "splitCjk": "Pisahkan karakter CJK",
+      "splitCjkHint": "Memisahkan teks Tionghoa, Jepang, dan Korea menjadi karakter dan di pergantian aksara.",
+      "punctuationSpacing": "Rapikan tanda baca",
+      "punctuationSpacingHint": "Satu spasi setelah koma, tanpa spasi sebelum tanda baca, dan tanda kutip tetap menempel pada katanya.",
+      "collapseSpaces": "Gabungkan spasi",
+      "collapseSpacesHint": "Mengubah beberapa spasi berturut-turut menjadi satu.",
+      "splitWords": "Pisahkan di spasi",
+      "splitWordsHint": "Menandai setiap spasi sebagai batas kata untuk impor."
     }
   },
   "importChooser": {

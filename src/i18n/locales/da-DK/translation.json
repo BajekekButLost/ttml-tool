@@ -175,6 +175,27 @@
       "translation": "Oversættelse",
       "romanization": "Romanisering",
       "removed": "Fjernet"
+    },
+    "processSteps": {
+      "advanced": "Avanceret",
+      "removeInlineBrackets": "Fjern indlejrede noter",
+      "removeInlineBracketsHint": "Fjerner [noter] midt i en linje. Overskriftsrækker bevares.",
+      "backgroundVocals": "Parenteser til baggrund",
+      "backgroundVocalsHint": "Flytter (vokal) til sin egen baggrundslinje.",
+      "capitalizeBackground": "Stort bogstav i baggrund",
+      "capitalizeBackgroundHint": "Starter hver baggrundslinje med stort bogstav.",
+      "emDashes": "Lange tankestreger",
+      "emDashesHint": "Laver dobbelte og løse bindestreger om til lange tankestreger.",
+      "splitHyphens": "Opdel ord med bindestreg",
+      "splitHyphensHint": "Opdeler ord som mm-hmm efter bindestregen.",
+      "splitCjk": "Opdel CJK-tegn",
+      "splitCjkHint": "Opdeler kinesisk, japansk og koreansk tekst i tegn og ved skriftskift.",
+      "punctuationSpacing": "Ryd op i tegnsætning",
+      "punctuationSpacingHint": "Ét mellemrum efter kommaer, intet før tegnsætning, og anførselstegn bliver ved deres ord.",
+      "collapseSpaces": "Saml mellemrum",
+      "collapseSpacesHint": "Gør flere mellemrum i træk til ét.",
+      "splitWords": "Opdel ved mellemrum",
+      "splitWordsHint": "Markerer hvert mellemrum som en ordgrænse til importen."
     }
   },
   "importChooser": {

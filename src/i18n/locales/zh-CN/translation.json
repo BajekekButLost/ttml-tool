@@ -175,6 +175,27 @@
       "translation": "翻译",
       "romanization": "罗马音",
       "removed": "已移除"
+    },
+    "processSteps": {
+      "advanced": "高级",
+      "removeInlineBrackets": "移除行内注释",
+      "removeInlineBracketsHint": "删除行中间的 [注释]。保留标题行。",
+      "backgroundVocals": "括号转为背景",
+      "backgroundVocalsHint": "把（人声）移到单独的背景行。",
+      "capitalizeBackground": "背景行首字母大写",
+      "capitalizeBackgroundHint": "每个背景行以大写字母开头。",
+      "emDashes": "长破折号",
+      "emDashesHint": "把双连字符和单独的连字符转为长破折号。",
+      "splitHyphens": "拆分带连字符的词",
+      "splitHyphensHint": "在连字符后拆分 mm-hmm 这样的词。",
+      "splitCjk": "拆分 CJK 字符",
+      "splitCjkHint": "把中文、日文和韩文按字符以及文字切换处拆分。",
+      "punctuationSpacing": "整理标点",
+      "punctuationSpacingHint": "逗号后留一个空格，标点前不留空格，引号贴着所属的词。",
+      "collapseSpaces": "合并空格",
+      "collapseSpacesHint": "把连续的多个空格合并为一个。",
+      "splitWords": "按空格拆分",
+      "splitWordsHint": "把每个空格标记为导入时的词边界。"
     }
   },
   "importChooser": {

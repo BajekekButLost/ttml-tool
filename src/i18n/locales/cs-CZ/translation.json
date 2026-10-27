@@ -175,6 +175,27 @@
       "translation": "Překlad",
       "romanization": "Romanizace",
       "removed": "Odebráno"
+    },
+    "processSteps": {
+      "advanced": "Pokročilé",
+      "removeInlineBrackets": "Odebrat vložené poznámky",
+      "removeInlineBracketsHint": "Odstraní [poznámky] uprostřed řádku. Řádky se záhlavím zůstanou.",
+      "backgroundVocals": "Závorky do doprovodu",
+      "backgroundVocalsHint": "Přesune (vokály) na vlastní doprovodný řádek.",
+      "capitalizeBackground": "Velké písmeno v doprovodu",
+      "capitalizeBackgroundHint": "Každý doprovodný řádek začne velkým písmenem.",
+      "emDashes": "Dlouhé pomlčky",
+      "emDashesHint": "Převede dvojité a osamocené spojovníky na dlouhé pomlčky.",
+      "splitHyphens": "Dělit slova se spojovníkem",
+      "splitHyphensHint": "Rozdělí slova jako mm-hmm za spojovníkem.",
+      "splitCjk": "Dělit znaky CJK",
+      "splitCjkHint": "Rozdělí čínský, japonský a korejský text na znaky a na změnách písma.",
+      "punctuationSpacing": "Upravit interpunkci",
+      "punctuationSpacingHint": "Jedna mezera za čárkou, žádná před interpunkcí a uvozovky zůstanou u slova.",
+      "collapseSpaces": "Sloučit mezery",
+      "collapseSpacesHint": "Více mezer za sebou nahradí jednou.",
+      "splitWords": "Dělit u mezer",
+      "splitWordsHint": "Každou mezeru označí jako hranici slova pro import."
     }
   },
   "importChooser": {

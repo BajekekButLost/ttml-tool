@@ -175,6 +175,27 @@
       "translation": "Çeviri",
       "romanization": "Romanizasyon",
       "removed": "Kaldırıldı"
+    },
+    "processSteps": {
+      "advanced": "Gelişmiş",
+      "removeInlineBrackets": "Satır içi notları kaldır",
+      "removeInlineBracketsHint": "Satır ortasındaki [notları] siler. Başlık satırları kalır.",
+      "backgroundVocals": "Parantezleri arka vokale taşı",
+      "backgroundVocalsHint": "(Vokalleri) kendi arka vokal satırına taşır.",
+      "capitalizeBackground": "Arka vokalde büyük harf",
+      "capitalizeBackgroundHint": "Her arka vokal satırını büyük harfle başlatır.",
+      "emDashes": "Uzun tireler",
+      "emDashesHint": "Çift ve tek başına kalan kısa çizgileri uzun tireye çevirir.",
+      "splitHyphens": "Tireli kelimeleri böl",
+      "splitHyphensHint": "mm-hmm gibi kelimeleri tireden sonra böler.",
+      "splitCjk": "CJK karakterlerini böl",
+      "splitCjkHint": "Çince, Japonca ve Korece metni karakterlere ve yazı değişimlerinde böler.",
+      "punctuationSpacing": "Noktalamayı düzenle",
+      "punctuationSpacingHint": "Virgülden sonra bir boşluk, noktalamadan önce boşluk yok ve tırnaklar kelimesinde kalır.",
+      "collapseSpaces": "Boşlukları birleştir",
+      "collapseSpacesHint": "Art arda gelen boşlukları teke indirir.",
+      "splitWords": "Boşluklardan böl",
+      "splitWordsHint": "Her boşluğu içe aktarma için kelime sınırı olarak işaretler."
     }
   },
   "importChooser": {

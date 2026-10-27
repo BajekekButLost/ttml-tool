@@ -175,6 +175,27 @@
       "translation": "Käännös",
       "romanization": "Latinisointi",
       "removed": "Poistettu"
+    },
+    "processSteps": {
+      "advanced": "Lisäasetukset",
+      "removeInlineBrackets": "Poista rivin sisäiset huomautukset",
+      "removeInlineBracketsHint": "Poistaa [huomautukset] rivin keskeltä. Otsikkorivit säilyvät.",
+      "backgroundVocals": "Sulkeet taustalauluksi",
+      "backgroundVocalsHint": "Siirtää (laulun) omalle taustariville.",
+      "capitalizeBackground": "Iso alkukirjain taustariveille",
+      "capitalizeBackgroundHint": "Aloittaa jokaisen taustarivin isolla kirjaimella.",
+      "emDashes": "Ajatusviivat",
+      "emDashesHint": "Muuttaa kaksoistavuviivat ja irralliset tavuviivat ajatusviivoiksi.",
+      "splitHyphens": "Jaa yhdysmerkilliset sanat",
+      "splitHyphensHint": "Jakaa sanat kuten mm-hmm yhdysmerkin jälkeen.",
+      "splitCjk": "Jaa CJK-merkit",
+      "splitCjkHint": "Jakaa kiinan, japanin ja korean tekstin merkeiksi ja kirjoitusjärjestelmän vaihtuessa.",
+      "punctuationSpacing": "Siisti välimerkit",
+      "punctuationSpacingHint": "Yksi välilyönti pilkun jälkeen, ei välilyöntiä ennen välimerkkiä, ja lainausmerkit pysyvät sanassaan.",
+      "collapseSpaces": "Yhdistä välilyönnit",
+      "collapseSpacesHint": "Muuttaa peräkkäiset välilyönnit yhdeksi.",
+      "splitWords": "Jaa välilyönneistä",
+      "splitWordsHint": "Merkitsee jokaisen välilyönnin sanarajaksi tuontia varten."
     }
   },
   "importChooser": {

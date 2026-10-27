@@ -175,6 +175,27 @@
       "translation": "Translation",
       "romanization": "Romanization",
       "removed": "Removed"
+    },
+    "processSteps": {
+      "advanced": "Advanced",
+      "removeInlineBrackets": "Remove inline notes",
+      "removeInlineBracketsHint": "Drops [notes] in the middle of a line. Header rows are kept.",
+      "backgroundVocals": "Parentheses to background",
+      "backgroundVocalsHint": "Moves (vocals) to their own background line.",
+      "capitalizeBackground": "Capitalize background lines",
+      "capitalizeBackgroundHint": "Starts each background line with a capital letter.",
+      "emDashes": "Em dashes",
+      "emDashesHint": "Turns double hyphens and stray hyphens into em dashes.",
+      "splitHyphens": "Split hyphenated words",
+      "splitHyphensHint": "Splits words like mm-hmm after the hyphen.",
+      "splitCjk": "Split CJK characters",
+      "splitCjkHint": "Splits Chinese, Japanese and Korean text into characters and at script changes.",
+      "punctuationSpacing": "Tidy punctuation",
+      "punctuationSpacingHint": "One space after commas, none before punctuation, and quotes kept on their word.",
+      "collapseSpaces": "Collapse spaces",
+      "collapseSpacesHint": "Turns runs of spaces into one.",
+      "splitWords": "Split at spaces",
+      "splitWordsHint": "Marks each space as a word boundary for the import."
     }
   },
   "importChooser": {

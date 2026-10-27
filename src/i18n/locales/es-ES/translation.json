@@ -175,6 +175,27 @@
       "translation": "Traducción",
       "romanization": "Romanización",
       "removed": "Quitado"
+    },
+    "processSteps": {
+      "advanced": "Avanzado",
+      "removeInlineBrackets": "Quitar notas en línea",
+      "removeInlineBracketsHint": "Elimina las [notas] en mitad de una línea. Las filas de encabezado se mantienen.",
+      "backgroundVocals": "Paréntesis a voces de fondo",
+      "backgroundVocalsHint": "Pasa las (voces) a su propia línea de fondo.",
+      "capitalizeBackground": "Mayúscula en líneas de fondo",
+      "capitalizeBackgroundHint": "Empieza cada línea de fondo con mayúscula.",
+      "emDashes": "Rayas",
+      "emDashesHint": "Convierte guiones dobles y sueltos en rayas.",
+      "splitHyphens": "Dividir palabras con guion",
+      "splitHyphensHint": "Divide palabras como mm-hmm después del guion.",
+      "splitCjk": "Dividir caracteres CJK",
+      "splitCjkHint": "Divide el texto chino, japonés y coreano en caracteres y en los cambios de escritura.",
+      "punctuationSpacing": "Ordenar puntuación",
+      "punctuationSpacingHint": "Un espacio tras las comas, ninguno antes de la puntuación y las comillas pegadas a su palabra.",
+      "collapseSpaces": "Unir espacios",
+      "collapseSpacesHint": "Convierte varios espacios seguidos en uno.",
+      "splitWords": "Dividir en los espacios",
+      "splitWordsHint": "Marca cada espacio como límite de palabra para la importación."
     }
   },
   "importChooser": {
