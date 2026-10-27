@@ -61,7 +61,7 @@
       "link": "Personnaliser l'apparence de l'éditeur"
     },
     "status": {
-      "complete": "Terminé — l'outil a détecté que cette étape est terminée."
+      "complete": "Terminé. L'outil a détecté que cette étape est terminée."
     },
     "readMore": "Guide complet",
     "continue": "Continuer",
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importez les paroles",
-        "description": "Choisissez une source de paroles ci-dessous. Vérifiez le résultat dans sa fenêtre d'import et confirmez.",
-        "waiting": "Choisissez une source ci-dessous et terminez sa fenêtre d'import."
+        "description": "Choisissez une source de paroles ci-dessous. Elle ouvre l'écran d'import, où vous passez de Coller à LRCLIB ou Genius en haut, nettoyez le texte et l'importez.",
+        "waiting": "Choisissez une source ci-dessous et importez les paroles depuis l'écran d'import."
       },
       "review": {
         "title": "Vérifiez les paroles et les types de lignes",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Texte brut",
+        "title": "Coller",
         "description": "Collez les paroles et choisissez la façon dont les lignes, les traductions, la romanisation et les divisions de mots sont interprétées."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Recherchez dans LRCLIB des paroles synchronisées ou brutes par chanson et artiste."
+        "description": "Recherchez dans LRCLIB par chanson et artiste et récupérez les paroles en texte brut."
       },
       "genius": {
         "title": "Genius",

@@ -61,7 +61,7 @@
       "link": "Prispôsobiť vzhľad editora"
     },
     "status": {
-      "complete": "Hotovo — nástroj zistil, že tento krok je dokončený."
+      "complete": "Hotovo. Nástroj zistil, že tento krok je dokončený."
     },
     "readMore": "Celý sprievodca",
     "continue": "Pokračovať",
@@ -85,7 +85,7 @@
       "step1": "1. Otvorte Genius API Clients a prihláste sa.",
       "step2": "2. Zvoľte New API Client, zadajte ľubovoľný rozpoznateľný názov aplikácie a vyplňte povinné pole s webom aplikácie.",
       "step3": "3. Uložte klienta a potom zvoľte Generate Access Token.",
-      "step4": "4. Skopírujte Client Access Token — nie Client ID ani Client Secret.",
+      "step4": "4. Skopírujte Client Access Token, nie Client ID ani Client Secret.",
       "reuse": "Nástroj token uloží lokálne a použije ho na import textov a vyhľadávanie autorov skladieb.",
       "openPortal": "Otvoriť Genius API Clients",
       "paste": "Vložiť token do importu z Genius"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importujte text",
-        "description": "Nižšie vyberte zdroj textu. Výsledok skontrolujte v okne importu a import potvrďte.",
-        "waiting": "Vyberte nižšie jeden zdroj a dokončite jeho okno importu."
+        "description": "Nižšie vyberte zdroj textu. Otvorí sa obrazovka importu, kde hore prepínate medzi Vložiť, LRCLIB a Genius, upravíte text a importujete ho.",
+        "waiting": "Vyberte nižšie zdroj a importujte text na obrazovke importu."
       },
       "review": {
         "title": "Skontrolujte text a typy riadkov",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Obyčajný text",
+        "title": "Vložiť",
         "description": "Vložte text piesne a zvoľte, ako sa majú spracovať riadky, preklad, prepis do latinky a delenie slov."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Vyhľadajte v LRCLIB časovaný alebo obyčajný text podľa skladby a interpreta."
+        "description": "Vyhľadajte v LRCLIB text podľa skladby a interpreta a importujte ho ako obyčajný text."
       },
       "genius": {
         "title": "Genius",

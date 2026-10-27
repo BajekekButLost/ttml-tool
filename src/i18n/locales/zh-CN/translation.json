@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "导入歌词",
-        "description": "在下方选择一个歌词来源。在导入窗口中检查结果并确认导入。",
-        "waiting": "在下方选择一个来源并完成导入。"
+        "description": "在下方选择一个歌词来源，会打开导入界面。你可以在顶部切换粘贴、LRCLIB 和 Genius，整理文本后导入。",
+        "waiting": "在下方选择一个来源，然后在导入界面中导入歌词。"
       },
       "review": {
         "title": "检查歌词与行类型",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "纯文本",
+        "title": "粘贴",
         "description": "粘贴歌词，选择如何识别歌词行、译文、罗马音及分词。"
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "按歌曲和歌手在 LRCLIB 中搜索带时间戳或纯文本歌词。"
+        "description": "按歌曲和歌手在 LRCLIB 中搜索，并以纯文本导入歌词。"
       },
       "genius": {
         "title": "Genius",

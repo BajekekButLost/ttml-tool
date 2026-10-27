@@ -61,7 +61,7 @@
       "link": "Dostosuj wygląd edytora"
     },
     "status": {
-      "complete": "Gotowe — narzędzie wykryło, że ten krok jest ukończony."
+      "complete": "Gotowe. Narzędzie wykryło, że ten krok jest ukończony."
     },
     "readMore": "Pełny przewodnik",
     "continue": "Dalej",
@@ -85,7 +85,7 @@
       "step1": "1. Otwórz Genius API Clients i zaloguj się.",
       "step2": "2. Wybierz New API Client, nadaj dowolną rozpoznawalną nazwę aplikacji i wypełnij wymagane pole strony aplikacji.",
       "step3": "3. Zapisz klienta, a następnie wybierz Generate Access Token.",
-      "step4": "4. Skopiuj Client Access Token — nie Client ID ani Client Secret.",
+      "step4": "4. Skopiuj Client Access Token, nie Client ID ani Client Secret.",
       "reuse": "Narzędzie zapisuje ten token lokalnie i używa go ponownie do importu tekstów i wyszukiwania autorów.",
       "openPortal": "Otwórz Genius API Clients",
       "paste": "Wklej token w imporcie z Genius"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Zaimportuj tekst",
-        "description": "Wybierz poniżej źródło tekstu. Sprawdź wynik w oknie importu i potwierdź import.",
-        "waiting": "Wybierz poniżej jedno źródło i dokończ jego okno importu."
+        "description": "Wybierz poniżej źródło tekstu. Otworzy się ekran importu, na którym u góry przełączasz między Wklej, LRCLIB i Genius, porządkujesz tekst i go importujesz.",
+        "waiting": "Wybierz poniżej źródło i zaimportuj tekst z ekranu importu."
       },
       "review": {
         "title": "Sprawdź tekst i typy wersów",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Zwykły tekst",
+        "title": "Wklej",
         "description": "Wklej tekst i wybierz sposób odczytu wersów, tłumaczeń, transkrypcji łacińskiej i podziału słów."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Wyszukaj w LRCLIB zsynchronizowany lub zwykły tekst według utworu i wykonawcy."
+        "description": "Wyszukaj w LRCLIB według utworu i wykonawcy i pobierz tekst jako zwykły tekst."
       },
       "genius": {
         "title": "Genius",

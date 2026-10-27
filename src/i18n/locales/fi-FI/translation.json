@@ -61,7 +61,7 @@
       "link": "Muokkaa editorin ulkoasua"
     },
     "status": {
-      "complete": "Valmis — työkalu havaitsi, että tämä vaihe on suoritettu."
+      "complete": "Valmis. Työkalu havaitsi, että tämä vaihe on suoritettu."
     },
     "readMore": "Koko opas",
     "continue": "Jatka",
@@ -85,7 +85,7 @@
       "step1": "1. Avaa Genius API Clients ja kirjaudu sisään.",
       "step2": "2. Valitse New API Client, anna sille jokin tunnistettava sovelluksen nimi ja täytä pakollinen sovelluksen verkkosivustokenttä.",
       "step3": "3. Tallenna API-asiakas ja valitse sitten Generate Access Token.",
-      "step4": "4. Kopioi Client Access Token — ei Client ID:tä tai Client Secretiä.",
+      "step4": "4. Kopioi Client Access Token, ei Client ID:tä tai Client Secretiä.",
       "reuse": "Työkalu tallentaa käyttöoikeustunnuksen paikallisesti ja käyttää sitä sanoitusten tuontiin ja lauluntekijöiden hakuun.",
       "openPortal": "Avaa Genius API Clients",
       "paste": "Liitä käyttöoikeustunnus Genius-tuontiin"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Tuo sanoitukset",
-        "description": "Valitse sanoitusten lähde alta. Tarkista tulos tuontiikkunassa ja vahvista tuonti.",
-        "waiting": "Valitse lähde alta ja viimeistele tuonti."
+        "description": "Valitse sanoitusten lähde alta. Se avaa tuontinäkymän, jossa vaihdat ylhäältä Liitä-, LRCLIB- ja Genius-lähteen välillä, siistit tekstin ja tuot sen.",
+        "waiting": "Valitse lähde alta ja tuo sanoitukset tuontinäkymästä."
       },
       "review": {
         "title": "Tarkista sanoitukset ja rivityypit",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Pelkkä teksti",
+        "title": "Liitä",
         "description": "Liitä sanoitukset ja valitse, miten rivit, käännökset, latinalaistus ja sananjaot tulkitaan."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Etsi LRCLIB-palvelusta ajoitettuja tai ajoittamattomia sanoituksia kappaleen ja esittäjän perusteella."
+        "description": "Hae LRCLIB-palvelusta kappaleen ja esittäjän perusteella ja tuo sanoitukset pelkkänä tekstinä."
       },
       "genius": {
         "title": "Genius",

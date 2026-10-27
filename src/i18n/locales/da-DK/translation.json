@@ -61,7 +61,7 @@
       "link": "Tilpas editorens udseende"
     },
     "status": {
-      "complete": "Færdig — værktøjet har registreret, at dette trin er fuldført."
+      "complete": "Færdig. Værktøjet har registreret, at dette trin er fuldført."
     },
     "readMore": "Hele guiden",
     "continue": "Fortsæt",
@@ -85,7 +85,7 @@
       "step1": "1. Åbn Genius API Clients, og log ind.",
       "step2": "2. Vælg New API Client, giv den et genkendeligt appnavn, og udfyld det påkrævede felt til appens websted.",
       "step3": "3. Gem klienten, og vælg derefter Generate Access Token.",
-      "step4": "4. Kopiér Client Access Token — ikke Client ID eller Client Secret.",
+      "step4": "4. Kopiér Client Access Token, ikke Client ID eller Client Secret.",
       "reuse": "Værktøjet gemmer dette token lokalt og genbruger det til import af sangtekster og opslag af sangskrivere.",
       "openPortal": "Åbn Genius API Clients",
       "paste": "Indsæt token i Genius-import"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importér sangteksten",
-        "description": "Vælg en kilde til sangteksten nedenfor. Gennemse resultatet i importvinduet, og bekræft importen.",
-        "waiting": "Vælg en kilde nedenfor, og gennemfør importen."
+        "description": "Vælg en kilde til sangteksten nedenfor. Den åbner importskærmen, hvor du skifter mellem Indsæt, LRCLIB og Genius øverst, rydder op i teksten og importerer den.",
+        "waiting": "Vælg en kilde nedenfor, og importér sangteksten fra importskærmen."
       },
       "review": {
         "title": "Tjek sangtekst og linjetyper",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Almindelig tekst",
+        "title": "Indsæt",
         "description": "Indsæt tekster og vælg, hvordan linjer, oversættelser, romanisering og ordopdelinger skal fortolkes."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Søg i LRCLIB efter synkroniserede eller usynkroniserede sangtekster ud fra sang og kunstner."
+        "description": "Søg i LRCLIB efter sang og kunstner, og hent sangteksten som almindelig tekst."
       },
       "genius": {
         "title": "Genius",

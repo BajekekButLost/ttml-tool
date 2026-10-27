@@ -61,7 +61,7 @@
       "link": "Sesuaikan tampilan editor"
     },
     "status": {
-      "complete": "Selesai — alat mendeteksi langkah ini sudah selesai."
+      "complete": "Selesai. Alat mendeteksi langkah ini sudah selesai."
     },
     "readMore": "Panduan lengkap",
     "continue": "Lanjutkan",
@@ -85,7 +85,7 @@
       "step1": "1. Buka Genius API Clients dan masuk.",
       "step2": "2. Pilih New API Client, beri nama aplikasi yang mudah dikenali, lalu isi kolom situs web aplikasi yang wajib.",
       "step3": "3. Simpan klien, lalu pilih Generate Access Token.",
-      "step4": "4. Salin Client Access Token—bukan Client ID atau Client Secret.",
+      "step4": "4. Salin Client Access Token, bukan Client ID atau Client Secret.",
       "reuse": "Alat menyimpan token ini secara lokal dan menggunakannya kembali untuk impor lirik dan pencarian penulis lagu.",
       "openPortal": "Buka Genius API Clients",
       "paste": "Tempel token di impor Genius"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Impor lirik",
-        "description": "Pilih sumber lirik di bawah. Tinjau hasilnya di jendela impor dan konfirmasi impor.",
-        "waiting": "Pilih sumber di bawah dan selesaikan proses impornya."
+        "description": "Pilih sumber lirik di bawah. Layar impor akan terbuka; di sana Anda bisa beralih antara Tempel, LRCLIB, dan Genius di bagian atas, merapikan teks, lalu mengimpornya.",
+        "waiting": "Pilih sumber di bawah dan impor lirik dari layar impor."
       },
       "review": {
         "title": "Periksa lirik dan jenis baris",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Teks biasa",
+        "title": "Tempel",
         "description": "Tempel lirik dan pilih cara memproses baris, terjemahan, romanisasi, serta pemisahan kata."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Cari lirik dengan atau tanpa waktu di LRCLIB berdasarkan lagu dan artis."
+        "description": "Cari di LRCLIB berdasarkan lagu dan artis, lalu ambil liriknya sebagai teks biasa."
       },
       "genius": {
         "title": "Genius",

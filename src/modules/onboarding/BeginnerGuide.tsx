@@ -69,7 +69,7 @@ const GUIDE_COPY = {
 	},
 	lyrics: {
 		title: "Import the lyrics",
-		text: "Choose a lyrics source below. Review the result in its import window and confirm the import.",
+		text: "Choose a lyrics source below. It opens the import screen, where you can switch between Paste, LRCLIB and Genius at the top, clean up the text and import it.",
 	},
 	review: {
 		title: "Check lyrics and line types",
@@ -264,7 +264,7 @@ export const BeginnerGuide = () => {
 			: currentId === "audio"
 				? "Use “Choose audio” below, then wait for loading to finish."
 				: currentId === "lyrics"
-					? "Choose one source below and finish its import window."
+					? "Choose a source below and import the lyrics from the import screen."
 					: currentId === "review"
 						? hasNoEmptyLyricLines(lyrics)
 							? "The structure is valid. Finish reading the lyrics, then confirm your review."
@@ -532,7 +532,7 @@ export const BeginnerGuide = () => {
 										{stepComplete
 											? t(
 													"beginnerGuide.status.complete",
-													"Done — the tool detected this step is complete.",
+													"Done. The tool detected that this step is complete.",
 												)
 											: t(waitingKey, waitingText)}
 									</Text>
@@ -634,7 +634,7 @@ export const BeginnerGuide = () => {
 											<Text size="2">
 												{t(
 													"beginnerGuide.genius.step4",
-													"4. Copy the Client Access Token—not the Client ID or Client Secret.",
+													"4. Copy the Client Access Token, not the Client ID or Client Secret.",
 												)}
 											</Text>
 											<Text size="1" color="gray">

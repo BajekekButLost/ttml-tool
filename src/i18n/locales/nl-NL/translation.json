@@ -61,7 +61,7 @@
       "link": "Uiterlijk van de editor aanpassen"
     },
     "status": {
-      "complete": "Klaar — de tool heeft gedetecteerd dat deze stap voltooid is."
+      "complete": "Klaar. De tool heeft gedetecteerd dat deze stap voltooid is."
     },
     "readMore": "Volledige gids",
     "continue": "Doorgaan",
@@ -85,7 +85,7 @@
       "step1": "1. Open Genius API Clients en meld je aan.",
       "step2": "2. Kies New API Client, geef hem een herkenbare appnaam en vul het verplichte veld voor de appwebsite in.",
       "step3": "3. Sla de client op en kies daarna Generate Access Token.",
-      "step4": "4. Kopieer het Client Access Token — niet de Client ID of het Client Secret.",
+      "step4": "4. Kopieer het Client Access Token, niet de Client ID of het Client Secret.",
       "reuse": "De tool slaat dit token lokaal op en hergebruikt het voor het importeren van songteksten en het opzoeken van liedschrijvers.",
       "openPortal": "Genius API Clients openen",
       "paste": "Token plakken in Genius-import"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importeer de songtekst",
-        "description": "Kies hieronder een bron voor de songtekst. Controleer het resultaat in het importvenster en bevestig de import.",
-        "waiting": "Kies hieronder een bron en voltooi de import."
+        "description": "Kies hieronder een bron voor de songtekst. Het importscherm opent; bovenaan wissel je tussen Plakken, LRCLIB en Genius, je ruimt de tekst op en importeert hem.",
+        "waiting": "Kies hieronder een bron en importeer de songtekst vanuit het importscherm."
       },
       "review": {
         "title": "Controleer songtekst en regeltypen",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Platte tekst",
+        "title": "Plakken",
         "description": "Plak songteksten en kies hoe regels, vertalingen, romanisatie en woordsplitsingen worden verwerkt."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Zoek in LRCLIB op nummer en artiest naar songteksten met of zonder timing."
+        "description": "Zoek in LRCLIB op nummer en artiest en haal de songtekst op als platte tekst."
       },
       "genius": {
         "title": "Genius",

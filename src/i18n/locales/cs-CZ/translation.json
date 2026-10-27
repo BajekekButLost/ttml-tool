@@ -61,7 +61,7 @@
       "link": "Přizpůsobit vzhled editoru"
     },
     "status": {
-      "complete": "Hotovo — nástroj zjistil, že je tento krok dokončen."
+      "complete": "Hotovo. Nástroj zjistil, že je tento krok dokončen."
     },
     "readMore": "Celý průvodce",
     "continue": "Pokračovat",
@@ -85,7 +85,7 @@
       "step1": "1. Otevřete Genius API Clients a přihlaste se.",
       "step2": "2. Zvolte New API Client, zadejte libovolný rozpoznatelný název aplikace a vyplňte povinné pole s webem aplikace.",
       "step3": "3. Uložte klienta a pak zvolte Generate Access Token.",
-      "step4": "4. Zkopírujte Client Access Token — ne Client ID ani Client Secret.",
+      "step4": "4. Zkopírujte Client Access Token, ne Client ID ani Client Secret.",
       "reuse": "Nástroj token uloží místně a použije ho pro import textů a vyhledávání autorů skladeb.",
       "openPortal": "Otevřít Genius API Clients",
       "paste": "Vložit token do importu z Genius"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importujte text",
-        "description": "Níže vyberte zdroj textu. Výsledek zkontrolujte v okně importu a import potvrďte.",
-        "waiting": "Vyberte níže jeden zdroj a dokončete jeho okno importu."
+        "description": "Níže vyberte zdroj textu. Otevře se obrazovka importu, kde nahoře přepínáte mezi Vložit, LRCLIB a Genius, upravíte text a importujete ho.",
+        "waiting": "Vyberte níže zdroj a importujte text na obrazovce importu."
       },
       "review": {
         "title": "Zkontrolujte text a typy řádků",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Prostý text",
+        "title": "Vložit",
         "description": "Vložte text písně a zvolte, jak se mají zpracovat řádky, překlad, přepis do latinky a rozdělení slov."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Vyhledejte v LRCLIB časovaný nebo prostý text podle skladby a interpreta."
+        "description": "Vyhledejte v LRCLIB text podle skladby a interpreta a importujte ho jako prostý text."
       },
       "genius": {
         "title": "Genius",

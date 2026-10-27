@@ -61,7 +61,7 @@
       "link": "Personalizar a aparência do editor"
     },
     "status": {
-      "complete": "Pronto — a ferramenta detectou que esta etapa foi concluída."
+      "complete": "Pronto. A ferramenta detectou que esta etapa foi concluída."
     },
     "readMore": "Guia completo",
     "continue": "Continuar",
@@ -85,7 +85,7 @@
       "step1": "1. Abra o Genius API Clients e entre na sua conta.",
       "step2": "2. Selecione New API Client, dê um nome reconhecível ao app e preencha o campo obrigatório do site do app.",
       "step3": "3. Salve o cliente e depois selecione Generate Access Token.",
-      "step4": "4. Copie o Client Access Token — não o Client ID nem o Client Secret.",
+      "step4": "4. Copie o Client Access Token, não o Client ID nem o Client Secret.",
       "reuse": "A ferramenta guarda este token localmente e o reutiliza para importar letras e buscar compositores.",
       "openPortal": "Abrir Genius API Clients",
       "paste": "Colar o token na importação do Genius"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importe a letra",
-        "description": "Escolha uma fonte de letras abaixo. Revise o resultado na janela de importação e confirme.",
-        "waiting": "Escolha uma fonte abaixo e conclua a janela de importação."
+        "description": "Escolha uma fonte de letras abaixo. A tela de importação abre; nela você alterna entre Colar, LRCLIB e Genius no topo, ajusta o texto e importa.",
+        "waiting": "Escolha uma fonte abaixo e importe a letra pela tela de importação."
       },
       "review": {
         "title": "Revise a letra e os tipos de linha",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Texto simples",
+        "title": "Colar",
         "description": "Cole as letras e escolha como as linhas, traduções, romanização e divisões de palavras serão interpretadas."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Busque letras sincronizadas ou sem sincronização no LRCLIB por música e artista."
+        "description": "Busque no LRCLIB por música e artista e traga a letra como texto simples."
       },
       "genius": {
         "title": "Genius",

@@ -61,7 +61,7 @@
       "link": "Düzenleyici görünümünü özelleştir"
     },
     "status": {
-      "complete": "Tamam — araç bu adımın tamamlandığını algıladı."
+      "complete": "Tamam. Araç bu adımın tamamlandığını algıladı."
     },
     "readMore": "Tam rehber",
     "continue": "Devam",
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Şarkı sözlerini içe aktarın",
-        "description": "Aşağıdan bir şarkı sözü kaynağı seçin. Sonucu içe aktarma penceresinde inceleyin ve onaylayın.",
-        "waiting": "Aşağıdan bir kaynak seçin ve içe aktarma penceresini tamamlayın."
+        "description": "Aşağıdan bir şarkı sözü kaynağı seçin. İçe aktarma ekranı açılır; üstten Yapıştır, LRCLIB ve Genius arasında geçiş yapabilir, metni düzenleyip içe aktarabilirsiniz.",
+        "waiting": "Aşağıdan bir kaynak seçin ve şarkı sözlerini içe aktarma ekranından aktarın."
       },
       "review": {
         "title": "Şarkı sözlerini ve satır türlerini kontrol edin",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Düz metin",
+        "title": "Yapıştır",
         "description": "Şarkı sözlerini yapıştırın; satırların, çevirilerin, Latin harflerine çevirinin ve kelime bölmelerinin nasıl işleneceğini seçin."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "LRCLIB'de şarkıya ve sanatçıya göre zamanlanmış veya düz şarkı sözleri arayın."
+        "description": "LRCLIB'de şarkıya ve sanatçıya göre arayın ve sözleri düz metin olarak alın."
       },
       "genius": {
         "title": "Genius",

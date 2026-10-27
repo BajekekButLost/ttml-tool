@@ -61,7 +61,7 @@
       "link": "Customize editor appearance"
     },
     "status": {
-      "complete": "Done — the tool detected this step is complete."
+      "complete": "Done. The tool detected that this step is complete."
     },
     "readMore": "Full guide",
     "continue": "Continue",
@@ -85,7 +85,7 @@
       "step1": "1. Open Genius API Clients and sign in.",
       "step2": "2. Select New API Client, give it any recognizable app name, and fill the required app website field.",
       "step3": "3. Save the client, then select Generate Access Token.",
-      "step4": "4. Copy the Client Access Token—not the Client ID or Client Secret.",
+      "step4": "4. Copy the Client Access Token, not the Client ID or Client Secret.",
       "reuse": "The tool stores this token locally and reuses it for lyric imports and songwriter lookup.",
       "openPortal": "Open Genius API Clients",
       "paste": "Paste token in Genius import"
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Import the lyrics",
-        "description": "Choose a lyrics source below. Review the result in its import window and confirm the import.",
-        "waiting": "Choose one source below and finish its import window."
+        "description": "Choose a lyrics source below. It opens the import screen, where you can switch between Paste, LRCLIB and Genius at the top, clean up the text and import it.",
+        "waiting": "Choose a source below and import the lyrics from the import screen."
       },
       "review": {
         "title": "Check lyrics and line types",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Plain text",
+        "title": "Paste",
         "description": "Paste lyrics and choose how lines, translations, romanization, and word splits are interpreted."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Search LRCLIB for synced or plain lyrics by song and artist."
+        "description": "Search LRCLIB by song and artist and bring in its lyrics as plain text."
       },
       "genius": {
         "title": "Genius",

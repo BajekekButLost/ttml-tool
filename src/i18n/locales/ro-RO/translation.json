@@ -61,7 +61,7 @@
       "link": "Personalizează aspectul editorului"
     },
     "status": {
-      "complete": "Gata — instrumentul a detectat că acest pas este finalizat."
+      "complete": "Gata. Instrumentul a detectat că acest pas este finalizat."
     },
     "readMore": "Ghidul complet",
     "continue": "Continuă",
@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importă versurile",
-        "description": "Alege mai jos o sursă pentru versuri. Verifică rezultatul în fereastra de import și confirmă importul.",
-        "waiting": "Alege o sursă mai jos și finalizează fereastra ei de import."
+        "description": "Alege mai jos o sursă pentru versuri. Se deschide ecranul de import, unde comuți sus între Lipește, LRCLIB și Genius, cureți textul și îl imporți.",
+        "waiting": "Alege o sursă mai jos și importă versurile din ecranul de import."
       },
       "review": {
         "title": "Verifică versurile și tipurile de vers",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Text simplu",
+        "title": "Lipește",
         "description": "Lipește versurile și alege cum să fie interpretate versurile, traducerile, romanizarea și împărțirea cuvintelor."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Caută în LRCLIB versuri sincronizate sau simple după melodie și artist."
+        "description": "Caută în LRCLIB după melodie și artist și adu versurile ca text simplu."
       },
       "genius": {
         "title": "Genius",

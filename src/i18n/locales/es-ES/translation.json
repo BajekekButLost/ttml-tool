@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importa la letra",
-        "description": "Elige abajo una fuente de letras. Revisa el resultado en su ventana de importación y confirma.",
-        "waiting": "Elige una fuente abajo y completa su ventana de importación."
+        "description": "Elige abajo una fuente de letras. Se abre la pantalla de importación, donde cambias entre Pegar, LRCLIB y Genius arriba, limpias el texto y lo importas.",
+        "waiting": "Elige una fuente abajo e importa la letra desde la pantalla de importación."
       },
       "review": {
         "title": "Revisa la letra y los tipos de línea",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Texto sin formato",
+        "title": "Pegar",
         "description": "Pega la letra y elige cómo interpretar las líneas, las traducciones, la romanización y la división de palabras."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Busca en LRCLIB letras sincronizadas o sin sincronizar por canción y artista."
+        "description": "Busca en LRCLIB por canción y artista y trae su letra como texto sin formato."
       },
       "genius": {
         "title": "Genius",

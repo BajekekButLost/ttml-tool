@@ -104,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importa il testo",
-        "description": "Scegli una fonte per il testo qui sotto. Controlla il risultato nella finestra di importazione e conferma.",
-        "waiting": "Scegli una fonte qui sotto e completa la sua finestra di importazione."
+        "description": "Scegli una fonte per il testo qui sotto. Si apre la schermata di importazione, dove in alto passi tra Incolla, LRCLIB e Genius, sistemi il testo e lo importi.",
+        "waiting": "Scegli una fonte qui sotto e importa il testo dalla schermata di importazione."
       },
       "review": {
         "title": "Controlla il testo e i tipi di verso",
@@ -215,12 +215,12 @@
   "importChooser": {
     "options": {
       "plainText": {
-        "title": "Testo semplice",
+        "title": "Incolla",
         "description": "Incolla i testi e scegli come interpretare i versi, le traduzioni, la romanizzazione e le suddivisioni delle parole."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Cerca in LRCLIB testi sincronizzati o semplici per brano e artista."
+        "description": "Cerca in LRCLIB per brano e artista e porta il testo come testo semplice."
       },
       "genius": {
         "title": "Genius",
