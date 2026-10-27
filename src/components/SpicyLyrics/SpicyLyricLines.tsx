@@ -31,6 +31,7 @@ export function SpicyLyricLines({
 		word: SpicyToken,
 		wordIndex: number,
 		wordBoundary: boolean,
+		partOfWord = false,
 	) => {
 		const key = keyFor(line, word, wordIndex);
 		const letters = word.letters;
@@ -45,6 +46,7 @@ export function SpicyLyricLines({
 				className={classNames(
 					className,
 					wordBoundary && styles.wordBoundary,
+					partOfWord && styles.partOfWord,
 					word.allowInternalWrap && styles.breakableToken,
 				)}
 				dir={isRtl(word.text) ? "rtl" : undefined}
@@ -64,7 +66,10 @@ export function SpicyLyricLines({
 										if (node) wordNodes.current.set(`${key}:${start}`, node);
 										else wordNodes.current.delete(`${key}:${start}`);
 									}}
-									className={styles.letter}
+									className={classNames(
+										styles.letter,
+										letter.trim().length === 0 && styles.spaceLetter,
+									)}
 								>
 									{letter}
 								</span>
@@ -131,8 +136,16 @@ export function SpicyLyricLines({
 										group.hasTrailingSpace && styles.wordBoundary,
 									)}
 								>
-									{group.items.map(({ token, wordIndex }) =>
-										renderToken(line, token, wordIndex, false),
+									{/* Every syllable but the last joins the next one, so each
+									    scales toward the joint instead of opening a gap. */}
+									{group.items.map(({ token, wordIndex }, index) =>
+										renderToken(
+											line,
+											token,
+											wordIndex,
+											false,
+											index < group.items.length - 1,
+										),
 									)}
 								</span>
 							);
