@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Se aplică panglicilor Editare, Sincronizare și Previzualizare.",
+    "tooltips": {
+      "newLyricLine": "Adaugă un vers gol la finalul versurilor.",
+      "bgLyric": "Marchează versurile selectate ca voce de fundal.",
+      "duetLyric": "Marchează versurile selectate ca fiind cântate de al doilea cântăreț.",
+      "ignoreSync": "Tastele de sincronizare sar peste versurile selectate, așa că nu le sincronizezi.",
+      "romanizationLanguage": "Limba romanizării",
+      "romanizationLanguageDesc": "Limba versurilor selectate. Detectarea automată merge pentru majoritatea melodiilor.",
+      "romanize": "Completează romanizarea pentru versurile sau cuvintele selectate."
+    },
     "editMode": {
       "multipleValues": "Valori multiple",
       "duration": "Durată",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Editare",
       "sync": "Sincronizare",
-      "preview": "Previzualizare"
+      "preview": "Previzualizare",
+      "editDesc": "Scrie, împarte și marchează versurile.",
+      "syncDesc": "Sincronizează fiecare cuvânt cu sunetul.",
+      "previewDesc": "Redă versurile așa cum le vor vedea ascultătorii."
     },
     "appName": "TTML Tool",
     "menu": {

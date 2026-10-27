@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Platí pro pásy karet Úpravy, Časování a Náhled.",
+    "tooltips": {
+      "newLyricLine": "Přidá prázdný řádek na konec textu.",
+      "bgLyric": "Označí vybrané řádky jako doprovodný vokál.",
+      "duetLyric": "Označí vybrané řádky jako zpívané druhým zpěvákem.",
+      "ignoreSync": "Klávesy synchronizace vybrané řádky přeskočí, takže je nečasujete.",
+      "romanizationLanguage": "Jazyk přepisu",
+      "romanizationLanguageDesc": "Jazyk vybraného textu. Automatická detekce funguje u většiny skladeb.",
+      "romanize": "Doplní přepis do latinky pro vybrané řádky nebo slova."
+    },
     "editMode": {
       "multipleValues": "Více hodnot…",
       "duration": "Délka",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Úpravy",
       "sync": "Časování",
-      "preview": "Náhled"
+      "preview": "Náhled",
+      "editDesc": "Psaní, dělení a označování textu.",
+      "syncDesc": "Časování každého slova podle zvuku.",
+      "previewDesc": "Přehraje text tak, jak ho uvidí posluchači."
     },
     "appName": "TTML Tool",
     "menu": {

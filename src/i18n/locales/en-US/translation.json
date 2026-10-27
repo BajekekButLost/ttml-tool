@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Applies to the Edit, Time and Preview ribbons.",
+    "tooltips": {
+      "newLyricLine": "Add an empty line at the end of the lyrics.",
+      "bgLyric": "Mark the selected lines as background vocals.",
+      "duetLyric": "Mark the selected lines as sung by the second singer.",
+      "ignoreSync": "Sync keys jump past the selected lines, so you don't time them.",
+      "romanizationLanguage": "Romanization language",
+      "romanizationLanguageDesc": "The language the selected lyrics are in. Auto-detect works for most songs.",
+      "romanize": "Fill in romanization for the selected lines or words."
+    },
     "editMode": {
       "multipleValues": "Multiple values…",
       "duration": "Duration",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Edit",
       "sync": "Time",
-      "preview": "Preview"
+      "preview": "Preview",
+      "editDesc": "Type, split and mark up the lyrics.",
+      "syncDesc": "Time each word to the audio.",
+      "previewDesc": "Play the lyrics back the way listeners will see them."
     },
     "appName": "TTML Tool",
     "menu": {

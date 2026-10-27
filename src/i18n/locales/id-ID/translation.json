@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Berlaku untuk pita Edit, Sinkronisasi, dan Pratinjau.",
+    "tooltips": {
+      "newLyricLine": "Menambahkan baris kosong di akhir lirik.",
+      "bgLyric": "Menandai baris yang dipilih sebagai vokal latar.",
+      "duetLyric": "Menandai baris yang dipilih sebagai dinyanyikan oleh penyanyi kedua.",
+      "ignoreSync": "Tombol sinkronisasi melompati baris yang dipilih, jadi baris itu tidak diberi waktu.",
+      "romanizationLanguage": "Bahasa romanisasi",
+      "romanizationLanguageDesc": "Bahasa lirik yang dipilih. Deteksi otomatis cocok untuk sebagian besar lagu.",
+      "romanize": "Mengisi romanisasi untuk baris atau kata yang dipilih."
+    },
     "editMode": {
       "multipleValues": "Beberapa nilai…",
       "duration": "Durasi",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Edit",
       "sync": "Sinkronisasi",
-      "preview": "Pratinjau"
+      "preview": "Pratinjau",
+      "editDesc": "Ketik, pisahkan, dan tandai lirik.",
+      "syncDesc": "Atur waktu setiap kata sesuai audio.",
+      "previewDesc": "Putar lirik seperti yang akan dilihat pendengar."
     },
     "appName": "TTML Tool",
     "menu": {

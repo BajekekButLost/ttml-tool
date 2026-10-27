@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Düzenle, Zamanla ve Önizleme şeritleri için geçerlidir.",
+    "tooltips": {
+      "newLyricLine": "Şarkı sözlerinin sonuna boş bir satır ekler.",
+      "bgLyric": "Seçili satırları arka vokal olarak işaretler.",
+      "duetLyric": "Seçili satırları ikinci şarkıcının söylediği satırlar olarak işaretler.",
+      "ignoreSync": "Senkronizasyon tuşları seçili satırları atlar, böylece onları zamanlamazsınız.",
+      "romanizationLanguage": "Latin harflerine çeviri dili",
+      "romanizationLanguageDesc": "Seçili sözlerin dili. Otomatik algılama çoğu şarkıda işe yarar.",
+      "romanize": "Seçili satırlar veya kelimeler için Latin harfli yazımı doldurur."
+    },
     "editMode": {
       "multipleValues": "Birden çok değer…",
       "duration": "Süre",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Düzenle",
       "sync": "Zamanla",
-      "preview": "Önizleme"
+      "preview": "Önizleme",
+      "editDesc": "Sözleri yazın, bölün ve işaretleyin.",
+      "syncDesc": "Her kelimeyi sese göre zamanlayın.",
+      "previewDesc": "Sözleri dinleyicilerin göreceği şekilde oynatır."
     },
     "appName": "TTML Tool",
     "menu": {

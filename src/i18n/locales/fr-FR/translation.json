@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "S’applique aux rubans Édition, Synchronisation et Aperçu.",
+    "tooltips": {
+      "newLyricLine": "Ajoute une ligne vide à la fin des paroles.",
+      "bgLyric": "Marque les lignes sélectionnées comme chœurs.",
+      "duetLyric": "Marque les lignes sélectionnées comme chantées par le second chanteur.",
+      "ignoreSync": "Les touches de synchronisation sautent les lignes sélectionnées, qui ne sont donc pas synchronisées.",
+      "romanizationLanguage": "Langue de romanisation",
+      "romanizationLanguageDesc": "La langue des paroles sélectionnées. La détection automatique convient à la plupart des chansons.",
+      "romanize": "Remplit la romanisation des lignes ou des mots sélectionnés."
+    },
     "editMode": {
       "multipleValues": "Valeurs multiples…",
       "duration": "Durée",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Édition",
       "sync": "Synchronisation",
-      "preview": "Aperçu"
+      "preview": "Aperçu",
+      "editDesc": "Saisir, découper et annoter les paroles.",
+      "syncDesc": "Synchroniser chaque mot avec l’audio.",
+      "previewDesc": "Lire les paroles telles que les auditeurs les verront."
     },
     "appName": "TTML Tool",
     "menu": {

@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Gælder båndene Redigering, Timing og Forhåndsvisning.",
+    "tooltips": {
+      "newLyricLine": "Tilføjer en tom linje sidst i sangteksten.",
+      "bgLyric": "Markerer de valgte linjer som baggrundsvokal.",
+      "duetLyric": "Markerer de valgte linjer som sunget af den anden sanger.",
+      "ignoreSync": "Synkroniseringstasterne springer de valgte linjer over, så du ikke timer dem.",
+      "romanizationLanguage": "Romaniseringssprog",
+      "romanizationLanguageDesc": "Sproget i de valgte linjer. Automatisk registrering virker til de fleste sange.",
+      "romanize": "Udfylder romanisering for de valgte linjer eller ord."
+    },
     "editMode": {
       "multipleValues": "Flere værdier…",
       "duration": "Varighed",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Redigering",
       "sync": "Timing",
-      "preview": "Forhåndsvisning"
+      "preview": "Forhåndsvisning",
+      "editDesc": "Skriv, opdel og markér sangteksten.",
+      "syncDesc": "Time hvert ord til lyden.",
+      "previewDesc": "Afspil sangteksten, som lytterne vil se den."
     },
     "appName": "TTML Tool",
     "menu": {

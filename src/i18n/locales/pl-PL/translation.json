@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Dotyczy wstążek Edycja, Synchronizacja i Podgląd.",
+    "tooltips": {
+      "newLyricLine": "Dodaje pusty wers na końcu tekstu.",
+      "bgLyric": "Oznacza zaznaczone wersy jako wokal w tle.",
+      "duetLyric": "Oznacza zaznaczone wersy jako śpiewane przez drugiego wokalistę.",
+      "ignoreSync": "Klawisze synchronizacji pomijają zaznaczone wersy, więc nie nadajesz im czasu.",
+      "romanizationLanguage": "Język transkrypcji",
+      "romanizationLanguageDesc": "Język zaznaczonego tekstu. Automatyczne wykrywanie działa w większości utworów.",
+      "romanize": "Uzupełnia transkrypcję łacińską dla zaznaczonych wersów lub słów."
+    },
     "editMode": {
       "multipleValues": "Wiele wartości…",
       "duration": "Czas trwania",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Edycja",
       "sync": "Synchronizacja",
-      "preview": "Podgląd"
+      "preview": "Podgląd",
+      "editDesc": "Wpisuj, dziel i oznaczaj tekst.",
+      "syncDesc": "Synchronizuj każde słowo z dźwiękiem.",
+      "previewDesc": "Odtwórz tekst tak, jak zobaczą go słuchacze."
     },
     "appName": "TTML Tool",
     "menu": {

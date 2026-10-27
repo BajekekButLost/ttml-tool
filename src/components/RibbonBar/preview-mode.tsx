@@ -1,6 +1,5 @@
 import {
 	PreviewModeControl,
-	SettingToggle,
 	SpicyBackgroundControl,
 } from "$/modules/settings/components/WorkflowControls";
 /*
@@ -14,10 +13,11 @@ import {
  * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
-import { Grid, Text } from "@radix-ui/themes";
+import { Grid } from "@radix-ui/themes";
 import { useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
+import { ActionTooltip } from "$/components/ActionTooltip";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
@@ -29,16 +29,31 @@ import {
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
 import { AdvancedSection } from "./AdvancedSection";
 import { RibbonFrame, RibbonSection } from "./common";
+import { RibbonLabel, RibbonToggle } from "./RibbonToggle";
 
 export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 	(_props, ref) => {
 		const previewModeType = useAtomValue(previewModeTypeAtom);
 		const { t } = useTranslation();
+		const modeLabel = t("ribbonBar.previewMode.mode", "模式");
+		const backgroundLabel = t("ribbonBar.previewMode.background", "Background");
+		const backgroundDescription = t(
+			"settings.workflow.spicyBackgroundDesc",
+			"What shows behind the Spicy preview.",
+		);
 
 		return (
 			<RibbonFrame ref={ref}>
-				<RibbonSection label={t("ribbonBar.previewMode.mode", "模式")}>
-					<PreviewModeControl />
+				<RibbonSection label={modeLabel}>
+					<ActionTooltip
+						label={modeLabel}
+						description={t(
+							"settings.workflow.previewModeDesc",
+							"Choose which preview the Preview tab shows.",
+						)}
+					>
+						<PreviewModeControl />
+					</ActionTooltip>
 				</RibbonSection>
 				{previewModeType === PreviewModeType.Spicy && (
 					<RibbonSection label={t("ribbonBar.previewMode.spicy", "Spicy")}>
@@ -49,33 +64,38 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							flexGrow="1"
 							align="center"
 						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.simpleLyrics", "Simple Lyrics mode")}
-							</Text>
-							<SettingToggle setting={spicySimpleLyricsModeAtom} compact />
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t(
+							<RibbonToggle
+								label={t(
+									"ribbonBar.previewMode.simpleLyrics",
+									"Simple Lyrics mode",
+								)}
+								description={t(
+									"settings.workflow.simpleLyricsDesc",
+									"Match Spicy Lyrics' Simple Lyrics mode, with calmer word animations.",
+								)}
+								setting={spicySimpleLyricsModeAtom}
+							/>
+							<RibbonToggle
+								label={t(
 									"ribbonBar.previewMode.forceLineRendering",
 									"Show as line-synced",
 								)}
-							</Text>
-							<SettingToggle setting={spicyForceLineSyncedAtom} compact />
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
+								description={t(
+									"settings.workflow.forceLineRenderingDesc",
+									"Show every line in the Spicy preview as line-synced, without word timing.",
+								)}
+								setting={spicyForceLineSyncedAtom}
+							/>
+							<RibbonLabel
+								label={backgroundLabel}
+								description={backgroundDescription}
+							/>
+							<ActionTooltip
+								label={backgroundLabel}
+								description={backgroundDescription}
 							>
-								{t("ribbonBar.previewMode.background", "Background")}
-							</Text>
-							<SpicyBackgroundControl />
+								<SpicyBackgroundControl />
+							</ActionTooltip>
 						</Grid>
 					</RibbonSection>
 				)}
@@ -88,14 +108,14 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							flexGrow="1"
 							align="center"
 						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.autoScroll", "Auto-scroll")}
-							</Text>
-							<SettingToggle setting={timingOverviewAutoScrollAtom} compact />
+							<RibbonToggle
+								label={t("ribbonBar.previewMode.autoScroll", "Auto-scroll")}
+								description={t(
+									"settings.workflow.timingOverviewAutoScrollDesc",
+									"Keep the timing overview scrolled to the playhead.",
+								)}
+								setting={timingOverviewAutoScrollAtom}
+							/>
 						</Grid>
 					</RibbonSection>
 				)}
@@ -108,22 +128,28 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 							flexGrow="1"
 							align="center"
 						>
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.showTranslation", "Show translation")}
-							</Text>
-							<SettingToggle setting={showTranslationLinesAtom} compact />
-							<Text
-								wrap="nowrap"
-								size="1"
-								style={{ color: "var(--ribbon-label-color)" }}
-							>
-								{t("ribbonBar.previewMode.showRoman", "Show romanization")}
-							</Text>
-							<SettingToggle setting={showRomanLinesAtom} compact />
+							<RibbonToggle
+								label={t(
+									"ribbonBar.previewMode.showTranslation",
+									"Show translation",
+								)}
+								description={t(
+									"settings.workflow.previewShowTranslationDesc",
+									"Show translation lines in the preview.",
+								)}
+								setting={showTranslationLinesAtom}
+							/>
+							<RibbonToggle
+								label={t(
+									"ribbonBar.previewMode.showRoman",
+									"Show romanization",
+								)}
+								description={t(
+									"settings.workflow.previewShowRomanDesc",
+									"Show romanization in the preview.",
+								)}
+								setting={showRomanLinesAtom}
+							/>
 						</Grid>
 					</RibbonSection>
 				)}

@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "Geldt voor de linten Bewerken, Timing en Voorbeeld.",
+    "tooltips": {
+      "newLyricLine": "Voegt een lege regel toe aan het einde van de songtekst.",
+      "bgLyric": "Markeert de geselecteerde regels als achtergrondzang.",
+      "duetLyric": "Markeert de geselecteerde regels als gezongen door de tweede zanger.",
+      "ignoreSync": "De synchronisatietoetsen slaan de geselecteerde regels over, zodat je ze niet timet.",
+      "romanizationLanguage": "Romanisatietaal",
+      "romanizationLanguageDesc": "De taal van de geselecteerde songtekst. Automatische detectie werkt voor de meeste nummers.",
+      "romanize": "Vult de romanisatie in voor de geselecteerde regels of woorden."
+    },
     "editMode": {
       "multipleValues": "Meerdere waarden…",
       "duration": "Duur",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "Bewerken",
       "sync": "Timing",
-      "preview": "Voorbeeld"
+      "preview": "Voorbeeld",
+      "editDesc": "Typ, splits en markeer de songtekst.",
+      "syncDesc": "Time elk woord op de audio.",
+      "previewDesc": "Speel de songtekst af zoals luisteraars hem zien."
     },
     "appName": "TTML Tool",
     "menu": {

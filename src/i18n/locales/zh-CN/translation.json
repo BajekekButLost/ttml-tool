@@ -305,6 +305,15 @@
   },
   "ribbonBar": {
     "advancedTooltip": "适用于编辑、打轴和预览功能区。",
+    "tooltips": {
+      "newLyricLine": "在歌词末尾添加一个空行。",
+      "bgLyric": "将所选行标记为背景人声。",
+      "duetLyric": "将所选行标记为第二位歌手演唱。",
+      "ignoreSync": "打轴按键会跳过所选行，这些行不会被打轴。",
+      "romanizationLanguage": "罗马音语言",
+      "romanizationLanguageDesc": "所选歌词的语言。大多数歌曲用自动检测即可。",
+      "romanize": "为所选行或单词填写罗马音。"
+    },
     "editMode": {
       "multipleValues": "多值…",
       "duration": "持续时间",
@@ -785,7 +794,10 @@
     "modeBtns": {
       "edit": "编辑",
       "sync": "打轴",
-      "preview": "预览"
+      "preview": "预览",
+      "editDesc": "输入、拆分并标注歌词。",
+      "syncDesc": "按音频为每个单词打轴。",
+      "previewDesc": "按听众看到的样子播放歌词。"
     },
     "appName": "TTML Tool",
     "menu": {
