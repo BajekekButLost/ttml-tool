@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Korostaa valitussa tilassa parhaillaan toistettavan rivin.",
       "playbackSettingsMode": "Toiminta toistettaessa",
+      "playbackSettingsModeDesc": "Automaattinen vieritys ja välilehtien sijainti asetetaan erikseen Muokkaus- ja Ajoitus-tilalle. Valitse, kumpaa muutat.",
       "editMode": "Muokkaus",
       "timeMode": "Ajoitus",
       "enabled": "Käytössä",
@@ -449,8 +450,11 @@
       "playbackRate": "Toistonopeus",
       "autosave": {
         "enable": "Ota automaattinen tallennus käyttöön",
+        "enableDesc": "Tallentaa sanoitukset muutaman sekunnin kuluttua jokaisesta muutoksesta ja säilyttää tilannekuvia, jotka voit palauttaa Tiedosto-valikosta.",
         "interval": "Tallennusväli (minuuttia)",
-        "limit": "Säilytettävät tilannekuvat"
+        "intervalDesc": "Lyhin aika tilannekuvien välillä. Viimeisimmät muutokset tallennetaan silti jokaisen muokkauksen jälkeen.",
+        "limit": "Säilytettävät tilannekuvat",
+        "limitDesc": "Montako tilannekuvaa säilytetään kutakin kappaletta kohden. Vanhimmat poistetaan ensin."
       },
       "customBackground": "Mukautettu tausta",
       "customBackgroundDesc": "Valitse taustana käytettävä kuva.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Ulkoasun muokkain",
+        "labelDesc": "Yksinkertainen sisältää teeman, taustan, skaalauksen ja fontin. Edistynyt säätää yksittäiset värit, välit ja paneelien järjestyksen.",
         "basic": "Yksinkertainen asettelu",
         "advanced": "Edistynyt asettelu",
         "none": "Ei mitään",
@@ -540,6 +545,7 @@
       "glassBlur": "Lasitehosteen voimakkuus",
       "glassBlurDesc": "Säädä lasitehosteisten elementtien taustan sumennusta.",
       "background": "Tausta",
+      "backgroundDesc": "Näytä kuva tai liukuväri sovelluksen takana.",
       "useCustomGradient": "Mukautettu liukuväri",
       "useCustomGradientDesc": "Luo liukuväri yhdestä väristä.",
       "syncGradientToAccent": "Synkronoi ensimmäinen väri korostusväriin",

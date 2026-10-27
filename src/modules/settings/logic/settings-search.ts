@@ -14,8 +14,28 @@ export const settingsSearchKeywords: Record<string, string> = {
 	about: "version update credits license",
 };
 
+/** Lowercases and drops accents, so "edicion" finds "Edición". */
+function foldSearchText(text: string): string {
+	return text.normalize("NFD").replace(/\p{M}/gu, "").toLocaleLowerCase();
+}
+
 export function matchesSettingsSearch(text: string, query: string): boolean {
-	const tokens = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-	const normalizedText = text.toLocaleLowerCase();
+	const tokens = foldSearchText(query).trim().split(/\s+/).filter(Boolean);
+	const normalizedText = foldSearchText(text);
 	return tokens.every((token) => normalizedText.includes(token));
+}
+
+/**
+ * A page matches on its sidebar label, its English keywords, or the text it
+ * renders (labels and descriptions in the current language). The keywords
+ * stay as a fallback for rows a page only renders in some modes.
+ */
+export function matchesSettingsPage(
+	page: { label: string; keywords: string; text?: string },
+	query: string,
+): boolean {
+	return (
+		matchesSettingsSearch(`${page.label} ${page.keywords}`, query) ||
+		(page.text !== undefined && matchesSettingsSearch(page.text, query))
+	);
 }

@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Met en évidence visuellement la ligne de paroles en cours de lecture dans le mode sélectionné.",
       "playbackSettingsMode": "Comportement de lecture pour",
+      "playbackSettingsModeDesc": "Le défilement automatique et la position entre les onglets se règlent séparément pour Édition et Synchronisation. Choisissez lequel modifier.",
       "editMode": "Édition",
       "timeMode": "Synchronisation",
       "enabled": "Activé",
@@ -449,8 +450,11 @@
       "playbackRate": "Vitesse de lecture",
       "autosave": {
         "enable": "Activer la sauvegarde automatique",
+        "enableDesc": "Enregistre vos paroles quelques secondes après chaque modification et conserve des instantanés que vous pouvez restaurer depuis le menu Fichier.",
         "interval": "Sauvegarder toutes les (minutes)",
-        "limit": "Instantanés à conserver"
+        "intervalDesc": "Durée minimale entre deux instantanés. Vos dernières modifications sont quand même enregistrées après chaque changement.",
+        "limit": "Instantanés à conserver",
+        "limitDesc": "Nombre d'instantanés conservés par chanson. Les plus anciens sont supprimés en premier."
       },
       "customBackground": "Arrière-plan personnalisé",
       "customBackgroundDesc": "Choisissez une image à utiliser comme arrière-plan.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Éditeur d'apparence",
+        "labelDesc": "Simple regroupe le thème, l'arrière-plan, l'échelle et la police. Avancée règle chaque couleur, les espacements et l'ordre des panneaux.",
         "basic": "Disposition simple",
         "advanced": "Disposition avancée",
         "none": "Aucun",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensité de l’effet de verre",
       "glassBlurDesc": "Règle le flou de l’arrière-plan des éléments à effet de verre.",
       "background": "Arrière-plan",
+      "backgroundDesc": "Affiche une image ou un dégradé derrière l'application.",
       "useCustomGradient": "Couleur de dégradé personnalisée",
       "useCustomGradientDesc": "Générez un dégradé à partir d'une seule couleur.",
       "syncGradientToAccent": "Synchroniser la première couleur avec l’accentuation",

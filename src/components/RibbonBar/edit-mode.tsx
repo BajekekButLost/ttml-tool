@@ -1,5 +1,5 @@
-import { Button, Grid, Switch, Text, Tooltip } from "@radix-ui/themes";
-import { useAtom, useAtomValue } from "jotai";
+import { Button, Grid, Text } from "@radix-ui/themes";
+import { useAtomValue } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -27,6 +27,7 @@ import {
 } from "$/states/main.ts";
 import { newLyricLine } from "$/types/ttml";
 import { msToTimestamp, parseTimespan } from "$/utils/timestamp.ts";
+import { AdvancedSection } from "./AdvancedSection";
 import { RibbonFrame, RibbonSection } from "./common";
 import { AuxiliaryDisplayField } from "./edit-mode/AuxiliaryDisplayField";
 import { PhoneticSection } from "./edit-mode/PhoneticSection";
@@ -38,7 +39,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 	const { t } = useTranslation();
 	const selectedLines = useAtomValue(selectedLinesAtom);
 	const selectedWords = useAtomValue(selectedWordsAtom);
-	const [showAdvanced, setShowAdvanced] = useAtom(advancedRibbonControlsAtom);
+	const showAdvanced = useAtomValue(advancedRibbonControlsAtom);
 
 	return (
 		<RibbonFrame ref={ref} reserveControlRows={3}>
@@ -240,16 +241,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					<AuxiliaryDisplayField />
 				</RibbonSection>
 			)}
-			<RibbonSection label={t("ribbonBar.advanced", "Advanced")}>
-				<Tooltip
-					content={t(
-						"ribbonBar.advancedTooltip",
-						"Applies to the Edit, Time and Preview ribbons.",
-					)}
-				>
-					<Switch checked={showAdvanced} onCheckedChange={setShowAdvanced} />
-				</Tooltip>
-			</RibbonSection>
+			<AdvancedSection />
 		</RibbonFrame>
 	);
 });

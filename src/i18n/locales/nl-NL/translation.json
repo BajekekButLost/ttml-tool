@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Markeert visueel de tekstregel die momenteel wordt gespeeld in de geselecteerde modus.",
       "playbackSettingsMode": "Afspeelgedrag voor",
+      "playbackSettingsModeDesc": "Automatisch scrollen en de positie tussen tabbladen stel je apart in voor Bewerken en Timing. Kies welke je wilt wijzigen.",
       "editMode": "Bewerken",
       "timeMode": "Timing",
       "enabled": "Ingeschakeld",
@@ -449,8 +450,11 @@
       "playbackRate": "Afspeelsnelheid",
       "autosave": {
         "enable": "Automatisch opslaan inschakelen",
+        "enableDesc": "Slaat je songtekst een paar seconden na elke wijziging op en bewaart momentopnamen die je via het menu Bestand kunt herstellen.",
         "interval": "Opslaan om de (minuten)",
-        "limit": "Aantal te bewaren momentopnamen"
+        "intervalDesc": "Minimale tijd tussen momentopnamen. Je laatste wijzigingen worden nog steeds na elke bewerking opgeslagen.",
+        "limit": "Aantal te bewaren momentopnamen",
+        "limitDesc": "Hoeveel momentopnamen per nummer bewaard blijven. De oudste worden eerst verwijderd."
       },
       "customBackground": "Aangepaste achtergrond",
       "customBackgroundDesc": "Kies een afbeelding om als achtergrond te gebruiken.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Weergave-editor",
+        "labelDesc": "Eenvoudig bevat thema, achtergrond, schaal en lettertype. Geavanceerd stelt losse kleuren, afstanden en de volgorde van panelen in.",
         "basic": "Eenvoudige indeling",
         "advanced": "Geavanceerde indeling",
         "none": "Geen",
@@ -540,6 +545,7 @@
       "glassBlur": "Sterkte glaseffect",
       "glassBlurDesc": "Pas de achtergrondvervaging van glaselementen aan.",
       "background": "Achtergrond",
+      "backgroundDesc": "Toon een afbeelding of een kleurverloop achter de app.",
       "useCustomGradient": "Aangepaste verloopkleur",
       "useCustomGradientDesc": "Genereer een gradiënt van één kleur.",
       "syncGradientToAccent": "Eerste kleur synchroniseren met accentkleur",

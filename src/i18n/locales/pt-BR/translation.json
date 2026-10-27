@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Destaca visualmente a linha da letra que está sendo reproduzida no modo selecionado.",
       "playbackSettingsMode": "Comportamento de reprodução para",
+      "playbackSettingsModeDesc": "A rolagem automática e a posição entre guias são definidas separadamente para Edição e Sincronização. Escolha qual alterar.",
       "editMode": "Edição",
       "timeMode": "Sincronização",
       "enabled": "Habilitado",
@@ -449,8 +450,11 @@
       "playbackRate": "Velocidade de reprodução",
       "autosave": {
         "enable": "Ativar salvamento automático",
+        "enableDesc": "Salva a letra alguns segundos após cada alteração e mantém instantâneos que você pode restaurar pelo menu Arquivo.",
         "interval": "Salvar a cada (minutos)",
-        "limit": "Instantâneos a manter"
+        "intervalDesc": "Tempo mínimo entre instantâneos. Suas alterações mais recentes continuam sendo salvas após cada edição.",
+        "limit": "Instantâneos a manter",
+        "limitDesc": "Quantos instantâneos manter para cada música. Os mais antigos são excluídos primeiro."
       },
       "customBackground": "Plano de fundo personalizado",
       "customBackgroundDesc": "Escolha uma imagem para usar como plano de fundo.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor de aparência",
+        "labelDesc": "Simples inclui tema, fundo, escala e fonte. Avançado define cada cor, os espaçamentos e a ordem dos painéis.",
         "basic": "Layout simples",
         "advanced": "Layout avançado",
         "none": "Nenhum",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensidade do efeito de vidro",
       "glassBlurDesc": "Ajusta o desfoque de fundo dos elementos com efeito de vidro.",
       "background": "Plano de fundo",
+      "backgroundDesc": "Mostra uma imagem ou um gradiente atrás do aplicativo.",
       "useCustomGradient": "Cor gradiente personalizada",
       "useCustomGradientDesc": "Gere um gradiente a partir de uma única cor.",
       "syncGradientToAccent": "Sincronizar a primeira cor com a cor de destaque",

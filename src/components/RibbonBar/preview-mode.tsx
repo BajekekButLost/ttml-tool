@@ -14,11 +14,10 @@ import {
  * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
-import { Grid, Switch, Text, Tooltip } from "@radix-ui/themes";
-import { useAtom, useAtomValue } from "jotai";
+import { Grid, Text } from "@radix-ui/themes";
+import { useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
-import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
@@ -28,13 +27,13 @@ import {
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
+import { AdvancedSection } from "./AdvancedSection";
 import { RibbonFrame, RibbonSection } from "./common";
 
 export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 	(_props, ref) => {
 		const previewModeType = useAtomValue(previewModeTypeAtom);
 		const { t } = useTranslation();
-		const [showAdvanced, setShowAdvanced] = useAtom(advancedRibbonControlsAtom);
 
 		return (
 			<RibbonFrame ref={ref}>
@@ -128,16 +127,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 						</Grid>
 					</RibbonSection>
 				)}
-				<RibbonSection label={t("ribbonBar.advanced", "Advanced")}>
-					<Tooltip
-						content={t(
-							"ribbonBar.advancedTooltip",
-							"Applies to the Edit, Time and Preview ribbons.",
-						)}
-					>
-						<Switch checked={showAdvanced} onCheckedChange={setShowAdvanced} />
-					</Tooltip>
-				</RibbonSection>
+				<AdvancedSection />
 			</RibbonFrame>
 		);
 	},
