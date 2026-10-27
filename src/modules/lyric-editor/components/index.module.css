@@ -668,6 +668,38 @@
 	background-color: var(--red-a4);
 }
 
+/* The dark themes reset the chip and line surface with a more specific rule,
+   which also wiped the error ring and every hover and selected cue, so a
+   half-timed word looked dead. Same specificity here; errors stay tinted. */
+:global(
+		.radix-themes:is(.dark, .dark-theme):not([data-legacy-dark-theme="true"])
+	)
+	:is(.lyricWord.edit, .lyricLine).error {
+	box-shadow: 0 0 0 var(--global-border-width, 2px) var(--red-a9);
+}
+
+:global(
+		.radix-themes:is(.dark, .dark-theme):not([data-legacy-dark-theme="true"])
+	)
+	:is(.lyricWord.edit, .lyricLine).error:hover {
+	background-color: var(--red-a3);
+}
+
+:global(
+		.radix-themes:is(.dark, .dark-theme):not([data-legacy-dark-theme="true"])
+	)
+	:is(.lyricWord.edit, .lyricLine).error.selected {
+	box-shadow: 0 0 0 var(--global-border-width, 2px) var(--red-11);
+	background-color: var(--red-a4);
+}
+
+:global(
+		.radix-themes:is(.dark, .dark-theme):not([data-legacy-dark-theme="true"])
+	)
+	:is(.lyricWord.edit, .lyricLine).error.selected:hover {
+	background-color: var(--red-a5);
+}
+
 .lyricWord.selected {
 	.startTime,
 	.endTime {
