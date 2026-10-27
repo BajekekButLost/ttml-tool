@@ -31,7 +31,22 @@ export function processSingleLine(line: LyricLine): ProcessedLyricLine {
 		.filter((w) => w.endTime > w.startTime)
 		.sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime);
 
-	let cursor = line.startTime;
+	// Keyboard sync commits each word/syllable before it closes the line.
+	// Include those completed spans in the display bounds without changing
+	// the stored line timing (which may still be unset or from an earlier pass).
+	let startTime = line.startTime;
+	// Both zero means the line itself is still untimed. Do not draw an
+	// artificial leading gap from 0:00 when only its words have timestamps.
+	if (line.startTime === 0 && line.endTime === 0 && validWords.length > 0) {
+		startTime = validWords[0].startTime;
+	}
+	let endTime = line.endTime;
+	for (const word of validWords) {
+		startTime = Math.min(startTime, word.startTime);
+		endTime = Math.max(endTime, word.endTime);
+	}
+
+	let cursor = startTime;
 
 	for (const word of validWords) {
 		if (word.startTime > cursor) {
@@ -50,17 +65,19 @@ export function processSingleLine(line: LyricLine): ProcessedLyricLine {
 		cursor = Math.max(cursor, word.endTime);
 	}
 
-	if (line.endTime > cursor) {
+	if (endTime > cursor) {
 		segments.push({
 			type: "gap",
 			id: `${line.id}-gap-end`,
 			startTime: cursor,
-			endTime: line.endTime,
+			endTime,
 		});
 	}
 
 	return {
 		...line,
+		startTime,
+		endTime,
 		segments: segments,
 	};
 }
