@@ -117,6 +117,10 @@ export function mergeReviewedSections(
 	});
 }
 
+/** Drop review-only fields so they don't end up stored on the sections. */
+export const toSectionOverrides = (reviewed: ReviewedSection[]) =>
+	reviewed.map(({ firstLine: _firstLine, ...section }) => section);
+
 /**
  * Insert syllable split marks into the import text, leaving headers, blank
  * rows, prefixes, translation rows and spacing as they are. Each run of

@@ -63,6 +63,7 @@ import {
 	mergeReviewedSections,
 	type ReviewedSection,
 	segmentImportText,
+	toSectionOverrides,
 } from "../logic/import-text";
 import { type ImportTrack, searchOnlineLyrics } from "../logic/online-sources";
 import {
@@ -301,7 +302,8 @@ export const ImportLyricsDialog = () => {
 				lyricLines: normalized.lyricLines,
 				sections: [],
 			};
-			if (willMakeSections) applyReviewedSections(next, sections);
+			if (willMakeSections)
+				applyReviewedSections(next, toSectionOverrides(sections));
 			store.set(lyricLinesAtom, next);
 			if (willMakeSections) store.set(geniusCategorizationEnabledAtom, true);
 			store.set(selectedLinesAtom, new Set([lines[0].id]));

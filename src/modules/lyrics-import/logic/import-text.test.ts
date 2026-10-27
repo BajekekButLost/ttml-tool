@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system";
 import { prepareTextImport } from "$/modules/project/logic/text-to-lines";
 import type { SegmentationConfig } from "$/modules/segmentation/types";
 import { segmentWord } from "$/modules/segmentation/utils/segmentation";
-import { newLyricWord } from "$/types/ttml";
+import { newLyricWord, type TTMLLyric } from "$/types/ttml";
 import {
 	detectSections,
 	DEFAULT_IMPORT_TEXT_FORMAT as FORMAT,
@@ -11,6 +12,7 @@ import {
 	importTextToLines,
 	mergeReviewedSections,
 	segmentImportText,
+	toSectionOverrides,
 } from "./import-text";
 
 const words = (text: string, format = FORMAT, sections = false) =>
@@ -136,6 +138,28 @@ describe("section review", () => {
 			"hook",
 			"chorus",
 		]);
+	});
+});
+
+describe("applying reviewed sections", () => {
+	it("stores the reviewed category without review-only fields", () => {
+		const [intro, verse, chorus] = detectSections(GENIUS);
+		const lyrics: TTMLLyric = {
+			lyricLines: importTextToLines(GENIUS, FORMAT, true),
+			metadata: [],
+			sections: [],
+		};
+		applyReviewedSections(
+			lyrics,
+			toSectionOverrides([intro, { ...verse, category: "hook" }, chorus]),
+		);
+		const sections = lyrics.sections ?? [];
+		expect(sections.map((section) => section.category)).toEqual([
+			"intro",
+			"hook",
+			"chorus",
+		]);
+		expect(sections.some((section) => "firstLine" in section)).toBe(false);
 	});
 });
 
