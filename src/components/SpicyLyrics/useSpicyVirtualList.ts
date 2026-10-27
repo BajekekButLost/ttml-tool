@@ -16,24 +16,20 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { playbackClock } from "$/modules/playback-clock";
-import {
-	type PreviewScroller,
-	previewScrollTop,
-} from "$/modules/playback-clock/preview-scroll";
-import { createGlideScroller } from "./glide-scroller";
+import { previewScrollTop } from "$/modules/playback-clock/preview-scroll";
 import type { SpicyLine } from "./model";
 
 const OVERSCAN = 5;
-// Rows a glide keeps mounted at most. Past this the destination is too far to
-// be worth holding, and rows mount and unmount as the window slides.
-const GLIDE_HOLD_MAX_ROWS = 40;
 // Gaps in cqw, baked into each row's padding so rows can differ.
 const GAP_NORMAL = 1;
 // A background vocal sits closer to its lead.
 const GAP_LINE_TO_BG = 0.2;
 const ESTIMATE_LINE = 66;
 const ESTIMATE_BACKGROUND = 50;
+// Times, and for how long, a scroll may re-aim while rows it revealed replace
+// estimated sizes with measured ones. After that the line is where it is.
+const MAX_CORRECTIONS = 10;
+const AIM_WINDOW_MS = 500;
 
 /** Trailing gap of a row in cqw. Interlude rows carry their own gap in CSS. */
 export function rowGap(lines: SpicyLine[], index: number) {
@@ -55,14 +51,10 @@ interface VirtualWindow {
 
 type LineVirtualizer = Virtualizer<HTMLDivElement, HTMLDivElement>;
 
-/**
- * Mounts only the rows near the viewport (plus overscan), and glides the list
- * to the active line with a spring instead of the browser's smooth scroll.
- */
+/** Mounts only the rows near the viewport, plus overscan. */
 export function useSpicyVirtualList(
 	lines: SpicyLine[],
 	viewportRef: RefObject<HTMLDivElement | null>,
-	contentRef: RefObject<HTMLDivElement | null>,
 	onRowsMounted: () => void,
 ) {
 	const linesRef = useRef(lines);
@@ -74,28 +66,28 @@ export function useSpicyVirtualList(
 		HTMLDivElement,
 		HTMLDivElement
 	> | null>(null);
-	const holdRef = useRef<{ from: number; to: number } | null>(null);
 	const signatureRef = useRef("");
 	const geometry = useRef({ padTop: 0, padBottom: 0, width: 0, height: 0 });
+	// The last scroll aimed at a line, kept to re-aim it once measured.
+	const aimRef = useRef<{
+		index: number;
+		anchor: number;
+		offset: number;
+		top: number;
+		corrections: number;
+		until: number;
+	} | null>(null);
 	const [mounted, setMounted] = useState<VirtualWindow>({
 		rows: [],
 		totalSize: 0,
 	});
-	const [scroller, setScroller] = useState<PreviewScroller>();
 
 	const publish = useCallback((v: LineVirtualizer) => {
-		const count = linesRef.current.length;
-		const indices = new Set(v.getVirtualItems().map((item) => item.index));
-		const hold = holdRef.current;
-		if (hold)
-			for (let i = hold.from; i <= Math.min(hold.to, count - 1); i++)
-				indices.add(i);
 		const margin = v.options.scrollMargin;
-		const rows: SpicyVirtualRow[] = [];
-		for (const index of [...indices].sort((a, b) => a - b)) {
-			const item = v.measurementsCache[index];
-			if (item) rows.push({ index, start: Math.round(item.start - margin) });
-		}
+		const rows = v.getVirtualItems().map((item) => ({
+			index: item.index,
+			start: Math.round(item.start - margin),
+		}));
 		const totalSize = v.getTotalSize();
 		// Scrolling inside the window changes nothing here, so React only
 		// renders when rows mount, unmount or move.
@@ -104,6 +96,31 @@ export function useSpicyVirtualList(
 		signatureRef.current = signature;
 		setMounted({ rows, totalSize });
 	}, []);
+
+	/** Scroll position that puts line `index` at `anchor` of the viewport. */
+	const topFor = useCallback(
+		(index: number, anchor: number, offset: number) => {
+			const v = virtualizerRef.current;
+			const item = v?.measurementsCache[index];
+			if (!v || !item) return undefined;
+			const { padTop, padBottom, width, height } = geometry.current;
+			const gap = (rowGap(linesRef.current, index) * width) / 100;
+			const maxTop = Math.max(
+				0,
+				padTop + v.getTotalSize() + padBottom - height,
+			);
+			return previewScrollTop(
+				0,
+				item.start,
+				item.size - gap,
+				height,
+				maxTop,
+				anchor,
+				offset,
+			);
+		},
+		[],
+	);
 
 	useLayoutEffect(() => {
 		const viewport = viewportRef.current;
@@ -121,8 +138,26 @@ export function useSpicyVirtualList(
 			return marginChanged;
 		};
 		readGeometry();
-		let gliding = false;
-		let relayout = () => {};
+		// A scroll aimed with estimated sizes above its line lands off once the
+		// rows it revealed measure in. Re-aim it then, unless something else
+		// (the user, a native smooth scroll still under way) has the list.
+		const aiming = () => {
+			const aim = aimRef.current;
+			if (aim && performance.now() > aim.until) aimRef.current = null;
+			return (
+				aimRef.current !== null &&
+				Math.abs(viewport.scrollTop - aimRef.current.top) <= 2
+			);
+		};
+		const reaim = () => {
+			const aim = aimRef.current;
+			if (!aim || !aiming()) return;
+			const top = topFor(aim.index, aim.anchor, aim.offset);
+			if (top === undefined || Math.abs(top - aim.top) <= 1) return;
+			aim.top = top;
+			if (++aim.corrections >= MAX_CORRECTIONS) aimRef.current = null;
+			viewport.scrollTo({ top, behavior: "instant" });
+		};
 		const options: VirtualizerOptions<HTMLDivElement, HTMLDivElement> = {
 			count: linesRef.current.length,
 			getScrollElement: () => viewportRef.current,
@@ -157,63 +192,28 @@ export function useSpicyVirtualList(
 			getItemKey: (index) => linesRef.current[index]?.id ?? index,
 			onChange: (instance) => {
 				publish(instance);
-				relayout();
+				reaim();
 			},
 		};
 		optionsRef.current = options;
 		const v = new Virtualizer(options);
 		// Rows resizing above the viewport keep what's on screen in place,
-		// except mid-glide, where the glide re-aims every frame instead.
+		// except while a scroll aimed at a line is settling: re-aiming at that
+		// line is the correction then, and shifting under it would hide it.
 		v.shouldAdjustScrollPositionOnItemSizeChange = (item, _delta, instance) =>
-			!gliding && item.start < (instance.scrollOffset ?? 0);
+			!aiming() && item.start < (instance.scrollOffset ?? 0);
 		virtualizerRef.current = v;
 		const cleanup = v._didMount();
 		v._willUpdate();
 		publish(v);
-
-		const glideScroller = createGlideScroller(viewport, {
-			getContent: () => contentRef.current,
-			requestFrame: playbackClock.requestFrame,
-			cancelFrame: playbackClock.cancelFrame,
-			onGlideStart: (goal) => {
-				gliding = true;
-				// Mount the rows the glide ends on now, and keep everything in
-				// between mounted until it lands, so nothing pops in mid-flight.
-				const items = v.measurementsCache;
-				const visible = v.getVirtualItems();
-				if (items.length === 0 || visible.length === 0) return;
-				const bottom = goal + geometry.current.height;
-				let first = items.findIndex((item) => item.end > goal);
-				if (first < 0) first = items.length - 1;
-				let last = first;
-				while (last + 1 < items.length && items[last + 1].start < bottom)
-					last++;
-				const from = Math.max(0, Math.min(first - OVERSCAN, visible[0].index));
-				const to = Math.min(
-					items.length - 1,
-					Math.max(last + OVERSCAN, visible[visible.length - 1].index),
-				);
-				holdRef.current =
-					to - from + 1 > GLIDE_HOLD_MAX_ROWS ? null : { from, to };
-				publish(v);
-			},
-			onGlideEnd: () => {
-				gliding = false;
-				if (!holdRef.current) return;
-				holdRef.current = null;
-				publish(v);
-			},
-		});
-		relayout = glideScroller.relayout;
-		setScroller(glideScroller);
 		return () => {
-			glideScroller.cancel();
 			cleanup();
 			virtualizerRef.current = null;
 			optionsRef.current = null;
 			signatureRef.current = "";
+			aimRef.current = null;
 		};
-	}, [viewportRef, contentRef, publish]);
+	}, [viewportRef, publish, topFor]);
 
 	useLayoutEffect(() => {
 		const v = virtualizerRef.current;
@@ -234,29 +234,24 @@ export function useSpicyVirtualList(
 		virtualizerRef.current?.measureElement(node);
 	}, []);
 
-	/** Scroll position that puts line `index` at `anchor` of the viewport. */
+	/** `topFor`, remembered so the scroll can be re-aimed once rows measure. */
 	const getTop = useCallback(
 		(index: number, anchor: number, offset: number) => {
-			const v = virtualizerRef.current;
-			const item = v?.measurementsCache[index];
-			if (!v || !item) return undefined;
-			const { padTop, padBottom, width, height } = geometry.current;
-			const gap = (rowGap(linesRef.current, index) * width) / 100;
-			const maxTop = Math.max(
-				0,
-				padTop + v.getTotalSize() + padBottom - height,
-			);
-			return previewScrollTop(
-				0,
-				item.start,
-				item.size - gap,
-				height,
-				maxTop,
-				anchor,
-				offset,
-			);
+			const top = topFor(index, anchor, offset);
+			aimRef.current =
+				top === undefined
+					? null
+					: {
+							index,
+							anchor,
+							offset,
+							top,
+							corrections: 0,
+							until: performance.now() + AIM_WINDOW_MS,
+						};
+			return top;
 		},
-		[],
+		[topFor],
 	);
 
 	return {
@@ -264,6 +259,5 @@ export function useSpicyVirtualList(
 		totalSize: mounted.totalSize,
 		measureRow,
 		getTop,
-		scroller,
 	};
 }

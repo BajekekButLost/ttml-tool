@@ -2,26 +2,13 @@ import { type RefObject, useEffect } from "react";
 import { playbackClock } from ".";
 import {
 	createPreviewScroll,
-	type PreviewScroller,
 	type PreviewScrollTarget,
 } from "./preview-scroll";
 
 export function usePreviewScroll(
 	viewport: RefObject<HTMLElement | null>,
 	getTarget: (timeMs: number) => PreviewScrollTarget | undefined,
-	{
-		enabled = true,
-		anchor = 0.5,
-		offset = 0,
-		pauseMs = 750,
-		scroller,
-	}: {
-		enabled?: boolean;
-		anchor?: number;
-		offset?: number;
-		pauseMs?: number;
-		scroller?: PreviewScroller;
-	} = {},
+	{ enabled = true, anchor = 0.5, offset = 0, pauseMs = 750 } = {},
 ) {
 	useEffect(() => {
 		if (!enabled || !viewport.current) return;
@@ -30,7 +17,6 @@ export function usePreviewScroll(
 			anchor,
 			offset,
 			pauseMs,
-			scroller,
 		});
 		const unsubscribe = playbackClock.subscribe((_seconds, _now, seeked) => {
 			scroll.follow(seeked);
@@ -40,5 +26,5 @@ export function usePreviewScroll(
 			unsubscribe();
 			scroll.dispose();
 		};
-	}, [viewport, getTarget, enabled, anchor, offset, pauseMs, scroller]);
+	}, [viewport, getTarget, enabled, anchor, offset, pauseMs]);
 }

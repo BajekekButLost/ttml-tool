@@ -85,7 +85,6 @@ export function useSpicyLyrics() {
 		embeddedCoverArt ?? coverArtImage ?? customBackgroundImage;
 	const coverPalette = useCoverPalette(backgroundImage);
 	const viewportRef = useRef<HTMLDivElement>(null);
-	const contentRef = useRef<HTMLDivElement>(null);
 	const backgroundRef = useRef<HTMLDivElement>(null);
 	const lineNodes = useRef(new Map<string, HTMLDivElement>());
 	const wordNodes = useRef(new Map<string, HTMLElement>());
@@ -116,32 +115,38 @@ export function useSpicyLyrics() {
 	}, [simple]);
 
 	const animator = useRef<ReturnType<typeof createSpicyAnimator>>(null);
-	const { rows, totalSize, measureRow, getTop, scroller } = useSpicyVirtualList(
+	const { rows, totalSize, measureRow, getTop } = useSpicyVirtualList(
 		lines,
 		viewportRef,
-		contentRef,
 		() => animator.current?.(playbackClock.getSnapshot(), performance.now()),
 	);
 
+	// Leaving a "•••" interlude, Spicy waits for it to collapse before
+	// scrolling to the next line, so the two don't read as one jerk.
+	const interludeWait = useRef<{ id: string; until: number }>(null);
 	const getScrollTarget = useCallback(
 		(timeMs: number) => {
 			const index = findSpicyScrollIndex(lines, timeMs);
 			if (index < 0) return undefined;
 			const line = lines[index];
+			let deferred = false;
+			if (lines[index - 1]?.isDotLine) {
+				const now = performance.now();
+				if (interludeWait.current?.id !== line.id)
+					interludeWait.current = { id: line.id, until: now + 240 };
+				deferred = now < interludeWait.current.until;
+			} else interludeWait.current = null;
 			return {
 				id: line.id,
 				getNode: () => lineNodes.current.get(line.id),
 				getTop: (anchor: number, offset: number) =>
 					getTop(index, anchor, offset),
+				deferred,
 			};
 		},
 		[lines, getTop],
 	);
-	usePreviewScroll(viewportRef, getScrollTarget, {
-		offset: 30,
-		scroller,
-		enabled: scroller !== undefined,
-	});
+	usePreviewScroll(viewportRef, getScrollTarget, { offset: 30 });
 
 	useEffect(() => {
 		lastTime.current = performance.now();
@@ -190,7 +195,6 @@ export function useSpicyLyrics() {
 		rows,
 		totalSize,
 		measureRow,
-		contentRef,
 		lineNodes,
 		wordNodes,
 		showTranslation,

@@ -25,7 +25,6 @@ export const SpicyLyrics = memo(() => {
 		rows,
 		totalSize,
 		measureRow,
-		contentRef,
 		lineNodes,
 		wordNodes,
 		showTranslation,
@@ -76,7 +75,6 @@ export const SpicyLyrics = memo(() => {
 					rows={rows}
 					totalSize={totalSize}
 					measureRow={measureRow}
-					contentRef={contentRef}
 					lineNodes={lineNodes}
 					wordNodes={wordNodes}
 					showTranslation={showTranslation}

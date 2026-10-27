@@ -24,7 +24,6 @@ export function SpicyLyricLines({
 	rows,
 	totalSize,
 	measureRow,
-	contentRef,
 	lineNodes,
 	wordNodes,
 	showTranslation,
@@ -34,16 +33,11 @@ export function SpicyLyricLines({
 	rows: SpicyVirtualRow[];
 	totalSize: number;
 	measureRow: (node: HTMLDivElement | null) => void;
-	contentRef: RefObject<HTMLDivElement | null>;
 	showTranslation: boolean;
 	seek: (time: number) => void;
 }) {
 	return (
-		<div
-			ref={contentRef}
-			className={styles.virtualContent}
-			style={{ height: totalSize }}
-		>
+		<div className={styles.virtualContent} style={{ height: totalSize }}>
 			{rows.map(({ index, start }) => {
 				const line = lines[index];
 				if (!line) return null;
