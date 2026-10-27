@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import type { ImportRow, ImportRowKind } from "../logic/import-text";
+import { TextHistory, type TextSnapshot } from "../logic/text-history";
 import styles from "./ImportTextEditor.module.css";
 
 const GUTTER_LABELS: Partial<Record<ImportRowKind, [string, string]>> = {
@@ -27,6 +28,72 @@ export function ImportTextEditor({
 }) {
 	const { t } = useTranslation();
 	const gutterRef = useRef<HTMLDivElement>(null);
+	const textRef = useRef<HTMLTextAreaElement>(null);
+	const history = useRef(new TextHistory()).current;
+	// The value this editor last saw, to tell its own edits from replacements.
+	const knownValue = useRef(value);
+	const selection = useRef({ start: value.length, end: value.length });
+	const pendingSelection = useRef<TextSnapshot | null>(null);
+
+	const snapshot = (text: string): TextSnapshot => ({
+		value: text,
+		selectionStart: selection.current.start,
+		selectionEnd: selection.current.end,
+	});
+
+	// A tool or a fetched song replaced the text: one undo step.
+	useLayoutEffect(() => {
+		if (value !== knownValue.current) {
+			history.recordReplace(snapshot(knownValue.current));
+			knownValue.current = value;
+		}
+		const restore = pendingSelection.current;
+		if (restore && textRef.current && value === restore.value) {
+			textRef.current.setSelectionRange(
+				restore.selectionStart,
+				restore.selectionEnd,
+			);
+			selection.current = {
+				start: restore.selectionStart,
+				end: restore.selectionEnd,
+			};
+			pendingSelection.current = null;
+		}
+	});
+
+	const step = (direction: "undo" | "redo") => {
+		const element = textRef.current;
+		const current: TextSnapshot = {
+			value,
+			selectionStart: element?.selectionStart ?? value.length,
+			selectionEnd: element?.selectionEnd ?? value.length,
+		};
+		const target =
+			direction === "undo" ? history.undo(current) : history.redo(current);
+		if (!target) return;
+		knownValue.current = target.value;
+		pendingSelection.current = target;
+		onChange(target.value);
+	};
+	const stepRef = useRef(step);
+	stepRef.current = step;
+
+	// Undo from the context or Edit menu arrives as beforeinput, not a key.
+	useEffect(() => {
+		const element = textRef.current;
+		if (!element) return;
+		const onBeforeInput = (event: InputEvent) => {
+			if (event.inputType === "historyUndo") {
+				event.preventDefault();
+				stepRef.current("undo");
+			} else if (event.inputType === "historyRedo") {
+				event.preventDefault();
+				stepRef.current("redo");
+			}
+		};
+		element.addEventListener("beforeinput", onBeforeInput);
+		return () => element.removeEventListener("beforeinput", onBeforeInput);
+	}, []);
 
 	return (
 		<div className={styles.well}>
@@ -54,11 +121,37 @@ export function ImportTextEditor({
 				</div>
 			</div>
 			<textarea
+				ref={textRef}
 				className={styles.text}
 				value={value}
 				wrap="off"
 				spellCheck={false}
-				onChange={(event) => onChange(event.target.value)}
+				onChange={(event) => {
+					const next = event.target.value;
+					history.recordTyping(
+						snapshot(knownValue.current),
+						next,
+						event.timeStamp,
+					);
+					knownValue.current = next;
+					onChange(next);
+				}}
+				onSelect={(event) => {
+					selection.current = {
+						start: event.currentTarget.selectionStart,
+						end: event.currentTarget.selectionEnd,
+					};
+				}}
+				onKeyDown={(event) => {
+					const mod = event.ctrlKey || event.metaKey;
+					if (!mod || event.altKey) return;
+					const key = event.key.toLowerCase();
+					const redo = key === "y" || (key === "z" && event.shiftKey);
+					if (key !== "z" && key !== "y") return;
+					// Ours replaces the browser's, which a tool would have wiped anyway.
+					event.preventDefault();
+					step(redo ? "redo" : "undo");
+				}}
 				onScroll={(event) => {
 					if (gutterRef.current)
 						gutterRef.current.scrollTop = event.currentTarget.scrollTop;
