@@ -257,7 +257,10 @@ export const SettingsDialog = memo(() => {
 			const texts: Record<string, string> = {};
 			for (const item of navigationItems) {
 				const panel = pane.querySelector(`[id$="-content-${item.value}"]`);
-				texts[item.value] = panel?.textContent ?? "";
+				// Not filled in yet: stay null so the tab jump doesn't act on
+				// keyword-only results.
+				if (!panel?.childElementCount) return;
+				texts[item.value] = panel.textContent ?? "";
 			}
 			setPageTexts((prev) =>
 				prev &&
