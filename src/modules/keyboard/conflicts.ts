@@ -48,7 +48,7 @@ export function findKeyBindingListConflicts(
 
 /** The actions, other than `command`, that already use `keys` in a shared mode. */
 export function findShortcutOwners(
-	bindings: Array<{
+	bindings: ReadonlyArray<{
 		command: KeyBindingCommand;
 		lists: readonly KeyBindingsConfig[];
 	}>,
