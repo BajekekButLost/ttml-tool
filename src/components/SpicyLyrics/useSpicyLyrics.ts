@@ -32,6 +32,7 @@ import {
 import type { Spring } from "./math";
 import { buildSpicyLines } from "./model";
 import { useCoverPalette, useKawarpBackground } from "./useBackground";
+import { useSpicyVirtualList } from "./useSpicyVirtualList";
 
 export function useSpicyLyrics() {
 	const lyrics = useAtomValue(timedPreviewLyricsAtom);
@@ -84,6 +85,7 @@ export function useSpicyLyrics() {
 		embeddedCoverArt ?? coverArtImage ?? customBackgroundImage;
 	const coverPalette = useCoverPalette(backgroundImage);
 	const viewportRef = useRef<HTMLDivElement>(null);
+	const contentRef = useRef<HTMLDivElement>(null);
 	const backgroundRef = useRef<HTMLDivElement>(null);
 	const lineNodes = useRef(new Map<string, HTMLDivElement>());
 	const wordNodes = useRef(new Map<string, HTMLElement>());
@@ -113,16 +115,33 @@ export function useSpicyLyrics() {
 		slmAnimations.current.clear();
 	}, [simple]);
 
+	const animator = useRef<ReturnType<typeof createSpicyAnimator>>(null);
+	const { rows, totalSize, measureRow, getTop, scroller } = useSpicyVirtualList(
+		lines,
+		viewportRef,
+		contentRef,
+		() => animator.current?.(playbackClock.getSnapshot(), performance.now()),
+	);
+
 	const getScrollTarget = useCallback(
 		(timeMs: number) => {
 			const index = findSpicyScrollIndex(lines, timeMs);
 			if (index < 0) return undefined;
 			const line = lines[index];
-			return { id: line.id, getNode: () => lineNodes.current.get(line.id) };
+			return {
+				id: line.id,
+				getNode: () => lineNodes.current.get(line.id),
+				getTop: (anchor: number, offset: number) =>
+					getTop(index, anchor, offset),
+			};
 		},
-		[lines],
+		[lines, getTop],
 	);
-	usePreviewScroll(viewportRef, getScrollTarget, { offset: 30 });
+	usePreviewScroll(viewportRef, getScrollTarget, {
+		offset: 30,
+		scroller,
+		enabled: scroller !== undefined,
+	});
 
 	useEffect(() => {
 		lastTime.current = performance.now();
@@ -139,14 +158,22 @@ export function useSpicyLyrics() {
 			fpsRef,
 			showFpsRef,
 		});
+		animator.current = animate;
 		animate(playbackClock.getSnapshot(), performance.now(), true);
-		return playbackClock.subscribe(animate);
+		const unsubscribe = playbackClock.subscribe(animate);
+		return () => {
+			unsubscribe();
+			animator.current = null;
+		};
 	}, [lines, simple]);
 
-	const seek = (time: number) => {
-		setCurrentTime(time);
-		audioEngine.seekMusic(time / 1000);
-	};
+	const seek = useCallback(
+		(time: number) => {
+			setCurrentTime(time);
+			audioEngine.seekMusic(time / 1000);
+		},
+		[setCurrentTime],
+	);
 	return {
 		simple,
 		useAccent,
@@ -160,6 +187,10 @@ export function useSpicyLyrics() {
 		viewportRef,
 		hasDuetLines,
 		lines,
+		rows,
+		totalSize,
+		measureRow,
+		contentRef,
 		lineNodes,
 		wordNodes,
 		showTranslation,

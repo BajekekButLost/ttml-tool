@@ -68,27 +68,41 @@ export function createSpicyAnimator({
 	const lineStates: Array<LineState | undefined> = [];
 	const lineResting: boolean[] = [];
 	const blurValues: Array<string | undefined> = [];
+	// The line node each row was last drawn on, to spot rows that just mounted.
+	const shownNodes: Array<HTMLDivElement | undefined> = [];
 	let blurAnchor = -1;
+
+	/** Keys of every word and held letter node in a line. */
+	const nodeKeys = (line: SpicyLine) => {
+		const keys: string[] = [];
+		for (let wi = 0; wi < line.words.length; wi++) {
+			const word = line.words[wi];
+			const rootKey = keyFor(line, word, wi);
+			keys.push(rootKey);
+			if (word.letters)
+				for (let index = 0; index < word.letters.length; index++)
+					keys.push(
+						`${rootKey}:${word.startTime + index * ((word.endTime - word.startTime) / word.letters.length)}`,
+					);
+		}
+		return keys;
+	};
 
 	const lineSettled = (line: SpicyLine) => {
 		if (line.isLineSynced && !line.isDotLine) {
 			const glow = lineGlowSprings.current.get(line.id);
 			return !glow || glow.isSettled();
 		}
-		for (let wi = 0; wi < line.words.length; wi++) {
-			const word = line.words[wi];
-			const rootKey = keyFor(line, word, wi);
-			if (!settled(springs.current.get(rootKey))) return false;
-			if (word.letters)
-				for (let index = 0; index < word.letters.length; index++) {
-					const start =
-						word.startTime +
-						index * ((word.endTime - word.startTime) / word.letters.length);
-					if (!settled(springs.current.get(`${rootKey}:${start}`)))
-						return false;
-				}
+		return nodeKeys(line).every((key) => settled(springs.current.get(key)));
+	};
+
+	// Simple-mode fills belong to the nodes they ran on; a remounted row
+	// starts its own.
+	const forgetSlmAnimations = (line: SpicyLine) => {
+		for (const key of nodeKeys(line)) {
+			slmAnimations.current.get(key)?.animation?.cancel();
+			slmAnimations.current.delete(key);
 		}
-		return true;
 	};
 
 	const animateLineSynced = (
@@ -301,25 +315,38 @@ export function createSpicyAnimator({
 			const line = lines[i];
 			const status = stateAt(time, line.startTime, line.endTime);
 			const changed = lineStates[i] !== status;
-			const node = lineNodes.current.get(line.id);
-			if (node) {
-				if (changed) node.dataset.state = status;
-				if (line.isDotLine) {
-					const prehidden = String(
-						status === "not-sung" || time > line.endTime - 500,
-					);
-					if (node.dataset.prehidden !== prehidden)
-						node.dataset.prehidden = prehidden;
-				}
-				if (changed || anchorMoved || snap) writeBlur(i, node, status);
-			}
 			lineStates[i] = status;
-			if (changed) lineResting[i] = false;
-			if (status !== "active" && !snap && lineResting[i]) continue;
+			const node = lineNodes.current.get(line.id);
+			// Only rows near the viewport are mounted. The others keep their
+			// state here and are drawn from it when they mount.
+			if (!node) {
+				shownNodes[i] = undefined;
+				continue;
+			}
+			// A row that just mounted carries none of the animation state yet:
+			// write all of it and snap its springs to where they belong.
+			const mounted = shownNodes[i] !== node;
+			shownNodes[i] = node;
+			if (mounted) {
+				blurValues[i] = undefined;
+				forgetSlmAnimations(line);
+			}
+			const lineSnap = snap || mounted;
+			if (changed || mounted) node.dataset.state = status;
+			if (line.isDotLine) {
+				const prehidden = String(
+					status === "not-sung" || time > line.endTime - 500,
+				);
+				if (node.dataset.prehidden !== prehidden)
+					node.dataset.prehidden = prehidden;
+			}
+			if (changed || anchorMoved || lineSnap) writeBlur(i, node, status);
+			if (changed || mounted) lineResting[i] = false;
+			if (status !== "active" && !lineSnap && lineResting[i]) continue;
 
-			if (line.isLineSynced && !line.isDotLine) {
-				if (node) animateLineSynced(line, node, status, time, snap, dt);
-			} else animateWords(line, status, time, snap, dt);
+			if (line.isLineSynced && !line.isDotLine)
+				animateLineSynced(line, node, status, time, lineSnap, dt);
+			else animateWords(line, status, time, lineSnap, dt);
 			lineResting[i] = status !== "active" && lineSettled(line);
 		}
 	};

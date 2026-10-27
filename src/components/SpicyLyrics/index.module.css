@@ -186,13 +186,27 @@
 	);
 }
 
+/* Only rows near the viewport are mounted. Each sits at its measured offset,
+ * with the gap to the next row as its bottom padding. */
+.virtualContent {
+	position: relative;
+	width: 100%;
+}
+.row {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
 .line {
 	--blur: 0px;
 	--line-size: clamp(1.85rem, 7cqw, 3.5rem);
 	display: flex;
 	flex-wrap: wrap;
 	box-sizing: border-box;
-	margin: 1cqw 0;
+	margin: 0;
 	font-size: var(--line-size);
 	font-weight: 700;
 	line-height: 1.1818;
@@ -277,8 +291,6 @@
 	padding-right: 15cqw;
 }
 .backgroundLine {
-	margin-top: -1cqw;
-	margin-bottom: 1cqw;
 	font-size: calc(var(--line-size) * 0.75);
 	font-weight: 600;
 }
@@ -296,15 +308,11 @@
 		transform 0.14s,
 		opacity 0.14s;
 }
-.dotLine:not([data-state="active"]) {
-	/* A collapsed block still prevents the margins of its two lyric neighbours
-	 * from collapsing together. Cancel half of each neighbouring line margin so
-	 * a hidden interlude has exactly the same gap as two adjacent lyric lines. */
-	margin-block: -0.5cqw;
-}
 .dotLine[data-state="active"] {
 	z-index: 0;
 	height: auto;
+	/* A hidden interlude takes no space; an open one adds its own row gap. */
+	padding-bottom: 1cqw;
 	overflow: visible;
 	line-height: 1.1818;
 	opacity: 1;
