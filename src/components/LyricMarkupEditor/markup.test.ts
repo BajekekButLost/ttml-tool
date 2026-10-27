@@ -207,6 +207,64 @@ describe("lyric markup decorations", () => {
 	});
 });
 
+describe("section header side", () => {
+	const sides = (text: string) =>
+		parseMarkup(text, FORMAT)
+			.filter((line) => line.kind === "section")
+			.map((line) => !!line.duetSide);
+
+	it("follows the first main line under the header", () => {
+		expect(
+			sides(
+				[
+					"[Verse 1]",
+					">Duet line",
+					"Plain line",
+					"[Chorus]",
+					"Plain line",
+					">Duet line",
+					"[Bridge]",
+					"",
+					"<Background first",
+					">Then duet",
+					"[Outro]",
+					"[Empty]",
+					">Duet after an empty section",
+				].join("\n"),
+			),
+		).toEqual([true, false, true, false, true]);
+	});
+
+	it("skips translation rows and ignores prefixes when they are off", () => {
+		expect(
+			parseMarkup("[Verse]\n>Hi\nHallo", {
+				...FORMAT,
+				mode: "lyric-trans",
+			})[0].duetSide,
+		).toBe(true);
+		expect(
+			parseMarkup("[Verse]\n>Hi", { ...FORMAT, enableSpecialPrefix: false })[0]
+				.duetSide,
+		).toBeUndefined();
+	});
+
+	it("puts the header line on the duet side", () => {
+		const text = "[Verse]\n>Hi";
+		const specs = buildDecorationSpecs(
+			parseMarkup(text, FORMAT),
+			[0, 8],
+			new Set(),
+			[0, 1],
+			(from, to) => text.slice(from, to),
+		);
+		expect(specs[0]).toEqual({
+			type: "line",
+			from: 0,
+			className: "lm-section lm-duet",
+		});
+	});
+});
+
 describe("changing a header's category", () => {
 	it("keeps the number and vocalist", () => {
 		expect(headerWithCategory("[Verse 2: Singer]", "pre-chorus")).toBe(

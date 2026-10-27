@@ -48,7 +48,11 @@ export function buildDecorationSpecs(
 		const line = lines[number];
 		const start = lineStarts[number];
 		if (!line || start === undefined) continue;
-		const classes = [LINE_CLASS[line.kind], line.warning && "lm-warning"]
+		const classes = [
+			LINE_CLASS[line.kind],
+			line.duetSide && LINE_CLASS.duet,
+			line.warning && "lm-warning",
+		]
 			.filter(Boolean)
 			.join(" ");
 		if (classes) specs.push({ type: "line", from: start, className: classes });

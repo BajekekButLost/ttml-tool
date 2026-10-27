@@ -161,10 +161,11 @@
 	--lm-hue-a: var(--gray-a4);
 	--lm-hue-border: var(--gray-a7);
 	--lm-hue-text: var(--gray-12);
-	display: inline-block;
-	max-width: 100%;
+	/* Inline so a long header wraps with the line; each row keeps the pill shape. */
+	display: inline;
 	padding: 0 var(--space-2);
-	overflow: hidden;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 	border: 1px solid var(--lm-hue-border);
 	border-radius: var(--sl-radius-pill, 9999px);
 	background-color: var(--lm-hue-a);
@@ -172,10 +173,10 @@
 	font: inherit;
 	font-size: var(--font-size-2);
 	font-weight: 500;
-	line-height: 1.5;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	vertical-align: baseline;
+	line-height: 1.7;
+	overflow-wrap: anywhere;
+	text-align: inherit;
+	white-space: normal;
 	cursor: pointer;
 }
 

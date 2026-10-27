@@ -61,6 +61,8 @@ export interface MarkupLine {
 	kind: MarkupLineKind;
 	category?: LyricSectionCategory;
 	warning?: MarkupWarning;
+	/** A section whose first main line is a duet line sits on the duet side. */
+	duetSide?: boolean;
 	spans: MarkupSpan[];
 }
 
@@ -274,7 +276,24 @@ export function parseMarkup(
 			last.warning ??= missingWarning(sub);
 		}
 	}
+	markDuetSections(result);
 	return result;
+}
+
+/**
+ * A section header takes the side of the first main line under it: background,
+ * translation and blank lines are skipped, and the next header ends the search.
+ */
+function markDuetSections(lines: MarkupLine[]) {
+	let section: MarkupLine | undefined;
+	for (const line of lines) {
+		if (line.kind === "section") {
+			section = line;
+		} else if (section && (line.kind === "lyric" || line.kind === "duet")) {
+			if (line.kind === "duet") section.duetSide = true;
+			section = undefined;
+		}
+	}
 }
 
 export const normalizeHeaderCategory = (header: string): LyricSectionCategory =>
