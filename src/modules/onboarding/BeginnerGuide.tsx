@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import { BrandBandMark, brandBandClassName } from "$/components/BrandBand";
 import { useTopMenuActions } from "$/components/TopMenu/useTopMenuActions";
 import { useLoadAudio } from "$/hooks/useLoadAudio";
+import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen.ts";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { currentDurationAtom } from "$/modules/audio/states";
 import {
@@ -39,7 +40,7 @@ import {
 	settingsDialogAtom,
 	settingsTabAtom,
 } from "$/states/dialogs";
-import { lyricLinesAtom, ToolMode, toolModeAtom } from "$/states/main";
+import { ToolMode, toolModeAtom } from "$/states/main";
 import {
 	GUIDE_STEP_IDS,
 	getGuideProgress,
@@ -112,12 +113,12 @@ export const BeginnerGuide = () => {
 		[t],
 	);
 	const store = useStore();
-	const lyrics = useAtomValue(lyricLinesAtom);
 	const duration = useAtomValue(currentDurationAtom);
 	const geniusApiKey = useAtomValue(geniusApiKeyAtom);
 	const [showGeniusSetup, setShowGeniusSetup] = useState(false);
 	const [welcomeOpen, setWelcomeOpen] = useAtom(guideWelcomeOpenAtom);
 	const [panelOpen, setPanelOpen] = useAtom(guidePanelOpenAtom);
+	const lyrics = useLyricLinesWhileOpen(welcomeOpen || panelOpen);
 	const [step, setStep] = useAtom(guideStepAtom);
 	const [exported, setExported] = useAtom(guideExportedAtom);
 	const [completion, setCompletion] = useAtom(guideCompletionAtom);

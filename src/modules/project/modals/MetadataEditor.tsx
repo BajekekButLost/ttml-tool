@@ -20,7 +20,7 @@ import {
 	TextField,
 } from "@radix-ui/themes";
 import { useAtom, useSetAtom } from "jotai";
-import { useImmerAtom } from "jotai-immer";
+import { useSetImmerAtom } from "jotai-immer";
 import {
 	memo,
 	type ReactNode,
@@ -31,6 +31,7 @@ import {
 	useState,
 } from "react";
 import { useTranslation } from "react-i18next";
+import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen.ts";
 import { getBetterGeniusCoverArt } from "$/modules/genius/utils/image";
 import {
 	geniusSearchDialogAtom,
@@ -409,7 +410,8 @@ export const MetadataEditor = () => {
 		metadataEditorDialogAtom,
 	);
 	const [customKey, setCustomKey] = useState("");
-	const [lyricLines, setLyricLines] = useImmerAtom(lyricLinesAtom);
+	const lyricLines = useLyricLinesWhileOpen(metadataEditorDialog);
+	const setLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const addKeyButtonRef = useRef<HTMLButtonElement | null>(null);
 	const setGeniusSearchDialogOpen = useSetAtom(geniusSearchDialogAtom);
 

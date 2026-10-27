@@ -30,7 +30,7 @@ import { confirmDialogAtom, historyRestoreDialogAtom } from "$/states/dialogs";
 import {
 	isDirtyAtom,
 	lastSavedTimeAtom,
-	lyricLinesAtom,
+	lyricMetadataAtom,
 	saveFileNameAtom,
 } from "$/states/main";
 import { useTopMenuActions } from "./useTopMenuActions";
@@ -49,7 +49,7 @@ export const HeaderFileInfo = () => {
 	);
 	const setHistoryDialogOpen = useSetAtom(historyRestoreDialogAtom);
 	const setConfirmDialog = useSetAtom(confirmDialogAtom);
-	const metadata = useAtomValue(lyricLinesAtom).metadata;
+	const metadata = useAtomValue(lyricMetadataAtom);
 	const [isEditing, setIsEditing] = useState(false);
 	const [draftName, setDraftName] = useState("");
 	const [autoSaveExpanded, setAutoSaveExpanded] = useState(false);
