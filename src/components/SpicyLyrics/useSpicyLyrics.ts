@@ -11,6 +11,7 @@ import { playbackClock } from "$/modules/playback-clock";
 import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
+	allowConsecutiveBackgroundLinesAtom,
 	customAccentColorAtom,
 	useCustomAccentAtom,
 } from "$/modules/settings/states";
@@ -44,11 +45,27 @@ export function useSpicyLyrics() {
 	const customBackgroundImage = useAtomValue(customBackgroundImageAtom);
 	const useAccent = useAtomValue(useCustomAccentAtom);
 	const accent = useAtomValue(customAccentColorAtom);
+	// Background lines nest under their lead exactly as the export writes them.
+	const allowConsecutiveBackgrounds = useAtomValue(
+		allowConsecutiveBackgroundLinesAtom,
+	);
 	const setCurrentTime = useSetAtom(currentTimeAtom);
 	const lines = useMemo(
 		() =>
-			buildSpicyLines(lyrics.lyricLines, simple, romanized, forceLineSynced),
-		[lyrics.lyricLines, simple, romanized, forceLineSynced],
+			buildSpicyLines(
+				lyrics.lyricLines,
+				simple,
+				romanized,
+				forceLineSynced,
+				allowConsecutiveBackgrounds,
+			),
+		[
+			lyrics.lyricLines,
+			simple,
+			romanized,
+			forceLineSynced,
+			allowConsecutiveBackgrounds,
+		],
 	);
 	const hasDuetLines = useMemo(
 		() => lines.some((line) => !line.isDotLine && line.isDuet),
