@@ -166,7 +166,16 @@
     "sectionCategory": "Kategoria sekcji",
     "lowConfidence": "Kategoria odgadnięta. Sprawdź ją.",
     "importSuccess": "{count, plural, one {Zaimportowano # wers.} few {Zaimportowano # wersy.} many {Zaimportowano # wersów.} other {Zaimportowano # wersu.}}",
-    "importFailed": "Nie udało się odczytać tego tekstu. Sprawdź tekst i ustawienia formatu tekstu."
+    "importFailed": "Nie udało się odczytać tego tekstu. Sprawdź tekst i ustawienia formatu tekstu.",
+    "stepsLabel": "Kroki importu",
+    "stepText": "Edytuj tekst",
+    "gutter": {
+      "background": "W tle",
+      "duet": "Duet",
+      "translation": "Tłumaczenie",
+      "romanization": "Latynizacja",
+      "removed": "Usunięto"
+    }
   },
   "importChooser": {
     "options": {

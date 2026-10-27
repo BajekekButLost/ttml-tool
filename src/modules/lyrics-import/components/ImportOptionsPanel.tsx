@@ -14,7 +14,7 @@ import {
 	TextField,
 } from "@radix-ui/themes";
 import { useAtom } from "jotai";
-import { type ReactNode, useId, useState } from "react";
+import { type ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
 import type {
@@ -29,20 +29,66 @@ import {
 	importModeAtom,
 	lineSeparatorAtom,
 	lineSeparatorModeAtom,
-	makeSectionsOnImportAtom,
 	swapTransAndRomanAtom,
 	wordSeparatorAtom,
 } from "../states";
 import styles from "./ImportOptionsPanel.module.css";
 
-function Group({ title, children }: { title: string; children: ReactNode }) {
+function Group({
+	title,
+	aside,
+	children,
+}: {
+	title: string;
+	aside?: ReactNode;
+	children: ReactNode;
+}) {
 	return (
 		<Flex direction="column" gap="2" className={styles.group}>
-			<Text size="2" weight="medium">
-				{title}
-			</Text>
+			<Flex align="baseline" justify="between" gap="2">
+				<Text size="2" weight="medium">
+					{title}
+				</Text>
+				{aside}
+			</Flex>
 			{children}
 		</Flex>
+	);
+}
+
+/** One text tool: the action and what it does to the text, as one target. */
+function ToolButton({
+	icon,
+	label,
+	description,
+	disabled,
+	onClick,
+}: {
+	icon: ReactNode;
+	label: string;
+	description: string;
+	disabled?: boolean;
+	onClick: () => void;
+}) {
+	return (
+		<button
+			type="button"
+			className={styles.tool}
+			disabled={disabled}
+			onClick={onClick}
+		>
+			<span className={styles.toolIcon} aria-hidden>
+				{icon}
+			</span>
+			<span className={styles.toolText}>
+				<Text size="2" weight="medium">
+					{label}
+				</Text>
+				<Text size="1" className={styles.hint}>
+					{description}
+				</Text>
+			</span>
+		</button>
 	);
 }
 
@@ -67,6 +113,8 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 
 export function ImportOptionsPanel({
 	headerCount,
+	makeSections,
+	onMakeSectionsChange,
 	hasText,
 	canRestore,
 	canSplit,
@@ -76,6 +124,8 @@ export function ImportOptionsPanel({
 	onRestore,
 }: {
 	headerCount: number;
+	makeSections: boolean;
+	onMakeSectionsChange: (makeSections: boolean) => void;
 	hasText: boolean;
 	canRestore: boolean;
 	canSplit: boolean;
@@ -85,70 +135,69 @@ export function ImportOptionsPanel({
 	onRestore: () => void;
 }) {
 	const { t } = useTranslation();
-	const processHintId = useId();
-	const splitHintId = useId();
-	const [makeSections, setMakeSections] = useAtom(makeSectionsOnImportAtom);
 	const [fetchSongwriters, setFetchSongwriters] = useAtom(
 		fetchImportedSongwritersAtom,
 	);
 	const [formatOpen, setFormatOpen] = useState(false);
 
 	return (
-		<Flex direction="column" gap="4">
-			<Group title={t("importLyrics.prepareTitle", "Clean up")}>
-				<Button
-					variant="soft"
-					onClick={onProcess}
-					disabled={!hasText}
-					aria-describedby={processHintId}
-				>
-					<SparkleRegular />
-					{t("textImportDialog.processLyrics", "Process lyrics")}
-				</Button>
-				<Hint id={processHintId}>
-					{t(
-						"importLyrics.processHint",
-						"Splits words, tidies punctuation and spacing, and moves parenthesized vocals to background lines.",
-					)}
-				</Hint>
-				<Button
-					variant="soft"
-					onClick={onSplit}
-					disabled={!canSplit}
-					aria-describedby={splitHintId}
-				>
-					<TextWordCountRegular />
-					{t("importLyrics.splitSyllables", "Split syllables")}
-				</Button>
-				<Hint id={splitHintId}>
-					{t(
-						"importLyrics.splitHint",
-						"Marks syllables with the word separator, using your Auto segment settings and learned splits. Fix any marks in the text before importing.",
-					)}
-				</Hint>
-				{canRestore && (
-					<Button variant="ghost" color="gray" onClick={onRestore}>
-						<ArrowUndoRegular />
-						{t("importLyrics.restoreOriginal", "Restore original text")}
-					</Button>
-				)}
+		<Flex direction="column" gap="5">
+			<Group
+				title={t("importLyrics.prepareTitle", "Clean up")}
+				aside={
+					canRestore && (
+						<Button size="1" variant="ghost" color="gray" onClick={onRestore}>
+							<ArrowUndoRegular />
+							{t("importLyrics.restoreOriginal", "Restore original text")}
+						</Button>
+					)
+				}
+			>
+				<Flex direction="column" gap="1">
+					<ToolButton
+						icon={<SparkleRegular />}
+						label={t("textImportDialog.processLyrics", "Process lyrics")}
+						description={t(
+							"importLyrics.processHint",
+							"Splits words, tidies punctuation and spacing, and moves parenthesized vocals to background lines.",
+						)}
+						disabled={!hasText}
+						onClick={onProcess}
+					/>
+					<ToolButton
+						icon={<TextWordCountRegular />}
+						label={t("importLyrics.splitSyllables", "Split syllables")}
+						description={t(
+							"importLyrics.splitHint",
+							"Marks syllables with the word separator, using your segmentation settings and learned splits. Fix any marks in the text before importing.",
+						)}
+						disabled={!canSplit}
+						onClick={onSplit}
+					/>
+				</Flex>
 			</Group>
 
 			{headerCount > 0 && (
-				<Group title={t("importLyrics.sectionsTitle", "Section headers")}>
-					<Hint>
-						{t(
-							"importLyrics.sectionsFound",
-							"{count, plural, one {# header found} other {# headers found}}",
-							{ count: headerCount },
-						)}
-					</Hint>
+				<Group
+					title={t("importLyrics.sectionsTitle", "Section headers")}
+					aside={
+						<Text size="1" className={styles.hint}>
+							{t(
+								"importLyrics.sectionsFound",
+								"{count, plural, one {# header found} other {# headers found}}",
+								{ count: headerCount },
+							)}
+						</Text>
+					}
+				>
 					<OptionPicker
 						variant="segmented"
 						fullWidth
 						label={t("importLyrics.sectionsTitle", "Section headers")}
 						value={makeSections ? "sections" : "remove"}
-						onValueChange={(value) => setMakeSections(value === "sections")}
+						onValueChange={(value) =>
+							onMakeSectionsChange(value === "sections")
+						}
 						options={[
 							{
 								value: "sections",

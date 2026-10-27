@@ -166,7 +166,16 @@
     "sectionCategory": "Bölüm kategorisi",
     "lowConfidence": "Kategori tahmin edildi. Kontrol edin.",
     "importSuccess": "{count, plural, one {# satır içe aktarıldı.} other {# satır içe aktarıldı.}}",
-    "importFailed": "Bu şarkı sözleri okunamadı. Metni ve metin biçimi ayarlarını kontrol edin."
+    "importFailed": "Bu şarkı sözleri okunamadı. Metni ve metin biçimi ayarlarını kontrol edin.",
+    "stepsLabel": "İçe aktarma adımları",
+    "stepText": "Metni düzenle",
+    "gutter": {
+      "background": "Arka vokal",
+      "duet": "Düet",
+      "translation": "Çeviri",
+      "romanization": "Romanizasyon",
+      "removed": "Kaldırıldı"
+    }
   },
   "importChooser": {
     "options": {

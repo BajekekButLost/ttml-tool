@@ -16,14 +16,6 @@ export const fetchImportedSongwritersAtom = atomWithStorage(
 	{ getOnInit: true },
 );
 
-/** Turn `[Header]` rows into sections. Doing so also turns on Genius sections. */
-export const makeSectionsOnImportAtom = atomWithStorage(
-	"importLyrics.makeSections",
-	true,
-	undefined,
-	{ getOnInit: true },
-);
-
 export const importLyricsSourceAtom = atomWithStorage<ImportSourceId>(
 	"importLyrics.source",
 	"plainText",

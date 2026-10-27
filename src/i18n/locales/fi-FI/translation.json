@@ -166,7 +166,16 @@
     "sectionCategory": "Osion luokka",
     "lowConfidence": "Luokka on arvattu. Tarkista se.",
     "importSuccess": "{count, plural, one {Tuotiin # rivi.} other {Tuotiin # riviä.}}",
-    "importFailed": "Sanoituksia ei voitu lukea. Tarkista teksti ja tekstin muodon asetukset."
+    "importFailed": "Sanoituksia ei voitu lukea. Tarkista teksti ja tekstin muodon asetukset.",
+    "stepsLabel": "Tuonnin vaiheet",
+    "stepText": "Muokkaa tekstiä",
+    "gutter": {
+      "background": "Tausta",
+      "duet": "Duetto",
+      "translation": "Käännös",
+      "romanization": "Latinisointi",
+      "removed": "Poistettu"
+    }
   },
   "importChooser": {
     "options": {

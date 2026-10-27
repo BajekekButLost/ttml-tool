@@ -166,7 +166,16 @@
     "sectionCategory": "Catégorie de la section",
     "lowConfidence": "Catégorie devinée. À vérifier.",
     "importSuccess": "{count, plural, one {# ligne importée.} many {# lignes importées.} other {# lignes importées.}}",
-    "importFailed": "Impossible de lire ces paroles. Vérifiez le texte et les réglages du format du texte."
+    "importFailed": "Impossible de lire ces paroles. Vérifiez le texte et les réglages du format du texte.",
+    "stepsLabel": "Étapes de l'importation",
+    "stepText": "Modifier le texte",
+    "gutter": {
+      "background": "Chœurs",
+      "duet": "Duo",
+      "translation": "Traduction",
+      "romanization": "Romanisation",
+      "removed": "Retiré"
+    }
   },
   "importChooser": {
     "options": {

@@ -166,7 +166,16 @@
     "sectionCategory": "Categoria secțiunii",
     "lowConfidence": "Categorie ghicită. Verific-o.",
     "importSuccess": "{count, plural, one {# vers importat.} few {# versuri importate.} other {# de versuri importate.}}",
-    "importFailed": "Nu am putut citi aceste versuri. Verifică textul și setările formatului textului."
+    "importFailed": "Nu am putut citi aceste versuri. Verifică textul și setările formatului textului.",
+    "stepsLabel": "Pașii importului",
+    "stepText": "Editează textul",
+    "gutter": {
+      "background": "Fundal",
+      "duet": "Duet",
+      "translation": "Traducere",
+      "romanization": "Romanizare",
+      "removed": "Eliminat"
+    }
   },
   "importChooser": {
     "options": {

@@ -166,7 +166,16 @@
     "sectionCategory": "Sektionskategori",
     "lowConfidence": "Kategorien er gættet. Tjek den.",
     "importSuccess": "{count, plural, one {Importerede # linje.} other {Importerede # linjer.}}",
-    "importFailed": "Kunne ikke læse sangteksten. Tjek teksten og tekstformatindstillingerne."
+    "importFailed": "Kunne ikke læse sangteksten. Tjek teksten og tekstformatindstillingerne.",
+    "stepsLabel": "Importtrin",
+    "stepText": "Redigér tekst",
+    "gutter": {
+      "background": "Baggrund",
+      "duet": "Duet",
+      "translation": "Oversættelse",
+      "romanization": "Romanisering",
+      "removed": "Fjernet"
+    }
   },
   "importChooser": {
     "options": {

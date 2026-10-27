@@ -166,7 +166,16 @@
     "sectionCategory": "Kategorie sekce",
     "lowConfidence": "Kategorie je odhad. Zkontrolujte ji.",
     "importSuccess": "{count, plural, one {Importován # řádek.} few {Importovány # řádky.} many {Importováno # řádku.} other {Importováno # řádků.}}",
-    "importFailed": "Tento text se nepodařilo načíst. Zkontrolujte text a nastavení formátu textu."
+    "importFailed": "Tento text se nepodařilo načíst. Zkontrolujte text a nastavení formátu textu.",
+    "stepsLabel": "Kroky importu",
+    "stepText": "Upravit text",
+    "gutter": {
+      "background": "Doprovod",
+      "duet": "Duet",
+      "translation": "Překlad",
+      "romanization": "Romanizace",
+      "removed": "Odebráno"
+    }
   },
   "importChooser": {
     "options": {

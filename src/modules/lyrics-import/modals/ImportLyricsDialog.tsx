@@ -5,7 +5,6 @@ import {
 	Flex,
 	ScrollArea,
 	Text,
-	TextArea,
 	VisuallyHidden,
 } from "@radix-ui/themes";
 import { atom, useAtom, useAtomValue, useSetAtom, useStore } from "jotai";
@@ -51,6 +50,7 @@ import {
 } from "$/utils/apostrophe-normalization";
 import { error as logError } from "$/utils/logging.ts";
 import { ImportOptionsPanel } from "../components/ImportOptionsPanel";
+import { ImportTextEditor } from "../components/ImportTextEditor";
 import {
 	OnlineResults,
 	OnlineSearchBar,
@@ -58,6 +58,7 @@ import {
 } from "../components/OnlineSearchPanel";
 import { SectionReviewPanel } from "../components/SectionReviewPanel";
 import {
+	classifyImportRows,
 	detectSections,
 	importTextToLines,
 	mergeReviewedSections,
@@ -72,7 +73,6 @@ import {
 	fetchImportedSongwritersAtom,
 	importLyricsSourceAtom,
 	importTextFormatAtom,
-	makeSectionsOnImportAtom,
 	wordSeparatorAtom,
 } from "../states";
 import { prioritizeMatchingTracks } from "../track-duration";
@@ -96,7 +96,8 @@ export const ImportLyricsDialog = () => {
 	const [originalText, setOriginalText] = useAtom(originalTextAtom);
 	const [pickedTrack, setPickedTrack] = useAtom(pickedTrackAtom);
 	const format = useAtomValue(importTextFormatAtom);
-	const makeSections = useAtomValue(makeSectionsOnImportAtom);
+	// Starts from the Genius sections preference each time the screen opens.
+	const [makeSections, setMakeSections] = useState(false);
 	const geniusApiKey = useAtomValue(geniusApiKeyAtom);
 	const setWordSeparator = useSetAtom(wordSeparatorAtom);
 	const setEnableSpecialPrefix = useSetAtom(enableSpecialPrefixAtom);
@@ -135,7 +136,8 @@ export const ImportLyricsDialog = () => {
 		if (!isOpen) return;
 		setStep("edit");
 		setConfirming(false);
-	}, [isOpen]);
+		setMakeSections(store.get(geniusCategorizationEnabledAtom));
+	}, [isOpen, store]);
 
 	// Tags can arrive after the dialog opens; only replace a query we filled in.
 	useEffect(() => {
@@ -263,6 +265,11 @@ export const ImportLyricsDialog = () => {
 		[deferredText],
 	);
 	const willMakeSections = makeSections && detectedSections.length > 0;
+	// Not deferred: the gutter has to stay level with the text as it's typed.
+	const rows = useMemo(
+		() => classifyImportRows(text, format, makeSections),
+		[text, format, makeSections],
+	);
 	const lineCount = useMemo(() => {
 		try {
 			return importTextToLines(deferredText, format, willMakeSections).length;
@@ -488,17 +495,7 @@ export const ImportLyricsDialog = () => {
 										{t("importLyrics.showResults", "Show search results")}
 									</Button>
 								)}
-								<TextArea
-									className={styles.textArea}
-									value={text}
-									onChange={(event) => setText(event.target.value)}
-									placeholder={t(
-										"importLyrics.textPlaceholder",
-										"Paste lyrics here, one line per row. Section headers like [Chorus] go on their own row.",
-									)}
-									aria-label={t("importLyrics.textLabel", "Lyrics text")}
-									spellCheck={false}
-								/>
+								<ImportTextEditor value={text} rows={rows} onChange={setText} />
 							</>
 						)}
 						{pickedTrack && (
@@ -528,6 +525,8 @@ export const ImportLyricsDialog = () => {
 							) : (
 								<ImportOptionsPanel
 									headerCount={detectedSections.length}
+									makeSections={makeSections}
+									onMakeSectionsChange={setMakeSections}
 									hasText={!!text.trim()}
 									canRestore={originalText !== null}
 									canSplit={
@@ -545,16 +544,33 @@ export const ImportLyricsDialog = () => {
 					</ScrollArea>
 				</div>
 
-				<Flex align="center" justify="between" gap="3" mt="4">
-					<Text size="1" color="gray">
-						{t(
-							"genius.linesCount",
-							"{count, plural, one {# line} other {# lines}}",
-							{
-								count: lineCount,
-							},
+				<Flex align="center" justify="between" gap="3">
+					<Flex align="center" gap="4" minWidth="0">
+						{willMakeSections && (
+							<ol
+								className={styles.steps}
+								aria-label={t("importLyrics.stepsLabel", "Import steps")}
+							>
+								<li aria-current={step === "edit" ? "step" : undefined}>
+									<span className={styles.stepNumber}>1</span>
+									{t("importLyrics.stepText", "Edit text")}
+								</li>
+								<li aria-current={step === "review" ? "step" : undefined}>
+									<span className={styles.stepNumber}>2</span>
+									{t("importLyrics.reviewSections", "Review sections")}
+								</li>
+							</ol>
 						)}
-					</Text>
+						<Text size="1" color="gray">
+							{t(
+								"genius.linesCount",
+								"{count, plural, one {# line} other {# lines}}",
+								{
+									count: lineCount,
+								},
+							)}
+						</Text>
+					</Flex>
 					<Flex gap="2">
 						{step === "review" ? (
 							<Button

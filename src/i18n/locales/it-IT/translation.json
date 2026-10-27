@@ -166,7 +166,16 @@
     "sectionCategory": "Categoria della sezione",
     "lowConfidence": "Categoria indovinata. Controllala.",
     "importSuccess": "{count, plural, one {# verso importato.} many {# versi importati.} other {# versi importati.}}",
-    "importFailed": "Impossibile leggere questo testo. Controlla il testo e le impostazioni del formato."
+    "importFailed": "Impossibile leggere questo testo. Controlla il testo e le impostazioni del formato.",
+    "stepsLabel": "Passaggi dell'importazione",
+    "stepText": "Modifica testo",
+    "gutter": {
+      "background": "Coro",
+      "duet": "Duetto",
+      "translation": "Traduzione",
+      "romanization": "Romanizzazione",
+      "removed": "Rimosso"
+    }
   },
   "importChooser": {
     "options": {

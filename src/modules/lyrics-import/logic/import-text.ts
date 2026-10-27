@@ -1,9 +1,14 @@
 import {
 	createSectionFromHeader,
 	getSectionHeader,
+	normalizeSectionHeader,
 } from "$/modules/lyric-editor/utils/section-system";
 import { textToLines } from "$/modules/project/logic/text-to-lines";
-import type { LyricLine, LyricSection } from "$/types/ttml";
+import type {
+	LyricLine,
+	LyricSection,
+	LyricSectionCategory,
+} from "$/types/ttml";
 
 export type ImportContentMode =
 	| "lyric"
@@ -58,6 +63,84 @@ export function importTextToLines(
 		backgroundPrefix: format.enableSpecialPrefix ? format.bgLyricPrefix : "",
 		duetPrefix: format.enableSpecialPrefix ? format.duetLyricPrefix : "",
 	});
+}
+
+export type ImportRowKind =
+	| "lyric"
+	| "background"
+	| "duet"
+	| "translation"
+	| "romanization"
+	| "section"
+	| "removedHeader"
+	| "blank";
+
+export interface ImportRow {
+	kind: ImportRowKind;
+	category?: LyricSectionCategory;
+}
+
+/**
+ * What each row of the import text turns into, one entry per row, read the
+ * same way as {@link importTextToLines}. Drives the gutter beside the text.
+ */
+export function classifyImportRows(
+	text: string,
+	format: ImportTextFormat,
+	makeSections: boolean,
+): ImportRow[] {
+	const rows = text.split(/\r\n|\r|\n/);
+	const subKinds: ImportRowKind[] =
+		format.lineSeparatorMode === "same-line-separator"
+			? []
+			: format.mode === "lyric-trans-roman"
+				? ["translation", "romanization"]
+				: format.mode === "lyric-trans"
+					? ["translation"]
+					: format.mode === "lyric-roman"
+						? ["romanization"]
+						: [];
+	if (format.swapTransAndRoman) subKinds.reverse();
+	const bg = format.enableSpecialPrefix ? format.bgLyricPrefix : "";
+	const duet = format.enableSpecialPrefix ? format.duetLyricPrefix : "";
+
+	const result: ImportRow[] = [];
+	for (let index = 0; index < rows.length; ) {
+		const main = rows[index++].trim();
+		const header = makeSections
+			? getSectionHeader(main)
+			: /^\[.*\]$/.test(main)
+				? main
+				: undefined;
+		if (header) {
+			result.push(
+				makeSections
+					? {
+							kind: "section",
+							category: normalizeSectionHeader(header)?.category,
+						}
+					: { kind: "removedHeader" },
+			);
+			continue;
+		}
+		const subs = subKinds.slice(0, rows.length - index);
+		index += subs.length;
+		if (!main) {
+			result.push(
+				{ kind: "blank" },
+				...subs.map(() => ({ kind: "blank" as const })),
+			);
+			continue;
+		}
+		const kind: ImportRowKind =
+			bg && main.startsWith(bg)
+				? "background"
+				: duet && main.startsWith(duet)
+					? "duet"
+					: "lyric";
+		result.push({ kind }, ...subs.map((sub) => ({ kind: sub })));
+	}
+	return result;
 }
 
 export interface ReviewedSection extends LyricSection {

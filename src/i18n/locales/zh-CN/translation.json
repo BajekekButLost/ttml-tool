@@ -166,7 +166,16 @@
     "sectionCategory": "分段类别",
     "lowConfidence": "类别为猜测，请检查。",
     "importSuccess": "{count, plural, other {已导入 # 行。}}",
-    "importFailed": "无法读取这些歌词。请检查文本和文本格式设置。"
+    "importFailed": "无法读取这些歌词。请检查文本和文本格式设置。",
+    "stepsLabel": "导入步骤",
+    "stepText": "编辑文本",
+    "gutter": {
+      "background": "背景",
+      "duet": "对唱",
+      "translation": "翻译",
+      "romanization": "罗马音",
+      "removed": "已移除"
+    }
   },
   "importChooser": {
     "options": {

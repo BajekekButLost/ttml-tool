@@ -166,7 +166,16 @@
     "sectionCategory": "Kategori bagian",
     "lowConfidence": "Kategori ditebak. Periksa kembali.",
     "importSuccess": "{count, plural, other {# baris diimpor.}}",
-    "importFailed": "Lirik ini tidak dapat dibaca. Periksa teks dan pengaturan format teks."
+    "importFailed": "Lirik ini tidak dapat dibaca. Periksa teks dan pengaturan format teks.",
+    "stepsLabel": "Langkah impor",
+    "stepText": "Edit teks",
+    "gutter": {
+      "background": "Latar",
+      "duet": "Duet",
+      "translation": "Terjemahan",
+      "romanization": "Romanisasi",
+      "removed": "Dihapus"
+    }
   },
   "importChooser": {
     "options": {

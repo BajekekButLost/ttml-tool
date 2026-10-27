@@ -166,7 +166,16 @@
     "sectionCategory": "Categoria da seção",
     "lowConfidence": "Categoria adivinhada. Confira.",
     "importSuccess": "{count, plural, one {# linha importada.} many {# linhas importadas.} other {# linhas importadas.}}",
-    "importFailed": "Não foi possível ler esta letra. Confira o texto e as configurações de formato do texto."
+    "importFailed": "Não foi possível ler esta letra. Confira o texto e as configurações de formato do texto.",
+    "stepsLabel": "Etapas da importação",
+    "stepText": "Editar texto",
+    "gutter": {
+      "background": "Apoio",
+      "duet": "Dueto",
+      "translation": "Tradução",
+      "romanization": "Romanização",
+      "removed": "Removido"
+    }
   },
   "importChooser": {
     "options": {

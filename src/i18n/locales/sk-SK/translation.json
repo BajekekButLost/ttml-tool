@@ -166,7 +166,16 @@
     "sectionCategory": "Kategória sekcie",
     "lowConfidence": "Kategória je odhad. Skontrolujte ju.",
     "importSuccess": "{count, plural, one {Importoval sa # riadok.} few {Importovali sa # riadky.} many {Importovalo sa # riadka.} other {Importovalo sa # riadkov.}}",
-    "importFailed": "Tento text sa nepodarilo načítať. Skontrolujte text a nastavenia formátu textu."
+    "importFailed": "Tento text sa nepodarilo načítať. Skontrolujte text a nastavenia formátu textu.",
+    "stepsLabel": "Kroky importu",
+    "stepText": "Upraviť text",
+    "gutter": {
+      "background": "Sprievod",
+      "duet": "Duet",
+      "translation": "Preklad",
+      "romanization": "Romanizácia",
+      "removed": "Odstránené"
+    }
   },
   "importChooser": {
     "options": {

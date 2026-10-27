@@ -5,6 +5,7 @@ import type { SegmentationConfig } from "$/modules/segmentation/types";
 import { segmentWord } from "$/modules/segmentation/utils/segmentation";
 import { newLyricWord, type TTMLLyric } from "$/types/ttml";
 import {
+	classifyImportRows,
 	detectSections,
 	DEFAULT_IMPORT_TEXT_FORMAT as FORMAT,
 	hasSectionHeaders,
@@ -90,6 +91,60 @@ describe("unified import parsing", () => {
 		expect(bg).toMatchObject({ isBG: true, translatedLyric: "Hallo" });
 		expect(bg.words.map((word) => word.word)).toEqual(["Hel", "lo"]);
 		expect(duet).toMatchObject({ isDuet: true, translatedLyric: "Tschüss" });
+	});
+});
+
+describe("row gutter", () => {
+	const kinds = (text: string, format = FORMAT, sections = true) =>
+		classifyImportRows(text, format, sections).map((row) =>
+			row.category ? `${row.kind}:${row.category}` : row.kind,
+		);
+
+	it("gives one entry per row and agrees with the parser", () => {
+		const text = "[Chorus]\nHello\n<Ooh\n>Hey\n\n[Mystery]";
+		expect(kinds(text)).toEqual([
+			"section:chorus",
+			"lyric",
+			"background",
+			"duet",
+			"blank",
+			"section:other",
+		]);
+		expect(kinds(text, FORMAT, false)[0]).toBe("removedHeader");
+		const lines = importTextToLines(text, FORMAT, true);
+		expect(
+			lines.map((line) => (line.isBG ? "bg" : line.isDuet ? "duet" : "lyric")),
+		).toEqual(["lyric", "bg", "duet"]);
+	});
+
+	it("marks translation and romanization rows", () => {
+		expect(
+			kinds("Hello\nHallo\nHaro\nBye\nTschüss\nBai", {
+				...FORMAT,
+				mode: "lyric-trans-roman",
+			}),
+		).toEqual([
+			"lyric",
+			"translation",
+			"romanization",
+			"lyric",
+			"translation",
+			"romanization",
+		]);
+		expect(
+			kinds("Hello\nHaro", {
+				...FORMAT,
+				mode: "lyric-trans-roman",
+				swapTransAndRoman: true,
+			}),
+		).toEqual(["lyric", "romanization"]);
+		expect(
+			kinds("Hello|Hallo", {
+				...FORMAT,
+				mode: "lyric-trans",
+				lineSeparatorMode: "same-line-separator",
+			}),
+		).toEqual(["lyric"]);
 	});
 });
 
