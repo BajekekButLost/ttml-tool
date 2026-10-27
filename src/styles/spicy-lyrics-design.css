@@ -349,6 +349,20 @@
 	background-color: var(--sl-border) !important;
 }
 
+/* -------------------------------------------------------------- tooltips */
+
+/* Solid popover surface, like menus. Fill, arrow and ink come from index.css
+   through the remapped --color-panel-solid and --gray-* (so Advanced text
+   overrides still apply); the design adds its hairline, shadow and radius. */
+:root[data-design="spicy-lyrics"] .radix-themes.rt-TooltipContent {
+	border-radius: var(--radius-4);
+	box-shadow:
+		inset 0 0 0 1px var(--sl-border),
+		var(--sl-shadow-float);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
 /* --------------------------------------------------------------- dialogs */
 
 :root[data-design="spicy-lyrics"]:not([data-design-backdrop])

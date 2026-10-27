@@ -266,7 +266,7 @@ describe("buildSpicyLines", () => {
 		expect(dot?.isRtl).toBe(true);
 	});
 
-	it("ignores background endings but waits for every main line before interludes", () => {
+	it("starts interludes after each lead's group, background vocals included", () => {
 		const first = newLyricLine();
 		first.id = "first";
 		first.startTime = 0;
@@ -297,12 +297,78 @@ describe("buildSpicyLines", () => {
 			{ ...newLyricWord(), startTime: 6_000, endTime: 7_000, word: "Next" },
 		];
 
-		const dot = buildSpicyLines(
+		const lines = buildSpicyLines(
 			[first, overlappingMain, background, next],
 			false,
 			false,
-		).find((line) => line.isDotLine);
+		);
 
-		expect(dot).toMatchObject({ startTime: 3_000, endTime: 6_000 });
+		// The background runs to 7s, so its lead does too and no interlude fits
+		// before the next line; only the next group's start counts, not every
+		// earlier lead's end.
+		expect(lines.find((line) => line.isDotLine)).toBeUndefined();
+		expect(
+			lines.map((line) => [line.id, line.startTime, line.endTime]),
+		).toEqual([
+			["first", 0, 1_000],
+			["overlapping-main", 0, 7_000],
+			["background", 0, 7_000],
+			["next", 6_000, 7_000],
+		]);
+	});
+
+	it("measures interludes from this lead's end, not the latest earlier one", () => {
+		const line = (id: string, startTime: number, endTime: number) => ({
+			...newLyricLine(),
+			id,
+			startTime,
+			endTime,
+			words: [{ ...newLyricWord(), startTime, endTime, word: id }],
+		});
+		const dot = buildSpicyLines(
+			[
+				line("long", 0, 9_000),
+				line("short", 1_000, 2_000),
+				line("next", 6_000, 7_000),
+			],
+			false,
+			false,
+		).find((row) => row.isDotLine);
+
+		expect(dot).toMatchObject({ startTime: 2_000, endTime: 6_000 });
+	});
+
+	it("splits held words into whole grapheme clusters", () => {
+		const held = (word: string) => {
+			const line = newLyricLine();
+			line.startTime = 0;
+			line.endTime = 2_000;
+			line.words = [{ ...newLyricWord(), startTime: 0, endTime: 2_000, word }];
+			return buildSpicyLines([line], false, false)[0].words[0].letters;
+		};
+
+		expect(held("éa")).toEqual(["é", "a"]);
+		expect(held("ஸ்ரீ")).toEqual(["ஸ்ரீ"]);
+	});
+
+	it("drops a background vocal's parentheses and keeps zero-length syllables", () => {
+		const main = newLyricLine();
+		main.startTime = 0;
+		main.endTime = 1_000;
+		main.words = [
+			{ ...newLyricWord(), startTime: 0, endTime: 1_000, word: "Main" },
+		];
+		const background = newLyricLine();
+		background.isBG = true;
+		background.startTime = 200;
+		background.endTime = 800;
+		background.words = [
+			{ ...newLyricWord(), startTime: 200, endTime: 500, word: "(oh" },
+			{ ...newLyricWord(), startTime: 500, endTime: 500, word: "yeah)" },
+		];
+
+		const [, bg] = buildSpicyLines([main, background], false, false);
+		expect(bg.words.map((word) => word.text)).toEqual(["oh", "yeah"]);
+		expect([bg.startTime, bg.endTime]).toEqual([200, 500]);
 	});
 });

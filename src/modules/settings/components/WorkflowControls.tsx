@@ -102,7 +102,7 @@ export function BackgroundSyncControl({
 			options={[
 				{
 					value: "all",
-					label: t("ribbonBar.syncMode.bgSyncInline", "Inline"),
+					label: t("ribbonBar.syncMode.bgSyncInline", "Sync with main"),
 					description: t(
 						"ribbonBar.syncMode.bgSyncInlineDesc",
 						"Sync each background line right after its main line.",
@@ -110,10 +110,10 @@ export function BackgroundSyncControl({
 				},
 				{
 					value: "same",
-					label: t("ribbonBar.syncMode.bgSyncSeparate", "Separate pass"),
+					label: t("ribbonBar.syncMode.bgSyncSeparate", "Skip while syncing"),
 					description: t(
 						"ribbonBar.syncMode.bgSyncSeparateDesc",
-						"G and H stay on main lines. Click a background line to sync the background lines on their own.",
+						"G and H stay on main lines. Click a background line to sync them on their own.",
 					),
 				},
 			]}
