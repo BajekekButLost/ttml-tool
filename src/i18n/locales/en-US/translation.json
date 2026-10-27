@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Highlights the line that is playing in the selected mode.",
       "playbackSettingsMode": "Playback behavior for",
+      "playbackSettingsModeDesc": "Auto-scroll and tab position are set separately for Edit and Time. Pick which one to change.",
       "editMode": "Edit",
       "timeMode": "Time",
       "enabled": "Enabled",
@@ -449,8 +450,11 @@
       "playbackRate": "Playback speed",
       "autosave": {
         "enable": "Enable autosave",
+        "enableDesc": "Saves your lyrics a few seconds after each change and keeps snapshots you can restore from the File menu.",
         "interval": "Save every (minutes)",
-        "limit": "Snapshots to keep"
+        "intervalDesc": "Minimum time between snapshots. Your latest changes are still saved after every edit.",
+        "limit": "Snapshots to keep",
+        "limitDesc": "How many snapshots to keep for each song. The oldest are deleted first."
       },
       "customBackground": "Custom background",
       "customBackgroundDesc": "Choose an image to use as the background.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Appearance editor",
+        "labelDesc": "Simple covers theme, background, scale and font. Advanced sets individual colors, spacing and the panel order.",
         "basic": "Simple layout",
         "advanced": "Advanced layout",
         "none": "None",
@@ -540,6 +545,7 @@
       "glassBlur": "Glass intensity",
       "glassBlurDesc": "Adjust the background blur effect for glassmorphic elements.",
       "background": "Background",
+      "backgroundDesc": "Show an image or a gradient behind the app.",
       "useCustomGradient": "Custom gradient color",
       "useCustomGradientDesc": "Generate a gradient from a single color.",
       "syncGradientToAccent": "Sync first color with Accent",

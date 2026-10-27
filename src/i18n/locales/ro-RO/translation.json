@@ -414,6 +414,7 @@
     "common": {
       "highlightActiveLineDesc": "Evidențiază versul redat în modul selectat.",
       "playbackSettingsMode": "Comportament de redare pentru",
+      "playbackSettingsModeDesc": "Derularea automată și poziția între file se setează separat pentru Editare și Sincronizare. Alege pe care o modifici.",
       "editMode": "Editare",
       "timeMode": "Sincronizare",
       "enabled": "Activat",
@@ -449,8 +450,11 @@
       "playbackRate": "Viteză de redare",
       "autosave": {
         "enable": "Activează salvarea automată",
+        "enableDesc": "Salvează versurile la câteva secunde după fiecare modificare și păstrează versiuni pe care le poți restaura din meniul Fișier.",
         "interval": "Salvează la fiecare (minute)",
-        "limit": "Versiuni de păstrat"
+        "intervalDesc": "Timpul minim între versiuni. Ultimele modificări sunt salvate oricum după fiecare editare.",
+        "limit": "Versiuni de păstrat",
+        "limitDesc": "Câte versiuni se păstrează pentru fiecare melodie. Cele mai vechi se șterg primele."
       },
       "customBackground": "Imagine de fundal personalizată",
       "customBackgroundDesc": "Alege o imagine pentru a fi folosită ca fundal.",
@@ -510,6 +514,7 @@
     "appearance": {
       "mode": {
         "label": "Editor de aspect",
+        "labelDesc": "Simplă include tema, fundalul, scara și fontul. Avansată setează fiecare culoare, spațierea și ordinea panourilor.",
         "basic": "Aranjare simplă",
         "advanced": "Aranjare avansată",
         "none": "Niciunul",
@@ -540,6 +545,7 @@
       "glassBlur": "Intensitatea efectului de sticlă",
       "glassBlurDesc": "Reglează estomparea fundalului elementelor cu efect de sticlă.",
       "background": "Fundal",
+      "backgroundDesc": "Afișează o imagine sau un gradient în spatele aplicației.",
       "useCustomGradient": "Culoare personalizată a gradientului",
       "useCustomGradientDesc": "Generează un gradient dintr-o singură culoare.",
       "syncGradientToAccent": "Sincronizează prima culoare cu cea de accent",
