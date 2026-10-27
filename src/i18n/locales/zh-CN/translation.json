@@ -169,13 +169,6 @@
     "importFailed": "无法读取这些歌词。请检查文本和文本格式设置。",
     "stepsLabel": "导入步骤",
     "stepText": "编辑文本",
-    "gutter": {
-      "background": "背景",
-      "duet": "对唱",
-      "translation": "翻译",
-      "romanization": "罗马音",
-      "removed": "已移除"
-    },
     "processSteps": {
       "advanced": "高级",
       "removeInlineBrackets": "移除行内注释",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "把连续的多个空格合并为一个。",
       "splitWords": "按空格拆分",
       "splitWordsHint": "把每个空格标记为导入时的词边界。"
+    }
+  },
+  "lyricMarkup": {
+    "section": "分段：{label}",
+    "joinSyllables": "合并音节",
+    "toolbar": "行工具",
+    "background": "背景行",
+    "duet": "对唱行",
+    "split": "拆分或合并音节",
+    "hint": "Alt+点击字母之间可拆分，点击圆点可合并。Alt+C 修改分段。",
+    "headerText": "标题文本",
+    "category": "类别",
+    "gutter": {
+      "background": "背景",
+      "duet": "对唱",
+      "translation": "翻译",
+      "romanization": "罗马音",
+      "removed": "已移除",
+      "dropped": "不会导入",
+      "missingTranslation": "缺少翻译",
+      "missingRomanization": "缺少罗马音"
     }
   },
   "importChooser": {

@@ -169,13 +169,6 @@
     "importFailed": "Impossible de lire ces paroles. Vérifiez le texte et les réglages du format du texte.",
     "stepsLabel": "Étapes de l'importation",
     "stepText": "Modifier le texte",
-    "gutter": {
-      "background": "Chœurs",
-      "duet": "Duo",
-      "translation": "Traduction",
-      "romanization": "Romanisation",
-      "removed": "Retiré"
-    },
     "processSteps": {
       "advanced": "Avancé",
       "removeInlineBrackets": "Retirer les notes en ligne",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Remplace plusieurs espaces de suite par une seule.",
       "splitWords": "Couper aux espaces",
       "splitWordsHint": "Marque chaque espace comme limite de mot pour l'importation."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Section : {label}",
+    "joinSyllables": "Joindre les syllabes",
+    "toolbar": "Outils de ligne",
+    "background": "Ligne de chœurs",
+    "duet": "Ligne de duo",
+    "split": "Couper ou joindre une syllabe",
+    "hint": "Alt+clic entre deux lettres pour couper, clic sur un point pour joindre. Alt+C change une section.",
+    "headerText": "Texte de l'en-tête",
+    "category": "Catégorie",
+    "gutter": {
+      "background": "Chœurs",
+      "duet": "Duo",
+      "translation": "Traduction",
+      "romanization": "Romanisation",
+      "removed": "Retiré",
+      "dropped": "Non importé",
+      "missingTranslation": "Traduction manquante",
+      "missingRomanization": "Romanisation manquante"
     }
   },
   "importChooser": {

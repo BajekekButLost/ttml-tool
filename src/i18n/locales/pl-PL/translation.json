@@ -169,13 +169,6 @@
     "importFailed": "Nie udało się odczytać tego tekstu. Sprawdź tekst i ustawienia formatu tekstu.",
     "stepsLabel": "Kroki importu",
     "stepText": "Edytuj tekst",
-    "gutter": {
-      "background": "W tle",
-      "duet": "Duet",
-      "translation": "Tłumaczenie",
-      "romanization": "Latynizacja",
-      "removed": "Usunięto"
-    },
     "processSteps": {
       "advanced": "Zaawansowane",
       "removeInlineBrackets": "Usuń wtrącone notatki",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Zamienia kilka spacji z rzędu na jedną.",
       "splitWords": "Dziel na spacjach",
       "splitWordsHint": "Oznacza każdą spację jako granicę słowa przy imporcie."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sekcja: {label}",
+    "joinSyllables": "Połącz sylaby",
+    "toolbar": "Narzędzia wersu",
+    "background": "Wers w tle",
+    "duet": "Wers duetu",
+    "split": "Podziel lub połącz sylabę",
+    "hint": "Alt+kliknięcie między literami dzieli, kliknięcie kropki łączy. Alt+C zmienia sekcję.",
+    "headerText": "Tekst nagłówka",
+    "category": "Kategoria",
+    "gutter": {
+      "background": "W tle",
+      "duet": "Duet",
+      "translation": "Tłumaczenie",
+      "romanization": "Latynizacja",
+      "removed": "Usunięto",
+      "dropped": "Nie zostanie zaimportowane",
+      "missingTranslation": "Brak tłumaczenia",
+      "missingRomanization": "Brak latynizacji"
     }
   },
   "importChooser": {

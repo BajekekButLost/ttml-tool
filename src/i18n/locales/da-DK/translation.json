@@ -169,13 +169,6 @@
     "importFailed": "Kunne ikke læse sangteksten. Tjek teksten og tekstformatindstillingerne.",
     "stepsLabel": "Importtrin",
     "stepText": "Redigér tekst",
-    "gutter": {
-      "background": "Baggrund",
-      "duet": "Duet",
-      "translation": "Oversættelse",
-      "romanization": "Romanisering",
-      "removed": "Fjernet"
-    },
     "processSteps": {
       "advanced": "Avanceret",
       "removeInlineBrackets": "Fjern indlejrede noter",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Gør flere mellemrum i træk til ét.",
       "splitWords": "Opdel ved mellemrum",
       "splitWordsHint": "Markerer hvert mellemrum som en ordgrænse til importen."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sektion: {label}",
+    "joinSyllables": "Saml stavelser",
+    "toolbar": "Linjeværktøjer",
+    "background": "Baggrundslinje",
+    "duet": "Duetlinje",
+    "split": "Opdel eller saml stavelse",
+    "hint": "Alt+klik mellem bogstaver for at opdele, klik på en prik for at samle. Alt+C ændrer en sektion.",
+    "headerText": "Overskriftstekst",
+    "category": "Kategori",
+    "gutter": {
+      "background": "Baggrund",
+      "duet": "Duet",
+      "translation": "Oversættelse",
+      "romanization": "Romanisering",
+      "removed": "Fjernet",
+      "dropped": "Importeres ikke",
+      "missingTranslation": "Mangler oversættelse",
+      "missingRomanization": "Mangler romanisering"
     }
   },
   "importChooser": {

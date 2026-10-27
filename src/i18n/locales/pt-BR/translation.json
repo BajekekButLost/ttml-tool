@@ -169,13 +169,6 @@
     "importFailed": "Não foi possível ler esta letra. Confira o texto e as configurações de formato do texto.",
     "stepsLabel": "Etapas da importação",
     "stepText": "Editar texto",
-    "gutter": {
-      "background": "Apoio",
-      "duet": "Dueto",
-      "translation": "Tradução",
-      "romanization": "Romanização",
-      "removed": "Removido"
-    },
     "processSteps": {
       "advanced": "Avançado",
       "removeInlineBrackets": "Remover notas na linha",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Transforma vários espaços seguidos em um.",
       "splitWords": "Dividir nos espaços",
       "splitWordsHint": "Marca cada espaço como limite de palavra para a importação."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Seção: {label}",
+    "joinSyllables": "Juntar sílabas",
+    "toolbar": "Ferramentas de linha",
+    "background": "Linha de apoio",
+    "duet": "Linha de dueto",
+    "split": "Dividir ou juntar sílaba",
+    "hint": "Alt+clique entre letras para dividir, clique num ponto para juntar. Alt+C muda uma seção.",
+    "headerText": "Texto do cabeçalho",
+    "category": "Categoria",
+    "gutter": {
+      "background": "Apoio",
+      "duet": "Dueto",
+      "translation": "Tradução",
+      "romanization": "Romanização",
+      "removed": "Removido",
+      "dropped": "Não será importado",
+      "missingTranslation": "Falta tradução",
+      "missingRomanization": "Falta romanização"
     }
   },
   "importChooser": {

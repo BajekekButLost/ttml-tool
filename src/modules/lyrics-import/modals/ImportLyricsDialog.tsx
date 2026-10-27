@@ -18,6 +18,7 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { LyricMarkupEditor } from "$/components/LyricMarkupEditor";
 import { OptionPicker } from "$/components/OptionPicker";
 import { currentDurationAtom, loadedAudioAtom } from "$/modules/audio/states";
 import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system.ts";
@@ -50,7 +51,6 @@ import {
 } from "$/utils/apostrophe-normalization";
 import { error as logError } from "$/utils/logging.ts";
 import { ImportOptionsPanel } from "../components/ImportOptionsPanel";
-import { ImportTextEditor } from "../components/ImportTextEditor";
 import {
 	OnlineResults,
 	OnlineSearchBar,
@@ -58,7 +58,6 @@ import {
 } from "../components/OnlineSearchPanel";
 import { SectionReviewPanel } from "../components/SectionReviewPanel";
 import {
-	classifyImportRows,
 	detectSections,
 	importTextToLines,
 	mergeReviewedSections,
@@ -266,10 +265,9 @@ export const ImportLyricsDialog = () => {
 		[deferredText],
 	);
 	const willMakeSections = makeSections && detectedSections.length > 0;
-	// Not deferred: the gutter has to stay level with the text as it's typed.
-	const rows = useMemo(
-		() => classifyImportRows(text, format, makeSections),
-		[text, format, makeSections],
+	const markupFormat = useMemo(
+		() => ({ ...format, makeSections }),
+		[format, makeSections],
 	);
 	const lineCount = useMemo(() => {
 		try {
@@ -496,7 +494,16 @@ export const ImportLyricsDialog = () => {
 										{t("importLyrics.showResults", "Show search results")}
 									</Button>
 								)}
-								<ImportTextEditor value={text} rows={rows} onChange={setText} />
+								<LyricMarkupEditor
+									value={text}
+									onChange={setText}
+									format={markupFormat}
+									ariaLabel={t("importLyrics.textLabel", "Lyrics text")}
+									placeholder={t(
+										"importLyrics.textPlaceholder",
+										"Paste lyrics here, one line per row. Section headers like [Chorus] go on their own row.",
+									)}
+								/>
 							</>
 						)}
 						{pickedTrack && (

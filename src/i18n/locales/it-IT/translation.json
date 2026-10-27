@@ -169,13 +169,6 @@
     "importFailed": "Impossibile leggere questo testo. Controlla il testo e le impostazioni del formato.",
     "stepsLabel": "Passaggi dell'importazione",
     "stepText": "Modifica testo",
-    "gutter": {
-      "background": "Coro",
-      "duet": "Duetto",
-      "translation": "Traduzione",
-      "romanization": "Romanizzazione",
-      "removed": "Rimosso"
-    },
     "processSteps": {
       "advanced": "Avanzate",
       "removeInlineBrackets": "Rimuovi note in linea",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Trasforma più spazi di fila in uno.",
       "splitWords": "Dividi agli spazi",
       "splitWordsHint": "Segna ogni spazio come confine di parola per l'importazione."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sezione: {label}",
+    "joinSyllables": "Unisci sillabe",
+    "toolbar": "Strumenti riga",
+    "background": "Verso dei cori",
+    "duet": "Verso del duetto",
+    "split": "Dividi o unisci sillaba",
+    "hint": "Alt+clic tra due lettere per dividere, clic su un punto per unire. Alt+C cambia una sezione.",
+    "headerText": "Testo dell'intestazione",
+    "category": "Categoria",
+    "gutter": {
+      "background": "Coro",
+      "duet": "Duetto",
+      "translation": "Traduzione",
+      "romanization": "Romanizzazione",
+      "removed": "Rimosso",
+      "dropped": "Non importato",
+      "missingTranslation": "Traduzione mancante",
+      "missingRomanization": "Romanizzazione mancante"
     }
   },
   "importChooser": {

@@ -169,13 +169,6 @@
     "importFailed": "Kan deze songtekst niet lezen. Controleer de tekst en de instellingen voor tekstopmaak.",
     "stepsLabel": "Importstappen",
     "stepText": "Tekst bewerken",
-    "gutter": {
-      "background": "Achtergrond",
-      "duet": "Duet",
-      "translation": "Vertaling",
-      "romanization": "Romanisering",
-      "removed": "Verwijderd"
-    },
     "processSteps": {
       "advanced": "Geavanceerd",
       "removeInlineBrackets": "Notities in de regel verwijderen",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Maakt van meerdere spaties achter elkaar één.",
       "splitWords": "Splitsen bij spaties",
       "splitWordsHint": "Markeert elke spatie als woordgrens voor de import."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sectie: {label}",
+    "joinSyllables": "Lettergrepen samenvoegen",
+    "toolbar": "Regelhulpmiddelen",
+    "background": "Achtergrondregel",
+    "duet": "Duetregel",
+    "split": "Lettergreep splitsen of samenvoegen",
+    "hint": "Alt+klik tussen letters om te splitsen, klik op een punt om samen te voegen. Alt+C wijzigt een sectie.",
+    "headerText": "Koptekst",
+    "category": "Categorie",
+    "gutter": {
+      "background": "Achtergrond",
+      "duet": "Duet",
+      "translation": "Vertaling",
+      "romanization": "Romanisering",
+      "removed": "Verwijderd",
+      "dropped": "Niet geïmporteerd",
+      "missingTranslation": "Vertaling ontbreekt",
+      "missingRomanization": "Romanisering ontbreekt"
     }
   },
   "importChooser": {

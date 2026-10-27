@@ -169,13 +169,6 @@
     "importFailed": "Couldn't read these lyrics. Check the text and the text format settings.",
     "stepsLabel": "Import steps",
     "stepText": "Edit text",
-    "gutter": {
-      "background": "Background",
-      "duet": "Duet",
-      "translation": "Translation",
-      "romanization": "Romanization",
-      "removed": "Removed"
-    },
     "processSteps": {
       "advanced": "Advanced",
       "removeInlineBrackets": "Remove inline notes",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Turns runs of spaces into one.",
       "splitWords": "Split at spaces",
       "splitWordsHint": "Marks each space as a word boundary for the import."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Section: {label}",
+    "joinSyllables": "Join syllables",
+    "toolbar": "Line tools",
+    "background": "Background line",
+    "duet": "Duet line",
+    "split": "Split or join syllable",
+    "hint": "Alt+click between letters to split, click a dot to join. Alt+C changes a section.",
+    "headerText": "Header text",
+    "category": "Category",
+    "gutter": {
+      "background": "Background",
+      "duet": "Duet",
+      "translation": "Translation",
+      "romanization": "Romanization",
+      "removed": "Removed",
+      "dropped": "Not imported",
+      "missingTranslation": "Missing translation",
+      "missingRomanization": "Missing romanization"
     }
   },
   "importChooser": {

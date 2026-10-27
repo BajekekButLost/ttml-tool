@@ -169,13 +169,6 @@
     "importFailed": "Не удалось прочитать этот текст. Проверьте текст и настройки формата текста.",
     "stepsLabel": "Шаги импорта",
     "stepText": "Правка текста",
-    "gutter": {
-      "background": "Бэк-вокал",
-      "duet": "Дуэт",
-      "translation": "Перевод",
-      "romanization": "Транслит",
-      "removed": "Удалено"
-    },
     "processSteps": {
       "advanced": "Дополнительно",
       "removeInlineBrackets": "Убирать заметки в строке",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Заменяет несколько пробелов подряд одним.",
       "splitWords": "Делить по пробелам",
       "splitWordsHint": "Отмечает каждый пробел как границу слова для импорта."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Раздел: {label}",
+    "joinSyllables": "Соединить слоги",
+    "toolbar": "Инструменты строки",
+    "background": "Строка бэк-вокала",
+    "duet": "Строка дуэта",
+    "split": "Разделить или соединить слог",
+    "hint": "Alt+щелчок между буквами разделяет, щелчок по точке соединяет. Alt+C меняет раздел.",
+    "headerText": "Текст заголовка",
+    "category": "Категория",
+    "gutter": {
+      "background": "Бэк-вокал",
+      "duet": "Дуэт",
+      "translation": "Перевод",
+      "romanization": "Транслит",
+      "removed": "Удалено",
+      "dropped": "Не импортируется",
+      "missingTranslation": "Нет перевода",
+      "missingRomanization": "Нет транслита"
     }
   },
   "importChooser": {

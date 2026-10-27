@@ -169,13 +169,6 @@
     "importFailed": "Tento text se nepodařilo načíst. Zkontrolujte text a nastavení formátu textu.",
     "stepsLabel": "Kroky importu",
     "stepText": "Upravit text",
-    "gutter": {
-      "background": "Doprovod",
-      "duet": "Duet",
-      "translation": "Překlad",
-      "romanization": "Romanizace",
-      "removed": "Odebráno"
-    },
     "processSteps": {
       "advanced": "Pokročilé",
       "removeInlineBrackets": "Odebrat vložené poznámky",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Více mezer za sebou nahradí jednou.",
       "splitWords": "Dělit u mezer",
       "splitWordsHint": "Každou mezeru označí jako hranici slova pro import."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sekce: {label}",
+    "joinSyllables": "Spojit slabiky",
+    "toolbar": "Nástroje řádku",
+    "background": "Doprovodný řádek",
+    "duet": "Duetový řádek",
+    "split": "Rozdělit nebo spojit slabiku",
+    "hint": "Alt+kliknutím mezi písmena rozdělíte, kliknutím na tečku spojíte. Alt+C změní sekci.",
+    "headerText": "Text záhlaví",
+    "category": "Kategorie",
+    "gutter": {
+      "background": "Doprovod",
+      "duet": "Duet",
+      "translation": "Překlad",
+      "romanization": "Romanizace",
+      "removed": "Odebráno",
+      "dropped": "Neimportuje se",
+      "missingTranslation": "Chybí překlad",
+      "missingRomanization": "Chybí romanizace"
     }
   },
   "importChooser": {

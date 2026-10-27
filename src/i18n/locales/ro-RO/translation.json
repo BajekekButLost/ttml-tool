@@ -169,13 +169,6 @@
     "importFailed": "Nu am putut citi aceste versuri. Verifică textul și setările formatului textului.",
     "stepsLabel": "Pașii importului",
     "stepText": "Editează textul",
-    "gutter": {
-      "background": "Fundal",
-      "duet": "Duet",
-      "translation": "Traducere",
-      "romanization": "Romanizare",
-      "removed": "Eliminat"
-    },
     "processSteps": {
       "advanced": "Avansat",
       "removeInlineBrackets": "Elimină notele din rând",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Transformă mai multe spații la rând într-unul.",
       "splitWords": "Desparte la spații",
       "splitWordsHint": "Marchează fiecare spațiu ca limită de cuvânt pentru import."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Secțiune: {label}",
+    "joinSyllables": "Unește silabele",
+    "toolbar": "Instrumente pentru rând",
+    "background": "Vers de fundal",
+    "duet": "Vers de duet",
+    "split": "Desparte sau unește silaba",
+    "hint": "Alt+clic între litere pentru a despărți, clic pe un punct pentru a uni. Alt+C schimbă o secțiune.",
+    "headerText": "Textul antetului",
+    "category": "Categorie",
+    "gutter": {
+      "background": "Fundal",
+      "duet": "Duet",
+      "translation": "Traducere",
+      "romanization": "Romanizare",
+      "removed": "Eliminat",
+      "dropped": "Nu se importă",
+      "missingTranslation": "Lipsește traducerea",
+      "missingRomanization": "Lipsește romanizarea"
     }
   },
   "importChooser": {

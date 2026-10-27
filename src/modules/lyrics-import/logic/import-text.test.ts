@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { parseMarkup } from "$/components/LyricMarkupEditor/markup";
 import { applyReviewedSections } from "$/modules/lyric-editor/utils/section-system";
 import { prepareTextImport } from "$/modules/project/logic/text-to-lines";
 import type { SegmentationConfig } from "$/modules/segmentation/types";
@@ -9,7 +10,6 @@ import {
 	type LyricPrepOptions,
 } from "$/utils/lyric-prep";
 import {
-	classifyImportRows,
 	detectSections,
 	DEFAULT_IMPORT_TEXT_FORMAT as FORMAT,
 	hasSectionHeaders,
@@ -98,9 +98,9 @@ describe("unified import parsing", () => {
 	});
 });
 
-describe("row gutter", () => {
+describe("markup editor agrees with the import format", () => {
 	const kinds = (text: string, format = FORMAT, sections = true) =>
-		classifyImportRows(text, format, sections).map((row) =>
+		parseMarkup(text, { ...format, makeSections: sections }).map((row) =>
 			row.category ? `${row.kind}:${row.category}` : row.kind,
 		);
 

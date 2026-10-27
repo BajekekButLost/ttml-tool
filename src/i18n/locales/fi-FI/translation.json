@@ -169,13 +169,6 @@
     "importFailed": "Sanoituksia ei voitu lukea. Tarkista teksti ja tekstin muodon asetukset.",
     "stepsLabel": "Tuonnin vaiheet",
     "stepText": "Muokkaa tekstiä",
-    "gutter": {
-      "background": "Tausta",
-      "duet": "Duetto",
-      "translation": "Käännös",
-      "romanization": "Latinisointi",
-      "removed": "Poistettu"
-    },
     "processSteps": {
       "advanced": "Lisäasetukset",
       "removeInlineBrackets": "Poista rivin sisäiset huomautukset",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Muuttaa peräkkäiset välilyönnit yhdeksi.",
       "splitWords": "Jaa välilyönneistä",
       "splitWordsHint": "Merkitsee jokaisen välilyönnin sanarajaksi tuontia varten."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Osio: {label}",
+    "joinSyllables": "Yhdistä tavut",
+    "toolbar": "Rivityökalut",
+    "background": "Taustarivi",
+    "duet": "Duettorivi",
+    "split": "Jaa tai yhdistä tavu",
+    "hint": "Alt+napsautus kirjainten väliin jakaa, pisteen napsautus yhdistää. Alt+C vaihtaa osion.",
+    "headerText": "Otsikon teksti",
+    "category": "Luokka",
+    "gutter": {
+      "background": "Tausta",
+      "duet": "Duetto",
+      "translation": "Käännös",
+      "romanization": "Latinisointi",
+      "removed": "Poistettu",
+      "dropped": "Ei tuoda",
+      "missingTranslation": "Käännös puuttuu",
+      "missingRomanization": "Latinisointi puuttuu"
     }
   },
   "importChooser": {

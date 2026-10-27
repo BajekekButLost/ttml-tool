@@ -169,13 +169,6 @@
     "importFailed": "Lirik ini tidak dapat dibaca. Periksa teks dan pengaturan format teks.",
     "stepsLabel": "Langkah impor",
     "stepText": "Edit teks",
-    "gutter": {
-      "background": "Latar",
-      "duet": "Duet",
-      "translation": "Terjemahan",
-      "romanization": "Romanisasi",
-      "removed": "Dihapus"
-    },
     "processSteps": {
       "advanced": "Lanjutan",
       "removeInlineBrackets": "Hapus catatan dalam baris",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Mengubah beberapa spasi berturut-turut menjadi satu.",
       "splitWords": "Pisahkan di spasi",
       "splitWordsHint": "Menandai setiap spasi sebagai batas kata untuk impor."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Bagian: {label}",
+    "joinSyllables": "Gabungkan suku kata",
+    "toolbar": "Alat baris",
+    "background": "Baris latar",
+    "duet": "Baris duet",
+    "split": "Pisahkan atau gabungkan suku kata",
+    "hint": "Alt+klik di antara huruf untuk memisahkan, klik titik untuk menggabungkan. Alt+C mengubah bagian.",
+    "headerText": "Teks judul",
+    "category": "Kategori",
+    "gutter": {
+      "background": "Latar",
+      "duet": "Duet",
+      "translation": "Terjemahan",
+      "romanization": "Romanisasi",
+      "removed": "Dihapus",
+      "dropped": "Tidak diimpor",
+      "missingTranslation": "Terjemahan kosong",
+      "missingRomanization": "Romanisasi kosong"
     }
   },
   "importChooser": {

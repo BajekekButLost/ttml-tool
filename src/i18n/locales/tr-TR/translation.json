@@ -169,13 +169,6 @@
     "importFailed": "Bu şarkı sözleri okunamadı. Metni ve metin biçimi ayarlarını kontrol edin.",
     "stepsLabel": "İçe aktarma adımları",
     "stepText": "Metni düzenle",
-    "gutter": {
-      "background": "Arka vokal",
-      "duet": "Düet",
-      "translation": "Çeviri",
-      "romanization": "Romanizasyon",
-      "removed": "Kaldırıldı"
-    },
     "processSteps": {
       "advanced": "Gelişmiş",
       "removeInlineBrackets": "Satır içi notları kaldır",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Art arda gelen boşlukları teke indirir.",
       "splitWords": "Boşluklardan böl",
       "splitWordsHint": "Her boşluğu içe aktarma için kelime sınırı olarak işaretler."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Bölüm: {label}",
+    "joinSyllables": "Heceleri birleştir",
+    "toolbar": "Satır araçları",
+    "background": "Arka vokal satırı",
+    "duet": "Düet satırı",
+    "split": "Heceyi böl veya birleştir",
+    "hint": "Bölmek için harflerin arasına Alt+tıklayın, birleştirmek için noktaya tıklayın. Alt+C bölümü değiştirir.",
+    "headerText": "Başlık metni",
+    "category": "Kategori",
+    "gutter": {
+      "background": "Arka vokal",
+      "duet": "Düet",
+      "translation": "Çeviri",
+      "romanization": "Romanizasyon",
+      "removed": "Kaldırıldı",
+      "dropped": "İçe aktarılmaz",
+      "missingTranslation": "Çeviri eksik",
+      "missingRomanization": "Romanizasyon eksik"
     }
   },
   "importChooser": {

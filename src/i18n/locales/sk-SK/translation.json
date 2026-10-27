@@ -169,13 +169,6 @@
     "importFailed": "Tento text sa nepodarilo načítať. Skontrolujte text a nastavenia formátu textu.",
     "stepsLabel": "Kroky importu",
     "stepText": "Upraviť text",
-    "gutter": {
-      "background": "Sprievod",
-      "duet": "Duet",
-      "translation": "Preklad",
-      "romanization": "Romanizácia",
-      "removed": "Odstránené"
-    },
     "processSteps": {
       "advanced": "Rozšírené",
       "removeInlineBrackets": "Odstrániť vložené poznámky",
@@ -196,6 +189,27 @@
       "collapseSpacesHint": "Viac medzier za sebou nahradí jednou.",
       "splitWords": "Deliť pri medzerách",
       "splitWordsHint": "Každú medzeru označí ako hranicu slova pre import."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sekcia: {label}",
+    "joinSyllables": "Spojiť slabiky",
+    "toolbar": "Nástroje riadka",
+    "background": "Sprievodný riadok",
+    "duet": "Duetový riadok",
+    "split": "Rozdeliť alebo spojiť slabiku",
+    "hint": "Alt+kliknutím medzi písmená rozdelíte, kliknutím na bodku spojíte. Alt+C zmení sekciu.",
+    "headerText": "Text hlavičky",
+    "category": "Kategória",
+    "gutter": {
+      "background": "Sprievod",
+      "duet": "Duet",
+      "translation": "Preklad",
+      "romanization": "Romanizácia",
+      "removed": "Odstránené",
+      "dropped": "Neimportuje sa",
+      "missingTranslation": "Chýba preklad",
+      "missingRomanization": "Chýba romanizácia"
     }
   },
   "importChooser": {
