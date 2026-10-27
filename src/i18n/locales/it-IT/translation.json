@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "All’importazione, divide il testo in parole, sistema punteggiatura e spazi e trasforma le voci tra parentesi in versi dei cori.",
-    "noLyricsLabel": "Nessun testo disponibile per questo brano.",
-    "editingRawText": "Modifica del testo grezzo",
-    "backToPreview": "Torna all'anteprima",
-    "manualEdit": "Modifica manuale",
-    "source": "Fonte: "
+    "noLyricsLabel": "Nessun testo disponibile per questo brano."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# verso non è ancora sincronizzato} many {# versi non sono ancora sincronizzati} other {# versi non sono ancora sincronizzati}}",
@@ -109,8 +104,8 @@
       },
       "lyrics": {
         "title": "Importa il testo",
-        "description": "Scegli una fonte per il testo qui sotto. Controlla il risultato nella finestra di importazione e conferma.",
-        "waiting": "Scegli una fonte qui sotto e completa la sua finestra di importazione."
+        "description": "Scegli una fonte per il testo qui sotto. Si apre la schermata di importazione, dove in alto passi tra Incolla, LRCLIB e Genius, sistemi il testo e lo importi.",
+        "waiting": "Scegli una fonte qui sotto e importa il testo dalla schermata di importazione."
       },
       "review": {
         "title": "Controlla il testo e i tipi di verso",
@@ -140,17 +135,92 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Importa testo",
-    "description": "Scegli da dove vuoi importare i tuoi testi.",
+    "description": "Incolla il testo o cercalo online, sistemalo e importalo.",
+    "sourceLabel": "Origine del testo",
+    "paste": "Incolla",
+    "textLabel": "Testo del brano",
+    "textPlaceholder": "Incolla qui il testo, un verso per riga. Le intestazioni di sezione come [Chorus] vanno su una riga a parte.",
+    "backToText": "Torna al testo",
+    "showResults": "Mostra risultati della ricerca",
+    "usingTrack": "Dati da {title} di {artist}",
+    "dropTrack": "Non usare questi dati",
+    "prepareTitle": "Pulizia",
+    "processHint": "Divide le parole, sistema punteggiatura e spazi e sposta le voci tra parentesi nei versi dei cori.",
+    "splitSyllables": "Dividi in sillabe",
+    "splitHint": "Segna le sillabe con il separatore di parole, secondo le impostazioni di segmentazione e le divisioni apprese. Correggi i segni nel testo prima di importare.",
+    "splitDone": "Sillabe segnate. Controllale prima di importare.",
+    "splitNothing": "Niente da dividere.",
+    "restoreOriginal": "Ripristina testo originale",
+    "sectionsTitle": "Intestazioni di sezione",
+    "sectionsFound": "{count, plural, one {# intestazione trovata} many {# intestazioni trovate} other {# intestazioni trovate}}",
+    "makeSections": "Crea sezioni",
+    "makeSectionsHint": "Ogni intestazione apre una sezione. Attiva Sezioni Genius.",
+    "removeHeaders": "Rimuovi",
+    "removeHeadersHint": "Elimina le righe di intestazione dal testo.",
+    "textFormat": "Formato del testo",
+    "reviewSections": "Controlla sezioni",
+    "reviewHint": "Correggi le categorie indovinate male. Colori, cantanti e note si impostano dopo dal menu della sezione.",
+    "sectionLabel": "Nome della sezione",
+    "sectionCategory": "Categoria della sezione",
+    "lowConfidence": "Categoria indovinata. Controllala.",
+    "importSuccess": "{count, plural, one {# verso importato.} many {# versi importati.} other {# versi importati.}}",
+    "importFailed": "Impossibile leggere questo testo. Controlla il testo e le impostazioni del formato.",
+    "stepsLabel": "Passaggi dell'importazione",
+    "stepText": "Modifica testo",
+    "processSteps": {
+      "advanced": "Avanzate",
+      "removeInlineBrackets": "Rimuovi note in linea",
+      "removeInlineBracketsHint": "Elimina le [note] a metà riga. Le righe di intestazione restano.",
+      "backgroundVocals": "Parentesi nei cori",
+      "backgroundVocalsHint": "Sposta le (voci) su un proprio verso dei cori.",
+      "capitalizeBackground": "Maiuscola nei cori",
+      "capitalizeBackgroundHint": "Inizia ogni verso dei cori con la maiuscola.",
+      "emDashes": "Lineette",
+      "emDashesHint": "Trasforma i trattini doppi e isolati in lineette.",
+      "splitHyphens": "Dividi le parole con trattino",
+      "splitHyphensHint": "Divide parole come mm-hmm dopo il trattino.",
+      "splitCjk": "Dividi i caratteri CJK",
+      "splitCjkHint": "Divide il testo cinese, giapponese e coreano in caratteri e ai cambi di scrittura.",
+      "punctuationSpacing": "Sistema la punteggiatura",
+      "punctuationSpacingHint": "Uno spazio dopo le virgole, nessuno prima della punteggiatura e le virgolette restano sulla loro parola.",
+      "collapseSpaces": "Unisci gli spazi",
+      "collapseSpacesHint": "Trasforma più spazi di fila in uno.",
+      "splitWords": "Dividi agli spazi",
+      "splitWordsHint": "Segna ogni spazio come confine di parola per l'importazione."
+    }
+  },
+  "lyricMarkup": {
+    "section": "Sezione: {label}",
+    "joinSyllables": "Unisci sillabe",
+    "toolbar": "Strumenti riga",
+    "background": "Verso dei cori",
+    "duet": "Verso del duetto",
+    "split": "Dividi o unisci sillaba",
+    "hint": "Alt+clic tra due lettere per dividere, clic su un punto per unire. Alt+C cambia una sezione.",
+    "headerText": "Testo dell'intestazione",
+    "category": "Categoria",
+    "gutter": {
+      "background": "Coro",
+      "duet": "Duetto",
+      "translation": "Traduzione",
+      "romanization": "Romanizzazione",
+      "removed": "Rimosso",
+      "dropped": "Non importato",
+      "missingTranslation": "Traduzione mancante",
+      "missingRomanization": "Romanizzazione mancante"
+    }
+  },
+  "importChooser": {
     "options": {
       "plainText": {
-        "title": "Testo semplice",
+        "title": "Incolla",
         "description": "Incolla i testi e scegli come interpretare i versi, le traduzioni, la romanizzazione e le suddivisioni delle parole."
       },
       "lrclib": {
         "title": "LRCLIB",
-        "description": "Cerca in LRCLIB testi sincronizzati o semplici per brano e artista."
+        "description": "Cerca in LRCLIB per brano e artista e porta il testo come testo semplice."
       },
       "genius": {
         "title": "Genius",
@@ -206,8 +276,7 @@
       "snapToPlayhead": "Allinea al cursore di riproduzione",
       "noPreviousFound": "Nessuna sezione precedente corrispondente con tempi trovata.",
       "noMatchingLines": "Nessuna riga di questa sezione corrisponde a quella precedente, quindi non è stato copiato nulla.",
-      "copyPrevious": "Copia tempi precedenti",
-      "headersRestored": "Intestazioni delle sezioni ripristinate."
+      "copyPrevious": "Copia tempi precedenti"
     }
   },
   "common": {
@@ -826,10 +895,7 @@
       "ttmlChecklist": "Lista di TTML da creare",
       "tool": "Strumenti",
       "importLyric": {
-        "import": "Importa testo",
-        "fromPlainText": "Importa da testo semplice…",
-        "fromLRCLIB": "Importa da LRCLIB...",
-        "fromGenius": "Importa da Genius…"
+        "import": "Importa testo..."
       },
       "exportLyric": {
         "export": "Esporta testo",
@@ -1072,7 +1138,6 @@
       "searchError": "Ricerca non riuscita: {error}",
       "fetchError": "Impossibile recuperare il testo: {error}",
       "noLyricsError": "Nessun testo da importare.",
-      "importSuccess": "{count, plural, one {# verso importato da Genius.} many {# versi importati da Genius.} other {# versi importati da Genius.}}",
       "howToGetKey": "Come ottenere un token di accesso Genius"
     },
     "openLink": "Apri link",
@@ -1100,7 +1165,6 @@
     "placeholder": "Titolo del brano e artista…",
     "notFound": "Nessun risultato trovato. Prova con parole chiave diverse",
     "noResult": "Inserisci un brano o un artista da cercare",
-    "title": "Importa testo da LRCLIB",
     "matchesAudio": "Corrisponde al tuo audio"
   },
   "lyricEditor": {
@@ -1225,13 +1289,8 @@
     "setupTitle": "Token di accesso Genius",
     "setupDesc": "Per importare da Genius serve un token di accesso (Client Access Token). Puoi crearlo nel portale per sviluppatori di Genius.",
     "keyPlaceholder": "Incolla il token di accesso Genius…",
-    "previewTitle": "Anteprima del testo da Genius",
-    "back": "Indietro",
-    "previewSubtitle": "Puoi modificare il testo qui sotto prima dell'importazione.",
     "linesCount": "{count, plural, one {# verso} many {# versi} other {# versi}}",
     "importButton": "Importa testo",
-    "importTitle": "Importa testo da Genius",
-    "searchPlaceholder": "Artista – titolo del brano…",
     "notFound": "Nessun risultato trovato. Prova con parole chiave diverse.",
     "noResult": "Inserisci il titolo di un brano o un artista per iniziare.",
     "howToGetKey": "Come ottenere un token di accesso Genius",
@@ -1240,8 +1299,6 @@
   "textImportDialog": {
     "processLyrics": "Elabora testo",
     "processedSuccess": "Testo pronto per la sincronizzazione per sillabe.",
-    "title": "Importa testo semplice",
-    "actionButton": "Importa",
     "contentMode": {
       "caption": "Contenuto testo",
       "lyric": "Solo testo",
@@ -1259,20 +1316,11 @@
     "wordSeparator": "Separatore di parole",
     "enableSpecialPrefix": "Usa prefissi dei versi",
     "bgLyricPrefix": "Prefisso dei versi dei cori",
-    "duetLyricPrefix": "Prefisso dei versi del duetto",
-    "description": "Importa il testo da testo semplice o da altri formati."
+    "duetLyricPrefix": "Prefisso dei versi del duetto"
   },
   "sectionImportReview": {
     "title": "Esamina le sezioni rilevate",
-    "description": "Controlla le categorie e i metadati normalizzati prima di sostituire i testi.",
-    "sourceLyrics": "Testo di origine",
-    "structure": "Struttura",
-    "sectionCount": "{count, plural, one {# sezione} many {# sezioni} other {# sezioni}}",
-    "vocalist": "Cantante/ruolo",
-    "color": "Colore della sezione",
-    "notes": "Note",
-    "lineCount": "{count, plural, one {# verso} many {# versi} other {# versi}}",
-    "import": "Importa testi revisionati"
+    "lineCount": "{count, plural, one {# verso} many {# versi} other {# versi}}"
   },
   "globalDragOverlay": {
     "title": "Rilascia per caricare"
