@@ -133,7 +133,14 @@ export function useSpicyVirtualList(
 				if (!line || line.isDotLine) return gap;
 				return (line.isBackground ? ESTIMATE_BACKGROUND : ESTIMATE_LINE) + gap;
 			},
-			scrollToFn: elementScroll,
+			// Its corrections snap; the viewport's CSS smooth scrolling would
+			// ease each one into a visible drift.
+			scrollToFn: (offset, scrollOptions, instance) =>
+				elementScroll(
+					offset,
+					{ ...scrollOptions, behavior: "instant" },
+					instance,
+				),
 			observeElementRect: (instance, cb) =>
 				observeElementRect(instance, (rect) => {
 					// The list starts below the viewport's top padding, which
