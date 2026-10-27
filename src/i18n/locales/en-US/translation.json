@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "On import, splits text into words, cleans punctuation and spacing, and turns parenthesized vocals into background lines.",
-    "noLyricsLabel": "No lyrics available for this track.",
-    "editingRawText": "Editing raw text",
-    "backToPreview": "Back to Preview",
-    "manualEdit": "Manual Edit",
-    "source": "Source: "
+    "noLyricsLabel": "No lyrics available for this track."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# line has no timing yet} other {# lines have no timing yet}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Import lyrics",
-    "description": "Choose where you want to import your lyrics from.",
+    "description": "Paste lyrics or find them online, tidy them up, then import.",
+    "sourceLabel": "Lyrics source",
+    "paste": "Paste",
+    "textLabel": "Lyrics text",
+    "textPlaceholder": "Paste lyrics here, one line per row. Section headers like [Chorus] go on their own row.",
+    "backToText": "Back to text",
+    "showResults": "Show search results",
+    "usingTrack": "Details from {title} by {artist}",
+    "dropTrack": "Don't use these details",
+    "prepareTitle": "Clean up",
+    "processHint": "Splits words, tidies punctuation and spacing, and moves parenthesized vocals to background lines.",
+    "splitSyllables": "Split syllables",
+    "splitHint": "Marks syllables with the word separator, using your segmentation settings and learned splits. Fix any marks in the text before importing.",
+    "splitDone": "Syllables marked. Check them before importing.",
+    "splitNothing": "Nothing to split.",
+    "restoreOriginal": "Restore original text",
+    "sectionsTitle": "Section headers",
+    "sectionsFound": "{count, plural, one {# header found} other {# headers found}}",
+    "makeSections": "Make sections",
+    "makeSectionsHint": "Each header starts a section. Turns on Genius sections.",
+    "removeHeaders": "Remove",
+    "removeHeadersHint": "Drops the header rows from the lyrics.",
+    "textFormat": "Text format",
+    "reviewSections": "Review sections",
+    "reviewHint": "Fix any category that was guessed wrong. Colors, vocalists and notes can be set later from the section menu.",
+    "sectionLabel": "Section label",
+    "sectionCategory": "Section category",
+    "lowConfidence": "Category guessed. Check it.",
+    "importSuccess": "{count, plural, one {Imported # line.} other {Imported # lines.}}",
+    "importFailed": "Couldn't read these lyrics. Check the text and the text format settings."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Plain text",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Snap to playhead",
       "noPreviousFound": "No earlier matching section with timing found.",
       "noMatchingLines": "No lines in this section match the earlier one, so nothing was copied.",
-      "copyPrevious": "Copy previous timing",
-      "headersRestored": "Section headers restored."
+      "copyPrevious": "Copy previous timing"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "TTML checklist",
       "tool": "Tools",
       "importLyric": {
-        "import": "Import lyrics",
-        "fromPlainText": "Import from plain text…",
-        "fromLRCLIB": "Import from LRCLIB…",
-        "fromGenius": "Import from Genius…"
+        "import": "Import lyrics..."
       },
       "exportLyric": {
         "export": "Export lyrics",
@@ -1060,7 +1082,6 @@
       "searchError": "Search failed: {error}",
       "fetchError": "Could not fetch lyrics: {error}",
       "noLyricsError": "No lyrics to import.",
-      "importSuccess": "{count, plural, one {Imported # line from Genius.} other {Imported # lines from Genius.}}",
       "howToGetKey": "How to get a Genius access token"
     },
     "openLink": "Open link",
@@ -1088,7 +1109,6 @@
     "placeholder": "Song title and artist…",
     "notFound": "No results. Try different keywords.",
     "noResult": "Type a song or artist to search",
-    "title": "Import lyrics from LRCLIB",
     "matchesAudio": "Matches your audio"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Genius access token",
     "setupDesc": "To import from Genius you need a Genius access token (Genius calls it the Client Access Token). You can create one in the Genius developer portal.",
     "keyPlaceholder": "Paste your Genius access token…",
-    "previewTitle": "Genius lyrics preview",
-    "back": "Back",
-    "previewSubtitle": "You can edit the lyrics below before importing.",
     "linesCount": "{count, plural, one {# line} other {# lines}}",
     "importButton": "Import lyrics",
-    "importTitle": "Import lyrics from Genius",
-    "searchPlaceholder": "Artist – song title…",
     "notFound": "No results found. Try different keywords.",
     "noResult": "Enter a song name or artist to start.",
     "howToGetKey": "How to get a Genius access token",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Process lyrics",
     "processedSuccess": "Lyrics prepared for syllable syncing.",
-    "title": "Import lyrics from plain text",
-    "actionButton": "Import",
     "contentMode": {
       "caption": "Text content",
       "lyric": "Lyrics only",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Word separator",
     "enableSpecialPrefix": "Use line prefixes",
     "bgLyricPrefix": "Background line prefix",
-    "duetLyricPrefix": "Duet line prefix",
-    "description": "Import lyrics from plain text or other formats."
+    "duetLyricPrefix": "Duet line prefix"
   },
   "sectionImportReview": {
     "title": "Review detected sections",
-    "description": "Check normalized categories and metadata before replacing the lyrics.",
-    "sourceLyrics": "Source lyrics",
-    "structure": "Structure",
-    "sectionCount": "{count, plural, one {# section} other {# sections}}",
-    "vocalist": "Vocalist / role",
-    "color": "Section color",
-    "notes": "Notes",
-    "lineCount": "{count, plural, one {# lyric line} other {# lyric lines}}",
-    "import": "Import reviewed lyrics"
+    "lineCount": "{count, plural, one {# lyric line} other {# lyric lines}}"
   },
   "globalDragOverlay": {
     "title": "Release to load"

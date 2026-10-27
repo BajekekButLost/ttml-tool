@@ -38,10 +38,7 @@ import {
 	geniusHeaderDetectionDialogOpenAtom,
 	geniusHeaderDetectionDialogShownAtom,
 } from "$/modules/settings/states/index.ts";
-import {
-	importLyricsChooserDialogAtom,
-	projectsDialogAtom,
-} from "$/states/dialogs";
+import { importLyricsDialogAtom, projectsDialogAtom } from "$/states/dialogs";
 import { lyricLinesAtom, ToolMode, toolModeAtom } from "$/states/main.ts";
 import {
 	hasGeniusHeaderAtom,
@@ -74,7 +71,7 @@ export const LyricLinesView: FC = forwardRef<HTMLDivElement>((_props, ref) => {
 	const setGuideWelcome = useSetAtom(guideWelcomeOpenAtom);
 	const setGuidePanel = useSetAtom(guidePanelOpenAtom);
 	const setGuideStep = useSetAtom(guideStepAtom);
-	const setImportChooser = useSetAtom(importLyricsChooserDialogAtom);
+	const setImportLyrics = useSetAtom(importLyricsDialogAtom);
 	const setProjectsDialog = useSetAtom(projectsDialogAtom);
 	const folderProjectsEnabled = useAtomValue(folderProjectsEnabledAtom);
 	const { onOpenFile } = useTopMenuActions();
@@ -159,7 +156,7 @@ export const LyricLinesView: FC = forwardRef<HTMLDivElement>((_props, ref) => {
 			>
 				{t("beginnerGuide.empty.start", "Start guide")}
 			</Button>
-			<Button variant="soft" onClick={() => setImportChooser(true)}>
+			<Button variant="soft" onClick={() => setImportLyrics(true)}>
 				{t("beginnerGuide.empty.import", "Import lyrics")}
 			</Button>
 			<Button variant="outline" onClick={onOpenFile}>

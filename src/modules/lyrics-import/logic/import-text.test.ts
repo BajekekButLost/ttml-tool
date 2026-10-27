@@ -1,0 +1,207 @@
+import { describe, expect, it } from "vitest";
+import { prepareTextImport } from "$/modules/project/logic/text-to-lines";
+import type { SegmentationConfig } from "$/modules/segmentation/types";
+import { segmentWord } from "$/modules/segmentation/utils/segmentation";
+import { newLyricWord } from "$/types/ttml";
+import {
+	detectSections,
+	DEFAULT_IMPORT_TEXT_FORMAT as FORMAT,
+	hasSectionHeaders,
+	type ImportTextFormat,
+	importTextToLines,
+	mergeReviewedSections,
+	segmentImportText,
+} from "./import-text";
+
+const words = (text: string, format = FORMAT, sections = false) =>
+	importTextToLines(text, format, sections).map((line) =>
+		line.words.map((word) => word.word),
+	);
+
+// Splits every run of letters into pairs, so tests don't depend on a dictionary.
+const pairs = (word: string) => word.match(/.{1,2}/gu) ?? [word];
+
+const GENIUS = `[Intro]
+Ooh (yeah)
+
+[Verse 1: Singer]
+Hello world, it's me
+I-I can't stop (Can't stop)
+
+[Chorus]
+Mm-hmm, la-la`;
+
+describe("unified import parsing", () => {
+	it("drops blank rows and makes sections from headers", () => {
+		const lines = importTextToLines(
+			prepareTextImport(GENIUS, true),
+			FORMAT,
+			true,
+		);
+		expect(lines.map((line) => line.geniusHeader)).toEqual([
+			"[Intro]",
+			"[Intro]",
+			"[Verse 1: Singer]",
+			"[Verse 1: Singer]",
+			"[Verse 1: Singer]",
+			"[Chorus]",
+		]);
+		expect(lines.map((line) => line.isBG)).toEqual([
+			false,
+			true,
+			false,
+			false,
+			true,
+			false,
+		]);
+		expect(lines.every((line) => line.words.length > 0)).toBe(true);
+	});
+
+	it("drops headers when sections are off", () => {
+		const lines = importTextToLines(GENIUS, FORMAT, false);
+		// Unprocessed, so parentheses stay on their line.
+		expect(lines).toHaveLength(4);
+		expect(lines.some((line) => line.geniusHeader)).toBe(false);
+		expect(
+			lines.some((line) => line.words.some((word) => word.word.includes("["))),
+		).toBe(false);
+	});
+
+	it("reads Genius text after Process lyrics the way the old online import did", () => {
+		expect(words(prepareTextImport("Hello world (oh)", true))).toEqual([
+			["Hello", " ", "world"],
+			["Oh"],
+		]);
+	});
+
+	it("reads prefixes, translations and a custom separator", () => {
+		const format: ImportTextFormat = {
+			...FORMAT,
+			mode: "lyric-trans",
+			wordSeparator: "/",
+		};
+		const [bg, duet] = importTextToLines(
+			"<Hel/lo\nHallo\n>Bye\nTschüss",
+			format,
+			false,
+		);
+		expect(bg).toMatchObject({ isBG: true, translatedLyric: "Hallo" });
+		expect(bg.words.map((word) => word.word)).toEqual(["Hel", "lo"]);
+		expect(duet).toMatchObject({ isDuet: true, translatedLyric: "Tschüss" });
+	});
+});
+
+describe("section review", () => {
+	it("detects sections with line counts and their first line", () => {
+		const sections = detectSections(GENIUS);
+		expect(
+			sections.map(({ label, category, lineCount, firstLine }) => ({
+				label,
+				category,
+				lineCount,
+				firstLine,
+			})),
+		).toEqual([
+			{
+				label: "[Intro]",
+				category: "intro",
+				lineCount: 1,
+				firstLine: "Ooh (yeah)",
+			},
+			{
+				label: "[Verse 1: Singer]",
+				category: "verse",
+				lineCount: 2,
+				firstLine: "Hello world, it's me",
+			},
+			{
+				label: "[Chorus]",
+				category: "chorus",
+				lineCount: 1,
+				firstLine: "Mm-hmm, la-la",
+			},
+		]);
+		expect(hasSectionHeaders(GENIUS)).toBe(true);
+		expect(hasSectionHeaders("No [headers] here")).toBe(false);
+	});
+
+	it("keeps a changed category when the text around it is edited", () => {
+		const [intro, verse] = detectSections(GENIUS);
+		const edited = mergeReviewedSections(
+			[intro, { ...verse, category: "hook", confidence: 1 }],
+			detectSections(`${GENIUS}\nOne more line`),
+		);
+		expect(edited.map((section) => section.category)).toEqual([
+			"intro",
+			"hook",
+			"chorus",
+		]);
+	});
+});
+
+describe("syllable splitting in the import text", () => {
+	it("marks syllables and keeps headers, blanks and spaces", () => {
+		expect(
+			segmentImportText("[Chorus]\nHello world\n\n<Mm yeah", FORMAT, pairs),
+		).toBe("[Chorus]\nHe\\ll\\o\\ \\wo\\rl\\d\n\n<Mm\\ \\ye\\ah");
+	});
+
+	it("re-splits processed text without doubling separators", () => {
+		const processed = prepareTextImport("Hello world", true);
+		expect(segmentImportText(processed, FORMAT, pairs)).toBe(
+			"He\\ll\\o\\ \\wo\\rl\\d",
+		);
+	});
+
+	it("leaves translation rows and the same-line translation alone", () => {
+		expect(
+			segmentImportText(
+				"Hello\nHallo",
+				{ ...FORMAT, mode: "lyric-trans" },
+				pairs,
+			),
+		).toBe("He\\ll\\o\nHallo");
+		expect(
+			segmentImportText(
+				"Hello|Hallo",
+				{
+					...FORMAT,
+					mode: "lyric-trans",
+					lineSeparatorMode: "same-line-separator",
+				},
+				pairs,
+			),
+		).toBe("He\\ll\\o|Hallo");
+	});
+
+	it("does nothing without a word separator", () => {
+		expect(
+			segmentImportText("Hello", { ...FORMAT, wordSeparator: "" }, pairs),
+		).toBe("Hello");
+	});
+
+	it("ignores a split that would change the text", () => {
+		expect(segmentImportText("Hello", FORMAT, () => ["Hi"])).toBe("Hello");
+	});
+
+	it("applies learned splits through Auto segment", () => {
+		const config: SegmentationConfig = {
+			engine: "none",
+			splitCJK: true,
+			splitEnglish: true,
+			punctuationWeight: 0.2,
+			punctuationMode: "merge",
+			removeEmptySegments: true,
+			ignoreList: new Set(),
+			customRules: new Map(),
+			learnedRules: new Map([["beautiful", [4, 7]]]),
+		};
+		const split = (word: string) =>
+			segmentWord({ ...newLyricWord(), word }, config).map((part) => part.word);
+		const text = segmentImportText("So beautiful, yeah", FORMAT, split);
+		expect(text).toBe("So\\ \\beau\\tif\\ul,\\ \\yeah");
+		expect(words(text)).toEqual([
+			["So", " ", "beau", "tif", "ul,", " ", "yeah"],
+		]);
+	});
+});

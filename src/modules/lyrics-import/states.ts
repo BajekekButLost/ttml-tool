@@ -1,11 +1,13 @@
+import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-
-export const processImportedLyricsAtom = atomWithStorage(
-	"importLyrics.processLyrics",
-	false,
-	undefined,
-	{ getOnInit: true },
-);
+import type { ImportSourceId } from "$/modules/lyrics-import/components/ImportSourceCards";
+import { importLyricsDialogAtom } from "$/states/dialogs.ts";
+import {
+	DEFAULT_IMPORT_TEXT_FORMAT,
+	type ImportContentMode,
+	type ImportLineSeparatorMode,
+	type ImportTextFormat,
+} from "./logic/import-text";
 
 export const fetchImportedSongwritersAtom = atomWithStorage(
 	"importLyrics.fetchSongwriters",
@@ -14,9 +16,78 @@ export const fetchImportedSongwritersAtom = atomWithStorage(
 	{ getOnInit: true },
 );
 
-export const categorizeGeniusHeadersOnImportAtom = atomWithStorage(
-	"importLyrics.categorizeGeniusHeaders",
-	false,
+/** Turn `[Header]` rows into sections. Doing so also turns on Genius sections. */
+export const makeSectionsOnImportAtom = atomWithStorage(
+	"importLyrics.makeSections",
+	true,
 	undefined,
 	{ getOnInit: true },
+);
+
+export const importLyricsSourceAtom = atomWithStorage<ImportSourceId>(
+	"importLyrics.source",
+	"plainText",
+	undefined,
+	{ getOnInit: true },
+);
+
+/** Open the import screen, optionally on a given source. */
+export const openImportLyricsAtom = atom(
+	null,
+	(_get, set, source?: ImportSourceId) => {
+		if (source) set(importLyricsSourceAtom, source);
+		set(importLyricsDialogAtom, true);
+	},
+);
+
+// The text format keys predate the unified screen; keep them so preferences carry over.
+const storage = <T>(key: keyof ImportTextFormat, storageKey: string) =>
+	atomWithStorage<T>(
+		`importFromText.${storageKey}`,
+		DEFAULT_IMPORT_TEXT_FORMAT[key] as T,
+		undefined,
+		{ getOnInit: true },
+	);
+
+export const importModeAtom = storage<ImportContentMode>("mode", "importMode");
+export const lineSeparatorModeAtom = storage<ImportLineSeparatorMode>(
+	"lineSeparatorMode",
+	"lineSeparatorMode",
+);
+export const lineSeparatorAtom = storage<string>(
+	"lineSeparator",
+	"lineSeparator",
+);
+export const swapTransAndRomanAtom = storage<boolean>(
+	"swapTransAndRoman",
+	"swapTransAndRoman",
+);
+export const wordSeparatorAtom = storage<string>(
+	"wordSeparator",
+	"wordSeparator",
+);
+export const enableSpecialPrefixAtom = storage<boolean>(
+	"enableSpecialPrefix",
+	"enableSpecialPrefix",
+);
+export const bgLyricPrefixAtom = storage<string>(
+	"bgLyricPrefix",
+	"bgLyricPrefix",
+);
+export const duetLyricPrefixAtom = storage<string>(
+	"duetLyricPrefix",
+	"duetLyricPrefix",
+);
+
+export const importTextFormatAtom = atom(
+	(get): ImportTextFormat => ({
+		mode: get(importModeAtom),
+		lineSeparatorMode: get(lineSeparatorModeAtom),
+		lineSeparator: get(lineSeparatorAtom),
+		swapTransAndRoman: get(swapTransAndRomanAtom),
+		wordSeparator: get(wordSeparatorAtom),
+		enableSpecialPrefix: get(enableSpecialPrefixAtom),
+		bgLyricPrefix: get(bgLyricPrefixAtom),
+		duetLyricPrefix: get(duetLyricPrefixAtom),
+	}),
 );

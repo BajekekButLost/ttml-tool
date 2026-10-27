@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Al importar, divide el texto en palabras, limpia la puntuación y los espacios y convierte las voces entre paréntesis en líneas de voces de fondo.",
-    "noLyricsLabel": "No hay letras disponibles para esta pista.",
-    "editingRawText": "Edición de texto sin formato",
-    "backToPreview": "Volver a vista previa",
-    "manualEdit": "Edición manual",
-    "source": "Fuente: "
+    "noLyricsLabel": "No hay letras disponibles para esta pista."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# línea aún no tiene sincronización} many {# líneas aún no tienen sincronización} other {# líneas aún no tienen sincronización}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Importar letras",
-    "description": "Elige desde dónde quieres importar tus letras.",
+    "description": "Pega la letra o búscala en línea, límpiala e impórtala.",
+    "sourceLabel": "Origen de la letra",
+    "paste": "Pegar",
+    "textLabel": "Texto de la letra",
+    "textPlaceholder": "Pega aquí la letra, un verso por fila. Los encabezados de sección como [Chorus] van en su propia fila.",
+    "backToText": "Volver al texto",
+    "showResults": "Mostrar resultados de búsqueda",
+    "usingTrack": "Datos de {title} de {artist}",
+    "dropTrack": "No usar estos datos",
+    "prepareTitle": "Limpieza",
+    "processHint": "Separa las palabras, ordena la puntuación y los espacios y pasa las voces entre paréntesis a líneas de fondo.",
+    "splitSyllables": "Dividir sílabas",
+    "splitHint": "Marca las sílabas con el separador de palabras según tus ajustes de segmentación y tus divisiones aprendidas. Corrige las marcas en el texto antes de importar.",
+    "splitDone": "Sílabas marcadas. Revísalas antes de importar.",
+    "splitNothing": "No hay nada que dividir.",
+    "restoreOriginal": "Restaurar texto original",
+    "sectionsTitle": "Encabezados de sección",
+    "sectionsFound": "{count, plural, one {# encabezado encontrado} many {# encabezados encontrados} other {# encabezados encontrados}}",
+    "makeSections": "Crear secciones",
+    "makeSectionsHint": "Cada encabezado inicia una sección. Activa Secciones de Genius.",
+    "removeHeaders": "Quitar",
+    "removeHeadersHint": "Elimina las filas de encabezado de la letra.",
+    "textFormat": "Formato del texto",
+    "reviewSections": "Revisar secciones",
+    "reviewHint": "Corrige cualquier categoría mal adivinada. Los colores, vocalistas y notas se pueden ajustar luego desde el menú de la sección.",
+    "sectionLabel": "Nombre de la sección",
+    "sectionCategory": "Categoría de la sección",
+    "lowConfidence": "Categoría adivinada. Revísala.",
+    "importSuccess": "{count, plural, one {Se ha importado # línea.} many {Se han importado # líneas.} other {Se han importado # líneas.}}",
+    "importFailed": "No se pudo leer esta letra. Revisa el texto y los ajustes de formato del texto."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Texto sin formato",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Ajustar al cabezal de reproducción",
       "noPreviousFound": "No se ha encontrado una sección anterior del mismo tipo con tiempos.",
       "noMatchingLines": "Ninguna línea de esta sección coincide con la anterior, así que no se copió nada.",
-      "copyPrevious": "Copiar tiempos anteriores",
-      "headersRestored": "Encabezados de sección restaurados."
+      "copyPrevious": "Copiar tiempos anteriores"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "Lista de verificación TTML",
       "tool": "Herramientas",
       "importLyric": {
-        "import": "Importar letras",
-        "fromPlainText": "Importar desde texto sin formato…",
-        "fromLRCLIB": "Importar desde LRCLIB...",
-        "fromGenius": "Importar desde Genius…"
+        "import": "Importar letras..."
       },
       "exportLyric": {
         "export": "Exportar letras",
@@ -1060,7 +1082,6 @@
       "searchError": "La búsqueda falló: {error}",
       "fetchError": "No se pudo recuperar la letra: {error}",
       "noLyricsError": "No hay letras para importar.",
-      "importSuccess": "{count, plural, one {Se ha importado # línea de Genius.} many {Se han importado # líneas de Genius.} other {Se han importado # líneas de Genius.}}",
       "howToGetKey": "Cómo obtener un token de acceso de Genius"
     },
     "openLink": "Abrir enlace",
@@ -1088,7 +1109,6 @@
     "placeholder": "Título de la canción y artista…",
     "notFound": "Sin resultados. Prueba con otras palabras clave.",
     "noResult": "Escribe una canción o un artista para buscar",
-    "title": "Importar letra desde LRCLIB",
     "matchesAudio": "Coincide con tu audio"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Token de acceso de Genius",
     "setupDesc": "Para importar desde Genius necesitas un token de acceso (Client Access Token). Puedes crearlo en el portal de desarrolladores de Genius.",
     "keyPlaceholder": "Pega tu token de acceso de Genius…",
-    "previewTitle": "Vista previa de letras de Genius",
-    "back": "Atrás",
-    "previewSubtitle": "Puedes editar la letra de abajo antes de importarla.",
     "linesCount": "{count, plural, one {# línea} many {# líneas} other {# líneas}}",
     "importButton": "Importar letras",
-    "importTitle": "Importar letras de Genius",
-    "searchPlaceholder": "Artista – título de la canción…",
     "notFound": "Sin resultados. Prueba con otras palabras clave.",
     "noResult": "Introduce una canción o un artista para empezar.",
     "howToGetKey": "Cómo obtener un token de acceso de Genius",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Procesar letra",
     "processedSuccess": "Letra preparada para sincronizar por sílabas.",
-    "title": "Importar letras desde texto sin formato",
-    "actionButton": "Importar",
     "contentMode": {
       "caption": "Contenido del texto",
       "lyric": "Sólo letras",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Separador de palabras",
     "enableSpecialPrefix": "Usar prefijos de línea",
     "bgLyricPrefix": "Prefijo de líneas de voces de fondo",
-    "duetLyricPrefix": "Prefijo de líneas de dúo",
-    "description": "Importa letras desde texto plano u otros formatos."
+    "duetLyricPrefix": "Prefijo de líneas de dúo"
   },
   "sectionImportReview": {
     "title": "Revisar secciones detectadas",
-    "description": "Revisa las categorías normalizadas y los metadatos antes de sustituir la letra.",
-    "sourceLyrics": "Letra de origen",
-    "structure": "Estructura",
-    "sectionCount": "{count, plural, one {# sección} many {# secciones} other {# secciones}}",
-    "vocalist": "Vocalista / rol",
-    "color": "Color de sección",
-    "notes": "Notas",
-    "lineCount": "{count, plural, one {# línea de letra} many {# líneas de letra} other {# líneas de letra}}",
-    "import": "Importar letras revisadas"
+    "lineCount": "{count, plural, one {# línea de letra} many {# líneas de letra} other {# líneas de letra}}"
   },
   "globalDragOverlay": {
     "title": "Soltar para cargar"

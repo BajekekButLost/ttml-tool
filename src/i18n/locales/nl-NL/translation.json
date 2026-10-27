@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Bij import wordt de tekst in woorden gesplitst, worden leestekens en spaties opgeschoond en wordt zang tussen haakjes omgezet in regels voor achtergrondzang.",
-    "noLyricsLabel": "Geen songteksten beschikbaar voor dit nummer.",
-    "editingRawText": "Ruwe tekst bewerken",
-    "backToPreview": "Terug naar voorbeeld",
-    "manualEdit": "Handmatig bewerken",
-    "source": "Bron: "
+    "noLyricsLabel": "Geen songteksten beschikbaar voor dit nummer."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# regel heeft nog geen timing} other {# regels hebben nog geen timing}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Songteksten importeren",
-    "description": "Kies waar je je songteksten vandaan wilt importeren.",
+    "description": "Plak een songtekst of zoek hem online, ruim hem op en importeer.",
+    "sourceLabel": "Bron van de songtekst",
+    "paste": "Plakken",
+    "textLabel": "Songtekst",
+    "textPlaceholder": "Plak de songtekst hier, één regel per rij. Sectiekoppen zoals [Chorus] staan op een eigen rij.",
+    "backToText": "Terug naar de tekst",
+    "showResults": "Zoekresultaten tonen",
+    "usingTrack": "Gegevens van {title} door {artist}",
+    "dropTrack": "Deze gegevens niet gebruiken",
+    "prepareTitle": "Opschonen",
+    "processHint": "Splitst woorden, ruimt leestekens en spaties op en zet zang tussen haakjes op achtergrondregels.",
+    "splitSyllables": "Lettergrepen splitsen",
+    "splitHint": "Markeert lettergrepen met het woordscheidingsteken, volgens je segmentatie-instellingen en geleerde splitsingen. Corrigeer de markeringen in de tekst voordat je importeert.",
+    "splitDone": "Lettergrepen gemarkeerd. Controleer ze voordat je importeert.",
+    "splitNothing": "Niets om te splitsen.",
+    "restoreOriginal": "Oorspronkelijke tekst herstellen",
+    "sectionsTitle": "Sectiekoppen",
+    "sectionsFound": "{count, plural, one {# kop gevonden} other {# koppen gevonden}}",
+    "makeSections": "Secties maken",
+    "makeSectionsHint": "Elke kop begint een sectie. Zet Genius-secties aan.",
+    "removeHeaders": "Verwijderen",
+    "removeHeadersHint": "Haalt de koprijen uit de songtekst.",
+    "textFormat": "Tekstopmaak",
+    "reviewSections": "Secties controleren",
+    "reviewHint": "Corrigeer verkeerd geraden categorieën. Kleuren, zangers en opmerkingen stel je later in via het sectiemenu.",
+    "sectionLabel": "Sectienaam",
+    "sectionCategory": "Sectiecategorie",
+    "lowConfidence": "Categorie geraden. Controleer hem.",
+    "importSuccess": "{count, plural, one {# regel geïmporteerd.} other {# regels geïmporteerd.}}",
+    "importFailed": "Kan deze songtekst niet lezen. Controleer de tekst en de instellingen voor tekstopmaak."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Platte tekst",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Uitlijnen op afspeelkop",
       "noPreviousFound": "Geen eerdere overeenkomende sectie met timing gevonden.",
       "noMatchingLines": "Geen regels in deze sectie komen overeen met de eerdere, dus er is niets gekopieerd.",
-      "copyPrevious": "Vorige timing kopiëren",
-      "headersRestored": "Sectiekoppen hersteld."
+      "copyPrevious": "Vorige timing kopiëren"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "TTML-controlelijst",
       "tool": "Hulpmiddelen",
       "importLyric": {
-        "import": "Songteksten importeren",
-        "fromPlainText": "Importeren uit onopgemaakte tekst…",
-        "fromLRCLIB": "Importeren uit LRCLIB...",
-        "fromGenius": "Importeren uit Genius…"
+        "import": "Songteksten importeren..."
       },
       "exportLyric": {
         "export": "Songtekst exporteren",
@@ -1060,7 +1082,6 @@
       "searchError": "Zoeken mislukt: {error}",
       "fetchError": "Kan de songteksten niet ophalen: {error}",
       "noLyricsError": "Geen songteksten om te importeren.",
-      "importSuccess": "{count, plural, one {# regel geïmporteerd van Genius.} other {# regels geïmporteerd van Genius.}}",
       "howToGetKey": "Een Genius-toegangstoken verkrijgen"
     },
     "openLink": "Koppeling openen",
@@ -1088,7 +1109,6 @@
     "placeholder": "Songtitel en artiest…",
     "notFound": "Geen resultaten gevonden, probeer andere trefwoorden",
     "noResult": "Typ een nummer of artiest om te zoeken",
-    "title": "Songteksten importeren van LRCLIB",
     "matchesAudio": "Komt overeen met je audio"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Genius-toegangstoken",
     "setupDesc": "Om te importeren van Genius heb je een Genius-toegangstoken nodig (bij Genius heet dit Client Access Token). Je kunt er een maken in de ontwikkelaarsportal van Genius.",
     "keyPlaceholder": "Plak je Genius-toegangstoken…",
-    "previewTitle": "Genius — Songtekstvoorbeeld",
-    "back": "Terug",
-    "previewSubtitle": "Je kunt onderstaande songtekst bewerken voordat je importeert.",
     "linesCount": "{count, plural, one {# regel} other {# regels}}",
     "importButton": "Songteksten importeren",
-    "importTitle": "Songteksten importeren van Genius",
-    "searchPlaceholder": "Artiest – songtitel…",
     "notFound": "Geen resultaten gevonden. Probeer andere trefwoorden.",
     "noResult": "Voer de naam van het nummer of de artiest in om te starten.",
     "howToGetKey": "Een Genius-toegangstoken verkrijgen",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Songteksten verwerken",
     "processedSuccess": "Songtekst voorbereid voor synchronisatie per lettergreep.",
-    "title": "Importeer songteksten uit platte tekst",
-    "actionButton": "Importeren",
     "contentMode": {
       "caption": "Tekstinhoud",
       "lyric": "Alleen songteksten",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Woordscheidingsteken",
     "enableSpecialPrefix": "Regelvoorvoegsels gebruiken",
     "bgLyricPrefix": "Voorvoegsel achtergrondregel",
-    "duetLyricPrefix": "Voorvoegsel duetregel",
-    "description": "Importeer songteksten uit platte tekst of andere formaten."
+    "duetLyricPrefix": "Voorvoegsel duetregel"
   },
   "sectionImportReview": {
     "title": "Controleer gedetecteerde secties",
-    "description": "Controleer de genormaliseerde categorieën en metagegevens voordat je de songtekst vervangt.",
-    "sourceLyrics": "Oorspronkelijke songtekst",
-    "structure": "Structuur",
-    "sectionCount": "{count, plural, one {# sectie} other {# secties}}",
-    "vocalist": "Zanger / rol",
-    "color": "Sectiekleur",
-    "notes": "Opmerkingen",
-    "lineCount": "{count, plural, one {# songtekstregel} other {# songtekstregels}}",
-    "import": "Gecontroleerde songtekst importeren"
+    "lineCount": "{count, plural, one {# songtekstregel} other {# songtekstregels}}"
   },
   "globalDragOverlay": {
     "title": "Loslaten om te laden"

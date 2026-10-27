@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Pri importe rozdelí text na slová, upraví interpunkciu a medzery a prevedie vokály v zátvorkách na riadky sprievodného vokálu.",
-    "noLyricsLabel": "Pre túto skladbu nie sú k dispozícii žiadne texty.",
-    "editingRawText": "Úprava obyčajného textu",
-    "backToPreview": "Späť na náhľad",
-    "manualEdit": "Ručná úprava",
-    "source": "Zdroj:"
+    "noLyricsLabel": "Pre túto skladbu nie sú k dispozícii žiadne texty."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# riadok ešte nemá časovanie} few {# riadky ešte nemajú časovanie} many {# riadka ešte nemá časovanie} other {# riadkov ešte nemá časovanie}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Importovať text piesne",
-    "description": "Vyberte, odkiaľ chcete importovať svoje texty.",
+    "description": "Vložte text alebo ho nájdite online, upravte ho a importujte.",
+    "sourceLabel": "Zdroj textu",
+    "paste": "Vložiť",
+    "textLabel": "Text piesne",
+    "textPlaceholder": "Sem vložte text, každý verš na vlastný riadok. Hlavičky sekcií ako [Chorus] dajte na samostatný riadok.",
+    "backToText": "Späť na text",
+    "showResults": "Zobraziť výsledky hľadania",
+    "usingTrack": "Údaje zo skladby {title} od {artist}",
+    "dropTrack": "Nepoužívať tieto údaje",
+    "prepareTitle": "Úprava",
+    "processHint": "Rozdelí slová, upraví interpunkciu a medzery a presunie vokály v zátvorkách na sprievodné riadky.",
+    "splitSyllables": "Rozdeliť slabiky",
+    "splitHint": "Označí slabiky oddeľovačom slov podľa vašich nastavení delenia a naučených delení. Pred importom opravte značky priamo v texte.",
+    "splitDone": "Slabiky označené. Pred importom ich skontrolujte.",
+    "splitNothing": "Nie je čo rozdeliť.",
+    "restoreOriginal": "Obnoviť pôvodný text",
+    "sectionsTitle": "Hlavičky sekcií",
+    "sectionsFound": "{count, plural, one {Nájdená # hlavička} few {Nájdené # hlavičky} many {Nájdenej # hlavičky} other {Nájdených # hlavičiek}}",
+    "makeSections": "Vytvoriť sekcie",
+    "makeSectionsHint": "Každá hlavička začne sekciu. Zapne Sekcie Genius.",
+    "removeHeaders": "Odstrániť",
+    "removeHeadersHint": "Odstráni riadky s hlavičkami z textu.",
+    "textFormat": "Formát textu",
+    "reviewSections": "Skontrolovať sekcie",
+    "reviewHint": "Opravte kategórie, ktoré boli odhadnuté zle. Farby, spevákov a poznámky môžete nastaviť neskôr v ponuke sekcie.",
+    "sectionLabel": "Názov sekcie",
+    "sectionCategory": "Kategória sekcie",
+    "lowConfidence": "Kategória je odhad. Skontrolujte ju.",
+    "importSuccess": "{count, plural, one {Importoval sa # riadok.} few {Importovali sa # riadky.} many {Importovalo sa # riadka.} other {Importovalo sa # riadkov.}}",
+    "importFailed": "Tento text sa nepodarilo načítať. Skontrolujte text a nastavenia formátu textu."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Obyčajný text",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Zarovnať na pozíciu prehrávania",
       "noPreviousFound": "Nenašla sa skoršia zodpovedajúca sekcia s časovaním.",
       "noMatchingLines": "Žiadne riadky v tejto sekcii nezodpovedajú tej skoršej, nič sa neskopírovalo.",
-      "copyPrevious": "Kopírovať predchádzajúce časovanie",
-      "headersRestored": "Hlavičky sekcií boli obnovené."
+      "copyPrevious": "Kopírovať predchádzajúce časovanie"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "Zoznam plánovaných TTML",
       "tool": "Nástroje",
       "importLyric": {
-        "import": "Importovať text piesne",
-        "fromPlainText": "Importovať z obyčajného textu…",
-        "fromLRCLIB": "Importovať z LRCLIB...",
-        "fromGenius": "Importovať z Genius…"
+        "import": "Importovať text piesne..."
       },
       "exportLyric": {
         "export": "Exportovať text piesne",
@@ -1060,7 +1082,6 @@
       "searchError": "Vyhľadávanie zlyhalo: {error}",
       "fetchError": "Nepodarilo sa načítať text: {error}",
       "noLyricsError": "Žiadne texty na import.",
-      "importSuccess": "Z Genius sa {count, plural, one {importoval # riadok} few {importovali # riadky} many {importovalo # riadka} other {importovalo # riadkov}}.",
       "howToGetKey": "Ako získať prístupový token Genius"
     },
     "openLink": "Otvoriť odkaz",
@@ -1088,7 +1109,6 @@
     "placeholder": "Názov skladby a interpret…",
     "notFound": "Žiadne výsledky, skúste iné kľúčové slová",
     "noResult": "Zadajte skladbu alebo interpreta na vyhľadanie",
-    "title": "Importovať text z LRCLIB",
     "matchesAudio": "Zodpovedá vašej nahrávke"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Prístupový token Genius",
     "setupDesc": "Na import z Genius potrebujete prístupový token (v Genius nazvaný Client Access Token). Vytvoríte ho na vývojárskom portáli Genius.",
     "keyPlaceholder": "Vložte prístupový token Genius…",
-    "previewTitle": "Náhľad textu z Genius",
-    "back": "Späť",
-    "previewSubtitle": "Text nižšie môžete pred importom upraviť.",
     "linesCount": "{count, plural, one {# riadok} few {# riadky} many {# riadka} other {# riadkov}}",
     "importButton": "Importovať text piesne",
-    "importTitle": "Importovať text z Genius",
-    "searchPlaceholder": "Interpret – názov skladby…",
     "notFound": "Nenašli sa žiadne výsledky. Skúste iné kľúčové slová.",
     "noResult": "Začnite zadaním názvu skladby alebo interpreta.",
     "howToGetKey": "Ako získať prístupový token Genius",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Spracovať text",
     "processedSuccess": "Text pripravený na synchronizáciu slabík.",
-    "title": "Importovať text piesne z obyčajného textu",
-    "actionButton": "Importovať",
     "contentMode": {
       "caption": "Obsah textu",
       "lyric": "Iba text piesne",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Oddeľovač slov",
     "enableSpecialPrefix": "Použiť predpony riadkov",
     "bgLyricPrefix": "Predpona sprievodného riadka",
-    "duetLyricPrefix": "Predpona duetového riadka",
-    "description": "Importovať text piesne z obyčajného textu alebo iných formátov."
+    "duetLyricPrefix": "Predpona duetového riadka"
   },
   "sectionImportReview": {
     "title": "Kontrola nájdených sekcií",
-    "description": "Pred nahradením textov skontrolujte normalizované kategórie a metadáta.",
-    "sourceLyrics": "Zdrojový text",
-    "structure": "Štruktúra",
-    "sectionCount": "{count, plural, one {# sekcia} few {# sekcie} many {# sekcie} other {# sekcií}}",
-    "vocalist": "Spevák / rola",
-    "color": "Farba sekcie",
-    "notes": "Poznámky",
-    "lineCount": "{count, plural, one {# riadok textu} few {# riadky textu} many {# riadka textu} other {# riadkov textu}}",
-    "import": "Importovať skontrolovaný text"
+    "lineCount": "{count, plural, one {# riadok textu} few {# riadky textu} many {# riadka textu} other {# riadkov textu}}"
   },
   "globalDragOverlay": {
     "title": "Uvoľnite pre načítanie"

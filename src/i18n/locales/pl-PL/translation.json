@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "Przy imporcie dzieli tekst na słowa, porządkuje interpunkcję i odstępy oraz zamienia wokale w nawiasach na wersy wokalu w tle.",
-    "noLyricsLabel": "Brak tekstu dla tego utworu.",
-    "editingRawText": "Edycja surowego tekstu",
-    "backToPreview": "Powrót do podglądu",
-    "manualEdit": "Edycja ręczna",
-    "source": "Źródło:"
+    "noLyricsLabel": "Brak tekstu dla tego utworu."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# wers nie ma jeszcze synchronizacji} few {# wersy nie mają jeszcze synchronizacji} many {# wersów nie ma jeszcze synchronizacji} other {# wersu nie ma jeszcze synchronizacji}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Importuj tekst",
-    "description": "Wybierz, skąd chcesz zaimportować swoje teksty.",
+    "description": "Wklej tekst lub znajdź go w sieci, uporządkuj go i zaimportuj.",
+    "sourceLabel": "Źródło tekstu",
+    "paste": "Wklej",
+    "textLabel": "Tekst utworu",
+    "textPlaceholder": "Wklej tutaj tekst, jeden wers w wierszu. Nagłówki sekcji, takie jak [Chorus], umieść w osobnych wierszach.",
+    "backToText": "Wróć do tekstu",
+    "showResults": "Pokaż wyniki wyszukiwania",
+    "usingTrack": "Dane z utworu {title} ({artist})",
+    "dropTrack": "Nie używaj tych danych",
+    "prepareTitle": "Porządkowanie",
+    "processHint": "Dzieli słowa, porządkuje interpunkcję i odstępy oraz przenosi wokale w nawiasach do wersów w tle.",
+    "splitSyllables": "Podziel na sylaby",
+    "splitHint": "Oznacza sylaby separatorem słów według ustawień podziału i zapamiętanych podziałów. Popraw oznaczenia w tekście przed importem.",
+    "splitDone": "Sylaby oznaczone. Sprawdź je przed importem.",
+    "splitNothing": "Nie ma czego dzielić.",
+    "restoreOriginal": "Przywróć oryginalny tekst",
+    "sectionsTitle": "Nagłówki sekcji",
+    "sectionsFound": "{count, plural, one {Znaleziono # nagłówek} few {Znaleziono # nagłówki} many {Znaleziono # nagłówków} other {Znaleziono # nagłówka}}",
+    "makeSections": "Utwórz sekcje",
+    "makeSectionsHint": "Każdy nagłówek zaczyna sekcję. Włącza Sekcje Genius.",
+    "removeHeaders": "Usuń",
+    "removeHeadersHint": "Usuwa wiersze nagłówków z tekstu.",
+    "textFormat": "Format tekstu",
+    "reviewSections": "Sprawdź sekcje",
+    "reviewHint": "Popraw źle odgadnięte kategorie. Kolory, wokalistów i notatki ustawisz później w menu sekcji.",
+    "sectionLabel": "Nazwa sekcji",
+    "sectionCategory": "Kategoria sekcji",
+    "lowConfidence": "Kategoria odgadnięta. Sprawdź ją.",
+    "importSuccess": "{count, plural, one {Zaimportowano # wers.} few {Zaimportowano # wersy.} many {Zaimportowano # wersów.} other {Zaimportowano # wersu.}}",
+    "importFailed": "Nie udało się odczytać tego tekstu. Sprawdź tekst i ustawienia formatu tekstu."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Zwykły tekst",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Przyciągnij do pozycji odtwarzania",
       "noPreviousFound": "Nie znaleziono wcześniejszej pasującej sekcji z synchronizacją.",
       "noMatchingLines": "Żaden wiersz w tej sekcji nie pasuje do wcześniejszej, więc nic nie skopiowano.",
-      "copyPrevious": "Kopiuj poprzednie czasy",
-      "headersRestored": "Przywrócono nagłówki sekcji."
+      "copyPrevious": "Kopiuj poprzednie czasy"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "Lista planowanych TTML",
       "tool": "Narzędzia",
       "importLyric": {
-        "import": "Importuj tekst",
-        "fromPlainText": "Importuj ze zwykłego tekstu…",
-        "fromLRCLIB": "Importuj z LRCLIB...",
-        "fromGenius": "Importuj z Genius…"
+        "import": "Importuj tekst..."
       },
       "exportLyric": {
         "export": "Eksportuj tekst",
@@ -1060,7 +1082,6 @@
       "searchError": "Wyszukiwanie nie powiodło się: {error}",
       "fetchError": "Nie udało się pobrać tekstu: {error}",
       "noLyricsError": "Brak tekstów do zaimportowania.",
-      "importSuccess": "Zaimportowano z Genius {count, plural, one {# wers} few {# wersy} many {# wersów} other {# wersu}}.",
       "howToGetKey": "Jak uzyskać token dostępu Genius"
     },
     "openLink": "Otwórz link",
@@ -1088,7 +1109,6 @@
     "placeholder": "Tytuł utworu i wykonawca…",
     "notFound": "Nie znaleziono wyników, spróbuj innych słów kluczowych",
     "noResult": "Wpisz utwór lub wykonawcę, aby wyszukać",
-    "title": "Importuj tekst z LRCLIB",
     "matchesAudio": "Pasuje do nagrania"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Token dostępu Genius",
     "setupDesc": "Do importu z Genius potrzebujesz tokena dostępu (Client Access Token). Utworzysz go w portalu deweloperskim Genius.",
     "keyPlaceholder": "Wklej token dostępu Genius…",
-    "previewTitle": "Podgląd tekstu z Genius",
-    "back": "Powrót",
-    "previewSubtitle": "Przed importem możesz edytować poniższy tekst.",
     "linesCount": "{count, plural, one {# wers} few {# wersy} many {# wersów} other {# wersu}}",
     "importButton": "Importuj tekst",
-    "importTitle": "Importuj tekst z Genius",
-    "searchPlaceholder": "Wykonawca – tytuł utworu…",
     "notFound": "Nie znaleziono żadnych wyników. Wypróbuj inne słowa kluczowe.",
     "noResult": "Aby rozpocząć, wpisz nazwę utworu lub wykonawcę.",
     "howToGetKey": "Jak uzyskać token dostępu Genius",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Przetwórz tekst",
     "processedSuccess": "Tekst przygotowany do synchronizacji sylab.",
-    "title": "Importuj tekst ze zwykłego tekstu",
-    "actionButton": "Importuj",
     "contentMode": {
       "caption": "Zawartość tekstu",
       "lyric": "Tylko tekst",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Separator słów",
     "enableSpecialPrefix": "Używaj prefiksów wersów",
     "bgLyricPrefix": "Prefiks wersu wokalu w tle",
-    "duetLyricPrefix": "Prefiks wersu duetu",
-    "description": "Importuj tekst ze zwykłego tekstu lub innych formatów."
+    "duetLyricPrefix": "Prefiks wersu duetu"
   },
   "sectionImportReview": {
     "title": "Przejrzyj wykryte sekcje",
-    "description": "Przed zastąpieniem tekstu sprawdź znormalizowane kategorie i metadane.",
-    "sourceLyrics": "Tekst źródłowy",
-    "structure": "Struktura",
-    "sectionCount": "{count, plural, one {# sekcja} few {# sekcje} many {# sekcji} other {# sekcji}}",
-    "vocalist": "Wokalista / rola",
-    "color": "Kolor sekcji",
-    "notes": "Notatki",
-    "lineCount": "{count, plural, one {# wers tekstu} few {# wersy tekstu} many {# wersów tekstu} other {# wersu tekstu}}",
-    "import": "Importuj sprawdzony tekst"
+    "lineCount": "{count, plural, one {# wers tekstu} few {# wersy tekstu} many {# wersów tekstu} other {# wersu tekstu}}"
   },
   "globalDragOverlay": {
     "title": "Upuść, aby załadować"

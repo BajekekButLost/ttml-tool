@@ -29,12 +29,10 @@ import {
 	ImportSourceCards,
 	type ImportSourceId,
 } from "$/modules/lyrics-import/components/ImportSourceCards";
+import { openImportLyricsAtom } from "$/modules/lyrics-import/states";
 import { type ExportTranslation, saveTTML } from "$/modules/project/ttml-save";
 import { geniusApiKeyAtom } from "$/modules/settings/states";
 import {
-	geniusImportLyricsDialogAtom,
-	importFromLRCLIBDialogAtom,
-	importFromTextDialogAtom,
 	metadataEditorDialogAtom,
 	settingsDialogAtom,
 	settingsTabAtom,
@@ -127,9 +125,7 @@ export const BeginnerGuide = () => {
 		y: 200,
 	}));
 	const dragOffset = useRef({ x: 0, y: 0 });
-	const setImportText = useSetAtom(importFromTextDialogAtom);
-	const setImportGenius = useSetAtom(geniusImportLyricsDialogAtom);
-	const setImportLrclib = useSetAtom(importFromLRCLIBDialogAtom);
+	const openImport = useSetAtom(openImportLyricsAtom);
 	const setMetadata = useSetAtom(metadataEditorDialogAtom);
 	const setToolMode = useSetAtom(toolModeAtom);
 	const setSettingsOpen = useSetAtom(settingsDialogAtom);
@@ -215,14 +211,10 @@ export const BeginnerGuide = () => {
 
 	const openImportSource = useCallback(
 		(source: ImportSourceId) => {
-			if (source === "plainText") setImportText(true);
-			if (source === "lrclib") setImportLrclib(true);
-			if (source === "genius") {
-				if (geniusApiKey) setImportGenius(true);
-				else setShowGeniusSetup(true);
-			}
+			if (source === "genius" && !geniusApiKey) setShowGeniusSetup(true);
+			else openImport(source);
 		},
-		[geniusApiKey, setImportGenius, setImportLrclib, setImportText],
+		[geniusApiKey, openImport],
 	);
 
 	const doAction = useCallback(async () => {
@@ -667,7 +659,7 @@ export const BeginnerGuide = () => {
 														"Open Genius API Clients",
 													)}
 												</Button>
-												<Button onClick={() => setImportGenius(true)}>
+												<Button onClick={() => openImport("genius")}>
 													{t(
 														"beginnerGuide.genius.paste",
 														"Paste token in Genius import",

@@ -1,0 +1,55 @@
+.group > :global(.rt-Button) {
+	justify-content: flex-start;
+}
+
+.hint {
+	color: var(--gray-11);
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+	min-height: var(--space-6);
+}
+
+.shortField {
+	width: 64px;
+	flex-shrink: 0;
+}
+
+.disclosure {
+	appearance: none;
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	width: fit-content;
+	padding: var(--space-1) 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+	border-radius: var(--radius-2);
+}
+
+.disclosure:focus-visible {
+	outline: 2px solid var(--focus-8);
+	outline-offset: 2px;
+}
+
+.chevron {
+	color: var(--gray-11);
+	transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.disclosure[aria-expanded="true"] .chevron {
+	transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.chevron {
+		transition: none;
+	}
+}

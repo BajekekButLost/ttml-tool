@@ -27,12 +27,7 @@
     }
   },
   "onlineImport": {
-    "processDescription": "La import, împarte textul în cuvinte, corectează punctuația și spațiile și transformă vocile din paranteze în versuri pentru vocile de fundal.",
-    "noLyricsLabel": "Nu sunt disponibile versuri pentru această piesă.",
-    "editingRawText": "Editarea textului brut",
-    "backToPreview": "Înapoi la previzualizare",
-    "manualEdit": "Editare manuală",
-    "source": "Sursă: "
+    "noLyricsLabel": "Nu sunt disponibile versuri pentru această piesă."
   },
   "preview": {
     "untimedLines": "{count, plural, one {# vers nu este încă sincronizat} few {# versuri nu sunt încă sincronizate} other {# de versuri nu sunt încă sincronizate}}",
@@ -140,9 +135,40 @@
       }
     }
   },
-  "importChooser": {
+  "importLyrics": {
     "title": "Importă versuri",
-    "description": "Alege de unde vrei să imporți versurile.",
+    "description": "Lipește versurile sau caută-le online, curăță-le și importă-le.",
+    "sourceLabel": "Sursa versurilor",
+    "paste": "Lipește",
+    "textLabel": "Textul versurilor",
+    "textPlaceholder": "Lipește versurile aici, câte un vers pe rând. Antetele de secțiune precum [Chorus] stau pe un rând separat.",
+    "backToText": "Înapoi la text",
+    "showResults": "Arată rezultatele căutării",
+    "usingTrack": "Detalii din {title} de {artist}",
+    "dropTrack": "Nu folosi aceste detalii",
+    "prepareTitle": "Curățare",
+    "processHint": "Împarte cuvintele, corectează punctuația și spațiile și mută vocile din paranteze pe versuri de fundal.",
+    "splitSyllables": "Desparte în silabe",
+    "splitHint": "Marchează silabele cu separatorul de cuvinte, după setările de segmentare și despărțirile învățate. Corectează marcajele în text înainte de import.",
+    "splitDone": "Silabe marcate. Verifică-le înainte de import.",
+    "splitNothing": "Nimic de despărțit.",
+    "restoreOriginal": "Restaurează textul original",
+    "sectionsTitle": "Antete de secțiune",
+    "sectionsFound": "{count, plural, one {# antet găsit} few {# antete găsite} other {# de antete găsite}}",
+    "makeSections": "Creează secțiuni",
+    "makeSectionsHint": "Fiecare antet începe o secțiune. Activează Secțiuni Genius.",
+    "removeHeaders": "Elimină",
+    "removeHeadersHint": "Scoate rândurile de antet din versuri.",
+    "textFormat": "Formatul textului",
+    "reviewSections": "Verifică secțiunile",
+    "reviewHint": "Corectează categoriile ghicite greșit. Culorile, vocaliștii și notele se pot seta mai târziu din meniul secțiunii.",
+    "sectionLabel": "Numele secțiunii",
+    "sectionCategory": "Categoria secțiunii",
+    "lowConfidence": "Categorie ghicită. Verific-o.",
+    "importSuccess": "{count, plural, one {# vers importat.} few {# versuri importate.} other {# de versuri importate.}}",
+    "importFailed": "Nu am putut citi aceste versuri. Verifică textul și setările formatului textului."
+  },
+  "importChooser": {
     "options": {
       "plainText": {
         "title": "Text simplu",
@@ -206,8 +232,7 @@
       "snapToPlayhead": "Aliniază la cursorul de redare",
       "noPreviousFound": "Nu s-a găsit nicio secțiune anterioară corespunzătoare cu timpi.",
       "noMatchingLines": "Niciun rând din această secțiune nu se potrivește cu cea anterioară, așa că nu s-a copiat nimic.",
-      "copyPrevious": "Copiază timpii anteriori",
-      "headersRestored": "Antetele secțiunilor au fost restaurate."
+      "copyPrevious": "Copiază timpii anteriori"
     }
   },
   "common": {
@@ -814,10 +839,7 @@
       "ttmlChecklist": "Listă de TTML de creat",
       "tool": "Unelte",
       "importLyric": {
-        "import": "Importă versuri",
-        "fromPlainText": "Importă din text simplu…",
-        "fromLRCLIB": "Importă din LRCLIB...",
-        "fromGenius": "Importă din Genius…"
+        "import": "Importă versuri..."
       },
       "exportLyric": {
         "export": "Exportă versuri",
@@ -1060,7 +1082,6 @@
       "searchError": "Căutare eșuată: {error}",
       "fetchError": "Nu s-au putut prelua versurile: {error}",
       "noLyricsError": "Nu există versuri de importat.",
-      "importSuccess": "{count, plural, one {# vers importat din Genius.} few {# versuri importate din Genius.} other {# de versuri importate din Genius.}}",
       "howToGetKey": "Cum obții un token de acces Genius"
     },
     "openLink": "Deschide link-ul",
@@ -1088,7 +1109,6 @@
     "placeholder": "Titlul melodiei și artistul…",
     "notFound": "Niciun rezultat. Încearcă alte cuvinte-cheie.",
     "noResult": "Introdu o melodie sau un artist pentru căutare",
-    "title": "Importă versuri din LRCLIB",
     "matchesAudio": "Se potrivește cu sunetul tău"
   },
   "lyricEditor": {
@@ -1213,13 +1233,8 @@
     "setupTitle": "Token de acces Genius",
     "setupDesc": "Pentru a importa din Genius, ai nevoie de un token de acces (Client Access Token). Îl poți crea în portalul pentru dezvoltatori Genius.",
     "keyPlaceholder": "Lipește tokenul de acces Genius…",
-    "previewTitle": "Previzualizarea versurilor din Genius",
-    "back": "Înapoi",
-    "previewSubtitle": "Poți edita versurile de mai jos înainte de import.",
     "linesCount": "{count, plural, one {# vers} few {# versuri} other {# de versuri}}",
     "importButton": "Importă versuri",
-    "importTitle": "Importă versuri din Genius",
-    "searchPlaceholder": "Artist – titlul melodiei…",
     "notFound": "Niciun rezultat găsit. Încearcă cuvinte cheie diferite.",
     "noResult": "Introdu un nume de melodie sau un artist pentru a începe.",
     "howToGetKey": "Cum obții un token de acces Genius",
@@ -1228,8 +1243,6 @@
   "textImportDialog": {
     "processLyrics": "Procesează versurile",
     "processedSuccess": "Versurile sunt pregătite pentru sincronizarea pe silabe.",
-    "title": "Importă versuri din text simplu",
-    "actionButton": "Importă",
     "contentMode": {
       "caption": "Conținut text",
       "lyric": "Doar versuri",
@@ -1247,20 +1260,11 @@
     "wordSeparator": "Separator de cuvinte",
     "enableSpecialPrefix": "Folosește prefixe de vers",
     "bgLyricPrefix": "Prefixul versurilor de fundal",
-    "duetLyricPrefix": "Prefixul versurilor de duet",
-    "description": "Importă versurile din text simplu sau din alte formate."
+    "duetLyricPrefix": "Prefixul versurilor de duet"
   },
   "sectionImportReview": {
     "title": "Verifică secțiunile detectate",
-    "description": "Verifică categoriile normalizate și metadatele înainte de a înlocui versurile.",
-    "sourceLyrics": "Versuri sursă",
-    "structure": "Structură",
-    "sectionCount": "{count, plural, one {# secțiune} few {# secțiuni} other {# de secțiuni}}",
-    "vocalist": "Vocalist / rol",
-    "color": "Culoarea secțiunii",
-    "notes": "Note",
-    "lineCount": "{count, plural, one {# vers} few {# versuri} other {# de versuri}}",
-    "import": "Importă versuri revizuite"
+    "lineCount": "{count, plural, one {# vers} few {# versuri} other {# de versuri}}"
   },
   "globalDragOverlay": {
     "title": "Eliberează pentru a încărca"
