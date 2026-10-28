@@ -416,6 +416,12 @@
 	display: inline-block;
 	white-space: nowrap;
 }
+/* Only non-RTL words are split into letters, but in an RTL line their letters
+ * would inherit its direction and lay out backwards ("hello" as "olleh").
+ * Spicy Lyrics itself still does this; the preview keeps the word readable. */
+.rtl .letterGroup {
+	direction: ltr;
+}
 .breakableToken {
 	min-width: 0;
 	max-width: 100%;
