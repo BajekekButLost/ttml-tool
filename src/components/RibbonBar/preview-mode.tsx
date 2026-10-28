@@ -18,13 +18,13 @@ import { useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ActionTooltip } from "$/components/ActionTooltip";
-import { spicyJoinSplitWordsAtom } from "$/components/SpicyLyrics/states";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
 	showRomanLinesAtom,
 	showTranslationLinesAtom,
 	spicyForceLineSyncedAtom,
+	spicyJoinSplitWordsAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
