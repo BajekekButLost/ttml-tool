@@ -15,6 +15,9 @@ export const spectrogramFollowStyleAtom = atomWithStorage<FollowStyle>(
 	"page",
 );
 
+/** Continuous following is active right now, so zooming anchors on the playhead. */
+export const spectrogramFollowEngagedAtom = atom(false);
+
 export const spectrogramFollowModeAtom = atom<FollowMode>((get) =>
 	get(spectrogramFollowOnAtom) ? get(spectrogramFollowStyleAtom) : "off",
 );

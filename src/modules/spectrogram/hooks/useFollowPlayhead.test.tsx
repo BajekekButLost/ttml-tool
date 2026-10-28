@@ -14,6 +14,7 @@ import {
 	spectrogramZoomAtom,
 } from "$/modules/spectrogram/states";
 import {
+	spectrogramFollowEngagedAtom,
 	spectrogramFollowOnAtom,
 	spectrogramFollowStyleAtom,
 } from "../states/follow-playhead";
@@ -115,6 +116,29 @@ describe("useFollowPlayhead", () => {
 		expect(scrollLeft()).toBe(0);
 		act(() => store.set(audioPlayingAtom, true));
 		expect(scrollLeft()).toBe(1400);
+	});
+
+	it("keeps following through Ctrl+wheel zoom in continuous mode", () => {
+		act(() => store.set(spectrogramFollowStyleAtom, "continuous"));
+		seek(20000);
+		expect(store.get(spectrogramFollowEngagedAtom)).toBe(true);
+		act(() => {
+			panel.dispatchEvent(new WheelEvent("wheel", { ctrlKey: true }));
+			// The zoom animation's own scroll write.
+			store.set(spectrogramScrollLeftAtom, 1600);
+		});
+		seek(20100);
+		expect(scrollLeft()).toBe(1510);
+		expect(store.get(spectrogramFollowEngagedAtom)).toBe(true);
+	});
+
+	it("still pauses on Ctrl+wheel zoom in page mode", () => {
+		act(() => {
+			panel.dispatchEvent(new WheelEvent("wheel", { ctrlKey: true }));
+		});
+		seek(15000);
+		expect(scrollLeft()).toBe(0);
+		expect(store.get(spectrogramFollowEngagedAtom)).toBe(false);
 	});
 
 	it("stays paused while the mouse is held on the spectrogram", () => {

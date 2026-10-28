@@ -1,11 +1,12 @@
-import { useAtom } from "jotai";
+import { useAtom, useStore } from "jotai";
 import { useAtomValue } from "jotai/index";
 import { useCallback, useEffect, useRef } from "react";
-import { audioBufferAtom } from "$/modules/audio/states";
+import { audioBufferAtom, currentTimeAtom } from "$/modules/audio/states";
 import {
 	spectrogramScrollLeftAtom,
 	spectrogramZoomAtom,
 } from "$/modules/spectrogram/states";
+import { spectrogramFollowEngagedAtom } from "../states/follow-playhead";
 
 const clampZoom = (z: number) => Math.max(50, Math.min(z, 10000));
 
@@ -13,6 +14,7 @@ export function useSpectrogramInteraction(
 	scrollContainerRef: React.RefObject<HTMLDivElement | null>,
 	containerWidth: number,
 ) {
+	const store = useStore();
 	const audioBuffer = useAtomValue(audioBufferAtom);
 	const [zoom, setZoom] = useAtom(spectrogramZoomAtom);
 	const [scrollLeft, setScrollLeft] = useAtom(spectrogramScrollLeftAtom);
@@ -69,12 +71,17 @@ export function useSpectrogramInteraction(
 				const currentZoom = targetZoomRef.current;
 				const currentScroll = targetScrollLeftRef.current;
 
-				const timeAtCursor = (currentScroll + mouseX) / currentZoom;
+				// While the view follows the playhead continuously, zoom around
+				// the playhead so following and zooming agree on where to scroll.
+				const anchorX = store.get(spectrogramFollowEngagedAtom)
+					? (store.get(currentTimeAtom) / 1000) * currentZoom - currentScroll
+					: mouseX;
+				const timeAtAnchor = (currentScroll + anchorX) / currentZoom;
 				const zoomFactor = event.deltaY < 0 ? 1.15 : 0.85;
 				const newZoom = clampZoom(currentZoom * zoomFactor);
 				if (newZoom === currentZoom) return;
 
-				const newScrollLeft = timeAtCursor * newZoom - mouseX;
+				const newScrollLeft = timeAtAnchor * newZoom - anchorX;
 
 				const totalWidth = audioBuffer.duration * newZoom;
 				const maxScrollLeft = Math.max(0, totalWidth - containerWidth);
@@ -103,7 +110,7 @@ export function useSpectrogramInteraction(
 
 			startAnimation();
 		},
-		[startAnimation, audioBuffer, containerWidth, scrollContainerRef],
+		[startAnimation, audioBuffer, containerWidth, scrollContainerRef, store],
 	);
 
 	useEffect(() => {
