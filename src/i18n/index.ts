@@ -33,4 +33,10 @@ i18n
 		i18n.changeLanguage(localStorage.getItem("language") || navigator.language),
 	);
 
+// Keep <html lang> on the interface language, so browsers don't offer to
+// translate the page from a language it isn't in.
+i18n.on("languageChanged", (language) => {
+	document.documentElement.lang = language;
+});
+
 export default i18n;
