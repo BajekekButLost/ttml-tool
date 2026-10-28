@@ -1101,6 +1101,10 @@
     "playbackRate": "Prędkość odtwarzania",
     "preservesPitch": "Zachowaj wysokość dźwięku",
     "audioMenu": "Dźwięk i odtwarzanie",
+    "noAudio": "Nie wczytano dźwięku",
+    "loadedAudio": "Wczytany dźwięk",
+    "replaceAudio": "Zastąp",
+    "resetSpeed": "Przywróć 1×",
     "playPause": "Odtwórz / wstrzymaj muzykę",
     "expandSpectrogram": "Rozwiń / zwiń spektrogram"
   },

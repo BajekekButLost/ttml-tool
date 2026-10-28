@@ -1101,6 +1101,10 @@
     "playbackRate": "Velocità di riproduzione",
     "preservesPitch": "Mantieni l’intonazione",
     "audioMenu": "Audio e riproduzione",
+    "noAudio": "Nessun audio caricato",
+    "loadedAudio": "Audio caricato",
+    "replaceAudio": "Sostituisci",
+    "resetSpeed": "Ripristina a 1×",
     "playPause": "Riproduci / metti in pausa la musica",
     "expandSpectrogram": "Espandi / comprimi lo spettrogramma"
   },

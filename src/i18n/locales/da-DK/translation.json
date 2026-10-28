@@ -1101,6 +1101,10 @@
     "playbackRate": "Afspilningshastighed",
     "preservesPitch": "Bevar tonehøjde",
     "audioMenu": "Lyd og afspilning",
+    "noAudio": "Ingen lyd indlæst",
+    "loadedAudio": "Indlæst lyd",
+    "replaceAudio": "Erstat",
+    "resetSpeed": "Nulstil til 1×",
     "playPause": "Afspil / pause musik",
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },

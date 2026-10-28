@@ -1,0 +1,74 @@
+.menu {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-3);
+}
+
+/* The song being synced: the one thing in this menu with a surface of its own. */
+.song {
+	display: grid;
+	grid-template-columns: 40px minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--space-3);
+	padding: var(--space-2);
+	background: var(--gray-2);
+	border: 1px solid var(--gray-a3);
+	border-radius: var(--radius-4);
+}
+
+.songEmpty {
+	grid-template-columns: 40px minmax(0, 1fr);
+}
+
+.cover {
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-2);
+	object-fit: cover;
+	display: block;
+}
+
+.coverPlaceholder {
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-2);
+	display: grid;
+	place-items: center;
+	background: var(--gray-a3);
+	color: var(--gray-11);
+	font-size: 20px;
+}
+
+.songText {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.songName {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.loadEmpty {
+	grid-column: 1 / -1;
+}
+
+.row {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.rowHead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+	min-height: var(--space-5);
+}
+
+.value {
+	font-variant-numeric: tabular-nums;
+}

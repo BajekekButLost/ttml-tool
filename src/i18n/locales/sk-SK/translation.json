@@ -1101,6 +1101,10 @@
     "playbackRate": "Rýchlosť prehrávania",
     "preservesPitch": "Zachovať výšku tónu",
     "audioMenu": "Zvuk a prehrávanie",
+    "noAudio": "Nie je načítaný žiadny zvuk",
+    "loadedAudio": "Načítaný zvuk",
+    "replaceAudio": "Nahradiť",
+    "resetSpeed": "Obnoviť na 1×",
     "playPause": "Prehrať / pozastaviť hudbu",
     "expandSpectrogram": "Rozbaliť / zbaliť spektrogram"
   },
