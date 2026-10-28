@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import type { FC, ReactNode } from "react";
 import { memo, useContext, useEffect, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { currentTimeAtom } from "$/modules/audio/states/index.ts";
 import {
 	type ProcessedLyricLine,
@@ -41,7 +42,7 @@ import {
 } from "$/states/dialogs.ts";
 import { selectedLinesAtom, showUnselectedLinesAtom } from "$/states/main.ts";
 import { globalStore } from "$/states/store.ts";
-import { LyricLineSegment } from "./LyricLineSegment";
+import { type LineEndLabels, LyricLineSegment } from "./LyricLineSegment";
 import styles from "./LyricTimelineOverlay.module.css";
 import { SpectrogramContext } from "./SpectrogramContext.ts";
 import laneStyles from "./SpectrogramLanes.module.css";
@@ -59,6 +60,18 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 }) => {
 	const processedLines = useAtomValue(processedLyricLinesAtom);
 	const previewLine = useAtomValue(previewLineAtom);
+	const { t } = useTranslation();
+	const lineEndLabels = useMemo<LineEndLabels>(
+		() => ({
+			merged: t(
+				"spectrogramLineEnds.mergedHandle",
+				"Line and last word end. Alt-drag to move only one.",
+			),
+			word: t("spectrogramLineEnds.wordEndHandle", "Last word end"),
+			line: t("spectrogramLineEnds.lineEndHandle", "Line end"),
+		}),
+		[t],
+	);
 	const boundaries = useMemo(() => {
 		const starts = new Map<number, number>();
 		const ends = new Map<number, number>();
@@ -419,6 +432,7 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 						line={line}
 						isTouchingStart={isTouchingLaneStart(lane, shown)}
 						isTouchingEnd={isTouchingLaneEnd(lane, shown)}
+						lineEndLabels={lineEndLabels}
 					/>,
 				);
 		}
@@ -466,6 +480,7 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 					isTouchingEnd={touchingEnd(
 						previewLine?.id === line.id ? previewLine : line,
 					)}
+					lineEndLabels={lineEndLabels}
 				/>
 			))}
 			{ghostLines.map((line) => (

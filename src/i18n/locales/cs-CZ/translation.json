@@ -1521,8 +1521,6 @@
     }
   },
   "spectrogramLineEnds": {
-    "settingTitle": "Jeden úchyt konce řádku",
-    "settingDesc": "Kde řádek a jeho poslední slovo končí společně, zobrazí jeden úchyt, který posune obojí. Tažení s Alt posune jen jedno z nich. Kde se liší, je konec posledního slova krátká čára a konec řádku vysoká.",
     "mergedHandle": "Konec řádku a posledního slova. Tažením s Alt posunete jen jedno.",
     "wordEndHandle": "Konec posledního slova",
     "lineEndHandle": "Konec řádku"
