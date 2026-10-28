@@ -156,7 +156,11 @@ export function ChangelogScreen({
 	);
 
 	return (
-		<Dialog.Content className={styles.content} aria-describedby={undefined}>
+		<Dialog.Content
+			maxWidth="760px"
+			className={styles.content}
+			aria-describedby={undefined}
+		>
 			<Flex justify="between" align="center" gap="3" mb="3" wrap="wrap">
 				<Dialog.Title mb="0" size="5">
 					{t("changeNotes.changelogTitle", "Changelog & updates")}
