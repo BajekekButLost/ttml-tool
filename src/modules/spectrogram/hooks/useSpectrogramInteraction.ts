@@ -56,9 +56,9 @@ export function useSpectrogramInteraction(
 			);
 			setScrollLeft(s);
 			setZoom(z);
+			targetScrollLeftRef.current = s;
 			if (done) {
 				playheadAnchorRef.current = null;
-				targetScrollLeftRef.current = s;
 				animationFrameRef.current = null;
 			} else {
 				animationFrameRef.current = requestAnimationFrame(animationLoop);
@@ -105,9 +105,13 @@ export function useSpectrogramInteraction(
 
 				// While the view follows the playhead continuously, zoom around
 				// the playhead so following and zooming agree on where to scroll.
+				// A zoom already following keeps its anchor: the target scroll it
+				// would be measured from isn't updated while it runs.
 				const following = store.get(spectrogramFollowEngagedAtom);
 				const anchorX = following
-					? (store.get(currentTimeAtom) / 1000) * currentZoom - currentScroll
+					? (playheadAnchorRef.current ??
+						(store.get(currentTimeAtom) / 1000) * currentZoomRef.current -
+							currentScrollLeftRef.current)
 					: mouseX;
 				playheadAnchorRef.current = following ? anchorX : null;
 				const timeAtAnchor = (currentScroll + anchorX) / currentZoom;

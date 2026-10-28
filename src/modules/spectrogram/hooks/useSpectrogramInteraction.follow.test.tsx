@@ -85,4 +85,22 @@ describe("Ctrl+wheel zoom while following continuously", () => {
 		}
 		expect(store.get(spectrogramZoomAtom)).toBeCloseTo(460, 0);
 	});
+
+	it("stays centered through a long run of wheel ticks", () => {
+		for (let frame = 1; frame <= 90; frame++) {
+			act(() => {
+				if (frame <= 60 && frame % 3 === 0) {
+					container.dispatchEvent(
+						new WheelEvent("wheel", {
+							ctrlKey: true,
+							deltaY: frame <= 30 ? -100 : 100,
+						}),
+					);
+				}
+				store.set(currentTimeAtom, 20000 + frame * 16);
+				vi.advanceTimersByTime(16);
+			});
+			expect(Math.abs(playheadInView() - VIEW_WIDTH / 2)).toBeLessThan(1);
+		}
+	});
 });
