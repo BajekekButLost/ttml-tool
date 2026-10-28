@@ -36,8 +36,6 @@
   "previewProblems": {
     "count": "{count, plural, one {# parola ha un problema di tempi} many {# parole hanno problemi di tempi} other {# parole hanno problemi di tempi}}",
     "jump": "Seleziona la prima",
-    "setting": "Mostra problemi di tempi",
-    "settingDesc": "Segna in rosso, con un contorno tratteggiato, le parole che l'anteprima Spicy nasconderebbe o riprodurrebbe male a causa dei loro tempi.",
     "untimed": "Senza tempi in un verso sincronizzato",
     "untimedLine": "Non ancora sincronizzato",
     "endsBeforeStart": "Finisce prima di iniziare",

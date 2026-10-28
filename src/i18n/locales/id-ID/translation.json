@@ -36,8 +36,6 @@
   "previewProblems": {
     "count": "{count, plural, other {# kata punya masalah waktu}}",
     "jump": "Pilih yang pertama",
-    "setting": "Tampilkan masalah waktu",
-    "settingDesc": "Tandai dengan warna merah dan garis putus-putus kata yang akan disembunyikan atau diputar salah oleh pratinjau Spicy karena waktunya.",
     "untimed": "Tanpa waktu di baris yang sudah diberi waktu",
     "untimedLine": "Belum diberi waktu",
     "endsBeforeStart": "Berakhir sebelum dimulai",

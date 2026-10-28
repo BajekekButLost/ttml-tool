@@ -36,8 +36,6 @@
   "previewProblems": {
     "count": "{count, plural, one {# sanan ajoituksessa on ongelma} other {# sanan ajoituksessa on ongelmia}}",
     "jump": "Valitse ensimmäinen",
-    "setting": "Näytä ajoitusongelmat",
-    "settingDesc": "Merkitsee punaisella ja katkoviivareunuksella sanat, jotka Spicy-esikatselu piilottaisi tai toistaisi väärin niiden ajoituksen vuoksi.",
     "untimed": "Ei ajoitusta ajoitetulla rivillä",
     "untimedLine": "Ei vielä ajoitettu",
     "endsBeforeStart": "Päättyy ennen kuin alkaa",

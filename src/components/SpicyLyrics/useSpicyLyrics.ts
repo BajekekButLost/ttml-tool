@@ -4,15 +4,11 @@
  */
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { audioCoverArtAtom, currentTimeAtom } from "$/modules/audio/states";
 import { playbackClock } from "$/modules/playback-clock";
 import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
-import {
-	previewTimingProblemsAtom,
-	showPreviewTimingProblemsAtom,
-} from "$/modules/preview-problems/states";
+import { previewTimingProblemsAtom } from "$/modules/preview-problems/states";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	allowConsecutiveBackgroundLinesAtom,
@@ -38,11 +34,8 @@ import { useCoverPalette, useKawarpBackground } from "./useBackground";
 import { useSpicyVirtualList } from "./useSpicyVirtualList";
 
 export function useSpicyLyrics() {
-	// With timing problems shown, untimed lines stay in the preview, marked.
-	const showUntimed = useAtomValue(showPreviewTimingProblemsAtom);
-	const timedLyrics = useAtomValue(timedPreviewLyricsAtom);
-	const allLyrics = useAtomValue(lyricLinesAtom);
-	const lyrics = showUntimed ? allLyrics : timedLyrics;
+	// Every line, untimed ones included: they stay in place, hollow.
+	const lyrics = useAtomValue(lyricLinesAtom);
 	const simple = useAtomValue(spicySimpleLyricsModeAtom);
 	const forceLineSynced = useAtomValue(spicyForceLineSyncedAtom);
 	const joinWords = useAtomValue(spicyJoinSplitWordsAtom);
@@ -84,7 +77,7 @@ export function useSpicyLyrics() {
 				forceLineSynced,
 				allowConsecutiveBackgrounds,
 				problems,
-				showUntimed,
+				true,
 			),
 		[
 			sourceLines,
@@ -93,7 +86,6 @@ export function useSpicyLyrics() {
 			forceLineSynced,
 			allowConsecutiveBackgrounds,
 			problems,
-			showUntimed,
 		],
 	);
 	const hasDuetLines = useMemo(

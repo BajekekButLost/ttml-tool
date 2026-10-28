@@ -36,8 +36,6 @@
   "previewProblems": {
     "count": "{count, plural, one {# slovo má problém s časováním} few {# slova mají problém s časováním} many {# slova má problém s časováním} other {# slov má problém s časováním}}",
     "jump": "Vybrat první",
-    "setting": "Zobrazit problémy s časováním",
-    "settingDesc": "Označí červeně a čárkovaným obrysem slova, která by náhled Spicy kvůli jejich časování skryl nebo přehrál špatně.",
     "untimed": "Nemá časování v časovaném řádku",
     "untimedLine": "Zatím bez časování",
     "endsBeforeStart": "Končí dřív, než začne",

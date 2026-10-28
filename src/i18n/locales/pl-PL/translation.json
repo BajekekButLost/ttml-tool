@@ -36,8 +36,6 @@
   "previewProblems": {
     "count": "{count, plural, one {# słowo ma problem z synchronizacją} few {# słowa mają problemy z synchronizacją} many {# słów ma problemy z synchronizacją} other {# słowa ma problemy z synchronizacją}}",
     "jump": "Zaznacz pierwsze",
-    "setting": "Pokazuj problemy z synchronizacją",
-    "settingDesc": "Oznacza na czerwono, z przerywanym obrysem, słowa, które podgląd Spicy ukryłby lub odtworzył źle z powodu ich czasów.",
     "untimed": "Brak czasów w zsynchronizowanym wersie",
     "untimedLine": "Jeszcze niezsynchronizowany",
     "endsBeforeStart": "Kończy się, zanim się zacznie",

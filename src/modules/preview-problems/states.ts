@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
 import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import {
 	collapsedSectionIdsAtom,
@@ -9,26 +8,11 @@ import {
 	ToolMode,
 	toolModeAtom,
 } from "$/states/main";
-import {
-	detectWordTimingProblems,
-	type WordTimingIssue,
-} from "./detect-word-timing-problems";
+import { detectWordTimingProblems } from "./detect-word-timing-problems";
 
-/** Feature flag: mark words with timing problems in the Spicy preview. Off by default. */
-export const showPreviewTimingProblemsAtom = atomWithStorage(
-	"previewProblems.enabled",
-	false,
-	undefined,
-	{ getOnInit: true },
-);
-
-const NO_ISSUES: WordTimingIssue[] = [];
-
-/** Timing problems in the lines the preview shows; empty while the flag is off. */
+/** Timing problems the Spicy preview marks, in the lines it shows. */
 export const previewTimingProblemsAtom = atom((get) =>
-	get(showPreviewTimingProblemsAtom)
-		? detectWordTimingProblems(get(timedPreviewLyricsAtom).lyricLines)
-		: NO_ISSUES,
+	detectWordTimingProblems(get(timedPreviewLyricsAtom).lyricLines),
 );
 
 /** Select the first flagged word in Time mode, so its timing can be fixed. */

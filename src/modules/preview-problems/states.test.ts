@@ -13,7 +13,6 @@ import { newLyricLine, newLyricWord } from "$/types/ttml";
 import {
 	jumpToFirstTimingProblemAtom,
 	previewTimingProblemsAtom,
-	showPreviewTimingProblemsAtom,
 } from "./states";
 
 const setup = () => {
@@ -43,15 +42,8 @@ const setup = () => {
 };
 
 describe("preview timing problems", () => {
-	it("stays empty while the flag is off", () => {
+	it("lists problems in timed lines", () => {
 		const store = setup();
-		store.set(showPreviewTimingProblemsAtom, false);
-		expect(store.get(previewTimingProblemsAtom)).toEqual([]);
-	});
-
-	it("lists problems in timed lines once the flag is on", () => {
-		const store = setup();
-		store.set(showPreviewTimingProblemsAtom, true);
 		expect(store.get(previewTimingProblemsAtom)).toEqual([
 			{ lineId: "broken", wordId: "early", problems: ["startsBeforeLine"] },
 		]);
@@ -59,7 +51,6 @@ describe("preview timing problems", () => {
 
 	it("jumps to the first flagged word in Time mode and keeps the side preview", () => {
 		const store = setup();
-		store.set(showPreviewTimingProblemsAtom, true);
 		store.set(toolModeAtom, ToolMode.Preview);
 		store.set(showPreviewPanelAtom, true);
 		store.set(collapsedSectionIdsAtom, new Set(["verse", "chorus"]));
