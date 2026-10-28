@@ -6,6 +6,7 @@ import { HoverCursor, HoverTimeTooltip } from "./HoverIndicators.tsx";
 import { LyricTimelineOverlay } from "./LyricTimelineOverlay.tsx";
 import { PlayheadCursor, ScrubHandle } from "./Playhead";
 import { SpectrogramContext } from "./SpectrogramContext.ts";
+import { SpectrogramLaneLabels } from "./SpectrogramLaneLabels.tsx";
 import {
 	SpectrogramGainSidebar,
 	SpectrogramSettingsSidebar,
@@ -189,6 +190,7 @@ export function SpectrogramView({
 										</Theme>
 									</SpectrogramContext.Provider>
 								</div>
+								<SpectrogramLaneLabels />
 							</div>
 							<TimeShiftToolbar />
 						</>

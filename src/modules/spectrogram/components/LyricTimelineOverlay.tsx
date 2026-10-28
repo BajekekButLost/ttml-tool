@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { memo, useContext, useEffect, useMemo, useRef } from "react";
 import { currentTimeAtom } from "$/modules/audio/states/index.ts";
 import {
@@ -15,6 +15,17 @@ import {
 	spectrogramScrollLeftAtom,
 	spectrogramZoomAtom,
 } from "$/modules/spectrogram/states/index.ts";
+import {
+	spectrogramHiddenLanesAtom,
+	spectrogramLaneLayoutAtom,
+} from "$/modules/spectrogram/states/lanes.ts";
+import {
+	buildLaneBoundaries,
+	getLaneBands,
+	isTouchingLaneEnd,
+	isTouchingLaneStart,
+	type SpectrogramLaneKind,
+} from "$/modules/spectrogram/utils/lanes.ts";
 import {
 	commitUpdatedLine,
 	getUpdatedLineForDivider,
@@ -32,6 +43,7 @@ import { globalStore } from "$/states/store.ts";
 import { LyricLineSegment } from "./LyricLineSegment";
 import styles from "./LyricTimelineOverlay.module.css";
 import { SpectrogramContext } from "./SpectrogramContext.ts";
+import laneStyles from "./SpectrogramLanes.module.css";
 
 interface LyricTimelineOverlayProps {
 	clientWidth: number;
@@ -81,6 +93,19 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 	const previewOffset = useAtomValue(timeShiftPreviewOffsetAtom);
 	const previewScope = useAtomValue(timeShiftPreviewScopeAtom);
 	const previewRange = useAtomValue(timeShiftPreviewCustomRangeAtom);
+	const laneLayout = useAtomValue(spectrogramLaneLayoutAtom);
+	const hiddenLanes = useAtomValue(spectrogramHiddenLanesAtom);
+	const laneBands = useMemo(
+		() => (laneLayout ? getLaneBands(laneLayout, hiddenLanes) : null),
+		[laneLayout, hiddenLanes],
+	);
+	const laneBoundaries = useMemo(
+		() =>
+			laneLayout
+				? buildLaneBoundaries(processedLines, laneLayout.laneOf)
+				: null,
+		[processedLines, laneLayout],
+	);
 
 	useEffect(() => {
 		if (!timelineDrag) {
@@ -324,6 +349,104 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 		linesToRender = linesToRender.filter((line) => selectedLines.has(line.id));
 	}
 
+	const ghostLines: ProcessedLyricLine[] = [];
+	if (previewActive && previewOffset !== 0) {
+		for (const line of processedLines) {
+			if (line.startTime == null || line.endTime == null) continue;
+
+			// Calculate visibility based on SHIFTED position
+			const shiftedStartMs = line.startTime + previewOffset;
+			const shiftedEndMs = line.endTime + previewOffset;
+
+			const inBufferedView =
+				shiftedEndMs > viewStartMs && shiftedStartMs < viewEndMs;
+
+			if (!inBufferedView) continue;
+
+			let shouldShowGhost = false;
+			if (previewScope === "all") {
+				shouldShowGhost = true;
+			} else if (previewScope === "selected") {
+				shouldShowGhost = selectedLines.has(line.id);
+			} else if (previewScope === "selected-following") {
+				let firstSelectedIndex = -1;
+				processedLines.forEach((l, index) => {
+					if (selectedLines.has(l.id)) {
+						if (firstSelectedIndex === -1 || index < firstSelectedIndex) {
+							firstSelectedIndex = index;
+						}
+					}
+				});
+				const currentLineIndex = processedLines.findIndex(
+					(l) => l.id === line.id,
+				);
+				shouldShowGhost =
+					firstSelectedIndex !== -1 && currentLineIndex >= firstSelectedIndex;
+			} else if (previewScope === "custom") {
+				const currentLineIndex = processedLines.findIndex(
+					(l) => l.id === line.id,
+				);
+				shouldShowGhost =
+					currentLineIndex >= previewRange[0] - 1 &&
+					currentLineIndex < previewRange[1];
+			}
+
+			if (shouldShowGhost) ghostLines.push(line);
+		}
+	}
+
+	if (laneLayout && laneBands && laneBoundaries) {
+		const laneChildren = new Map<SpectrogramLaneKind, ReactNode[]>(
+			laneBands.map((band) => [band.kind, []]),
+		);
+		const laneOfLine = (line: ProcessedLyricLine) =>
+			laneLayout.laneOf.get(line.id) ?? "main";
+		for (const line of linesToRender) {
+			const shown = previewLine?.id === line.id ? previewLine : line;
+			const lane = laneBoundaries.get(laneOfLine(line));
+			laneChildren
+				.get(laneOfLine(line))
+				?.push(
+					<LyricLineSegment
+						key={line.id}
+						line={line}
+						isTouchingStart={isTouchingLaneStart(lane, shown)}
+						isTouchingEnd={isTouchingLaneEnd(lane, shown)}
+					/>,
+				);
+		}
+		for (const line of ghostLines) {
+			const lane = laneBoundaries.get(laneOfLine(line));
+			laneChildren
+				.get(laneOfLine(line))
+				?.push(
+					<LyricLineSegment
+						key={`ghost-${line.id}`}
+						line={line}
+						isTouchingStart={isTouchingLaneStart(lane, line, previewOffset)}
+						isTouchingEnd={isTouchingLaneEnd(lane, line, previewOffset)}
+						isGhost
+						offset={previewOffset}
+					/>,
+				);
+		}
+
+		return (
+			<div className={styles.overlay}>
+				{laneBands.map((band) => (
+					<div
+						key={band.kind}
+						className={laneStyles.lane}
+						data-lane={band.kind}
+						style={{ top: `${band.top}%`, height: `${band.height}%` }}
+					>
+						{laneChildren.get(band.kind)}
+					</div>
+				))}
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.overlay}>
 			{linesToRender.map((line) => (
@@ -338,62 +461,16 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 					)}
 				/>
 			))}
-			{previewActive &&
-				previewOffset !== 0 &&
-				processedLines.map((line) => {
-					if (line.startTime == null || line.endTime == null) return null;
-
-					// Calculate visibility based on SHIFTED position
-					const shiftedStartMs = line.startTime + previewOffset;
-					const shiftedEndMs = line.endTime + previewOffset;
-
-					const inBufferedView =
-						shiftedEndMs > viewStartMs && shiftedStartMs < viewEndMs;
-
-					if (!inBufferedView) return null;
-
-					let shouldShowGhost = false;
-					if (previewScope === "all") {
-						shouldShowGhost = true;
-					} else if (previewScope === "selected") {
-						shouldShowGhost = selectedLines.has(line.id);
-					} else if (previewScope === "selected-following") {
-						let firstSelectedIndex = -1;
-						processedLines.forEach((l, index) => {
-							if (selectedLines.has(l.id)) {
-								if (firstSelectedIndex === -1 || index < firstSelectedIndex) {
-									firstSelectedIndex = index;
-								}
-							}
-						});
-						const currentLineIndex = processedLines.findIndex(
-							(l) => l.id === line.id,
-						);
-						shouldShowGhost =
-							firstSelectedIndex !== -1 &&
-							currentLineIndex >= firstSelectedIndex;
-					} else if (previewScope === "custom") {
-						const currentLineIndex = processedLines.findIndex(
-							(l) => l.id === line.id,
-						);
-						shouldShowGhost =
-							currentLineIndex >= previewRange[0] - 1 &&
-							currentLineIndex < previewRange[1];
-					}
-
-					if (!shouldShowGhost) return null;
-
-					return (
-						<LyricLineSegment
-							key={`ghost-${line.id}`}
-							line={line}
-							isTouchingStart={touchingStart(line, previewOffset)}
-							isTouchingEnd={touchingEnd(line, previewOffset)}
-							isGhost
-							offset={previewOffset}
-						/>
-					);
-				})}
+			{ghostLines.map((line) => (
+				<LyricLineSegment
+					key={`ghost-${line.id}`}
+					line={line}
+					isTouchingStart={touchingStart(line, previewOffset)}
+					isTouchingEnd={touchingEnd(line, previewOffset)}
+					isGhost
+					offset={previewOffset}
+				/>
+			))}
 		</div>
 	);
 };
