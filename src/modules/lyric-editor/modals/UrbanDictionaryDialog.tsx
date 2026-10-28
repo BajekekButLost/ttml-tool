@@ -6,7 +6,6 @@ import {
 import {
 	Box,
 	Flex,
-	Heading,
 	IconButton,
 	Link,
 	ScrollArea,
@@ -16,7 +15,11 @@ import {
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { EmptyState } from "$/components/EmptyState";
+import { Panel } from "$/components/Panel";
+import { SectionHeader } from "$/components/SectionHeader";
 import { urbanDictionaryDialogAtom } from "$/states/urban-dictionary";
+import styles from "./UrbanDictionaryDialog.module.css";
 
 interface Definition {
 	definition: string;
@@ -65,76 +68,46 @@ export const UrbanDictionaryDialog = () => {
 	return (
 		<>
 			{state.open && (
-				<Box
-					style={{
-						position: "fixed",
-						inset: 0,
-						backgroundColor: "rgba(0,0,0,0.5)",
-						zIndex: 1000,
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						backdropFilter: "blur(2px)",
-					}}
-					onClick={handleClose}
-				>
-					<Box
-						style={{
-							backgroundColor: "var(--color-panel)",
-							borderRadius: "12px",
-							maxWidth: "600px",
-							width: "calc(100vw - 40px)",
-							maxHeight: "85vh",
-							overflow: "hidden",
-							boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
-							border: "1px solid var(--gray-5)",
-						}}
-						onClick={(e) => e.stopPropagation()}
-					>
-						<Flex
-							align="center"
-							justify="between"
-							style={{
-								padding: "16px 20px",
-								borderBottom: "1px solid var(--gray-5)",
-								backgroundColor: "var(--gray-2)",
-							}}
-						>
-							<Flex align="center" gap="2">
-								<BookSearchRegular
-									style={{ fontSize: "20px", color: "var(--accent-9)" }}
-								/>
-								<Heading size="3">{t("urbanDictionary.title")}</Heading>
-							</Flex>
-							<IconButton
-								size="1"
-								variant="ghost"
-								onClick={handleClose}
-								color="gray"
-							>
-								<DismissRegular />
-							</IconButton>
-						</Flex>
-
-						<Box style={{ padding: "16px 24px 8px 24px" }}>
-							<Flex align="baseline" gap="2">
-								<Text
-									size="6"
-									weight="bold"
-									style={{ letterSpacing: "-0.02em", color: "var(--accent-9)" }}
+				<Box className={styles.overlay} onClick={handleClose}>
+					<Box className={styles.dialog} onClick={(e) => e.stopPropagation()}>
+						<SectionHeader
+							as="h2"
+							size="3"
+							className={styles.header}
+							icon={<BookSearchRegular className={styles.headerIcon} />}
+							title={t("urbanDictionary.title")}
+							actions={
+								<IconButton
+									size="1"
+									variant="ghost"
+									onClick={handleClose}
+									color="gray"
+									aria-label={t("common.close", "Close")}
 								>
+									<DismissRegular />
+								</IconButton>
+							}
+						/>
+
+						<Box className={styles.word}>
+							<Flex align="baseline" gap="2">
+								<Text size="6" weight="bold" className={styles.wordText}>
 									{state.word}
 								</Text>
-								<Text size="2" color="gray" style={{ opacity: 0.8 }}>
+								<Text size="2" color="gray">
 									{t("urbanDictionary.slang")}
 								</Text>
 							</Flex>
 						</Box>
 
 						<ScrollArea style={{ maxHeight: "65vh" }} type="auto">
-							<Box style={{ padding: "8px 24px 24px 24px" }}>
+							<Box className={styles.body}>
 								{loading ? (
-									<Flex align="center" justify="center" height="200px">
+									<Flex
+										align="center"
+										justify="center"
+										className={styles.status}
+									>
 										<Spinner size="3" />
 									</Flex>
 								) : error ? (
@@ -143,7 +116,7 @@ export const UrbanDictionaryDialog = () => {
 										align="center"
 										justify="center"
 										gap="3"
-										height="200px"
+										className={styles.status}
 									>
 										<Text color="red" size="2">
 											{error}
@@ -151,75 +124,42 @@ export const UrbanDictionaryDialog = () => {
 									</Flex>
 								) : definitions.length === 0 ? (
 									<Flex
-										direction="column"
 										align="center"
 										justify="center"
-										gap="3"
-										height="200px"
-										style={{ opacity: 0.5 }}
+										className={styles.status}
 									>
-										<SearchRegular style={{ fontSize: "40px" }} />
-										<Text size="2">
-											{t("urbanDictionary.noDefinitions", { word: state.word })}
-										</Text>
+										<EmptyState
+											icon={<SearchRegular />}
+											title={t("urbanDictionary.noDefinitions", {
+												word: state.word,
+											})}
+										/>
 									</Flex>
 								) : (
 									<Flex direction="column" gap="4">
 										{definitions.map((def) => (
-											<Box
-												key={def.defid}
-												style={{
-													padding: "16px",
-													backgroundColor: "var(--gray-3)",
-													borderRadius: "10px",
-													borderLeft: "4px solid var(--accent-9)",
-													boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-												}}
-											>
+											<Panel key={def.defid} size="2">
 												<Flex direction="column" gap="3">
-													<Text
-														size="3"
-														style={{
-															whiteSpace: "pre-wrap",
-															lineHeight: "1.6",
-															wordBreak: "break-word",
-														}}
-													>
+													<Text size="3" className={styles.definition}>
 														{def.definition.replace(/\[|\]/g, "")}
 													</Text>
 													{def.example && (
-														<Box
-															style={{
-																padding: "12px",
-																backgroundColor: "var(--gray-4)",
-																borderRadius: "8px",
-																borderLeft: "2px solid var(--gray-7)",
-															}}
-														>
+														<Panel tone="sunken">
 															<Text
 																size="2"
 																color="gray"
-																style={{
-																	whiteSpace: "pre-wrap",
-																	fontStyle: "italic",
-																	lineHeight: "1.5",
-																	wordBreak: "break-word",
-																}}
+																className={styles.example}
 															>
 																"{def.example.replace(/\[|\]/g, "")}"
 															</Text>
-														</Box>
+														</Panel>
 													)}
 													<Flex
 														justify="between"
 														align="center"
-														style={{ marginTop: "4px" }}
+														className={styles.footer}
 													>
-														<Text
-															size="1"
-															color="gray"
-															style={{ opacity: 0.7 }}
-														>
+														<Text size="1" color="gray">
 															{t("urbanDictionary.by")} {def.author} • 👍{" "}
 															{def.thumbs_up}
 														</Text>
@@ -227,13 +167,13 @@ export const UrbanDictionaryDialog = () => {
 															href={def.permalink}
 															target="_blank"
 															size="1"
-															style={{ fontWeight: 500 }}
+															className={styles.link}
 														>
 															{t("urbanDictionary.viewOnline")}
 														</Link>
 													</Flex>
 												</Flex>
-											</Box>
+											</Panel>
 										))}
 									</Flex>
 								)}
