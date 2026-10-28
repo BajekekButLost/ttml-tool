@@ -27,7 +27,7 @@ import {
 } from "$/modules/settings/states/preview";
 import { findSpicyScrollIndex } from "./active-line";
 import { createSpicyAnimator, type SpringSet } from "./createSpicyAnimator";
-import { joinSplitWordsInLines } from "./join-split-words";
+import { joinSplitWordsInLines, remapToJoinedWords } from "./join-split-words";
 import type { Spring } from "./math";
 import { buildSpicyLines } from "./model";
 import { useCoverPalette, useKawarpBackground } from "./useBackground";
@@ -59,13 +59,14 @@ export function useSpicyLyrics() {
 	const setCurrentTime = useSetAtom(currentTimeAtom);
 	// Empty unless "Show timing problems" is on; then flagged words are marked.
 	const timingProblems = useAtomValue(previewTimingProblemsAtom);
-	const problems = useMemo(
-		() =>
-			timingProblems.length > 0
-				? new Map(timingProblems.map((issue) => [issue.wordId, issue.problems]))
-				: undefined,
-		[timingProblems],
-	);
+	// A joined word shows its parts' problems, so one on "ti" in "Beautiful" stays visible.
+	const problems = useMemo(() => {
+		if (timingProblems.length === 0) return undefined;
+		const byWordId = new Map(
+			timingProblems.map((issue) => [issue.wordId, issue.problems]),
+		);
+		return joinWords ? remapToJoinedWords(sourceLines, byWordId) : byWordId;
+	}, [timingProblems, joinWords, sourceLines]);
 	const lines = useMemo(
 		() =>
 			buildSpicyLines(
