@@ -13,7 +13,7 @@ import {
 	Text,
 } from "@radix-ui/themes";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { EmptyState } from "$/components/EmptyState";
 import { Panel } from "$/components/Panel";
@@ -65,6 +65,31 @@ export const UrbanDictionaryDialog = () => {
 		setState({ ...state, open: false });
 	};
 
+	const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+	// Escape closes, focus starts on the close button and goes back to where it
+	// was. An open Radix menu or popover inside gets Escape first.
+	useEffect(() => {
+		if (!state.open) return;
+		const previous =
+			document.activeElement instanceof HTMLElement
+				? document.activeElement
+				: null;
+		closeButtonRef.current?.focus();
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "Escape" || event.defaultPrevented) return;
+			if (event.isComposing || event.keyCode === 229) return;
+			if (document.querySelector("[data-radix-popper-content-wrapper]")) return;
+			event.preventDefault();
+			setState((current) => ({ ...current, open: false }));
+		};
+		document.addEventListener("keydown", onKeyDown);
+		return () => {
+			document.removeEventListener("keydown", onKeyDown);
+			if (previous?.isConnected) previous.focus();
+		};
+	}, [state.open, setState]);
+
 	return (
 		<>
 			{state.open && (
@@ -78,6 +103,7 @@ export const UrbanDictionaryDialog = () => {
 							title={t("urbanDictionary.title")}
 							actions={
 								<IconButton
+									ref={closeButtonRef}
 									size="1"
 									variant="ghost"
 									onClick={handleClose}
