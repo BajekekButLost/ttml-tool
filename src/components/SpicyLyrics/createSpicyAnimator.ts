@@ -7,7 +7,7 @@ import { audioEngine } from "$/modules/audio/audio-engine";
 import { findSpicyBlurAnchor } from "./active-line";
 import { lineGlowSpline } from "./animation-curves";
 import { progressAt, Spring, stateAt } from "./math";
-import type { SpicyLine, SpicyToken } from "./model";
+import type { SpicyLine } from "./model";
 import { keyFor } from "./model";
 import { createTokenAnimator } from "./token-animation";
 export type SpringSet = {
@@ -15,10 +15,6 @@ export type SpringSet = {
 	y: Spring;
 	glow: Spring;
 	opacity: Spring;
-};
-export type SlmAnimation = {
-	animation?: Animation;
-	phase: "idle" | "pre" | "fill" | "sung";
 };
 
 type LineState = "not-sung" | "active" | "sung";
@@ -30,7 +26,6 @@ interface AnimationContext {
 	wordNodes: RefObject<Map<string, HTMLElement>>;
 	springs: RefObject<Map<string, SpringSet>>;
 	lineGlowSprings: RefObject<Map<string, Spring>>;
-	slmAnimations: RefObject<Map<string, SlmAnimation>>;
 	lastTime: RefObject<number>;
 	setFps: Dispatch<SetStateAction<number>>;
 	fpsRef: RefObject<{ frames: number; lastTime: number }>;
@@ -55,7 +50,6 @@ export function createSpicyAnimator({
 	wordNodes,
 	springs,
 	lineGlowSprings,
-	slmAnimations,
 	lastTime,
 	setFps,
 	fpsRef,
@@ -94,15 +88,6 @@ export function createSpicyAnimator({
 			return !glow || glow.isSettled();
 		}
 		return nodeKeys(line).every((key) => settled(springs.current.get(key)));
-	};
-
-	// Simple-mode fills belong to the nodes they ran on; a remounted row
-	// starts its own.
-	const forgetSlmAnimations = (line: SpicyLine) => {
-		for (const key of nodeKeys(line)) {
-			slmAnimations.current.get(key)?.animation?.cancel();
-			slmAnimations.current.delete(key);
-		}
 	};
 
 	const animateLineSynced = (
@@ -165,107 +150,15 @@ export function createSpicyAnimator({
 					: wordState === "sung"
 						? 1
 						: 0;
-			const slmStateFor = (nodeKey: string) => {
-				let result = slmAnimations.current.get(nodeKey);
-				if (!result) {
-					result = { phase: "idle" };
-					slmAnimations.current.set(nodeKey, result);
-				}
-				return result;
-			};
-			const pinSlmGradient = (
-				nodeKey: string,
-				node: HTMLElement | undefined,
-				position: "-50%" | "100%",
-			) => {
-				if (!node) return;
-				const animation = slmStateFor(nodeKey);
-				const phase = position === "100%" ? "sung" : "idle";
-				if (animation.phase === phase) return;
-				animation.animation?.cancel();
-				animation.animation = undefined;
-				animation.phase = phase;
-				node.style.setProperty("--spicy-slm-gradient-position", position);
-			};
-			const runSlmAnimation = (
-				nodeKey: string,
-				node: HTMLElement | undefined,
-				phase: "pre" | "fill",
-				duration: number,
-				elapsed: number,
-			) => {
-				if (!node || !simple) return;
-				const animation = slmStateFor(nodeKey);
-				if (animation.phase !== phase || !animation.animation) {
-					animation.animation?.cancel();
-					node.style.removeProperty("--spicy-slm-gradient-position");
-					animation.phase = phase;
-					animation.animation = node.animate(
-						phase === "fill"
-							? [
-									{ "--spicy-slm-gradient-position": "-27.5%" },
-									{ "--spicy-slm-gradient-position": "100%" },
-								]
-							: [
-									{ "--spicy-slm-gradient-position": "-50%" },
-									{ "--spicy-slm-gradient-position": "-27.5%" },
-								],
-						{
-							duration: Math.max(0, duration),
-							easing: "linear",
-							fill: "forwards",
-						},
-					);
-				}
-				animation.animation?.pause();
-				if (animation.animation)
-					animation.animation.currentTime = Math.max(
-						0,
-						Math.min(duration, elapsed),
-					);
-			};
-			const prefillToken = (
-				next: SpicyToken | undefined,
-				nextIndex: number,
-			) => {
-				if (!next || stateAt(time, next.startTime, next.endTime) !== "not-sung")
-					return;
-				const nextKey = keyFor(line, next, nextIndex);
-				if (next.letters) {
-					for (let index = 0; index < next.letters.length; index++) {
-						const letterStart =
-							next.startTime +
-							index * ((next.endTime - next.startTime) / next.letters.length);
-						runSlmAnimation(
-							`${nextKey}:${letterStart}`,
-							wordNodes.current.get(`${nextKey}:${letterStart}`),
-							"pre",
-							125,
-							125 - (letterStart - time),
-						);
-					}
-				} else
-					runSlmAnimation(
-						nextKey,
-						wordNodes.current.get(nextKey),
-						"pre",
-						125,
-						125 - (next.startTime - time),
-					);
-			};
 			const { animateNode, animateHeldGroup, animateHeldLetters } =
 				createTokenAnimator({
 					springs,
 					wordNodes,
-					word,
 					wordState,
 					simple,
 					snap,
 					dt,
 					time,
-					prefillNext: () => prefillToken(line.words[wi + 1], wi + 1),
-					runSlmAnimation,
-					pinSlmGradient,
 				});
 			if (line.isDotLine)
 				animateNode(rootKey, wordNodes.current.get(rootKey), progress, true);
@@ -327,10 +220,7 @@ export function createSpicyAnimator({
 			// write all of it and snap its springs to where they belong.
 			const mounted = shownNodes[i] !== node;
 			shownNodes[i] = node;
-			if (mounted) {
-				blurValues[i] = undefined;
-				forgetSlmAnimations(line);
-			}
+			if (mounted) blurValues[i] = undefined;
 			const lineSnap = snap || mounted;
 			if (changed || mounted) node.dataset.state = status;
 			if (line.isDotLine) {
