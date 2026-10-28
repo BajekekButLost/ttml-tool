@@ -73,7 +73,16 @@ export function findSpicyActiveIndex(lines: TimedLine[], timeMs: number) {
 }
 
 export function findSpicyScrollIndex(lines: TimedLine[], timeMs: number) {
-	if (lines.every((line) => timeMs >= line.endTime)) return lines.length - 1;
+	// Past the end, rest on the last timed row. Untimed rows are never a
+	// target, so an unsynced tail (or song) doesn't pull the view to the bottom.
+	let lastTimed = -1;
+	for (let i = lines.length - 1; i >= 0 && lastTimed < 0; i--)
+		if (!lines[i].isUntimed) lastTimed = i;
+	if (
+		lastTimed >= 0 &&
+		lines.every((line) => line.isUntimed || timeMs >= line.endTime)
+	)
+		return lastTimed;
 	return findSpicyActiveIndex(lines, timeMs);
 }
 
