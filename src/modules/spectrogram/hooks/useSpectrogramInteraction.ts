@@ -24,20 +24,52 @@ export function useSpectrogramInteraction(
 	const animationFrameRef = useRef<number | null>(null);
 	const currentScrollLeftRef = useRef(scrollLeft);
 	const currentZoomRef = useRef(zoom);
+	// Where the playhead sits in the view while a zoom follows it, else null.
+	const playheadAnchorRef = useRef<number | null>(null);
+	const viewRef = useRef({ duration: 0, width: containerWidth });
+	viewRef.current = {
+		duration: audioBuffer?.duration ?? 0,
+		width: containerWidth,
+	};
 
 	const animationLoop = useCallback(() => {
-		const targetScroll = targetScrollLeftRef.current;
 		const targetZoom = targetZoomRef.current;
 		const currentScroll = currentScrollLeftRef.current;
 		const currentZoom = currentZoomRef.current;
 
 		const lerpFactor = 0.35;
+		const nextZoom = (1 - lerpFactor) * currentZoom + lerpFactor * targetZoom;
+		const zoomDiff = Math.abs(nextZoom - targetZoom);
+
+		const anchor = playheadAnchorRef.current;
+		if (anchor !== null) {
+			// Zooming while following: keep the live playhead at its spot every
+			// frame, so the view zooms and follows in one motion instead of
+			// aiming at where the playhead was when the wheel turned.
+			const done = zoomDiff < 2;
+			const z = done ? targetZoom : nextZoom;
+			const { duration, width } = viewRef.current;
+			const maxScroll = Math.max(0, duration * z - width);
+			const s = Math.max(
+				0,
+				Math.min((store.get(currentTimeAtom) / 1000) * z - anchor, maxScroll),
+			);
+			setScrollLeft(s);
+			setZoom(z);
+			if (done) {
+				playheadAnchorRef.current = null;
+				targetScrollLeftRef.current = s;
+				animationFrameRef.current = null;
+			} else {
+				animationFrameRef.current = requestAnimationFrame(animationLoop);
+			}
+			return;
+		}
+
+		const targetScroll = targetScrollLeftRef.current;
 		const nextScroll =
 			(1 - lerpFactor) * currentScroll + lerpFactor * targetScroll;
-		const nextZoom = (1 - lerpFactor) * currentZoom + lerpFactor * targetZoom;
-
 		const scrollDiff = Math.abs(nextScroll - targetScroll);
-		const zoomDiff = Math.abs(nextZoom - targetZoom);
 
 		if (scrollDiff < 1 && zoomDiff < 2) {
 			setScrollLeft(targetScroll);
@@ -48,7 +80,7 @@ export function useSpectrogramInteraction(
 			setZoom(nextZoom);
 			animationFrameRef.current = requestAnimationFrame(animationLoop);
 		}
-	}, [setScrollLeft, setZoom]);
+	}, [setScrollLeft, setZoom, store]);
 
 	const startAnimation = useCallback(() => {
 		if (animationFrameRef.current === null) {
@@ -73,9 +105,11 @@ export function useSpectrogramInteraction(
 
 				// While the view follows the playhead continuously, zoom around
 				// the playhead so following and zooming agree on where to scroll.
-				const anchorX = store.get(spectrogramFollowEngagedAtom)
+				const following = store.get(spectrogramFollowEngagedAtom);
+				const anchorX = following
 					? (store.get(currentTimeAtom) / 1000) * currentZoom - currentScroll
 					: mouseX;
+				playheadAnchorRef.current = following ? anchorX : null;
 				const timeAtAnchor = (currentScroll + anchorX) / currentZoom;
 				const zoomFactor = event.deltaY < 0 ? 1.15 : 0.85;
 				const newZoom = clampZoom(currentZoom * zoomFactor);
@@ -93,6 +127,7 @@ export function useSpectrogramInteraction(
 				targetZoomRef.current = newZoom;
 				targetScrollLeftRef.current = clampedScrollLeft;
 			} else {
+				playheadAnchorRef.current = null;
 				const scrollAmount = event.deltaY + event.deltaX;
 				if (scrollAmount !== 0) {
 					const newScrollLeft = targetScrollLeftRef.current + scrollAmount;
