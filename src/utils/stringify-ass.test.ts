@@ -142,6 +142,21 @@ describe("stringifyAss", () => {
 		expect(text).toContain(",,c d");
 	});
 
+	it("ignores untimed space words when timing a line", () => {
+		const text = stringifyAss([
+			line({
+				words: [
+					word("Hey,", 36940, 37220),
+					word(" ", 0, 0),
+					word("Nate", 37220, 37430),
+				],
+			}),
+		]);
+		expect(text).toContain(
+			"Dialogue: 0,0:00:36.94,0:00:37.43,Default,v1,0,0,0,,{\\k28}Hey,{\\k0} {\\k21}Nate",
+		);
+	});
+
 	it("keeps braces and backslashes in text from acting as tags", () => {
 		const text = stringifyAss([
 			line({

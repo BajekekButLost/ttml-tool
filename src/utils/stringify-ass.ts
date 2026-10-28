@@ -75,11 +75,14 @@ export function stringifyAss(lines: LyricLine[]): string {
 		`Format: ${EVENT_FORMAT}`,
 	];
 	for (const line of lines) {
-		const start = line.words.length
-			? Math.min(...line.words.map((w) => w.startTime))
+		// Spaces between words carry no timing (0/0); they must not pull the
+		// line's start back to 0:00.
+		const timed = line.words.filter((w) => w.endTime > 0);
+		const start = timed.length
+			? Math.min(...timed.map((w) => w.startTime))
 			: line.startTime;
-		const end = line.words.length
-			? Math.max(...line.words.map((w) => w.endTime))
+		const end = timed.length
+			? Math.max(...timed.map((w) => w.endTime))
 			: line.endTime;
 		const name = `${line.isDuet ? "v2" : "v1"}${line.isBG ? "-bg" : ""}`;
 		out.push(dialogue(start, end, name, karaokeText(line, start)));
