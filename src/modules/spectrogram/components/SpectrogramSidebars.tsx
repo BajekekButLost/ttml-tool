@@ -18,6 +18,7 @@ import type { useAudioSpectrogram } from "../hooks/useAudioSpectrogram";
 import styles from "./AudioSpectrogram.module.css";
 import { FollowPlayheadButton } from "./FollowPlayheadButton.tsx";
 import { FrequencyRuler } from "./FrequencyRuler.tsx";
+import { SpectrogramLaneToggles } from "./SpectrogramLaneToggles.tsx";
 
 type SpectrogramState = ReturnType<typeof useAudioSpectrogram>;
 
@@ -118,6 +119,8 @@ function SettingsSidebar({
 					{showUnselectedLines ? <EyeFilled /> : <EyeOffFilled />}
 				</IconButton>
 			</Tooltip>
+
+			<SpectrogramLaneToggles />
 
 			<Tooltip content={t("timeShiftDialog.title", "Time Shift")} side="left">
 				<IconButton
