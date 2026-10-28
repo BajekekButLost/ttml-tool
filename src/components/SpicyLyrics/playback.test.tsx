@@ -176,7 +176,8 @@ describe("Spicy shared-clock rendering", () => {
 						?.querySelector<HTMLElement>("span")
 						?.style.getPropertyValue("--spicy-slm-gradient-position") ?? "",
 				);
-			const fillAt = (progress: number) => -50 + 120 * progress;
+			// Spicy draws this mode 33.5ms behind the playhead.
+			const fillAt = (ms: number) => -50 + 120 * ((ms - 33.5 - 1000) / 1000);
 			// At 950ms, the former +100ms playing lead marked this line active.
 			await act(async () => {
 				testEngine.musicPlaying = true;
@@ -193,7 +194,7 @@ describe("Spicy shared-clock rendering", () => {
 			expect(globalStore.get(currentTimeAtom)).toBe(1500);
 			expect(playbackClock.getSnapshot()).toBe(1.5);
 			expect(line?.getAttribute("data-state")).toBe("active");
-			if (simple) expect(fill()).toBeCloseTo(fillAt(0.5));
+			if (simple) expect(fill()).toBeCloseTo(fillAt(1500));
 			await act(async () => {
 				testEngine.musicPlaying = false;
 				testEngine.dispatchEvent(new Event("music-pause"));
@@ -204,7 +205,7 @@ describe("Spicy shared-clock rendering", () => {
 				testEngine.dispatchEvent(new Event("music-seeked"));
 			});
 			expect(globalStore.get(currentTimeAtom)).toBe(1750);
-			if (simple) expect(fill()).toBeCloseTo(fillAt(0.75));
+			if (simple) expect(fill()).toBeCloseTo(fillAt(1750));
 			expect(frames.size).toBe(0);
 			await act(async () => {
 				testEngine.musicPlaying = true;
@@ -216,7 +217,7 @@ describe("Spicy shared-clock rendering", () => {
 				for (const callback of callbacks) callback(32);
 			});
 			expect(globalStore.get(currentTimeAtom)).toBe(1800);
-			if (simple) expect(fill()).toBeCloseTo(fillAt(0.8));
+			if (simple) expect(fill()).toBeCloseTo(fillAt(1800));
 			await act(async () => {
 				testEngine.musicPlaying = false;
 				testEngine.interpolatedCurrentTime = 0;

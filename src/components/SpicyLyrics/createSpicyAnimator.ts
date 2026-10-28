@@ -42,6 +42,8 @@ const settled = (set: SpringSet | undefined) =>
 /** Spicy's blur step per row away from the active one, and its ceiling. */
 const BLUR_STEP = 1.25;
 const BLUR_MAX = BLUR_STEP * 5.465;
+/** How far behind the playhead Spicy animates in Simple Lyrics mode, in ms. */
+const SIMPLE_LYRICS_LAG = 33.5;
 
 export function createSpicyAnimator({
 	lines,
@@ -200,7 +202,9 @@ export function createSpicyAnimator({
 		}
 		const dt = (now - lastTime.current) / 1000;
 		lastTime.current = now;
-		const time = seconds * 1000;
+		// Spicy draws Simple Lyrics mode 33.5ms behind the playhead; its
+		// scrolling still follows the playhead itself.
+		const time = seconds * 1000 - (simple ? SIMPLE_LYRICS_LAG : 0);
 		const anchor = findSpicyBlurAnchor(lines, time, blurAnchor);
 		const anchorMoved = anchor !== blurAnchor;
 		blurAnchor = anchor;
