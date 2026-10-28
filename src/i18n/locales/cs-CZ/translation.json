@@ -1100,7 +1100,10 @@
     "volume": "Hlasitost",
     "playbackRate": "Rychlost přehrávání",
     "preservesPitch": "Zachovat výšku tónu",
-    "clickToLoadMusic": "Kliknutím na ikonu hudby načtěte zvuk",
+    "audioMenu": "Zvuk a přehrávání",
+    "loadedAudio": "Načtený zvuk",
+    "replaceAudio": "Nahradit",
+    "resetSpeed": "Obnovit na 1×",
     "playPause": "Přehrát / pozastavit hudbu",
     "expandSpectrogram": "Rozbalit / sbalit spektrogram"
   },

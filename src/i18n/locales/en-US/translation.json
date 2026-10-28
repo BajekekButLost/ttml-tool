@@ -1100,7 +1100,10 @@
     "volume": "Volume",
     "playbackRate": "Playback speed",
     "preservesPitch": "Preserve pitch",
-    "clickToLoadMusic": "Click the music icon to load audio",
+    "audioMenu": "Audio and playback",
+    "loadedAudio": "Loaded audio",
+    "replaceAudio": "Replace",
+    "resetSpeed": "Reset to 1×",
     "playPause": "Play / pause music",
     "expandSpectrogram": "Expand / collapse spectrogram"
   },

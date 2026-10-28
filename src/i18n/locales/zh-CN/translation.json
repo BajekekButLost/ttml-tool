@@ -1100,7 +1100,10 @@
     "volume": "音量",
     "playbackRate": "播放速度",
     "preservesPitch": "保持音高",
-    "clickToLoadMusic": "点击音乐图标加载音频",
+    "audioMenu": "音频与播放",
+    "loadedAudio": "已加载的音频",
+    "replaceAudio": "替换",
+    "resetSpeed": "重置为 1×",
     "playPause": "播放 / 暂停音乐",
     "expandSpectrogram": "展开 / 收起频谱图"
   },

@@ -1100,7 +1100,10 @@
     "volume": "Volume",
     "playbackRate": "Velocità di riproduzione",
     "preservesPitch": "Mantieni l’intonazione",
-    "clickToLoadMusic": "Fai clic sull’icona musicale per caricare l’audio",
+    "audioMenu": "Audio e riproduzione",
+    "loadedAudio": "Audio caricato",
+    "replaceAudio": "Sostituisci",
+    "resetSpeed": "Ripristina a 1×",
     "playPause": "Riproduci / metti in pausa la musica",
     "expandSpectrogram": "Espandi / comprimi lo spettrogramma"
   },
