@@ -72,16 +72,24 @@ const lineKey = (line: LyricLine, format: LyricMarkupFormat) =>
 		...subKeysOf(format).map((key) => line[key] ?? ""),
 	]);
 
+// The preview diffs on every edit; project lines don't change meanwhile.
+const canonicalCache = new WeakMap<
+	LyricLine,
+	{ format: LyricMarkupFormat; line: LyricLine | undefined }
+>();
+
 /** What a project line reads as after a trip through the text. */
 function canonicalLine(line: LyricLine, format: LyricMarkupFormat) {
-	return importTextToLines(
+	const cached = canonicalCache.get(line);
+	if (cached?.format === format) return cached.line;
+	const canonical = importTextToLines(
 		serializeLine(line, format).join("\n"),
 		format,
 		true,
-		{
-			splitHyphens: false,
-		},
+		{ splitHyphens: false },
 	)[0];
+	canonicalCache.set(line, { format, line: canonical });
+	return canonical;
 }
 
 type Op =

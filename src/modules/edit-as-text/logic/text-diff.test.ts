@@ -449,6 +449,48 @@ describe("applyEditedText", () => {
 		expect(result.summary.hasChanges).toBe(false);
 		expect(result.lyricLines[0]).toEqual(line);
 	});
+
+	it("round-trips romanization, translation and a background duet line", () => {
+		const word = (text: string, start: number): LyricWord => ({
+			...newLyricWord(),
+			word: text,
+			startTime: start,
+			endTime: start + 100,
+		});
+		const first = {
+			...newLyricLine(),
+			words: [word("Kimi", 100), word(" ", 0), word("ga", 300)],
+			translatedLyric: "You",
+			romanLyric: "kimi ga",
+		};
+		const second = {
+			...newLyricLine(),
+			isBG: true,
+			isDuet: true,
+			words: [word("oh", 500)],
+		};
+		const lyrics = deepFreeze({
+			metadata: [],
+			lyricLines: [first, second],
+			sections: [],
+		});
+		const format = editTextFormat(lyrics);
+		expect(format.mode).toBe("lyric-trans-roman");
+		const text = serializeLyrics(lyrics, format);
+		expect(text).toBe("Kimi\\ \\ga\nYou\nkimi ga\n<>oh\n\n");
+		const result = applyEditedText(lyrics, text, format);
+		expect(result.summary.hasChanges).toBe(false);
+		expect(result.lyricLines).toEqual([first, second]);
+
+		const edited = applyEditedText(
+			lyrics,
+			text.replace("kimi ga", "kimi-ga"),
+			format,
+		);
+		expect(edited.summary).toMatchObject({ edited: 1, droppedTimedWords: 0 });
+		expect(edited.lyricLines[0].romanLyric).toBe("kimi-ga");
+		expect(timing(edited.lyricLines[0])).toEqual(timing(first));
+	});
 });
 
 describe("mergeWords", () => {
