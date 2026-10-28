@@ -190,7 +190,9 @@ export function SpectrogramView({
 										</Theme>
 									</SpectrogramContext.Provider>
 								</div>
-								<SpectrogramLaneLabels />
+								<Theme appearance="dark">
+									<SpectrogramLaneLabels />
+								</Theme>
 							</div>
 							<TimeShiftToolbar />
 						</>
