@@ -1520,6 +1520,11 @@
       "bg": "Baggrund"
     }
   },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Slut på linje og sidste ord. Træk med Alt for kun at flytte det ene.",
+    "wordEndHandle": "Slut på sidste ord",
+    "lineEndHandle": "Linjens slut"
+  },
   "spectrogram": {
     "invalidEndTime": "Kan ikke vælge denne sluttid",
     "noAudioLoaded": "Indlæs en lydfil for at vise spektrogrammet",

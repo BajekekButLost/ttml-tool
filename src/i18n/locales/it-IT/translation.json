@@ -1520,6 +1520,11 @@
       "bg": "Cori"
     }
   },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fine della riga e dell'ultima parola. Trascina con Alt per spostarne solo una.",
+    "wordEndHandle": "Fine dell'ultima parola",
+    "lineEndHandle": "Fine della riga"
+  },
   "spectrogram": {
     "invalidEndTime": "Impossibile selezionare questo tempo di fine",
     "noAudioLoaded": "Carica un file audio per generare lo spettrogramma",

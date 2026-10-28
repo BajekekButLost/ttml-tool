@@ -1520,6 +1520,11 @@
       "bg": "Apoio"
     }
   },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fim da linha e da última palavra. Arraste com Alt para mover só um.",
+    "wordEndHandle": "Fim da última palavra",
+    "lineEndHandle": "Fim da linha"
+  },
   "spectrogram": {
     "invalidEndTime": "Não é possível selecionar este tempo de fim",
     "noAudioLoaded": "Por favor, carregue um arquivo de áudio para renderizar o espectrograma",

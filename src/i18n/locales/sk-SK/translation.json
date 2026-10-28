@@ -1520,6 +1520,11 @@
       "bg": "Sprievod"
     }
   },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Koniec riadka a posledného slova. Ťahaním s Alt posuniete len jedno.",
+    "wordEndHandle": "Koniec posledného slova",
+    "lineEndHandle": "Koniec riadka"
+  },
   "spectrogram": {
     "invalidEndTime": "Nemožno vybrať tento čas konca",
     "noAudioLoaded": "Načítajte zvukový súbor na zobrazenie spektrogramu",

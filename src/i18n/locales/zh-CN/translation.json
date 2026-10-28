@@ -1520,6 +1520,11 @@
       "bg": "背景人声"
     }
   },
+  "spectrogramLineEnds": {
+    "mergedHandle": "行尾与最后一个词的结尾。按住 Alt 拖动只移动其中一个。",
+    "wordEndHandle": "最后一个词的结尾",
+    "lineEndHandle": "行尾"
+  },
   "spectrogram": {
     "invalidEndTime": "不能选择此结束时间",
     "noAudioLoaded": "加载音频文件以显示频谱图",
