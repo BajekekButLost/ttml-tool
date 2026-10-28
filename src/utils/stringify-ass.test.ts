@@ -141,4 +141,15 @@ describe("stringifyAss", () => {
 		expect(text).toContain("{\\k10}a b");
 		expect(text).toContain(",,c d");
 	});
+
+	it("keeps braces and backslashes in text from acting as tags", () => {
+		const text = stringifyAss([
+			line({
+				words: [word("{x}", 0, 100)],
+				translatedLyric: "a\\Nb \\h",
+			}),
+		]);
+		expect(text).toContain("{\\k10}｛x｝");
+		expect(text).toContain(",,a＼Nb ＼h");
+	});
 });

@@ -21,8 +21,16 @@ export function formatAssTime(ms: number): string {
 	return `${h}:${pad(m)}:${pad(s)}.${pad(cs % 100)}`;
 }
 
-/** A line break inside text would end the event early. */
-const cleanText = (text: string) => text.replace(/\r\n|\r|\n/g, " ");
+/**
+ * A line break inside text would end the event early, braces open override
+ * blocks and backslashes start \N or \h, so lyric text gets none of them raw.
+ */
+const cleanText = (text: string) =>
+	text
+		.replace(/\r\n|\r|\n/g, " ")
+		.replace(/\{/g, "｛")
+		.replace(/\}/g, "｝")
+		.replace(/\\/g, "＼");
 
 function dialogue(start: number, end: number, name: string, text: string) {
 	return `Dialogue: 0,${formatAssTime(start)},${formatAssTime(end)},Default,${name},0,0,0,,${text}`;
