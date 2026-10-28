@@ -17,6 +17,8 @@ export type ProcessedSegment = WordSegment | GapSegment;
 
 export interface ProcessedLyricLine extends Omit<LyricLine, "words"> {
 	segments: ProcessedSegment[];
+	/** A word has a start but no end yet: keyboard sync is mid-line. */
+	syncInProgress?: boolean;
 }
 
 export function processSingleLine(line: LyricLine): ProcessedLyricLine {
@@ -79,6 +81,9 @@ export function processSingleLine(line: LyricLine): ProcessedLyricLine {
 		startTime,
 		endTime,
 		segments: segments,
+		syncInProgress: line.words.some(
+			(w) => w.startTime > 0 && w.endTime <= w.startTime,
+		),
 	};
 }
 

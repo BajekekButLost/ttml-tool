@@ -107,4 +107,20 @@ describe("live timeline bounds", () => {
 			segments: [],
 		});
 	});
+
+	it("flags a line whose current word has a start but no end", () => {
+		const syncing = {
+			...newLyricLine(),
+			words: [
+				{ ...newLyricWord(), word: "hel", startTime: 1000, endTime: 1300 },
+				{ ...newLyricWord(), word: "lo", startTime: 1300 },
+			],
+		};
+		const done = {
+			...syncing,
+			words: [syncing.words[0], { ...syncing.words[1], endTime: 1600 }],
+		};
+		expect(processSingleLine(syncing).syncInProgress).toBe(true);
+		expect(processSingleLine(done).syncInProgress).toBe(false);
+	});
 });
