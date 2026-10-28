@@ -16,6 +16,7 @@ import { memo } from "react";
 import { OptionPicker } from "$/components/OptionPicker";
 import type { useAudioSpectrogram } from "../hooks/useAudioSpectrogram";
 import styles from "./AudioSpectrogram.module.css";
+import { FollowPlayheadButton } from "./FollowPlayheadButton.tsx";
 import { FrequencyRuler } from "./FrequencyRuler.tsx";
 import { SpectrogramLaneToggles } from "./SpectrogramLaneToggles.tsx";
 
@@ -133,6 +134,8 @@ function SettingsSidebar({
 					<ClockRegular />
 				</IconButton>
 			</Tooltip>
+
+			<FollowPlayheadButton />
 
 			<Popover.Root>
 				<Popover.Trigger>
