@@ -7,15 +7,15 @@ import {
 	type SpectrogramLaneKind,
 } from "$/modules/spectrogram/utils/lanes.ts";
 
-/** Feature flag: draw main and background lines in separate spectrogram lanes. */
+/** Draw main and background lines in separate spectrogram lanes. */
 export const spectrogramLanesEnabledAtom = atomWithStorage<boolean>(
-	"spectrogramLanesEnabled",
+	"settings_spectrogramLanes",
 	false,
 );
 
 /** Give duet lines their own lane while lanes are on. */
 export const spectrogramDuetLaneAtom = atomWithStorage<boolean>(
-	"spectrogramDuetLane",
+	"settings_spectrogramDuetLane",
 	false,
 );
 

@@ -1,18 +1,5 @@
-import {
-	Add20Regular,
-	ArrowStepInRight24Regular,
-	Delete20Regular,
-	Layer24Regular,
-} from "@fluentui/react-icons";
-import {
-	Box,
-	Button,
-	Card,
-	Flex,
-	Select,
-	Text,
-	TextField,
-} from "@radix-ui/themes";
+import { Add20Regular, Delete20Regular } from "@fluentui/react-icons";
+import { Button, Flex, Select, Text, TextField } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,7 +9,6 @@ import {
 	selectedPaletteIdAtom,
 } from "$/modules/spectrogram/states";
 import { spectrogramLanesEnabledAtom } from "$/modules/spectrogram/states/lanes.ts";
-import { spectrogramLineEndHandlesAtom } from "$/modules/spectrogram/states/line-end-handles.ts";
 import { SettingToggle } from "../components/WorkflowControls";
 
 export const SettingsSpectrogramTab = () => {
@@ -85,55 +71,20 @@ export const SettingsSpectrogramTab = () => {
 
 	return (
 		<Flex direction="column" gap="4">
-			<Card>
-				<Text as="label">
-					<Flex gap="3" align="center">
-						<Layer24Regular />
-						<Box flexGrow="1">
-							<Flex align="center" justify="between" gap="4">
-								<Flex direction="column" gap="1">
-									<Text>
-										{t("spectrogramLanes.settingTitle", "Separate lanes")}
-									</Text>
-									<Text size="1" color="gray">
-										{t(
-											"spectrogramLanes.settingDesc",
-											"Draw background lines in their own row under the main lines. Lanes are view-only: change a line's role in Edit mode.",
-										)}
-									</Text>
-								</Flex>
-								<SettingToggle setting={spectrogramLanesEnabledAtom} />
-							</Flex>
-						</Box>
+			<Text as="label">
+				<Flex gap="3" align="center" justify="between">
+					<Flex direction="column" gap="1">
+						<Text>{t("spectrogramLanes.settingTitle", "Separate lanes")}</Text>
+						<Text size="1" color="gray">
+							{t(
+								"spectrogramLanes.settingDesc",
+								"Draw background lines in their own row under the main lines. Lanes are view-only: change a line's role in Edit mode.",
+							)}
+						</Text>
 					</Flex>
-				</Text>
-			</Card>
-			<Card>
-				<Text as="label">
-					<Flex gap="3" align="center">
-						<ArrowStepInRight24Regular />
-						<Box flexGrow="1">
-							<Flex align="center" justify="between" gap="4">
-								<Flex direction="column" gap="1">
-									<Text>
-										{t(
-											"spectrogramLineEnds.settingTitle",
-											"Single line-end handle",
-										)}
-									</Text>
-									<Text size="1" color="gray">
-										{t(
-											"spectrogramLineEnds.settingDesc",
-											"Shows one handle where a line and its last word end together, and dragging it moves both. Alt-drag moves only one. Where they differ, the last word's end is a short bar and the line end a tall one.",
-										)}
-									</Text>
-								</Flex>
-								<SettingToggle setting={spectrogramLineEndHandlesAtom} />
-							</Flex>
-						</Box>
-					</Flex>
-				</Text>
-			</Card>
+					<SettingToggle setting={spectrogramLanesEnabledAtom} />
+				</Flex>
+			</Text>
 			<Text as="label">
 				<Flex direction="column" gap="2" align="start">
 					<Text>{t("settings.spectrogram.palette", "Color palette")}</Text>

@@ -40,7 +40,7 @@
 	outline: none;
 }
 
-/* Line-end handles (flag): the merged handle is the classic single bar, always full height. */
+/* Line-end handles: the merged handle is the classic single bar, always full height. */
 .divider.mergedEnd .dividerLine {
 	height: 100%;
 	align-self: stretch;
@@ -62,4 +62,11 @@
 .divider.lineEnd:hover .dividerLine,
 .divider.lineEnd:focus .dividerLine {
 	background-color: var(--gray-12);
+}
+
+/* Where two lines touch, keep the seam's matching short bars. */
+.divider.touching.mergedEnd .dividerLine,
+.divider.touching.lineEnd .dividerLine {
+	height: 60%;
+	align-self: center;
 }

@@ -62,8 +62,13 @@ describe("resolveLineEndHandles", () => {
 		expect(resolve(makeLine(900, []))).toEqual({ kind: "none" });
 	});
 
-	it("leaves a word running past the line end to the classic dividers", () => {
-		expect(resolve(makeLine(800))).toEqual({ kind: "none" });
+	it("merges when the last word runs past the stored line end", () => {
+		// Processing widens the line to cover its words, so they end together.
+		expect(resolve(makeLine(800))).toEqual({
+			kind: "merged",
+			wordIndex: 1,
+			gapIndex: null,
+		});
 	});
 
 	it("leaves a nested last word to the classic dividers", () => {
