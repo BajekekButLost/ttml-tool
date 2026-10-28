@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Ei vaikuta, kun Spicy Lyrics -ulkoasu on käytössä.",
         "fontNote": "Geist, Spicy Lyrics -ulkoasusta"
       },
+      "effects": {
+        "title": "Visuaaliset tehosteet",
+        "description": "Kevyempi poistaa sumennuksen, hehkut, valintaikkunoiden animaatiot ja esikatselun liikkuvan taustan, jotta sovellus pysyy sulavana, kun niiden piirto on hidasta. Se poistaa myös lasisumennuksen.",
+        "auto": "Automaattinen",
+        "full": "Täysi",
+        "lite": "Kevyempi",
+        "autoLite": "Käytössä Kevyempi, koska Linux piirtää nämä tehosteet hitaasti.",
+        "autoFull": "Käytössä Täysi."
+      },
       "presets": {
         "missingBackground": "Tämän esiasetuksen taustakuva ei ole käytettävissä tällä laitteella. Nykyinen kuva säilytettiin.",
         "title": "Ulkoasun esiasetukset",

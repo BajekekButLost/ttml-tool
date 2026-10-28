@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Tidak berpengaruh selama desain Spicy Lyrics aktif.",
         "fontNote": "Geist, dari desain Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efek visual",
+        "description": "Ringan menghapus blur, cahaya, animasi dialog, dan latar pratinjau yang bergerak, agar aplikasi tetap mulus di tempat efek tersebut lambat digambar. Ini juga mematikan blur kaca.",
+        "auto": "Otomatis",
+        "full": "Penuh",
+        "lite": "Ringan",
+        "autoLite": "Memakai Ringan, karena Linux menggambar efek ini dengan lambat.",
+        "autoFull": "Memakai Penuh."
+      },
       "presets": {
         "missingBackground": "Gambar latar preset ini tidak tersedia di perangkat ini. Gambar saat ini dipertahankan.",
         "title": "Preset tampilan",

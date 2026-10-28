@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Spicy Lyrics TTML Tool
+Comment=Word-by-word TTML lyrics editor and timing tool for Spicy Lyrics
+Categories=AudioVideo;Audio;AudioVideoEditing;
+Keywords=lyrics;ttml;karaoke;sync;
+Exec=amll-ttml-tool %U
+Icon=io.github.spicylyrics.TTMLTool
+Terminal=false
+# Tauri names the window after its bundle identifier, not the Flatpak ID.
+StartupWMClass=meow.naenaetart.amll-ttml-tool

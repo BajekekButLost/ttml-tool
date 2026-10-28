@@ -85,6 +85,7 @@ import {
 	DEFAULT_APP_FONT,
 	glassmorphismBlurAtom,
 	legacyDarkThemeAtom,
+	liteEffectsAtom,
 	SPICY_LYRICS_FONT_STACK,
 	selectedGradientAtom,
 	spicyLyricsDesignAtom,
@@ -210,6 +211,7 @@ function App() {
 	const isDarkTheme = useAtomValue(isDarkThemeAtom);
 	const legacyDarkTheme = useAtomValue(legacyDarkThemeAtom);
 	const spicyLyricsDesign = useAtomValue(spicyLyricsDesignAtom);
+	const liteEffects = useAtomValue(liteEffectsAtom);
 	const toolMode = useAtomValue(toolModeAtom);
 	const showTouchSyncPanel = useAtomValue(showTouchSyncPanelAtom);
 	const showPreviewPanel = useAtomValue(showPreviewPanelAtom);
@@ -319,6 +321,13 @@ function App() {
 		else delete root.designBackdrop;
 	}, [spicyLyricsDesign, useCustomAccent, hasBackground]);
 
+	// Read by src/styles/lite-effects.css, with the design on or off.
+	useLayoutEffect(() => {
+		const root = document.documentElement.dataset;
+		if (liteEffects) root.effects = "lite";
+		else delete root.effects;
+	}, [liteEffects]);
+
 	const customThemeStyles = useCustomAccent
 		? generateRadixScale(customAccentColor, effectiveTheme === "dark")
 		: null;
@@ -326,11 +335,12 @@ function App() {
 		spicyLyricsDesign && appFont === DEFAULT_APP_FONT
 			? SPICY_LYRICS_FONT_STACK
 			: appFont;
-	// Solid panels under the design unless the user picked a backdrop to see through.
-	const panelBackdrop =
-		spicyLyricsDesign && !hasBackground
-			? "none"
-			: `blur(${glassmorphismBlur}px) saturate(160%)`;
+	// Solid panels under the design unless the user picked a backdrop to see
+	// through. Lite effects always go solid: Radix blurs behind every card.
+	const solidPanels = liteEffects || (spicyLyricsDesign && !hasBackground);
+	const panelBackdrop = solidPanels
+		? "none"
+		: `blur(${glassmorphismBlur}px) saturate(160%)`;
 
 	const customStyleString = useMemo(() => {
 		let vars = "";
@@ -496,9 +506,11 @@ function App() {
 	}, [initCustomBackgroundImage]);
 
 	useEffect(() => {
-		if (import.meta.env.TAURI_ENV_PLATFORM) {
-			checkUpdate(true);
-		}
+		if (!import.meta.env.TAURI_ENV_PLATFORM) return;
+		// Flatpak and package-manager installs on Linux update elsewhere.
+		invoke<boolean>("can_self_update").then((supported) => {
+			if (supported) checkUpdate(true);
+		});
 	}, [checkUpdate]);
 
 	useEffect(() => {
@@ -641,7 +653,7 @@ function App() {
 			data-legacy-dark-theme={
 				(!spicyLyricsDesign && legacyDarkTheme) || undefined
 			}
-			panelBackground="translucent"
+			panelBackground={liteEffects ? "solid" : "translucent"}
 			hasBackground={hasBackground}
 			accentColor={accentColor}
 			className={styles.radixTheme}

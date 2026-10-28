@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Spicy Lyrics tasarımı açıkken etkisi yoktur.",
         "fontNote": "Geist, Spicy Lyrics tasarımından"
       },
+      "effects": {
+        "title": "Görsel efektler",
+        "description": "Hafif; bulanıklığı, parlamaları, iletişim kutusu animasyonlarını ve önizlemenin hareketli arka planını kapatır, böylece uygulama bunların yavaş çizildiği yerlerde akıcı kalır. Cam bulanıklığını da kapatır.",
+        "auto": "Otomatik",
+        "full": "Tam",
+        "lite": "Hafif",
+        "autoLite": "Hafif kullanılıyor, çünkü Linux bu efektleri yavaş çiziyor.",
+        "autoFull": "Tam kullanılıyor."
+      },
       "presets": {
         "missingBackground": "Bu ön ayarın arka plan resmi bu cihazda kullanılamıyor. Mevcut görüntü korundu.",
         "title": "Görünüm ön ayarları",

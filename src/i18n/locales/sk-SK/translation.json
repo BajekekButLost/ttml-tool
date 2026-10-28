@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Nemá vplyv, kým je zapnutý dizajn Spicy Lyrics.",
         "fontNote": "Geist, z dizajnu Spicy Lyrics"
       },
+      "effects": {
+        "title": "Vizuálne efekty",
+        "description": "Ľahšie vypne rozmazanie, žiaru, animácie dialógov a pohyblivé pozadie náhľadu, aby aplikácia zostala plynulá tam, kde sa vykresľujú pomaly. Vypne aj rozmazanie skla.",
+        "auto": "Automaticky",
+        "full": "Plné",
+        "lite": "Ľahšie",
+        "autoLite": "Používa sa Ľahšie, pretože Linux tieto efekty vykresľuje pomaly.",
+        "autoFull": "Používa sa Plné."
+      },
       "presets": {
         "missingBackground": "Obrázok na pozadí tejto predvoľby nie je v tomto zariadení k dispozícii. Aktuálny obrázok bol zachovaný.",
         "title": "Predvoľby vzhľadu",

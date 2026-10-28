@@ -534,6 +534,11 @@
 	-webkit-text-stroke: 0.025em white;
 	text-shadow: none;
 }
+/* Lite effects: the glow is a text-shadow whose blur changes every frame. */
+:global(:root[data-effects="lite"])
+	:is(.line, .lineSynced, .word, .letter, .dot) {
+	text-shadow: none;
+}
 @media (prefers-contrast: more) {
 	.line .timingProblem,
 	.line .problemGroup {

@@ -178,6 +178,13 @@ fn clear_discord_activity(discord: tauri::State<'_, DiscordState>) -> Result<(),
     Ok(())
 }
 
+/// On Linux the updater can only replace an AppImage. Flatpak, AUR and other
+/// package-manager installs update through their package manager instead.
+#[tauri::command]
+fn can_self_update() -> bool {
+    !cfg!(target_os = "linux") || std::env::var_os("APPIMAGE").is_some()
+}
+
 #[derive(serde::Serialize)]
 struct OpenFileData {
     pub filename: String,
@@ -482,7 +489,7 @@ pub fn run() {
         .plugin(tauri_plugin_process::init());
 
     #[cfg(any(target_os = "macos", target_os = "linux"))]
-    {
+    if can_self_update() {
         builder = builder.plugin(tauri_plugin_updater::Builder::new().build());
     }
 
@@ -558,6 +565,7 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             get_open_file_data,
+            can_self_update,
             set_discord_activity,
             clear_discord_activity,
             pick_project_folder,

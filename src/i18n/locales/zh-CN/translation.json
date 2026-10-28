@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "开启 Spicy Lyrics 设计时此项无效。",
         "fontNote": "Geist（来自 Spicy Lyrics 设计）"
       },
+      "effects": {
+        "title": "视觉效果",
+        "description": "“轻量”会关闭模糊、发光、对话框动画和预览的动态背景，让应用在这些效果渲染缓慢时依然流畅。它也会关闭玻璃模糊。",
+        "auto": "自动",
+        "full": "完整",
+        "lite": "轻量",
+        "autoLite": "正在使用“轻量”，因为 Linux 渲染这些效果较慢。",
+        "autoFull": "正在使用“完整”。"
+      },
       "presets": {
         "missingBackground": "此预设的背景图像在此设备上不可用。当前图像被保留。",
         "title": "外观预设",

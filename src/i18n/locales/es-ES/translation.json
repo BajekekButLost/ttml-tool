@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "No tiene efecto mientras el diseño de Spicy Lyrics esté activado.",
         "fontNote": "Geist, del diseño de Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efectos visuales",
+        "description": "Ligero quita el desenfoque, los brillos, las animaciones de los diálogos y el fondo animado de la vista previa, para que la app vaya fluida donde se dibujan despacio. También desactiva el desenfoque del cristal.",
+        "auto": "Automático",
+        "full": "Completo",
+        "lite": "Ligero",
+        "autoLite": "Usando Ligero, porque Linux dibuja estos efectos despacio.",
+        "autoFull": "Usando Completo."
+      },
       "presets": {
         "missingBackground": "La imagen de fondo de este ajuste preestablecido no está disponible en este dispositivo. Se mantuvo la imagen actual.",
         "title": "Ajustes preestablecidos de apariencia",

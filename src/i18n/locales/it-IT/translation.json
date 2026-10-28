@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Non ha effetto mentre il design Spicy Lyrics è attivo.",
         "fontNote": "Geist, dal design Spicy Lyrics"
       },
+      "effects": {
+        "title": "Effetti visivi",
+        "description": "Leggero toglie sfocatura, bagliori, animazioni delle finestre di dialogo e lo sfondo animato dell'anteprima, così l'app resta fluida dove vengono disegnati lentamente. Disattiva anche la sfocatura del vetro.",
+        "auto": "Automatico",
+        "full": "Completo",
+        "lite": "Leggero",
+        "autoLite": "In uso: Leggero, perché Linux disegna questi effetti lentamente.",
+        "autoFull": "In uso: Completo."
+      },
       "presets": {
         "missingBackground": "L’immagine di sfondo di questo profilo non è disponibile sul dispositivo. È stata mantenuta l’immagine attuale.",
         "title": "Profili di aspetto",

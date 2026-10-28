@@ -615,6 +615,15 @@
         "legacyDarkThemeNote": "Não tem efeito enquanto o visual do Spicy Lyrics estiver ativado.",
         "fontNote": "Geist, do visual do Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efeitos visuais",
+        "description": "Leve remove desfoque, brilhos, animações das caixas de diálogo e o fundo animado da prévia, para o app continuar fluido onde eles são desenhados devagar. Também desativa o desfoque de vidro.",
+        "auto": "Automático",
+        "full": "Completo",
+        "lite": "Leve",
+        "autoLite": "Usando Leve, porque o Linux desenha esses efeitos devagar.",
+        "autoFull": "Usando Completo."
+      },
       "presets": {
         "missingBackground": "A imagem de fundo desta predefinição não está disponível neste dispositivo. A imagem atual foi mantida.",
         "title": "Predefinições de aparência",
