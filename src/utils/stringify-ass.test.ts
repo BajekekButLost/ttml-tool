@@ -48,8 +48,8 @@ describe("stringifyAss", () => {
 	const out = stringifyAss(sample);
 	const rows = out.split("\n");
 
-	it("writes a standard header and Default style", () => {
-		expect(rows.slice(0, 12)).toEqual([
+	it("writes a standard header with Lyrics and Background styles", () => {
+		expect(rows.slice(0, 13)).toEqual([
 			"[Script Info]",
 			"ScriptType: v4.00+",
 			"PlayResX: 1920",
@@ -60,22 +60,23 @@ describe("stringifyAss", () => {
 			"",
 			"[V4+ Styles]",
 			"Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-			"Style: Default,Arial,64,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,3,0,2,60,60,60,1",
+			"Style: Lyrics,Roboto,57,&H00FFFFFF,&H00808080,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,3,0,2,60,60,57,1",
+			"Style: Background,Roboto,45,&H00FFFFFF,&H00808080,&H00000000,&H80000000,0,1,0,0,100,100,0,0,1,3,0,8,60,60,57,1",
 			"",
 		]);
-		expect(rows[12]).toBe("[Events]");
-		expect(rows[13]).toBe(
+		expect(rows[13]).toBe("[Events]");
+		expect(rows[14]).toBe(
 			"Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
 		);
 	});
 
 	it("writes karaoke lines with voice names and gap steps", () => {
-		expect(rows.slice(14, -1)).toEqual([
-			"Dialogue: 0,0:00:01.00,0:00:02.23,Default,v1,0,0,0,,{\\k50}Hello {\\k73}world",
-			"Dialogue: 0,0:00:01.00,0:00:02.23,Default,v1-trans,0,0,0,,Bonjour",
-			"Dialogue: 0,0:00:02.40,0:00:02.70,Default,v1-bg,0,0,0,,{\\k30}echo",
-			"Dialogue: 0,1:02:05.00,1:02:06.00,Default,v2,0,0,0,,{\\k40}late {\\k50}{\\k10}line",
-			"Dialogue: 0,1:02:05.00,1:02:06.00,Default,v2-roman,0,0,0,,rom",
+		expect(rows.slice(15, -1)).toEqual([
+			"Dialogue: 0,0:00:01.00,0:00:02.23,Lyrics,v1,0,0,0,,{\\k50}Hello {\\k73}world",
+			"Dialogue: 0,0:00:01.00,0:00:02.23,Lyrics,v1-trans,0,0,0,,Bonjour",
+			"Dialogue: 0,0:00:02.40,0:00:02.70,Background,v1-bg,0,0,0,,{\\k30}echo",
+			"Dialogue: 0,1:02:05.00,1:02:06.00,Lyrics,v2,0,0,0,,{\\k40}late {\\k50}​{\\k10}line",
+			"Dialogue: 0,1:02:05.00,1:02:06.00,Lyrics,v2-roman,0,0,0,,rom",
 		]);
 		expect(out.endsWith("\n")).toBe(true);
 	});
@@ -153,7 +154,7 @@ describe("stringifyAss", () => {
 			}),
 		]);
 		expect(text).toContain(
-			"Dialogue: 0,0:00:36.94,0:00:37.43,Default,v1,0,0,0,,{\\k28}Hey,{\\k0} {\\k21}Nate",
+			"Dialogue: 0,0:00:36.94,0:00:37.43,Lyrics,v1,0,0,0,,{\\k28}Hey, {\\k21}Nate",
 		);
 	});
 
