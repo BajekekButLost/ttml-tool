@@ -198,7 +198,11 @@ export const HeaderFileInfo = () => {
 							size="1"
 							color="gray"
 							// Long translations end in an ellipsis instead of being cut off.
-							style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+							style={{
+								minWidth: 0,
+								overflow: "hidden",
+								textOverflow: "ellipsis",
+							}}
 						>
 							{autoSavedLabel}
 						</Text>
