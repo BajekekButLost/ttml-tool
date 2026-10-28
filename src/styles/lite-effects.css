@@ -26,7 +26,9 @@
 
 /* Radix waits for animationend before it unmounts a closing dialog or menu.
    When WebKitGTK delivers that late, a dismissed dialog flashes back open.
-   With no animation, Radix unmounts it at once. Toasts keep their animation:
+   With no animation, Radix unmounts it at once. The empty-project panel
+   remounts on every mode switch, so its entrance would replay each time.
+   Toasts keep their animation:
    react-toastify waits for animationend and would never remove them. */
 :root[data-effects="lite"]
 	:is(
@@ -36,7 +38,8 @@
 		.rt-PopoverContent,
 		.rt-HoverCardContent,
 		.rt-BaseMenuContent,
-		.rt-TooltipContent
+		.rt-TooltipContent,
+		.sl-empty-panel
 	),
 :root[data-effects="lite"] .rt-BaseDialogOverlay::before {
 	animation: none !important;

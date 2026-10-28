@@ -25,7 +25,6 @@ import "@radix-ui/themes/styles.css";
 import { invoke } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { platform, version } from "@tauri-apps/plugin-os";
-import { AnimatePresence, motion } from "framer-motion";
 import { useAtomValue, useSetAtom, useStore } from "jotai";
 import {
 	Suspense,
@@ -138,6 +137,12 @@ const PreviewModeSwitcher = lazy(
 	() => import("./components/PreviewModeSwitcher"),
 );
 const Dialogs = lazy(() => import("./components/Dialogs"));
+
+const editorModeViewStyle = {
+	height: "100%",
+	maxHeight: "100%",
+	overflowY: "hidden",
+} as const;
 
 // The default toast bounce overshoots; the design slides in and out instead.
 const spicyLyricsToastTransition = cssTransition({
@@ -723,77 +728,34 @@ function App() {
 												{previewPanelVisible ? (
 													<Flex height="100%" gap="2" p="2">
 														<Box flexGrow="1" overflow="hidden">
-															<AnimatePresence mode="wait">
-																<SuspensePlaceHolder key={toolMode}>
-																	<motion.div
-																		layout="position"
-																		style={{
-																			height: "100%",
-																			maxHeight: "100%",
-																			overflowY: "hidden",
-																		}}
-																		initial={{ opacity: 0 }}
-																		animate={{ opacity: 1 }}
-																		exit={{ opacity: 0 }}
-																	>
-																		<LyricLinesView key={toolMode} />
-																	</motion.div>
-																</SuspensePlaceHolder>
-															</AnimatePresence>
+															<SuspensePlaceHolder key={toolMode}>
+																<div style={editorModeViewStyle}>
+																	<LyricLinesView key={toolMode} />
+																</div>
+															</SuspensePlaceHolder>
 														</Box>
 														<ResizablePanel>
 															<SuspensePlaceHolder key="preview-panel">
-																<motion.div
-																	layout="position"
-																	initial={{ opacity: 0 }}
-																	animate={{ opacity: 1 }}
-																	exit={{ opacity: 0 }}
-																	style={{ height: "100%" }}
-																>
+																<div style={{ height: "100%" }}>
 																	<PreviewModeSwitcher />
-																</motion.div>
+																</div>
 															</SuspensePlaceHolder>
 														</ResizablePanel>
 													</Flex>
+												) : toolMode !== ToolMode.Preview ? (
+													// Mode switches swap instantly: fading the editor
+													// out and in left a blank panel and flickered.
+													<SuspensePlaceHolder key={toolMode}>
+														<div style={editorModeViewStyle}>
+															<LyricLinesView key={toolMode} />
+														</div>
+													</SuspensePlaceHolder>
 												) : (
-													<AnimatePresence mode="wait">
-														{toolMode !== ToolMode.Preview && (
-															<SuspensePlaceHolder key={toolMode}>
-																<motion.div
-																	layout="position"
-																	style={{
-																		height: "100%",
-																		maxHeight: "100%",
-																		overflowY: "hidden",
-																	}}
-																	initial={{ opacity: 0 }}
-																	animate={{ opacity: 1 }}
-																	exit={{ opacity: 0 }}
-																>
-																	<LyricLinesView key={toolMode} />
-																</motion.div>
-															</SuspensePlaceHolder>
-														)}
-														{toolMode === ToolMode.Preview && (
-															<SuspensePlaceHolder key="preview-switcher">
-																<Box
-																	height="100%"
-																	key="preview-switcher"
-																	p="2"
-																	asChild
-																>
-																	<motion.div
-																		layout="position"
-																		initial={{ opacity: 0 }}
-																		animate={{ opacity: 1 }}
-																		exit={{ opacity: 0 }}
-																	>
-																		<PreviewModeSwitcher />
-																	</motion.div>
-																</Box>
-															</SuspensePlaceHolder>
-														)}
-													</AnimatePresence>
+													<SuspensePlaceHolder key="preview-switcher">
+														<Box height="100%" p="2">
+															<PreviewModeSwitcher />
+														</Box>
+													</SuspensePlaceHolder>
 												)}
 											</Box>
 										</Flex>
