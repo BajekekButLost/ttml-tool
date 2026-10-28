@@ -43,6 +43,7 @@ vi.mock("$/modules/settings/states/preview", async () => {
 		showTranslationLinesAtom: atom(false),
 		spicyBackgroundModeAtom: atom("static"),
 		spicyForceLineSyncedAtom: atom(false),
+		spicyJoinSplitWordsAtom: atom(false),
 		spicySimpleLyricsModeAtom: atom(false),
 	};
 });
