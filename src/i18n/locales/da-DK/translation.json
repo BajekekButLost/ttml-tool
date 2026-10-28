@@ -1100,7 +1100,7 @@
     "volume": "Lydstyrke",
     "playbackRate": "Afspilningshastighed",
     "preservesPitch": "Bevar tonehøjde",
-    "clickToLoadMusic": "Klik på musikikonet for at indlæse lyd",
+    "audioMenu": "Lyd og afspilning",
     "playPause": "Afspil / pause musik",
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },

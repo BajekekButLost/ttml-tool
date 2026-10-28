@@ -1100,7 +1100,7 @@
     "volume": "Volume",
     "playbackRate": "Vitesse de lecture",
     "preservesPitch": "Conserver la hauteur",
-    "clickToLoadMusic": "Cliquez sur l’icône de musique pour charger l’audio",
+    "audioMenu": "Audio et lecture",
     "playPause": "Lecture / pause de la musique",
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },

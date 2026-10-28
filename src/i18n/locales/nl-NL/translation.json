@@ -1100,7 +1100,7 @@
     "volume": "Volume",
     "playbackRate": "Afspeelsnelheid",
     "preservesPitch": "Toonhoogte behouden",
-    "clickToLoadMusic": "Klik op het muziekpictogram om audio te laden",
+    "audioMenu": "Audio en afspelen",
     "playPause": "Muziek afspelen / onderbreken",
     "expandSpectrogram": "Uitvouwen / samenvouwen spectrogram"
   },

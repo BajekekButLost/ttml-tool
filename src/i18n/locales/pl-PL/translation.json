@@ -1100,7 +1100,7 @@
     "volume": "Głośność",
     "playbackRate": "Prędkość odtwarzania",
     "preservesPitch": "Zachowaj wysokość dźwięku",
-    "clickToLoadMusic": "Kliknij ikonę muzyki, aby wczytać dźwięk",
+    "audioMenu": "Dźwięk i odtwarzanie",
     "playPause": "Odtwórz / wstrzymaj muzykę",
     "expandSpectrogram": "Rozwiń / zwiń spektrogram"
   },

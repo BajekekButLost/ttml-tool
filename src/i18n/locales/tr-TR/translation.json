@@ -1100,7 +1100,7 @@
     "volume": "Ses düzeyi",
     "playbackRate": "Oynatma hızı",
     "preservesPitch": "Ses perdesini koru",
-    "clickToLoadMusic": "Ses yüklemek için müzik simgesine tıklayın",
+    "audioMenu": "Ses ve oynatma",
     "playPause": "Müziği oynat/duraklat",
     "expandSpectrogram": "Spektrogramı genişlet/daralt"
   },

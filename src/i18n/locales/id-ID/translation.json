@@ -1100,7 +1100,7 @@
     "volume": "Volume",
     "playbackRate": "Kecepatan putar",
     "preservesPitch": "Pertahankan nada",
-    "clickToLoadMusic": "Klik ikon musik untuk memuat audio",
+    "audioMenu": "Audio dan pemutaran",
     "playPause": "Putar / jeda musik",
     "expandSpectrogram": "Perluas / ciutkan spektrogram"
   },

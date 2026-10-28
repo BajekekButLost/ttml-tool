@@ -1100,7 +1100,7 @@
     "volume": "Volum",
     "playbackRate": "Viteza de redare",
     "preservesPitch": "Păstrează înălțimea sunetului",
-    "clickToLoadMusic": "Dă clic pe pictograma muzicală pentru a încărca sunetul",
+    "audioMenu": "Sunet și redare",
     "playPause": "Redare / pauză muzică",
     "expandSpectrogram": "Extinde / restrânge spectrograma"
   },

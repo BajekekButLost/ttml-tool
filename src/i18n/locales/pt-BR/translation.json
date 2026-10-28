@@ -1100,7 +1100,7 @@
     "volume": "Volume",
     "playbackRate": "Velocidade de reprodução",
     "preservesPitch": "Preservar o tom",
-    "clickToLoadMusic": "Clique no ícone de música para carregar áudio",
+    "audioMenu": "Áudio e reprodução",
     "playPause": "Reproduzir / pausar música",
     "expandSpectrogram": "Expandir / recolher espectrograma"
   },

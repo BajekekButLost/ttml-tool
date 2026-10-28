@@ -1100,7 +1100,7 @@
     "volume": "Äänenvoimakkuus",
     "playbackRate": "Toistonopeus",
     "preservesPitch": "Säilytä sävelkorkeus",
-    "clickToLoadMusic": "Lataa ääni napsauttamalla musiikkikuvaketta",
+    "audioMenu": "Ääni ja toisto",
     "playPause": "Toista / keskeytä musiikki",
     "expandSpectrogram": "Laajenna / tiivistä spektrogrammi"
   },
