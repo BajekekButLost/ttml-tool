@@ -10,7 +10,8 @@ import styles from "./index.module.css";
 import { MacOSSystemsControls } from "./macos.tsx";
 import { WindowsSystemsControls } from "./windows.tsx";
 
-// "native": the window manager draws the title bar (Linux), so no buttons here.
+// "native": the window manager draws the title bar (Linux outside the
+// Flatpak), so no buttons here.
 export type WindowControlsVariant = "windows" | "macos" | "native";
 
 export interface WindowControlsProps {
@@ -48,7 +49,13 @@ export default function WindowControls(props: WindowControlsProps) {
 			case "darwin":
 				return setVariant("macos");
 			case "linux":
-				return setVariant("native");
+				setVariant("native");
+				// The Flatpak hides the native bar (see uses_custom_title_bar).
+				import("@tauri-apps/api/core")
+					.then(({ invoke }) => invoke<boolean>("uses_custom_title_bar"))
+					.then((custom) => custom && setVariant("windows"))
+					.catch((err) => import.meta.env.DEV && warn(err));
+				return;
 		}
 	}, [props.variant]);
 
