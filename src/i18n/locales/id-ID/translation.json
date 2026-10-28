@@ -488,6 +488,10 @@
     "loading": "Memuat panel...",
     "advanced": "Lanjutan"
   },
+  "joinSplitWords": {
+    "label": "Gabungkan kata terpisah",
+    "description": "Tampilkan kata yang dinyanyikan per bagian sebagai satu kata jika bagian-bagiannya selaras, seperti pengaturan Join Split Words di Spicy Lyrics."
+  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Menyorot secara visual baris lirik yang sedang diputar dalam mode yang dipilih.",

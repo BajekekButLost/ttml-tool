@@ -488,6 +488,10 @@
     "loading": "Paneel laden…",
     "advanced": "Geavanceerd"
   },
+  "joinSplitWords": {
+    "label": "Gesplitste woorden samenvoegen",
+    "description": "Toon een woord dat in delen wordt gezongen als één woord wanneer de delen gelijkmatig aansluiten, zoals de instelling Join Split Words in Spicy Lyrics."
+  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Markeert visueel de tekstregel die momenteel wordt gespeeld in de geselecteerde modus.",

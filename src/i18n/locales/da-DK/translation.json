@@ -488,6 +488,10 @@
     "loading": "Indlæser panel...",
     "advanced": "Avanceret"
   },
+  "joinSplitWords": {
+    "label": "Saml opdelte ord",
+    "description": "Vis et ord, der synges i dele, som ét ord, når delene passer jævnt sammen, som indstillingen Join Split Words i Spicy Lyrics."
+  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Fremhæver linjen, der afspilles i den valgte tilstand.",

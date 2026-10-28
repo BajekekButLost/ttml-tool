@@ -488,6 +488,10 @@
     "loading": "Ładowanie panelu...",
     "advanced": "Zaawansowane"
   },
+  "joinSplitWords": {
+    "label": "Łącz podzielone słowa",
+    "description": "Pokaż słowo śpiewane w częściach jako jedno słowo, gdy części są rozłożone równomiernie, jak ustawienie Join Split Words w Spicy Lyrics."
+  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Podświetla wers odtwarzany w wybranym trybie.",

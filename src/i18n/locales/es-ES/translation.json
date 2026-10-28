@@ -488,6 +488,10 @@
     "loading": "Cargando panel…",
     "advanced": "Avanzado"
   },
+  "joinSplitWords": {
+    "label": "Unir palabras divididas",
+    "description": "Muestra una palabra cantada por partes como una sola cuando las partes encajan de forma uniforme, como el ajuste Join Split Words de Spicy Lyrics."
+  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Resalta visualmente la línea de letra que se reproduce actualmente en el modo seleccionado.",
