@@ -7,5 +7,6 @@ Keywords=lyrics;ttml;karaoke;sync;
 Exec=amll-ttml-tool %U
 Icon=io.github.spicylyrics.TTMLTool
 Terminal=false
-# Tauri names the window after its bundle identifier, not the Flatpak ID.
-StartupWMClass=meow.naenaetart.amll-ttml-tool
+# Tauri doesn't set a GTK app ID (enableGTKAppId is off), so the window is
+# named after the binary, not the Flatpak ID.
+StartupWMClass=amll-ttml-tool
