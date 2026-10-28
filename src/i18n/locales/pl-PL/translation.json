@@ -1528,7 +1528,7 @@
     "toggle": "Podążaj za głowicą",
     "shortcut": "Spektrogram – włącz/wyłącz podążanie za głowicą",
     "setting": "Podążaj za głowicą odtwarzania",
-    "settingDesc": "Przewija spektrogram, aby głowica była widoczna. Przewijanie lub przeciąganie wstrzymuje to, dopóki nie wciśniesz odtwarzania albo nie odczekasz chwili. Dodaje przycisk do paska spektrogramu.",
+    "settingDesc": "Przewija spektrogram, aby głowica była widoczna. Przewijanie lub przeciąganie wstrzymuje to, dopóki nie wciśniesz odtwarzania albo nie odczekasz chwili.",
     "style": "Sposób podążania",
     "page": "Stronami",
     "pageDesc": "Przeskakuje dalej, gdy głowica opuści widok.",

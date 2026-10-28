@@ -1528,7 +1528,7 @@
     "toggle": "Segui la testina",
     "shortcut": "Spettrogramma: attiva/disattiva il segui testina",
     "setting": "Segui la testina di riproduzione",
-    "settingDesc": "Scorre lo spettrogramma per tenere visibile la testina. Scorrere o trascinare lo mette in pausa finché non premi play o lo lasci per un momento. Aggiunge un pulsante alla barra dello spettrogramma.",
+    "settingDesc": "Scorre lo spettrogramma per tenere visibile la testina. Scorrere o trascinare lo mette in pausa finché non premi play o lo lasci per un momento.",
     "style": "Modalità di scorrimento",
     "page": "Per pagina",
     "pageDesc": "Salta avanti quando la testina esce dalla vista.",

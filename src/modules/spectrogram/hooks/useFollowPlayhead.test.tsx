@@ -14,7 +14,6 @@ import {
 	spectrogramZoomAtom,
 } from "$/modules/spectrogram/states";
 import {
-	spectrogramFollowFeatureAtom,
 	spectrogramFollowOnAtom,
 	spectrogramFollowStyleAtom,
 } from "../states/follow-playhead";
@@ -58,7 +57,6 @@ describe("useFollowPlayhead", () => {
 		});
 		// Stored settings re-read storage when they mount, so set them after.
 		act(() => {
-			store.set(spectrogramFollowFeatureAtom, true);
 			store.set(spectrogramFollowOnAtom, true);
 			store.set(spectrogramFollowStyleAtom, "page");
 		});
@@ -84,15 +82,9 @@ describe("useFollowPlayhead", () => {
 		expect(scrollLeft()).toBe(1510);
 	});
 
-	it("does nothing with the feature or the toggle off", () => {
+	it("does nothing with the toggle off", () => {
 		act(() => store.set(spectrogramFollowOnAtom, false));
 		seek(50000);
-		expect(scrollLeft()).toBe(0);
-		act(() => {
-			store.set(spectrogramFollowFeatureAtom, false);
-			store.set(spectrogramFollowOnAtom, true);
-		});
-		seek(60000);
 		expect(scrollLeft()).toBe(0);
 	});
 

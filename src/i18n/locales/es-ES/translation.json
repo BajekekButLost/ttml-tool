@@ -1528,7 +1528,7 @@
     "toggle": "Seguir el cabezal",
     "shortcut": "Espectrograma: activar o desactivar el seguimiento del cabezal",
     "setting": "Seguir el cabezal de reproducción",
-    "settingDesc": "Desplaza el espectrograma para mantener visible el cabezal. Desplazar o arrastrar lo pausa hasta que pulses reproducir o lo dejes un momento. Añade un botón a la barra del espectrograma.",
+    "settingDesc": "Desplaza el espectrograma para mantener visible el cabezal. Desplazar o arrastrar lo pausa hasta que pulses reproducir o lo dejes un momento.",
     "style": "Modo de seguimiento",
     "page": "Por páginas",
     "pageDesc": "Salta hacia delante cuando el cabezal sale de la vista.",

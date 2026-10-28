@@ -1528,7 +1528,7 @@
     "toggle": "Urmărește cursorul de redare",
     "shortcut": "Spectrogramă - Activează/dezactivează urmărirea cursorului de redare",
     "setting": "Urmărește cursorul de redare",
-    "settingDesc": "Derulează spectrograma ca cursorul de redare să rămână vizibil. Derularea sau tragerea o pune pe pauză până apeși redare sau o lași un moment. Adaugă un buton în bara spectrogramei.",
+    "settingDesc": "Derulează spectrograma ca cursorul de redare să rămână vizibil. Derularea sau tragerea o pune pe pauză până apeși redare sau o lași un moment.",
     "style": "Mod de urmărire",
     "page": "Pe pagini",
     "pageDesc": "Sare înainte când cursorul iese din vizualizare.",

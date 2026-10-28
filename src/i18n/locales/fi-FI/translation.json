@@ -1528,7 +1528,7 @@
     "toggle": "Seuraa toistokohtaa",
     "shortcut": "Spektrogrammi - Toistokohdan seuraaminen päälle/pois",
     "setting": "Seuraa toistokohtaa",
-    "settingDesc": "Vierittää spektrogrammia niin, että toistokohta pysyy näkyvissä. Vierittäminen tai vetäminen keskeyttää sen, kunnes painat toistoa tai odotat hetken. Lisää painikkeen spektrogrammin työkaluriville.",
+    "settingDesc": "Vierittää spektrogrammia niin, että toistokohta pysyy näkyvissä. Vierittäminen tai vetäminen keskeyttää sen, kunnes painat toistoa tai odotat hetken.",
     "style": "Seuraamistapa",
     "page": "Sivuittain",
     "pageDesc": "Hyppää eteenpäin, kun toistokohta poistuu näkymästä.",

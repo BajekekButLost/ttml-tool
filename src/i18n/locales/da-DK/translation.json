@@ -1528,7 +1528,7 @@
     "toggle": "Følg afspilningshovedet",
     "shortcut": "Spektrogram - Følg afspilningshovedet til/fra",
     "setting": "Følg afspilningshovedet",
-    "settingDesc": "Ruller spektrogrammet, så afspilningshovedet forbliver synligt. Rulning eller træk sætter det på pause, indtil du trykker afspil eller venter et øjeblik. Tilføjer en knap til spektrogrammets værktøjslinje.",
+    "settingDesc": "Ruller spektrogrammet, så afspilningshovedet forbliver synligt. Rulning eller træk sætter det på pause, indtil du trykker afspil eller venter et øjeblik.",
     "style": "Følgemåde",
     "page": "Side for side",
     "pageDesc": "Springer frem, når afspilningshovedet forlader visningen.",

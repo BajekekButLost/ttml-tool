@@ -1528,7 +1528,7 @@
     "toggle": "Sledovať prehrávaciu hlavu",
     "shortcut": "Spektrogram – zapnúť/vypnúť sledovanie prehrávacej hlavy",
     "setting": "Sledovať prehrávaciu hlavu",
-    "settingDesc": "Posúva spektrogram tak, aby prehrávacia hlava zostala viditeľná. Posúvanie alebo ťahanie sledovanie pozastaví, kým nespustíte prehrávanie alebo chvíľu nepočkáte. Pridá prepínač na panel spektrogramu.",
+    "settingDesc": "Posúva spektrogram tak, aby prehrávacia hlava zostala viditeľná. Posúvanie alebo ťahanie sledovanie pozastaví, kým nespustíte prehrávanie alebo chvíľu nepočkáte.",
     "style": "Spôsob sledovania",
     "page": "Po stránkach",
     "pageDesc": "Skočí dopredu, keď prehrávacia hlava opustí zobrazenie.",

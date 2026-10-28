@@ -1528,7 +1528,7 @@
     "toggle": "Afspeelkop volgen",
     "shortcut": "Spectrogram - Afspeelkop volgen aan/uit",
     "setting": "Afspeelkop volgen",
-    "settingDesc": "Scrolt het spectrogram zodat de afspeelkop zichtbaar blijft. Scrollen of slepen pauzeert dit tot je op afspelen drukt of het even laat rusten. Voegt een knop toe aan de spectrogramwerkbalk.",
+    "settingDesc": "Scrolt het spectrogram zodat de afspeelkop zichtbaar blijft. Scrollen of slepen pauzeert dit tot je op afspelen drukt of het even laat rusten.",
     "style": "Volgstijl",
     "page": "Per pagina",
     "pageDesc": "Springt vooruit wanneer de afspeelkop uit beeld gaat.",

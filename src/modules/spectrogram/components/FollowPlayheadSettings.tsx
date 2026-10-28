@@ -1,18 +1,17 @@
 import { Flex, Text } from "@radix-ui/themes";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
 import { SettingToggle } from "$/modules/settings/components/WorkflowControls";
 import {
 	type FollowStyle,
-	spectrogramFollowFeatureAtom,
+	spectrogramFollowOnAtom,
 	spectrogramFollowStyleAtom,
 } from "../states/follow-playhead";
 
-/** Preferences block: the feature flag and the follow style. */
+/** Preferences block: the same on/off as the toolbar toggle, plus the follow style. */
 export function FollowPlayheadSettings() {
 	const { t } = useTranslation();
-	const featureEnabled = useAtomValue(spectrogramFollowFeatureAtom);
 	const [style, setStyle] = useAtom(spectrogramFollowStyleAtom);
 
 	return (
@@ -24,45 +23,41 @@ export function FollowPlayheadSettings() {
 						<Text size="1" color="gray">
 							{t(
 								"spectrogramFollow.settingDesc",
-								"Scrolls the spectrogram to keep the playhead in view. Scrolling or dragging pauses it until you press play or leave it for a moment. Adds a toggle to the spectrogram toolbar.",
+								"Scrolls the spectrogram to keep the playhead in view. Scrolling or dragging pauses it until you press play or leave it for a moment.",
 							)}
 						</Text>
 					</Flex>
-					<SettingToggle setting={spectrogramFollowFeatureAtom} />
+					<SettingToggle setting={spectrogramFollowOnAtom} />
 				</Flex>
 			</Text>
-			{featureEnabled && (
-				<OptionPicker<FollowStyle>
-					variant="segmented"
-					size="2"
-					value={style}
-					onValueChange={setStyle}
-					label={t("spectrogramFollow.style", "Follow style")}
-					options={[
-						{
-							value: "page",
-							label: t("spectrogramFollow.page", "Page"),
-						},
-						{
-							value: "continuous",
-							label: t("spectrogramFollow.continuous", "Continuous"),
-						},
-					]}
-				/>
-			)}
-			{featureEnabled && (
-				<Text size="1" color="gray">
-					{style === "page"
-						? t(
-								"spectrogramFollow.pageDesc",
-								"Jumps ahead when the playhead leaves the view.",
-							)
-						: t(
-								"spectrogramFollow.continuousDesc",
-								"Scrolls with the playhead and keeps it centered.",
-							)}
-				</Text>
-			)}
+			<OptionPicker<FollowStyle>
+				variant="segmented"
+				size="2"
+				value={style}
+				onValueChange={setStyle}
+				label={t("spectrogramFollow.style", "Follow style")}
+				options={[
+					{
+						value: "page",
+						label: t("spectrogramFollow.page", "Page"),
+					},
+					{
+						value: "continuous",
+						label: t("spectrogramFollow.continuous", "Continuous"),
+					},
+				]}
+			/>
+			<Text size="1" color="gray">
+				{style === "page"
+					? t(
+							"spectrogramFollow.pageDesc",
+							"Jumps ahead when the playhead leaves the view.",
+						)
+					: t(
+							"spectrogramFollow.continuousDesc",
+							"Scrolls with the playhead and keeps it centered.",
+						)}
+			</Text>
 		</Flex>
 	);
 }
