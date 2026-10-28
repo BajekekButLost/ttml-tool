@@ -79,12 +79,25 @@ function canJoin(run: LyricWord[], background: boolean) {
 	return paceIsEven(run, texts);
 }
 
-function join(run: LyricWord[]): LyricWord {
+/**
+ * A word joined from split parts. It keeps the first part's id, and
+ * `joinedIds` lists every part's id in order (the first included), so a
+ * lookup keyed by editor word id can still find any part.
+ */
+export type JoinedLyricWord = LyricWord & { joinedIds?: readonly string[] };
+
+/** The editor word ids a preview word stands for: its parts if joined, else itself. */
+export const sourceWordIds = (word: JoinedLyricWord): readonly string[] =>
+	word.joinedIds ?? [word.id];
+
+function join(run: LyricWord[]): JoinedLyricWord {
 	const first = run[0];
 	const hasRomanization = run.some((part) => part.romanWord.trim().length > 0);
 
 	return {
 		...first,
+		id: first.id,
+		joinedIds: run.map((part) => part.id),
 		// Raw text, so the first part's leading space and the last part's
 		// trailing space or comma still mark the word's edges.
 		word: run.map((part) => part.word).join(""),

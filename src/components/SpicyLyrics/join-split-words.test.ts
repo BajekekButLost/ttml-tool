@@ -4,7 +4,12 @@ import { parseLyric } from "$/modules/project/logic/ttml-parser";
 import { type LyricWord, newLyricLine, newLyricWord } from "$/types/ttml";
 import hyphens from "./fixtures/hyphens.ttml?raw";
 import splitSyllables from "./fixtures/split-syllables.ttml?raw";
-import { joinSplitWords, joinSplitWordsInLines } from "./join-split-words";
+import {
+	type JoinedLyricWord,
+	joinSplitWords,
+	joinSplitWordsInLines,
+	sourceWordIds,
+} from "./join-split-words";
 import { buildSpicyLines, groupSpicyTokens } from "./model";
 
 const w = (
@@ -34,6 +39,21 @@ describe("joinSplitWords", () => {
 			startTime: 0,
 			endTime: 500,
 		});
+	});
+
+	it("keeps the first part's id and lists every part's id", () => {
+		const parts = [w("Beau", 0, 300), w("ti", 300, 500), w("ful", 500, 800)];
+		const [joined] = joinSplitWords(parts) as JoinedLyricWord[];
+		expect(joined.id).toBe(parts[0].id);
+		expect(joined.joinedIds).toEqual(parts.map((part) => part.id));
+		expect(sourceWordIds(joined)).toEqual(parts.map((part) => part.id));
+		// A word that wasn't joined stands for itself only.
+		const [single] = joinSplitWords([w("one", 0, 200)]) as JoinedLyricWord[];
+		expect(single.joinedIds).toBeUndefined();
+		expect(sourceWordIds(single)).toEqual([single.id]);
+		// Every part is still found through a lookup keyed by editor word id.
+		const marked = new Map([[parts[1].id, "problem"]]);
+		expect(sourceWordIds(joined).some((id) => marked.has(id))).toBe(true);
 	});
 
 	it("never joins across a space between words", () => {
