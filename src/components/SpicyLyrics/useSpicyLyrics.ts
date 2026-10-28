@@ -12,7 +12,9 @@ import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	allowConsecutiveBackgroundLinesAtom,
+	appFontAtom,
 	customAccentColorAtom,
+	DEFAULT_APP_FONT,
 	useCustomAccentAtom,
 } from "$/modules/settings/states";
 import {
@@ -42,6 +44,8 @@ export function useSpicyLyrics() {
 	const customBackgroundImage = useAtomValue(customBackgroundImageAtom);
 	const useAccent = useAtomValue(useCustomAccentAtom);
 	const accent = useAtomValue(customAccentColorAtom);
+	// The preview uses Spicy's font unless the user picked their own.
+	const userFont = useAtomValue(appFontAtom) !== DEFAULT_APP_FONT;
 	// Background lines nest under their lead exactly as the export writes them.
 	const allowConsecutiveBackgrounds = useAtomValue(
 		allowConsecutiveBackgroundLinesAtom,
@@ -164,6 +168,7 @@ export function useSpicyLyrics() {
 	);
 	return {
 		simple,
+		userFont,
 		useAccent,
 		accent,
 		coverPalette,
