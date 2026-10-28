@@ -4,11 +4,11 @@
  */
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { timedPreviewLyricsAtom } from "$/components/PreviewModeSwitcher/states";
 import { audioEngine } from "$/modules/audio/audio-engine";
 import { audioCoverArtAtom, currentTimeAtom } from "$/modules/audio/states";
 import { playbackClock } from "$/modules/playback-clock";
 import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
+import { previewTimingProblemsAtom } from "$/modules/preview-problems/states";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	allowConsecutiveBackgroundLinesAtom,
@@ -24,16 +24,18 @@ import {
 	spicyJoinSplitWordsAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
+import { lyricLinesAtom } from "$/states/main";
 import { findSpicyScrollIndex } from "./active-line";
 import { createSpicyAnimator, type SpringSet } from "./createSpicyAnimator";
-import { joinSplitWordsInLines } from "./join-split-words";
+import { joinSplitWordsInLines, remapToJoinedWords } from "./join-split-words";
 import type { Spring } from "./math";
 import { buildSpicyLines } from "./model";
 import { useCoverPalette, useKawarpBackground } from "./useBackground";
 import { useSpicyVirtualList } from "./useSpicyVirtualList";
 
 export function useSpicyLyrics() {
-	const lyrics = useAtomValue(timedPreviewLyricsAtom);
+	// Every line, untimed ones included: they stay in place, hollow.
+	const lyrics = useAtomValue(lyricLinesAtom);
 	const simple = useAtomValue(spicySimpleLyricsModeAtom);
 	const forceLineSynced = useAtomValue(spicyForceLineSyncedAtom);
 	const joinWords = useAtomValue(spicyJoinSplitWordsAtom);
@@ -56,6 +58,16 @@ export function useSpicyLyrics() {
 		allowConsecutiveBackgroundLinesAtom,
 	);
 	const setCurrentTime = useSetAtom(currentTimeAtom);
+	// Empty unless "Show timing problems" is on; then flagged words are marked.
+	const timingProblems = useAtomValue(previewTimingProblemsAtom);
+	// A joined word shows its parts' problems, so one on "ti" in "Beautiful" stays visible.
+	const problems = useMemo(() => {
+		if (timingProblems.length === 0) return undefined;
+		const byWordId = new Map(
+			timingProblems.map((issue) => [issue.wordId, issue.problems]),
+		);
+		return joinWords ? remapToJoinedWords(sourceLines, byWordId) : byWordId;
+	}, [timingProblems, joinWords, sourceLines]);
 	const lines = useMemo(
 		() =>
 			buildSpicyLines(
@@ -64,6 +76,8 @@ export function useSpicyLyrics() {
 				romanized,
 				forceLineSynced,
 				allowConsecutiveBackgrounds,
+				problems,
+				true,
 			),
 		[
 			sourceLines,
@@ -71,6 +85,7 @@ export function useSpicyLyrics() {
 			romanized,
 			forceLineSynced,
 			allowConsecutiveBackgrounds,
+			problems,
 		],
 	);
 	const hasDuetLines = useMemo(

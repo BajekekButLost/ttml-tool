@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# regel heeft nog geen timing} other {# regels hebben nog geen timing}}",
     "jumpToUntimed": "Synchroniseer de eerste regel zonder timing"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# woord heeft een timingprobleem} other {# woorden hebben timingproblemen}}",
+    "jump": "Selecteer het eerste",
+    "untimed": "Geen timing in een getimede regel",
+    "untimedLine": "Nog niet getimed",
+    "endsBeforeStart": "Eindigt voordat het begint",
+    "startsBeforeLine": "Begint voor zijn regel",
+    "endsAfterLine": "Eindigt na zijn regel"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Songtekstbestand openen",

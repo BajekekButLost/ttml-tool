@@ -235,6 +235,8 @@ export function createSpicyAnimator({
 					node.dataset.prehidden = prehidden;
 			}
 			if (changed || anchorMoved || lineSnap) writeBlur(i, node, status);
+			// An untimed row has nothing to sing; it only blurs with its neighbours.
+			if (line.isUntimed) continue;
 			if (changed || mounted) lineResting[i] = false;
 			if (status !== "active" && !lineSnap && lineResting[i]) continue;
 

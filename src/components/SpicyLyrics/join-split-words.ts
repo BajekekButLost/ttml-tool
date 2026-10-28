@@ -90,6 +90,27 @@ export type JoinedLyricWord = LyricWord & { joinedIds?: readonly string[] };
 export const sourceWordIds = (word: JoinedLyricWord): readonly string[] =>
 	word.joinedIds ?? [word.id];
 
+/**
+ * Re-keys a lookup by editor word id onto joined words: a joined word gets
+ * every value its parts had, in part order and without repeats.
+ */
+export function remapToJoinedWords<T>(
+	lines: readonly LyricLine[],
+	byWordId: ReadonlyMap<string, readonly T[]>,
+): ReadonlyMap<string, readonly T[]> {
+	const result = new Map(byWordId);
+	for (const line of lines) {
+		for (const word of line.words as JoinedLyricWord[]) {
+			if (!word.joinedIds) continue;
+			const values = new Set(
+				word.joinedIds.flatMap((id) => byWordId.get(id) ?? []),
+			);
+			if (values.size > 0) result.set(word.id, [...values]);
+		}
+	}
+	return result;
+}
+
 function join(run: LyricWord[]): JoinedLyricWord {
 	const first = run[0];
 	const hasRomanization = run.some((part) => part.romanWord.trim().length > 0);

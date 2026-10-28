@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# ligne n’est pas encore minutée} many {# lignes ne sont pas encore minutées} other {# lignes ne sont pas encore minutées}}",
     "jumpToUntimed": "Synchroniser la première ligne non minutée"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# mot a un problème de minutage} many {# mots ont des problèmes de minutage} other {# mots ont des problèmes de minutage}}",
+    "jump": "Sélectionner le premier",
+    "untimed": "Pas de minutage dans une ligne minutée",
+    "untimedLine": "Pas encore minutée",
+    "endsBeforeStart": "Se termine avant de commencer",
+    "startsBeforeLine": "Commence avant sa ligne",
+    "endsAfterLine": "Se termine après sa ligne"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Ouvrir le fichier de paroles",

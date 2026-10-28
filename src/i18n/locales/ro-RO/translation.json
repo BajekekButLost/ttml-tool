@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# vers nu este încă sincronizat} few {# versuri nu sunt încă sincronizate} other {# de versuri nu sunt încă sincronizate}}",
     "jumpToUntimed": "Sincronizează primul vers fără timpi"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# cuvânt are o problemă de sincronizare} few {# cuvinte au probleme de sincronizare} other {# de cuvinte au probleme de sincronizare}}",
+    "jump": "Selectează primul",
+    "untimed": "Fără timpi într-un vers sincronizat",
+    "untimedLine": "Încă nesincronizat",
+    "endsBeforeStart": "Se termină înainte să înceapă",
+    "startsBeforeLine": "Începe înaintea versului său",
+    "endsAfterLine": "Se termină după versul său"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Deschide un fișier cu versuri",

@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# line has no timing yet} other {# lines have no timing yet}}",
     "jumpToUntimed": "Time the first untimed line"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# word has a timing problem} other {# words have timing problems}}",
+    "jump": "Select the first one",
+    "untimed": "No timing in a timed line",
+    "untimedLine": "Not synced yet",
+    "endsBeforeStart": "Ends before it starts",
+    "startsBeforeLine": "Starts before its line",
+    "endsAfterLine": "Ends after its line"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Open lyrics file",

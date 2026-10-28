@@ -8,6 +8,7 @@ import {
 	type JoinedLyricWord,
 	joinSplitWords,
 	joinSplitWordsInLines,
+	remapToJoinedWords,
 	sourceWordIds,
 } from "./join-split-words";
 import { buildSpicyLines, groupSpicyTokens } from "./model";
@@ -54,6 +55,21 @@ describe("joinSplitWords", () => {
 		// Every part is still found through a lookup keyed by editor word id.
 		const marked = new Map([[parts[1].id, "problem"]]);
 		expect(sourceWordIds(joined).some((id) => marked.has(id))).toBe(true);
+	});
+
+	it("gives a joined word every value its parts had", () => {
+		const parts = [w("Beau", 0, 300), w("ti", 300, 500), w("ful", 500, 800)];
+		const line = { ...newLyricLine(), words: parts };
+		const [joinedLine] = joinSplitWordsInLines([line]);
+		const byWordId = new Map([
+			[parts[1].id, ["a"]],
+			[parts[2].id, ["a", "b"]],
+		]);
+		const remapped = remapToJoinedWords([joinedLine], byWordId);
+		expect(joinedLine.words).toHaveLength(1);
+		expect(remapped.get(parts[0].id)).toEqual(["a", "b"]);
+		// Unjoined words keep their own entries.
+		expect(remapToJoinedWords([line], byWordId)).toEqual(byWordId);
 	});
 
 	it("never joins across a space between words", () => {

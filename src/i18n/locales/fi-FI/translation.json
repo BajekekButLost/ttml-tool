@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# riviltä puuttuu ajoitus} other {# riviltä puuttuu ajoitus}}",
     "jumpToUntimed": "Ajoita ensimmäinen ajoittamaton rivi"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# sanan ajoituksessa on ongelma} other {# sanan ajoituksessa on ongelmia}}",
+    "jump": "Valitse ensimmäinen",
+    "untimed": "Ei ajoitusta ajoitetulla rivillä",
+    "untimedLine": "Ei vielä ajoitettu",
+    "endsBeforeStart": "Päättyy ennen kuin alkaa",
+    "startsBeforeLine": "Alkaa ennen riviään",
+    "endsAfterLine": "Päättyy rivinsä jälkeen"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Avaa sanoitustiedosto",

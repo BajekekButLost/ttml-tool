@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# línea aún no tiene sincronización} many {# líneas aún no tienen sincronización} other {# líneas aún no tienen sincronización}}",
     "jumpToUntimed": "Sincronizar la primera línea pendiente"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# palabra tiene un problema de sincronización} many {# palabras tienen problemas de sincronización} other {# palabras tienen problemas de sincronización}}",
+    "jump": "Seleccionar la primera",
+    "untimed": "Sin sincronización en una línea sincronizada",
+    "untimedLine": "Aún sin sincronizar",
+    "endsBeforeStart": "Termina antes de empezar",
+    "startsBeforeLine": "Empieza antes que su línea",
+    "endsAfterLine": "Termina después que su línea"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Abrir archivo de letras",

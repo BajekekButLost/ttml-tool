@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, other {# baris belum diberi waktu}}",
     "jumpToUntimed": "Sinkronkan baris pertama yang belum diberi waktu"
   },
+  "previewProblems": {
+    "count": "{count, plural, other {# kata punya masalah waktu}}",
+    "jump": "Pilih yang pertama",
+    "untimed": "Tanpa waktu di baris yang sudah diberi waktu",
+    "untimedLine": "Belum diberi waktu",
+    "endsBeforeStart": "Berakhir sebelum dimulai",
+    "startsBeforeLine": "Dimulai sebelum barisnya",
+    "endsAfterLine": "Berakhir setelah barisnya"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Buka file lirik",
