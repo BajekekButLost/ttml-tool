@@ -22,10 +22,12 @@ import {
 	showTranslationLinesAtom,
 	spicyBackgroundModeAtom,
 	spicyForceLineSyncedAtom,
+	spicyJoinSplitWordsAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
 import { findSpicyScrollIndex } from "./active-line";
 import { createSpicyAnimator, type SpringSet } from "./createSpicyAnimator";
+import { joinSplitWordsInLines } from "./join-split-words";
 import type { Spring } from "./math";
 import { buildSpicyLines } from "./model";
 import { useCoverPalette, useKawarpBackground } from "./useBackground";
@@ -35,6 +37,13 @@ export function useSpicyLyrics() {
 	const lyrics = useAtomValue(timedPreviewLyricsAtom);
 	const simple = useAtomValue(spicySimpleLyricsModeAtom);
 	const forceLineSynced = useAtomValue(spicyForceLineSyncedAtom);
+	const joinWords = useAtomValue(spicyJoinSplitWordsAtom);
+	// Off, the lines pass through untouched, so the preview is unchanged.
+	const sourceLines = useMemo(
+		() =>
+			joinWords ? joinSplitWordsInLines(lyrics.lyricLines) : lyrics.lyricLines,
+		[joinWords, lyrics.lyricLines],
+	);
 	const romanized = useAtomValue(showRomanLinesAtom);
 	const showTranslation = useAtomValue(showTranslationLinesAtom);
 	const showFps = useAtomValue(showFpsCounterAtom);
@@ -60,7 +69,7 @@ export function useSpicyLyrics() {
 	const lines = useMemo(
 		() =>
 			buildSpicyLines(
-				lyrics.lyricLines,
+				sourceLines,
 				simple,
 				romanized,
 				forceLineSynced,
@@ -68,7 +77,7 @@ export function useSpicyLyrics() {
 				problems,
 			),
 		[
-			lyrics.lyricLines,
+			sourceLines,
 			simple,
 			romanized,
 			forceLineSynced,
