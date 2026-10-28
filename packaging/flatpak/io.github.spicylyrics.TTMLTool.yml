@@ -37,7 +37,11 @@ modules:
     buildsystem: simple
     build-commands:
       - install -Dm755 amll-ttml-tool /app/bin/amll-ttml-tool
-      - "! ldd /app/bin/amll-ttml-tool | grep 'not found'"
+      # A broken binary makes ldd say "not a dynamic executable", so check that
+      # WebKitGTK actually resolves, not just that nothing is missing.
+      - ldd /app/bin/amll-ttml-tool > ldd.txt
+      - grep -q 'libwebkit2gtk-4.1.so.0 => /usr/lib' ldd.txt
+      - "! grep 'not found' ldd.txt"
       - install -Dm644 io.github.spicylyrics.TTMLTool.desktop /app/share/applications/io.github.spicylyrics.TTMLTool.desktop
       - install -Dm644 io.github.spicylyrics.TTMLTool.metainfo.xml /app/share/metainfo/io.github.spicylyrics.TTMLTool.metainfo.xml
       - install -Dm644 32x32.png /app/share/icons/hicolor/32x32/apps/io.github.spicylyrics.TTMLTool.png

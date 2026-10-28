@@ -221,10 +221,9 @@ jobs:
           path: linux-build
       - name: Place the Linux binary where the manifest expects it
         shell: bash
-        run: |
-          binary=$(find linux-build -type f -name amll-ttml-tool -print -quit)
-          test -n "$binary"
-          install -Dm755 "$binary" src-tauri/target/release/amll-ttml-tool
+        # Not any other copy: the AppImage's AppDir one has been rewritten by
+        # patchelf, and stripping that left a binary with no program headers.
+        run: install -Dm755 linux-build/release/amll-ttml-tool src-tauri/target/release/amll-ttml-tool
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           manifest-path: packaging/flatpak/io.github.spicylyrics.TTMLTool.yml
