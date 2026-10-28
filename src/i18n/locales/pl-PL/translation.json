@@ -39,6 +39,7 @@
     "setting": "Pokazuj problemy z synchronizacją",
     "settingDesc": "Oznacza na czerwono, z przerywanym obrysem, słowa, które podgląd Spicy ukryłby lub odtworzył źle z powodu ich czasów.",
     "untimed": "Brak czasów w zsynchronizowanym wersie",
+    "untimedLine": "Jeszcze niezsynchronizowany",
     "endsBeforeStart": "Kończy się, zanim się zacznie",
     "startsBeforeLine": "Zaczyna się przed swoim wersem",
     "endsAfterLine": "Kończy się po swoim wersie"

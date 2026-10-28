@@ -3,6 +3,7 @@
  * Original project: https://github.com/Spikerko/Spicy-Lyrics
  */
 
+import { hasNoTiming } from "$/modules/lyric-editor/utils/timing-status";
 import type { WordTimingProblem } from "$/modules/preview-problems/detect-word-timing-problems";
 import { collectFollowingBackgroundLines } from "$/modules/project/logic/ttml-writer";
 import type { LyricLine, LyricWord } from "$/types/ttml";
@@ -47,6 +48,8 @@ export interface SpicyLine {
 	isBackground: boolean;
 	isDuet: boolean;
 	isDotLine?: boolean;
+	/** Not synced yet: shown in place, never animated, sought or counted as active. */
+	isUntimed?: boolean;
 	translation?: string;
 	words: SpicyToken[];
 }
@@ -149,8 +152,7 @@ export function splitLetters(text: string): string[] {
 }
 
 const validLine = (start: number, end: number) =>
-	Number.isFinite(start) && Number.isFinite(end) && end > start;
-// A zero-length syllable still renders in Spicy; it is simply sung at once.
+	Number.isFinite(start) && Number.isFinite(end) && end > start; // A zero-length syllable still renders in Spicy; it is simply sung at once.
 const validWord = (start: number, end: number) =>
 	Number.isFinite(start) && Number.isFinite(end) && end >= start;
 
@@ -345,15 +347,28 @@ export function groupVocals(
 	forceLineSynced = false,
 	allowConsecutiveBackgrounds = false,
 	problems?: SpicyWordProblems,
+	showUntimed = false,
 ): SpicyVocalGroup[] {
-	const lines = source.filter((line) =>
-		validLine(line.startTime, line.endTime),
-	);
+	// An untimed line sits, zero-length, where the line before it ends, so it
+	// stays in order without ever becoming the active line.
+	const untimedIds = new Set<string>();
+	const lines: LyricLine[] = [];
+	let lastEnd = 0;
+	for (const line of source) {
+		if (validLine(line.startTime, line.endTime)) {
+			lines.push(line);
+			lastEnd = line.endTime;
+		} else if (showUntimed && hasNoTiming(line)) {
+			untimedIds.add(line.id);
+			lines.push({ ...line, startTime: lastEnd, endTime: lastEnd });
+		}
+	}
 	const groups: SpicyVocalGroup[] = [];
 	const convert = (line: LyricLine, background: boolean): SpicyLine => ({
 		id: line.id,
 		startTime: line.startTime,
 		endTime: line.endTime,
+		isUntimed: untimedIds.has(line.id) || undefined,
 		isLineSynced: forceLineSynced || isLineSynced(line),
 		isRtl: isRtl(lineText(line, false)),
 		text: lineText(line, romanized),
@@ -381,6 +396,7 @@ export function groupVocals(
 					endTime:
 						backgroundSources[backgroundSources.length - 1]?.endTime ??
 						line.endTime,
+					isUntimed: untimedIds.has(line.id) || undefined,
 					isLineSynced: false,
 					isRtl: false,
 					text: "",
@@ -393,6 +409,12 @@ export function groupVocals(
 		for (const backgroundSource of backgroundSources) {
 			const background = convert(backgroundSource, true);
 			if (!background.isLineSynced && background.words.length === 0) continue;
+			background.isDuet = lead.isDuet;
+			// An untimed background vocal has no span to give its lead.
+			if (background.isUntimed) {
+				backgrounds.push(background);
+				continue;
+			}
 			// A background vocal spans its first to its last syllable as timed
 			// (not the shortened held-letter window), and sits on its lead's side,
 			// since it shares the lead's <p> and agent.
@@ -405,7 +427,6 @@ export function groupVocals(
 				background.startTime = sung[0].startTime;
 				background.endTime = sung[sung.length - 1].endTime;
 			}
-			background.isDuet = lead.isDuet;
 			// Background vocals can start before or run past their lead; the
 			// lead's window covers them, so the next line waits for the group.
 			lead.startTime = Math.min(lead.startTime, background.startTime);
@@ -432,6 +453,7 @@ export function buildSpicyLines(
 	forceLineSynced = false,
 	allowConsecutiveBackgrounds = false,
 	problems?: SpicyWordProblems,
+	showUntimed = false,
 ): SpicyLine[] {
 	const groups = groupVocals(
 		source,
@@ -440,33 +462,38 @@ export function buildSpicyLines(
 		forceLineSynced,
 		allowConsecutiveBackgrounds,
 		problems,
+		showUntimed,
 	);
 	const result: SpicyLine[] = [];
-	const first = groups[0]?.lead;
-	if (first && first.startTime >= INTERLUDE_GAP)
-		result.push(
-			dotLine(
-				0,
-				first.startTime,
-				"spicy-leading-dot",
-				first.isDuet,
-				first.isRtl,
-			),
-		);
-	for (let index = 0; index < groups.length; index++) {
-		const { lead, backgrounds } = groups[index];
+	// Interludes are measured between timed lines only, and lead straight into
+	// the next timed line, so untimed lines in a gap sit before the dots.
+	let previous: SpicyLine | undefined;
+	for (const { lead, backgrounds } of groups) {
+		if (!lead.isUntimed) {
+			if (!previous) {
+				if (lead.startTime >= INTERLUDE_GAP)
+					result.push(
+						dotLine(
+							0,
+							lead.startTime,
+							"spicy-leading-dot",
+							lead.isDuet,
+							lead.isRtl,
+						),
+					);
+			} else if (lead.startTime - previous.endTime >= INTERLUDE_GAP)
+				result.push(
+					dotLine(
+						previous.endTime,
+						lead.startTime,
+						`spicy-dot-${previous.id}`,
+						lead.isDuet,
+						lead.isRtl,
+					),
+				);
+			previous = lead;
+		}
 		result.push(lead, ...backgrounds);
-		const next = groups[index + 1]?.lead;
-		if (next && next.startTime - lead.endTime >= INTERLUDE_GAP)
-			result.push(
-				dotLine(
-					lead.endTime,
-					next.startTime,
-					`spicy-dot-${lead.id}`,
-					next.isDuet,
-					next.isRtl,
-				),
-			);
 	}
 	return result;
 }

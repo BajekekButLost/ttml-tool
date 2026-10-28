@@ -9,7 +9,10 @@ import { audioEngine } from "$/modules/audio/audio-engine";
 import { audioCoverArtAtom, currentTimeAtom } from "$/modules/audio/states";
 import { playbackClock } from "$/modules/playback-clock";
 import { usePreviewScroll } from "$/modules/playback-clock/use-preview-scroll";
-import { previewTimingProblemsAtom } from "$/modules/preview-problems/states";
+import {
+	previewTimingProblemsAtom,
+	showPreviewTimingProblemsAtom,
+} from "$/modules/preview-problems/states";
 import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackground";
 import {
 	allowConsecutiveBackgroundLinesAtom,
@@ -25,6 +28,7 @@ import {
 	spicyJoinSplitWordsAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
+import { lyricLinesAtom } from "$/states/main";
 import { findSpicyScrollIndex } from "./active-line";
 import { createSpicyAnimator, type SpringSet } from "./createSpicyAnimator";
 import { joinSplitWordsInLines, remapToJoinedWords } from "./join-split-words";
@@ -34,7 +38,11 @@ import { useCoverPalette, useKawarpBackground } from "./useBackground";
 import { useSpicyVirtualList } from "./useSpicyVirtualList";
 
 export function useSpicyLyrics() {
-	const lyrics = useAtomValue(timedPreviewLyricsAtom);
+	// With timing problems shown, untimed lines stay in the preview, marked.
+	const showUntimed = useAtomValue(showPreviewTimingProblemsAtom);
+	const timedLyrics = useAtomValue(timedPreviewLyricsAtom);
+	const allLyrics = useAtomValue(lyricLinesAtom);
+	const lyrics = showUntimed ? allLyrics : timedLyrics;
 	const simple = useAtomValue(spicySimpleLyricsModeAtom);
 	const forceLineSynced = useAtomValue(spicyForceLineSyncedAtom);
 	const joinWords = useAtomValue(spicyJoinSplitWordsAtom);
@@ -76,6 +84,7 @@ export function useSpicyLyrics() {
 				forceLineSynced,
 				allowConsecutiveBackgrounds,
 				problems,
+				showUntimed,
 			),
 		[
 			sourceLines,
@@ -84,6 +93,7 @@ export function useSpicyLyrics() {
 			forceLineSynced,
 			allowConsecutiveBackgrounds,
 			problems,
+			showUntimed,
 		],
 	);
 	const hasDuetLines = useMemo(

@@ -39,6 +39,7 @@
     "setting": "Mostra problemi di tempi",
     "settingDesc": "Segna in rosso, con un contorno tratteggiato, le parole che l'anteprima Spicy nasconderebbe o riprodurrebbe male a causa dei loro tempi.",
     "untimed": "Senza tempi in un verso sincronizzato",
+    "untimedLine": "Non ancora sincronizzato",
     "endsBeforeStart": "Finisce prima di iniziare",
     "startsBeforeLine": "Inizia prima del suo verso",
     "endsAfterLine": "Finisce dopo il suo verso"

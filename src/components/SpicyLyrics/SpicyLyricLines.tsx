@@ -91,6 +91,9 @@ const SpicyLineRow = memo(function SpicyLineRow({
 	seek: (time: number) => void;
 }) {
 	const { t } = useTranslation();
+	const untimed = line.isUntimed
+		? t("previewProblems.untimedLine", "Not synced yet")
+		: undefined;
 	const renderToken = (
 		line: SpicyLine,
 		word: SpicyToken,
@@ -163,9 +166,12 @@ const SpicyLineRow = memo(function SpicyLineRow({
 				line.isRtl && styles.rtl,
 				line.isBackground && styles.backgroundLine,
 				line.isDuet && styles.duet,
+				line.isUntimed && styles.untimedLine,
 			)}
 			dir={line.isRtl ? "rtl" : undefined}
-			onClick={() => seek(line.startTime)}
+			title={untimed}
+			data-untimed={line.isUntimed || undefined}
+			onClick={line.isUntimed ? undefined : () => seek(line.startTime)}
 		>
 			{line.isDotLine ? (
 				<div className={styles.dotGroup}>

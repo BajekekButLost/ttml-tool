@@ -39,6 +39,7 @@
     "setting": "Mostrar problemas de sincronização",
     "settingDesc": "Marca em vermelho, com contorno tracejado, as palavras que a prévia do Spicy esconderia ou tocaria errado por causa da sincronização.",
     "untimed": "Sem sincronização em uma linha sincronizada",
+    "untimedLine": "Ainda não sincronizada",
     "endsBeforeStart": "Termina antes de começar",
     "startsBeforeLine": "Começa antes da sua linha",
     "endsAfterLine": "Termina depois da sua linha"

@@ -39,6 +39,7 @@
     "setting": "Arată problemele de sincronizare",
     "settingDesc": "Marchează cu roșu, cu un contur punctat, cuvintele pe care previzualizarea Spicy le-ar ascunde sau le-ar reda greșit din cauza timpilor.",
     "untimed": "Fără timpi într-un vers sincronizat",
+    "untimedLine": "Încă nesincronizat",
     "endsBeforeStart": "Se termină înainte să înceapă",
     "startsBeforeLine": "Începe înaintea versului său",
     "endsAfterLine": "Se termină după versul său"

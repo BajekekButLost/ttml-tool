@@ -39,6 +39,7 @@
     "setting": "Zobrazit problémy s časováním",
     "settingDesc": "Označí červeně a čárkovaným obrysem slova, která by náhled Spicy kvůli jejich časování skryl nebo přehrál špatně.",
     "untimed": "Nemá časování v časovaném řádku",
+    "untimedLine": "Zatím bez časování",
     "endsBeforeStart": "Končí dřív, než začne",
     "startsBeforeLine": "Začíná před svým řádkem",
     "endsAfterLine": "Končí po svém řádku"

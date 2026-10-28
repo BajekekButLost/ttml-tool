@@ -39,6 +39,7 @@
     "setting": "Zamanlama sorunlarını göster",
     "settingDesc": "Spicy önizlemesinin zamanlaması yüzünden gizleyeceği ya da yanlış oynatacağı kelimeleri kırmızıyla ve kesikli bir çerçeveyle işaretler.",
     "untimed": "Zamanlanmış satırda zamanlaması yok",
+    "untimedLine": "Henüz zamanlanmadı",
     "endsBeforeStart": "Başlamadan önce bitiyor",
     "startsBeforeLine": "Satırından önce başlıyor",
     "endsAfterLine": "Satırından sonra bitiyor"

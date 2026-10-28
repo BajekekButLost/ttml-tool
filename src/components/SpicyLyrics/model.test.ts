@@ -462,3 +462,68 @@ describe("Spicy zero-width handling", () => {
 		expect(spicy.words[0].text).toBe(word);
 	});
 });
+
+describe("Spicy untimed lines", () => {
+	const line = (
+		id: string,
+		startTime: number,
+		endTime: number,
+		isBG = false,
+	) => ({
+		...newLyricLine(),
+		id,
+		startTime,
+		endTime,
+		isBG,
+		words: [{ ...newLyricWord(), id: `${id}-w`, word: id, startTime, endTime }],
+	});
+	const build = (lines: ReturnType<typeof line>[]) =>
+		buildSpicyLines(lines, false, false, false, false, undefined, true);
+
+	it("drops untimed lines unless asked to show them", () => {
+		const lines = [line("a", 1_000, 2_000), line("b", 0, 0)];
+		expect(buildSpicyLines(lines, false, false).map((l) => l.id)).toEqual([
+			"a",
+		]);
+		const shown = build(lines);
+		expect(shown.map((l) => [l.id, l.isUntimed])).toEqual([
+			["a", undefined],
+			["b", true],
+		]);
+		// Zero-length where the line before it ends, so it is never active.
+		expect([shown[1].startTime, shown[1].endTime]).toEqual([2_000, 2_000]);
+	});
+
+	it("puts an interlude after untimed lines, right before the next timed one", () => {
+		const shown = build([
+			line("a", 1_000, 2_000),
+			line("b", 0, 0),
+			line("c", 9_000, 10_000),
+		]);
+		expect(shown.map((l) => (l.isDotLine ? "dots" : l.id))).toEqual([
+			"a",
+			"b",
+			"dots",
+			"c",
+		]);
+		expect([shown[2].startTime, shown[2].endTime]).toEqual([2_000, 9_000]);
+	});
+
+	it("keeps the leading interlude next to the first timed line", () => {
+		const shown = build([line("b", 0, 0), line("c", 9_000, 10_000)]);
+		expect(shown.map((l) => (l.isDotLine ? "dots" : l.id))).toEqual([
+			"b",
+			"dots",
+			"c",
+		]);
+	});
+
+	it("never stretches a lead over an untimed background vocal", () => {
+		const shown = build([line("a", 1_000, 2_000), line("bg", 0, 0, true)]);
+		expect(shown.map((l) => [l.id, l.isUntimed])).toEqual([
+			["a", undefined],
+			["bg", true],
+		]);
+		expect([shown[0].startTime, shown[0].endTime]).toEqual([1_000, 2_000]);
+	});
+});

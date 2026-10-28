@@ -508,6 +508,10 @@
 		rgba(255, 110, 110, 0.45) calc(var(--gradient-position) + 50%)
 	);
 }
+/* An untimed line stays in place but can't be sought to. */
+.line.untimedLine {
+	cursor: default;
+}
 @media (prefers-contrast: more) {
 	.line .timingProblem {
 		outline-style: solid;

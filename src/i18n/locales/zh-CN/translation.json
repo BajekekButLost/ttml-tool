@@ -39,6 +39,7 @@
     "setting": "显示时间问题",
     "settingDesc": "用红色和虚线框标出因时间设置而会在 Spicy 预览中被隐藏或播放错误的词。",
     "untimed": "在已打轴的行中没有时间",
+    "untimedLine": "尚未打轴",
     "endsBeforeStart": "结束时间早于开始时间",
     "startsBeforeLine": "开始时间早于所在行",
     "endsAfterLine": "结束时间晚于所在行"

@@ -39,6 +39,7 @@
     "setting": "Näytä ajoitusongelmat",
     "settingDesc": "Merkitsee punaisella ja katkoviivareunuksella sanat, jotka Spicy-esikatselu piilottaisi tai toistaisi väärin niiden ajoituksen vuoksi.",
     "untimed": "Ei ajoitusta ajoitetulla rivillä",
+    "untimedLine": "Ei vielä ajoitettu",
     "endsBeforeStart": "Päättyy ennen kuin alkaa",
     "startsBeforeLine": "Alkaa ennen riviään",
     "endsAfterLine": "Päättyy rivinsä jälkeen"
