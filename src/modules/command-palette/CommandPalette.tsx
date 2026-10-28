@@ -31,7 +31,11 @@ import {
 	normalizeKeyCode,
 } from "$/utils/keybindings";
 import styles from "./CommandPalette.module.css";
-import { getPaletteCommands, PALETTE_COMMAND_IDS } from "./palette-commands";
+import {
+	commandRunsInMode,
+	getPaletteCommands,
+	PALETTE_COMMAND_IDS,
+} from "./palette-commands";
 import { type RankableItem, rankPaletteItems } from "./ranking";
 import { runKeyboardCommand } from "./run-command";
 import {
@@ -113,7 +117,7 @@ const CommandPaletteDialog = () => {
 			.filter(
 				(command) =>
 					!PALETTE_COMMAND_IDS.has(command.id) &&
-					command.modes.includes(toolMode),
+					commandRunsInMode(command, toolMode),
 			)
 			.map(
 				(command): PaletteItem => ({

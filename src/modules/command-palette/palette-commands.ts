@@ -34,6 +34,17 @@ export function getPaletteCommands(): {
 	};
 }
 
+/**
+ * Whether a command's handler is active in an editor mode. Takes any string
+ * so modes the keyboard registry doesn't know yet just list no commands.
+ */
+export function commandRunsInMode(
+	command: Pick<KeyBindingCommand, "modes">,
+	mode: string,
+): boolean {
+	return (command.modes as readonly string[]).includes(mode);
+}
+
 export const PALETTE_COMMAND_IDS: ReadonlySet<string> = new Set([
 	"openCommandPalette",
 	"openCommandPaletteAlternate",

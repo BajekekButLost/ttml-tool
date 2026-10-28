@@ -77,6 +77,20 @@ describe("palette shortcuts", () => {
 	});
 });
 
+describe("commandRunsInMode", () => {
+	it("matches known modes and lists nothing for an unknown one", () => {
+		const { commandRunsInMode } = paletteCommands;
+		expect(commandRunsInMode(commands.cmdUndo, "edit")).toBe(true);
+		expect(commandRunsInMode(commands.cmdSyncStart, "edit")).toBe(false);
+		expect(commandRunsInMode(commands.cmdSyncStart, "sync")).toBe(true);
+		expect(
+			registry
+				.getAllCommands()
+				.filter((command) => commandRunsInMode(command, "transcribe")),
+		).toEqual([]);
+	});
+});
+
 describe("runKeyboardCommand", () => {
 	it("calls atom handlers directly, once, without pressing keys", () => {
 		const store = createStore();
