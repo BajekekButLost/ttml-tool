@@ -21,9 +21,8 @@ import {
 	volumeAtom,
 } from "$/modules/audio/states";
 import {
-	PLAYBACK_RATE_SLIDER_STEPS,
-	playbackRateToSliderPosition,
-	sliderPositionToPlaybackRate,
+	clampPlaybackRate,
+	MAX_PLAYBACK_RATE,
 } from "$/modules/audio/utils/playback-rate";
 import styles from "./AudioMenu.module.css";
 
@@ -108,14 +107,18 @@ const SpeedControl: FC = () => {
 				))}
 			</div>
 			<div className={styles.centered}>
+				{/* The track starts at 0 so 1x lands in the middle with even 0.05
+				    steps; the first notch clamps to the 0.1x minimum. */}
 				<LabeledSlider
 					label={label}
 					valueText={formatRate(rate)}
 					min={0}
-					max={PLAYBACK_RATE_SLIDER_STEPS}
-					step={1}
-					value={[playbackRateToSliderPosition(rate)]}
-					onValueChange={(v) => setRate(sliderPositionToPlaybackRate(v[0]))}
+					max={MAX_PLAYBACK_RATE}
+					step={0.05}
+					value={[rate]}
+					onValueChange={(v) =>
+						setRate(clampPlaybackRate(Math.round(v[0] * 100) / 100))
+					}
 				/>
 			</div>
 		</div>
