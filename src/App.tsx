@@ -102,6 +102,7 @@ import AudioControls from "./modules/audio/components/index.tsx";
 import { useAudioFeedback } from "./modules/audio/hooks/useAudioFeedback.ts";
 import { DiscordPresence } from "./modules/discord-presence/DiscordPresence";
 import { MigrationNotice } from "./modules/domain-migration/MigrationNotice";
+import { LogoColorStyle } from "./modules/logo-color/LogoColorStyle";
 import { SyncKeyBinding } from "./modules/lyric-editor/components/sync-keybinding.tsx";
 import { UrbanDictionaryKeybinding } from "./modules/lyric-editor/components/urban-dictionary-keybinding.tsx";
 import { BeginnerGuide } from "./modules/onboarding/BeginnerGuide";
@@ -699,6 +700,7 @@ function App() {
 					{toolMode === ToolMode.Sync && <SyncKeyBinding />}
 					<UrbanDictionaryKeybinding />
 					<DarkThemeDetector />
+					<LogoColorStyle />
 					<Flex direction="column" height="100vh">
 						{appLayoutOrder.map((id) => {
 							if (id === "titlebar") return <TitleBar key="titlebar" />;
