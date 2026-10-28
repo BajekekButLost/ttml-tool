@@ -152,19 +152,25 @@ export const AudioMenu: FC = () => {
 							<Text size="2">
 								{t("audioPanel.playbackRate", "Playback speed")}
 							</Text>
-							<Tooltip content={t("audioPanel.resetSpeed", "Reset to 1×")}>
-								<Button
-									size="1"
-									variant="ghost"
-									color="gray"
-									className={styles.value}
-									disabled={playbackRate === 1}
-									onClick={() => setPlaybackRate(1)}
-									aria-label={t("audioPanel.resetSpeed", "Reset to 1×")}
-								>
-									{playbackRate.toFixed(2)}×
-								</Button>
-							</Tooltip>
+							{playbackRate === 1 ? (
+								<Text size="2" color="gray" className={styles.value}>
+									1.00×
+								</Text>
+							) : (
+								// The slider already announces the value; this names the action.
+								<Tooltip content={t("audioPanel.resetSpeed", "Reset to 1×")}>
+									<Button
+										size="1"
+										variant="ghost"
+										color="gray"
+										className={styles.value}
+										onClick={() => setPlaybackRate(1)}
+										aria-label={t("audioPanel.resetSpeed", "Reset to 1×")}
+									>
+										{playbackRate.toFixed(2)}×
+									</Button>
+								</Tooltip>
+							)}
 						</div>
 						<LabeledSlider
 							label={t("audioPanel.playbackRate", "Playback speed")}
