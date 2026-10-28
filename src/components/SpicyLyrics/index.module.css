@@ -508,14 +508,31 @@
 		rgba(255, 110, 110, 0.45) calc(var(--gradient-position) + 50%)
 	);
 }
-/* An untimed line stays in place but can't be sought to. */
-.line.untimedLine {
+/* An untimed line stays in place, hollow: outlined letters with nothing filled
+ * in yet. It can't be sought to, and keeps one look whichever side of the
+ * playhead it sits on. Static, so nothing here animates. */
+.line.untimedLine,
+.line.untimedLine[data-state] {
 	cursor: default;
+	opacity: 0.51;
+}
+.line.untimedLine :is(.word, .letter),
+.line.untimedLine.lineSynced {
+	background-image: none;
+	-webkit-text-stroke: 0.025em white;
 }
 @media (prefers-contrast: more) {
 	.line .timingProblem {
 		outline-style: solid;
 		outline-width: 0.07em;
+	}
+	.line.untimedLine,
+	.line.untimedLine[data-state] {
+		opacity: 0.75;
+	}
+	.line.untimedLine :is(.word, .letter),
+	.line.untimedLine.lineSynced {
+		-webkit-text-stroke-width: 0.04em;
 	}
 }
 
