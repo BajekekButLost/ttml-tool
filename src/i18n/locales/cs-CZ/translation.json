@@ -488,10 +488,6 @@
     "loading": "Načítání panelu...",
     "advanced": "Pokročilé"
   },
-  "joinSplitWords": {
-    "label": "Spojit rozdělená slova",
-    "description": "Zobrazit slovo zpívané po částech jako jedno slovo, když jsou části rovnoměrně načasované, jako nastavení Join Split Words ve Spicy Lyrics."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Zvýrazní právě přehrávaný řádek ve zvoleném režimu.",
@@ -862,6 +858,10 @@
     "order": "Pořadí",
     "orderChronological": "Podle času",
     "orderTextual": "Podle textu"
+  },
+  "joinSplitWords": {
+    "label": "Spojit rozdělená slova",
+    "description": "Zobrazit slovo zpívané po částech jako jedno slovo, když jsou části rovnoměrně načasované, jako nastavení Join Split Words ve Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {

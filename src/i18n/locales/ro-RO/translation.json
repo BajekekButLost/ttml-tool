@@ -488,10 +488,6 @@
     "loading": "Se încarcă panoul...",
     "advanced": "Avansat"
   },
-  "joinSplitWords": {
-    "label": "Unește cuvintele despărțite",
-    "description": "Arată un cuvânt cântat pe bucăți ca un singur cuvânt când bucățile se potrivesc uniform, ca setarea Join Split Words din Spicy Lyrics."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Evidențiază versul redat în modul selectat.",
@@ -862,6 +858,10 @@
     "order": "Ordine",
     "orderChronological": "Cronologic",
     "orderTextual": "Ordinea textului"
+  },
+  "joinSplitWords": {
+    "label": "Unește cuvintele despărțite",
+    "description": "Arată un cuvânt cântat pe bucăți ca un singur cuvânt când bucățile se potrivesc uniform, ca setarea Join Split Words din Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {

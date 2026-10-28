@@ -488,10 +488,6 @@
     "loading": "Loading panel…",
     "advanced": "Advanced"
   },
-  "joinSplitWords": {
-    "label": "Join split words",
-    "description": "Show a word sung in parts as one word when the parts line up evenly, like Spicy Lyrics' Join Split Words setting."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Highlights the line that is playing in the selected mode.",
@@ -862,6 +858,10 @@
     "order": "Order",
     "orderChronological": "Chronological",
     "orderTextual": "Textual"
+  },
+  "joinSplitWords": {
+    "label": "Join split words",
+    "description": "Show a word sung in parts as one word when the parts line up evenly, like Spicy Lyrics' Join Split Words setting."
   },
   "topBar": {
     "modeBtns": {

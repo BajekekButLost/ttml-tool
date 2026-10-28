@@ -488,10 +488,6 @@
     "loading": "Chargement du panneau…",
     "advanced": "Avancé"
   },
-  "joinSplitWords": {
-    "label": "Fusionner les mots découpés",
-    "description": "Affiche un mot chanté en plusieurs parties comme un seul mot lorsque les parties s'enchaînent régulièrement, comme le réglage Join Split Words de Spicy Lyrics."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Met en évidence visuellement la ligne de paroles en cours de lecture dans le mode sélectionné.",
@@ -862,6 +858,10 @@
     "order": "Ordre",
     "orderChronological": "Chronologique",
     "orderTextual": "Ordre du texte"
+  },
+  "joinSplitWords": {
+    "label": "Fusionner les mots découpés",
+    "description": "Affiche un mot chanté en plusieurs parties comme un seul mot lorsque les parties s'enchaînent régulièrement, comme le réglage Join Split Words de Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {

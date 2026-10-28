@@ -488,10 +488,6 @@
     "loading": "Caricamento pannello...",
     "advanced": "Avanzate"
   },
-  "joinSplitWords": {
-    "label": "Unisci parole divise",
-    "description": "Mostra una parola cantata a pezzi come una sola parola quando i pezzi sono distribuiti in modo uniforme, come l’impostazione Join Split Words di Spicy Lyrics."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Evidenzia il verso in riproduzione nella modalità selezionata.",
@@ -862,6 +858,10 @@
     "order": "Ordine",
     "orderChronological": "Cronologico",
     "orderTextual": "Ordine del testo"
+  },
+  "joinSplitWords": {
+    "label": "Unisci parole divise",
+    "description": "Mostra una parola cantata a pezzi come una sola parola quando i pezzi sono distribuiti in modo uniforme, come l’impostazione Join Split Words di Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {

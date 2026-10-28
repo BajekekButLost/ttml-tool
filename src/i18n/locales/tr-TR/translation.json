@@ -488,10 +488,6 @@
     "loading": "Panel yükleniyor...",
     "advanced": "Gelişmiş"
   },
-  "joinSplitWords": {
-    "label": "Bölünmüş kelimeleri birleştir",
-    "description": "Parçalar halinde söylenen bir kelimeyi, parçalar düzenli şekilde hizalandığında tek kelime olarak gösterir; Spicy Lyrics'teki Join Split Words ayarı gibi."
-  },
   "settings": {
     "common": {
       "highlightActiveLineDesc": "Seçili modda o anda çalınan satırı vurgular.",
@@ -862,6 +858,10 @@
     "order": "Sıra",
     "orderChronological": "Zamana göre",
     "orderTextual": "Metne göre"
+  },
+  "joinSplitWords": {
+    "label": "Bölünmüş kelimeleri birleştir",
+    "description": "Parçalar halinde söylenen bir kelimeyi, parçalar düzenli şekilde hizalandığında tek kelime olarak gösterir; Spicy Lyrics'teki Join Split Words ayarı gibi."
   },
   "topBar": {
     "modeBtns": {
