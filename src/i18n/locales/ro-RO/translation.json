@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# vers nu este încă sincronizat} few {# versuri nu sunt încă sincronizate} other {# de versuri nu sunt încă sincronizate}}",
     "jumpToUntimed": "Sincronizează primul vers fără timpi"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# cuvânt are o problemă de sincronizare} few {# cuvinte au probleme de sincronizare} other {# de cuvinte au probleme de sincronizare}}",
+    "jump": "Selectează primul",
+    "untimed": "Fără timpi într-un vers sincronizat",
+    "untimedLine": "Încă nesincronizat",
+    "endsBeforeStart": "Se termină înainte să înceapă",
+    "startsBeforeLine": "Începe înaintea versului său",
+    "endsAfterLine": "Se termină după versul său"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Deschide un fișier cu versuri",
@@ -433,7 +442,7 @@
       "mode": "Mod",
       "standard": "Standard",
       "timing": "Timpi",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Versuri simple",
       "forceLineRendering": "Arată sincronizarea pe versuri",
       "background": "Fundal",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "Vederea de ansamblu a timpilor urmărește cursorul de redare.",
       "vsyncDesc": "Actualizează previzualizările Standard și Toxi la fiecare cadru în loc de aproximativ 30 de ori pe secundă. Mai fluid, dar folosește mai mult procesorul.",
       "showFpsDesc": "Afișează un contor de cadre pe secundă pe previzualizare.",
-      "syncLevelDesc": "Cuvânt: sincronizează fiecare cuvânt pe parcurs. Vers: sincronizează versuri întregi și distribuie cuvintele uniform, pentru o sincronizare aproximativă pe care o rafinezi în spectrogramă.",
+      "syncLevelDesc": "Cuvânt: sincronizează fiecare cuvânt pe parcurs. Vers: sincronizează versuri întregi și distribuie cuvintele uniform. Și modul Vers salvează timpii fiecărui cuvânt, nu versuri sincronizate pe rând, așa că rafinează cuvintele în spectrogramă.",
       "previewModeDesc": "Alege ce previzualizare afișează fila Previzualizare.",
       "spicyBackgroundDesc": "Ce se afișează în spatele previzualizării Spicy.",
       "fadeWidthDesc": "Cât de moale este marginea evidențierii când un cuvânt se umple în previzualizările Standard și Toxi."
@@ -858,6 +867,10 @@
     "order": "Ordine",
     "orderChronological": "Cronologic",
     "orderTextual": "Ordinea textului"
+  },
+  "joinSplitWords": {
+    "label": "Unește cuvintele despărțite",
+    "description": "Arată un cuvânt cântat pe bucăți ca un singur cuvânt când bucățile se potrivesc uniform, ca setarea Join Split Words din Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "Volum",
     "playbackRate": "Viteza de redare",
     "preservesPitch": "Păstrează înălțimea sunetului",
-    "clickToLoadMusic": "Dă clic pe pictograma muzicală pentru a încărca sunetul",
+    "audioMenu": "Sunet și redare",
+    "loadedAudio": "Sunet încărcat",
+    "replaceAudio": "Înlocuiește",
+    "resetSpeed": "Resetează la 1×",
     "playPause": "Redare / pauză muzică",
     "expandSpectrogram": "Extinde / restrânge spectrograma"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "Câmp personalizat",
     "addPresets": "Adaugă toate câmpurile standard",
     "clear": "Curăță"
+  },
+  "helpText": {
+    "metadataArtists": "Cine interpretează melodia, așa cum este creditată piesa pe serviciile de streaming. Exemplu: „Shake It Off” este de Taylor Swift.",
+    "metadataSongwriter": "Cine a scris muzica și versurile, conform creditelor de compoziție. Adesea alte persoane decât artiștii. Exemplu: „Shake It Off” a fost scrisă de Taylor Swift, Max Martin și Shellback.",
+    "openSongwritersGuide": "Deschide ghidul despre compozitori"
   },
   "lrclib": {
     "placeholder": "Titlul melodiei și artistul…",
