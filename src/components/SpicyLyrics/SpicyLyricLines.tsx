@@ -107,6 +107,9 @@ const SpicyLineRow = memo(function SpicyLineRow({
 		const problem = word.problems?.length
 			? word.problems.map((item) => t(...problemLabels[item])).join(". ")
 			: undefined;
+		const pending = word.isUntimed
+			? t("previewProblems.untimedLine", "Not synced yet")
+			: undefined;
 		return (
 			<span
 				key={key}
@@ -120,9 +123,10 @@ const SpicyLineRow = memo(function SpicyLineRow({
 					partOfWord && styles.partOfWord,
 					word.allowInternalWrap && styles.breakableToken,
 					problem && styles.timingProblem,
+					pending && styles.untimedWord,
 				)}
 				dir={isRtl(word.text) ? "rtl" : undefined}
-				title={problem}
+				title={problem ?? pending}
 				aria-label={problem ? `${word.text}: ${problem}` : undefined}
 				data-timing-problem={problem ? word.problems?.join(" ") : undefined}
 			>
@@ -209,6 +213,9 @@ const SpicyLineRow = memo(function SpicyLineRow({
 							className={classNames(
 								styles.wordGroup,
 								group.hasTrailingSpace && styles.wordBoundary,
+								// One box around a split word, not one per touching syllable.
+								group.items.some(({ token }) => token.problems?.length) &&
+									styles.problemGroup,
 							)}
 						>
 							{/* Every syllable but the last joins the next one, so each

@@ -527,3 +527,55 @@ describe("Spicy untimed lines", () => {
 		expect([shown[0].startTime, shown[0].endTime]).toEqual([1_000, 2_000]);
 	});
 });
+
+describe("Spicy line being synced", () => {
+	const word = (
+		id: string,
+		text: string,
+		startTime: number,
+		endTime: number,
+	) => ({
+		...newLyricWord(),
+		id,
+		word: text,
+		startTime,
+		endTime,
+	});
+	// Mid-sync: the first word set the line's start, its end comes with the last word.
+	const syncing = {
+		...newLyricLine(),
+		id: "s",
+		startTime: 1_000,
+		endTime: 0,
+		words: [
+			word("a", "One ", 1_000, 1_400),
+			word("b", "two ", 1_400, 0),
+			word("c", "three", 0, 0),
+		],
+	};
+
+	it("shows the line before its last word is synced", () => {
+		expect(buildSpicyLines([syncing], false, false)).toEqual([]);
+		const [line] = buildSpicyLines(
+			[syncing],
+			false,
+			false,
+			false,
+			false,
+			undefined,
+			true,
+		);
+		expect([line.id, line.startTime, line.endTime]).toEqual([
+			"s",
+			1_000,
+			1_400,
+		]);
+		expect(line.isUntimed).toBeUndefined();
+		// The word in progress and the ones after it stay, hollow.
+		expect(line.words.map((token) => [token.text, token.isUntimed])).toEqual([
+			["One", undefined],
+			["two", true],
+			["three", true],
+		]);
+	});
+});

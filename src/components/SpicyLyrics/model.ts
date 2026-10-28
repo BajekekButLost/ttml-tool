@@ -26,6 +26,8 @@ export interface SpicyToken {
 	allowInternalWrap?: boolean;
 	/** Set only while the preview marks timing problems. */
 	problems?: readonly WordTimingProblem[];
+	/** Not synced yet, in a line being synced: shown in place, hollow. */
+	isUntimed?: boolean;
 }
 
 export interface SpicyTokenLayoutItem {
@@ -238,6 +240,7 @@ function makeTokens(
 	romanized: boolean,
 	background: boolean,
 	problems?: SpicyWordProblems,
+	syncing = false,
 ): SpicyToken[] {
 	const tokens: SpicyToken[] = [];
 
@@ -249,6 +252,25 @@ function makeTokens(
 			continue;
 		}
 		if (previous && /^\s/u.test(word.word)) previous.spaceAfter = true;
+		// In a line being synced, the words not reached yet and the one in
+		// progress have no end: keep them in place, hollow, after the last one.
+		if (
+			syncing &&
+			(hasNoTiming(word) || !validWord(word.startTime, word.endTime))
+		) {
+			const at = previous?.endTime ?? 0;
+			const token = makeToken(
+				{ ...word, startTime: at, endTime: at },
+				simple,
+				romanized,
+				background,
+			);
+			if (token.text.length === 0) continue;
+			token.isUntimed = true;
+			if (/[\s,]$/u.test(word.word)) token.spaceAfter = true;
+			tokens.push(token);
+			continue;
+		}
 		// A word ending before it starts is dropped, unless problems are being
 		// shown: then it renders as a zero-length word at its start.
 		const shown =
@@ -352,6 +374,7 @@ export function groupVocals(
 	// An untimed line sits, zero-length, where the line before it ends, so it
 	// stays in order without ever becoming the active line.
 	const untimedIds = new Set<string>();
+	const syncingIds = new Set<string>();
 	const lines: LyricLine[] = [];
 	let lastEnd = 0;
 	for (const line of source) {
@@ -361,6 +384,16 @@ export function groupVocals(
 		} else if (showUntimed && hasNoTiming(line)) {
 			untimedIds.add(line.id);
 			lines.push({ ...line, startTime: lastEnd, endTime: lastEnd });
+		} else if (showUntimed && Number.isFinite(line.startTime)) {
+			// Being synced: the start is set with the first word, the end only
+			// with the last, so it ends where the last finished word does.
+			let end = line.startTime;
+			for (const word of line.words)
+				if (validWord(word.startTime, word.endTime) && !hasNoTiming(word))
+					end = Math.max(end, word.endTime);
+			syncingIds.add(line.id);
+			lines.push({ ...line, endTime: end });
+			lastEnd = end;
 		}
 	}
 	const groups: SpicyVocalGroup[] = [];
@@ -375,7 +408,14 @@ export function groupVocals(
 		isBackground: background,
 		isDuet: !!line.isDuet,
 		translation: line.translatedLyric || undefined,
-		words: makeTokens(line.words, simple, romanized, background, problems),
+		words: makeTokens(
+			line.words,
+			simple,
+			romanized,
+			background,
+			problems,
+			syncingIds.has(line.id),
+		),
 	});
 
 	for (let index = 0; index < lines.length; index++) {
@@ -421,6 +461,7 @@ export function groupVocals(
 			const sung = backgroundSource.words.filter(
 				(word) =>
 					word.word.trim().length > 0 &&
+					!hasNoTiming(word) &&
 					validWord(word.startTime, word.endTime),
 			);
 			if (!background.isLineSynced && sung.length > 0) {

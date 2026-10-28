@@ -477,10 +477,15 @@
  * wrong keeps its fill animation in red ink, with a dashed outline so it does
  * not rely on color alone. Outline never moves layout, and nothing here
  * transitions, since these words sit in the sync loop. */
-.line .timingProblem {
+.line .timingProblem,
+.line .problemGroup {
 	outline: 0.045em dashed rgba(255, 120, 120, 0.9);
 	outline-offset: 0.06em;
 	border-radius: 0.12em;
+}
+/* A split word gets one box; its flagged syllables keep only the red ink. */
+.line .problemGroup .timingProblem {
+	outline: none;
 }
 .line .word.timingProblem,
 .line .timingProblem .letter {
@@ -517,12 +522,15 @@
 	opacity: 0.51;
 }
 .line.untimedLine :is(.word, .letter),
-.line.untimedLine.lineSynced {
+.line.untimedLine.lineSynced,
+.line .word.untimedWord {
 	background-image: none;
 	-webkit-text-stroke: 0.025em white;
+	text-shadow: none;
 }
 @media (prefers-contrast: more) {
-	.line .timingProblem {
+	.line .timingProblem,
+	.line .problemGroup {
 		outline-style: solid;
 		outline-width: 0.07em;
 	}
@@ -531,7 +539,8 @@
 		opacity: 0.75;
 	}
 	.line.untimedLine :is(.word, .letter),
-	.line.untimedLine.lineSynced {
+	.line.untimedLine.lineSynced,
+	.line .word.untimedWord {
 		-webkit-text-stroke-width: 0.04em;
 	}
 }
