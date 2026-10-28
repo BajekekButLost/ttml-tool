@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Wie het nummer uitvoert, zoals het op streamingdiensten wordt vermeld. Voorbeeld: \"Shake It Off\" is van Taylor Swift.",
     "metadataSongwriter": "Wie de muziek en tekst schreef, volgens de schrijverscredits. Vaak andere mensen dan de artiesten. Voorbeeld: \"Shake It Off\" is geschreven door Taylor Swift, Max Martin en Shellback.",
-    "learnMore": "Meer informatie"
+    "openSongwritersGuide": "Open de gids over songwriters"
   },
   "lrclib": {
     "placeholder": "Songtitel en artiest…",

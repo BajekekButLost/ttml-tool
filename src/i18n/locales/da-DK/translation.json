@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Hvem der fremfører sangen, som nummeret er krediteret på streamingtjenester. Eksempel: \"Shake It Off\" er af Taylor Swift.",
     "metadataSongwriter": "Hvem der skrev musikken og teksten, ifølge sangskriverkrediteringerne. Ofte andre end kunstnerne. Eksempel: \"Shake It Off\" er skrevet af Taylor Swift, Max Martin og Shellback.",
-    "learnMore": "Læs mere"
+    "openSongwritersGuide": "Åbn guiden om sangskrivere"
   },
   "lrclib": {
     "placeholder": "Sangtitel og kunstner…",

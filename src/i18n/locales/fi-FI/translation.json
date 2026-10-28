@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Kuka esittää kappaleen, kuten se on merkitty suoratoistopalveluissa. Esimerkki: ”Shake It Off” on Taylor Swiftin kappale.",
     "metadataSongwriter": "Kuka kirjoitti musiikin ja sanat, tekijätietojen mukaan. Usein eri henkilöt kuin artistit. Esimerkki: ”Shake It Off” -kappaleen kirjoittivat Taylor Swift, Max Martin ja Shellback.",
-    "learnMore": "Lue lisää"
+    "openSongwritersGuide": "Avaa lauluntekijäopas"
   },
   "lrclib": {
     "placeholder": "Kappaleen nimi ja esittäjä…",

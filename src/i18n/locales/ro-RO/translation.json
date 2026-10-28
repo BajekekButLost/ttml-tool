@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Cine interpretează melodia, așa cum este creditată piesa pe serviciile de streaming. Exemplu: „Shake It Off” este de Taylor Swift.",
     "metadataSongwriter": "Cine a scris muzica și versurile, conform creditelor de compoziție. Adesea alte persoane decât artiștii. Exemplu: „Shake It Off” a fost scrisă de Taylor Swift, Max Martin și Shellback.",
-    "learnMore": "Află mai multe"
+    "openSongwritersGuide": "Deschide ghidul despre compozitori"
   },
   "lrclib": {
     "placeholder": "Titlul melodiei și artistul…",

@@ -16,6 +16,7 @@ import {
 	DropdownMenu,
 	Flex,
 	IconButton,
+	Link,
 	Text,
 	TextField,
 } from "@radix-ui/themes";
@@ -202,16 +203,16 @@ const MetadataEntry = memo(
 										style={{ whiteSpace: "normal" }}
 									>
 										{option.description}
-										{option.learnMoreUrl && (
+										{option.guideLink && (
 											<>
 												{" "}
-												<a
-													href={option.learnMoreUrl}
+												<Link
+													href={option.guideLink.url}
 													target="_blank"
 													rel="noopener noreferrer"
 												>
-													{t("helpText.learnMore", "Learn more")}
-												</a>
+													{option.guideLink.label}
+												</Link>
 											</>
 										)}
 									</Text>
@@ -422,7 +423,7 @@ interface SelectOption {
 	/** Help text shown under the label, on the field's first row. */
 	description?: string;
 	/** Guide link appended to the description. */
-	learnMoreUrl?: string;
+	guideLink?: { url: string; label: string };
 	isLinkable?: true;
 	urlFormatter?: (value: string) => string | null;
 	validation?: {
@@ -478,7 +479,13 @@ export const MetadataEditor = () => {
 					"helpText.metadataSongwriter",
 					'Who wrote the music and lyrics, from the writing credits. Often different from the artists. Example: "Shake It Off" was written by Taylor Swift, Max Martin and Shellback.',
 				),
-				learnMoreUrl: getGuideUrl("songwriters"),
+				guideLink: {
+					url: getGuideUrl("songwriters"),
+					label: t(
+						"helpText.openSongwritersGuide",
+						"Open the songwriters guide",
+					),
+				},
 				validation: {
 					verifier: (value: string) => !/^.+[,;&，；、].+$/.test(value),
 					message: t(

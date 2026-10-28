@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Kdo skladbu interpretuje, podle toho, jak je skladba uvedena ve streamovacích službách. Příklad: „Shake It Off“ je od Taylor Swift.",
     "metadataSongwriter": "Kdo napsal hudbu a text, podle autorských údajů. Často jde o jiné lidi než interpreti. Příklad: „Shake It Off“ napsali Taylor Swift, Max Martin a Shellback.",
-    "learnMore": "Další informace"
+    "openSongwritersGuide": "Otevřít průvodce k autorům"
   },
   "lrclib": {
     "placeholder": "Název skladby a interpret…",

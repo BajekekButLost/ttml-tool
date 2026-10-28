@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Кто исполняет песню, как указано в стриминговых сервисах. Пример: «Shake It Off» исполняет Taylor Swift.",
     "metadataSongwriter": "Кто написал музыку и текст, по данным об авторах. Часто это не те же люди, что исполнители. Пример: «Shake It Off» написали Taylor Swift, Max Martin и Shellback.",
-    "learnMore": "Подробнее"
+    "openSongwritersGuide": "Открыть руководство по авторам"
   },
   "lrclib": {
     "placeholder": "Название песни и исполнитель…",

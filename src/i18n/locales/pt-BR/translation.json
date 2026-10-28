@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Quem interpreta a música, como a faixa é creditada nos serviços de streaming. Exemplo: \"Shake It Off\" é de Taylor Swift.",
     "metadataSongwriter": "Quem escreveu a música e a letra, segundo os créditos de composição. Muitas vezes são pessoas diferentes dos artistas. Exemplo: \"Shake It Off\" foi escrita por Taylor Swift, Max Martin e Shellback.",
-    "learnMore": "Saiba mais"
+    "openSongwritersGuide": "Abrir o guia de compositores"
   },
   "lrclib": {
     "placeholder": "Título da música e artista…",

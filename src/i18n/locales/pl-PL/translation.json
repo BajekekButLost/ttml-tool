@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Kto wykonuje utwór, tak jak jest podpisany w serwisach streamingowych. Przykład: „Shake It Off” wykonuje Taylor Swift.",
     "metadataSongwriter": "Kto napisał muzykę i tekst, według informacji o autorach. Często są to inne osoby niż wykonawcy. Przykład: „Shake It Off” napisali Taylor Swift, Max Martin i Shellback.",
-    "learnMore": "Dowiedz się więcej"
+    "openSongwritersGuide": "Otwórz przewodnik o autorach"
   },
   "lrclib": {
     "placeholder": "Tytuł utworu i wykonawca…",

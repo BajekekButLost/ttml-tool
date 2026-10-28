@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Siapa yang membawakan lagu, sesuai kredit lagu di layanan streaming. Contoh: \"Shake It Off\" oleh Taylor Swift.",
     "metadataSongwriter": "Siapa yang menulis musik dan liriknya, sesuai kredit penulisan. Sering kali berbeda dari artisnya. Contoh: \"Shake It Off\" ditulis oleh Taylor Swift, Max Martin, dan Shellback.",
-    "learnMore": "Pelajari lebih lanjut"
+    "openSongwritersGuide": "Buka panduan penulis lagu"
   },
   "lrclib": {
     "placeholder": "Judul lagu dan artis…",

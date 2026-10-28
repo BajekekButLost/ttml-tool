@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "Şarkıyı seslendiren kişi, parçanın yayın hizmetlerinde listelendiği şekliyle. Örnek: \"Shake It Off\" Taylor Swift'in şarkısıdır.",
     "metadataSongwriter": "Müziği ve sözleri yazan kişiler, yazar bilgilerine göre. Çoğu zaman sanatçılardan farklıdır. Örnek: \"Shake It Off\" şarkısını Taylor Swift, Max Martin ve Shellback yazdı.",
-    "learnMore": "Daha fazla bilgi"
+    "openSongwritersGuide": "Söz yazarları rehberini aç"
   },
   "lrclib": {
     "placeholder": "Şarkı adı ve sanatçı…",

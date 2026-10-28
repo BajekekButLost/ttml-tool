@@ -1164,7 +1164,7 @@
   "helpText": {
     "metadataArtists": "演唱这首歌的人，按流媒体平台上的署名填写。例如：《Shake It Off》的歌手是 Taylor Swift。",
     "metadataSongwriter": "创作词曲的人，按词曲作者署名填写，常与歌手不同。例如：《Shake It Off》的词曲作者是 Taylor Swift、Max Martin 和 Shellback。",
-    "learnMore": "了解更多"
+    "openSongwritersGuide": "打开词曲作者指南"
   },
   "lrclib": {
     "placeholder": "歌曲名称和歌手…",
