@@ -31,8 +31,6 @@ vi.mock("$/modules/settings/states", async () => {
 	const { atom } = await import("jotai");
 	return {
 		allowConsecutiveBackgroundLinesAtom: atom(false),
-		appFontAtom: atom("default font"),
-		DEFAULT_APP_FONT: "default font",
 		useCustomAccentAtom: atom(false),
 		customAccentColorAtom: atom("#fff"),
 	};
@@ -52,7 +50,6 @@ vi.mock("$/modules/settings/states/preview", async () => {
 import { Provider } from "jotai";
 import { currentTimeAtom } from "$/modules/audio/states";
 import { playbackClock } from "$/modules/playback-clock";
-import { appFontAtom } from "$/modules/settings/states";
 import { spicySimpleLyricsModeAtom } from "$/modules/settings/states/preview";
 import { lyricLinesAtom } from "$/states/main";
 import { globalStore } from "$/states/store";
@@ -228,37 +225,6 @@ describe("Spicy shared-clock rendering", () => {
 			});
 			expect(line?.getAttribute("data-state")).toBe("not-sung");
 		} finally {
-			await act(async () => root.unmount());
-		}
-	});
-
-	it("uses Spicy's font unless the user picked one", async () => {
-		vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
-		vi.stubGlobal("requestAnimationFrame", () => 0);
-		vi.stubGlobal("cancelAnimationFrame", () => {});
-		stubLayout();
-		globalStore.set(lyricLinesAtom, { lyricLines: [], metadata: [] });
-		const container = document.createElement("div");
-		const root = createRoot(container);
-		const render = () =>
-			act(async () =>
-				root.render(
-					<Provider store={globalStore}>
-						<SpicyLyrics />
-					</Provider>,
-				),
-			);
-		try {
-			globalStore.set(appFontAtom, "default font");
-			await render();
-			const spicyFont = container.firstElementChild?.className;
-			globalStore.set(appFontAtom, '"Comic Neue", sans-serif');
-			await render();
-			const userFont = container.firstElementChild?.className;
-			expect(userFont).not.toBe(spicyFont);
-			expect(userFont?.startsWith(spicyFont ?? "")).toBe(true);
-		} finally {
-			globalStore.set(appFontAtom, "default font");
 			await act(async () => root.unmount());
 		}
 	});
