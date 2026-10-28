@@ -490,6 +490,8 @@
 		rgba(255, 110, 110, 0.6) calc(var(--gradient-position) + 20%)
 	);
 }
+.rtl .word.timingProblem,
+.rtl .timingProblem .letter,
 .line .word.timingProblem[dir="rtl"],
 .line .timingProblem[dir="rtl"] .letter {
 	background-image: linear-gradient(
