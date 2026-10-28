@@ -5,7 +5,11 @@ import { BrandMark } from "$/components/BrandBand";
 import { OptionPicker, type PickerOption } from "$/components/OptionPicker";
 import { spicyLyricsDesignAtom } from "$/modules/settings/states/index.ts";
 import styles from "./index.module.css";
-import { isHexColor, type LogoColorPreset } from "./presets";
+import {
+	DEFAULT_CUSTOM_LOGO_COLOR,
+	isHexColor,
+	type LogoColorPreset,
+} from "./presets";
 import {
 	logoColorCustomAtom,
 	logoColorEnabledAtom,
@@ -88,9 +92,10 @@ export const LogoColorSection = () => {
 										type="color"
 										className={styles.colorInput}
 										aria-label={t("logoColor.customLabel", "Custom logo color")}
-										value={
-											isHexColor(custom) ? custom.toLowerCase() : "#b19eef"
-										}
+										value={(isHexColor(custom)
+											? custom
+											: DEFAULT_CUSTOM_LOGO_COLOR
+										).toLowerCase()}
 										onChange={(event) => setCustom(event.target.value)}
 									/>
 								)}
