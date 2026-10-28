@@ -29,6 +29,7 @@ import { useAtom, type WritableAtom } from "jotai";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
+import { PreviewProblemsSetting } from "$/modules/preview-problems/PreviewProblemsSetting";
 import { showPreviewPanelAtom } from "$/states/main";
 import {
 	BackgroundSyncControl,
@@ -380,6 +381,7 @@ export const WorkflowSettings = () => {
 					<SpicyBackgroundControl variant="segmented" />
 				</SettingRow>
 				{toggles(previewToggles)}
+				<PreviewProblemsSetting />
 				<SettingRow
 					icon={<ArrowAutofitWidth24Regular />}
 					title={t("ribbonBar.previewMode.fadeWidth", "Fade width")}
