@@ -57,6 +57,13 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 
 			if (!displayLine) return;
 			e.stopPropagation();
+			// A whole-line drag only moves the segments, so the word still being
+			// synced would stay behind. Select the line, but don't drag it.
+			if (displayLine.syncInProgress) {
+				setSelectedLines(new Set([displayLine.id]));
+				setSelectedWordId(null);
+				return;
+			}
 
 			const { id, startTime } = displayLine;
 
