@@ -32,6 +32,7 @@
 	:is(
 		.rt-BaseDialogOverlay,
 		.rt-BaseDialogContent,
+		.rt-PopperContent,
 		.rt-PopoverContent,
 		.rt-HoverCardContent,
 		.rt-BaseMenuContent,
