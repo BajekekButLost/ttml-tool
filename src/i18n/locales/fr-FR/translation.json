@@ -1101,7 +1101,6 @@
     "playbackRate": "Vitesse de lecture",
     "preservesPitch": "Conserver la hauteur",
     "audioMenu": "Audio et lecture",
-    "noAudio": "Aucun audio chargé",
     "loadedAudio": "Audio chargé",
     "replaceAudio": "Remplacer",
     "resetSpeed": "Revenir à 1×",

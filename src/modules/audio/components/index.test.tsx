@@ -101,7 +101,7 @@ describe("audio and playback popover", () => {
 				new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }),
 			);
 		});
-		expect(store.get(playbackRateAtom)).toBeCloseTo(0.95);
+		expect(store.get(playbackRateAtom)).toBeCloseTo(0.96);
 		await act(async () => {
 			slider.dispatchEvent(new MouseEvent("pointerout", { bubbles: true }));
 			await new Promise((resolve) => setTimeout(resolve, 350));

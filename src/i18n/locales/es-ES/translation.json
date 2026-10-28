@@ -1101,7 +1101,6 @@
     "playbackRate": "Velocidad de reproducción",
     "preservesPitch": "Mantener el tono",
     "audioMenu": "Audio y reproducción",
-    "noAudio": "No hay audio cargado",
     "loadedAudio": "Audio cargado",
     "replaceAudio": "Reemplazar",
     "resetSpeed": "Restablecer a 1×",

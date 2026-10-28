@@ -1,8 +1,8 @@
 ---
 type: feature
-impact: 2
-highlight: false
+impact: 3
+highlight: true
 ---
-Open audio and playback settings with a click
+Audio and playback in one menu
 
-The music note button now opens a menu instead of a hover card: load an audio file from it, or set volume, playback speed and pitch preservation. It stays open while you adjust them and closes with Escape or a click outside. Arrow keys on a focused slider now only move that slider, and screen readers announce the volume and speed sliders by name.
+Click the music note to open a menu instead of a hover card. Set the playback speed with 0.5×, 0.75×, 1× and 1.25× presets or the slider, which now has 1× in the middle, and click the speed to go back to 1×. Volume and pitch preservation sit below, and the song you're syncing is at the bottom with its cover and length, next to Load or Replace. Arrow keys on a focused slider only move that slider, and screen readers announce each slider by name.

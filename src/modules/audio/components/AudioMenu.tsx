@@ -8,7 +8,6 @@ import {
 	Text,
 	Tooltip,
 } from "@radix-ui/themes";
-import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
 import { type ComponentProps, type FC, useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,24 +21,31 @@ import {
 	volumeAtom,
 } from "$/modules/audio/states";
 import {
-	MAX_PLAYBACK_RATE,
-	MIN_PLAYBACK_RATE,
+	PLAYBACK_RATE_SLIDER_STEPS,
+	playbackRateToSliderPosition,
+	sliderPositionToPlaybackRate,
 } from "$/modules/audio/utils/playback-rate";
 import styles from "./AudioMenu.module.css";
+
+/** Speeds people sync at: slowed down for fast lines, or a little faster to check. */
+const SPEED_PRESETS = [0.5, 0.75, 1, 1.25];
 
 /**
  * Radix puts `aria-label` on the slider root, but screen readers announce the
  * focusable thumb, so the name goes there.
  */
 const LabeledSlider: FC<
-	Omit<ComponentProps<typeof Slider>, "aria-label"> & { label: string }
-> = ({ label, ...props }) => {
+	Omit<ComponentProps<typeof Slider>, "aria-label"> & {
+		label: string;
+		valueText?: string;
+	}
+> = ({ label, valueText, ...props }) => {
 	const ref = useRef<HTMLSpanElement>(null);
 	useLayoutEffect(() => {
-		ref.current
-			?.querySelector('[role="slider"]')
-			?.setAttribute("aria-label", label);
-	}, [label]);
+		const thumb = ref.current?.querySelector('[role="slider"]');
+		thumb?.setAttribute("aria-label", label);
+		if (valueText) thumb?.setAttribute("aria-valuetext", valueText);
+	}, [label, valueText]);
 	return <Slider ref={ref} {...props} />;
 };
 
@@ -52,33 +58,88 @@ function formatDuration(ms: number): string {
 	return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
 }
 
-/** The song being synced, with load or replace. */
+const formatRate = (rate: number) => `${Number(rate.toFixed(2))}×`;
+
+const SpeedControl: FC = () => {
+	const { t } = useTranslation();
+	const [rate, setRate] = useAtom(playbackRateAtom);
+	const label = t("audioPanel.playbackRate", "Playback speed");
+	const resetLabel = t("audioPanel.resetSpeed", "Reset to 1×");
+
+	return (
+		<div className={styles.group}>
+			<div className={styles.head}>
+				<Text size="2" weight="medium">
+					{label}
+				</Text>
+				{rate === 1 ? (
+					<Text size="2" color="gray" className={styles.value}>
+						1.00×
+					</Text>
+				) : (
+					// The slider already announces the value; this names the action.
+					<Tooltip content={resetLabel}>
+						<Button
+							size="1"
+							variant="ghost"
+							color="gray"
+							className={styles.value}
+							onClick={() => setRate(1)}
+							aria-label={resetLabel}
+						>
+							{rate.toFixed(2)}×
+						</Button>
+					</Tooltip>
+				)}
+			</div>
+			<div className={styles.presets}>
+				{SPEED_PRESETS.map((preset) => (
+					<Button
+						key={preset}
+						size="1"
+						variant={rate === preset ? "solid" : "soft"}
+						color={rate === preset ? undefined : "gray"}
+						aria-pressed={rate === preset}
+						onClick={() => setRate(preset)}
+						className={styles.value}
+					>
+						{formatRate(preset)}
+					</Button>
+				))}
+			</div>
+			<div className={styles.centered}>
+				<LabeledSlider
+					label={label}
+					valueText={formatRate(rate)}
+					min={0}
+					max={PLAYBACK_RATE_SLIDER_STEPS}
+					step={1}
+					value={[playbackRateToSliderPosition(rate)]}
+					onValueChange={(v) => setRate(sliderPositionToPlaybackRate(v[0]))}
+				/>
+			</div>
+		</div>
+	);
+};
+
+/** The song being synced, with load or replace. Sits next to the trigger. */
 const SongSlot: FC = () => {
 	const { t } = useTranslation();
 	const { loadAudio } = useLoadAudio();
 	const audio = useAtomValue(loadedAudioAtom);
 	const cover = useAtomValue(audioCoverArtAtom);
 	const duration = useAtomValue(currentDurationAtom);
-	const name = audio instanceof File ? audio.name : null;
 	const loaded = audio.size > 0;
-
-	const art = cover ? (
-		<img className={styles.cover} src={cover} alt="" />
-	) : (
-		<div className={styles.coverPlaceholder} aria-hidden>
-			<MusicNote2Filled />
-		</div>
-	);
+	const name = audio instanceof File ? audio.name : null;
 
 	if (!loaded) {
 		return (
-			<div className={classNames(styles.song, styles.songEmpty)}>
-				{art}
-				<Text size="2" color="gray">
-					{t("audioPanel.noAudio", "No audio loaded")}
-				</Text>
+			<div className={styles.song}>
+				<div className={styles.coverPlaceholder} aria-hidden>
+					<MusicNote2Filled />
+				</div>
 				<Popover.Close>
-					<Button className={styles.loadEmpty} onClick={loadAudio}>
+					<Button size="2" className={styles.loadWide} onClick={loadAudio}>
 						{t("spectrogram.loadAudio", "Load audio file")}
 					</Button>
 				</Popover.Close>
@@ -88,7 +149,13 @@ const SongSlot: FC = () => {
 
 	return (
 		<div className={styles.song}>
-			{art}
+			{cover ? (
+				<img className={styles.cover} src={cover} alt="" />
+			) : (
+				<div className={styles.coverPlaceholder} aria-hidden>
+					<MusicNote2Filled />
+				</div>
+			)}
 			<div className={styles.songText}>
 				<Text
 					size="2"
@@ -103,7 +170,7 @@ const SongSlot: FC = () => {
 				</Text>
 			</div>
 			<Popover.Close>
-				<Button size="1" variant="soft" onClick={loadAudio}>
+				<Button size="2" variant="soft" onClick={loadAudio}>
 					{t("audioPanel.replaceAudio", "Replace")}
 				</Button>
 			</Popover.Close>
@@ -111,13 +178,13 @@ const SongSlot: FC = () => {
 	);
 };
 
-/** The audio bar's music note: the loaded song, then how it plays. */
+/** The audio bar's music note: how the song plays, then the song itself. */
 export const AudioMenu: FC = () => {
 	const { t } = useTranslation();
 	const [volume, setVolume] = useAtom(volumeAtom);
-	const [playbackRate, setPlaybackRate] = useAtom(playbackRateAtom);
 	const [preservesPitch, setPreservesPitch] = useAtom(preservesPitchAtom);
 	const menuLabel = t("audioPanel.audioMenu", "Audio and playback");
+	const volumeLabel = t("audioPanel.volume", "Volume");
 
 	return (
 		<Popover.Root>
@@ -128,18 +195,32 @@ export const AudioMenu: FC = () => {
 					</IconButton>
 				</Popover.Trigger>
 			</Tooltip>
-			<Popover.Content side="top" align="start" width="288px">
-				<div className={styles.menu}>
-					<SongSlot />
-					<div className={styles.row}>
-						<div className={styles.rowHead}>
-							<Text size="2">{t("audioPanel.volume", "Volume")}</Text>
+			<Popover.Content
+				side="top"
+				align="start"
+				width="300px"
+				className={styles.content}
+			>
+				<div className={styles.controls}>
+					<SpeedControl />
+					<Text as="label" size="2" className={styles.head}>
+						{t("audioPanel.preservesPitch", "Preserve pitch")}
+						<Switch
+							checked={preservesPitch}
+							onCheckedChange={setPreservesPitch}
+						/>
+					</Text>
+					<div className={styles.group}>
+						<div className={styles.head}>
+							<Text size="2" weight="medium">
+								{volumeLabel}
+							</Text>
 							<Text size="2" color="gray" className={styles.value}>
 								{Math.round(volume * 100)}%
 							</Text>
 						</div>
 						<LabeledSlider
-							label={t("audioPanel.volume", "Volume")}
+							label={volumeLabel}
 							min={0}
 							max={1}
 							step={0.01}
@@ -147,48 +228,8 @@ export const AudioMenu: FC = () => {
 							onValueChange={(v) => setVolume(v[0])}
 						/>
 					</div>
-					<div className={styles.row}>
-						<div className={styles.rowHead}>
-							<Text size="2">
-								{t("audioPanel.playbackRate", "Playback speed")}
-							</Text>
-							{playbackRate === 1 ? (
-								<Text size="2" color="gray" className={styles.value}>
-									1.00×
-								</Text>
-							) : (
-								// The slider already announces the value; this names the action.
-								<Tooltip content={t("audioPanel.resetSpeed", "Reset to 1×")}>
-									<Button
-										size="1"
-										variant="ghost"
-										color="gray"
-										className={styles.value}
-										onClick={() => setPlaybackRate(1)}
-										aria-label={t("audioPanel.resetSpeed", "Reset to 1×")}
-									>
-										{playbackRate.toFixed(2)}×
-									</Button>
-								</Tooltip>
-							)}
-						</div>
-						<LabeledSlider
-							label={t("audioPanel.playbackRate", "Playback speed")}
-							min={MIN_PLAYBACK_RATE}
-							max={MAX_PLAYBACK_RATE}
-							step={0.05}
-							value={[playbackRate]}
-							onValueChange={(v) => setPlaybackRate(v[0])}
-						/>
-					</div>
-					<Text as="label" size="2" className={styles.rowHead}>
-						{t("audioPanel.preservesPitch", "Preserve pitch")}
-						<Switch
-							checked={preservesPitch}
-							onCheckedChange={setPreservesPitch}
-						/>
-					</Text>
 				</div>
+				<SongSlot />
 			</Popover.Content>
 		</Popover.Root>
 	);

@@ -1101,7 +1101,6 @@
     "playbackRate": "播放速度",
     "preservesPitch": "保持音高",
     "audioMenu": "音频与播放",
-    "noAudio": "未加载音频",
     "loadedAudio": "已加载的音频",
     "replaceAudio": "替换",
     "resetSpeed": "重置为 1×",

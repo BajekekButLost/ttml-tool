@@ -1101,7 +1101,6 @@
     "playbackRate": "Toistonopeus",
     "preservesPitch": "Säilytä sävelkorkeus",
     "audioMenu": "Ääni ja toisto",
-    "noAudio": "Ääntä ei ole ladattu",
     "loadedAudio": "Ladattu ääni",
     "replaceAudio": "Korvaa",
     "resetSpeed": "Palauta 1×",
