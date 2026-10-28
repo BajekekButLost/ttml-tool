@@ -1,7 +1,8 @@
-import resources from "virtual:i18next-loader";
 import i18n from "i18next";
 import ICU from "i18next-icu";
 import { initReactI18next } from "react-i18next";
+import { fallbackLanguages } from "./regional";
+import resources from "./resources";
 
 // The repository is the translation source of truth; en-US defines the keys.
 type TranslationResource = typeof import("./locales/en-US/translation.json");
@@ -23,7 +24,7 @@ i18n
 	.init({
 		resources,
 		debug: import.meta.env.DEV,
-		fallbackLng: "en-US",
+		fallbackLng: fallbackLanguages,
 		interpolation: {
 			escapeValue: false,
 		},
