@@ -2,10 +2,10 @@ import { History24Regular } from "@fluentui/react-icons";
 import { Box, Card, Flex, Switch, Text } from "@radix-ui/themes";
 import { useAtom } from "jotai";
 import { useTranslation } from "react-i18next";
-import { updatedToastEnabledAtom } from "./states";
+import { showUpdatedToastAtom } from "$/modules/settings/states";
 
 export const UpdatedToastSetting = () => {
-	const [enabled, setEnabled] = useAtom(updatedToastEnabledAtom);
+	const [enabled, setEnabled] = useAtom(showUpdatedToastAtom);
 	const { t } = useTranslation();
 
 	return (

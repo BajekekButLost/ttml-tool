@@ -4,9 +4,9 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { showUpdatedToastAtom } from "$/modules/settings/states";
 import { changelogDialogAtom } from "$/states/dialogs.ts";
 import { decideUpdatedToast, LAST_SEEN_VERSION_KEY } from "./logic";
-import { updatedToastEnabledAtom } from "./states";
 
 const readLastSeen = () => {
 	try {
@@ -27,17 +27,18 @@ const writeLastSeen = (version: string) => {
 
 /** Once per start: if this is a newer version than last run, say so. */
 export const UpdatedToast = () => {
-	const enabled = useAtomValue(updatedToastEnabledAtom);
+	const enabled = useAtomValue(showUpdatedToastAtom);
 	const setChangelogOpen = useSetAtom(changelogDialogAtom);
 	const { t } = useTranslation();
 
 	useEffect(() => {
-		if (!enabled) return;
+		// Record the version even with the notice off, so turning it on
+		// later never shows a notice for an update that already happened.
 		const { show, store } = decideUpdatedToast(APP_VERSION, readLastSeen());
 		if (!store) return;
 		// Without storage we can't remember it was shown, so stay quiet
 		// rather than repeat it on every start.
-		if (!writeLastSeen(store) || !show) return;
+		if (!writeLastSeen(store) || !show || !enabled) return;
 
 		toast.info(
 			({ closeToast }) => (
