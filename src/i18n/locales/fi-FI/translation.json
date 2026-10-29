@@ -1508,6 +1508,23 @@
     "openContributorProfile": "Avaa käyttäjän {name} GitHub-profiili",
     "unknown": "Tuntematon"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Erilliset raidat",
+    "settingDesc": "Näytä taustalaulurivit omalla raidallaan päärivien alla. Raidat ovat vain näyttöä varten: vaihda rivin rooli muokkaustilassa.",
+    "menu": "Raidat",
+    "visibleLanes": "Näytä raidat",
+    "duetLane": "Erillinen duettoraita",
+    "lane": {
+      "main": "Pää",
+      "duet": "Duetto",
+      "bg": "Tausta"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Rivin ja viimeisen sanan loppu. Siirrä vain toista Alt-vedolla.",
+    "wordEndHandle": "Viimeisen sanan loppu",
+    "lineEndHandle": "Rivin loppu"
+  },
   "spectrogram": {
     "invalidEndTime": "Tätä loppuaikaa ei voi valita",
     "noAudioLoaded": "Lataa äänitiedosto näyttääksesi spektrogrammin",
@@ -1523,6 +1540,17 @@
       "4096": "4096 (tarkin)"
     },
     "height": "Näyttökorkeus"
+  },
+  "spectrogramFollow": {
+    "toggle": "Seuraa toistokohtaa",
+    "shortcut": "Spektrogrammi - Toistokohdan seuraaminen päälle/pois",
+    "setting": "Seuraa toistokohtaa",
+    "settingDesc": "Vierittää spektrogrammia niin, että toistokohta pysyy näkyvissä. Vierittäminen tai vetäminen keskeyttää sen, kunnes painat toistoa tai odotat hetken.",
+    "style": "Seuraamistapa",
+    "page": "Sivuittain",
+    "pageDesc": "Hyppää eteenpäin, kun toistokohta poistuu näkymästä.",
+    "continuous": "Jatkuva",
+    "continuousDesc": "Vierittää toistokohdan mukana ja pitää sen keskellä."
   },
   "export": {
     "recoveryUntimed": "Tämä palautusvienti sisältää ajoittamattomia sanoituksia. Tarkista ajoitus ennen lähettämistä.",

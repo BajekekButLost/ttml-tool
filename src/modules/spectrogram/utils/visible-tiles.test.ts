@@ -1,9 +1,11 @@
 // @vitest-environment jsdom
 
 import type { Dispatch, SetStateAction } from "react";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import type { TileComponentProps } from "../components/TileComponent";
 import type { TileEntry } from "../hooks/useSpectrogramWorker";
+import { SpectrogramWorkerClient } from "../hooks/useSpectrogramWorker";
+import type { WorkerRequest, WorkerResponse } from "../workers/types";
 import { LRUCache } from "./lru-cache";
 import { updateVisibleSpectrogramTiles } from "./visible-tiles";
 
@@ -40,6 +42,16 @@ function setup() {
 }
 
 describe("spectrogram tile preparation", () => {
+	it("does not request tiles for a hidden viewport and clears unloaded tiles", () => {
+		const { context, requestTileIfNeeded, getTiles } = setup();
+		updateVisibleSpectrogramTiles({ ...context, containerWidth: 0 });
+		expect(requestTileIfNeeded).not.toHaveBeenCalled();
+		updateVisibleSpectrogramTiles(context);
+		expect(getTiles().length).toBeGreaterThan(0);
+		updateVisibleSpectrogramTiles({ ...context, audioBuffer: null });
+		expect(getTiles()).toEqual([]);
+	});
+
 	it("keeps the same tile list while scrolling within the prefetched range", () => {
 		const { context, getTiles } = setup();
 		updateVisibleSpectrogramTiles(context);
@@ -140,14 +152,86 @@ describe("spectrogram tile preparation", () => {
 			width: 10000,
 		});
 	});
-	it("does nothing when the audio or mounted container is absent", () => {
-		const { context, requestTileIfNeeded, setVisibleTiles } = setup();
+	it("keeps tiles empty when the audio or mounted container is absent", () => {
+		const { context, requestTileIfNeeded, getTiles } = setup();
 		updateVisibleSpectrogramTiles({ ...context, audioBuffer: null });
 		updateVisibleSpectrogramTiles({
 			...context,
 			scrollContainerRef: { current: null },
 		});
 		expect(requestTileIfNeeded).not.toHaveBeenCalled();
-		expect(setVisibleTiles).not.toHaveBeenCalled();
+		expect(getTiles()).toEqual([]);
+	});
+});
+
+describe("spectrogram worker requests", () => {
+	afterEach(() => {
+		vi.unstubAllGlobals();
+		vi.useRealTimers();
+	});
+	function setupClient() {
+		const messages: WorkerRequest[] = [];
+		class FakeWorker {
+			onmessage: ((event: { data: WorkerResponse }) => void) | null = null;
+			onerror: ((event: { message: string }) => void) | null = null;
+			onmessageerror: (() => void) | null = null;
+			postMessage(message: WorkerRequest) {
+				messages.push(message);
+			}
+			terminate = vi.fn();
+		}
+		let worker: FakeWorker;
+		vi.stubGlobal(
+			"Worker",
+			class extends FakeWorker {
+				constructor() {
+					super();
+					worker = this;
+				}
+			},
+		);
+		const client = new SpectrogramWorkerClient(new Float32Array(100), 48000);
+		return {
+			client,
+			messages,
+			getWorker: () => worker,
+			params: {
+				tileIndex: 0,
+				startTime: 0,
+				endTime: 5,
+				gain: 1,
+				height: 256,
+				tileWidthPx: 512,
+				paletteId: "test",
+			},
+		};
+	}
+	it("bounds dispatched jobs and settles every request on termination", async () => {
+		const { client, messages, getWorker, params } = setupClient();
+		const jobs = Array.from({ length: 50 }, (_, tileIndex) =>
+			client.getTile({ ...params, tileIndex }).catch((error: Error) => error),
+		);
+		getWorker().onmessage?.({ data: { type: "INIT_COMPLETE", generation: 0 } });
+		expect(
+			messages.filter((message) => message.type === "GET_TILE"),
+		).toHaveLength(2);
+		client.terminate();
+		expect(
+			(await Promise.all(jobs)).every((result) => result instanceof Error),
+		).toBe(true);
+		expect(getWorker().terminate).toHaveBeenCalledOnce();
+	});
+	it("rejects queued jobs on initialization failure and timeout", async () => {
+		vi.useFakeTimers();
+		const { client, getWorker, params } = setupClient();
+		const failed = client.getTile(params).catch((error: Error) => error);
+		getWorker().onerror?.({ message: "WASM failed" });
+		expect(await failed).toEqual(new Error("WASM failed"));
+		const next = setupClient();
+		const timedOut = next.client.getTile(params).catch((error: Error) => error);
+		vi.advanceTimersByTime(60_000);
+		expect(await timedOut).toEqual(
+			new Error("Spectrogram initialization timed out"),
+		);
 	});
 });

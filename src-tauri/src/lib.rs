@@ -1,5 +1,6 @@
 use std::fs;
-use std::sync::Mutex;
+use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 use discord_rich_presence::{DiscordIpc, DiscordIpcClient, activity};
@@ -39,7 +40,7 @@ impl Default for DiscordConnection {
 }
 
 #[derive(Default)]
-struct DiscordState(Mutex<DiscordConnection>);
+struct DiscordState(Arc<Mutex<DiscordConnection>>, Arc<AtomicU64>);
 
 #[cfg(windows)]
 const LINKABLE_EXTENSIONS: &[&str] = &[
@@ -82,11 +83,30 @@ fn connect_discord() -> Result<DiscordIpcClient, String> {
 }
 
 #[tauri::command]
-fn set_discord_activity(
+async fn set_discord_activity(
     payload: DiscordActivityPayload,
     discord: tauri::State<'_, DiscordState>,
 ) -> Result<(), String> {
-    let mut connection = discord.0.lock().map_err(|e| e.to_string())?;
+    let connection = Arc::clone(&discord.0);
+    let revision = Arc::clone(&discord.1);
+    let generation = revision.fetch_add(1, Ordering::Relaxed) + 1;
+    tauri::async_runtime::spawn_blocking(move || {
+        update_discord_activity(payload, &connection, &revision, generation)
+    })
+    .await
+    .map_err(|error| error.to_string())?
+}
+
+fn update_discord_activity(
+    payload: DiscordActivityPayload,
+    discord: &Mutex<DiscordConnection>,
+    revision: &AtomicU64,
+    generation: u64,
+) -> Result<(), String> {
+    let mut connection = discord.lock().map_err(|e| e.to_string())?;
+    if revision.load(Ordering::Relaxed) != generation {
+        return Ok(());
+    }
     if connection.client.is_none() {
         if connection
             .retry_after
@@ -165,8 +185,26 @@ fn set_discord_activity(
 }
 
 #[tauri::command]
-fn clear_discord_activity(discord: tauri::State<'_, DiscordState>) -> Result<(), String> {
-    let mut connection = discord.0.lock().map_err(|e| e.to_string())?;
+async fn clear_discord_activity(discord: tauri::State<'_, DiscordState>) -> Result<(), String> {
+    let connection = Arc::clone(&discord.0);
+    let revision = Arc::clone(&discord.1);
+    let generation = revision.fetch_add(1, Ordering::Relaxed) + 1;
+    tauri::async_runtime::spawn_blocking(move || {
+        clear_discord_connection(&connection, &revision, generation)
+    })
+    .await
+    .map_err(|error| error.to_string())?
+}
+
+fn clear_discord_connection(
+    discord: &Mutex<DiscordConnection>,
+    revision: &AtomicU64,
+    generation: u64,
+) -> Result<(), String> {
+    let mut connection = discord.lock().map_err(|e| e.to_string())?;
+    if revision.load(Ordering::Relaxed) != generation {
+        return Ok(());
+    }
     if let Some(client) = connection.client.as_mut() {
         let result = client.clear_activity().map_err(|e| e.to_string());
         if result.is_err() {

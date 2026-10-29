@@ -1,6 +1,6 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { cmdCancelTimelineEditing } from "$/modules/keyboard/commands";
 import { useCommand } from "$/modules/keyboard/hooks";
 import {
@@ -15,7 +15,11 @@ import {
 	requestFocusAtom,
 	selectedLinesAtom,
 } from "$/states/main.ts";
-import { idleHoverTimeMsAtom, spectrogramHoverTimeMsAtom } from "../states";
+import {
+	idleHoverTimeMsAtom,
+	pendingTimelineStartTimeAtom,
+	spectrogramHoverTimeMsAtom,
+} from "../states";
 
 export function useTimelineEditing(scrollLeft: number, zoom: number) {
 	const editingTimeField = useAtomValue(editingTimeFieldAtom);
@@ -23,7 +27,9 @@ export function useTimelineEditing(scrollLeft: number, zoom: number) {
 	const selectedLines = useAtomValue(selectedLinesAtom);
 	const rawLyricLines = useAtomValue(lyricLinesAtom);
 	const setRequestFocus = useSetAtom(requestFocusAtom);
-	const [pendingStartTime, setPendingStartTime] = useState<number | null>(null);
+	const [pendingStartTime, setPendingStartTime] = useAtom(
+		pendingTimelineStartTimeAtom,
+	);
 	// Only follow the pointer while picking an end time; otherwise every mouse
 	// move would re-render the whole spectrogram panel.
 	const hoverTimeMs = useAtomValue(
@@ -121,6 +127,7 @@ export function useTimelineEditing(scrollLeft: number, zoom: number) {
 			selectedLines,
 			setRequestFocus,
 			pendingStartTime,
+			setPendingStartTime,
 			referenceStartTime,
 		],
 	);

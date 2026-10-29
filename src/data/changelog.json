@@ -1,5 +1,49 @@
 [
 	{
+		"version": "0.18.0",
+		"summary": "Less lag, smarter spectrogram",
+		"color": "orange",
+		"date": "2026-10-29",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "The spectrogram follows the playhead",
+				"body": "**Page** jumps ahead when the playhead leaves the view, **Continuous** keeps it centered; pick one in **Preferences → Spectrogram**. Scrolling or dragging pauses it until you press play or leave it for a moment. In Continuous, `Ctrl`+wheel zooms around the playhead and keeps following. Turn it on or off from the spectrogram toolbar or with `Shift+P`.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Main and background lines in separate spectrogram lanes",
+				"body": "Turn on **Separate lanes** from the new lanes button next to the spectrogram, or in Preferences › Spectrogram, to draw background lines in their own row under the main lines, with an optional duet lane. The same button hides any lane.",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "One handle at the end of a spectrogram line",
+				"body": "Where a line and its last word end together, the spectrogram shows one handle that moves both. `Alt`-drag right moves only the line end and leaves a gap; `Alt`-drag left shortens the last word. Where they differ, the word end and the line end look different and are easier to grab.",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Fix lag spikes when pressing sync keys in long songs",
+				"body": "Pressing F, G or H no longer stalls in long songs. Line selection, scrolling and undo work as before.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Reduce lag while syncing long songs",
+				"body": "The editor, preview, autosave and Discord status do less work on every edit, so syncing long songs stays responsive.\n\nIn the browser, the spectrogram uses at most two threads instead of every CPU core, which stopped it from slowing down the whole tool. Playback audio is prepared ahead of time instead of on the audio thread, and a closed spectrogram frees its memory.",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Pausing redraws the editor once instead of twice",
+				"body": "Pausing does less work, while seeking and playback animations stay as responsive as before.",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.17.0",
 		"summary": "See what's left to sync",
 		"color": "violet",

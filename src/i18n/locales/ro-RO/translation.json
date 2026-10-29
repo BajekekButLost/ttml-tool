@@ -1508,6 +1508,23 @@
     "openContributorProfile": "Deschide profilul GitHub al lui {name}",
     "unknown": "Necunoscut"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Piste separate",
+    "settingDesc": "Afișează versurile vocilor de fundal pe o pistă proprie, sub versurile principale. Pistele sunt doar pentru afișare: schimbă rolul unui vers în modul editare.",
+    "menu": "Piste",
+    "visibleLanes": "Arată pistele",
+    "duetLane": "Pistă separată pentru duet",
+    "lane": {
+      "main": "Principal",
+      "duet": "Duet",
+      "bg": "Fundal"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Finalul rândului și al ultimului cuvânt. Trage cu Alt ca să muți doar unul.",
+    "wordEndHandle": "Finalul ultimului cuvânt",
+    "lineEndHandle": "Finalul rândului"
+  },
   "spectrogram": {
     "invalidEndTime": "Nu se poate selecta acest timp de sfârșit",
     "noAudioLoaded": "Încarcă un fișier audio pentru a afișa spectrograma",
@@ -1523,6 +1540,17 @@
       "4096": "4096 (cele mai multe detalii)"
     },
     "height": "Înălțimea afișajului"
+  },
+  "spectrogramFollow": {
+    "toggle": "Urmărește cursorul de redare",
+    "shortcut": "Spectrogramă - Activează/dezactivează urmărirea cursorului de redare",
+    "setting": "Urmărește cursorul de redare",
+    "settingDesc": "Derulează spectrograma ca cursorul de redare să rămână vizibil. Derularea sau tragerea o pune pe pauză până apeși redare sau o lași un moment.",
+    "style": "Mod de urmărire",
+    "page": "Pe pagini",
+    "pageDesc": "Sare înainte când cursorul iese din vizualizare.",
+    "continuous": "Continuu",
+    "continuousDesc": "Derulează odată cu cursorul și îl ține în centru."
   },
   "export": {
     "recoveryUntimed": "Acest export de recuperare conține versuri nesincronizate. Verifică sincronizarea înainte de trimitere.",

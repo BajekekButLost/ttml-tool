@@ -1508,6 +1508,23 @@
     "openContributorProfile": "Abrir el perfil de GitHub de {name}",
     "unknown": "Desconocido"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Pistas separadas",
+    "settingDesc": "Muestra las líneas de voces de fondo en su propia pista bajo las líneas principales. Las pistas solo sirven para ver: cambia el rol de una línea en el modo de edición.",
+    "menu": "Pistas",
+    "visibleLanes": "Mostrar pistas",
+    "duetLane": "Pista aparte para el dueto",
+    "lane": {
+      "main": "Principal",
+      "duet": "Dueto",
+      "bg": "Fondo"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fin de la línea y de la última palabra. Arrastra con Alt para mover solo uno.",
+    "wordEndHandle": "Fin de la última palabra",
+    "lineEndHandle": "Fin de la línea"
+  },
   "spectrogram": {
     "invalidEndTime": "No se puede seleccionar este tiempo final",
     "noAudioLoaded": "Carga un archivo de audio para mostrar el espectrograma",
@@ -1523,6 +1540,17 @@
       "4096": "4096 (máximo detalle)"
     },
     "height": "Altura de visualización"
+  },
+  "spectrogramFollow": {
+    "toggle": "Seguir el cabezal",
+    "shortcut": "Espectrograma: activar o desactivar el seguimiento del cabezal",
+    "setting": "Seguir el cabezal de reproducción",
+    "settingDesc": "Desplaza el espectrograma para mantener visible el cabezal. Desplazar o arrastrar lo pausa hasta que pulses reproducir o lo dejes un momento.",
+    "style": "Modo de seguimiento",
+    "page": "Por páginas",
+    "pageDesc": "Salta hacia delante cuando el cabezal sale de la vista.",
+    "continuous": "Continuo",
+    "continuousDesc": "Se desplaza con el cabezal y lo mantiene centrado."
   },
   "export": {
     "recoveryUntimed": "Esta exportación recuperada contiene letras sin sincronizar. Revisa la sincronización antes de enviarla.",

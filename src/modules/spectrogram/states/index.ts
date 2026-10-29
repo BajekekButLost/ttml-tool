@@ -23,6 +23,7 @@ export const spectrogramHeightAtom = atomWithStorage(
 	256,
 );
 export const spectrogramScrollLeftAtom = atom(0);
+export const pendingTimelineStartTimeAtom = atom<number | null>(null);
 export const spectrogramContainerWidthAtom = atom(0);
 export const spectrogramFftSizeAtom = atomWithStorage<number>(
 	"settings_spectrogramFftSize",

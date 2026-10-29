@@ -9,15 +9,22 @@ import {
 	timelineDragAtom,
 } from "$/modules/spectrogram/states/dnd.ts";
 import {
+	getLineEndDividers,
+	type LineEndDividerProps,
+} from "$/modules/spectrogram/utils/line-end-handles.ts";
+import {
 	getDividerEdge,
 	hasOverlappedStart,
 } from "$/modules/spectrogram/utils/timeline-mutations.ts";
 import { editingTimeFieldAtom, selectedLinesAtom } from "$/states/main.ts";
-import { DividerSegment } from "./DividerSegment.tsx";
+import { DividerSegment, type LineEndRole } from "./DividerSegment.tsx";
 import { GapSegment } from "./GapSegment.tsx";
 import styles from "./LyricLineSegment.module.css";
 import { LyricWordSegment } from "./LyricWordSegment.tsx";
 import { SpectrogramContext } from "./SpectrogramContext.ts";
+
+/** Accessible names for the line-end handles, translated once by the overlay. */
+export type LineEndLabels = Readonly<Record<LineEndRole, string>>;
 
 interface LyricLineSegmentProps {
 	line: ProcessedLyricLine;
@@ -25,6 +32,7 @@ interface LyricLineSegmentProps {
 	isTouchingEnd: boolean;
 	isGhost?: boolean;
 	offset?: number;
+	lineEndLabels?: LineEndLabels;
 }
 
 const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
@@ -33,6 +41,7 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 	isTouchingEnd,
 	isGhost = false,
 	offset = 0,
+	lineEndLabels,
 }) => {
 	const previewLine = useAtomValue(previewLineAtom);
 	const setSelectedLines = useSetAtom(selectedLinesAtom);
@@ -124,6 +133,10 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 		cursor: isGhost ? "default" : "auto",
 	};
 
+	const lineEnd = isGhost
+		? null
+		: getLineEndDividers(segments, displayLine.endTime, zoom, isTouchingEnd);
+
 	return (
 		<div
 			className={classNames(
@@ -180,7 +193,7 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 							isGhost={isGhost}
 						/>
 					)}
-					{!isGhost && (
+					{!isGhost && !lineEnd?.hidden.has(index) && (
 						<DividerSegment
 							key={`divider-${segment.id}`}
 							lineId={displayLine.id}
@@ -190,6 +203,7 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 							segmentsLength={segmentsLength}
 							isTouching={index === segmentsLength - 1 ? isTouchingEnd : false}
 							edge={getDividerEdge(segments, index, displayLine.endTime)}
+							{...lineEndProps(lineEnd?.props.get(index), lineEndLabels)}
 						/>
 					)}
 				</React.Fragment>
@@ -197,5 +211,12 @@ const LyricLineSegmentImpl: FC<LyricLineSegmentProps> = ({
 		</div>
 	);
 };
+
+function lineEndProps(
+	props: LineEndDividerProps | undefined,
+	labels: LineEndLabels | undefined,
+) {
+	return props && { ...props, ariaLabel: labels?.[props.lineEndRole] };
+}
 
 export const LyricLineSegment = memo(LyricLineSegmentImpl);
