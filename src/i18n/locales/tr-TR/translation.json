@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Pencereyi simge durumuna küçült",
       "maximize": "Pencereyi büyüt",
+      "restore": "Pencereyi eski boyutuna getir",
       "close": "Pencereyi kapat"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Spicy Lyrics tasarımı açıkken etkisi yoktur.",
         "fontNote": "Geist, Spicy Lyrics tasarımından"
       },
+      "effects": {
+        "title": "Görsel efektler",
+        "description": "Hafif; bulanıklığı, parlamaları, iletişim kutusu animasyonlarını ve önizlemenin hareketli arka planını kapatır, böylece uygulama bunların yavaş çizildiği yerlerde akıcı kalır. Cam bulanıklığını da kapatır.",
+        "auto": "Otomatik",
+        "full": "Tam",
+        "lite": "Hafif",
+        "autoLite": "Hafif kullanılıyor, çünkü Linux bu efektleri yavaş çiziyor.",
+        "autoFull": "Tam kullanılıyor."
+      },
       "presets": {
         "missingBackground": "Bu ön ayarın arka plan resmi bu cihazda kullanılamıyor. Mevcut görüntü korundu.",
         "title": "Görünüm ön ayarları",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Ayarlarda ara",
     "clearSearch": "Aramayı temizle",
-    "noSearchResults": "Eşleşen kategori yok",
+    "matchCount": "Eşleşen ayarlar: {count}",
+    "noResults": "\"{query}\" ile eşleşen ayar yok",
+    "noResultsDesc": "Başka bir kelime deneyin veya aramayı temizleyin.",
     "title": "Tercihler",
     "common": {
       "latencyTest": "Ses/giriş gecikme testi"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Genel",
       "appearance": "Görünüm",
-      "audio": "Ses",
-      "keybindings": "Kısayollar",
-      "spectrogram": "Spektrogram",
+      "editing": "Düzenleme",
+      "syncing": "Senkronizasyon",
+      "preview": "Önizleme",
+      "audioSpectrogram": "Ses ve spektrogram",
+      "importFiles": "İçe aktarma ve dosyalar",
       "backup": "Yedekleme",
-      "editor": "Düzenleyici ve senkronizasyon",
-      "files": "Dosyalar ve depolama",
+      "keybindings": "Kısayollar",
       "changelog": "Değişiklik günlüğü"
-    },
-    "page": {
-      "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
-      "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
-      "filesDesc": "İçe aktarma temizliği, otomatik kayıt geçmişi ve taşınabilir yedekler.",
-      "audioDesc": "Oynatma, ekolayzer ve spektrogram görünümü."
     }
   },
   "autoSegmentApplied": "{engine} ile otomatik bölündü",
@@ -1286,6 +1293,16 @@
     "placeholder": "Yeni kelime",
     "applyToAll": "Tüm aynı kelimeleri değiştir",
     "caseSensitive": "Büyük/küçük harfe duyarlı"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Kelime birleşimini değiştir",
+    "description": "Metnini düzenlemek için bir kelimeye tıklayın. Zamanlamalar aynı kalır.",
+    "word": "Kelime {index}",
+    "reorderWord": "Kelime {index} konumunu değiştir",
+    "reorderHint": "Sıralamak için tutamacı sürükleyin veya kelimeye odaklanıp Alt+Sol/Sağ tuşlarına basın.",
+    "position": "Konum {index}/{count}",
+    "applyToAll": "Eşleşen tüm birleşimleri değiştir",
+    "adjacentOnly": "Bir birleşimi değiştirmek için aynı satırda bitişik kelimeler veya heceler seçin."
   },
   "replaceRomanizationDialog": {
     "title": "Latin harflerine çeviriyi değiştir",

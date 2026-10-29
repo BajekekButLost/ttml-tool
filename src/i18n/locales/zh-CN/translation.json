@@ -29,6 +29,7 @@
     "window": {
       "minimize": "最小化窗口",
       "maximize": "最大化窗口",
+      "restore": "还原窗口",
       "close": "关闭窗口"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "开启 Spicy Lyrics 设计时此项无效。",
         "fontNote": "Geist（来自 Spicy Lyrics 设计）"
       },
+      "effects": {
+        "title": "视觉效果",
+        "description": "“轻量”会关闭模糊、发光、对话框动画和预览的动态背景，让应用在这些效果渲染缓慢时依然流畅。它也会关闭玻璃模糊。",
+        "auto": "自动",
+        "full": "完整",
+        "lite": "轻量",
+        "autoLite": "正在使用“轻量”，因为 Linux 渲染这些效果较慢。",
+        "autoFull": "正在使用“完整”。"
+      },
       "presets": {
         "missingBackground": "此预设的背景图像在此设备上不可用。当前图像被保留。",
         "title": "外观预设",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "搜索设置",
     "clearSearch": "清除搜索",
-    "noSearchResults": "没有匹配的类别",
+    "matchCount": "匹配的设置：{count}",
+    "noResults": "没有与“{query}”匹配的设置",
+    "noResultsDesc": "换个词试试，或清除搜索。",
     "title": "偏好设置",
     "common": {
       "latencyTest": "音频/输入延迟测试"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "通用",
       "appearance": "外观",
-      "audio": "音频",
-      "keybindings": "快捷键",
-      "spectrogram": "频谱图",
+      "editing": "编辑",
+      "syncing": "打轴",
+      "preview": "预览",
+      "audioSpectrogram": "音频与频谱图",
+      "importFiles": "导入与文件",
       "backup": "备份",
-      "editor": "编辑与打轴",
-      "files": "文件与存储",
+      "keybindings": "快捷键",
       "changelog": "更新日志"
-    },
-    "page": {
-      "generalDesc": "语言、隐私及应用全局行为。",
-      "editorDesc": "时间输入、打轴行为与视觉提示。",
-      "filesDesc": "导入清理、自动保存历史与可移植备份。",
-      "audioDesc": "播放、均衡器和频谱图显示。"
     }
   },
   "autoSegmentApplied": "已使用 {engine} 自动分词",
@@ -1286,6 +1293,16 @@
     "placeholder": "新字",
     "applyToAll": "替换所有相同的字",
     "caseSensitive": "区分大小写"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "替换单词组合",
+    "description": "点击单词即可编辑文本，时间保持不变。",
+    "word": "单词 {index}",
+    "reorderWord": "移动单词 {index}",
+    "reorderHint": "拖动手柄以调整顺序，或聚焦单词后按 Alt+左/右方向键。",
+    "position": "第 {index} 个，共 {count} 个",
+    "applyToAll": "替换所有匹配的组合",
+    "adjacentOnly": "请选择同一行内相邻的单词或音节来替换组合。"
   },
   "replaceRomanizationDialog": {
     "title": "替换罗马音",

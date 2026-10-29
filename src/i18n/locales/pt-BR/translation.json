@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimizar janela",
       "maximize": "Maximizar janela",
+      "restore": "Restaurar janela",
       "close": "Fechar janela"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Não tem efeito enquanto o visual do Spicy Lyrics estiver ativado.",
         "fontNote": "Geist, do visual do Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efeitos visuais",
+        "description": "Leve remove desfoque, brilhos, animações das caixas de diálogo e o fundo animado da prévia, para o app continuar fluido onde eles são desenhados devagar. Também desativa o desfoque de vidro.",
+        "auto": "Automático",
+        "full": "Completo",
+        "lite": "Leve",
+        "autoLite": "Usando Leve, porque o Linux desenha esses efeitos devagar.",
+        "autoFull": "Usando Completo."
+      },
       "presets": {
         "missingBackground": "A imagem de fundo desta predefinição não está disponível neste dispositivo. A imagem atual foi mantida.",
         "title": "Predefinições de aparência",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Buscar nas configurações",
     "clearSearch": "Limpar pesquisa",
-    "noSearchResults": "Nenhuma categoria correspondente",
+    "matchCount": "Configurações correspondentes: {count}",
+    "noResults": "Nenhuma configuração corresponde a \"{query}\"",
+    "noResultsDesc": "Tente outra palavra ou limpe a busca.",
     "title": "Preferências",
     "common": {
       "latencyTest": "Teste de latência de áudio/entrada"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Geral",
       "appearance": "Aparência",
-      "audio": "Áudio",
-      "keybindings": "Atalhos",
-      "spectrogram": "Espectrograma",
+      "editing": "Edição",
+      "syncing": "Sincronização",
+      "preview": "Prévia",
+      "audioSpectrogram": "Áudio e espectrograma",
+      "importFiles": "Importação e arquivos",
       "backup": "Cópia de segurança",
-      "editor": "Editor e sincronização",
-      "files": "Arquivos e armazenamento",
+      "keybindings": "Atalhos",
       "changelog": "Novidades"
-    },
-    "page": {
-      "generalDesc": "Idioma, privacidade e comportamento geral do app.",
-      "editorDesc": "Entrada de tempos, comportamento da sincronização e indicações visuais.",
-      "filesDesc": "Limpeza na importação, histórico de salvamento automático e backups portáteis.",
-      "audioDesc": "Reprodução, equalizador e exibição do espectrograma."
     }
   },
   "autoSegmentApplied": "Segmentado automaticamente com {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Nova palavra",
     "applyToAll": "Substituir todas as palavras idênticas",
     "caseSensitive": "Diferenciar maiúsculas e minúsculas"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Substituir combinação de palavras",
+    "description": "Clique em uma palavra para editar o texto. Os tempos permanecem iguais.",
+    "word": "Palavra {index}",
+    "reorderWord": "Mover palavra {index}",
+    "reorderHint": "Arraste uma alça para mudar a ordem ou foque uma palavra e pressione Alt+Esquerda/Direita.",
+    "position": "Posição {index} de {count}",
+    "applyToAll": "Substituir todas as combinações correspondentes",
+    "adjacentOnly": "Selecione palavras ou sílabas adjacentes na mesma linha para substituir uma combinação."
   },
   "replaceRomanizationDialog": {
     "title": "Substituir romanização",

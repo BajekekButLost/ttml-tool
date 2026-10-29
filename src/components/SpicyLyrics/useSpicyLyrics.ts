@@ -13,6 +13,7 @@ import { customBackgroundImageAtom } from "$/modules/settings/modals/customBackg
 import {
 	allowConsecutiveBackgroundLinesAtom,
 	customAccentColorAtom,
+	liteEffectsAtom,
 	useCustomAccentAtom,
 } from "$/modules/settings/states";
 import {
@@ -48,7 +49,13 @@ export function useSpicyLyrics() {
 	const romanized = useAtomValue(showRomanLinesAtom);
 	const showTranslation = useAtomValue(showTranslationLinesAtom);
 	const showFps = useAtomValue(showFpsCounterAtom);
-	const backgroundMode = useAtomValue(spicyBackgroundModeAtom);
+	const chosenBackgroundMode = useAtomValue(spicyBackgroundModeAtom);
+	// The animated background is an 8-pass WebGL blur every frame; lite effects
+	// swap it for the cover's flat colors.
+	const backgroundMode =
+		useAtomValue(liteEffectsAtom) && chosenBackgroundMode === "animated"
+			? "color"
+			: chosenBackgroundMode;
 	const embeddedCoverArt = useAtomValue(audioCoverArtAtom);
 	const customBackgroundImage = useAtomValue(customBackgroundImageAtom);
 	const useAccent = useAtomValue(useCustomAccentAtom);

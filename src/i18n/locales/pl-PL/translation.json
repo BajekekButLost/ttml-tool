@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimalizuj okno",
       "maximize": "Maksymalizuj okno",
+      "restore": "Przywróć okno",
       "close": "Zamknij okno"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Nie działa, gdy wygląd Spicy Lyrics jest włączony.",
         "fontNote": "Geist, z wyglądu Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efekty wizualne",
+        "description": "Lżejsze wyłącza rozmycie, poświaty, animacje okien dialogowych i ruchome tło podglądu, żeby aplikacja działała płynnie tam, gdzie są rysowane wolno. Wyłącza też rozmycie szkła.",
+        "auto": "Automatycznie",
+        "full": "Pełne",
+        "lite": "Lżejsze",
+        "autoLite": "Używane są Lżejsze, bo Linux rysuje te efekty wolno.",
+        "autoFull": "Używane są Pełne."
+      },
       "presets": {
         "missingBackground": "Obraz tła tego zestawu ustawień jest niedostępny na tym urządzeniu. Zachowano bieżący obraz.",
         "title": "Zestawy ustawień wyglądu",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Szukaj w ustawieniach",
     "clearSearch": "Wyczyść wyszukiwanie",
-    "noSearchResults": "Brak pasujących kategorii",
+    "matchCount": "Pasujące ustawienia: {count}",
+    "noResults": "Żadne ustawienie nie pasuje do „{query}”",
+    "noResultsDesc": "Spróbuj innego słowa lub wyczyść wyszukiwanie.",
     "title": "Preferencje",
     "common": {
       "latencyTest": "Test opóźnienia audio/wejścia"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Ogólne",
       "appearance": "Wygląd",
-      "audio": "Dźwięk",
-      "keybindings": "Skróty klawiszowe",
-      "spectrogram": "Spektrogram",
+      "editing": "Edycja",
+      "syncing": "Synchronizacja",
+      "preview": "Podgląd",
+      "audioSpectrogram": "Dźwięk i spektrogram",
+      "importFiles": "Import i pliki",
       "backup": "Kopia zapasowa",
-      "editor": "Edytor i synchronizacja",
-      "files": "Pliki i przechowywanie",
+      "keybindings": "Skróty klawiszowe",
       "changelog": "Lista zmian"
-    },
-    "page": {
-      "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
-      "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
-      "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
-      "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automatycznie podzielono za pomocą {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Nowe słowo",
     "applyToAll": "Zamień wszystkie identyczne słowa",
     "caseSensitive": "Uwzględniaj wielkość liter"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Zastąp kombinację słów",
+    "description": "Kliknij słowo, aby edytować jego tekst. Czasy pozostają bez zmian.",
+    "word": "Słowo {index}",
+    "reorderWord": "Przenieś słowo {index}",
+    "reorderHint": "Przeciągnij uchwyt, aby zmienić kolejność, lub ustaw fokus na słowie i naciśnij Alt+strzałka w lewo/prawo.",
+    "position": "Pozycja {index} z {count}",
+    "applyToAll": "Zastąp wszystkie pasujące kombinacje",
+    "adjacentOnly": "Zaznacz sąsiadujące słowa lub sylaby w jednym wierszu, aby zastąpić kombinację."
   },
   "replaceRomanizationDialog": {
     "title": "Zamień transkrypcję łacińską",

@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Réduire la fenêtre",
       "maximize": "Agrandir la fenêtre",
+      "restore": "Restaurer la fenêtre",
       "close": "Fermer la fenêtre"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Sans effet tant que le design Spicy Lyrics est activé.",
         "fontNote": "Geist, du design Spicy Lyrics"
       },
+      "effects": {
+        "title": "Effets visuels",
+        "description": "Allégé retire le flou, les halos, les animations des boîtes de dialogue et le fond animé de l'aperçu, pour que l'app reste fluide là où ils s'affichent lentement. Il désactive aussi le flou du verre.",
+        "auto": "Automatique",
+        "full": "Complet",
+        "lite": "Allégé",
+        "autoLite": "Allégé est utilisé, car Linux affiche ces effets lentement.",
+        "autoFull": "Complet est utilisé."
+      },
       "presets": {
         "missingBackground": "L'image d'arrière-plan de ce préréglage n'est pas disponible sur cet appareil. L'image actuelle a été conservée.",
         "title": "Préréglages d'apparence",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Rechercher dans les paramètres",
     "clearSearch": "Effacer la recherche",
-    "noSearchResults": "Aucune catégorie correspondante",
+    "matchCount": "Réglages correspondants : {count}",
+    "noResults": "Aucun réglage ne correspond à « {query} »",
+    "noResultsDesc": "Essayez un autre mot ou effacez la recherche.",
     "title": "Préférences",
     "common": {
       "latencyTest": "Test de latence audio/entrée"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Général",
       "appearance": "Apparence",
-      "audio": "Audio",
-      "keybindings": "Raccourcis",
-      "spectrogram": "Spectrogramme",
+      "editing": "Édition",
+      "syncing": "Synchronisation",
+      "preview": "Aperçu",
+      "audioSpectrogram": "Audio et spectrogramme",
+      "importFiles": "Importation et fichiers",
       "backup": "Sauvegarde",
-      "editor": "Éditeur et synchronisation",
-      "files": "Fichiers et stockage",
+      "keybindings": "Raccourcis",
       "changelog": "Nouveautés"
-    },
-    "page": {
-      "generalDesc": "Langue, confidentialité et comportement général de l'application.",
-      "editorDesc": "Saisie des temps, comportement de la synchronisation et repères visuels.",
-      "filesDesc": "Nettoyage à l'import, historique d'enregistrement automatique et sauvegardes portables.",
-      "audioDesc": "Lecture, égaliseur et affichage du spectrogramme."
     }
   },
   "autoSegmentApplied": "Segmentation automatique avec {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Nouveau mot",
     "applyToAll": "Remplacer tous les mots identiques",
     "caseSensitive": "Respecter la casse"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Remplacer une combinaison de mots",
+    "description": "Cliquez sur un mot pour modifier son texte. Les temps restent inchangés.",
+    "word": "Mot {index}",
+    "reorderWord": "Déplacer le mot {index}",
+    "reorderHint": "Faites glisser une poignée pour changer l'ordre, ou sélectionnez un mot et appuyez sur Alt+Gauche/Droite.",
+    "position": "Position {index} sur {count}",
+    "applyToAll": "Remplacer toutes les combinaisons correspondantes",
+    "adjacentOnly": "Sélectionnez des mots ou syllabes adjacents sur une même ligne pour remplacer une combinaison."
   },
   "replaceRomanizationDialog": {
     "title": "Remplacer la romanisation",

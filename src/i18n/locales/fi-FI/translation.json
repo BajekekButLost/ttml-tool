@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Pienennä ikkuna",
       "maximize": "Suurenna ikkuna",
+      "restore": "Palauta ikkuna",
       "close": "Sulje ikkuna"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Ei vaikuta, kun Spicy Lyrics -ulkoasu on käytössä.",
         "fontNote": "Geist, Spicy Lyrics -ulkoasusta"
       },
+      "effects": {
+        "title": "Visuaaliset tehosteet",
+        "description": "Kevyempi poistaa sumennuksen, hehkut, valintaikkunoiden animaatiot ja esikatselun liikkuvan taustan, jotta sovellus pysyy sulavana, kun niiden piirto on hidasta. Se poistaa myös lasisumennuksen.",
+        "auto": "Automaattinen",
+        "full": "Täysi",
+        "lite": "Kevyempi",
+        "autoLite": "Käytössä Kevyempi, koska Linux piirtää nämä tehosteet hitaasti.",
+        "autoFull": "Käytössä Täysi."
+      },
       "presets": {
         "missingBackground": "Tämän esiasetuksen taustakuva ei ole käytettävissä tällä laitteella. Nykyinen kuva säilytettiin.",
         "title": "Ulkoasun esiasetukset",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Etsi asetuksia",
     "clearSearch": "Tyhjennä haku",
-    "noSearchResults": "Ei vastaavia luokkia",
+    "matchCount": "Vastaavat asetukset: {count}",
+    "noResults": "Mikään asetus ei vastaa hakua \"{query}\"",
+    "noResultsDesc": "Kokeile toista sanaa tai tyhjennä haku.",
     "title": "Asetukset",
     "common": {
       "latencyTest": "Äänen ja syötteen viivetesti"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Yleiset",
       "appearance": "Ulkonäkö",
-      "audio": "Ääni",
-      "keybindings": "Pikanäppäimet",
-      "spectrogram": "Spektrogrammi",
+      "editing": "Muokkaus",
+      "syncing": "Ajoitus",
+      "preview": "Esikatselu",
+      "audioSpectrogram": "Ääni ja spektrogrammi",
+      "importFiles": "Tuonti ja tiedostot",
       "backup": "Varmuuskopio",
-      "editor": "Editori ja ajoitus",
-      "files": "Tiedostot ja tallennus",
+      "keybindings": "Pikanäppäimet",
       "changelog": "Muutosloki"
-    },
-    "page": {
-      "generalDesc": "Kieli, yksityisyys ja koko sovelluksen toiminta.",
-      "editorDesc": "Ajoitussyöte, synkronoinnin toiminta ja visuaaliset vihjeet.",
-      "filesDesc": "Tuonnin siivous, automaattitallennuksen historia ja siirrettävät varmuuskopiot.",
-      "audioDesc": "Toisto, taajuuskorjain ja spektrogrammin näyttö."
     }
   },
   "autoSegmentApplied": "Automaattinen jako tehty moottorilla {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Uusi sana",
     "applyToAll": "Korvaa kaikki samanlaiset sanat",
     "caseSensitive": "Erota kirjainkoko"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Korvaa sanayhdistelmä",
+    "description": "Muokkaa tekstiä napsauttamalla sanaa. Ajoitukset pysyvät samoina.",
+    "word": "Sana {index}",
+    "reorderWord": "Siirrä sanaa {index}",
+    "reorderHint": "Muuta järjestystä vetämällä kahvasta tai kohdista sanaan ja paina Alt+vasen/oikea.",
+    "position": "Paikka {index}/{count}",
+    "applyToAll": "Korvaa kaikki vastaavat yhdistelmät",
+    "adjacentOnly": "Valitse vierekkäisiä sanoja tai tavuja samalta riviltä korvataksesi yhdistelmän."
   },
   "replaceRomanizationDialog": {
     "title": "Korvaa latinalaistus",

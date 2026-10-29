@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Perkecil jendela",
       "maximize": "Perbesar jendela",
+      "restore": "Pulihkan jendela",
       "close": "Tutup jendela"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Tidak berpengaruh selama desain Spicy Lyrics aktif.",
         "fontNote": "Geist, dari desain Spicy Lyrics"
       },
+      "effects": {
+        "title": "Efek visual",
+        "description": "Ringan menghapus blur, cahaya, animasi dialog, dan latar pratinjau yang bergerak, agar aplikasi tetap mulus di tempat efek tersebut lambat digambar. Ini juga mematikan blur kaca.",
+        "auto": "Otomatis",
+        "full": "Penuh",
+        "lite": "Ringan",
+        "autoLite": "Memakai Ringan, karena Linux menggambar efek ini dengan lambat.",
+        "autoFull": "Memakai Penuh."
+      },
       "presets": {
         "missingBackground": "Gambar latar preset ini tidak tersedia di perangkat ini. Gambar saat ini dipertahankan.",
         "title": "Preset tampilan",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Cari pengaturan",
     "clearSearch": "Hapus pencarian",
-    "noSearchResults": "Tidak ada kategori yang cocok",
+    "matchCount": "Pengaturan yang cocok: {count}",
+    "noResults": "Tidak ada pengaturan yang cocok dengan \"{query}\"",
+    "noResultsDesc": "Coba kata lain, atau hapus pencarian.",
     "title": "Preferensi",
     "common": {
       "latencyTest": "Tes latensi audio/input"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Umum",
       "appearance": "Penampilan",
-      "audio": "Audio",
-      "keybindings": "Pintasan",
-      "spectrogram": "Spektrogram",
+      "editing": "Pengeditan",
+      "syncing": "Sinkronisasi",
+      "preview": "Pratinjau",
+      "audioSpectrogram": "Audio & spektrogram",
+      "importFiles": "Impor & file",
       "backup": "Cadangan",
-      "editor": "Editor & sinkronisasi",
-      "files": "File & penyimpanan",
+      "keybindings": "Pintasan",
       "changelog": "Log perubahan"
-    },
-    "page": {
-      "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
-      "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
-      "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
-      "audioDesc": "Pemutaran, ekualiser, dan tampilan spektrogram."
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Kata baru",
     "applyToAll": "Ganti semua kata yang sama",
     "caseSensitive": "Cocokkan huruf besar/kecil"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Ganti kombinasi kata",
+    "description": "Klik kata untuk mengedit teksnya. Waktu tetap sama.",
+    "word": "Kata {index}",
+    "reorderWord": "Pindahkan kata {index}",
+    "reorderHint": "Seret pegangan untuk mengubah urutan, atau fokuskan kata dan tekan Alt+Kiri/Kanan.",
+    "position": "Posisi {index} dari {count}",
+    "applyToAll": "Ganti semua kombinasi yang cocok",
+    "adjacentOnly": "Pilih kata atau suku kata yang bersebelahan dalam satu baris untuk mengganti kombinasi."
   },
   "replaceRomanizationDialog": {
     "title": "Ganti romanisasi",

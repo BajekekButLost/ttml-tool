@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimize window",
       "maximize": "Maximize window",
+      "restore": "Restore window",
       "close": "Close window"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Has no effect while the Spicy Lyrics design is on.",
         "fontNote": "Geist, from the Spicy Lyrics design"
       },
+      "effects": {
+        "title": "Visual effects",
+        "description": "Lighter drops blur, glows, dialog animations and the moving preview background, so the app stays smooth where they render slowly. It also turns off glass blur.",
+        "auto": "Automatic",
+        "full": "Full",
+        "lite": "Lighter",
+        "autoLite": "Using Lighter, because Linux renders these effects slowly.",
+        "autoFull": "Using Full."
+      },
       "presets": {
         "missingBackground": "This preset's background image is unavailable on this device. The current image was kept.",
         "title": "Appearance presets",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Search settings",
     "clearSearch": "Clear search",
-    "noSearchResults": "No matching categories",
+    "matchCount": "Matching settings: {count}",
+    "noResults": "No settings match \"{query}\"",
+    "noResultsDesc": "Try another word, or clear the search.",
     "title": "Preferences",
     "common": {
       "latencyTest": "Audio/input latency test"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "General",
       "appearance": "Appearance",
-      "audio": "Audio",
-      "keybindings": "Shortcuts",
-      "spectrogram": "Spectrogram",
+      "editing": "Editing",
+      "syncing": "Syncing",
+      "preview": "Preview",
+      "audioSpectrogram": "Audio & spectrogram",
+      "importFiles": "Import & files",
       "backup": "Backup",
-      "editor": "Editor & sync",
-      "files": "Files & storage",
+      "keybindings": "Shortcuts",
       "changelog": "Changelog"
-    },
-    "page": {
-      "generalDesc": "Language, privacy, and app-wide behavior.",
-      "editorDesc": "Timing input, synchronization behavior, and visual cues.",
-      "filesDesc": "Import cleanup, autosave history, and portable backups.",
-      "audioDesc": "Playback, equalizer, and spectrogram display."
     }
   },
   "autoSegmentApplied": "Auto-segmented with {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "New word",
     "applyToAll": "Replace all identical words",
     "caseSensitive": "Match case"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Replace word combination",
+    "description": "Click a token to edit its text. Timing stays the same.",
+    "word": "Word {index}",
+    "reorderWord": "Reorder word {index}",
+    "reorderHint": "Drag a handle to reorder, or focus a token and press Alt+Left/Right.",
+    "position": "Position {index} of {count}",
+    "applyToAll": "Replace all matching combinations",
+    "adjacentOnly": "Select adjacent words or syllables in one line to replace a combination."
   },
   "replaceRomanizationDialog": {
     "title": "Replace romanization",

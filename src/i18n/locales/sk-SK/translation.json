@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimalizovať okno",
       "maximize": "Maximalizovať okno",
+      "restore": "Obnoviť okno",
       "close": "Zavrieť okno"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Nemá vplyv, kým je zapnutý dizajn Spicy Lyrics.",
         "fontNote": "Geist, z dizajnu Spicy Lyrics"
       },
+      "effects": {
+        "title": "Vizuálne efekty",
+        "description": "Ľahšie vypne rozmazanie, žiaru, animácie dialógov a pohyblivé pozadie náhľadu, aby aplikácia zostala plynulá tam, kde sa vykresľujú pomaly. Vypne aj rozmazanie skla.",
+        "auto": "Automaticky",
+        "full": "Plné",
+        "lite": "Ľahšie",
+        "autoLite": "Používa sa Ľahšie, pretože Linux tieto efekty vykresľuje pomaly.",
+        "autoFull": "Používa sa Plné."
+      },
       "presets": {
         "missingBackground": "Obrázok na pozadí tejto predvoľby nie je v tomto zariadení k dispozícii. Aktuálny obrázok bol zachovaný.",
         "title": "Predvoľby vzhľadu",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Hľadať v nastaveniach",
     "clearSearch": "Vymazať vyhľadávanie",
-    "noSearchResults": "Žiadne zodpovedajúce kategórie",
+    "matchCount": "Zodpovedajúce nastavenia: {count}",
+    "noResults": "Žiadne nastavenie nezodpovedá „{query}“",
+    "noResultsDesc": "Skúste iné slovo alebo vymažte vyhľadávanie.",
     "title": "Predvoľby",
     "common": {
       "latencyTest": "Test latencie zvuku/vstupu"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Všeobecné",
       "appearance": "Vzhľad",
-      "audio": "Zvuk",
-      "keybindings": "Klávesové skratky",
-      "spectrogram": "Spektrogram",
+      "editing": "Úpravy",
+      "syncing": "Synchronizácia",
+      "preview": "Náhľad",
+      "audioSpectrogram": "Zvuk a spektrogram",
+      "importFiles": "Import a súbory",
       "backup": "Zálohovanie",
-      "editor": "Editor a synchronizácia",
-      "files": "Súbory a úložisko",
+      "keybindings": "Klávesové skratky",
       "changelog": "Zoznam zmien"
-    },
-    "page": {
-      "generalDesc": "Jazyk, súkromie a správanie celej aplikácie.",
-      "editorDesc": "Zadávanie časov, správanie synchronizácie a vizuálne podnety.",
-      "filesDesc": "Čistenie pri importe, história automatického ukladania a prenosné zálohy.",
-      "audioDesc": "Prehrávanie, ekvalizér a zobrazenie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automaticky rozdelené pomocou {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Nové slovo",
     "applyToAll": "Nahradiť všetky rovnaké slová",
     "caseSensitive": "Rozlišovať veľké a malé písmená"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Nahradiť kombináciu slov",
+    "description": "Kliknutím na slovo upravíte jeho text. Časovanie zostane rovnaké.",
+    "word": "Slovo {index}",
+    "reorderWord": "Presunúť slovo {index}",
+    "reorderHint": "Poradie zmeníte potiahnutím úchytu alebo zameraním slova a stlačením Alt+šípka vľavo/vpravo.",
+    "position": "Pozícia {index} z {count}",
+    "applyToAll": "Nahradiť všetky zodpovedajúce kombinácie",
+    "adjacentOnly": "Ak chcete nahradiť kombináciu, vyberte susediace slová alebo slabiky v jednom riadku."
   },
   "replaceRomanizationDialog": {
     "title": "Nahradiť prepis do latinky",

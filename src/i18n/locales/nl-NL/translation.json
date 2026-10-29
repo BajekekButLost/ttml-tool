@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Venster minimaliseren",
       "maximize": "Venster maximaliseren",
+      "restore": "Venster herstellen",
       "close": "Venster sluiten"
     }
   },
@@ -645,6 +646,15 @@
         "legacyDarkThemeNote": "Heeft geen effect zolang het Spicy Lyrics-ontwerp aan staat.",
         "fontNote": "Geist, uit het Spicy Lyrics-ontwerp"
       },
+      "effects": {
+        "title": "Visuele effecten",
+        "description": "Lichter schakelt vervaging, gloed, dialooganimaties en de bewegende achtergrond van het voorbeeld uit, zodat de app soepel blijft waar die traag worden getekend. Het zet ook de glasvervaging uit.",
+        "auto": "Automatisch",
+        "full": "Volledig",
+        "lite": "Lichter",
+        "autoLite": "Lichter wordt gebruikt, omdat Linux deze effecten traag tekent.",
+        "autoFull": "Volledig wordt gebruikt."
+      },
       "presets": {
         "missingBackground": "De achtergrondafbeelding van deze voorinstelling is niet beschikbaar op dit apparaat. Het huidige beeld werd behouden.",
         "title": "Voorinstellingen voor uiterlijk",
@@ -1001,7 +1011,9 @@
   "settingsDialog": {
     "search": "Instellingen zoeken",
     "clearSearch": "Zoekopdracht wissen",
-    "noSearchResults": "Geen overeenkomende categorieën",
+    "matchCount": "Overeenkomende instellingen: {count}",
+    "noResults": "Geen instellingen gevonden voor \"{query}\"",
+    "noResultsDesc": "Probeer een ander woord of wis de zoekopdracht.",
     "title": "Voorkeuren",
     "common": {
       "latencyTest": "Audio-/invoerlatentietest"
@@ -1073,19 +1085,14 @@
     "tab": {
       "common": "Algemeen",
       "appearance": "Uiterlijk",
-      "audio": "Geluid",
-      "keybindings": "Sneltoetsen",
-      "spectrogram": "Spectrogram",
+      "editing": "Bewerken",
+      "syncing": "Synchroniseren",
+      "preview": "Voorbeeld",
+      "audioSpectrogram": "Audio en spectrogram",
+      "importFiles": "Importeren en bestanden",
       "backup": "Back-up",
-      "editor": "Editor en synchronisatie",
-      "files": "Bestanden en opslag",
+      "keybindings": "Sneltoetsen",
       "changelog": "Wijzigingen"
-    },
-    "page": {
-      "generalDesc": "Taal, privacy en algemeen gedrag van de app.",
-      "editorDesc": "Tijdinvoer, synchronisatiegedrag en visuele hints.",
-      "filesDesc": "Opschonen bij importeren, geschiedenis van automatisch opslaan en draagbare back-ups.",
-      "audioDesc": "Afspelen, equalizer en spectrogramweergave."
     }
   },
   "autoSegmentApplied": "Automatisch gesegmenteerd met {engine}",
@@ -1286,6 +1293,16 @@
     "placeholder": "Nieuw woord",
     "applyToAll": "Alle identieke woorden vervangen",
     "caseSensitive": "Hoofdlettergevoelig"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Woordcombinatie vervangen",
+    "description": "Klik op een woord om de tekst te bewerken. De timing blijft hetzelfde.",
+    "word": "Woord {index}",
+    "reorderWord": "Woord {index} verplaatsen",
+    "reorderHint": "Sleep een handgreep om de volgorde te wijzigen, of focus een woord en druk op Alt+Links/Rechts.",
+    "position": "Positie {index} van {count}",
+    "applyToAll": "Alle overeenkomende combinaties vervangen",
+    "adjacentOnly": "Selecteer aangrenzende woorden of lettergrepen op één regel om een combinatie te vervangen."
   },
   "replaceRomanizationDialog": {
     "title": "Romanisatie vervangen",
