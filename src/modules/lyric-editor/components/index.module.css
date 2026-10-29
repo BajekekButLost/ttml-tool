@@ -786,6 +786,17 @@
 	}
 }
 
+/* Lite effects: keep the fills, drop the glows and the burst while syncing. */
+:global(:root[data-effects="lite"])
+	.lyricWord.sync.active:is(.animated, .selected) {
+	animation: none;
+	box-shadow: none;
+
+	.displayWord {
+		text-shadow: none;
+	}
+}
+
 .lineNumber {
 	min-width: 2em;
 	position: relative;

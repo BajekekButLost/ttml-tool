@@ -5,4 +5,4 @@ highlight: false
 ---
 Command palette (experimental)
 
-Press **Ctrl+K** or **Ctrl+Shift+P** to find any command or Preferences page by name and run it. Off by default: turn it on in **Preferences → General**.
+Turn it on in **Preferences › General**, then press **Ctrl+K** to find any command or Preferences page and run it

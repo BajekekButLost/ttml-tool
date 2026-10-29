@@ -23,6 +23,7 @@ import { useCommand } from "$/modules/keyboard/hooks";
 import { getAllCommands } from "$/modules/keyboard/registry";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
 import { settingsSearchKeywords } from "$/modules/settings/logic/settings-search";
+import { getSettingsPages } from "$/modules/settings/modals/pages";
 import { settingsDialogAtom, settingsTabAtom } from "$/states/dialogs.ts";
 import { toolModeAtom } from "$/states/main.ts";
 import {
@@ -129,45 +130,12 @@ const CommandPaletteDialog = () => {
 					run: runCommand(command),
 				}),
 			);
-		const settingsPages = [
-			{
-				value: "common",
-				label: t("settingsDialog.tab.common", "General"),
-				description: t("settingsDialog.page.generalDesc"),
-			},
-			{
-				value: "editor",
-				label: t("settingsDialog.tab.editor", "Editor & sync"),
-				description: t("settingsDialog.page.editorDesc"),
-			},
-			{
-				value: "files",
-				label: t("settingsDialog.tab.files", "Files & storage"),
-				description: t("settingsDialog.page.filesDesc"),
-			},
-			{
-				value: "audio",
-				label: t("settingsDialog.tab.audio", "Audio"),
-				description: t("settingsDialog.page.audioDesc"),
-			},
-			{
-				value: "keybinding",
-				label: t("settingsDialog.tab.keybindings", "Shortcuts"),
-				description: "",
-			},
-			{
-				value: "appearance",
-				label: t("settingsDialog.tab.appearance", "Appearance"),
-				description: "",
-			},
-			{ value: "about", label: t("common.about", "About"), description: "" },
-		];
-		const settingItems = settingsPages.map(
+		const settingItems = getSettingsPages(t).map(
 			(page): PaletteItem => ({
 				id: `setting:${page.value}`,
 				kind: "setting",
 				label: page.label,
-				keywords: `${page.description} ${settingsSearchKeywords[page.value] ?? ""}`,
+				keywords: settingsSearchKeywords[page.value] ?? "",
 				run: () => {
 					setSettingsTab(page.value);
 					setSettingsOpen(true);

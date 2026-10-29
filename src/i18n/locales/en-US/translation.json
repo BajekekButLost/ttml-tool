@@ -3,6 +3,12 @@
     "changelogTitle": "Changelog & updates",
     "viewCommits": "View Commits on GitHub"
   },
+  "updatedToast": {
+    "message": "Updated to v{version}",
+    "seeChanges": "See what changed",
+    "setting": "Show what changed after an update",
+    "settingDesc": "The first time the app starts on a new version, show a short notice with a link to the changelog."
+  },
   "app": {
     "error": {
       "title": "Something went wrong",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Minimize window",
       "maximize": "Maximize window",
+      "restore": "Restore window",
       "close": "Close window"
     }
   },
@@ -32,6 +39,15 @@
   "preview": {
     "untimedLines": "{count, plural, one {# line has no timing yet} other {# lines have no timing yet}}",
     "jumpToUntimed": "Time the first untimed line"
+  },
+  "previewProblems": {
+    "count": "{count, plural, one {# word has a timing problem} other {# words have timing problems}}",
+    "jump": "Select the first one",
+    "untimed": "No timing in a timed line",
+    "untimedLine": "Not synced yet",
+    "endsBeforeStart": "Ends before it starts",
+    "startsBeforeLine": "Starts before its line",
+    "endsAfterLine": "Ends after its line"
   },
   "beginnerGuide": {
     "empty": {
@@ -279,6 +295,30 @@
       "copyPrevious": "Copy previous timing"
     }
   },
+  "logoColor": {
+    "title": "Logo color",
+    "description": "Pick a color for the logo in the title bar and on the guide's welcome screen.",
+    "descriptionDesktop": "Pick a color for the app's window and taskbar icon, and on Windows its desktop and Start menu shortcuts.",
+    "colorLabel": "Color",
+    "customLabel": "Custom logo color",
+    "designNote": "The logo only shows with the Spicy Lyrics design on.",
+    "presets": {
+      "default": "Default",
+      "defaultDesc": "The design's own color",
+      "lilac": "Lilac",
+      "lilacDesc": "From the v3 logo",
+      "purple": "Purple",
+      "purpleDesc": "From the multicolor logo",
+      "red": "Red",
+      "redDesc": "From the v0.9 logo",
+      "gold": "Gold",
+      "green": "Green",
+      "blue": "Blue",
+      "white": "White",
+      "custom": "Custom",
+      "customDesc": "Pick any color"
+    }
+  },
   "common": {
     "close": "Close",
     "autoDetect": "Auto-detect",
@@ -447,7 +487,7 @@
       "mode": "Mode",
       "standard": "Standard",
       "timing": "Timing",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Simple Lyrics mode",
       "forceLineRendering": "Show as line-synced",
       "background": "Background",
@@ -619,6 +659,15 @@
         "accentNote": "The Spicy Lyrics design brings its own lavender accent. Turn on a custom accent color to use a different one.",
         "legacyDarkThemeNote": "Has no effect while the Spicy Lyrics design is on.",
         "fontNote": "Geist, from the Spicy Lyrics design"
+      },
+      "effects": {
+        "title": "Visual effects",
+        "description": "Lighter drops blur, glows, dialog animations and the moving preview background, so the app stays smooth where they render slowly. It also turns off glass blur.",
+        "auto": "Automatic",
+        "full": "Full",
+        "lite": "Lighter",
+        "autoLite": "Using Lighter, because Linux renders these effects slowly.",
+        "autoFull": "Using Full."
       },
       "presets": {
         "missingBackground": "This preset's background image is unavailable on this device. The current image was kept.",
@@ -852,7 +901,7 @@
       "timingOverviewAutoScrollDesc": "Keep the timing overview scrolled to the playhead.",
       "vsyncDesc": "Update the Standard and Toxi previews every frame instead of about 30 times per second. Smoother, but uses more CPU.",
       "showFpsDesc": "Show a frame rate counter on the preview.",
-      "syncLevelDesc": "Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
+      "syncLevelDesc": "Word: time each word as you go. Line: time whole lines and spread their words out evenly. Line still saves word timings, not line-synced lyrics, so fine-tune the words in the spectrogram.",
       "previewModeDesc": "Choose which preview the Preview tab shows.",
       "spicyBackgroundDesc": "What shows behind the Spicy preview.",
       "fadeWidthDesc": "How soft the edge of the highlight is as a word fills in the Standard and Toxi previews."
@@ -872,6 +921,10 @@
     "order": "Order",
     "orderChronological": "Chronological",
     "orderTextual": "Textual"
+  },
+  "joinSplitWords": {
+    "label": "Join split words",
+    "description": "Show a word sung in parts as one word when the parts line up evenly, like Spicy Lyrics' Join Split Words setting."
   },
   "topBar": {
     "modeBtns": {
@@ -972,7 +1025,9 @@
   "settingsDialog": {
     "search": "Search settings",
     "clearSearch": "Clear search",
-    "noSearchResults": "No matching categories",
+    "matchCount": "Matching settings: {count}",
+    "noResults": "No settings match \"{query}\"",
+    "noResultsDesc": "Try another word, or clear the search.",
     "title": "Preferences",
     "common": {
       "latencyTest": "Audio/input latency test"
@@ -1044,18 +1099,14 @@
     "tab": {
       "common": "General",
       "appearance": "Appearance",
-      "audio": "Audio",
-      "keybindings": "Shortcuts",
-      "spectrogram": "Spectrogram",
+      "editing": "Editing",
+      "syncing": "Syncing",
+      "preview": "Preview",
+      "audioSpectrogram": "Audio & spectrogram",
+      "importFiles": "Import & files",
       "backup": "Backup",
-      "editor": "Editor & sync",
-      "files": "Files & storage"
-    },
-    "page": {
-      "generalDesc": "Language, privacy, and app-wide behavior.",
-      "editorDesc": "Timing input, synchronization behavior, and visual cues.",
-      "filesDesc": "Import cleanup, autosave history, and portable backups.",
-      "audioDesc": "Playback, equalizer, and spectrogram display."
+      "keybindings": "Shortcuts",
+      "changelog": "Changelog"
     }
   },
   "autoSegmentApplied": "Auto-segmented with {engine}",
@@ -1114,7 +1165,10 @@
     "volume": "Volume",
     "playbackRate": "Playback speed",
     "preservesPitch": "Preserve pitch",
-    "clickToLoadMusic": "Click the music icon to load audio",
+    "audioMenu": "Audio and playback",
+    "loadedAudio": "Loaded audio",
+    "replaceAudio": "Replace",
+    "resetSpeed": "Reset to 1×",
     "playPause": "Play / pause music",
     "expandSpectrogram": "Expand / collapse spectrogram"
   },
@@ -1174,6 +1228,11 @@
     "customKey": "Custom field",
     "addPresets": "Add all standard fields",
     "clear": "Clear"
+  },
+  "helpText": {
+    "metadataArtists": "Who performs the song, as the track is credited on streaming services. Example: \"Shake It Off\" is by Taylor Swift.",
+    "metadataSongwriter": "Who wrote the music and lyrics, from the writing credits. Often different from the artists. Example: \"Shake It Off\" was written by Taylor Swift, Max Martin and Shellback.",
+    "openSongwritersGuide": "Open the songwriters guide"
   },
   "lrclib": {
     "placeholder": "Song title and artist…",
@@ -1248,6 +1307,16 @@
     "placeholder": "New word",
     "applyToAll": "Replace all identical words",
     "caseSensitive": "Match case"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Replace word combination",
+    "description": "Click a token to edit its text. Timing stays the same.",
+    "word": "Word {index}",
+    "reorderWord": "Reorder word {index}",
+    "reorderHint": "Drag a handle to reorder, or focus a token and press Alt+Left/Right.",
+    "position": "Position {index} of {count}",
+    "applyToAll": "Replace all matching combinations",
+    "adjacentOnly": "Select adjacent words or syllables in one line to replace a combination."
   },
   "replaceRomanizationDialog": {
     "title": "Replace romanization",
@@ -1360,6 +1429,14 @@
   "autosave": {
     "legacyProjectName": "Legacy snapshots",
     "untitledProjectName": "Untitled project"
+  },
+  "didYouKnow": {
+    "title": "Did you know?",
+    "repeatedSection": "Repeated lines can reuse earlier timing. Select the earlier lines, put the playhead where the repeat starts, and use Duplicate at playhead.",
+    "splitInTimeMode": "You can split a word without leaving Time mode: hold {modifier} and double-click it.",
+    "turnOff": "Don't show tips",
+    "setting": "Show tips",
+    "settingDesc": "After you do something by hand that has a faster way, show a short tip about it. Each tip shows once."
   },
   "time": {
     "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
@@ -1479,6 +1556,19 @@
     "apply": "Apply suggestion",
     "noSuggestions": "No automated split suggestions available for this content."
   },
+  "changelogScreen": {
+    "viewLabel": "Show",
+    "viewAll": "Everything",
+    "viewHighlights": "Highlights",
+    "highlights": "Highlights",
+    "latest": "Latest",
+    "sectionNew": "New",
+    "sectionChanged": "Changed",
+    "sectionFixed": "Fixed",
+    "empty": "No releases to show.",
+    "versions": "Versions",
+    "earlier": "Earlier"
+  },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
     "description": "A word-by-word TTML editor and timing tool for Apple Music-like lyrics",
@@ -1501,6 +1591,23 @@
     "openContributorProfile": "Open {name}'s GitHub profile",
     "unknown": "Unknown"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Separate lanes",
+    "settingDesc": "Draw background lines in their own row under the main lines. Lanes are view-only: change a line's role in Edit mode.",
+    "menu": "Lanes",
+    "visibleLanes": "Show lanes",
+    "duetLane": "Separate duet lane",
+    "lane": {
+      "main": "Main",
+      "duet": "Duet",
+      "bg": "Background"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Line and last word end. Alt-drag to move only one.",
+    "wordEndHandle": "Last word end",
+    "lineEndHandle": "Line end"
+  },
   "spectrogram": {
     "invalidEndTime": "Cannot select this end time",
     "noAudioLoaded": "Load an audio file to show the spectrogram",
@@ -1516,6 +1623,17 @@
       "4096": "4096 (most detail)"
     },
     "height": "Display height"
+  },
+  "spectrogramFollow": {
+    "toggle": "Follow playhead",
+    "shortcut": "Spectrogram - Follow playhead on/off",
+    "setting": "Follow the playhead",
+    "settingDesc": "Scrolls the spectrogram to keep the playhead in view. Scrolling or dragging pauses it until you press play or leave it for a moment.",
+    "style": "Follow style",
+    "page": "Page",
+    "pageDesc": "Jumps ahead when the playhead leaves the view.",
+    "continuous": "Continuous",
+    "continuousDesc": "Scrolls with the playhead and keeps it centered."
   },
   "export": {
     "recoveryUntimed": "This recovery export contains untimed lyrics. Check timing before submitting.",

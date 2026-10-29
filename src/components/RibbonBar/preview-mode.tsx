@@ -24,6 +24,7 @@ import {
 	showRomanLinesAtom,
 	showTranslationLinesAtom,
 	spicyForceLineSyncedAtom,
+	spicyJoinSplitWordsAtom,
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
@@ -56,7 +57,9 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 					</ActionTooltip>
 				</RibbonSection>
 				{previewModeType === PreviewModeType.Spicy && (
-					<RibbonSection label={t("ribbonBar.previewMode.spicy", "Spicy")}>
+					<RibbonSection
+						label={t("ribbonBar.previewMode.spicy", "Spicy Lyrics")}
+					>
 						<Grid
 							columns="max-content auto"
 							gap="2"
@@ -150,6 +153,16 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 								)}
 								setting={showRomanLinesAtom}
 							/>
+							{previewModeType === PreviewModeType.Spicy && (
+								<RibbonToggle
+									label={t("joinSplitWords.label", "Join split words")}
+									description={t(
+										"joinSplitWords.description",
+										"Show a word sung in parts as one word when the parts line up evenly, like Spicy Lyrics' Join Split Words setting.",
+									)}
+									setting={spicyJoinSplitWordsAtom}
+								/>
+							)}
 						</Grid>
 					</RibbonSection>
 				)}
