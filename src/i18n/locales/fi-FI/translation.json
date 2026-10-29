@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogrammi",
       "backup": "Varmuuskopio",
       "editor": "Editori ja ajoitus",
-      "files": "Tiedostot ja tallennus"
+      "files": "Tiedostot ja tallennus",
+      "changelog": "Muutosloki"
     },
     "page": {
       "generalDesc": "Kieli, yksityisyys ja koko sovelluksen toiminta.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Tälle sisällölle ei ole saatavilla automaattisia jakoehdotuksia."
   },
   "changelogScreen": {
-    "setting": "Uusi muutoslokinäkymä",
-    "settingDesc": "Näytä jokainen julkaisu korttina: ensin kohokohdat, sitten uudet, muuttuneet ja korjatut asiat. Pois päältä säilyttää nykyisen muutoslokin.",
     "viewLabel": "Näytä",
     "viewAll": "Kaikki",
     "viewHighlights": "Kohokohdat",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Uutta",
     "sectionChanged": "Muutettu",
     "sectionFixed": "Korjattu",
-    "close": "Sulje",
     "empty": "Ei näytettäviä julkaisuja."
   },
   "aboutModal": {

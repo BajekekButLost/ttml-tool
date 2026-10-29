@@ -1048,7 +1048,8 @@
       "spectrogram": "Spectrogramme",
       "backup": "Sauvegarde",
       "editor": "Éditeur et synchronisation",
-      "files": "Fichiers et stockage"
+      "files": "Fichiers et stockage",
+      "changelog": "Nouveautés"
     },
     "page": {
       "generalDesc": "Langue, confidentialité et comportement général de l'application.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Aucune suggestion de découpage automatique pour ce contenu."
   },
   "changelogScreen": {
-    "setting": "Nouvel écran des nouveautés",
-    "settingDesc": "Affiche chaque version sous forme de carte, avec les points forts d'abord, puis ce qui est nouveau, modifié et corrigé. Désactivé conserve le journal des modifications actuel.",
     "viewLabel": "Afficher",
     "viewAll": "Tout",
     "viewHighlights": "Points forts",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nouveau",
     "sectionChanged": "Modifié",
     "sectionFixed": "Corrigé",
-    "close": "Fermer",
     "empty": "Aucune version à afficher."
   },
   "aboutModal": {

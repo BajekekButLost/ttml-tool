@@ -1,15 +1,3 @@
-.content {
-	height: 80vh;
-	max-height: 720px;
-	display: flex;
-	flex-direction: column;
-}
-
-.scroll {
-	flex: 1;
-	min-height: 0;
-}
-
 .releaseHeading {
 	letter-spacing: -0.014em;
 }

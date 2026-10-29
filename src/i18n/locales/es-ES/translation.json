@@ -1048,7 +1048,8 @@
       "spectrogram": "Espectrograma",
       "backup": "Copia de seguridad",
       "editor": "Editor y sincronización",
-      "files": "Archivos y almacenamiento"
+      "files": "Archivos y almacenamiento",
+      "changelog": "Registro de cambios"
     },
     "page": {
       "generalDesc": "Idioma, privacidad y comportamiento general de la aplicación.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "No hay sugerencias de división automáticas disponibles para este contenido."
   },
   "changelogScreen": {
-    "setting": "Nueva pantalla de cambios",
-    "settingDesc": "Muestra cada versión como una tarjeta con lo más destacado primero y después lo nuevo, lo cambiado y lo corregido. Desactivado mantiene el registro de cambios actual.",
     "viewLabel": "Mostrar",
     "viewAll": "Todo",
     "viewHighlights": "Lo más destacado",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nuevo",
     "sectionChanged": "Cambiado",
     "sectionFixed": "Corregido",
-    "close": "Cerrar",
     "empty": "No hay versiones que mostrar."
   },
   "aboutModal": {

@@ -1,20 +1,14 @@
-import {
-	DismissRegular,
-	OpenRegular,
-	SparkleRegular,
-} from "@fluentui/react-icons";
+import { OpenRegular, SparkleRegular } from "@fluentui/react-icons";
 import {
 	Badge,
 	Box,
 	Button,
 	Card,
-	Dialog,
 	Flex,
 	Heading,
-	IconButton,
-	ScrollArea,
 	Text,
 } from "@radix-ui/themes";
+import { open } from "@tauri-apps/plugin-shell";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -139,12 +133,17 @@ function ReleaseCardView({
 	);
 }
 
-/** The changelog screen behind the `changelogScreen` flag. */
-export function ChangelogScreen({
-	onOpenCommits,
-}: {
-	onOpenCommits: () => void;
-}) {
+const openCommits = async () => {
+	const repoUrl = "https://github.com/spicylyrics/ttml-tool/commits/main";
+	if (import.meta.env.TAURI_ENV_PLATFORM) {
+		await open(repoUrl);
+	} else {
+		window.open(repoUrl, "_blank");
+	}
+};
+
+/** The Changelog page in Preferences: one card per release, newest first. */
+export function ChangelogScreen() {
 	const { t } = useTranslation();
 	const [view, setView] = useState<View>("all");
 	const cards = useMemo(
@@ -156,65 +155,39 @@ export function ChangelogScreen({
 	);
 
 	return (
-		<Dialog.Content
-			maxWidth="760px"
-			className={styles.content}
-			aria-describedby={undefined}
-		>
-			<Flex justify="between" align="center" gap="3" mb="3" wrap="wrap">
-				<Dialog.Title mb="0" size="5">
-					{t("changeNotes.changelogTitle", "Changelog & updates")}
-				</Dialog.Title>
-				<Flex align="center" gap="2">
-					<OptionPicker<View>
-						variant="segmented"
-						label={t("changelogScreen.viewLabel", "Show")}
-						value={view}
-						onValueChange={setView}
-						options={[
-							{
-								value: "all",
-								label: t("changelogScreen.viewAll", "Everything"),
-							},
-							{
-								value: "highlights",
-								label: t("changelogScreen.viewHighlights", "Highlights"),
-							},
-						]}
-					/>
-					<Button variant="soft" size="1" onClick={onOpenCommits}>
-						<OpenRegular aria-hidden />
-						{t("changeNotes.viewCommits", "View Commits on GitHub")}
-					</Button>
-					<Dialog.Close>
-						<IconButton
-							variant="ghost"
-							color="gray"
-							aria-label={t("changelogScreen.close", "Close")}
-						>
-							<DismissRegular />
-						</IconButton>
-					</Dialog.Close>
-				</Flex>
+		<Flex direction="column" gap="3">
+			<Flex justify="between" align="center" gap="2" wrap="wrap">
+				<OptionPicker<View>
+					variant="segmented"
+					label={t("changelogScreen.viewLabel", "Show")}
+					value={view}
+					onValueChange={setView}
+					options={[
+						{
+							value: "all",
+							label: t("changelogScreen.viewAll", "Everything"),
+						},
+						{
+							value: "highlights",
+							label: t("changelogScreen.viewHighlights", "Highlights"),
+						},
+					]}
+				/>
+				<Button variant="soft" size="1" onClick={openCommits}>
+					<OpenRegular aria-hidden />
+					{t("changeNotes.viewCommits", "View Commits on GitHub")}
+				</Button>
 			</Flex>
 
-			<ScrollArea type="auto" scrollbars="vertical" className={styles.scroll}>
-				<Flex direction="column" gap="3" pr="3">
-					{cards.length ? (
-						cards.map((card, index) => (
-							<ReleaseCardView
-								key={card.key}
-								card={card}
-								latest={index === 0}
-							/>
-						))
-					) : (
-						<Text size="2" color="gray">
-							{t("changelogScreen.empty", "No releases to show.")}
-						</Text>
-					)}
-				</Flex>
-			</ScrollArea>
-		</Dialog.Content>
+			{cards.length ? (
+				cards.map((card, index) => (
+					<ReleaseCardView key={card.key} card={card} latest={index === 0} />
+				))
+			) : (
+				<Text size="2" color="gray">
+					{t("changelogScreen.empty", "No releases to show.")}
+				</Text>
+			)}
+		</Flex>
 	);
 }

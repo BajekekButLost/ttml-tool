@@ -1048,7 +1048,8 @@
       "spectrogram": "Spectrogramă",
       "backup": "Backup",
       "editor": "Editor și sincronizare",
-      "files": "Fișiere și stocare"
+      "files": "Fișiere și stocare",
+      "changelog": "Jurnal de modificări"
     },
     "page": {
       "generalDesc": "Limbă, confidențialitate și comportamentul general al aplicației.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Nu sunt disponibile sugestii de împărțire automată pentru acest conținut."
   },
   "changelogScreen": {
-    "setting": "Ecran nou pentru noutăți",
-    "settingDesc": "Afișează fiecare versiune ca un card, cu punctele importante mai întâi, apoi ce e nou, schimbat și reparat. Dezactivat păstrează jurnalul de modificări actual.",
     "viewLabel": "Afișează",
     "viewAll": "Tot",
     "viewHighlights": "Puncte importante",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nou",
     "sectionChanged": "Schimbat",
     "sectionFixed": "Reparat",
-    "close": "Închide",
     "empty": "Nu există versiuni de afișat."
   },
   "aboutModal": {

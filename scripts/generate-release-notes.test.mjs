@@ -33,7 +33,7 @@ describe("generateReleaseNotes", () => {
 			generateReleaseNotes(changelog, "0.7.3"),
 		);
 	});
-	it("renders the sectioned format with bold leads and plain one-liners", () => {
+	it("renders the sectioned format: bold leads, no final period", () => {
 		const release = [
 			{
 				version: "0.17.0",
@@ -42,14 +42,15 @@ describe("generateReleaseNotes", () => {
 					{ type: "feature", title: "Ends with a question?", body: "Yes." },
 					{ type: "change", title: "Renamed a setting" },
 					{ type: "fix", title: "Crash on save", body: "Fixed." },
+					{ type: "fix", title: "Trailing dots", body: "Wait for it..." },
 				],
 			},
 		];
 		expect(generateSectionedReleaseNotes(release, "0.17.0")).toBe(
-			"## New\n- **New screen.** Opens fast.\n- **Ends with a question?** Yes.\n\n## Changed\n- Renamed a setting\n\n## Fixed\n- **Crash on save.** Fixed.",
+			"## New\n- **New screen.** Opens fast\n- **Ends with a question?** Yes\n\n## Changed\n- **Renamed a setting**\n\n## Fixed\n- **Crash on save.** Fixed\n- **Trailing dots.** Wait for it...",
 		);
 		expect(generateSectionedReleaseNotes(changelog, "0.7.3")).toBe(
-			"## New\n- **Formatting.** Keep **important** notes readable. And [links](https://example.com).\n\n## Fixed\n- **Desktop Update Fix.** Use \x60latest.json\x60 for updates.\n- Title only",
+			"## New\n- **Formatting.** Keep **important** notes readable. And [links](https://example.com)\n\n## Fixed\n- **Desktop Update Fix.** Use \x60latest.json\x60 for updates\n- **Title only**",
 		);
 		expect(generateSectionedReleaseNotes(changelog, "0.7.4")).toBeNull();
 	});

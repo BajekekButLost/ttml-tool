@@ -1048,7 +1048,8 @@
       "spectrogram": "Spectrogram",
       "backup": "Backup",
       "editor": "Editor & sync",
-      "files": "Files & storage"
+      "files": "Files & storage",
+      "changelog": "Changelog"
     },
     "page": {
       "generalDesc": "Language, privacy, and app-wide behavior.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "No automated split suggestions available for this content."
   },
   "changelogScreen": {
-    "setting": "New changelog screen",
-    "settingDesc": "Show each release as a card with its highlights first, then what's new, changed and fixed. Off keeps the current changelog.",
     "viewLabel": "Show",
     "viewAll": "Everything",
     "viewHighlights": "Highlights",
@@ -1497,7 +1496,6 @@
     "sectionNew": "New",
     "sectionChanged": "Changed",
     "sectionFixed": "Fixed",
-    "close": "Close",
     "empty": "No releases to show."
   },
   "aboutModal": {

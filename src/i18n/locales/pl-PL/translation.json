@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Kopia zapasowa",
       "editor": "Edytor i synchronizacja",
-      "files": "Pliki i przechowywanie"
+      "files": "Pliki i przechowywanie",
+      "changelog": "Lista zmian"
     },
     "page": {
       "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Dla tej treści nie są dostępne żadne automatyczne sugestie podziału."
   },
   "changelogScreen": {
-    "setting": "Nowy ekran listy zmian",
-    "settingDesc": "Pokazuj każde wydanie jako kartę: najpierw najważniejsze zmiany, potem nowości, zmiany i poprawki. Wyłączone zostawia obecną listę zmian.",
     "viewLabel": "Pokaż",
     "viewAll": "Wszystko",
     "viewHighlights": "Najważniejsze",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nowości",
     "sectionChanged": "Zmiany",
     "sectionFixed": "Poprawki",
-    "close": "Zamknij",
     "empty": "Brak wydań do pokazania."
   },
   "aboutModal": {

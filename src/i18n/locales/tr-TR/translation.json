@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Yedekleme",
       "editor": "Düzenleyici ve senkronizasyon",
-      "files": "Dosyalar ve depolama"
+      "files": "Dosyalar ve depolama",
+      "changelog": "Değişiklik günlüğü"
     },
     "page": {
       "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Bu içerik için otomatik bölme önerisi yok."
   },
   "changelogScreen": {
-    "setting": "Yeni değişiklik günlüğü ekranı",
-    "settingDesc": "Her sürümü, önce öne çıkanlar sonra yeni, değişen ve düzeltilenler olacak şekilde bir kart olarak göster. Kapalıyken mevcut değişiklik günlüğü kalır.",
     "viewLabel": "Göster",
     "viewAll": "Tümü",
     "viewHighlights": "Öne çıkanlar",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Yeni",
     "sectionChanged": "Değişti",
     "sectionFixed": "Düzeltildi",
-    "close": "Kapat",
     "empty": "Gösterilecek sürüm yok."
   },
   "aboutModal": {

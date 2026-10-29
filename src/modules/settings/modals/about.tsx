@@ -1,5 +1,4 @@
 import { Flex, Heading, Text } from "@radix-ui/themes";
-import { ChangelogScreenSetting } from "$/modules/changelog/ChangelogScreenSetting";
 import { CommunitySection } from "./about/CommunitySection";
 import { CreditsSection } from "./about/CreditsSection";
 import { MaintainersSection } from "./about/MaintainersSection";
@@ -34,8 +33,6 @@ export const SettingsAboutTab = () => {
 			<VersionSection {...state} />
 
 			<UpdateSection {...state} />
-
-			<ChangelogScreenSetting />
 		</Flex>
 	);
 };

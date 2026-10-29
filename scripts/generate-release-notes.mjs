@@ -28,11 +28,13 @@ export const SECTION_HEADINGS = {
 export const sectionOf = (entry) =>
 	SECTION_BY_TYPE[entry.type] ?? (entry.type ? "changed" : "new");
 
-// "**Lead.** Explanation" when there is a body, a plain line when there isn't.
+// "- **Lead.** Explanation", the explanation without its final period; a
+// bold lead alone when there is no body. Same shape as the Discord post.
 export const formatEntryLine = ({ title, body }) => {
-	if (!body) return `- ${title}`;
+	if (!body) return `- **${title}**`;
 	const lead = /[.!?:]$/.test(title) ? title : `${title}.`;
-	return `- **${lead}** ${body.replace(/\s*\n\s*/g, " ")}`;
+	const text = body.replace(/\s*\n\s*/g, " ").replace(/(?<!\.)\.$/, "");
+	return `- **${lead}** ${text}`;
 };
 
 // The shared format: ## New / ## Changed / ## Fixed, empty sections left out.

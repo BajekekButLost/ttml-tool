@@ -1048,7 +1048,8 @@
       "spectrogram": "Spectrogram",
       "backup": "Back-up",
       "editor": "Editor en synchronisatie",
-      "files": "Bestanden en opslag"
+      "files": "Bestanden en opslag",
+      "changelog": "Wijzigingen"
     },
     "page": {
       "generalDesc": "Taal, privacy en algemeen gedrag van de app.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Er zijn geen automatische splitsingssuggesties beschikbaar voor deze inhoud."
   },
   "changelogScreen": {
-    "setting": "Nieuw scherm voor wijzigingen",
-    "settingDesc": "Toon elke versie als een kaart met de hoogtepunten bovenaan, daarna wat nieuw, gewijzigd en opgelost is. Uit houdt het huidige wijzigingslogboek.",
     "viewLabel": "Toon",
     "viewAll": "Alles",
     "viewHighlights": "Hoogtepunten",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nieuw",
     "sectionChanged": "Gewijzigd",
     "sectionFixed": "Opgelost",
-    "close": "Sluiten",
     "empty": "Geen versies om te tonen."
   },
   "aboutModal": {

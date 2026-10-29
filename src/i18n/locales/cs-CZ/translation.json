@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Zálohování",
       "editor": "Editor a synchronizace",
-      "files": "Soubory a úložiště"
+      "files": "Soubory a úložiště",
+      "changelog": "Seznam změn"
     },
     "page": {
       "generalDesc": "Jazyk, soukromí a chování celé aplikace.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Pro tento obsah nejsou k dispozici žádné automatické návrhy rozdělení."
   },
   "changelogScreen": {
-    "setting": "Nová obrazovka seznamu změn",
-    "settingDesc": "Zobrazí každé vydání jako kartu: nejdřív hlavní novinky, pak co je nového, změněného a opraveného. Vypnuto ponechá současný seznam změn.",
     "viewLabel": "Zobrazit",
     "viewAll": "Vše",
     "viewHighlights": "Hlavní novinky",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nové",
     "sectionChanged": "Změněno",
     "sectionFixed": "Opraveno",
-    "close": "Zavřít",
     "empty": "Žádná vydání k zobrazení."
   },
   "aboutModal": {

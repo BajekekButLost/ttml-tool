@@ -1048,7 +1048,8 @@
       "spectrogram": "频谱图",
       "backup": "备份",
       "editor": "编辑与打轴",
-      "files": "文件与存储"
+      "files": "文件与存储",
+      "changelog": "更新日志"
     },
     "page": {
       "generalDesc": "语言、隐私及应用全局行为。",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "没有适用于此内容的自动拆分建议。"
   },
   "changelogScreen": {
-    "setting": "新版更新日志界面",
-    "settingDesc": "将每个版本显示为一张卡片，先列出亮点，再列出新增、变更和修复的内容。关闭时保留当前的更新日志。",
     "viewLabel": "显示",
     "viewAll": "全部",
     "viewHighlights": "亮点",
@@ -1497,7 +1496,6 @@
     "sectionNew": "新增",
     "sectionChanged": "变更",
     "sectionFixed": "修复",
-    "close": "关闭",
     "empty": "没有可显示的版本。"
   },
   "aboutModal": {

@@ -25,7 +25,6 @@ import { SplitWordDialog } from "$/modules/segmentation/components/split-word.ts
 import { FontSelectionDialog } from "$/modules/settings/modals/FontSelectionDialog.tsx";
 import { SettingsDialog } from "$/modules/settings/modals/index.tsx";
 import { TTMLChecklistDialog } from "$/modules/ttml-checklist/TTMLChecklistDialog.tsx";
-import { ChangelogDialog } from "./changelog.tsx";
 import { ConfirmationDialog } from "./confirmation.tsx";
 import { CreateProjectPromptDialog } from "./create-project-prompt.tsx";
 import { GeniusHeaderDetectionDialog } from "./genius-header-detection.tsx";
@@ -55,7 +54,6 @@ export const Dialogs = () => {
 			<TimeStretchDialog />
 
 			<GeniusSearchDialog />
-			<ChangelogDialog />
 			<FontSelectionDialog />
 			<UrbanDictionaryDialog />
 			<SuggestedSplitsDialog />

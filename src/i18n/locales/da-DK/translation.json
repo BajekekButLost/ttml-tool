@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Sikkerhedskopi",
       "editor": "Editor og synkronisering",
-      "files": "Filer og lager"
+      "files": "Filer og lager",
+      "changelog": "Ændringslog"
     },
     "page": {
       "generalDesc": "Sprog, privatliv og adfærd for hele appen.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Der er ingen tilgængelige automatiske opdelingsforslag for dette indhold."
   },
   "changelogScreen": {
-    "setting": "Ny ændringslogskærm",
-    "settingDesc": "Vis hver udgivelse som et kort med højdepunkterne først og derefter, hvad der er nyt, ændret og rettet. Slået fra beholder den nuværende ændringslog.",
     "viewLabel": "Vis",
     "viewAll": "Alt",
     "viewHighlights": "Højdepunkter",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Nyt",
     "sectionChanged": "Ændret",
     "sectionFixed": "Rettet",
-    "close": "Luk",
     "empty": "Ingen udgivelser at vise."
   },
   "aboutModal": {

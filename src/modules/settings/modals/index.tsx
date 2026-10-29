@@ -2,6 +2,7 @@ import {
 	Dismiss24Regular,
 	Edit24Regular,
 	Folder24Regular,
+	History24Regular,
 	Info24Regular,
 	Keyboard12324Regular,
 	PaintBrush24Regular,
@@ -30,6 +31,7 @@ import {
 	useState,
 } from "react";
 import { useTranslation } from "react-i18next";
+import { ChangelogScreen } from "$/modules/changelog/ChangelogScreen.tsx";
 import { settingsDialogAtom, settingsTabAtom } from "$/states/dialogs.ts";
 import {
 	matchesSettingsPage,
@@ -173,6 +175,12 @@ const SettingsPages = memo(({ forceMount }: { forceMount: boolean }) => {
 					<SettingsAppearanceTab />
 				</SettingsPage>
 			</Tabs.Content>
+			{/* Never force-mounted: release notes would match almost any search. */}
+			<Tabs.Content value="changelog" className={styles.tabContent}>
+				<SettingsPage title={t("settingsDialog.tab.changelog", "Changelog")}>
+					<ChangelogScreen />
+				</SettingsPage>
+			</Tabs.Content>
 			<Tabs.Content
 				value="about"
 				forceMount={mount}
@@ -234,12 +242,22 @@ export const SettingsDialog = memo(() => {
 				label: t("settingsDialog.tab.appearance", "Appearance"),
 			},
 			{
+				value: "changelog",
+				icon: <History24Regular />,
+				label: t("settingsDialog.tab.changelog", "Changelog"),
+			},
+			{
 				value: "about",
 				icon: <Info24Regular />,
 				label: t("common.about", "About"),
 			},
 		],
 		[t],
+	);
+	// Pages whose rendered text is searched; the rest match on label and keywords.
+	const textSearchedItems = useMemo(
+		() => navigationItems.filter((item) => item.value !== "changelog"),
+		[navigationItems],
 	);
 	const searching = settingsDialogOpen && searchQuery.trim() !== "";
 	// Rendered text of every page while searching. Force-mounted panels fill in
@@ -255,7 +273,7 @@ export const SettingsDialog = memo(() => {
 		}
 		const read = () => {
 			const texts: Record<string, string> = {};
-			for (const item of navigationItems) {
+			for (const item of textSearchedItems) {
 				const panel = pane.querySelector(`[id$="-content-${item.value}"]`);
 				// Not filled in yet: stay null so the tab jump doesn't act on
 				// keyword-only results.
@@ -264,7 +282,7 @@ export const SettingsDialog = memo(() => {
 			}
 			setPageTexts((prev) =>
 				prev &&
-				navigationItems.every(({ value }) => prev[value] === texts[value])
+				textSearchedItems.every(({ value }) => prev[value] === texts[value])
 					? prev
 					: texts,
 			);
@@ -277,7 +295,7 @@ export const SettingsDialog = memo(() => {
 			characterData: true,
 		});
 		return () => observer.disconnect();
-	}, [searching, navigationItems]);
+	}, [searching, textSearchedItems]);
 	const visibleItems = useMemo(
 		() =>
 			navigationItems.filter((item) =>

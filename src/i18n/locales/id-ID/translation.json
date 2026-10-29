@@ -1048,7 +1048,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Cadangan",
       "editor": "Editor & sinkronisasi",
-      "files": "File & penyimpanan"
+      "files": "File & penyimpanan",
+      "changelog": "Log perubahan"
     },
     "page": {
       "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Tidak ada saran pemisahan otomatis yang tersedia untuk konten ini."
   },
   "changelogScreen": {
-    "setting": "Layar log perubahan baru",
-    "settingDesc": "Tampilkan setiap rilis sebagai kartu dengan sorotan lebih dulu, lalu apa yang baru, diubah, dan diperbaiki. Nonaktif mempertahankan log perubahan saat ini.",
     "viewLabel": "Tampilkan",
     "viewAll": "Semua",
     "viewHighlights": "Sorotan",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Baru",
     "sectionChanged": "Diubah",
     "sectionFixed": "Diperbaiki",
-    "close": "Tutup",
     "empty": "Tidak ada rilis untuk ditampilkan."
   },
   "aboutModal": {

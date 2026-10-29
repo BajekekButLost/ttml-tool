@@ -1048,7 +1048,8 @@
       "spectrogram": "Spettrogramma",
       "backup": "Backup",
       "editor": "Editor e sincronizzazione",
-      "files": "File e archiviazione"
+      "files": "File e archiviazione",
+      "changelog": "Registro modifiche"
     },
     "page": {
       "generalDesc": "Lingua, privacy e comportamento generale dell'app.",
@@ -1487,8 +1488,6 @@
     "noSuggestions": "Nessun suggerimento di divisione automatica disponibile per questo contenuto."
   },
   "changelogScreen": {
-    "setting": "Nuova schermata delle novità",
-    "settingDesc": "Mostra ogni versione come una scheda con i punti salienti in alto, poi le novità, le modifiche e le correzioni. Disattivato mantiene il registro delle modifiche attuale.",
     "viewLabel": "Mostra",
     "viewAll": "Tutto",
     "viewHighlights": "Punti salienti",
@@ -1497,7 +1496,6 @@
     "sectionNew": "Novità",
     "sectionChanged": "Modificato",
     "sectionFixed": "Corretto",
-    "close": "Chiudi",
     "empty": "Nessuna versione da mostrare."
   },
   "aboutModal": {
