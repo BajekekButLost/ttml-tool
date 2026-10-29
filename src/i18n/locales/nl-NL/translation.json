@@ -3,6 +3,12 @@
     "changelogTitle": "Wijzigingslogboek en updates",
     "viewCommits": "Commits bekijken op GitHub"
   },
+  "updatedToast": {
+    "message": "Bijgewerkt naar v{version}",
+    "seeChanges": "Bekijk wat er is veranderd",
+    "setting": "Na een update laten zien wat er is veranderd",
+    "settingDesc": "Toont bij de eerste start van een nieuwe versie een korte melding met een link naar het wijzigingslogboek."
+  },
   "app": {
     "error": {
       "title": "Oeps, er is een fout opgetreden!",
@@ -287,6 +293,30 @@
       "noPreviousFound": "Geen eerdere overeenkomende sectie met timing gevonden.",
       "noMatchingLines": "Geen regels in deze sectie komen overeen met de eerdere, dus er is niets gekopieerd.",
       "copyPrevious": "Vorige timing kopiëren"
+    }
+  },
+  "logoColor": {
+    "title": "Logokleur",
+    "description": "Kies een kleur voor het logo in de titelbalk en op het welkomstscherm van de gids.",
+    "descriptionDesktop": "Kies een kleur voor het venster- en taakbalkpictogram van de app en op Windows voor de snelkoppelingen op het bureaublad en in het menu Start.",
+    "colorLabel": "Kleur",
+    "customLabel": "Aangepaste logokleur",
+    "designNote": "Het logo is alleen te zien als het Spicy Lyrics-ontwerp aan staat.",
+    "presets": {
+      "default": "Standaard",
+      "defaultDesc": "De eigen kleur van het ontwerp",
+      "lilac": "Lila",
+      "lilacDesc": "Uit het v3-logo",
+      "purple": "Paars",
+      "purpleDesc": "Uit het veelkleurige logo",
+      "red": "Rood",
+      "redDesc": "Uit het v0.9-logo",
+      "gold": "Goud",
+      "green": "Groen",
+      "blue": "Blauw",
+      "white": "Wit",
+      "custom": "Aangepast",
+      "customDesc": "Kies een willekeurige kleur"
     }
   },
   "common": {
@@ -1058,7 +1088,8 @@
       "spectrogram": "Spectrogram",
       "backup": "Back-up",
       "editor": "Editor en synchronisatie",
-      "files": "Bestanden en opslag"
+      "files": "Bestanden en opslag",
+      "changelog": "Wijzigingen"
     },
     "page": {
       "generalDesc": "Taal, privacy en algemeen gedrag van de app.",
@@ -1378,6 +1409,14 @@
     "legacyProjectName": "Oude momentopnamen",
     "untitledProjectName": "Naamloos project"
   },
+  "didYouKnow": {
+    "title": "Wist je dat?",
+    "repeatedSection": "Herhaalde regels kunnen eerdere timing hergebruiken. Selecteer de eerdere regels, zet de afspeelkop waar de herhaling begint en gebruik Dupliceren op afspeelkop.",
+    "splitInTimeMode": "Je kunt een woord splitsen zonder de Timing-modus te verlaten: houd {modifier} ingedrukt en dubbelklik op het woord.",
+    "turnOff": "Geen tips tonen",
+    "setting": "Tips tonen",
+    "settingDesc": "Als je iets met de hand doet dat sneller kan, verschijnt een korte tip. Elke tip verschijnt maar één keer."
+  },
   "time": {
     "daysAgo": "{count, plural, one {# dag geleden} other {# dagen geleden}}",
     "hoursAgo": "{count, plural, one {# uur geleden} other {# uur geleden}}",
@@ -1495,6 +1534,19 @@
     "description": "{type, select, word {Kies een voorgestelde splitsing voor dit woord.} other {Kies een voorgestelde splitsing voor deze regel.}}",
     "apply": "Suggestie toepassen",
     "noSuggestions": "Er zijn geen automatische splitsingssuggesties beschikbaar voor deze inhoud."
+  },
+  "changelogScreen": {
+    "viewLabel": "Toon",
+    "viewAll": "Alles",
+    "viewHighlights": "Hoogtepunten",
+    "highlights": "Hoogtepunten",
+    "latest": "Nieuwste",
+    "sectionNew": "Nieuw",
+    "sectionChanged": "Gewijzigd",
+    "sectionFixed": "Opgelost",
+    "empty": "Geen versies om te tonen.",
+    "versions": "Versies",
+    "earlier": "Eerder"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

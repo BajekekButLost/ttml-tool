@@ -3,6 +3,12 @@
     "changelogTitle": "Changelog & updates",
     "viewCommits": "View Commits on GitHub"
   },
+  "updatedToast": {
+    "message": "Updated to v{version}",
+    "seeChanges": "See what changed",
+    "setting": "Show what changed after an update",
+    "settingDesc": "The first time the app starts on a new version, show a short notice with a link to the changelog."
+  },
   "app": {
     "error": {
       "title": "Something went wrong",
@@ -287,6 +293,30 @@
       "noPreviousFound": "No earlier matching section with timing found.",
       "noMatchingLines": "No lines in this section match the earlier one, so nothing was copied.",
       "copyPrevious": "Copy previous timing"
+    }
+  },
+  "logoColor": {
+    "title": "Logo color",
+    "description": "Pick a color for the logo in the title bar and on the guide's welcome screen.",
+    "descriptionDesktop": "Pick a color for the app's window and taskbar icon, and on Windows its desktop and Start menu shortcuts.",
+    "colorLabel": "Color",
+    "customLabel": "Custom logo color",
+    "designNote": "The logo only shows with the Spicy Lyrics design on.",
+    "presets": {
+      "default": "Default",
+      "defaultDesc": "The design's own color",
+      "lilac": "Lilac",
+      "lilacDesc": "From the v3 logo",
+      "purple": "Purple",
+      "purpleDesc": "From the multicolor logo",
+      "red": "Red",
+      "redDesc": "From the v0.9 logo",
+      "gold": "Gold",
+      "green": "Green",
+      "blue": "Blue",
+      "white": "White",
+      "custom": "Custom",
+      "customDesc": "Pick any color"
     }
   },
   "common": {
@@ -1058,7 +1088,8 @@
       "spectrogram": "Spectrogram",
       "backup": "Backup",
       "editor": "Editor & sync",
-      "files": "Files & storage"
+      "files": "Files & storage",
+      "changelog": "Changelog"
     },
     "page": {
       "generalDesc": "Language, privacy, and app-wide behavior.",
@@ -1378,6 +1409,14 @@
     "legacyProjectName": "Legacy snapshots",
     "untitledProjectName": "Untitled project"
   },
+  "didYouKnow": {
+    "title": "Did you know?",
+    "repeatedSection": "Repeated lines can reuse earlier timing. Select the earlier lines, put the playhead where the repeat starts, and use Duplicate at playhead.",
+    "splitInTimeMode": "You can split a word without leaving Time mode: hold {modifier} and double-click it.",
+    "turnOff": "Don't show tips",
+    "setting": "Show tips",
+    "settingDesc": "After you do something by hand that has a faster way, show a short tip about it. Each tip shows once."
+  },
   "time": {
     "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
     "hoursAgo": "{count, plural, one {# hour ago} other {# hours ago}}",
@@ -1495,6 +1534,19 @@
     "description": "{type, select, word {Choose a suggested split for this word.} other {Choose a suggested split for this line.}}",
     "apply": "Apply suggestion",
     "noSuggestions": "No automated split suggestions available for this content."
+  },
+  "changelogScreen": {
+    "viewLabel": "Show",
+    "viewAll": "Everything",
+    "viewHighlights": "Highlights",
+    "highlights": "Highlights",
+    "latest": "Latest",
+    "sectionNew": "New",
+    "sectionChanged": "Changed",
+    "sectionFixed": "Fixed",
+    "empty": "No releases to show.",
+    "versions": "Versions",
+    "earlier": "Earlier"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

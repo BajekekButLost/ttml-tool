@@ -3,6 +3,12 @@
     "changelogTitle": "Jurnal de modificări și actualizări",
     "viewCommits": "Vezi commit-urile pe GitHub"
   },
+  "updatedToast": {
+    "message": "Actualizat la v{version}",
+    "seeChanges": "Vezi ce s-a schimbat",
+    "setting": "Arată ce s-a schimbat după o actualizare",
+    "settingDesc": "La prima pornire pe o versiune nouă, afișează o notificare scurtă cu un link către jurnalul de modificări."
+  },
   "app": {
     "error": {
       "title": "Ups, a apărut o eroare!",
@@ -287,6 +293,30 @@
       "noPreviousFound": "Nu s-a găsit nicio secțiune anterioară corespunzătoare cu timpi.",
       "noMatchingLines": "Niciun rând din această secțiune nu se potrivește cu cea anterioară, așa că nu s-a copiat nimic.",
       "copyPrevious": "Copiază timpii anteriori"
+    }
+  },
+  "logoColor": {
+    "title": "Culoarea logoului",
+    "description": "Alege o culoare pentru logo în bara de titlu și pe ecranul de bun venit al ghidului.",
+    "descriptionDesktop": "Alege o culoare pentru pictograma ferestrei și a barei de activități și, pe Windows, pentru comenzile rapide de pe desktop și din meniul Start.",
+    "colorLabel": "Culoare",
+    "customLabel": "Culoare personalizată pentru logo",
+    "designNote": "Logoul apare doar cu designul Spicy Lyrics activat.",
+    "presets": {
+      "default": "Implicit",
+      "defaultDesc": "Culoarea proprie a designului",
+      "lilac": "Liliachiu",
+      "lilacDesc": "Din logoul v3",
+      "purple": "Mov",
+      "purpleDesc": "Din logoul multicolor",
+      "red": "Roșu",
+      "redDesc": "Din logoul v0.9",
+      "gold": "Auriu",
+      "green": "Verde",
+      "blue": "Albastru",
+      "white": "Alb",
+      "custom": "Personalizat",
+      "customDesc": "Alege orice culoare"
     }
   },
   "common": {
@@ -1058,7 +1088,8 @@
       "spectrogram": "Spectrogramă",
       "backup": "Backup",
       "editor": "Editor și sincronizare",
-      "files": "Fișiere și stocare"
+      "files": "Fișiere și stocare",
+      "changelog": "Jurnal de modificări"
     },
     "page": {
       "generalDesc": "Limbă, confidențialitate și comportamentul general al aplicației.",
@@ -1378,6 +1409,14 @@
     "legacyProjectName": "Versiuni vechi",
     "untitledProjectName": "Proiect fără titlu"
   },
+  "didYouKnow": {
+    "title": "Știai că?",
+    "repeatedSection": "Versurile repetate pot refolosi sincronizarea anterioară. Selectează versurile anterioare, pune cursorul de redare unde începe repetiția și folosește Duplică la cursorul de redare.",
+    "splitInTimeMode": "Poți împărți un cuvânt fără să ieși din modul Sincronizare: ține apăsat {modifier} și dă dublu clic pe el.",
+    "turnOff": "Nu afișa sfaturi",
+    "setting": "Afișează sfaturi",
+    "settingDesc": "Când faci manual ceva ce are o cale mai rapidă, afișează un sfat scurt. Fiecare sfat apare o singură dată."
+  },
   "time": {
     "daysAgo": "{count, plural, one {Acum # zi} few {Acum # zile} other {Acum # de zile}}",
     "hoursAgo": "{count, plural, one {Acum # oră} few {Acum # ore} other {Acum # de ore}}",
@@ -1495,6 +1534,19 @@
     "description": "{type, select, word {Alege o împărțire sugerată pentru acest cuvânt.} other {Alege o împărțire sugerată pentru acest vers.}}",
     "apply": "Aplică sugestia",
     "noSuggestions": "Nu sunt disponibile sugestii de împărțire automată pentru acest conținut."
+  },
+  "changelogScreen": {
+    "viewLabel": "Afișează",
+    "viewAll": "Tot",
+    "viewHighlights": "Puncte importante",
+    "highlights": "Puncte importante",
+    "latest": "Cea mai nouă",
+    "sectionNew": "Nou",
+    "sectionChanged": "Schimbat",
+    "sectionFixed": "Reparat",
+    "empty": "Nu există versiuni de afișat.",
+    "versions": "Versiuni",
+    "earlier": "Mai vechi"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

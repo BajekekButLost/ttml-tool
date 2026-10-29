@@ -58,7 +58,7 @@ jobs:
           version="${GITHUB_REF_NAME#v}"
           if node scripts/generate-release-notes.mjs \
             --version "$version" \
-            --changelog src/components/Dialogs/changelog.tsx \
+            --sectioned \
             --output "$RUNNER_TEMP/release-notes.md"; then
             echo "source=changelog" >> "$GITHUB_OUTPUT"
           else

@@ -3,6 +3,12 @@
     "changelogTitle": "Journal des modifications et mises à jour",
     "viewCommits": "Voir les commits sur GitHub"
   },
+  "updatedToast": {
+    "message": "Mis à jour vers la v{version}",
+    "seeChanges": "Voir les nouveautés",
+    "setting": "Afficher les nouveautés après une mise à jour",
+    "settingDesc": "Au premier démarrage sur une nouvelle version, affiche une courte notification avec un lien vers le journal des modifications."
+  },
   "app": {
     "error": {
       "title": "Oups, une erreur s'est produite !",
@@ -287,6 +293,30 @@
       "noPreviousFound": "Aucune section précédente correspondante avec des temps n’a été trouvée.",
       "noMatchingLines": "Aucune ligne de cette section ne correspond à la précédente, rien n'a été copié.",
       "copyPrevious": "Copier les temps précédents"
+    }
+  },
+  "logoColor": {
+    "title": "Couleur du logo",
+    "description": "Choisissez une couleur pour le logo de la barre de titre et de l'écran d'accueil du guide.",
+    "descriptionDesktop": "Choisissez une couleur pour l'icône de la fenêtre et de la barre des tâches et, sous Windows, pour les raccourcis du bureau et du menu Démarrer.",
+    "colorLabel": "Couleur",
+    "customLabel": "Couleur personnalisée du logo",
+    "designNote": "Le logo ne s'affiche qu'avec le design Spicy Lyrics activé.",
+    "presets": {
+      "default": "Par défaut",
+      "defaultDesc": "La couleur propre au design",
+      "lilac": "Lilas",
+      "lilacDesc": "Du logo v3",
+      "purple": "Violet",
+      "purpleDesc": "Du logo multicolore",
+      "red": "Rouge",
+      "redDesc": "Du logo v0.9",
+      "gold": "Or",
+      "green": "Vert",
+      "blue": "Bleu",
+      "white": "Blanc",
+      "custom": "Personnalisée",
+      "customDesc": "Choisissez n'importe quelle couleur"
     }
   },
   "common": {
@@ -1058,7 +1088,8 @@
       "spectrogram": "Spectrogramme",
       "backup": "Sauvegarde",
       "editor": "Éditeur et synchronisation",
-      "files": "Fichiers et stockage"
+      "files": "Fichiers et stockage",
+      "changelog": "Nouveautés"
     },
     "page": {
       "generalDesc": "Langue, confidentialité et comportement général de l'application.",
@@ -1378,6 +1409,14 @@
     "legacyProjectName": "Anciens instantanés",
     "untitledProjectName": "Projet sans titre"
   },
+  "didYouKnow": {
+    "title": "Le saviez-vous ?",
+    "repeatedSection": "Les lignes répétées peuvent reprendre une synchronisation précédente. Sélectionnez les lignes précédentes, placez la tête de lecture au début de la répétition et utilisez Dupliquer à la tête de lecture.",
+    "splitInTimeMode": "Vous pouvez scinder un mot sans quitter le mode Synchronisation : maintenez {modifier} et double-cliquez dessus.",
+    "turnOff": "Ne plus afficher les astuces",
+    "setting": "Afficher des astuces",
+    "settingDesc": "Quand vous faites à la main une action qui a un raccourci plus rapide, affiche une courte astuce. Chaque astuce ne s'affiche qu'une fois."
+  },
   "time": {
     "daysAgo": "{count, plural, one {Il y a # jour} many {Il y a # jours} other {Il y a # jours}}",
     "hoursAgo": "{count, plural, one {Il y a # heure} many {Il y a # heures} other {Il y a # heures}}",
@@ -1495,6 +1534,19 @@
     "description": "{type, select, word {Choisissez un découpage suggéré pour ce mot.} other {Choisissez un découpage suggéré pour cette ligne.}}",
     "apply": "Appliquer la suggestion",
     "noSuggestions": "Aucune suggestion de découpage automatique pour ce contenu."
+  },
+  "changelogScreen": {
+    "viewLabel": "Afficher",
+    "viewAll": "Tout",
+    "viewHighlights": "Points forts",
+    "highlights": "Points forts",
+    "latest": "Dernière",
+    "sectionNew": "Nouveau",
+    "sectionChanged": "Modifié",
+    "sectionFixed": "Corrigé",
+    "empty": "Aucune version à afficher.",
+    "versions": "Versions",
+    "earlier": "Plus anciennes"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
