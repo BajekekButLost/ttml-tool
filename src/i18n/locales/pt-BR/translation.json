@@ -3,6 +3,12 @@
     "changelogTitle": "Registro de alterações e atualizações",
     "viewCommits": "Ver commits no GitHub"
   },
+  "updatedToast": {
+    "message": "Atualizado para a v{version}",
+    "seeChanges": "Ver o que mudou",
+    "setting": "Mostrar o que mudou após uma atualização",
+    "settingDesc": "Na primeira vez que o app abrir em uma nova versão, mostra um aviso curto com um link para o registro de alterações."
+  },
   "app": {
     "error": {
       "title": "Ops, ocorreu um erro!",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Minimizar janela",
       "maximize": "Maximizar janela",
+      "restore": "Restaurar janela",
       "close": "Fechar janela"
     }
   },
@@ -286,6 +293,30 @@
       "noPreviousFound": "Nenhuma seção anterior correspondente com tempos encontrada.",
       "noMatchingLines": "Nenhuma linha desta seção corresponde à anterior, então nada foi copiado.",
       "copyPrevious": "Copiar tempos anteriores"
+    }
+  },
+  "logoColor": {
+    "title": "Cor do logotipo",
+    "description": "Escolha uma cor para o logotipo na barra de título e na tela de boas-vindas do guia.",
+    "descriptionDesktop": "Escolha uma cor para o ícone da janela e da barra de tarefas e, no Windows, para os atalhos da área de trabalho e do menu Iniciar.",
+    "colorLabel": "Cor",
+    "customLabel": "Cor personalizada do logotipo",
+    "designNote": "O logotipo só aparece com o design do Spicy Lyrics ativado.",
+    "presets": {
+      "default": "Padrão",
+      "defaultDesc": "A cor do próprio design",
+      "lilac": "Lilás",
+      "lilacDesc": "Do logotipo v3",
+      "purple": "Roxo",
+      "purpleDesc": "Do logotipo multicolorido",
+      "red": "Vermelho",
+      "redDesc": "Do logotipo v0.9",
+      "gold": "Dourado",
+      "green": "Verde",
+      "blue": "Azul",
+      "white": "Branco",
+      "custom": "Personalizada",
+      "customDesc": "Escolha qualquer cor"
     }
   },
   "common": {
@@ -614,6 +645,15 @@
         "accentNote": "O visual do Spicy Lyrics tem sua própria cor de destaque lavanda. Ative uma cor de destaque personalizada para usar outra.",
         "legacyDarkThemeNote": "Não tem efeito enquanto o visual do Spicy Lyrics estiver ativado.",
         "fontNote": "Geist, do visual do Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Efeitos visuais",
+        "description": "Leve remove desfoque, brilhos, animações das caixas de diálogo e o fundo animado da prévia, para o app continuar fluido onde eles são desenhados devagar. Também desativa o desfoque de vidro.",
+        "auto": "Automático",
+        "full": "Completo",
+        "lite": "Leve",
+        "autoLite": "Usando Leve, porque o Linux desenha esses efeitos devagar.",
+        "autoFull": "Usando Completo."
       },
       "presets": {
         "missingBackground": "A imagem de fundo desta predefinição não está disponível neste dispositivo. A imagem atual foi mantida.",
@@ -971,7 +1011,9 @@
   "settingsDialog": {
     "search": "Buscar nas configurações",
     "clearSearch": "Limpar pesquisa",
-    "noSearchResults": "Nenhuma categoria correspondente",
+    "matchCount": "Configurações correspondentes: {count}",
+    "noResults": "Nenhuma configuração corresponde a \"{query}\"",
+    "noResultsDesc": "Tente outra palavra ou limpe a busca.",
     "title": "Preferências",
     "common": {
       "latencyTest": "Teste de latência de áudio/entrada"
@@ -1043,18 +1085,14 @@
     "tab": {
       "common": "Geral",
       "appearance": "Aparência",
-      "audio": "Áudio",
-      "keybindings": "Atalhos",
-      "spectrogram": "Espectrograma",
+      "editing": "Edição",
+      "syncing": "Sincronização",
+      "preview": "Prévia",
+      "audioSpectrogram": "Áudio e espectrograma",
+      "importFiles": "Importação e arquivos",
       "backup": "Cópia de segurança",
-      "editor": "Editor e sincronização",
-      "files": "Arquivos e armazenamento"
-    },
-    "page": {
-      "generalDesc": "Idioma, privacidade e comportamento geral do app.",
-      "editorDesc": "Entrada de tempos, comportamento da sincronização e indicações visuais.",
-      "filesDesc": "Limpeza na importação, histórico de salvamento automático e backups portáteis.",
-      "audioDesc": "Reprodução, equalizador e exibição do espectrograma."
+      "keybindings": "Atalhos",
+      "changelog": "Novidades"
     }
   },
   "autoSegmentApplied": "Segmentado automaticamente com {engine}",
@@ -1256,6 +1294,16 @@
     "applyToAll": "Substituir todas as palavras idênticas",
     "caseSensitive": "Diferenciar maiúsculas e minúsculas"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Substituir combinação de palavras",
+    "description": "Clique em uma palavra para editar o texto. Os tempos permanecem iguais.",
+    "word": "Palavra {index}",
+    "reorderWord": "Mover palavra {index}",
+    "reorderHint": "Arraste uma alça para mudar a ordem ou foque uma palavra e pressione Alt+Esquerda/Direita.",
+    "position": "Posição {index} de {count}",
+    "applyToAll": "Substituir todas as combinações correspondentes",
+    "adjacentOnly": "Selecione palavras ou sílabas adjacentes na mesma linha para substituir uma combinação."
+  },
   "replaceRomanizationDialog": {
     "title": "Substituir romanização",
     "description": "Nova romanização:",
@@ -1367,6 +1415,14 @@
   "autosave": {
     "legacyProjectName": "Instantâneos antigos",
     "untitledProjectName": "Projeto sem título"
+  },
+  "didYouKnow": {
+    "title": "Você sabia?",
+    "repeatedSection": "Linhas repetidas podem reaproveitar a sincronização anterior. Selecione as linhas anteriores, coloque o cursor de reprodução onde a repetição começa e use Duplicar no cursor de reprodução.",
+    "splitInTimeMode": "Você pode dividir uma palavra sem sair do modo Sincronização: segure {modifier} e clique duas vezes nela.",
+    "turnOff": "Não mostrar dicas",
+    "setting": "Mostrar dicas",
+    "settingDesc": "Quando você faz à mão algo que tem um jeito mais rápido, mostra uma dica curta. Cada dica aparece só uma vez."
   },
   "time": {
     "daysAgo": "{count, plural, one {Há # dia} many {Há # dias} other {Há # dias}}",
@@ -1485,6 +1541,19 @@
     "description": "{type, select, word {Escolha uma divisão sugerida para esta palavra.} other {Escolha uma divisão sugerida para esta linha.}}",
     "apply": "Aplicar sugestão",
     "noSuggestions": "Nenhuma sugestão de divisão automática disponível para este conteúdo."
+  },
+  "changelogScreen": {
+    "viewLabel": "Mostrar",
+    "viewAll": "Tudo",
+    "viewHighlights": "Destaques",
+    "highlights": "Destaques",
+    "latest": "Mais recente",
+    "sectionNew": "Novo",
+    "sectionChanged": "Alterado",
+    "sectionFixed": "Corrigido",
+    "empty": "Nenhuma versão para mostrar.",
+    "versions": "Versões",
+    "earlier": "Anteriores"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

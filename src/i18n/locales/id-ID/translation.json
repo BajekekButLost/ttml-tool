@@ -3,6 +3,12 @@
     "changelogTitle": "Log perubahan & pembaruan",
     "viewCommits": "Lihat commit di GitHub"
   },
+  "updatedToast": {
+    "message": "Diperbarui ke v{version}",
+    "seeChanges": "Lihat perubahan",
+    "setting": "Tampilkan perubahan setelah pembaruan",
+    "settingDesc": "Saat aplikasi pertama kali dibuka di versi baru, tampilkan pemberitahuan singkat dengan tautan ke log perubahan."
+  },
   "app": {
     "error": {
       "title": "Aduh, terjadi kesalahan!",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Perkecil jendela",
       "maximize": "Perbesar jendela",
+      "restore": "Pulihkan jendela",
       "close": "Tutup jendela"
     }
   },
@@ -286,6 +293,30 @@
       "noPreviousFound": "Tidak ditemukan bagian sebelumnya yang cocok dan sudah diberi waktu.",
       "noMatchingLines": "Tidak ada baris di bagian ini yang cocok dengan bagian sebelumnya, jadi tidak ada yang disalin.",
       "copyPrevious": "Salin waktu sebelumnya"
+    }
+  },
+  "logoColor": {
+    "title": "Warna logo",
+    "description": "Pilih warna logo di bilah judul dan di layar sambutan panduan.",
+    "descriptionDesktop": "Pilih warna ikon jendela dan bilah tugas aplikasi, dan di Windows juga pintasan di desktop dan menu Start.",
+    "colorLabel": "Warna",
+    "customLabel": "Warna logo kustom",
+    "designNote": "Logo hanya tampil saat desain Spicy Lyrics aktif.",
+    "presets": {
+      "default": "Bawaan",
+      "defaultDesc": "Warna bawaan desain",
+      "lilac": "Lila",
+      "lilacDesc": "Dari logo v3",
+      "purple": "Ungu",
+      "purpleDesc": "Dari logo multiwarna",
+      "red": "Merah",
+      "redDesc": "Dari logo v0.9",
+      "gold": "Emas",
+      "green": "Hijau",
+      "blue": "Biru",
+      "white": "Putih",
+      "custom": "Kustom",
+      "customDesc": "Pilih warna apa saja"
     }
   },
   "common": {
@@ -614,6 +645,15 @@
         "accentNote": "Desain Spicy Lyrics punya warna aksen lavender sendiri. Aktifkan warna aksen kustom untuk memakai warna lain.",
         "legacyDarkThemeNote": "Tidak berpengaruh selama desain Spicy Lyrics aktif.",
         "fontNote": "Geist, dari desain Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Efek visual",
+        "description": "Ringan menghapus blur, cahaya, animasi dialog, dan latar pratinjau yang bergerak, agar aplikasi tetap mulus di tempat efek tersebut lambat digambar. Ini juga mematikan blur kaca.",
+        "auto": "Otomatis",
+        "full": "Penuh",
+        "lite": "Ringan",
+        "autoLite": "Memakai Ringan, karena Linux menggambar efek ini dengan lambat.",
+        "autoFull": "Memakai Penuh."
       },
       "presets": {
         "missingBackground": "Gambar latar preset ini tidak tersedia di perangkat ini. Gambar saat ini dipertahankan.",
@@ -971,7 +1011,9 @@
   "settingsDialog": {
     "search": "Cari pengaturan",
     "clearSearch": "Hapus pencarian",
-    "noSearchResults": "Tidak ada kategori yang cocok",
+    "matchCount": "Pengaturan yang cocok: {count}",
+    "noResults": "Tidak ada pengaturan yang cocok dengan \"{query}\"",
+    "noResultsDesc": "Coba kata lain, atau hapus pencarian.",
     "title": "Preferensi",
     "common": {
       "latencyTest": "Tes latensi audio/input"
@@ -1043,18 +1085,14 @@
     "tab": {
       "common": "Umum",
       "appearance": "Penampilan",
-      "audio": "Audio",
-      "keybindings": "Pintasan",
-      "spectrogram": "Spektrogram",
+      "editing": "Pengeditan",
+      "syncing": "Sinkronisasi",
+      "preview": "Pratinjau",
+      "audioSpectrogram": "Audio & spektrogram",
+      "importFiles": "Impor & file",
       "backup": "Cadangan",
-      "editor": "Editor & sinkronisasi",
-      "files": "File & penyimpanan"
-    },
-    "page": {
-      "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
-      "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
-      "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
-      "audioDesc": "Pemutaran, ekualiser, dan tampilan spektrogram."
+      "keybindings": "Pintasan",
+      "changelog": "Log perubahan"
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",
@@ -1256,6 +1294,16 @@
     "applyToAll": "Ganti semua kata yang sama",
     "caseSensitive": "Cocokkan huruf besar/kecil"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Ganti kombinasi kata",
+    "description": "Klik kata untuk mengedit teksnya. Waktu tetap sama.",
+    "word": "Kata {index}",
+    "reorderWord": "Pindahkan kata {index}",
+    "reorderHint": "Seret pegangan untuk mengubah urutan, atau fokuskan kata dan tekan Alt+Kiri/Kanan.",
+    "position": "Posisi {index} dari {count}",
+    "applyToAll": "Ganti semua kombinasi yang cocok",
+    "adjacentOnly": "Pilih kata atau suku kata yang bersebelahan dalam satu baris untuk mengganti kombinasi."
+  },
   "replaceRomanizationDialog": {
     "title": "Ganti romanisasi",
     "description": "Romanisasi baru:",
@@ -1367,6 +1415,14 @@
   "autosave": {
     "legacyProjectName": "Snapshot lama",
     "untitledProjectName": "Proyek tanpa nama"
+  },
+  "didYouKnow": {
+    "title": "Tahukah kamu?",
+    "repeatedSection": "Baris yang berulang bisa memakai ulang timing sebelumnya. Pilih baris sebelumnya, taruh penunjuk putar di awal pengulangan, lalu gunakan Gandakan di penunjuk putar.",
+    "splitInTimeMode": "Kamu bisa memecah kata tanpa keluar dari mode Sinkronisasi: tahan {modifier} lalu klik dua kali kata itu.",
+    "turnOff": "Jangan tampilkan tips",
+    "setting": "Tampilkan tips",
+    "settingDesc": "Saat kamu mengerjakan sesuatu secara manual yang punya cara lebih cepat, tampilkan tips singkat. Setiap tips hanya muncul sekali."
   },
   "time": {
     "daysAgo": "{count, plural, other {# hari yang lalu}}",
@@ -1485,6 +1541,19 @@
     "description": "{type, select, word {Pilih pemisahan yang disarankan untuk kata ini.} other {Pilih pemisahan yang disarankan untuk baris ini.}}",
     "apply": "Terapkan saran",
     "noSuggestions": "Tidak ada saran pemisahan otomatis yang tersedia untuk konten ini."
+  },
+  "changelogScreen": {
+    "viewLabel": "Tampilkan",
+    "viewAll": "Semua",
+    "viewHighlights": "Sorotan",
+    "highlights": "Sorotan",
+    "latest": "Terbaru",
+    "sectionNew": "Baru",
+    "sectionChanged": "Diubah",
+    "sectionFixed": "Diperbaiki",
+    "empty": "Tidak ada rilis untuk ditampilkan.",
+    "versions": "Versi",
+    "earlier": "Sebelumnya"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
