@@ -1054,7 +1054,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Cadangan",
       "editor": "Editor & sinkronisasi",
-      "files": "File & penyimpanan"
+      "files": "File & penyimpanan",
+      "changelog": "Log perubahan"
     },
     "page": {
       "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
@@ -1499,6 +1500,17 @@
     "description": "{type, select, word {Pilih pemisahan yang disarankan untuk kata ini.} other {Pilih pemisahan yang disarankan untuk baris ini.}}",
     "apply": "Terapkan saran",
     "noSuggestions": "Tidak ada saran pemisahan otomatis yang tersedia untuk konten ini."
+  },
+  "changelogScreen": {
+    "viewLabel": "Tampilkan",
+    "viewAll": "Semua",
+    "viewHighlights": "Sorotan",
+    "highlights": "Sorotan",
+    "latest": "Terbaru",
+    "sectionNew": "Baru",
+    "sectionChanged": "Diubah",
+    "sectionFixed": "Diperbaiki",
+    "empty": "Tidak ada rilis untuk ditampilkan."
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

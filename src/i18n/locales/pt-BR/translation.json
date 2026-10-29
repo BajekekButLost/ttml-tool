@@ -1054,7 +1054,8 @@
       "spectrogram": "Espectrograma",
       "backup": "Cópia de segurança",
       "editor": "Editor e sincronização",
-      "files": "Arquivos e armazenamento"
+      "files": "Arquivos e armazenamento",
+      "changelog": "Novidades"
     },
     "page": {
       "generalDesc": "Idioma, privacidade e comportamento geral do app.",
@@ -1499,6 +1500,17 @@
     "description": "{type, select, word {Escolha uma divisão sugerida para esta palavra.} other {Escolha uma divisão sugerida para esta linha.}}",
     "apply": "Aplicar sugestão",
     "noSuggestions": "Nenhuma sugestão de divisão automática disponível para este conteúdo."
+  },
+  "changelogScreen": {
+    "viewLabel": "Mostrar",
+    "viewAll": "Tudo",
+    "viewHighlights": "Destaques",
+    "highlights": "Destaques",
+    "latest": "Mais recente",
+    "sectionNew": "Novo",
+    "sectionChanged": "Alterado",
+    "sectionFixed": "Corrigido",
+    "empty": "Nenhuma versão para mostrar."
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

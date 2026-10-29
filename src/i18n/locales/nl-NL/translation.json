@@ -1054,7 +1054,8 @@
       "spectrogram": "Spectrogram",
       "backup": "Back-up",
       "editor": "Editor en synchronisatie",
-      "files": "Bestanden en opslag"
+      "files": "Bestanden en opslag",
+      "changelog": "Wijzigingen"
     },
     "page": {
       "generalDesc": "Taal, privacy en algemeen gedrag van de app.",
@@ -1499,6 +1500,17 @@
     "description": "{type, select, word {Kies een voorgestelde splitsing voor dit woord.} other {Kies een voorgestelde splitsing voor deze regel.}}",
     "apply": "Suggestie toepassen",
     "noSuggestions": "Er zijn geen automatische splitsingssuggesties beschikbaar voor deze inhoud."
+  },
+  "changelogScreen": {
+    "viewLabel": "Toon",
+    "viewAll": "Alles",
+    "viewHighlights": "Hoogtepunten",
+    "highlights": "Hoogtepunten",
+    "latest": "Nieuwste",
+    "sectionNew": "Nieuw",
+    "sectionChanged": "Gewijzigd",
+    "sectionFixed": "Opgelost",
+    "empty": "Geen versies om te tonen."
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

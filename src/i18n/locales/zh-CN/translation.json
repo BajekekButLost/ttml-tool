@@ -1054,7 +1054,8 @@
       "spectrogram": "频谱图",
       "backup": "备份",
       "editor": "编辑与打轴",
-      "files": "文件与存储"
+      "files": "文件与存储",
+      "changelog": "更新日志"
     },
     "page": {
       "generalDesc": "语言、隐私及应用全局行为。",
@@ -1499,6 +1500,17 @@
     "description": "{type, select, word {为这个字选择建议的拆分方式。} other {为这一行选择建议的拆分方式。}}",
     "apply": "应用建议",
     "noSuggestions": "没有适用于此内容的自动拆分建议。"
+  },
+  "changelogScreen": {
+    "viewLabel": "显示",
+    "viewAll": "全部",
+    "viewHighlights": "亮点",
+    "highlights": "亮点",
+    "latest": "最新",
+    "sectionNew": "新增",
+    "sectionChanged": "变更",
+    "sectionFixed": "修复",
+    "empty": "没有可显示的版本。"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

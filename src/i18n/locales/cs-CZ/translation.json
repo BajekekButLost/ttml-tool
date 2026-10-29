@@ -1054,7 +1054,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Zálohování",
       "editor": "Editor a synchronizace",
-      "files": "Soubory a úložiště"
+      "files": "Soubory a úložiště",
+      "changelog": "Seznam změn"
     },
     "page": {
       "generalDesc": "Jazyk, soukromí a chování celé aplikace.",
@@ -1499,6 +1500,17 @@
     "description": "{type, select, word {Vyberte navržené rozdělení pro toto slovo.} other {Vyberte navržené rozdělení pro tento řádek.}}",
     "apply": "Použít návrh",
     "noSuggestions": "Pro tento obsah nejsou k dispozici žádné automatické návrhy rozdělení."
+  },
+  "changelogScreen": {
+    "viewLabel": "Zobrazit",
+    "viewAll": "Vše",
+    "viewHighlights": "Hlavní novinky",
+    "highlights": "Hlavní novinky",
+    "latest": "Nejnovější",
+    "sectionNew": "Nové",
+    "sectionChanged": "Změněno",
+    "sectionFixed": "Opraveno",
+    "empty": "Žádná vydání k zobrazení."
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
