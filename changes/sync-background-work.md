@@ -14,3 +14,5 @@ Avoid unrelated waveform and project-header updates on sync presses. Coalesce pr
 Prepare time-stretched audio in a dedicated worker so expensive processing cannot block the audio device callback. Keep buffered playback bounded and preserve exact seeking, pitch, and audition endpoints.
 
 Prepare custom segmentation matchers once per batch instead of rebuilding them for every word.
+
+Cancel obsolete decoder-worker jobs on audio replacement, remove redundant playback update timers, and move Discord IPC off the desktop event thread.

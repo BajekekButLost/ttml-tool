@@ -13,6 +13,7 @@ vi.mock("./workers/audio-worker-client", () => ({
 	AudioWorkerClient: class {
 		readMetadata = worker.readMetadata;
 		transcodeToWav = worker.transcodeToWav;
+		cancelPending = vi.fn();
 	},
 }));
 vi.mock("$/utils/logging", () => ({ log: vi.fn() }));
@@ -189,6 +190,17 @@ const flush = async () => {
 };
 
 describe("PCM engine lifecycle", () => {
+	it("does not keep a redundant music update timer while playing", async () => {
+		await engine.loadMusic(new Blob());
+		const play = engine.play();
+		await flush();
+		FakeNode.nodes[0].report();
+		await play;
+		await vi.advanceTimersByTimeAsync(100);
+		expect(engine.musicPlaying).toBe(true);
+		expect(vi.getTimerCount()).toBe(0);
+	});
+
 	it("loads a suspended song and waits for initialization before starting playback", async () => {
 		context.state = "suspended";
 		FakeNode.autoReady = false;

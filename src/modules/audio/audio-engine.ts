@@ -492,8 +492,7 @@ export class AudioEngine extends EventTarget {
 				this.playing = false;
 				this.dispatchEvent(new Event("music-timeupdate"));
 				this.dispatchEvent(new Event("music-pause"));
-			} else if (this.playing)
-				this.dispatchEvent(new Event("music-timeupdate"));
+			}
 			if (hasEnded(this.auditionEndReport)) this.stopAudition();
 			else if (this.auditionPlaying) {
 				globalStore.set(
@@ -502,7 +501,6 @@ export class AudioEngine extends EventTarget {
 				);
 			}
 			if (
-				this.playing ||
 				this.auditionPlaying ||
 				this.musicEndReport ||
 				this.auditionEndReport
@@ -526,6 +524,7 @@ export class AudioEngine extends EventTarget {
 		++this.loadGeneration;
 		this.loadAbort?.abort();
 		this.loadAbort = null;
+		this.workerClient.cancelPending();
 		this.pauseMusic();
 		this.post({ type: "destroy" });
 		this.node?.disconnect();

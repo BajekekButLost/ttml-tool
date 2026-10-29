@@ -57,6 +57,7 @@ export function DiscordPresence() {
 	const [inactive, setInactive] = useState(false);
 	const nativeUpdateInFlight = useRef(false);
 	const lastNativePayload = useRef<string | null>(null);
+	const nativeEpoch = useRef(0);
 	const trackerRef = useRef<ProjectTimeTracker | null>(null);
 	if (!trackerRef.current) {
 		trackerRef.current = new ProjectTimeTracker(window.localStorage);
@@ -163,9 +164,10 @@ export function DiscordPresence() {
 			if (nativeUpdateInFlight.current || lastNativePayload.current === key)
 				return;
 			nativeUpdateInFlight.current = true;
+			const epoch = nativeEpoch.current;
 			invoke("set_discord_activity", { payload })
 				.then(() => {
-					lastNativePayload.current = key;
+					if (nativeEpoch.current === epoch) lastNativePayload.current = key;
 				})
 				.catch((error) => log("Unable to update Discord presence", error))
 				.finally(() => {
@@ -199,6 +201,7 @@ export function DiscordPresence() {
 
 	useEffect(() => {
 		if (!isTauri || enabled) return;
+		nativeEpoch.current++;
 		lastNativePayload.current = null;
 		invoke("clear_discord_activity").catch((error) =>
 			log("Unable to clear Discord presence", error),
