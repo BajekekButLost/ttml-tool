@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Minimalizuj okno",
       "maximize": "Maksymalizuj okno",
+      "restore": "Przywróć okno",
       "close": "Zamknij okno"
     }
   },

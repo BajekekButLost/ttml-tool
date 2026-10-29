@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Minimizează fereastra",
       "maximize": "Maximizează fereastra",
+      "restore": "Restabilește fereastra",
       "close": "Închide fereastra"
     }
   },

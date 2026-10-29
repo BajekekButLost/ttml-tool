@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Riduci a icona",
       "maximize": "Ingrandisci finestra",
+      "restore": "Ripristina finestra",
       "close": "Chiudi finestra"
     }
   },

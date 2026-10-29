@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Minimér vindue",
       "maximize": "Maksimér vindue",
+      "restore": "Gendan vindue",
       "close": "Luk vindue"
     }
   },

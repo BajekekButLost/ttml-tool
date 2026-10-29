@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Pencereyi simge durumuna küçült",
       "maximize": "Pencereyi büyüt",
+      "restore": "Pencereyi eski boyutuna getir",
       "close": "Pencereyi kapat"
     }
   },

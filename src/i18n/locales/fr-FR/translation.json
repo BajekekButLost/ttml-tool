@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Réduire la fenêtre",
       "maximize": "Agrandir la fenêtre",
+      "restore": "Restaurer la fenêtre",
       "close": "Fermer la fenêtre"
     }
   },

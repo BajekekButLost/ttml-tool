@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Minimalizovať okno",
       "maximize": "Maximalizovať okno",
+      "restore": "Obnoviť okno",
       "close": "Zavrieť okno"
     }
   },

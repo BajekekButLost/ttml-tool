@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Perkecil jendela",
       "maximize": "Perbesar jendela",
+      "restore": "Pulihkan jendela",
       "close": "Tutup jendela"
     }
   },

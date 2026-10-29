@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Venster minimaliseren",
       "maximize": "Venster maximaliseren",
+      "restore": "Venster herstellen",
       "close": "Venster sluiten"
     }
   },

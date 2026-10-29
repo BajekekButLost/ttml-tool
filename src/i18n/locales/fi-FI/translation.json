@@ -23,6 +23,7 @@
     "window": {
       "minimize": "Pienennä ikkuna",
       "maximize": "Suurenna ikkuna",
+      "restore": "Palauta ikkuna",
       "close": "Sulje ikkuna"
     }
   },
