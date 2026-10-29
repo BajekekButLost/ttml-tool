@@ -34,7 +34,10 @@ export function updateVisibleSpectrogramTiles({
 	fftSize: number;
 	setVisibleTiles: Dispatch<SetStateAction<TileComponentProps[]>>;
 }) {
-	if (!audioBuffer || !scrollContainerRef.current) return;
+	if (!audioBuffer || !scrollContainerRef.current || containerWidth <= 0) {
+		setVisibleTiles((previous) => (previous.length === 0 ? previous : []));
+		return;
+	}
 
 	const pixelsPerSecond = zoom;
 	const tileDisplayWidthPx = TILE_DURATION_S * pixelsPerSecond;
@@ -49,25 +52,36 @@ export function updateVisibleSpectrogramTiles({
 	const newVisibleTiles: TileComponentProps[] = [];
 
 	const currentPaletteId = palette.id;
-
-	for (let i = firstVisibleIndex - 2; i <= lastVisibleIndex + 2; i++) {
-		if (i < 0 || i >= totalTiles) continue;
-
-		const cacheId = `tile-${i}`;
-		const targetLodWidth =
-			LOD_WIDTHS.find((w) => w >= tileDisplayWidthPx) ||
-			LOD_WIDTHS[LOD_WIDTHS.length - 1];
-
+	const targetLodWidth =
+		LOD_WIDTHS.find((w) => w >= tileDisplayWidthPx) ||
+		LOD_WIDTHS[LOD_WIDTHS.length - 1];
+	const prefetch = targetLodWidth * dataHeight * 4 > 16 * 1024 * 1024 ? 1 : 2;
+	const indices: number[] = [];
+	for (
+		let i = firstVisibleIndex - prefetch;
+		i <= lastVisibleIndex + prefetch;
+		i++
+	) {
+		if (i >= 0 && i < totalTiles) indices.push(i);
+	}
+	const center = (firstVisibleIndex + lastVisibleIndex) / 2;
+	for (const i of [...indices].sort(
+		(a, b) => Math.abs(a - center) - Math.abs(b - center),
+	)) {
 		requestTileIfNeeded({
 			tileIndex: i,
 			startTime: i * TILE_DURATION_S,
-			endTime: i * TILE_DURATION_S + TILE_DURATION_S,
-			gain: gain,
+			endTime: (i + 1) * TILE_DURATION_S,
+			gain,
 			height: dataHeight,
 			tileWidthPx: targetLodWidth,
 			paletteId: currentPaletteId,
-			fftSize: fftSize,
+			fftSize,
 		});
+	}
+
+	for (const i of indices) {
+		const cacheId = `tile-${i}`;
 
 		const cacheEntry = tileCache.current.get(cacheId);
 		const currentBitmap = cacheEntry?.bitmap;

@@ -1518,6 +1518,23 @@
     "openContributorProfile": "GitHub-profiel van {name} openen",
     "unknown": "Onbekend"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Aparte sporen",
+    "settingDesc": "Toon achtergrondregels in een eigen spoor onder de hoofdregels. Sporen zijn alleen voor weergave: wijzig de rol van een regel in de bewerkmodus.",
+    "menu": "Sporen",
+    "visibleLanes": "Sporen tonen",
+    "duetLane": "Apart duetspoor",
+    "lane": {
+      "main": "Hoofd",
+      "duet": "Duet",
+      "bg": "Achtergrond"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Einde van de regel en het laatste woord. Sleep met Alt om er maar één te verplaatsen.",
+    "wordEndHandle": "Einde van het laatste woord",
+    "lineEndHandle": "Regeleinde"
+  },
   "spectrogram": {
     "invalidEndTime": "Kan deze eindtijd niet selecteren",
     "noAudioLoaded": "Laad een audiobestand om het spectrogram te tonen",
@@ -1533,6 +1550,17 @@
       "4096": "4096 (meeste detail)"
     },
     "height": "Weergavehoogte"
+  },
+  "spectrogramFollow": {
+    "toggle": "Afspeelkop volgen",
+    "shortcut": "Spectrogram - Afspeelkop volgen aan/uit",
+    "setting": "Afspeelkop volgen",
+    "settingDesc": "Scrolt het spectrogram zodat de afspeelkop zichtbaar blijft. Scrollen of slepen pauzeert dit tot je op afspelen drukt of het even laat rusten.",
+    "style": "Volgstijl",
+    "page": "Per pagina",
+    "pageDesc": "Springt vooruit wanneer de afspeelkop uit beeld gaat.",
+    "continuous": "Doorlopend",
+    "continuousDesc": "Scrolt mee met de afspeelkop en houdt die in het midden."
   },
   "export": {
     "recoveryUntimed": "Deze herstelexport bevat ongetimede songteksten. Controleer de timing voordat je instuurt.",

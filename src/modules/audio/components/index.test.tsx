@@ -8,7 +8,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("$/hooks/useLoadAudio", () => ({
 	useLoadAudio: () => ({ loadAudio: loadAudio }),
 }));
-const { loadAudio } = vi.hoisted(() => ({ loadAudio: vi.fn() }));
+const { loadAudio, renderSpectrogram } = vi.hoisted(() => ({
+	loadAudio: vi.fn(),
+	renderSpectrogram: vi.fn(() => null),
+}));
 vi.mock("$/modules/audio/audio-engine", () => ({
 	audioEngine: {
 		musicLoaded: false,
@@ -25,7 +28,7 @@ vi.mock("$/modules/keyboard/components/AuditionKeyBinding", () => ({
 	AuditionKeyBinding: () => null,
 }));
 vi.mock("$/modules/spectrogram/components/AudioSpectrogram", () => ({
-	AudioSpectrogram: () => null,
+	AudioSpectrogram: renderSpectrogram,
 }));
 vi.mock("$/modules/audio/components/AudioSlider", () => ({
 	AudioSlider: () => null,
@@ -83,6 +86,18 @@ describe("audio and playback popover", () => {
 		if (!trigger) throw new Error("Audio and playback button missing");
 		await act(async () => trigger.click());
 	};
+
+	it("mounts the spectrogram only when expanded", async () => {
+		expect(renderSpectrogram).not.toHaveBeenCalled();
+		const trigger = container.querySelector<HTMLButtonElement>(
+			'button[aria-label="Expand / collapse spectrogram"]',
+		);
+		if (!trigger) throw new Error("Spectrogram button missing");
+		await act(async () => trigger.click());
+		expect(renderSpectrogram).toHaveBeenCalledOnce();
+		await act(async () => trigger.click());
+		expect(renderSpectrogram).toHaveBeenCalledOnce();
+	});
 
 	it("opens with a click, stays open while adjusting, and closes on Escape", async () => {
 		await openPopover();

@@ -1518,6 +1518,23 @@
     "openContributorProfile": "Otvoriť GitHub profil používateľa {name}",
     "unknown": "Neznámy"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Oddelené stopy",
+    "settingDesc": "Zobrazí sprievodné riadky vo vlastnej stope pod hlavnými riadkami. Stopy slúžia len na zobrazenie: rolu riadka zmeníte v režime úprav.",
+    "menu": "Stopy",
+    "visibleLanes": "Zobraziť stopy",
+    "duetLane": "Samostatná stopa pre duet",
+    "lane": {
+      "main": "Hlavná",
+      "duet": "Duet",
+      "bg": "Sprievod"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Koniec riadka a posledného slova. Ťahaním s Alt posuniete len jedno.",
+    "wordEndHandle": "Koniec posledného slova",
+    "lineEndHandle": "Koniec riadka"
+  },
   "spectrogram": {
     "invalidEndTime": "Nemožno vybrať tento čas konca",
     "noAudioLoaded": "Načítajte zvukový súbor na zobrazenie spektrogramu",
@@ -1533,6 +1550,17 @@
       "4096": "4096 (najviac detailov)"
     },
     "height": "Výška zobrazenia"
+  },
+  "spectrogramFollow": {
+    "toggle": "Sledovať prehrávaciu hlavu",
+    "shortcut": "Spektrogram – zapnúť/vypnúť sledovanie prehrávacej hlavy",
+    "setting": "Sledovať prehrávaciu hlavu",
+    "settingDesc": "Posúva spektrogram tak, aby prehrávacia hlava zostala viditeľná. Posúvanie alebo ťahanie sledovanie pozastaví, kým nespustíte prehrávanie alebo chvíľu nepočkáte.",
+    "style": "Spôsob sledovania",
+    "page": "Po stránkach",
+    "pageDesc": "Skočí dopredu, keď prehrávacia hlava opustí zobrazenie.",
+    "continuous": "Plynulo",
+    "continuousDesc": "Posúva sa s prehrávacou hlavou a drží ju v strede."
   },
   "export": {
     "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Pred odoslaním skontrolujte časovanie.",

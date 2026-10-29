@@ -1518,6 +1518,23 @@
     "openContributorProfile": "Abrir o perfil do GitHub de {name}",
     "unknown": "Desconhecido"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Faixas separadas",
+    "settingDesc": "Mostra as linhas de vocais de apoio em uma faixa própria abaixo das linhas principais. As faixas são só para visualização: mude a função de uma linha no modo de edição.",
+    "menu": "Faixas",
+    "visibleLanes": "Mostrar faixas",
+    "duetLane": "Faixa separada para dueto",
+    "lane": {
+      "main": "Principal",
+      "duet": "Dueto",
+      "bg": "Apoio"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fim da linha e da última palavra. Arraste com Alt para mover só um.",
+    "wordEndHandle": "Fim da última palavra",
+    "lineEndHandle": "Fim da linha"
+  },
   "spectrogram": {
     "invalidEndTime": "Não é possível selecionar este tempo de fim",
     "noAudioLoaded": "Por favor, carregue um arquivo de áudio para renderizar o espectrograma",
@@ -1533,6 +1550,17 @@
       "4096": "4096 (máximo de detalhes)"
     },
     "height": "Altura de exibição"
+  },
+  "spectrogramFollow": {
+    "toggle": "Seguir o cursor de reprodução",
+    "shortcut": "Espectrograma - Ativar/desativar seguir o cursor de reprodução",
+    "setting": "Seguir o cursor de reprodução",
+    "settingDesc": "Rola o espectrograma para manter o cursor de reprodução visível. Rolar ou arrastar pausa isso até você dar play ou esperar um momento.",
+    "style": "Modo de acompanhamento",
+    "page": "Por página",
+    "pageDesc": "Salta adiante quando o cursor sai da visualização.",
+    "continuous": "Contínuo",
+    "continuousDesc": "Rola junto com o cursor e o mantém no centro."
   },
   "export": {
     "recoveryUntimed": "Esta exportação de recuperação contém letras sem sincronização. Verifique a sincronização antes de enviar.",

@@ -1518,6 +1518,23 @@
     "openContributorProfile": "Apri il profilo GitHub di {name}",
     "unknown": "Sconosciuto"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Tracce separate",
+    "settingDesc": "Mostra i versi dei cori su una traccia propria sotto i versi principali. Le tracce servono solo alla visualizzazione: cambia il ruolo di un verso in modalità modifica.",
+    "menu": "Tracce",
+    "visibleLanes": "Mostra tracce",
+    "duetLane": "Traccia separata per il duetto",
+    "lane": {
+      "main": "Principale",
+      "duet": "Duetto",
+      "bg": "Cori"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fine della riga e dell'ultima parola. Trascina con Alt per spostarne solo una.",
+    "wordEndHandle": "Fine dell'ultima parola",
+    "lineEndHandle": "Fine della riga"
+  },
   "spectrogram": {
     "invalidEndTime": "Impossibile selezionare questo tempo di fine",
     "noAudioLoaded": "Carica un file audio per generare lo spettrogramma",
@@ -1533,6 +1550,17 @@
       "4096": "4096 (massimo dettaglio)"
     },
     "height": "Altezza di visualizzazione"
+  },
+  "spectrogramFollow": {
+    "toggle": "Segui la testina",
+    "shortcut": "Spettrogramma: attiva/disattiva il segui testina",
+    "setting": "Segui la testina di riproduzione",
+    "settingDesc": "Scorre lo spettrogramma per tenere visibile la testina. Scorrere o trascinare lo mette in pausa finché non premi play o lo lasci per un momento.",
+    "style": "Modalità di scorrimento",
+    "page": "Per pagina",
+    "pageDesc": "Salta avanti quando la testina esce dalla vista.",
+    "continuous": "Continuo",
+    "continuousDesc": "Scorre con la testina e la tiene al centro."
   },
   "export": {
     "recoveryUntimed": "Questa esportazione di recupero contiene testi non sincronizzati. Controlla la sincronizzazione prima di inviarla.",

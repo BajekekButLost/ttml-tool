@@ -1518,6 +1518,23 @@
     "openContributorProfile": "Åbn GitHub-profilen for {name}",
     "unknown": "Ukendt"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Separate spor",
+    "settingDesc": "Vis baggrundslinjer i deres eget spor under hovedlinjerne. Spor er kun til visning: skift en linjes rolle i redigeringstilstand.",
+    "menu": "Spor",
+    "visibleLanes": "Vis spor",
+    "duetLane": "Separat duetspor",
+    "lane": {
+      "main": "Hoved",
+      "duet": "Duet",
+      "bg": "Baggrund"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Slut på linje og sidste ord. Træk med Alt for kun at flytte det ene.",
+    "wordEndHandle": "Slut på sidste ord",
+    "lineEndHandle": "Linjens slut"
+  },
   "spectrogram": {
     "invalidEndTime": "Kan ikke vælge denne sluttid",
     "noAudioLoaded": "Indlæs en lydfil for at vise spektrogrammet",
@@ -1533,6 +1550,17 @@
       "4096": "4096 (flest detaljer)"
     },
     "height": "Visningshøjde"
+  },
+  "spectrogramFollow": {
+    "toggle": "Følg afspilningshovedet",
+    "shortcut": "Spektrogram - Følg afspilningshovedet til/fra",
+    "setting": "Følg afspilningshovedet",
+    "settingDesc": "Ruller spektrogrammet, så afspilningshovedet forbliver synligt. Rulning eller træk sætter det på pause, indtil du trykker afspil eller venter et øjeblik.",
+    "style": "Følgemåde",
+    "page": "Side for side",
+    "pageDesc": "Springer frem, når afspilningshovedet forlader visningen.",
+    "continuous": "Løbende",
+    "continuousDesc": "Ruller med afspilningshovedet og holder det i midten."
   },
   "export": {
     "recoveryUntimed": "Denne gendannede eksport indeholder tekster uden timing. Tjek timingen, før du indsender.",
