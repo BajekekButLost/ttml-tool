@@ -8,3 +8,5 @@ Reduce background work while syncing lyrics
 Keep syncing responsive in long songs by avoiding repeated section searches and unnecessary word-highlight updates. Reuse unchanged preview tokens, animate only mounted preview rows, and release animation state for rows that leave the viewport.
 
 Release collapsed spectrogram workers and audio copies, bound bitmap memory and queued analysis, and discard obsolete tiles after settings change.
+
+Avoid unrelated waveform and project-header updates on sync presses. Coalesce presence publication and autosaves, and keep an older save from reporting newer edits as saved.

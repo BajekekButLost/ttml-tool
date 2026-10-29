@@ -101,6 +101,22 @@ describe("folder project saves", () => {
 		vi.clearAllMocks();
 	});
 
+	it("does not publish an old save into a newly opened project", async () => {
+		const store = makeStore(baseManifest);
+		fs.writeTextFile.mockImplementationOnce(async () => {
+			store.set(atoms.activeProjectDirAtom, "C:/Music/Other");
+		});
+		await saveLyricsOnly(store as never, (key) => key, { silent: true });
+		expect(store.set).not.toHaveBeenCalledWith(
+			atoms.markLyricsSavedAtom,
+			expect.anything(),
+		);
+		expect(store.set).not.toHaveBeenCalledWith(
+			atoms.activeProjectManifestAtom,
+			expect.anything(),
+		);
+	});
+
 	it("keeps the original lyric file when writing the replacement fails", async () => {
 		lyricIo.writeProjectLyricFile.mockRejectedValueOnce(new Error("disk full"));
 		const store = makeStore(baseManifest);
