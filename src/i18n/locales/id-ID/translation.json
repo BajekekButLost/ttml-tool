@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Warna logo",
-    "description": "Eksperimental. Pilih warna logo di bilah judul dan di layar sambutan panduan.",
+    "description": "Pilih warna logo di bilah judul dan di layar sambutan panduan.",
+    "descriptionDesktop": "Pilih warna ikon jendela dan bilah tugas aplikasi, dan di Windows juga pintasan di desktop dan menu Start.",
     "colorLabel": "Warna",
     "customLabel": "Warna logo kustom",
     "designNote": "Logo hanya tampil saat desain Spicy Lyrics aktif.",

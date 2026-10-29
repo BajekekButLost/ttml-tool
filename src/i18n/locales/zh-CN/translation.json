@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logo 颜色",
-    "description": "实验性功能。为标题栏和引导欢迎页中的 Logo 选择颜色。",
+    "description": "为标题栏和引导欢迎页中的 Logo 选择颜色。",
+    "descriptionDesktop": "为应用的窗口和任务栏图标选择颜色，在 Windows 上还包括桌面和开始菜单快捷方式。",
     "colorLabel": "颜色",
     "customLabel": "自定义 Logo 颜色",
     "designNote": "Logo 仅在启用 Spicy Lyrics 设计时显示。",

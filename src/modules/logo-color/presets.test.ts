@@ -6,28 +6,23 @@ import {
 } from "./presets";
 
 describe("resolveLogoColor", () => {
-	it("leaves the logo alone while the flag is off", () => {
-		expect(resolveLogoColor(false, "red", "#123456")).toBeNull();
-		expect(resolveLogoColor(false, "custom", "#123456")).toBeNull();
-	});
-
 	it("leaves the logo alone on the default preset", () => {
-		expect(resolveLogoColor(true, "default", "#123456")).toBeNull();
+		expect(resolveLogoColor("default", "#123456")).toBeNull();
 	});
 
 	it("returns the preset color", () => {
-		expect(resolveLogoColor(true, "red", "#123456")).toBe("#EF3838");
-		expect(resolveLogoColor(true, "lilac", "#123456")).toBe("#BEB4D9");
+		expect(resolveLogoColor("red", "#123456")).toBe("#EF3838");
+		expect(resolveLogoColor("lilac", "#123456")).toBe("#BEB4D9");
 	});
 
 	it("returns a valid custom color", () => {
-		expect(resolveLogoColor(true, "custom", "#12ab9F")).toBe("#12ab9F");
+		expect(resolveLogoColor("custom", "#12ab9F")).toBe("#12ab9F");
 	});
 
-	it("ignores invalid values from a restored backup", () => {
-		expect(resolveLogoColor(true, "custom", "red; color: blue")).toBeNull();
-		expect(resolveLogoColor(true, "custom", "#fff")).toBeNull();
-		expect(resolveLogoColor(true, "neon", "#123456")).toBeNull();
+	it("ignores invalid values from a restored backup or preset", () => {
+		expect(resolveLogoColor("custom", "red; color: blue")).toBeNull();
+		expect(resolveLogoColor("custom", "#fff")).toBeNull();
+		expect(resolveLogoColor("neon", "#123456")).toBeNull();
 	});
 });
 

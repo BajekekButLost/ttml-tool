@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logon väri",
-    "description": "Kokeellinen. Valitse logon väri otsikkopalkkiin ja oppaan aloitusnäyttöön.",
+    "description": "Valitse logon väri otsikkopalkkiin ja oppaan aloitusnäyttöön.",
+    "descriptionDesktop": "Valitse väri sovelluksen ikkuna- ja tehtäväpalkkikuvakkeelle sekä Windowsissa työpöydän ja Käynnistä-valikon pikakuvakkeille.",
     "colorLabel": "Väri",
     "customLabel": "Mukautettu logon väri",
     "designNote": "Logo näkyy vain, kun Spicy Lyrics -ulkoasu on käytössä.",

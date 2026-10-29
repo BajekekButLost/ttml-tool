@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logokleur",
-    "description": "Experimenteel. Kies een kleur voor het logo in de titelbalk en op het welkomstscherm van de gids.",
+    "description": "Kies een kleur voor het logo in de titelbalk en op het welkomstscherm van de gids.",
+    "descriptionDesktop": "Kies een kleur voor het venster- en taakbalkpictogram van de app en op Windows voor de snelkoppelingen op het bureaublad en in het menu Start.",
     "colorLabel": "Kleur",
     "customLabel": "Aangepaste logokleur",
     "designNote": "Het logo is alleen te zien als het Spicy Lyrics-ontwerp aan staat.",

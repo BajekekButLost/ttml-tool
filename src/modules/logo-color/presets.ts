@@ -1,7 +1,7 @@
 /**
  * Logo color presets. Values are plain `#rrggbb` rather than CSS tokens on
- * purpose: the desktop shortcut icon will be rasterized from the same value
- * outside the browser, where tokens don't resolve.
+ * purpose: the desktop app icon is rasterized from the same value in Rust
+ * (`src-tauri/src/app_icon.rs`), where tokens don't resolve.
  *
  * The history colors come from earlier `public/logo.svg` versions. Those
  * colored the tile; in the app only the glyph is tinted, so each one was
@@ -42,11 +42,9 @@ export function isHexColor(value: unknown): value is string {
  * can come from a restored backup, so anything unexpected counts as default.
  */
 export function resolveLogoColor(
-	enabled: boolean,
 	preset: string,
 	custom: string,
 ): string | null {
-	if (!enabled) return null;
 	if (preset === "custom") return isHexColor(custom) ? custom : null;
 	const match = LOGO_COLOR_PRESETS.find((item) => item.id === preset);
 	return match?.color ?? null;

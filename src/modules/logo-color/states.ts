@@ -1,17 +1,7 @@
 import { atomWithStorage } from "jotai/utils";
 import { DEFAULT_CUSTOM_LOGO_COLOR, type LogoColorPreset } from "./presets";
 
-/**
- * Feature flag, off by default. While it is off the logo keeps the design's
- * own color and nothing else in this module has any effect.
- */
-export const logoColorEnabledAtom = atomWithStorage<boolean>(
-	"logoColorEnabled",
-	false,
-	undefined,
-	{ getOnInit: true },
-);
-
+/** "default" leaves the logo and the app icon exactly as shipped. */
 export const logoColorPresetAtom = atomWithStorage<LogoColorPreset>(
 	"logoColorPreset",
 	"default",
@@ -29,7 +19,6 @@ export const logoColorCustomAtom = atomWithStorage<string>(
 
 /** The localStorage keys above, so the backup test can check they travel. */
 export const LOGO_COLOR_STORAGE_KEYS = [
-	"logoColorEnabled",
 	"logoColorPreset",
 	"logoColorCustom",
 ] as const;

@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Farba loga",
-    "description": "Experimentálne. Vyberte farbu loga v záhlaví okna a na úvodnej obrazovke sprievodcu.",
+    "description": "Vyberte farbu loga v záhlaví okna a na úvodnej obrazovke sprievodcu.",
+    "descriptionDesktop": "Vyberte farbu ikony okna a panela úloh a vo Windows aj odkazov na pracovnej ploche a v ponuke Štart.",
     "colorLabel": "Farba",
     "customLabel": "Vlastná farba loga",
     "designNote": "Logo sa zobrazuje len so zapnutým dizajnom Spicy Lyrics.",

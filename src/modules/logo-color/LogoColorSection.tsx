@@ -1,4 +1,4 @@
-import { Card, Flex, Switch, Text } from "@radix-ui/themes";
+import { Card, Flex, Text } from "@radix-ui/themes";
 import { useAtom, useAtomValue } from "jotai";
 import { useTranslation } from "react-i18next";
 import { BrandMark } from "$/components/BrandBand";
@@ -10,15 +10,10 @@ import {
 	isHexColor,
 	type LogoColorPreset,
 } from "./presets";
-import {
-	logoColorCustomAtom,
-	logoColorEnabledAtom,
-	logoColorPresetAtom,
-} from "./states";
+import { logoColorCustomAtom, logoColorPresetAtom } from "./states";
 
 export const LogoColorSection = () => {
 	const { t } = useTranslation();
-	const [enabled, setEnabled] = useAtom(logoColorEnabledAtom);
 	const [preset, setPreset] = useAtom(logoColorPresetAtom);
 	const [custom, setCustom] = useAtom(logoColorCustomAtom);
 	const spicyLyricsDesign = useAtomValue(spicyLyricsDesignAtom);
@@ -62,61 +57,52 @@ export const LogoColorSection = () => {
 		<Card>
 			<Flex direction="column" gap="3">
 				<Flex align="center" justify="between" gap="4">
-					<Flex direction="column" gap="1">
-						<Text as="label" htmlFor="logo-color-switch" weight="medium">
-							{t("logoColor.title", "Logo color")}
-						</Text>
-						<Text size="1" color="gray">
-							{t(
-								"logoColor.description",
-								"Experimental. Pick a color for the logo in the title bar and on the guide's welcome screen.",
-							)}
-						</Text>
-					</Flex>
-					<Switch
-						id="logo-color-switch"
-						checked={enabled}
-						onCheckedChange={setEnabled}
-					/>
-				</Flex>
-				{enabled && (
-					<>
-						<Flex align="center" justify="between" gap="4">
-							<Flex align="center" gap="3">
-								<BrandMark className={styles.preview} />
-								<Text size="2">{t("logoColor.colorLabel", "Color")}</Text>
-							</Flex>
-							<Flex align="center" gap="2">
-								{preset === "custom" && (
-									<input
-										type="color"
-										className={styles.colorInput}
-										aria-label={t("logoColor.customLabel", "Custom logo color")}
-										value={(isHexColor(custom)
-											? custom
-											: DEFAULT_CUSTOM_LOGO_COLOR
-										).toLowerCase()}
-										onChange={(event) => setCustom(event.target.value)}
-									/>
-								)}
-								<OptionPicker
-									value={preset}
-									options={options}
-									onValueChange={setPreset}
-									label={t("logoColor.colorLabel", "Color")}
-									size="2"
-								/>
-							</Flex>
-						</Flex>
-						{!spicyLyricsDesign && (
+					<Flex align="center" gap="3">
+						<BrandMark className={styles.preview} />
+						<Flex direction="column" gap="1">
+							<Text weight="medium">{t("logoColor.title", "Logo color")}</Text>
 							<Text size="1" color="gray">
-								{t(
-									"logoColor.designNote",
-									"The logo only shows with the Spicy Lyrics design on.",
-								)}
+								{import.meta.env.TAURI_ENV_PLATFORM
+									? t(
+											"logoColor.descriptionDesktop",
+											"Pick a color for the app's window and taskbar icon, and on Windows its desktop and Start menu shortcuts.",
+										)
+									: t(
+											"logoColor.description",
+											"Pick a color for the logo in the title bar and on the guide's welcome screen.",
+										)}
 							</Text>
+						</Flex>
+					</Flex>
+					<Flex align="center" gap="2">
+						{preset === "custom" && (
+							<input
+								type="color"
+								className={styles.colorInput}
+								aria-label={t("logoColor.customLabel", "Custom logo color")}
+								value={(isHexColor(custom)
+									? custom
+									: DEFAULT_CUSTOM_LOGO_COLOR
+								).toLowerCase()}
+								onChange={(event) => setCustom(event.target.value)}
+							/>
 						)}
-					</>
+						<OptionPicker
+							value={preset}
+							options={options}
+							onValueChange={setPreset}
+							label={t("logoColor.colorLabel", "Color")}
+							size="2"
+						/>
+					</Flex>
+				</Flex>
+				{!spicyLyricsDesign && (
+					<Text size="1" color="gray">
+						{t(
+							"logoColor.designNote",
+							"The logo only shows with the Spicy Lyrics design on.",
+						)}
+					</Text>
 				)}
 			</Flex>
 		</Card>

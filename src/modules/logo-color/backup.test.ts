@@ -50,7 +50,6 @@ class MemoryStorage {
 
 beforeEach(() => {
 	vi.stubGlobal("localStorage", new MemoryStorage());
-	localStorage.setItem("logoColorEnabled", "true");
 	localStorage.setItem("logoColorPreset", JSON.stringify("custom"));
 	localStorage.setItem("logoColorCustom", JSON.stringify("#12ab9f"));
 });
@@ -67,7 +66,6 @@ describe("logo color in settings backup", () => {
 		const { settings, keybindings, apiKeys } = partitionLocalStorage();
 
 		expect(settings).toEqual({
-			logoColorEnabled: "true",
 			logoColorPreset: '"custom"',
 			logoColorCustom: '"#12ab9f"',
 		});
@@ -83,7 +81,6 @@ describe("logo color in settings backup", () => {
 
 		await applyBackup(backup, new Set(["settings"]));
 
-		expect(localStorage.getItem("logoColorEnabled")).toBe("true");
 		expect(localStorage.getItem("logoColorPreset")).toBe('"custom"');
 		expect(localStorage.getItem("logoColorCustom")).toBe('"#12ab9f"');
 	});

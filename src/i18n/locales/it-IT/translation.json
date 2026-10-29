@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Colore del logo",
-    "description": "Sperimentale. Scegli un colore per il logo nella barra del titolo e nella schermata di benvenuto della guida.",
+    "description": "Scegli un colore per il logo nella barra del titolo e nella schermata di benvenuto della guida.",
+    "descriptionDesktop": "Scegli un colore per l'icona della finestra e della barra delle applicazioni e, su Windows, per i collegamenti sul desktop e nel menu Start.",
     "colorLabel": "Colore",
     "customLabel": "Colore personalizzato del logo",
     "designNote": "Il logo appare solo con il design Spicy Lyrics attivo.",

@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logo color",
-    "description": "Experimental. Pick a color for the logo in the title bar and on the guide's welcome screen.",
+    "description": "Pick a color for the logo in the title bar and on the guide's welcome screen.",
+    "descriptionDesktop": "Pick a color for the app's window and taskbar icon, and on Windows its desktop and Start menu shortcuts.",
     "colorLabel": "Color",
     "customLabel": "Custom logo color",
     "designNote": "The logo only shows with the Spicy Lyrics design on.",

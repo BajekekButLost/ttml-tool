@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Culoarea logoului",
-    "description": "Experimental. Alege o culoare pentru logo în bara de titlu și pe ecranul de bun venit al ghidului.",
+    "description": "Alege o culoare pentru logo în bara de titlu și pe ecranul de bun venit al ghidului.",
+    "descriptionDesktop": "Alege o culoare pentru pictograma ferestrei și a barei de activități și, pe Windows, pentru comenzile rapide de pe desktop și din meniul Start.",
     "colorLabel": "Culoare",
     "customLabel": "Culoare personalizată pentru logo",
     "designNote": "Logoul apare doar cu designul Spicy Lyrics activat.",

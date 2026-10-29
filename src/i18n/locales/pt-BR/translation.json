@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Cor do logotipo",
-    "description": "Experimental. Escolha uma cor para o logotipo na barra de título e na tela de boas-vindas do guia.",
+    "description": "Escolha uma cor para o logotipo na barra de título e na tela de boas-vindas do guia.",
+    "descriptionDesktop": "Escolha uma cor para o ícone da janela e da barra de tarefas e, no Windows, para os atalhos da área de trabalho e do menu Iniciar.",
     "colorLabel": "Cor",
     "customLabel": "Cor personalizada do logotipo",
     "designNote": "O logotipo só aparece com o design do Spicy Lyrics ativado.",

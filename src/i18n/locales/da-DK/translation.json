@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logofarve",
-    "description": "Eksperimentel. Vælg en farve til logoet i titellinjen og på guidens velkomstskærm.",
+    "description": "Vælg en farve til logoet i titellinjen og på guidens velkomstskærm.",
+    "descriptionDesktop": "Vælg en farve til appens vindues- og proceslinjeikon og i Windows også genvejene på skrivebordet og i menuen Start.",
     "colorLabel": "Farve",
     "customLabel": "Brugerdefineret logofarve",
     "designNote": "Logoet vises kun, når Spicy Lyrics-designet er slået til.",

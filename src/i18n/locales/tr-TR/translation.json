@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Logo rengi",
-    "description": "Deneysel. Başlık çubuğundaki ve rehberin karşılama ekranındaki logo için bir renk seçin.",
+    "description": "Başlık çubuğundaki ve rehberin karşılama ekranındaki logo için bir renk seçin.",
+    "descriptionDesktop": "Uygulamanın pencere ve görev çubuğu simgesi, Windows'ta ise masaüstü ve Başlat menüsü kısayolları için bir renk seçin.",
     "colorLabel": "Renk",
     "customLabel": "Özel logo rengi",
     "designNote": "Logo yalnızca Spicy Lyrics tasarımı açıkken görünür.",

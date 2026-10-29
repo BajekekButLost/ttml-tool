@@ -290,7 +290,8 @@
   },
   "logoColor": {
     "title": "Kolor logo",
-    "description": "Eksperymentalne. Wybierz kolor logo na pasku tytułu i na ekranie powitalnym przewodnika.",
+    "description": "Wybierz kolor logo na pasku tytułu i na ekranie powitalnym przewodnika.",
+    "descriptionDesktop": "Wybierz kolor ikony okna i paska zadań, a w systemie Windows także skrótów na pulpicie i w menu Start.",
     "colorLabel": "Kolor",
     "customLabel": "Własny kolor logo",
     "designNote": "Logo jest widoczne tylko przy włączonym wyglądzie Spicy Lyrics.",
