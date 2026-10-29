@@ -1,5 +1,79 @@
 [
 	{
+		"version": "0.19.0",
+		"summary": "New Preferences and Flatpak",
+		"color": "teal",
+		"date": "2026-10-29",
+		"entries": [
+			{
+				"type": "feature",
+				"title": "Linux gets a Flatpak",
+				"body": "Each release has a `.flatpak` that starts where the AppImage failed, like Debian 13, and replaces it",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Changelog moved into Preferences",
+				"body": "Open **Preferences › Changelog** to see every release, or show only the highlights",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Pick a color for the app icon",
+				"body": "**Logo color** in **Preferences › Appearance** recolors the window, taskbar and shortcut icons",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Replace selected word combinations",
+				"body": "Right-click adjacent words in Edit mode and pick **Replace word combination**, keeping their timing slots",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "Lighter visual effects for slow renderers",
+				"body": "**Visual effects** in **Preferences › Appearance** drops blur, glows and animations, automatic on Linux",
+				"highlight": true
+			},
+			{
+				"type": "feature",
+				"title": "See what changed after an update",
+				"body": "The first start on a new version shows a notice that opens the changelog",
+				"highlight": false
+			},
+			{
+				"type": "change",
+				"title": "Preferences has new pages and a search that filters",
+				"body": "Settings are split into clearer pages like **Editing**, **Syncing** and **Backup**, and search hides what doesn't match",
+				"highlight": true
+			},
+			{
+				"type": "fix",
+				"title": "Unavailable word menu actions look unavailable",
+				"body": "Disabled right-click actions have dimmed text and a disabled cursor in both designs",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "The Flatpak draws the app's own title bar",
+				"body": "It replaces GNOME's default header bar with round window buttons and draggable edges",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Solid cards in Urban Dictionary and the font library",
+				"body": "Picked fonts show a check, font cards work by keyboard, and Escape closes Urban Dictionary",
+				"highlight": false
+			},
+			{
+				"type": "fix",
+				"title": "Switching between Edit, Time and Preview is instant",
+				"body": "Modes no longer fade and slide in, which left the panel blank for a moment and flickered on Linux",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.18.0",
 		"summary": "Less lag, smarter spectrogram",
 		"color": "orange",
