@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# vers nu este încă sincronizat} few {# versuri nu sunt încă sincronizate} other {# de versuri nu sunt încă sincronizate}}",
     "jumpToUntimed": "Sincronizează primul vers fără timpi"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# cuvânt are o problemă de sincronizare} few {# cuvinte au probleme de sincronizare} other {# de cuvinte au probleme de sincronizare}}",
+    "jump": "Selectează primul",
+    "untimed": "Fără timpi într-un vers sincronizat",
+    "untimedLine": "Încă nesincronizat",
+    "endsBeforeStart": "Se termină înainte să înceapă",
+    "startsBeforeLine": "Începe înaintea versului său",
+    "endsAfterLine": "Se termină după versul său"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Deschide un fișier cu versuri",
@@ -456,7 +465,7 @@
       "mode": "Mod",
       "standard": "Standard",
       "timing": "Timpi",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Versuri simple",
       "forceLineRendering": "Arată sincronizarea pe versuri",
       "background": "Fundal",
@@ -861,7 +870,7 @@
       "timingOverviewAutoScrollDesc": "Vederea de ansamblu a timpilor urmărește cursorul de redare.",
       "vsyncDesc": "Actualizează previzualizările Standard și Toxi la fiecare cadru în loc de aproximativ 30 de ori pe secundă. Mai fluid, dar folosește mai mult procesorul.",
       "showFpsDesc": "Afișează un contor de cadre pe secundă pe previzualizare.",
-      "syncLevelDesc": "Cuvânt: sincronizează fiecare cuvânt pe parcurs. Vers: sincronizează versuri întregi și distribuie cuvintele uniform, pentru o sincronizare aproximativă pe care o rafinezi în spectrogramă.",
+      "syncLevelDesc": "Cuvânt: sincronizează fiecare cuvânt pe parcurs. Vers: sincronizează versuri întregi și distribuie cuvintele uniform. Și modul Vers salvează timpii fiecărui cuvânt, nu versuri sincronizate pe rând, așa că rafinează cuvintele în spectrogramă.",
       "previewModeDesc": "Alege ce previzualizare afișează fila Previzualizare.",
       "spicyBackgroundDesc": "Ce se afișează în spatele previzualizării Spicy.",
       "fadeWidthDesc": "Cât de moale este marginea evidențierii când un cuvânt se umple în previzualizările Standard și Toxi."
@@ -881,6 +890,10 @@
     "order": "Ordine",
     "orderChronological": "Cronologic",
     "orderTextual": "Ordinea textului"
+  },
+  "joinSplitWords": {
+    "label": "Unește cuvintele despărțite",
+    "description": "Arată un cuvânt cântat pe bucăți ca un singur cuvânt când bucățile se potrivesc uniform, ca setarea Join Split Words din Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1123,7 +1136,10 @@
     "volume": "Volum",
     "playbackRate": "Viteza de redare",
     "preservesPitch": "Păstrează înălțimea sunetului",
-    "clickToLoadMusic": "Dă clic pe pictograma muzicală pentru a încărca sunetul",
+    "audioMenu": "Sunet și redare",
+    "loadedAudio": "Sunet încărcat",
+    "replaceAudio": "Înlocuiește",
+    "resetSpeed": "Resetează la 1×",
     "playPause": "Redare / pauză muzică",
     "expandSpectrogram": "Extinde / restrânge spectrograma"
   },
@@ -1183,6 +1199,11 @@
     "customKey": "Câmp personalizat",
     "addPresets": "Adaugă toate câmpurile standard",
     "clear": "Curăță"
+  },
+  "helpText": {
+    "metadataArtists": "Cine interpretează melodia, așa cum este creditată piesa pe serviciile de streaming. Exemplu: „Shake It Off” este de Taylor Swift.",
+    "metadataSongwriter": "Cine a scris muzica și versurile, conform creditelor de compoziție. Adesea alte persoane decât artiștii. Exemplu: „Shake It Off” a fost scrisă de Taylor Swift, Max Martin și Shellback.",
+    "openSongwritersGuide": "Deschide ghidul despre compozitori"
   },
   "lrclib": {
     "placeholder": "Titlul melodiei și artistul…",
@@ -1510,6 +1531,23 @@
     "openContributorProfile": "Deschide profilul GitHub al lui {name}",
     "unknown": "Necunoscut"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Piste separate",
+    "settingDesc": "Afișează versurile vocilor de fundal pe o pistă proprie, sub versurile principale. Pistele sunt doar pentru afișare: schimbă rolul unui vers în modul editare.",
+    "menu": "Piste",
+    "visibleLanes": "Arată pistele",
+    "duetLane": "Pistă separată pentru duet",
+    "lane": {
+      "main": "Principal",
+      "duet": "Duet",
+      "bg": "Fundal"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Finalul rândului și al ultimului cuvânt. Trage cu Alt ca să muți doar unul.",
+    "wordEndHandle": "Finalul ultimului cuvânt",
+    "lineEndHandle": "Finalul rândului"
+  },
   "spectrogram": {
     "invalidEndTime": "Nu se poate selecta acest timp de sfârșit",
     "noAudioLoaded": "Încarcă un fișier audio pentru a afișa spectrograma",
@@ -1525,6 +1563,17 @@
       "4096": "4096 (cele mai multe detalii)"
     },
     "height": "Înălțimea afișajului"
+  },
+  "spectrogramFollow": {
+    "toggle": "Urmărește cursorul de redare",
+    "shortcut": "Spectrogramă - Activează/dezactivează urmărirea cursorului de redare",
+    "setting": "Urmărește cursorul de redare",
+    "settingDesc": "Derulează spectrograma ca cursorul de redare să rămână vizibil. Derularea sau tragerea o pune pe pauză până apeși redare sau o lași un moment.",
+    "style": "Mod de urmărire",
+    "page": "Pe pagini",
+    "pageDesc": "Sare înainte când cursorul iese din vizualizare.",
+    "continuous": "Continuu",
+    "continuousDesc": "Derulează odată cu cursorul și îl ține în centru."
   },
   "export": {
     "recoveryUntimed": "Acest export de recuperare conține versuri nesincronizate. Verifică sincronizarea înainte de trimitere.",

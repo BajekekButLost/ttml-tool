@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, other {# baris belum diberi waktu}}",
     "jumpToUntimed": "Sinkronkan baris pertama yang belum diberi waktu"
   },
+  "previewProblems": {
+    "count": "{count, plural, other {# kata punya masalah waktu}}",
+    "jump": "Pilih yang pertama",
+    "untimed": "Tanpa waktu di baris yang sudah diberi waktu",
+    "untimedLine": "Belum diberi waktu",
+    "endsBeforeStart": "Berakhir sebelum dimulai",
+    "startsBeforeLine": "Dimulai sebelum barisnya",
+    "endsAfterLine": "Berakhir setelah barisnya"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Buka file lirik",
@@ -456,7 +465,7 @@
       "mode": "Modus",
       "standard": "Standard",
       "timing": "Sinkronisasi",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Mode lirik sederhana",
       "forceLineRendering": "Tampilkan sinkronisasi per baris",
       "background": "Latar belakang",
@@ -861,7 +870,7 @@
       "timingOverviewAutoScrollDesc": "Jaga ikhtisar waktu tetap tergulir ke posisi pemutaran.",
       "vsyncDesc": "Perbarui pratinjau Standard dan Toxi setiap frame, bukan sekitar 30 kali per detik. Lebih mulus, tetapi memakai lebih banyak CPU.",
       "showFpsDesc": "Tampilkan penghitung frame rate di pratinjau.",
-      "syncLevelDesc": "Kata: beri waktu setiap kata. Baris: beri waktu seluruh baris dan sebarkan kata secara merata sebagai waktu awal yang bisa disempurnakan di spektrogram.",
+      "syncLevelDesc": "Kata: beri waktu setiap kata. Baris: beri waktu seluruh baris dan sebarkan kata secara merata. Mode Baris tetap menyimpan waktu per kata, bukan lirik yang disinkronkan per baris, jadi sempurnakan kata-katanya di spektrogram.",
       "previewModeDesc": "Pilih pratinjau yang ditampilkan tab Pratinjau.",
       "spicyBackgroundDesc": "Apa yang tampil di belakang pratinjau Spicy.",
       "fadeWidthDesc": "Seberapa lembut tepi sorotan saat kata terisi di pratinjau Standard dan Toxi."
@@ -881,6 +890,10 @@
     "order": "Urutan",
     "orderChronological": "Kronologis",
     "orderTextual": "Urutan teks"
+  },
+  "joinSplitWords": {
+    "label": "Gabungkan kata terpisah",
+    "description": "Tampilkan kata yang dinyanyikan per bagian sebagai satu kata jika bagian-bagiannya selaras, seperti pengaturan Join Split Words di Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1123,7 +1136,10 @@
     "volume": "Volume",
     "playbackRate": "Kecepatan putar",
     "preservesPitch": "Pertahankan nada",
-    "clickToLoadMusic": "Klik ikon musik untuk memuat audio",
+    "audioMenu": "Audio dan pemutaran",
+    "loadedAudio": "Audio dimuat",
+    "replaceAudio": "Ganti",
+    "resetSpeed": "Kembalikan ke 1×",
     "playPause": "Putar / jeda musik",
     "expandSpectrogram": "Perluas / ciutkan spektrogram"
   },
@@ -1183,6 +1199,11 @@
     "customKey": "Kolom kustom",
     "addPresets": "Tambah semua kolom standar",
     "clear": "Kosongkan"
+  },
+  "helpText": {
+    "metadataArtists": "Siapa yang membawakan lagu, sesuai kredit lagu di layanan streaming. Contoh: \"Shake It Off\" oleh Taylor Swift.",
+    "metadataSongwriter": "Siapa yang menulis musik dan liriknya, sesuai kredit penulisan. Sering kali berbeda dari artisnya. Contoh: \"Shake It Off\" ditulis oleh Taylor Swift, Max Martin, dan Shellback.",
+    "openSongwritersGuide": "Buka panduan penulis lagu"
   },
   "lrclib": {
     "placeholder": "Judul lagu dan artis…",
@@ -1510,6 +1531,23 @@
     "openContributorProfile": "Buka profil GitHub {name}",
     "unknown": "Tidak diketahui"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Jalur terpisah",
+    "settingDesc": "Tampilkan baris vokal latar di jalurnya sendiri di bawah baris utama. Jalur hanya untuk tampilan: ubah peran baris di mode edit.",
+    "menu": "Jalur",
+    "visibleLanes": "Tampilkan jalur",
+    "duetLane": "Jalur duet terpisah",
+    "lane": {
+      "main": "Utama",
+      "duet": "Duet",
+      "bg": "Latar"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Akhir baris dan kata terakhir. Seret dengan Alt untuk menggeser salah satunya saja.",
+    "wordEndHandle": "Akhir kata terakhir",
+    "lineEndHandle": "Akhir baris"
+  },
   "spectrogram": {
     "invalidEndTime": "Tidak dapat memilih waktu akhir ini",
     "noAudioLoaded": "Muat file audio untuk menampilkan spektrogram",
@@ -1525,6 +1563,17 @@
       "4096": "4096 (detail terbanyak)"
     },
     "height": "Tinggi tampilan"
+  },
+  "spectrogramFollow": {
+    "toggle": "Ikuti playhead",
+    "shortcut": "Spektrogram - Aktifkan/nonaktifkan ikuti playhead",
+    "setting": "Ikuti playhead",
+    "settingDesc": "Menggulir spektrogram agar playhead tetap terlihat. Menggulir atau menyeret menjedanya sampai Anda menekan putar atau membiarkannya sebentar.",
+    "style": "Cara mengikuti",
+    "page": "Per halaman",
+    "pageDesc": "Melompat maju saat playhead keluar dari tampilan.",
+    "continuous": "Terus-menerus",
+    "continuousDesc": "Menggulir bersama playhead dan menjaganya di tengah."
   },
   "export": {
     "recoveryUntimed": "Ekspor pemulihan ini berisi lirik yang belum diberi waktu. Periksa waktunya sebelum mengirim.",
