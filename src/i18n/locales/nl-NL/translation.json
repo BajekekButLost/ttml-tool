@@ -1534,7 +1534,9 @@
     "sectionNew": "Nieuw",
     "sectionChanged": "Gewijzigd",
     "sectionFixed": "Opgelost",
-    "empty": "Geen versies om te tonen."
+    "empty": "Geen versies om te tonen.",
+    "versions": "Versies",
+    "earlier": "Eerder"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

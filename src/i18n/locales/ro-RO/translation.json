@@ -1534,7 +1534,9 @@
     "sectionNew": "Nou",
     "sectionChanged": "Schimbat",
     "sectionFixed": "Reparat",
-    "empty": "Nu există versiuni de afișat."
+    "empty": "Nu există versiuni de afișat.",
+    "versions": "Versiuni",
+    "earlier": "Mai vechi"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

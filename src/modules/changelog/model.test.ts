@@ -1,7 +1,40 @@
 import { describe, expect, it } from "vitest";
 import changelog from "$/data/changelog.json";
 import legacy from "$/data/changelog-legacy.json";
-import { buildReleaseCards, sectionOf, toReleaseCard } from "./model";
+import {
+	buildReleaseCards,
+	groupReleaseCards,
+	minorOf,
+	sectionOf,
+	toReleaseCard,
+} from "./model";
+
+describe("release groups", () => {
+	it("groups by minor version, legacy block last", () => {
+		const card = (version?: string) =>
+			toReleaseCard({ version, entries: [{ title: "x" }] });
+		const groups = groupReleaseCards([
+			card("0.18.0"),
+			card("0.17.1"),
+			card("0.17.0"),
+			card("0.7"),
+			card(undefined),
+		]);
+		expect(groups.map((g) => [g.minor, g.cards.length])).toEqual([
+			["0.18", 1],
+			["0.17", 2],
+			["0.7", 1],
+			[null, 1],
+		]);
+		expect(minorOf("0.10.4")).toBe("0.10");
+	});
+
+	it("keeps every real release in some group", () => {
+		const cards = buildReleaseCards(changelog, legacy);
+		const groups = groupReleaseCards(cards);
+		expect(groups.flatMap((g) => g.cards)).toHaveLength(cards.length);
+	});
+});
 
 const release = {
 	version: "0.17.0",

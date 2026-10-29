@@ -1534,7 +1534,9 @@
     "sectionNew": "Baru",
     "sectionChanged": "Diubah",
     "sectionFixed": "Diperbaiki",
-    "empty": "Tidak ada rilis untuk ditampilkan."
+    "empty": "Tidak ada rilis untuk ditampilkan.",
+    "versions": "Versi",
+    "earlier": "Sebelumnya"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

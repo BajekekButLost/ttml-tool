@@ -1534,7 +1534,9 @@
     "sectionNew": "Nyt",
     "sectionChanged": "Ændret",
     "sectionFixed": "Rettet",
-    "empty": "Ingen udgivelser at vise."
+    "empty": "Ingen udgivelser at vise.",
+    "versions": "Versioner",
+    "earlier": "Ældre"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

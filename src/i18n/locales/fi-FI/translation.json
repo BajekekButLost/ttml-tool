@@ -1534,7 +1534,9 @@
     "sectionNew": "Uutta",
     "sectionChanged": "Muutettu",
     "sectionFixed": "Korjattu",
-    "empty": "Ei näytettäviä julkaisuja."
+    "empty": "Ei näytettäviä julkaisuja.",
+    "versions": "Versiot",
+    "earlier": "Aiemmat"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

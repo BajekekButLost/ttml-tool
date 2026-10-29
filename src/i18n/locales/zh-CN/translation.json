@@ -1534,7 +1534,9 @@
     "sectionNew": "新增",
     "sectionChanged": "变更",
     "sectionFixed": "修复",
-    "empty": "没有可显示的版本。"
+    "empty": "没有可显示的版本。",
+    "versions": "版本",
+    "earlier": "更早"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

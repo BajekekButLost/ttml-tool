@@ -1534,7 +1534,9 @@
     "sectionNew": "Yeni",
     "sectionChanged": "Değişti",
     "sectionFixed": "Düzeltildi",
-    "empty": "Gösterilecek sürüm yok."
+    "empty": "Gösterilecek sürüm yok.",
+    "versions": "Sürümler",
+    "earlier": "Daha eski"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

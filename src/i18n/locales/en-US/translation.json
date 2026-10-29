@@ -1534,7 +1534,9 @@
     "sectionNew": "New",
     "sectionChanged": "Changed",
     "sectionFixed": "Fixed",
-    "empty": "No releases to show."
+    "empty": "No releases to show.",
+    "versions": "Versions",
+    "earlier": "Earlier"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
