@@ -1256,6 +1256,13 @@
     "applyToAll": "Erstat alle identiske ord",
     "caseSensitive": "Skeln mellem store og små bogstaver"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Erstat ordkombination",
+    "description": "Rediger hvert valgt ord eller hver stavelse. Tidsangivelserne forbliver de samme.",
+    "word": "Ord {index}",
+    "applyToAll": "Erstat alle matchende kombinationer",
+    "adjacentOnly": "Vælg tilstødende ord eller stavelser på én linje for at erstatte en kombination."
+  },
   "replaceRomanizationDialog": {
     "title": "Erstat romanisering",
     "description": "Ny romanisering:",

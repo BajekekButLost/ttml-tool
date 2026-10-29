@@ -1256,6 +1256,13 @@
     "applyToAll": "Sostituisci tutte le parole identiche",
     "caseSensitive": "Distingui maiuscole e minuscole"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Sostituisci combinazione di parole",
+    "description": "Modifica ogni parola o sillaba selezionata. I tempi rimangono invariati.",
+    "word": "Parola {index}",
+    "applyToAll": "Sostituisci tutte le combinazioni corrispondenti",
+    "adjacentOnly": "Seleziona parole o sillabe adiacenti sulla stessa riga per sostituire una combinazione."
+  },
   "replaceRomanizationDialog": {
     "title": "Sostituisci la romanizzazione",
     "description": "Nuova romanizzazione:",

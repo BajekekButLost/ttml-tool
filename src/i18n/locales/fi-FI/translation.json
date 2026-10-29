@@ -1256,6 +1256,13 @@
     "applyToAll": "Korvaa kaikki samanlaiset sanat",
     "caseSensitive": "Erota kirjainkoko"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Korvaa sanayhdistelmä",
+    "description": "Muokkaa jokaista valittua sanaa tai tavua. Ajoitukset pysyvät samoina.",
+    "word": "Sana {index}",
+    "applyToAll": "Korvaa kaikki vastaavat yhdistelmät",
+    "adjacentOnly": "Valitse vierekkäisiä sanoja tai tavuja samalta riviltä korvataksesi yhdistelmän."
+  },
   "replaceRomanizationDialog": {
     "title": "Korvaa latinalaistus",
     "description": "Uusi latinalaistus:",

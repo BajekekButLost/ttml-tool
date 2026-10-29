@@ -1256,6 +1256,13 @@
     "applyToAll": "Tüm aynı kelimeleri değiştir",
     "caseSensitive": "Büyük/küçük harfe duyarlı"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Kelime birleşimini değiştir",
+    "description": "Seçilen her kelimeyi veya heceyi düzenleyin. Zamanlamalar aynı kalır.",
+    "word": "Kelime {index}",
+    "applyToAll": "Eşleşen tüm birleşimleri değiştir",
+    "adjacentOnly": "Bir birleşimi değiştirmek için aynı satırda bitişik kelimeler veya heceler seçin."
+  },
   "replaceRomanizationDialog": {
     "title": "Latin harflerine çeviriyi değiştir",
     "description": "Yeni Latin harflerine çeviri:",

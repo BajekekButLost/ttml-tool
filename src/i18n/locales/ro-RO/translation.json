@@ -1256,6 +1256,13 @@
     "applyToAll": "Înlocuiește toate cuvintele identice",
     "caseSensitive": "Distinge majusculele de minuscule"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Înlocuiește combinația de cuvinte",
+    "description": "Editează fiecare cuvânt sau silabă selectată. Timpii rămân neschimbați.",
+    "word": "Cuvântul {index}",
+    "applyToAll": "Înlocuiește toate combinațiile identice",
+    "adjacentOnly": "Selectează cuvinte sau silabe alăturate pe același rând pentru a înlocui o combinație."
+  },
   "replaceRomanizationDialog": {
     "title": "Înlocuiește romanizarea",
     "description": "Romanizare nouă:",

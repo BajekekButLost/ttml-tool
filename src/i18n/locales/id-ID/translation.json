@@ -1256,6 +1256,13 @@
     "applyToAll": "Ganti semua kata yang sama",
     "caseSensitive": "Cocokkan huruf besar/kecil"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Ganti kombinasi kata",
+    "description": "Edit setiap kata atau suku kata yang dipilih. Waktu tetap sama.",
+    "word": "Kata {index}",
+    "applyToAll": "Ganti semua kombinasi yang cocok",
+    "adjacentOnly": "Pilih kata atau suku kata yang bersebelahan dalam satu baris untuk mengganti kombinasi."
+  },
   "replaceRomanizationDialog": {
     "title": "Ganti romanisasi",
     "description": "Romanisasi baru:",

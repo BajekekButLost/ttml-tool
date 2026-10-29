@@ -1256,6 +1256,13 @@
     "applyToAll": "Zamień wszystkie identyczne słowa",
     "caseSensitive": "Uwzględniaj wielkość liter"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Zastąp kombinację słów",
+    "description": "Edytuj każde zaznaczone słowo lub sylabę. Czasy pozostają bez zmian.",
+    "word": "Słowo {index}",
+    "applyToAll": "Zastąp wszystkie pasujące kombinacje",
+    "adjacentOnly": "Zaznacz sąsiadujące słowa lub sylaby w jednym wierszu, aby zastąpić kombinację."
+  },
   "replaceRomanizationDialog": {
     "title": "Zamień transkrypcję łacińską",
     "description": "Nowa transkrypcja łacińska:",

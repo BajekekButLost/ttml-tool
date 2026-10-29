@@ -1256,6 +1256,13 @@
     "applyToAll": "Alle identieke woorden vervangen",
     "caseSensitive": "Hoofdlettergevoelig"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Woordcombinatie vervangen",
+    "description": "Bewerk elk geselecteerd woord of elke lettergreep. De timing blijft hetzelfde.",
+    "word": "Woord {index}",
+    "applyToAll": "Alle overeenkomende combinaties vervangen",
+    "adjacentOnly": "Selecteer aangrenzende woorden of lettergrepen op één regel om een combinatie te vervangen."
+  },
   "replaceRomanizationDialog": {
     "title": "Romanisatie vervangen",
     "description": "Nieuwe romanisatie:",

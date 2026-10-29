@@ -1256,6 +1256,13 @@
     "applyToAll": "Nahradit všechna stejná slova",
     "caseSensitive": "Rozlišovat velká a malá písmena"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Nahradit kombinaci slov",
+    "description": "Upravte každé vybrané slovo nebo slabiku. Časování zůstane stejné.",
+    "word": "Slovo {index}",
+    "applyToAll": "Nahradit všechny odpovídající kombinace",
+    "adjacentOnly": "Chcete-li nahradit kombinaci, vyberte sousedící slova nebo slabiky na jednom řádku."
+  },
   "replaceRomanizationDialog": {
     "title": "Nahradit přepis do latinky",
     "description": "Nový přepis do latinky:",

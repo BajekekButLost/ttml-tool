@@ -1256,6 +1256,13 @@
     "applyToAll": "Remplacer tous les mots identiques",
     "caseSensitive": "Respecter la casse"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Remplacer une combinaison de mots",
+    "description": "Modifiez chaque mot ou syllabe sélectionné. Les temps restent inchangés.",
+    "word": "Mot {index}",
+    "applyToAll": "Remplacer toutes les combinaisons correspondantes",
+    "adjacentOnly": "Sélectionnez des mots ou syllabes adjacents sur une même ligne pour remplacer une combinaison."
+  },
   "replaceRomanizationDialog": {
     "title": "Remplacer la romanisation",
     "description": "Nouvelle romanisation :",
