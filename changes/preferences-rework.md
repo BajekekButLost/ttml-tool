@@ -3,6 +3,6 @@ type: change
 impact: 4
 highlight: true
 ---
-Preferences has new pages and a search that filters settings
+Preferences has new pages and a search that filters
 
-Editor & sync is now **Editing**, **Syncing** and **Preview**, and Files & storage is now **Import & files** and **Backup**. Searching hides the settings that don't match and shows how many match on each page. Escape clears the search before it closes the window.
+Settings are split into clearer pages like **Editing**, **Syncing** and **Backup**, and search hides what doesn't match

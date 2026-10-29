@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { entryProblems } from "./changelog-format.mjs";
 import { assertStableVersion } from "./version-utils.mjs";
 
 export const RELEASE_COLORS = [
@@ -48,6 +49,8 @@ export function parseChangeNote(source, filename = "Change note") {
 	if (rest.length && rest[0].trim())
 		fail("leave a blank line between the title and body.");
 	const body = rest.join("\n").trim();
+	const problems = entryProblems({ title: title.trim(), body });
+	if (problems.length) fail(`${problems.join("; ")} (see changes/README.md).`);
 	return {
 		type: fields.type,
 		impact: Number(fields.impact),

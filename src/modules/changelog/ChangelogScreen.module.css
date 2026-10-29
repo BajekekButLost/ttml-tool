@@ -188,7 +188,7 @@
 	color: var(--gray-9);
 }
 
-.entry p {
+.entry {
 	margin: 0;
 	line-height: 1.5;
 }

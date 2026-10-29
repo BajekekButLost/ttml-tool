@@ -3,6 +3,6 @@ type: fix
 impact: 2
 highlight: false
 ---
-Make unavailable token menu actions easier to recognize
+Unavailable word menu actions look unavailable
 
-Disabled right-click menu actions now have dimmed text and a disabled cursor in both designs, so you can identify them before hovering.
+Disabled right-click actions have dimmed text and a disabled cursor in both designs
