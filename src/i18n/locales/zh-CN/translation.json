@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, other {# 行尚未打轴}}",
     "jumpToUntimed": "为第一条未打轴的歌词行打轴"
   },
+  "previewProblems": {
+    "count": "{count, plural, other {# 个词存在时间问题}}",
+    "jump": "选中第一个",
+    "untimed": "在已打轴的行中没有时间",
+    "untimedLine": "尚未打轴",
+    "endsBeforeStart": "结束时间早于开始时间",
+    "startsBeforeLine": "开始时间早于所在行",
+    "endsAfterLine": "结束时间晚于所在行"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "打开歌词文件",
@@ -433,7 +442,7 @@
       "mode": "模式",
       "standard": "Standard",
       "timing": "打轴",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "简洁歌词模式",
       "forceLineRendering": "显示为逐行同步",
       "background": "背景",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "让时间轴概览始终滚动到播放位置。",
       "vsyncDesc": "每帧更新 Standard 和 Toxi 预览，而不是每秒约 30 次。更流畅，但占用更多 CPU。",
       "showFpsDesc": "在预览上显示帧率计数器。",
-      "syncLevelDesc": "字：逐字打轴。行：为整行打轴，并均匀分配字时间，生成粗略时间轴，再到频谱图中微调。",
+      "syncLevelDesc": "字：逐字打轴。行：为整行打轴，并均匀分配字时间。行模式保存的仍是逐字时间，而不是逐行歌词，之后到频谱图中微调各字。",
       "previewModeDesc": "选择预览标签页显示哪种预览。",
       "spicyBackgroundDesc": "Spicy 预览背后显示的内容。",
       "fadeWidthDesc": "Standard 和 Toxi 预览中字高亮填充边缘的柔和程度。"
@@ -858,6 +867,10 @@
     "order": "顺序",
     "orderChronological": "按时间顺序",
     "orderTextual": "按文本顺序"
+  },
+  "joinSplitWords": {
+    "label": "合并拆分的单词",
+    "description": "当单词各部分的时间分布均匀时，将分段演唱的单词显示为一个词，与 Spicy Lyrics 的 Join Split Words 设置相同。"
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "音量",
     "playbackRate": "播放速度",
     "preservesPitch": "保持音高",
-    "clickToLoadMusic": "点击音乐图标加载音频",
+    "audioMenu": "音频与播放",
+    "loadedAudio": "已加载的音频",
+    "replaceAudio": "替换",
+    "resetSpeed": "重置为 1×",
     "playPause": "播放 / 暂停音乐",
     "expandSpectrogram": "展开 / 收起频谱图"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "自定义字段",
     "addPresets": "添加所有标准字段",
     "clear": "清除"
+  },
+  "helpText": {
+    "metadataArtists": "演唱这首歌的人，按流媒体平台上的署名填写。例如：《Shake It Off》的歌手是 Taylor Swift。",
+    "metadataSongwriter": "创作词曲的人，按词曲作者署名填写，常与歌手不同。例如：《Shake It Off》的词曲作者是 Taylor Swift、Max Martin 和 Shellback。",
+    "openSongwritersGuide": "打开词曲作者指南"
   },
   "lrclib": {
     "placeholder": "歌曲名称和歌手…",
@@ -1501,6 +1522,23 @@
     "openContributorProfile": "打开 {name} 的 GitHub 主页",
     "unknown": "未知"
   },
+  "spectrogramLanes": {
+    "settingTitle": "分轨显示",
+    "settingDesc": "将背景人声行显示在主歌词行下方的独立轨道中。轨道仅用于查看：请在编辑模式中更改行的角色。",
+    "menu": "轨道",
+    "visibleLanes": "显示轨道",
+    "duetLane": "对唱单独分轨",
+    "lane": {
+      "main": "主唱",
+      "duet": "对唱",
+      "bg": "背景人声"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "行尾与最后一个词的结尾。按住 Alt 拖动只移动其中一个。",
+    "wordEndHandle": "最后一个词的结尾",
+    "lineEndHandle": "行尾"
+  },
   "spectrogram": {
     "invalidEndTime": "不能选择此结束时间",
     "noAudioLoaded": "加载音频文件以显示频谱图",
@@ -1516,6 +1554,17 @@
       "4096": "4096（最多细节）"
     },
     "height": "显示高度"
+  },
+  "spectrogramFollow": {
+    "toggle": "跟随播放头",
+    "shortcut": "频谱图 - 开关跟随播放头",
+    "setting": "跟随播放头",
+    "settingDesc": "滚动频谱图，让播放头保持在视野内。滚动或拖动会暂停跟随，直到你按下播放或停一会儿。",
+    "style": "跟随方式",
+    "page": "翻页",
+    "pageDesc": "播放头离开视野时向前跳转。",
+    "continuous": "连续",
+    "continuousDesc": "随播放头滚动并让它保持居中。"
   },
   "export": {
     "recoveryUntimed": "此恢复导出包含未打轴的歌词。提交前请检查时间轴。",

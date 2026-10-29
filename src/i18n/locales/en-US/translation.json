@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# line has no timing yet} other {# lines have no timing yet}}",
     "jumpToUntimed": "Time the first untimed line"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# word has a timing problem} other {# words have timing problems}}",
+    "jump": "Select the first one",
+    "untimed": "No timing in a timed line",
+    "untimedLine": "Not synced yet",
+    "endsBeforeStart": "Ends before it starts",
+    "startsBeforeLine": "Starts before its line",
+    "endsAfterLine": "Ends after its line"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Open lyrics file",
@@ -433,7 +442,7 @@
       "mode": "Mode",
       "standard": "Standard",
       "timing": "Timing",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Simple Lyrics mode",
       "forceLineRendering": "Show as line-synced",
       "background": "Background",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "Keep the timing overview scrolled to the playhead.",
       "vsyncDesc": "Update the Standard and Toxi previews every frame instead of about 30 times per second. Smoother, but uses more CPU.",
       "showFpsDesc": "Show a frame rate counter on the preview.",
-      "syncLevelDesc": "Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
+      "syncLevelDesc": "Word: time each word as you go. Line: time whole lines and spread their words out evenly. Line still saves word timings, not line-synced lyrics, so fine-tune the words in the spectrogram.",
       "previewModeDesc": "Choose which preview the Preview tab shows.",
       "spicyBackgroundDesc": "What shows behind the Spicy preview.",
       "fadeWidthDesc": "How soft the edge of the highlight is as a word fills in the Standard and Toxi previews."
@@ -858,6 +867,10 @@
     "order": "Order",
     "orderChronological": "Chronological",
     "orderTextual": "Textual"
+  },
+  "joinSplitWords": {
+    "label": "Join split words",
+    "description": "Show a word sung in parts as one word when the parts line up evenly, like Spicy Lyrics' Join Split Words setting."
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "Volume",
     "playbackRate": "Playback speed",
     "preservesPitch": "Preserve pitch",
-    "clickToLoadMusic": "Click the music icon to load audio",
+    "audioMenu": "Audio and playback",
+    "loadedAudio": "Loaded audio",
+    "replaceAudio": "Replace",
+    "resetSpeed": "Reset to 1×",
     "playPause": "Play / pause music",
     "expandSpectrogram": "Expand / collapse spectrogram"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "Custom field",
     "addPresets": "Add all standard fields",
     "clear": "Clear"
+  },
+  "helpText": {
+    "metadataArtists": "Who performs the song, as the track is credited on streaming services. Example: \"Shake It Off\" is by Taylor Swift.",
+    "metadataSongwriter": "Who wrote the music and lyrics, from the writing credits. Often different from the artists. Example: \"Shake It Off\" was written by Taylor Swift, Max Martin and Shellback.",
+    "openSongwritersGuide": "Open the songwriters guide"
   },
   "lrclib": {
     "placeholder": "Song title and artist…",
@@ -1501,6 +1522,23 @@
     "openContributorProfile": "Open {name}'s GitHub profile",
     "unknown": "Unknown"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Separate lanes",
+    "settingDesc": "Draw background lines in their own row under the main lines. Lanes are view-only: change a line's role in Edit mode.",
+    "menu": "Lanes",
+    "visibleLanes": "Show lanes",
+    "duetLane": "Separate duet lane",
+    "lane": {
+      "main": "Main",
+      "duet": "Duet",
+      "bg": "Background"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Line and last word end. Alt-drag to move only one.",
+    "wordEndHandle": "Last word end",
+    "lineEndHandle": "Line end"
+  },
   "spectrogram": {
     "invalidEndTime": "Cannot select this end time",
     "noAudioLoaded": "Load an audio file to show the spectrogram",
@@ -1516,6 +1554,17 @@
       "4096": "4096 (most detail)"
     },
     "height": "Display height"
+  },
+  "spectrogramFollow": {
+    "toggle": "Follow playhead",
+    "shortcut": "Spectrogram - Follow playhead on/off",
+    "setting": "Follow the playhead",
+    "settingDesc": "Scrolls the spectrogram to keep the playhead in view. Scrolling or dragging pauses it until you press play or leave it for a moment.",
+    "style": "Follow style",
+    "page": "Page",
+    "pageDesc": "Jumps ahead when the playhead leaves the view.",
+    "continuous": "Continuous",
+    "continuousDesc": "Scrolls with the playhead and keeps it centered."
   },
   "export": {
     "recoveryUntimed": "This recovery export contains untimed lyrics. Check timing before submitting.",

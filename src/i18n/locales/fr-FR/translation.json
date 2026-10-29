@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# ligne n’est pas encore minutée} many {# lignes ne sont pas encore minutées} other {# lignes ne sont pas encore minutées}}",
     "jumpToUntimed": "Synchroniser la première ligne non minutée"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# mot a un problème de minutage} many {# mots ont des problèmes de minutage} other {# mots ont des problèmes de minutage}}",
+    "jump": "Sélectionner le premier",
+    "untimed": "Pas de minutage dans une ligne minutée",
+    "untimedLine": "Pas encore minutée",
+    "endsBeforeStart": "Se termine avant de commencer",
+    "startsBeforeLine": "Commence avant sa ligne",
+    "endsAfterLine": "Se termine après sa ligne"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Ouvrir le fichier de paroles",
@@ -433,7 +442,7 @@
       "mode": "Mode",
       "standard": "Standard",
       "timing": "Temps",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Paroles simples",
       "forceLineRendering": "Afficher la synchronisation par ligne",
       "background": "Arrière-plan",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "La vue d’ensemble des temps suit la tête de lecture.",
       "vsyncDesc": "Met à jour les aperçus Standard et Toxi à chaque image au lieu d'environ 30 fois par seconde. Plus fluide, mais consomme plus de CPU.",
       "showFpsDesc": "Affiche un compteur d'images par seconde sur l'aperçu.",
-      "syncLevelDesc": "Mot : synchronisez chaque mot à mesure. Ligne : synchronisez des lignes entières et répartissez leurs mots uniformément pour une synchronisation approximative à affiner dans le spectrogramme.",
+      "syncLevelDesc": "Mot : synchronisez chaque mot à mesure. Ligne : synchronisez des lignes entières et répartissez leurs mots uniformément. Le mode Ligne enregistre toujours le minutage de chaque mot, pas des paroles synchronisées ligne par ligne : affinez donc les mots dans le spectrogramme.",
       "previewModeDesc": "Choisissez l'aperçu affiché dans l'onglet Aperçu.",
       "spicyBackgroundDesc": "Ce qui s'affiche derrière l'aperçu Spicy.",
       "fadeWidthDesc": "Douceur du bord du surlignage lorsqu'un mot se remplit dans les aperçus Standard et Toxi."
@@ -858,6 +867,10 @@
     "order": "Ordre",
     "orderChronological": "Chronologique",
     "orderTextual": "Ordre du texte"
+  },
+  "joinSplitWords": {
+    "label": "Fusionner les mots découpés",
+    "description": "Affiche un mot chanté en plusieurs parties comme un seul mot lorsque les parties s'enchaînent régulièrement, comme le réglage Join Split Words de Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "Volume",
     "playbackRate": "Vitesse de lecture",
     "preservesPitch": "Conserver la hauteur",
-    "clickToLoadMusic": "Cliquez sur l’icône de musique pour charger l’audio",
+    "audioMenu": "Audio et lecture",
+    "loadedAudio": "Audio chargé",
+    "replaceAudio": "Remplacer",
+    "resetSpeed": "Revenir à 1×",
     "playPause": "Lecture / pause de la musique",
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "Champ personnalisé",
     "addPresets": "Ajouter tous les champs standard",
     "clear": "Effacer"
+  },
+  "helpText": {
+    "metadataArtists": "Qui interprète la chanson, tel que le titre est crédité sur les services de streaming. Exemple : « Shake It Off » est de Taylor Swift.",
+    "metadataSongwriter": "Qui a écrit la musique et les paroles, d'après les crédits d'écriture. Souvent différent des artistes. Exemple : « Shake It Off » a été écrit par Taylor Swift, Max Martin et Shellback.",
+    "openSongwritersGuide": "Ouvrir le guide des auteurs-compositeurs"
   },
   "lrclib": {
     "placeholder": "Titre de la chanson et artiste…",
@@ -1501,6 +1522,23 @@
     "openContributorProfile": "Ouvrir le profil GitHub de {name}",
     "unknown": "Inconnu"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Pistes séparées",
+    "settingDesc": "Affiche les lignes de chœurs sur leur propre piste sous les lignes principales. Les pistes servent uniquement à l'affichage : changez le rôle d'une ligne en mode édition.",
+    "menu": "Pistes",
+    "visibleLanes": "Afficher les pistes",
+    "duetLane": "Piste séparée pour le duo",
+    "lane": {
+      "main": "Principale",
+      "duet": "Duo",
+      "bg": "Chœurs"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fin de la ligne et du dernier mot. Glissez avec Alt pour n'en déplacer qu'un.",
+    "wordEndHandle": "Fin du dernier mot",
+    "lineEndHandle": "Fin de la ligne"
+  },
   "spectrogram": {
     "invalidEndTime": "Impossible de sélectionner ce temps de fin",
     "noAudioLoaded": "Veuillez charger un fichier audio pour afficher le spectrogramme",
@@ -1516,6 +1554,17 @@
       "4096": "4096 (maximum de détails)"
     },
     "height": "Hauteur d'affichage"
+  },
+  "spectrogramFollow": {
+    "toggle": "Suivre la tête de lecture",
+    "shortcut": "Spectrogramme - Activer/désactiver le suivi de la tête de lecture",
+    "setting": "Suivre la tête de lecture",
+    "settingDesc": "Fait défiler le spectrogramme pour garder la tête de lecture visible. Faire défiler ou glisser le met en pause jusqu'à ce que vous lanciez la lecture ou attendiez un instant.",
+    "style": "Mode de suivi",
+    "page": "Par page",
+    "pageDesc": "Saute en avant quand la tête de lecture sort de la vue.",
+    "continuous": "Continu",
+    "continuousDesc": "Défile avec la tête de lecture et la garde au centre."
   },
   "export": {
     "recoveryUntimed": "Cet export de récupération contient des paroles non synchronisées. Vérifiez la synchronisation avant de l'envoyer.",

@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# satır henüz zamanlanmamış} other {# satır henüz zamanlanmamış}}",
     "jumpToUntimed": "Zamanlanmamış ilk satırı senkronize et"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# kelimede zamanlama sorunu var} other {# kelimede zamanlama sorunu var}}",
+    "jump": "İlkini seç",
+    "untimed": "Zamanlanmış satırda zamanlaması yok",
+    "untimedLine": "Henüz zamanlanmadı",
+    "endsBeforeStart": "Başlamadan önce bitiyor",
+    "startsBeforeLine": "Satırından önce başlıyor",
+    "endsAfterLine": "Satırından sonra bitiyor"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Şarkı sözü dosyasını aç",
@@ -433,7 +442,7 @@
       "mode": "Mod",
       "standard": "Standard",
       "timing": "Zamanlama",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Basit şarkı sözleri",
       "forceLineRendering": "Satır senkronizasyonuyla göster",
       "background": "Arka plan",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "Zamanlama görünümünü oynatma konumuna göre kaydırır.",
       "vsyncDesc": "Standard ve Toxi önizlemelerini saniyede yaklaşık 30 kez yerine her karede günceller. Daha akıcıdır, ancak daha fazla CPU kullanır.",
       "showFpsDesc": "Önizlemede kare hızı sayacı gösterir.",
-      "syncLevelDesc": "Kelime: her kelimeyi ayrı zamanlayın. Satır: tüm satırı zamanlayıp kelimeleri eşit dağıtın. Bu kaba senkronizasyonu spektrogramda ince ayarlayabilirsiniz.",
+      "syncLevelDesc": "Kelime: her kelimeyi ayrı zamanlayın. Satır: tüm satırı zamanlayıp kelimeleri eşit dağıtın. Satır modu da her kelimenin zamanını kaydeder, satır senkronlu söz oluşturmaz; kelimeleri spektrogramda ince ayarlayın.",
       "previewModeDesc": "Önizleme sekmesinin hangi önizlemeyi göstereceğini seçin.",
       "spicyBackgroundDesc": "Spicy önizlemesinin arkasında ne görüneceği.",
       "fadeWidthDesc": "Standard ve Toxi önizlemelerinde bir kelime dolarken vurgunun kenarının ne kadar yumuşak olacağı."
@@ -858,6 +867,10 @@
     "order": "Sıra",
     "orderChronological": "Zamana göre",
     "orderTextual": "Metne göre"
+  },
+  "joinSplitWords": {
+    "label": "Bölünmüş kelimeleri birleştir",
+    "description": "Parçalar halinde söylenen bir kelimeyi, parçalar düzenli şekilde hizalandığında tek kelime olarak gösterir; Spicy Lyrics'teki Join Split Words ayarı gibi."
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "Ses düzeyi",
     "playbackRate": "Oynatma hızı",
     "preservesPitch": "Ses perdesini koru",
-    "clickToLoadMusic": "Ses yüklemek için müzik simgesine tıklayın",
+    "audioMenu": "Ses ve oynatma",
+    "loadedAudio": "Yüklenen ses",
+    "replaceAudio": "Değiştir",
+    "resetSpeed": "1× değerine sıfırla",
     "playPause": "Müziği oynat/duraklat",
     "expandSpectrogram": "Spektrogramı genişlet/daralt"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "Özel alan",
     "addPresets": "Tüm standart alanları ekle",
     "clear": "Temizle"
+  },
+  "helpText": {
+    "metadataArtists": "Şarkıyı seslendiren kişi, parçanın yayın hizmetlerinde listelendiği şekliyle. Örnek: \"Shake It Off\" Taylor Swift'in şarkısıdır.",
+    "metadataSongwriter": "Müziği ve sözleri yazan kişiler, yazar bilgilerine göre. Çoğu zaman sanatçılardan farklıdır. Örnek: \"Shake It Off\" şarkısını Taylor Swift, Max Martin ve Shellback yazdı.",
+    "openSongwritersGuide": "Söz yazarları rehberini aç"
   },
   "lrclib": {
     "placeholder": "Şarkı adı ve sanatçı…",
@@ -1501,6 +1522,23 @@
     "openContributorProfile": "{name} kullanıcısının GitHub profilini aç",
     "unknown": "Bilinmiyor"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Ayrı şeritler",
+    "settingDesc": "Arka vokal satırlarını ana satırların altında kendi şeritlerinde göster. Şeritler yalnızca görüntü içindir: bir satırın rolünü Düzenle modunda değiştirin.",
+    "menu": "Şeritler",
+    "visibleLanes": "Şeritleri göster",
+    "duetLane": "Ayrı düet şeridi",
+    "lane": {
+      "main": "Ana",
+      "duet": "Düet",
+      "bg": "Arka vokal"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Satırın ve son kelimenin sonu. Yalnızca birini taşımak için Alt ile sürükleyin.",
+    "wordEndHandle": "Son kelimenin sonu",
+    "lineEndHandle": "Satır sonu"
+  },
   "spectrogram": {
     "invalidEndTime": "Bu bitiş zamanı seçilemez",
     "noAudioLoaded": "Spektrogramı göstermek için ses dosyası yükleyin",
@@ -1516,6 +1554,17 @@
       "4096": "4096 (en fazla ayrıntı)"
     },
     "height": "Görünüm yüksekliği"
+  },
+  "spectrogramFollow": {
+    "toggle": "Oynatma imlecini takip et",
+    "shortcut": "Spektrogram - Oynatma imlecini takibi aç/kapat",
+    "setting": "Oynatma imlecini takip et",
+    "settingDesc": "Oynatma imleci görünür kalsın diye spektrogramı kaydırır. Kaydırmak veya sürüklemek, oynatmaya basana ya da bir süre bekleyene kadar takibi duraklatır.",
+    "style": "Takip biçimi",
+    "page": "Sayfa sayfa",
+    "pageDesc": "İmleç görünümden çıkınca ileri atlar.",
+    "continuous": "Sürekli",
+    "continuousDesc": "İmleçle birlikte kayar ve onu ortada tutar."
   },
   "export": {
     "recoveryUntimed": "Bu kurtarma dışa aktarımı zamanlanmamış sözler içeriyor. Göndermeden önce zamanlamayı kontrol edin.",

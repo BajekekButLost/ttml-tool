@@ -33,6 +33,15 @@
     "untimedLines": "{count, plural, one {# řádek zatím nemá časování} few {# řádky zatím nemají časování} many {# řádku zatím nemá časování} other {# řádků zatím nemá časování}}",
     "jumpToUntimed": "Nastavit časy prvního řádku bez časování"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# slovo má problém s časováním} few {# slova mají problém s časováním} many {# slova má problém s časováním} other {# slov má problém s časováním}}",
+    "jump": "Vybrat první",
+    "untimed": "Nemá časování v časovaném řádku",
+    "untimedLine": "Zatím bez časování",
+    "endsBeforeStart": "Končí dřív, než začne",
+    "startsBeforeLine": "Začíná před svým řádkem",
+    "endsAfterLine": "Končí po svém řádku"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Otevřít soubor s textem písně",
@@ -433,7 +442,7 @@
       "mode": "Režim",
       "standard": "Standard",
       "timing": "Časování",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Jednoduché texty",
       "forceLineRendering": "Zobrazit časování po řádcích",
       "background": "Pozadí",
@@ -838,7 +847,7 @@
       "timingOverviewAutoScrollDesc": "Udržovat přehled časování posunutý na pozici přehrávání.",
       "vsyncDesc": "Aktualizovat náhledy Standard a Toxi v každém snímku místo zhruba 30krát za sekundu. Plynulejší, ale náročnější na CPU.",
       "showFpsDesc": "Zobrazit v náhledu počítadlo snímků za sekundu.",
-      "syncLevelDesc": "Slova: časovat každé slovo zvlášť. Řádky: časovat celé řádky a rovnoměrně rozložit jejich slova. Hrubé časování pak doladíte ve spektrogramu.",
+      "syncLevelDesc": "Slova: časovat každé slovo zvlášť. Řádky: časovat celé řádky a rovnoměrně rozložit jejich slova. I režim Řádky ukládá časování slov, ne časování po řádcích. Slova pak doladíte ve spektrogramu.",
       "previewModeDesc": "Vyberte, který náhled se zobrazí na kartě Náhled.",
       "spicyBackgroundDesc": "Co se zobrazuje za náhledem Spicy.",
       "fadeWidthDesc": "Jak měkký je okraj zvýraznění při vyplňování slova v náhledech Standard a Toxi."
@@ -858,6 +867,10 @@
     "order": "Pořadí",
     "orderChronological": "Podle času",
     "orderTextual": "Podle textu"
+  },
+  "joinSplitWords": {
+    "label": "Spojit rozdělená slova",
+    "description": "Zobrazit slovo zpívané po částech jako jedno slovo, když jsou části rovnoměrně načasované, jako nastavení Join Split Words ve Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1100,7 +1113,10 @@
     "volume": "Hlasitost",
     "playbackRate": "Rychlost přehrávání",
     "preservesPitch": "Zachovat výšku tónu",
-    "clickToLoadMusic": "Kliknutím na ikonu hudby načtěte zvuk",
+    "audioMenu": "Zvuk a přehrávání",
+    "loadedAudio": "Načtený zvuk",
+    "replaceAudio": "Nahradit",
+    "resetSpeed": "Obnovit na 1×",
     "playPause": "Přehrát / pozastavit hudbu",
     "expandSpectrogram": "Rozbalit / sbalit spektrogram"
   },
@@ -1160,6 +1176,11 @@
     "customKey": "Vlastní pole",
     "addPresets": "Přidat všechna standardní pole",
     "clear": "Vymazat"
+  },
+  "helpText": {
+    "metadataArtists": "Kdo skladbu interpretuje, podle toho, jak je skladba uvedena ve streamovacích službách. Příklad: „Shake It Off“ je od Taylor Swift.",
+    "metadataSongwriter": "Kdo napsal hudbu a text, podle autorských údajů. Často jde o jiné lidi než interpreti. Příklad: „Shake It Off“ napsali Taylor Swift, Max Martin a Shellback.",
+    "openSongwritersGuide": "Otevřít průvodce k autorům"
   },
   "lrclib": {
     "placeholder": "Název skladby a interpret…",
@@ -1501,6 +1522,23 @@
     "openContributorProfile": "Otevřít GitHub profil uživatele {name}",
     "unknown": "Neznámý"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Oddělené stopy",
+    "settingDesc": "Zobrazí doprovodné řádky ve vlastní stopě pod hlavními řádky. Stopy slouží jen k zobrazení: roli řádku změníte v režimu úprav.",
+    "menu": "Stopy",
+    "visibleLanes": "Zobrazit stopy",
+    "duetLane": "Samostatná stopa pro duet",
+    "lane": {
+      "main": "Hlavní",
+      "duet": "Duet",
+      "bg": "Doprovod"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Konec řádku a posledního slova. Tažením s Alt posunete jen jedno.",
+    "wordEndHandle": "Konec posledního slova",
+    "lineEndHandle": "Konec řádku"
+  },
   "spectrogram": {
     "invalidEndTime": "Nelze vybrat tento čas konce",
     "noAudioLoaded": "Načtěte zvukový soubor pro zobrazení spektrogramu",
@@ -1516,6 +1554,17 @@
       "4096": "4096 (nejvíce detailů)"
     },
     "height": "Výška zobrazení"
+  },
+  "spectrogramFollow": {
+    "toggle": "Sledovat přehrávací hlavu",
+    "shortcut": "Spektrogram – zapnout/vypnout sledování přehrávací hlavy",
+    "setting": "Sledovat přehrávací hlavu",
+    "settingDesc": "Posouvá spektrogram tak, aby přehrávací hlava zůstala vidět. Posouvání nebo tažení sledování pozastaví, dokud nespustíte přehrávání nebo chvíli nečekáte.",
+    "style": "Způsob sledování",
+    "page": "Po stránkách",
+    "pageDesc": "Skočí dopředu, když přehrávací hlava opustí zobrazení.",
+    "continuous": "Plynule",
+    "continuousDesc": "Posouvá se s přehrávací hlavou a drží ji uprostřed."
   },
   "export": {
     "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Před odesláním zkontrolujte časování.",
