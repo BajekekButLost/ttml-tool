@@ -242,7 +242,7 @@ export const LyricWordMenu = ({
 								sourceLine.words,
 								selectedWordIds,
 							);
-							if (!selection) return;
+							if (!selection?.isContiguous) return;
 
 							if (combineApplyToAll && selection.isContiguous) {
 								for (const line of state.lyricLines) {
@@ -259,6 +259,18 @@ export const LyricWordMenu = ({
 								);
 							}
 						});
+						const existing = new Set(
+							store
+								.get(lyricLinesAtom)
+								.lyricLines.flatMap((line) =>
+									line.words.map((word) => word.id),
+								),
+						);
+						store.set(
+							selectedWordsAtom,
+							(selected) =>
+								new Set([...selected].filter((id) => existing.has(id))),
+						);
 						return;
 					}
 					setCombineWordsDialog({ open: true, lineIndex });

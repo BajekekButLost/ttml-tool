@@ -1,5 +1,5 @@
 import { Button, Checkbox, Dialog, Flex, Text } from "@radix-ui/themes";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
 import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,7 +22,7 @@ export const CombineWordsDialog = memo(() => {
 	const [applyToAll, setApplyToAll] = useAtom(combineWordsApplyToAllAtom);
 	const [ignoreCase, setIgnoreCase] = useAtom(combineWordsIgnoreCaseAtom);
 	const lyricLines = useLyricLinesWhileOpen(dialogState.open);
-	const selectedWordIds = useAtomValue(selectedWordsAtom);
+	const [selectedWordIds, setSelectedWordIds] = useAtom(selectedWordsAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 
 	const selection = useMemo(() => {
@@ -46,7 +46,7 @@ export const CombineWordsDialog = memo(() => {
 				sourceLine.words,
 				selectedWordIds,
 			);
-			if (!currentSelection) return;
+			if (!currentSelection?.isContiguous) return;
 
 			if (effectiveApplyToAll && currentSelection.isContiguous) {
 				for (const line of state.lyricLines) {
@@ -63,6 +63,8 @@ export const CombineWordsDialog = memo(() => {
 				);
 			}
 		});
+		if (selection?.isContiguous)
+			setSelectedWordIds(new Set([selection.words[0].id]));
 		closeDialog();
 	};
 
@@ -153,7 +155,7 @@ export const CombineWordsDialog = memo(() => {
 							{t("common.cancel", "Cancel")}
 						</Button>
 					</Dialog.Close>
-					<Button disabled={!selection} onClick={handleConfirm}>
+					<Button disabled={!selection?.isContiguous} onClick={handleConfirm}>
 						{t("common.confirm", "Confirm")}
 					</Button>
 				</Flex>

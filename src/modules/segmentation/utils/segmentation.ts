@@ -165,6 +165,7 @@ function distributeTime(
 			word: token,
 			romanWord: index === 0 ? original.romanWord : "",
 			romanWarning: original.romanWarning || !!original.romanWord || undefined,
+			splitGroupId: original.splitGroupId ?? original.id,
 		})),
 		original.startTime,
 		original.endTime,
@@ -243,9 +244,13 @@ export function segmentLyricLines(
 		if (resetStatePerLine) context.isQuoteOpen = false;
 		return {
 			...line,
-			words: line.words.flatMap((word) =>
-				segmentWord(word, config, context, pattern),
-			),
+			words: line.words.flatMap((word) => {
+				if (word.splitGroupId) {
+					advanceContext(word.word, context);
+					return [word];
+				}
+				return segmentWord(word, config, context, pattern);
+			}),
 		};
 	});
 }
@@ -261,7 +266,7 @@ export function segmentSelectedWords(
 		if (!line.words.some((word) => selectedWordIds.has(word.id))) continue;
 		const context: SegmentationContext = { isQuoteOpen: false };
 		line.words = line.words.flatMap((word) => {
-			if (!selectedWordIds.has(word.id)) {
+			if (!selectedWordIds.has(word.id) || word.splitGroupId) {
 				advanceContext(word.word, context);
 				return [word];
 			}

@@ -1,5 +1,5 @@
 import { getLearnedWordParts } from "$/modules/segmentation/utils/learned-rules";
-import { type LyricWord, newLyricWord } from "$/types/ttml";
+import type { LyricWord } from "$/types/ttml";
 
 export interface CombineWordSelection {
 	firstIndex: number;
@@ -32,20 +32,24 @@ export function getCombineWordSelection(
 }
 
 function createCombinedWord(words: LyricWord[]): LyricWord {
-	const combinedWord = newLyricWord();
+	const combinedWord = { ...words[0] };
 	combinedWord.word = words.map((word) => word.word).join("");
+	combinedWord.romanWord = words.map((word) => word.romanWord).join("");
+	combinedWord.romanWarning =
+		words.some((word) => word.romanWarning) || undefined;
+	combinedWord.obscene = words.some((word) => word.obscene);
+	combinedWord.splitGroupId = words[0].splitGroupId ?? words[0].id;
 	combinedWord.startTime = words[0].startTime;
 	combinedWord.endTime = words[words.length - 1].endTime;
 	return combinedWord;
 }
 
-/** Preserves the existing one-off behavior, including non-adjacent selections. */
 export function combineSelectedWords(
 	words: LyricWord[],
 	selectedWordIds: ReadonlySet<string>,
 ): LyricWord[] {
 	const selection = getCombineWordSelection(words, selectedWordIds);
-	if (!selection) return words;
+	if (!selection?.isContiguous) return words;
 
 	const remainingWords = words.filter((word) => !selectedWordIds.has(word.id));
 	remainingWords.splice(

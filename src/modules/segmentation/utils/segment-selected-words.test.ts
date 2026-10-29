@@ -1,7 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 import { type LyricLine, newLyricLine, newLyricWord } from "$/types/ttml";
 import type { SegmentationConfig } from "../types";
-import { segmentLyricLines, segmentSelectedWords } from "./segmentation";
+import {
+	recalculateWordTime,
+	segmentLyricLines,
+	segmentSelectedWords,
+} from "./segmentation";
 
 const config: SegmentationConfig = {
 	engine: "basic",
@@ -28,6 +32,36 @@ const line = (...words: ReturnType<typeof word>[]): LyricLine => ({
 });
 
 describe("segmentSelectedWords", () => {
+	it("preserves generated and manually corrected syllables on repeated runs", () => {
+		const source = [line(word("people", 100, 1100))];
+		const options = { ...config, engine: "prosodic" as const };
+		const first = segmentLyricLines(source, options);
+		expect(first[0].words.map((part) => part.word)).toEqual(["peo", "ple"]);
+		expect(segmentLyricLines(first, options)).toEqual(first);
+		const manual = recalculateWordTime(
+			source[0].words[0],
+			["pe", "ople"],
+			options,
+		);
+		expect(segmentLyricLines([line(...manual)], options)[0].words).toEqual(
+			manual,
+		);
+	});
+
+	it("keeps selection IDs and recoverable romanization when splitting", () => {
+		const target = {
+			...word("hello", 0, 1000),
+			romanWord: "reading",
+			romanWarning: true,
+		};
+		const lines = [line(target)];
+		segmentSelectedWords(lines, new Set([target.id]), config);
+		expect(lines[0].words[0].id).toBe(target.id);
+		expect(lines[0].words.map((part) => part.romanWord).join("")).toBe(
+			"reading",
+		);
+		expect(lines[0].words.every((part) => part.romanWarning)).toBe(true);
+	});
 	it("prepares protected rules once per batch and refreshes mutated rules for the next batch", () => {
 		const rules = new Map([["hello", ["he", "llo"]]]);
 		const readKeys = vi.spyOn(rules, "keys");

@@ -84,6 +84,7 @@ export interface LyricWord extends AMLLLyricWord {
 	obscene: boolean;
 	romanWarning?: boolean;
 	romanWord: string;
+	splitGroupId?: string;
 }
 
 export const newLyricWord = (): LyricWord => ({

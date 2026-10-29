@@ -28,7 +28,7 @@ describe("combine words", () => {
 		});
 	});
 
-	it("preserves the current non-adjacent one-off behavior", () => {
+	it("preserves source order for non-adjacent selections", () => {
 		const words = [
 			word("one", 0, 100),
 			word("middle", 100, 200),
@@ -41,7 +41,24 @@ describe("combine words", () => {
 		);
 		expect(
 			combineSelectedWords(words, selectedIds).map(({ word }) => word),
-		).toEqual(["onetwo", "middle"]);
+		).toEqual(["one", "middle", "two"]);
+	});
+
+	it("retains the first ID, romanization and review flags", () => {
+		const words = [
+			{ ...word("beau", 0, 50), romanWord: "beau", romanWarning: true },
+			{ ...word("tiful", 50, 100), romanWord: "tiful", obscene: true },
+		];
+		const result = combineSelectedWords(
+			words,
+			new Set(words.map((item) => item.id)),
+		);
+		expect(result[0]).toMatchObject({
+			id: words[0].id,
+			romanWord: "beautiful",
+			romanWarning: true,
+			obscene: true,
+		});
 	});
 
 	it("combines every exact consecutive sequence", () => {
