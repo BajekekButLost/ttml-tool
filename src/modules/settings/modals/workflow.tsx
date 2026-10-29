@@ -311,7 +311,27 @@ const SettingRow = ({
 	return <Card>{asLabel ? <Text as="label">{row}</Text> : row}</Card>;
 };
 
-export const WorkflowSettings = () => {
+export type WorkflowGroup =
+	| "editMode"
+	| "timeModeDisplay"
+	| "syncAids"
+	| "preview"
+	| "previewPerformance";
+
+const ALL_GROUPS: readonly WorkflowGroup[] = [
+	"editMode",
+	"timeModeDisplay",
+	"syncAids",
+	"preview",
+	"previewPerformance",
+];
+
+/** The editor's groups of settings; Preferences shows each on its own page. */
+export const WorkflowSettings = ({
+	groups = ALL_GROUPS,
+}: {
+	groups?: readonly WorkflowGroup[];
+}) => {
 	const { t } = useTranslation();
 	const [fadeWidth, setFadeWidth] = useAtom(lyricWordFadeWidthAtom);
 	const toggles = (rows: readonly ToggleRow[]) =>
@@ -328,96 +348,106 @@ export const WorkflowSettings = () => {
 		));
 	return (
 		<Flex direction="column" gap="4">
-			<Flex direction="column" gap="3">
-				<Heading size="4">
-					{t("settings.group.editModeDisplay", "Edit mode")}
-				</Heading>
-				{toggles(editModeToggles)}
-			</Flex>
-			<Flex direction="column" gap="3">
-				<Heading size="4">
-					{t("settings.group.timeModeDisplay", "Time mode display")}
-				</Heading>
-				{toggles(timeModeDisplayToggles)}
-			</Flex>
-			<Flex direction="column" gap="3">
-				<Heading size="4">
-					{t("settings.group.syncAids", "Syncing aids")}
-				</Heading>
-				<SettingRow
-					icon={<Timeline24Regular />}
-					title={t("ribbonBar.syncMode.syncLevel", "Sync by")}
-					description={t(
-						"settings.workflow.syncLevelDesc",
-						"Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
-					)}
-				>
-					<SyncLevelControl variant="segmented" />
-				</SettingRow>
-				<SettingRow
-					icon={<EyeOff24Regular />}
-					title={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
-					description={t(
-						"settings.workflow.bgLyricSyncDesc",
-						"How G and H treat background lines while syncing.",
-					)}
-				>
-					<BackgroundSyncControl variant="segmented" />
-				</SettingRow>
-				{toggles(syncAidToggles)}
-			</Flex>
-			<Flex direction="column" gap="3">
-				<Heading size="4">
-					{t("settings.group.previewControls", "Preview")}
-				</Heading>
-				<SettingRow
-					icon={<Eye24Regular />}
-					title={t("ribbonBar.previewMode.mode", "Mode")}
-					description={t(
-						"settings.workflow.previewModeDesc",
-						"Choose which preview the Preview tab shows.",
-					)}
-				>
-					<PreviewModeControl variant="segmented" />
-				</SettingRow>
-				<SettingRow
-					icon={<Image24Regular />}
-					title={t("ribbonBar.previewMode.background", "Background")}
-					description={t(
-						"settings.workflow.spicyBackgroundDesc",
-						"What shows behind the Spicy preview.",
-					)}
-				>
-					<SpicyBackgroundControl variant="segmented" />
-				</SettingRow>
-				{toggles(previewToggles)}
-				<SettingRow
-					icon={<ArrowAutofitWidth24Regular />}
-					title={t("ribbonBar.previewMode.fadeWidth", "Fade width")}
-					description={t(
-						"settings.workflow.fadeWidthDesc",
-						"How soft the edge of the highlight is as a word fills in the Standard and Toxi previews.",
-					)}
-				>
-					<TextField.Root
-						type="number"
-						min={0}
-						step={0.1}
-						value={fadeWidth}
-						style={{ width: 80 }}
-						onChange={(event) => {
-							const value = event.target.valueAsNumber;
-							if (Number.isFinite(value)) setFadeWidth(Math.max(0, value));
-						}}
-					/>
-				</SettingRow>
-			</Flex>
-			<Flex direction="column" gap="3">
-				<Heading size="4">
-					{t("settings.group.previewPerformance", "Preview performance")}
-				</Heading>
-				{toggles(performanceToggles)}
-			</Flex>
+			{groups.includes("editMode") && (
+				<Flex direction="column" gap="3">
+					<Heading size="4">
+						{t("settings.group.editModeDisplay", "Edit mode")}
+					</Heading>
+					{toggles(editModeToggles)}
+				</Flex>
+			)}
+			{groups.includes("timeModeDisplay") && (
+				<Flex direction="column" gap="3">
+					<Heading size="4">
+						{t("settings.group.timeModeDisplay", "Time mode display")}
+					</Heading>
+					{toggles(timeModeDisplayToggles)}
+				</Flex>
+			)}
+			{groups.includes("syncAids") && (
+				<Flex direction="column" gap="3">
+					<Heading size="4">
+						{t("settings.group.syncAids", "Syncing aids")}
+					</Heading>
+					<SettingRow
+						icon={<Timeline24Regular />}
+						title={t("ribbonBar.syncMode.syncLevel", "Sync by")}
+						description={t(
+							"settings.workflow.syncLevelDesc",
+							"Word: time each word as you go. Line: time whole lines and spread their words out evenly, for a rough sync you fine-tune in the spectrogram.",
+						)}
+					>
+						<SyncLevelControl variant="segmented" />
+					</SettingRow>
+					<SettingRow
+						icon={<EyeOff24Regular />}
+						title={t("ribbonBar.syncMode.bgLyricSync", "Background lines")}
+						description={t(
+							"settings.workflow.bgLyricSyncDesc",
+							"How G and H treat background lines while syncing.",
+						)}
+					>
+						<BackgroundSyncControl variant="segmented" />
+					</SettingRow>
+					{toggles(syncAidToggles)}
+				</Flex>
+			)}
+			{groups.includes("preview") && (
+				<Flex direction="column" gap="3">
+					<Heading size="4">
+						{t("settings.group.previewControls", "Preview")}
+					</Heading>
+					<SettingRow
+						icon={<Eye24Regular />}
+						title={t("ribbonBar.previewMode.mode", "Mode")}
+						description={t(
+							"settings.workflow.previewModeDesc",
+							"Choose which preview the Preview tab shows.",
+						)}
+					>
+						<PreviewModeControl variant="segmented" />
+					</SettingRow>
+					<SettingRow
+						icon={<Image24Regular />}
+						title={t("ribbonBar.previewMode.background", "Background")}
+						description={t(
+							"settings.workflow.spicyBackgroundDesc",
+							"What shows behind the Spicy preview.",
+						)}
+					>
+						<SpicyBackgroundControl variant="segmented" />
+					</SettingRow>
+					{toggles(previewToggles)}
+					<SettingRow
+						icon={<ArrowAutofitWidth24Regular />}
+						title={t("ribbonBar.previewMode.fadeWidth", "Fade width")}
+						description={t(
+							"settings.workflow.fadeWidthDesc",
+							"How soft the edge of the highlight is as a word fills in the Standard and Toxi previews.",
+						)}
+					>
+						<TextField.Root
+							type="number"
+							min={0}
+							step={0.1}
+							value={fadeWidth}
+							style={{ width: 80 }}
+							onChange={(event) => {
+								const value = event.target.valueAsNumber;
+								if (Number.isFinite(value)) setFadeWidth(Math.max(0, value));
+							}}
+						/>
+					</SettingRow>
+				</Flex>
+			)}
+			{groups.includes("previewPerformance") && (
+				<Flex direction="column" gap="3">
+					<Heading size="4">
+						{t("settings.group.previewPerformance", "Preview performance")}
+					</Heading>
+					{toggles(performanceToggles)}
+				</Flex>
+			)}
 		</Flex>
 	);
 };
