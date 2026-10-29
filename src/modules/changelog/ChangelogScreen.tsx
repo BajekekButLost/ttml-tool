@@ -11,10 +11,7 @@ import {
 import { open } from "@tauri-apps/plugin-shell";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-	ChangeMarkdown,
-	releaseColor,
-} from "$/components/Dialogs/change-notes.tsx";
+import { ChangeMarkdown } from "$/components/Dialogs/change-notes.tsx";
 import { OptionPicker } from "$/components/OptionPicker";
 import changelog from "$/data/changelog.json";
 import legacy from "$/data/changelog-legacy.json";
@@ -79,7 +76,7 @@ function ReleaseCardView({
 						{card.version ? `v${card.version}` : card.summary}
 					</Heading>
 					{latest && (
-						<Badge color={releaseColor(card.color ?? "")} variant="soft">
+						<Badge color="green" variant="soft">
 							{t("changelogScreen.latest", "Latest")}
 						</Badge>
 					)}
