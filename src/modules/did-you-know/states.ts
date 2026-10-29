@@ -1,10 +1,10 @@
 import { atomWithStorage } from "jotai/utils";
 import type { HintId } from "./detectors";
 
-/** Feature flag and the "Don't show tips" switch in one. Off by default. */
+/** The "Show tips" setting; "Don't show tips" on a tip turns it off. */
 export const didYouKnowEnabledAtom = atomWithStorage(
 	"didYouKnowHintsEnabled",
-	false,
+	true,
 	undefined,
 	{ getOnInit: true },
 );

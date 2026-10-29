@@ -10,6 +10,7 @@ import { formatKeyBindings } from "$/utils/keybindings";
 import {
 	decideHint,
 	type EditorSnapshot,
+	HINT_IDS,
 	type HintId,
 	initialRepeatedSectionState,
 	initialSplitTripState,
@@ -34,6 +35,8 @@ export const DidYouKnowHints = () => {
 
 	useEffect(() => {
 		if (!enabled || shownThisSession) return;
+		const alreadyShown = store.get(didYouKnowShownAtom);
+		if (HINT_IDS.every((id) => alreadyShown.includes(id))) return;
 
 		const readSnapshot = (): EditorSnapshot => ({
 			mode: store.get(toolModeAtom),
@@ -71,6 +74,8 @@ export const DidYouKnowHints = () => {
 		const show = (id: HintId) => {
 			shownThisSession = true;
 			pending = null;
+			// Nothing else can show this session, so stop watching edits.
+			unsubscribeAll();
 			store.set(didYouKnowShownAtom, (shown) => [...shown, id]);
 			const { text, shortcut } = message(id);
 			toast.info(
@@ -154,9 +159,10 @@ export const DidYouKnowHints = () => {
 			}),
 			store.sub(audioPlayingAtom, flushPending),
 		];
-		return () => {
-			for (const unsubscribe of unsubscribers) unsubscribe();
-		};
+		function unsubscribeAll() {
+			for (const unsubscribe of unsubscribers.splice(0)) unsubscribe();
+		}
+		return unsubscribeAll;
 	}, [enabled, store, t]);
 
 	return null;

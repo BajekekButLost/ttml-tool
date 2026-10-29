@@ -4,7 +4,8 @@
  * something enough times to deserve a tip.
  */
 
-export type HintId = "repeatedSection" | "splitInTimeMode";
+export const HINT_IDS = ["repeatedSection", "splitInTimeMode"] as const;
+export type HintId = (typeof HINT_IDS)[number];
 
 export interface DetectorWord {
 	word: string;
