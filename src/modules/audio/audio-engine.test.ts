@@ -152,6 +152,20 @@ beforeEach(() => {
 	vi.stubGlobal("AudioContext", FakeContext);
 	vi.stubGlobal("AudioWorkletNode", FakeNode);
 	vi.stubGlobal(
+		"Worker",
+		class {
+			postMessage = vi.fn();
+			terminate = vi.fn();
+		},
+	);
+	vi.stubGlobal(
+		"MessageChannel",
+		class {
+			port1 = {};
+			port2 = {};
+		},
+	);
+	vi.stubGlobal(
 		"fetch",
 		vi.fn(async () => ({
 			ok: true,
