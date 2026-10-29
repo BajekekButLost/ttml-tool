@@ -25,6 +25,24 @@ const writeLastSeen = (version: string) => {
 	}
 };
 
+/**
+ * The version to announce this page load, or null. Decided once, so a
+ * remount (StrictMode mounts twice, and the first toast container's toasts
+ * go with it) still shows the notice instead of finding the version stored.
+ * The version is recorded even with the notice off, so turning it on later
+ * never announces an update that already happened.
+ */
+let announcedVersion: string | null | undefined;
+const versionToAnnounce = () => {
+	if (announcedVersion === undefined) {
+		const { show, store } = decideUpdatedToast(APP_VERSION, readLastSeen());
+		// Without storage we can't remember it was shown, so stay quiet
+		// rather than repeat it on every start.
+		announcedVersion = store && writeLastSeen(store) && show ? store : null;
+	}
+	return announcedVersion;
+};
+
 /** Once per start: if this is a newer version than last run, say so. */
 export const UpdatedToast = () => {
 	const enabled = useAtomValue(showUpdatedToastAtom);
@@ -32,13 +50,8 @@ export const UpdatedToast = () => {
 	const { t } = useTranslation();
 
 	useEffect(() => {
-		// Record the version even with the notice off, so turning it on
-		// later never shows a notice for an update that already happened.
-		const { show, store } = decideUpdatedToast(APP_VERSION, readLastSeen());
-		if (!store) return;
-		// Without storage we can't remember it was shown, so stay quiet
-		// rather than repeat it on every start.
-		if (!writeLastSeen(store) || !show || !enabled) return;
+		const store = versionToAnnounce();
+		if (!store || !enabled) return;
 
 		toast.info(
 			({ closeToast }) => (
