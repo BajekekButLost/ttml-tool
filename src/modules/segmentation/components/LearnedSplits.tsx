@@ -15,11 +15,12 @@ import { useTranslation } from "react-i18next";
 import { segmentationLearnedRulesAtom } from "$/modules/segmentation/states";
 import { createLearnedRule } from "$/modules/segmentation/utils/learned-rules";
 import { learnedSplitsDialogAtom } from "$/states/dialogs";
+import { graphemes } from "$/utils/graphemes";
 import styles from "./AdvancedSegmentation.module.css";
 import { ManualWordSplitter } from "./ManualWordSplitter";
 
 function getSegments(word: string, boundaries: number[]): string[] {
-	const chars = Array.from(word);
+	const chars = graphemes(word);
 	const segments: string[] = [];
 	let start = 0;
 	for (const end of boundaries) {
@@ -65,7 +66,7 @@ export const LearnedSplitsDialog = memo(() => {
 	);
 	const rules = useMemo(() => {
 		const query = Array.from(search.normalize("NFC").toLowerCase());
-		if (!query) return allRules;
+		if (query.length === 0) return allRules;
 
 		return allRules.filter(([ruleWord]) => {
 			let queryIndex = 0;
@@ -172,6 +173,7 @@ export const LearnedSplitsDialog = memo(() => {
 									</Flex>
 									<Flex gap="1">
 										<IconButton
+											aria-label={`${t("common.edit")}: ${ruleWord}`}
 											size="1"
 											variant="ghost"
 											color="gray"
@@ -183,6 +185,7 @@ export const LearnedSplitsDialog = memo(() => {
 											<EditRegular />
 										</IconButton>
 										<IconButton
+											aria-label={`${t("common.remove")}: ${ruleWord}`}
 											size="1"
 											variant="ghost"
 											color="gray"

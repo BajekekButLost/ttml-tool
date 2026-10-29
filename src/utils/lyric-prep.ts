@@ -1,3 +1,6 @@
+import { graphemes, preservesSource } from "./graphemes";
+import { splitJapaneseRun } from "./japanese";
+
 const isCJKChar = (char: string) =>
 	/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(
 		char,
@@ -45,8 +48,12 @@ export const DEFAULT_LYRIC_PREP_OPTIONS: LyricPrepOptions = {
 	splitWords: true,
 };
 
-const normalize = (value: string, options: LyricPrepOptions) => {
-	const chars = Array.from(value);
+const normalize = (
+	value: string,
+	options: LyricPrepOptions,
+	splitCjkText: (text: string) => string[],
+) => {
+	const chars = graphemes(value);
 	let processed = "";
 	for (let index = 0; index < chars.length; index++) {
 		const char = chars[index];
@@ -79,7 +86,22 @@ const normalize = (value: string, options: LyricPrepOptions) => {
 	}
 
 	if (options.splitCjk) {
-		const processedChars = Array.from(processed);
+		const processedChars: string[] = [];
+		const sourceChars = graphemes(processed);
+		for (let index = 0; index < sourceChars.length; ) {
+			if (!isCJKChar(sourceChars[index])) {
+				processedChars.push(sourceChars[index++]);
+				continue;
+			}
+			const start = index;
+			while (index < sourceChars.length && isCJKChar(sourceChars[index]))
+				index++;
+			const source = sourceChars.slice(start, index).join("");
+			const parts = splitCjkText(source);
+			processedChars.push(
+				...(preservesSource(source, parts) ? parts : [source]),
+			);
+		}
 		let cjkProcessed = "";
 		for (let index = 0; index < processedChars.length; index++) {
 			const char = processedChars[index];
@@ -128,6 +150,7 @@ const capitalize = (text: string, options: LyricPrepOptions) =>
 export const prepareLyricLine = (
 	line: string,
 	steps: Partial<LyricPrepOptions> = {},
+	splitCjkText: (text: string) => string[] = splitJapaneseRun,
 ) => {
 	const options = { ...DEFAULT_LYRIC_PREP_OPTIONS, ...steps };
 	const backgroundVocals: string[] = [];
@@ -156,9 +179,9 @@ export const prepareLyricLine = (
 		}
 	}
 
-	const main = normalize(mainLine, options);
+	const main = normalize(mainLine, options, splitCjkText);
 	const background = backgroundVocals
-		.map((vocal) => normalize(vocal, options))
+		.map((vocal) => normalize(vocal, options, splitCjkText))
 		.filter(Boolean)
 		.join(", ");
 	const output = background

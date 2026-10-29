@@ -223,6 +223,33 @@ describe("applying reviewed sections", () => {
 });
 
 describe("syllable splitting in the import text", () => {
+	it("preserves repeated separator syntax and enforces the final hyphen setting", () => {
+		expect(segmentImportText("hello\\\\world", FORMAT, (word) => [word])).toBe(
+			"hello\\\\world",
+		);
+		expect(
+			importTextToLines(
+				"la-la",
+				{ ...FORMAT, splitHyphens: false },
+				false,
+			)[0].words.map((word) => word.word),
+		).toEqual(["la-la"]);
+		expect(
+			importTextToLines(
+				"la-la",
+				{ ...FORMAT, splitHyphens: true },
+				false,
+			)[0].words.map((word) => word.word),
+		).toEqual(["la-", "la"]);
+	});
+
+	it("marks imported syllables as an established lexical group", () => {
+		const words = importTextToLines("peo\\ple\\ \\world", FORMAT, false)[0]
+			.words;
+		expect(words[0].splitGroupId).toBe(words[1].splitGroupId);
+		expect(words[0].splitGroupId).toBeTruthy();
+		expect(words[3].splitGroupId).toBeUndefined();
+	});
 	it("marks syllables and keeps headers, blanks and spaces", () => {
 		expect(
 			segmentImportText("[Chorus]\nHello world\n\n<Mm yeah", FORMAT, pairs),

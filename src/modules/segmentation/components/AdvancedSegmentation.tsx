@@ -56,6 +56,7 @@ export const AdvancedSegmentationDialog = memo(() => {
 		config: segmentationConfig,
 		isReady,
 		error,
+		runSegmentation,
 	} = useSegmentationConfig();
 	const [rangeStart, setRangeStart] = useAtom(segmentationRangeStartAtom);
 	const [rangeEnd, setRangeEnd] = useAtom(segmentationRangeEndAtom);
@@ -206,23 +207,22 @@ export const AdvancedSegmentationDialog = memo(() => {
 			endIndex = Math.max(startIndex, Math.min(endIndex, maxLines));
 		}
 
-		editLyricLines((draft) => {
-			const linesToProcess = draft.lyricLines.slice(startIndex, endIndex);
-			const processedLines = segmentLyricLines(
-				linesToProcess,
-				segmentationConfig,
-			);
-			draft.lyricLines.splice(
-				startIndex,
-				processedLines.length,
-				...processedLines,
-			);
-		});
+		runSegmentation((config) =>
+			editLyricLines((draft) => {
+				const linesToProcess = draft.lyricLines.slice(startIndex, endIndex);
+				const processedLines = segmentLyricLines(linesToProcess, config);
+				draft.lyricLines.splice(
+					startIndex,
+					processedLines.length,
+					...processedLines,
+				);
+			}),
+		);
 
 		setOpen(false);
 	}, [
 		isReady,
-		segmentationConfig,
+		runSegmentation,
 		scope,
 		rangeStart,
 		rangeEnd,

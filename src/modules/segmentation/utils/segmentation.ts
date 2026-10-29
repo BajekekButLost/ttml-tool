@@ -24,16 +24,31 @@ function canonical(text: string): string {
 	return text.normalize("NFC").toLowerCase();
 }
 
+interface PreparedRules {
+	pattern: RegExp | null;
+	ignored: Set<string>;
+	custom: Map<string, { source: string; parts: string[] }>;
+}
+
 function configuredParts(
 	text: string,
 	config: SegmentationConfig,
+	prepared: PreparedRules,
 ): string[] | null {
 	const key = canonical(text);
-	if ([...config.ignoreList].some((entry) => canonical(entry.trim()) === key))
+	if (prepared.ignored.has(key)) return [text];
+	if (
+		(!config.splitCJK && getCharType(text) === CharType.Cjk) ||
+		(!config.splitEnglish && getCharType(text) === CharType.Latin)
+	)
 		return [text];
-	for (const [entry, parts] of config.customRules) {
-		if (canonical(entry.trim()) !== key) continue;
-		if (!Array.isArray(parts) || !preservesSource(entry, parts)) return [text];
+	const custom = prepared.custom.get(key);
+	if (custom) {
+		const { source: entry, parts } = custom;
+		if (!Array.isArray(parts) || !preservesSource(entry, parts)) {
+			config.onDiagnostic?.("invalid-rule", text);
+			return [text];
+		}
 		const chars = graphemes(text);
 		const lengths = parts.map((part) => graphemes(part).length);
 		let cursor = 0;
@@ -47,13 +62,17 @@ function configuredParts(
 	return applyLearnedRule(text, config.learnedRules);
 }
 
-function autoTokenize(text: string, config: SegmentationConfig): string[] {
+function autoTokenize(
+	text: string,
+	config: SegmentationConfig,
+	prepared: PreparedRules,
+): string[] {
 	const tokens: string[] = [];
 	let run = "";
 	let type: CharType | undefined;
 	const flush = () => {
 		if (!run) return;
-		const rules = configuredParts(run, config);
+		const rules = configuredParts(run, config, prepared);
 		if (rules) tokens.push(...rules);
 		else if (type === CharType.Cjk && config.splitCJK) {
 			tokens.push(
@@ -70,10 +89,17 @@ function autoTokenize(text: string, config: SegmentationConfig): string[] {
 			if (!eligible) tokens.push(run);
 			else if (getHyphenationLanguage(config.engine)) {
 				const proposal = config.hyphenator?.(run).split("\u00ad");
+				if (!proposal || !preservesSource(run, proposal))
+					config.onDiagnostic?.("engine-output", run);
 				tokens.push(
 					...(proposal && preservesSource(run, proposal) ? proposal : [run]),
 				);
-			} else tokens.push(...getSyllabificationEngine(config.engine).split(run));
+			} else
+				tokens.push(
+					...getSyllabificationEngine(config.engine).split(run, () =>
+						config.onDiagnostic?.("engine-output", run),
+					),
+				);
 		} else tokens.push(run);
 		run = "";
 	};
@@ -118,6 +144,7 @@ function postProcess(
 			!!token &&
 			(getCharType(token) === CharType.Other || /^['’]+$/u.test(token));
 		let direction = getMergeDirection(token);
+		if (!PUNCT_AMBIGUOUS_QUOTES.has(token)) advanceContext(token, context);
 		if (PUNCT_AMBIGUOUS_QUOTES.has(token)) {
 			direction = context.isQuoteOpen
 				? MergeDirection.Left
@@ -173,7 +200,7 @@ function distributeTime(
 	);
 }
 
-function prepareProtectedPattern(config: SegmentationConfig): RegExp | null {
+function prepareProtectedPattern(config: SegmentationConfig): PreparedRules {
 	const words = [
 		...new Set(
 			[...config.ignoreList, ...config.customRules.keys()]
@@ -181,24 +208,45 @@ function prepareProtectedPattern(config: SegmentationConfig): RegExp | null {
 				.filter(Boolean),
 		),
 	];
-	return words.length
+	const complex = words.filter((word) => {
+		const types = new Set(graphemes(word).map(getCharType));
+		return (
+			types.size > 1 ||
+			types.has(CharType.Other) ||
+			types.has(CharType.Whitespace)
+		);
+	});
+	const pattern = complex.length
 		? new RegExp(
-				`(?<![\\p{L}\\p{N}\\p{M}'’])(${words
+				`(?<![\\p{L}\\p{N}\\p{M}'’])(${complex
 					.sort((a, b) => b.length - a.length)
 					.map(escapeRegExp)
 					.join("|")})(?![\\p{L}\\p{N}\\p{M}'’])`,
 				"giu",
 			)
 		: null;
+	return {
+		pattern,
+		ignored: new Set(
+			[...config.ignoreList].map((word) => canonical(word.trim())),
+		),
+		custom: new Map(
+			[...config.customRules].map(([source, parts]) => [
+				canonical(source.trim()),
+				{ source, parts },
+			]),
+		),
+	};
 }
 
 export function segmentWord(
 	word: LyricWord,
 	config: SegmentationConfig,
 	context?: SegmentationContext,
-	pattern = prepareProtectedPattern(config),
+	prepared = prepareProtectedPattern(config),
 ): LyricWord[] {
 	const ctx = context ?? { isQuoteOpen: false };
+	if (word.word === "") return config.removeEmptySegments ? [] : [word];
 	if (
 		config.splitEnglish &&
 		getHyphenationLanguage(config.engine) &&
@@ -211,27 +259,47 @@ export function segmentWord(
 		advanceContext(word.word, ctx);
 		return [word];
 	}
-	if (word.word === "") return config.removeEmptySegments ? [] : [word];
 	const tokens: string[] = [];
 	let cursor = 0;
+	const pattern = prepared.pattern;
 	if (pattern) {
 		pattern.lastIndex = 0;
 		for (const match of word.word.matchAll(pattern)) {
 			tokens.push(
-				...autoTokenize(word.word.slice(cursor, match.index), config),
+				...autoTokenize(word.word.slice(cursor, match.index), config, prepared),
 			);
-			tokens.push(...(configuredParts(match[0], config) ?? [match[0]]));
+			tokens.push(
+				...(configuredParts(match[0], config, prepared) ?? [match[0]]),
+			);
 			cursor = match.index + match[0].length;
 		}
 	}
-	tokens.push(...autoTokenize(word.word.slice(cursor), config));
+	tokens.push(...autoTokenize(word.word.slice(cursor), config, prepared));
 	const parts = postProcess(tokens, config, ctx);
-	if (!preservesSource(word.word, parts)) return [word];
-	return distributeTime(
+	if (!preservesSource(word.word, parts)) {
+		config.onDiagnostic?.("engine-output", word.word);
+		return [word];
+	}
+	const result = distributeTime(
 		word,
 		parts,
 		parts.map((part) => calculateWeight(part, config)),
 	);
+	if (
+		result.length > 1 &&
+		word.endTime > word.startTime &&
+		result.some((part) => part.word.trim() && part.endTime <= part.startTime)
+	)
+		config.onDiagnostic?.("short-duration", word.word);
+	if (result.length > 1 && word.romanWord)
+		config.onDiagnostic?.("romanization", word.word);
+	return result;
+}
+
+export function createWordSegmenter(config: SegmentationConfig) {
+	const prepared = prepareProtectedPattern(config);
+	return (word: LyricWord, context?: SegmentationContext) =>
+		segmentWord(word, config, context, prepared);
 }
 
 function advanceContext(text: string, context: SegmentationContext): void {
@@ -291,9 +359,25 @@ export function recalculateWordTime(
 	segments: string[],
 	config: SegmentationConfig,
 ): LyricWord[] {
-	return distributeTime(
+	if (segments.length === 1 && segments[0] === originalWord.word)
+		return [
+			{
+				...originalWord,
+				splitGroupId: originalWord.splitGroupId ?? originalWord.id,
+			},
+		];
+	const result = distributeTime(
 		originalWord,
 		segments,
 		segments.map((token) => calculateWeight(token, config)),
 	);
+	if (
+		result.length > 1 &&
+		originalWord.endTime > originalWord.startTime &&
+		result.some((part) => part.word.trim() && part.endTime <= part.startTime)
+	)
+		config.onDiagnostic?.("short-duration", originalWord.word);
+	if (result.length > 1 && originalWord.romanWord)
+		config.onDiagnostic?.("romanization", originalWord.word);
+	return result;
 }

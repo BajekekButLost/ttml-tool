@@ -29,7 +29,7 @@ import {
 	applyConfirmedImportMetadataAtom,
 	loadedAudioSongAtom,
 } from "$/modules/project/song-metadata-state";
-import { segmentWord } from "$/modules/segmentation/utils/segmentation";
+import { createWordSegmenter } from "$/modules/segmentation/utils/segmentation";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import {
 	geniusApiKeyAtom,
@@ -81,6 +81,10 @@ import styles from "./ImportLyricsDialog.module.css";
 // Kept outside the dialog so closing it doesn't lose a draft.
 const importTextAtom = atom("");
 const originalTextAtom = atom<string | null>(null);
+const processedBoundariesAtom = atom<{
+	prepared: string;
+	unsplit: string;
+} | null>(null);
 const pickedTrackAtom = atom<ImportTrack | null>(null);
 
 /**
@@ -94,6 +98,9 @@ export const ImportLyricsDialog = () => {
 	const [source, setSource] = useAtom(importLyricsSourceAtom);
 	const [text, setText] = useAtom(importTextAtom);
 	const [originalText, setOriginalText] = useAtom(originalTextAtom);
+	const [processedBoundaries, setProcessedBoundaries] = useAtom(
+		processedBoundariesAtom,
+	);
 	const [pickedTrack, setPickedTrack] = useAtom(pickedTrackAtom);
 	const format = useAtomValue(importTextFormatAtom);
 	// Starts from the Genius sections preference each time the screen opens.
@@ -103,8 +110,11 @@ export const ImportLyricsDialog = () => {
 	const setEnableSpecialPrefix = useSetAtom(enableSpecialPrefixAtom);
 	const setBgLyricPrefix = useSetAtom(bgLyricPrefixAtom);
 	const setConfirmDialog = useSetAtom(confirmDialogAtom);
-	const { config: segmentationConfig, isReady: segmentationReady } =
-		useSegmentationConfig();
+	const {
+		config: segmentationConfig,
+		isReady: segmentationReady,
+		runSegmentation,
+	} = useSegmentationConfig();
 
 	const [step, setStep] = useState<"edit" | "review">("edit");
 	const [reviewed, setReviewed] = useState<ReviewedSection[]>([]);
@@ -222,7 +232,24 @@ export const ImportLyricsDialog = () => {
 	};
 
 	const handleProcess = () => {
-		transformText(prepareTextImport(text, true, store.get(processStepsAtom)));
+		const source =
+			processedBoundaries?.prepared === text
+				? processedBoundaries.unsplit
+				: text;
+		const steps = store.get(processStepsAtom);
+		const unsplit = prepareTextImport(source, true, {
+			...steps,
+			splitCjk: false,
+		});
+		const splitCjk = createWordSegmenter({
+			...segmentationConfig,
+			splitEnglish: false,
+		});
+		const prepared = prepareTextImport(source, true, steps, (source) =>
+			splitCjk({ ...newLyricWord(), word: source }).map((word) => word.word),
+		);
+		transformText(prepared);
+		setProcessedBoundaries({ prepared, unsplit });
 		// Process lyrics writes this format.
 		setWordSeparator("\\");
 		setEnableSpecialPrefix(true);
@@ -240,13 +267,22 @@ export const ImportLyricsDialog = () => {
 			toast.error(t("syllableSplitting.engineError"));
 			return;
 		}
-		const changed = transformText(
-			segmentImportText(text, format, (word) =>
-				segmentWord({ ...newLyricWord(), word }, segmentationConfig).map(
-					(part) => part.word,
+		let changed = false;
+		runSegmentation((config) => {
+			const split = createWordSegmenter(config);
+			changed = transformText(
+				segmentImportText(
+					processedBoundaries?.prepared === text
+						? processedBoundaries.unsplit
+						: text,
+					format,
+					(word, context) =>
+						split({ ...newLyricWord(), word }, context).map(
+							(part) => part.word,
+						),
 				),
-			),
-		);
+			);
+		});
 		if (changed)
 			toast.success(
 				t(
@@ -261,6 +297,7 @@ export const ImportLyricsDialog = () => {
 		if (originalText === null) return;
 		setText(originalText);
 		setOriginalText(null);
+		setProcessedBoundaries(null);
 	};
 
 	const deferredText = useDeferredValue(text);

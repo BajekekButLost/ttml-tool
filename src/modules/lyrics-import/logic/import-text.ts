@@ -4,6 +4,7 @@ import {
 } from "$/modules/lyric-editor/utils/section-system";
 import { textToLines } from "$/modules/project/logic/text-to-lines";
 import type { LyricLine, LyricSection } from "$/types/ttml";
+import { preservesSource } from "$/utils/graphemes";
 
 export type ImportContentMode =
 	| "lyric"
@@ -25,6 +26,7 @@ export interface ImportTextFormat {
 	enableSpecialPrefix: boolean;
 	bgLyricPrefix: string;
 	duetLyricPrefix: string;
+	splitHyphens?: boolean;
 }
 
 export const DEFAULT_IMPORT_TEXT_FORMAT: ImportTextFormat = {
@@ -53,6 +55,7 @@ export function importTextToLines(
 		lineSeparator: format.lineSeparator,
 		swapTransAndRoman: format.swapTransAndRoman,
 		wordSeparator: format.wordSeparator,
+		splitHyphens: format.splitHyphens ?? true,
 		sectionHeaders: makeSections ? "categorize" : "discard",
 		blankLines: "discard",
 		backgroundPrefix: format.enableSpecialPrefix ? format.bgLyricPrefix : "",
@@ -130,7 +133,7 @@ export const toSectionOverrides = (reviewed: ReviewedSection[]) =>
 export function segmentImportText(
 	text: string,
 	format: ImportTextFormat,
-	splitWord: (word: string) => string[],
+	splitWord: (word: string, context: { isQuoteOpen: boolean }) => string[],
 ): string {
 	const separator = format.wordSeparator;
 	if (!separator) return text;
@@ -149,11 +152,12 @@ export function segmentImportText(
 	const prefixes = format.enableSpecialPrefix
 		? [format.bgLyricPrefix, format.duetLyricPrefix].filter(Boolean)
 		: [];
+	let context = { isQuoteOpen: false };
 
 	const splitChunk = (chunk: string) => {
-		const parts = splitWord(chunk).filter((part) => part.length > 0);
+		const parts = splitWord(chunk, context).filter((part) => part.length > 0);
 		// Never let a split change the text itself.
-		return parts.join("") === chunk ? parts : [chunk];
+		return preservesSource(chunk, parts) ? parts : [chunk];
 	};
 	// A word already marked inside (other than right after a hyphen) was split
 	// by hand or by an earlier run, so it's left alone. That keeps this idempotent.
@@ -164,10 +168,14 @@ export function segmentImportText(
 			? tokens
 			: tokens.flatMap(splitChunk);
 	const splitBody = (body: string) => {
+		context = { isQuoteOpen: false };
 		const tokens = body
 			.split(separator)
-			.flatMap((piece) => piece.split(/(\s+)/))
-			.filter((token) => token.length > 0);
+			.flatMap((piece) =>
+				piece === ""
+					? [""]
+					: piece.split(/(\s+)/).filter((token) => token.length > 0),
+			);
 		const output: string[] = [];
 		let word: string[] = [];
 		for (const token of tokens) {

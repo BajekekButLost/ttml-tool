@@ -4,16 +4,19 @@ import { useSetImmerAtom } from "jotai-immer";
 import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen.ts";
+import { segmentationLearnedRulesAtom } from "$/modules/segmentation/states";
 import { combineWordsDialogAtom } from "$/states/dialogs";
 import { lyricLinesAtom, selectedWordsAtom } from "$/states/main";
 import {
 	combineMatchingWordSequences,
 	combineSelectedWords,
+	getCombinationRule,
 	getCombineWordSelection,
 } from "../utils/combine-words";
 import {
 	combineWordsApplyToAllAtom,
 	combineWordsIgnoreCaseAtom,
+	combineWordsRememberAtom,
 } from "./combine-words-options";
 
 export const CombineWordsDialog = memo(() => {
@@ -21,6 +24,8 @@ export const CombineWordsDialog = memo(() => {
 	const [dialogState, setDialogState] = useAtom(combineWordsDialogAtom);
 	const [applyToAll, setApplyToAll] = useAtom(combineWordsApplyToAllAtom);
 	const [ignoreCase, setIgnoreCase] = useAtom(combineWordsIgnoreCaseAtom);
+	const [remember, setRemember] = useAtom(combineWordsRememberAtom);
+	const [learnedRules, setLearnedRules] = useAtom(segmentationLearnedRulesAtom);
 	const lyricLines = useLyricLinesWhileOpen(dialogState.open);
 	const [selectedWordIds, setSelectedWordIds] = useAtom(selectedWordsAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
@@ -32,12 +37,16 @@ export const CombineWordsDialog = memo(() => {
 
 	const canApplyToAll = selection?.isContiguous ?? false;
 	const effectiveApplyToAll = canApplyToAll && applyToAll;
+	const combinationRule = selection?.isContiguous
+		? getCombinationRule(selection.words)
+		: null;
 
 	const closeDialog = () => {
 		setDialogState((current) => ({ ...current, open: false }));
 	};
 
 	const handleConfirm = () => {
+		let applied = false;
 		editLyricLines((state) => {
 			const sourceLine = state.lyricLines[dialogState.lineIndex];
 			if (!sourceLine) return;
@@ -47,6 +56,7 @@ export const CombineWordsDialog = memo(() => {
 				selectedWordIds,
 			);
 			if (!currentSelection?.isContiguous) return;
+			applied = true;
 
 			if (effectiveApplyToAll && currentSelection.isContiguous) {
 				for (const line of state.lyricLines) {
@@ -63,6 +73,11 @@ export const CombineWordsDialog = memo(() => {
 				);
 			}
 		});
+		if (applied && remember && combinationRule) {
+			const next = new Map(learnedRules);
+			next.set(combinationRule.key, combinationRule.boundaries);
+			setLearnedRules(next);
+		}
 		if (selection?.isContiguous)
 			setSelectedWordIds(new Set([selection.words[0].id]));
 		closeDialog();
@@ -101,6 +116,19 @@ export const CombineWordsDialog = memo(() => {
 					</Flex>
 
 					<Flex direction="column" gap="2">
+						<Text as="label" size="2">
+							<Flex gap="2" align="center">
+								<Checkbox
+									checked={!!combinationRule && remember}
+									disabled={!combinationRule}
+									onCheckedChange={(checked) => setRemember(checked === true)}
+								/>
+								{t("splitWordDialog.remember")}
+							</Flex>
+						</Text>
+						<Text size="1" color="gray">
+							{t("syllableSplitting.rememberHint")}
+						</Text>
 						<Text as="label" size="2">
 							<Flex
 								gap="2"
@@ -141,7 +169,7 @@ export const CombineWordsDialog = memo(() => {
 						{!canApplyToAll && (
 							<Text size="1" color="gray">
 								{t(
-									"combineWordsDialog.adjacentOnly",
+									"syllableSplitting.adjacent",
 									"Apply to all is available only for adjacent selected words.",
 								)}
 							</Text>

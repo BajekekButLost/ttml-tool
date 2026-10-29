@@ -21,6 +21,10 @@ const config = (learnedRules: Map<string, number[]>): SegmentationConfig => ({
 });
 
 describe("learned split rules", () => {
+	it("distinguishes elision from an unprefixed word", () => {
+		expect(createLearnedRule("’cause", [3])?.key).toBe("'cause");
+		expect(applyLearnedRule("cause", new Map([["'cause", [3]]]))).toBeNull();
+	});
 	it("maps canonical spellings at grapheme boundaries", () => {
 		const rule = createLearnedRule("ábc", [1]);
 		expect(rule).not.toBeNull();

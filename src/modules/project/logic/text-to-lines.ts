@@ -24,6 +24,7 @@ export function prepareTextImport(
 	text: string,
 	keepSectionHeaders: boolean,
 	steps: Partial<LyricPrepOptions> = {},
+	splitCjkText?: (text: string) => string[],
 ): string {
 	return text
 		.split(/\r\n|\r|\n/)
@@ -31,7 +32,7 @@ export function prepareTextImport(
 			if (/^\[.*\]$/.test(line.trim())) {
 				return keepSectionHeaders ? [line.trim()] : [];
 			}
-			return prepareLyricLine(line, steps).split("\n");
+			return prepareLyricLine(line, steps, splitCjkText).split("\n");
 		})
 		.filter((line) => line.trim().length > 0)
 		.join("\n");
@@ -110,6 +111,17 @@ export function textToLines(
 			wordSeparator,
 			splitHyphens,
 		).map((text) => ({ ...newLyricWord(), word: text }));
+		let group: typeof line.words = [];
+		const markGroup = () => {
+			if (group.length > 1)
+				for (const word of group) word.splitGroupId = group[0].id;
+			group = [];
+		};
+		for (const word of line.words) {
+			if (/\s/u.test(word.word)) markGroup();
+			else group.push(word);
+		}
+		markGroup();
 		if (swapTransAndRoman) {
 			[line.translatedLyric, line.romanLyric] = [
 				line.romanLyric,

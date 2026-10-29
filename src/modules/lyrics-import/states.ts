@@ -109,5 +109,6 @@ export const importTextFormatAtom = atom(
 		enableSpecialPrefix: get(enableSpecialPrefixAtom),
 		bgLyricPrefix: get(bgLyricPrefixAtom),
 		duetLyricPrefix: get(duetLyricPrefixAtom),
+		splitHyphens: get(processStepsAtom).splitHyphens,
 	}),
 );

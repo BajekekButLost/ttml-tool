@@ -20,6 +20,36 @@ const split = (word: string) =>
 	segmentWord({ ...newLyricWord(), word }, config).map((part) => part.word);
 
 describe("auto segment keeps quotes and closing marks on their word", () => {
+	it("reports rejected output and insufficient draft timing", () => {
+		const diagnostics: string[] = [];
+		const settings = {
+			...config,
+			onDiagnostic: (reason: string) => {
+				diagnostics.push(reason);
+			},
+		};
+		segmentWord(
+			{ ...newLyricWord(), word: "éé" },
+			{ ...settings, engine: "syllabify-fr" },
+		);
+		segmentWord(
+			{ ...newLyricWord(), word: "hello", startTime: 100, endTime: 101 },
+			{ ...settings, learnedRules: new Map([["hello", [1, 2, 3]]]) },
+		);
+		expect(diagnostics).toContain("engine-output");
+		expect(diagnostics).toContain("short-duration");
+	});
+
+	it("gives ignore rules and disabled switches precedence over remembered cuts", () => {
+		const word = { ...newLyricWord(), word: "hello" };
+		const rules = { ...config, learnedRules: new Map([["hello", [2]]]) };
+		expect(
+			segmentWord(word, { ...rules, ignoreList: new Set([" HELLO "]) }),
+		).toEqual([word]);
+		expect(segmentWord(word, { ...rules, splitEnglish: false })).toEqual([
+			word,
+		]);
+	});
 	it.each([
 		"hello () world",
 		"hello [] world",

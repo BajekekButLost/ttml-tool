@@ -18,17 +18,32 @@ export function getLearnedWordParts(text: string): LearnedWordParts | null {
 	const chars = graphemes(text);
 	let coreStart = 0;
 	let coreEnd = chars.length;
+	const pairedApostrophe =
+		(chars[0] === "'" || chars[0] === "’") &&
+		chars[chars.length - 1] === chars[0];
 
 	while (
 		coreStart < coreEnd &&
 		BOUNDARY_PUNCTUATION_OR_SYMBOL.test(chars[coreStart])
 	) {
+		if (
+			(chars[coreStart] === "'" || chars[coreStart] === "’") &&
+			!pairedApostrophe &&
+			/\p{L}/u.test(chars[coreStart + 1] ?? "")
+		)
+			break;
 		coreStart++;
 	}
 	while (
 		coreEnd > coreStart &&
 		BOUNDARY_PUNCTUATION_OR_SYMBOL.test(chars[coreEnd - 1])
 	) {
+		if (
+			(chars[coreEnd - 1] === "'" || chars[coreEnd - 1] === "’") &&
+			!pairedApostrophe &&
+			/in$/i.test(chars.slice(coreStart, coreEnd - 1).join(""))
+		)
+			break;
 		coreEnd--;
 	}
 
@@ -36,7 +51,7 @@ export function getLearnedWordParts(text: string): LearnedWordParts | null {
 	if (!core || !/[\p{L}\p{N}]/u.test(core) || /\s/u.test(core)) return null;
 
 	return {
-		key: core.normalize("NFC").toLowerCase(),
+		key: core.normalize("NFC").toLowerCase().replace(/’/g, "'"),
 		chars,
 		coreStart,
 		coreEnd,

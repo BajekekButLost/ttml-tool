@@ -17,7 +17,8 @@ export const SuggestedSplitsDialog = memo(() => {
 	const [dialog, setDialog] = useAtom(suggestedSplitsDialogAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const { t } = useTranslation();
-	const { config, isLoading, isReady, error } = useSegmentationConfig();
+	const { config, isLoading, isReady, error, runSegmentation } =
+		useSegmentationConfig();
 	const store = useStore();
 	const currentLyrics = useLyricLinesWhileOpen(dialog.open);
 
@@ -64,17 +65,26 @@ export const SuggestedSplitsDialog = memo(() => {
 
 	const handleApply = (_words: LyricWord[]) => {
 		if (!isReady || !targetLine) return;
-		editLyricLines((state) => {
-			const line = state.lyricLines.find((l) => l.id === dialog.lineId);
-			if (!line || JSON.stringify(line) !== JSON.stringify(targetLine)) return;
-			if (dialog.wordIndex !== undefined) {
-				const index = line.words.findIndex((word) => word.id === targetWordId);
-				if (index < 0) return;
-				line.words.splice(index, 1, ...segmentWord(line.words[index], config));
-			} else {
-				line.words = segmentLyricLines([line], config)[0].words;
-			}
-		});
+		runSegmentation((resolved) =>
+			editLyricLines((state) => {
+				const line = state.lyricLines.find((l) => l.id === dialog.lineId);
+				if (!line || JSON.stringify(line) !== JSON.stringify(targetLine))
+					return;
+				if (dialog.wordIndex !== undefined) {
+					const index = line.words.findIndex(
+						(word) => word.id === targetWordId,
+					);
+					if (index < 0) return;
+					line.words.splice(
+						index,
+						1,
+						...segmentWord(line.words[index], resolved),
+					);
+				} else {
+					line.words = segmentLyricLines([line], resolved)[0].words;
+				}
+			}),
+		);
 		setDialog({ open: false });
 	};
 

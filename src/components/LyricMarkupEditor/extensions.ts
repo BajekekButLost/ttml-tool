@@ -23,6 +23,7 @@ import {
 	type ViewUpdate,
 	WidgetType,
 } from "@codemirror/view";
+import { graphemeOffsets } from "$/utils/graphemes";
 import { buildDecorationSpecs } from "./decorations";
 import { type LyricMarkupFormat, type MarkupLine, parseMarkup } from "./markup";
 
@@ -380,6 +381,9 @@ export function splitOrJoinAt(view: EditorView, pos: number): boolean {
 		});
 		return true;
 	}
+	const sourceLine = state.doc.lineAt(pos);
+	if (!graphemeOffsets(sourceLine.text).includes(pos - sourceLine.from))
+		return false;
 	if (
 		isWordChar(state.sliceDoc(pos - 1, pos), separator) &&
 		isWordChar(state.sliceDoc(pos, pos + 1), separator)

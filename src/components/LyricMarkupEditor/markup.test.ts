@@ -1,6 +1,9 @@
+import { EditorState, type TransactionSpec } from "@codemirror/state";
+import type { EditorView } from "@codemirror/view";
 import { describe, expect, it } from "vitest";
 import { textToLines } from "$/modules/project/logic/text-to-lines";
 import { buildDecorationSpecs } from "./decorations";
+import { formatFacet, splitOrJoinAt } from "./extensions";
 import {
 	headerWithCategory,
 	type LyricMarkupFormat,
@@ -31,6 +34,30 @@ Hel\\lo\\ \\beau\\ti\\ful\\ \\world
 const rows = (text: string) => text.split("\n");
 
 describe("lyric markup parsing", () => {
+	it.each([
+		"a\u0301b",
+		"𠀀a",
+		"👨‍👩‍👧‍👦a",
+	])("rejects markup cuts inside complete characters in %s", (text) => {
+		let state = EditorState.create({
+			doc: text,
+			extensions: [formatFacet.of(FORMAT)],
+		});
+		const view = {
+			get state() {
+				return state;
+			},
+			dispatch(spec: TransactionSpec) {
+				state = state.update(spec).state;
+			},
+		} as unknown as EditorView;
+		expect(splitOrJoinAt(view, 1)).toBe(false);
+		expect(state.doc.toString()).toBe(text);
+		expect(splitOrJoinAt(view, text.length - 1)).toBe(true);
+		expect(state.doc.toString()).toBe(
+			`${text.slice(0, -1)}\\${text.slice(-1)}`,
+		);
+	});
 	it("tiles every line exactly, so the text round-trips", () => {
 		const formats: LyricMarkupFormat[] = [
 			FORMAT,

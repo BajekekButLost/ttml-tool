@@ -11,7 +11,10 @@ import {
 import type { SegmentationEngineId } from "$/modules/segmentation/types";
 import { detectSyllabificationEngine } from "$/modules/segmentation/utils/detect-syllabification-engine";
 import { segmentLyricLines } from "$/modules/segmentation/utils/segmentation";
-import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabification-engines";
+import {
+	getSyllabificationEngine,
+	SYLLABIFICATION_ENGINES,
+} from "$/modules/segmentation/utils/syllabification-engines";
 import { autoSegmentDialogAtom } from "$/states/dialogs";
 import { lyricLinesAtom } from "$/states/main";
 import { useSegmentationConfig } from "../utils/useSegmentationConfig";
@@ -24,9 +27,10 @@ export const AutoSegmentDialog = () => {
 	const setSplitEnglish = useSetAtom(segmentationSplitEnglishAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const lyrics = useLyricLinesWhileOpen(open);
-	const [selectedEngine, setSelectedEngine] =
-		useState<SegmentationEngineId>(savedEngine);
-	const { config, isReady, error } = useSegmentationConfig(
+	const [selectedEngine, setSelectedEngine] = useState<SegmentationEngineId>(
+		getSyllabificationEngine(savedEngine).id,
+	);
+	const { isReady, error, runSegmentation } = useSegmentationConfig(
 		selectedEngine,
 		selectedEngine !== "none",
 	);
@@ -37,7 +41,8 @@ export const AutoSegmentDialog = () => {
 	const wasOpen = useRef(false);
 
 	useEffect(() => {
-		if (open && !wasOpen.current) setSelectedEngine(savedEngine);
+		if (open && !wasOpen.current)
+			setSelectedEngine(getSyllabificationEngine(savedEngine).id);
 		wasOpen.current = open;
 	}, [open, savedEngine]);
 
@@ -52,9 +57,11 @@ export const AutoSegmentDialog = () => {
 		if (!isReady) return;
 		setEngine(selectedEngine);
 		setSplitEnglish(selectedEngine !== "none");
-		editLyricLines((draft) => {
-			draft.lyricLines = segmentLyricLines(draft.lyricLines, config);
-		});
+		runSegmentation((config) =>
+			editLyricLines((draft) => {
+				draft.lyricLines = segmentLyricLines(draft.lyricLines, config);
+			}),
+		);
 		setOpen(false);
 	};
 

@@ -4,6 +4,8 @@
 
 import { Flex } from "@radix-ui/themes";
 import { Fragment, memo, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { graphemes } from "$/utils/graphemes";
 import styles from "./ManualWordSplitter.module.css";
 
 interface ManualWordSplitterProps {
@@ -14,12 +16,18 @@ interface ManualWordSplitterProps {
 
 export const ManualWordSplitter = memo(
 	({ word, splitIndices, onSplitIndexToggle }: ManualWordSplitterProps) => {
-		const manualGraphemes = useMemo(() => Array.from(word), [word]);
+		const manualGraphemes = useMemo(() => graphemes(word), [word]);
+		const { t } = useTranslation();
+		const label = (index: number) =>
+			t("syllableSplitting.boundary", {
+				left: manualGraphemes[index - 1],
+				right: manualGraphemes[index],
+			});
 
 		return (
 			<Flex
 				align="center"
-				justify="center"
+				justify="start"
 				style={{
 					backgroundColor: "var(--gray-4)",
 					borderRadius: "var(--radius-2)",
@@ -28,6 +36,7 @@ export const ManualWordSplitter = memo(
 					userSelect: "none",
 					overflowX: "auto",
 					whiteSpace: "nowrap",
+					justifyContent: "safe center",
 				}}
 			>
 				{manualGraphemes.map((grapheme, index) => (
@@ -42,6 +51,8 @@ export const ManualWordSplitter = memo(
 								type="button"
 								className={styles.manualSplitter}
 								data-split={splitIndices.has(index)}
+								aria-label={label(index)}
+								aria-pressed={splitIndices.has(index)}
 								onClick={() => onSplitIndexToggle(index)}
 							/>
 						)}

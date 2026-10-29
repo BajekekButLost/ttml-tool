@@ -71,8 +71,11 @@ export const LyricWordMenu = ({
 	const romanizationOperation = useRef<AbortController | null>(null);
 	const [romanizing, setRomanizing] = useState(false);
 	useEffect(() => () => romanizationOperation.current?.abort(), []);
-	const { config: segmentationConfig, isReady: segmentationReady } =
-		useSegmentationConfig();
+	const {
+		config: segmentationConfig,
+		isReady: segmentationReady,
+		runSegmentation,
+	} = useSegmentationConfig();
 
 	return (
 		<>
@@ -95,13 +98,15 @@ export const LyricWordMenu = ({
 					if (!segmentationReady) return;
 					const selectedWordIds = store.get(selectedWordsAtom);
 					let splitCount = 0;
-					editLyricLines((state) => {
-						splitCount = segmentSelectedWords(
-							state.lyricLines,
-							selectedWordIds,
-							segmentationConfig,
-						);
-					});
+					runSegmentation((config) =>
+						editLyricLines((state) => {
+							splitCount = segmentSelectedWords(
+								state.lyricLines,
+								selectedWordIds,
+								config,
+							);
+						}),
+					);
 					if (splitCount === 0) {
 						toast.info(
 							t(

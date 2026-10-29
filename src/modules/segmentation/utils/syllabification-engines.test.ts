@@ -1,8 +1,13 @@
+import i18next from "i18next";
+import ICU from "i18next-icu";
 import { createStore, Provider } from "jotai";
 import { act, createElement } from "react";
 import { createRoot } from "react-dom/client";
+import { I18nextProvider } from "react-i18next";
 import { describe, expect, it, vi } from "vitest";
+import en from "$/i18n/locales/en-US/translation.json";
 import { newLyricWord } from "$/types/ttml";
+import { ManualWordSplitter } from "../components/ManualWordSplitter";
 import {
 	segmentationEngineAtom,
 	segmentationSplitEnglishAtom,
@@ -61,6 +66,10 @@ describe("syllabification engines", () => {
 		vi.stubGlobal("document", dom.window.document);
 		vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
 		const store = createStore();
+		const i18n = i18next.createInstance();
+		await i18n
+			.use(ICU)
+			.init({ lng: "en-US", resources: { "en-US": { translation: en } } });
 		store.set(segmentationEngineAtom, "prosodic");
 		let override: SegmentationEngineId = "hyphenation-pl";
 		let current: ReturnType<typeof useSegmentationConfig> | undefined;
@@ -81,7 +90,13 @@ describe("syllabification engines", () => {
 			dom.window.document.getElementById("root") as HTMLElement,
 		);
 		const render = () =>
-			root.render(createElement(Provider, { store }, createElement(Capture)));
+			root.render(
+				createElement(
+					I18nextProvider,
+					{ i18n },
+					createElement(Provider, { store }, createElement(Capture)),
+				),
+			);
 		try {
 			await act(async () => render());
 			expect(current?.config.engine).toBe("hyphenation-pl");
@@ -107,6 +122,54 @@ describe("syllabification engines", () => {
 		} finally {
 			await act(async () => root.unmount());
 			vi.restoreAllMocks();
+			vi.unstubAllGlobals();
+			dom.window.close();
+		}
+	});
+
+	it("names complete-character boundaries and exposes their toggled state", async () => {
+		const { JSDOM } = await import("jsdom" as string);
+		const dom = new JSDOM("<div id='root'></div>", {
+			url: "https://ttml.test",
+		});
+		vi.stubGlobal("window", dom.window);
+		vi.stubGlobal("document", dom.window.document);
+		vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
+		const i18n = i18next.createInstance();
+		await i18n
+			.use(ICU)
+			.init({ lng: "en-US", resources: { "en-US": { translation: en } } });
+		const toggle = vi.fn();
+		const root = createRoot(
+			dom.window.document.getElementById("root") as HTMLElement,
+		);
+		try {
+			await act(async () =>
+				root.render(
+					createElement(
+						I18nextProvider,
+						{ i18n },
+						createElement(ManualWordSplitter, {
+							word: "a\u0301👨‍👩‍👧‍👦𠀀",
+							splitIndices: new Set([1]),
+							onSplitIndexToggle: toggle,
+						}),
+					),
+				),
+			);
+			const buttons = dom.window.document.querySelectorAll("button");
+			expect(buttons).toHaveLength(2);
+			expect(buttons[0].getAttribute("aria-label")).toBe(
+				"Split between a\u0301 and 👨‍👩‍👧‍👦",
+			);
+			expect(buttons[0].getAttribute("aria-pressed")).toBe("true");
+			expect(buttons[1].getAttribute("aria-pressed")).toBe("false");
+			buttons[1].focus();
+			expect(dom.window.document.activeElement).toBe(buttons[1]);
+			await act(async () => buttons[1].click());
+			expect(toggle).toHaveBeenCalledWith(2);
+		} finally {
+			await act(async () => root.unmount());
 			vi.unstubAllGlobals();
 			dom.window.close();
 		}

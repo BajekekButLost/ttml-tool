@@ -2,6 +2,17 @@ import { describe, expect, it } from "vitest";
 import { prepareLyricLine } from "./lyric-prep";
 
 describe("prepareLyricLine", () => {
+	it("keeps kana combinations and combining marks intact", () => {
+		expect(prepareLyricLine("キャット", { splitWords: false })).toBe(
+			"キャ\\ッ\\ト",
+		);
+		expect(prepareLyricLine("か\u3099く", { splitWords: false })).toBe(
+			"か\u3099\\く",
+		);
+		expect(prepareLyricLine("ファイル", { splitWords: false })).toBe(
+			"ファ\\イ\\ル",
+		);
+	});
 	it.each([
 		["你,好", "你, \\好"],
 		["你，好", "你，\\好"],

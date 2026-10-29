@@ -8,7 +8,7 @@ import {
 const lyrics = (text: string) =>
 	[
 		{
-			words: text.split(/\s+/).map((word) => ({ word })),
+			words: text.split(/(?<=\s)/).map((word) => ({ word })),
 		},
 	] as LyricLine[];
 
@@ -17,9 +17,13 @@ describe("detectSyllabificationEngine", () => {
 		expect(detectSyllabificationEngine(lyrics("これは日本語の歌詞です"))).toBe(
 			"japanese",
 		);
-		expect(detectSyllabificationEngine(lyrics("это русские слова песни"))).toBe(
-			"syllabify",
-		);
+		expect(
+			detectSyllabificationEngine(
+				lyrics(
+					"Это русский текст песни с достаточно большим количеством слов для определения языка.",
+				),
+			),
+		).toBe("syllabify");
 		expect(detectSyllabificationEngine(lyrics("這是一首中文歌曲"))).toBe(
 			"basic",
 		);
@@ -44,6 +48,9 @@ describe("detectSyllabificationEngine", () => {
 
 	it("does not guess when there are no lyrics", () => {
 		expect(detectSyllabificationEngine([])).toBeUndefined();
+		expect(
+			detectSyllabificationEngine(lyrics("это русские слова песни")),
+		).toBeUndefined();
 	});
 
 	it("only auto-applies when the suggestion matches the saved engine", () => {
@@ -55,6 +62,23 @@ describe("detectSyllabificationEngine", () => {
 		expect(matchesSavedSyllabificationEngine(japaneseLyrics, "prosodic")).toBe(
 			false,
 		);
-		expect(matchesSavedSyllabificationEngine([], "prosodic")).toBe(false);
+		expect(matchesSavedSyllabificationEngine([], "prosodic")).toBe(true);
+	});
+
+	it("uses declared language and ignores isolated script outliers", () => {
+		const text =
+			"This is a simple English lyric with enough text to detect its language.";
+		for (const outlier of ["あ", "Я", "你"])
+			expect(detectSyllabificationEngine(lyrics(`${text} ${outlier}`))).toBe(
+				"prosodic",
+			);
+		const declared = lyrics("hello");
+		declared[0].language = "pl-PL";
+		expect(detectSyllabificationEngine(declared)).toBe("hyphenation-pl");
+		declared[0].language = "uk";
+		expect(detectSyllabificationEngine(declared)).toBe("basic");
+		expect(detectSyllabificationEngine(lyrics("한국어 노래 가사입니다"))).toBe(
+			"basic",
+		);
 	});
 });

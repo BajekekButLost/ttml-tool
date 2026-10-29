@@ -58,6 +58,7 @@ export const SplitWordDialog = memo(() => {
 		config: segmentationConfig,
 		isReady,
 		error,
+		runSegmentation,
 	} = useSegmentationConfig();
 
 	useEffect(() => {
@@ -134,67 +135,66 @@ export const SplitWordDialog = memo(() => {
 			: null;
 		const targetCore = getLearnedWordParts(targetWordText);
 
-		const createNewWords = (
-			targetWord: LyricWord,
-			segments: string[],
-		): LyricWord[] => {
-			return recalculateWordTime(targetWord, segments, segmentationConfig);
-		};
-
 		let applied = false;
-		editLyricLines((state) => {
-			const sourceLine = state.lyricLines.find(
-				(line) => line.id === target.lineId,
-			);
-			const currentWord = sourceLine?.words.find(
-				(word) => word.id === target.word.id,
-			);
-			if (
-				!currentWord ||
-				JSON.stringify(currentWord) !== JSON.stringify(target.word)
-			)
-				return;
-			applied = true;
-			if (applyToAll) {
-				for (const line of state.lyricLines) {
-					line.words = line.words.flatMap((word) => {
-						const candidateCore = getLearnedWordParts(word.word);
-						const isMatch =
-							ignoreCase && targetCore && candidateCore
-								? candidateCore.key === targetCore.key
-								: word.word === targetWordText;
-
-						if (isMatch) {
-							const wordSegments =
-								ruleForCurrentSplit && ignoreCase
-									? applyLearnedRule(word.word, ruleForCurrentSplit) ||
-										targetSegments
-									: targetSegments;
-							return createNewWords(
-								word,
-								wordSegments.length > 0 ? wordSegments : targetSegments,
-							);
-						}
-						return word;
-					});
-				}
-			} else {
-				const line = sourceLine;
-				if (line) {
-					const index = line.words.findIndex(
+		runSegmentation(
+			(config) =>
+				editLyricLines((state) => {
+					const createNewWords = (word: LyricWord, segments: string[]) =>
+						recalculateWordTime(word, segments, config);
+					const sourceLine = state.lyricLines.find(
+						(line) => line.id === target.lineId,
+					);
+					const currentWord = sourceLine?.words.find(
 						(word) => word.id === target.word.id,
 					);
-					const word = line.words[index];
-					if (word && word.word === targetWordText) {
-						line.words.splice(
-							index,
-							1,
-							...createNewWords(word, targetSegments),
-						);
+					if (
+						!currentWord ||
+						JSON.stringify(currentWord) !== JSON.stringify(target.word)
+					)
+						return;
+					applied = true;
+					if (applyToAll) {
+						for (const line of state.lyricLines) {
+							line.words = line.words.flatMap((word) => {
+								const candidateCore = getLearnedWordParts(word.word);
+								const isMatch =
+									ignoreCase && targetCore && candidateCore
+										? candidateCore.key === targetCore.key
+										: word.word === targetWordText;
+
+								if (isMatch) {
+									const wordSegments =
+										ruleForCurrentSplit && ignoreCase
+											? applyLearnedRule(word.word, ruleForCurrentSplit) ||
+												targetSegments
+											: targetSegments;
+									return createNewWords(
+										word,
+										wordSegments.length > 0 ? wordSegments : targetSegments,
+									);
+								}
+								return word;
+							});
+						}
+					} else {
+						const line = sourceLine;
+						if (line) {
+							const index = line.words.findIndex(
+								(word) => word.id === target.word.id,
+							);
+							const word = line.words[index];
+							if (word && word.word === targetWordText) {
+								line.words.splice(
+									index,
+									1,
+									...createNewWords(word, targetSegments),
+								);
+							}
+						}
 					}
-				}
-			}
-		});
+				}),
+			false,
+		);
 
 		if (applied && learnedRule) {
 			const nextRules = new Map(learnedRules);
@@ -211,7 +211,7 @@ export const SplitWordDialog = memo(() => {
 		rememberSplit,
 		learnedRules,
 		setLearnedRules,
-		segmentationConfig,
+		runSegmentation,
 	]);
 
 	return (

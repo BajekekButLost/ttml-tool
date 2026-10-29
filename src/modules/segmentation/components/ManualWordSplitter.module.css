@@ -6,6 +6,7 @@
 	margin-right: -7px;
 	z-index: 1;
 	align-self: stretch;
+	flex-shrink: 0;
 
 	background: none;
 	border: none;
@@ -14,6 +15,11 @@
 	color: inherit;
 	cursor: text;
 	appearance: none;
+}
+
+.manualSplitter:focus-visible {
+	outline: 2px solid var(--focus-8);
+	outline-offset: 2px;
 }
 
 .manualSplitter:hover::before {
@@ -70,6 +76,7 @@
 
 .grapheme {
 	display: inline-block;
+	flex-shrink: 0;
 	padding: 0 1px;
 	font-size: var(--font-size-5);
 	line-height: var(--line-height-5);

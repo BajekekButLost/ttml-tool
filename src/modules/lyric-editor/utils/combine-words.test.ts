@@ -3,6 +3,7 @@ import { type LyricWord, newLyricWord } from "$/types/ttml";
 import {
 	combineMatchingWordSequences,
 	combineSelectedWords,
+	getCombinationRule,
 	getCombineWordSelection,
 } from "./combine-words";
 
@@ -14,6 +15,17 @@ const word = (text: string, startTime: number, endTime: number): LyricWord => ({
 });
 
 describe("combine words", () => {
+	it("remembers only combinations belonging to one known lexical group", () => {
+		const parts = [word("peo", 0, 1), word("ple", 1, 2)];
+		expect(getCombinationRule(parts)).toBeNull();
+		for (const part of parts) part.splitGroupId = "people";
+		expect(getCombinationRule(parts)).toEqual({
+			key: "people",
+			boundaries: [],
+		});
+		parts[1].word = " ple";
+		expect(getCombinationRule(parts)).toBeNull();
+	});
 	it("combines an adjacent selection with the existing timing behavior", () => {
 		const words = [word("beau", 100, 200), word("tiful", 200, 400)];
 		const selectedIds = new Set(words.map(({ id }) => id));

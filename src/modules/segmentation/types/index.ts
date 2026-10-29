@@ -84,4 +84,12 @@ export interface SegmentationConfig {
 	 */
 	hyphenator?: HyphenatorFunc;
 	hyphenatorEngine?: SegmentationEngineId;
+	onDiagnostic?: (
+		reason:
+			| "engine-output"
+			| "invalid-rule"
+			| "short-duration"
+			| "romanization",
+		text: string,
+	) => void;
 }

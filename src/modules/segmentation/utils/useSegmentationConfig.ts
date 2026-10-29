@@ -1,5 +1,8 @@
-import { useAtomValue } from "jotai";
-import { useEffect, useMemo, useState } from "react";
+import { useAtomValue, useStore } from "jotai";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { lyricLinesAtom, selectedWordsAtom } from "$/states/main";
 import {
 	segmentationAllLearnedRulesAtom,
 	segmentationCustomRulesAtom,
@@ -26,10 +29,13 @@ export const useSegmentationConfig = (
 	engineOverride?: SegmentationEngineId,
 	enableWestern?: boolean,
 ) => {
+	const { t } = useTranslation();
+	const store = useStore();
 	const splitCJK = useAtomValue(segmentationSplitCJKAtom);
 	const savedSplitEnglish = useAtomValue(segmentationSplitEnglishAtom);
 	const savedEngine = useAtomValue(segmentationEngineAtom);
 	const engine = getSyllabificationEngine(engineOverride ?? savedEngine).id;
+	const invalidEngine = engineOverride === undefined && savedEngine !== engine;
 	const splitEnglish = enableWestern ?? savedSplitEnglish;
 	const punctuationMode = useAtomValue(segmentationPunctuationModeAtom);
 	const punctuationWeightStr = useAtomValue(segmentationPunctuationWeightAtom);
@@ -53,10 +59,13 @@ export const useSegmentationConfig = (
 	}>({ engine, status: "loading" });
 	const needsPatterns = splitEnglish && !!getHyphenationLanguage(engine);
 	const matches = resolution.engine === engine;
-	const error = needsPatterns && matches && resolution.status === "error";
+	const error =
+		invalidEngine ||
+		(needsPatterns && matches && resolution.status === "error");
 	const isReady =
-		!needsPatterns ||
-		(matches && resolution.status === "ready" && !!resolution.split);
+		!invalidEngine &&
+		(!needsPatterns ||
+			(matches && resolution.status === "ready" && !!resolution.split));
 	const isLoading = needsPatterns && !isReady && !error;
 	const hyphenator = needsPatterns && isReady ? resolution.split : undefined;
 
@@ -121,10 +130,40 @@ export const useSegmentationConfig = (
 		hyphenator,
 	]);
 
+	const runSegmentation = useCallback(
+		(action: (config: SegmentationConfig) => void, requireEngine = true) => {
+			if (requireEngine && !isReady) {
+				toast.error(t("syllableSplitting.engineError"));
+				return false;
+			}
+			const diagnostics = new Set<string>();
+			action({
+				...config,
+				onDiagnostic: (reason, text) =>
+					diagnostics.add(`${reason}\u0000${text}`),
+			});
+			const selected = store.get(selectedWordsAtom);
+			if (selected.size > 0) {
+				const existing = new Set(
+					store
+						.get(lyricLinesAtom)
+						.lyricLines.flatMap((line) => line.words.map((word) => word.id)),
+				);
+				const valid = new Set([...selected].filter((id) => existing.has(id)));
+				if (valid.size !== selected.size) store.set(selectedWordsAtom, valid);
+			}
+			if (diagnostics.size > 0)
+				toast.warn(t("syllableSplitting.review", { count: diagnostics.size }));
+			return true;
+		},
+		[config, isReady, store, t],
+	);
+
 	return {
 		config,
 		isLoading,
 		isReady,
 		error,
+		runSegmentation,
 	};
 };

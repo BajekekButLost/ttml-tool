@@ -17,7 +17,7 @@ export interface SyllabificationEngine {
 	id: SegmentationEngineId;
 	name: string;
 	description: string;
-	split: (word: string) => string[];
+	split: (word: string, onRejected?: () => void) => string[];
 }
 
 const hyphenationLanguages = [
@@ -165,13 +165,7 @@ export const SYLLABIFICATION_ENGINES: SyllabificationEngine[] = [
 		id: "silabas",
 		name: "Spanish (Silabas)",
 		description: "Spanish orthographic syllable splitting.",
-		split: (word) => {
-			try {
-				return silabas(word).syllables();
-			} catch {
-				return [word];
-			}
-		},
+		split: (word) => silabas(word).syllables(),
 	},
 	{
 		id: "syllabify-fr",
@@ -183,13 +177,7 @@ export const SYLLABIFICATION_ENGINES: SyllabificationEngine[] = [
 		id: "syllabify",
 		name: "Russian (Syllabify)",
 		description: "Russian orthographic syllable splitting.",
-		split: (word) => {
-			try {
-				return syllabify(word);
-			} catch {
-				return [word];
-			}
-		},
+		split: (word) => syllabify(word),
 	},
 	...hyphenationLanguages.map<SyllabificationEngine>(
 		([language, name, hasBetterEngine]) => ({
@@ -219,25 +207,33 @@ export const getSyllabificationEngine = (id: SegmentationEngineId) =>
 		split: (word: string) => [word],
 	};
 
-const splitCache = new Map<string, string[]>();
+const splitCache = new Map<string, { parts: string[]; rejected: boolean }>();
 
 for (const engine of SYLLABIFICATION_ENGINES) {
 	const split = engine.split;
-	engine.split = (word) => {
+	engine.split = (word, onRejected) => {
 		const key = `${engine.id}\u0000${word}`;
 		const cached = splitCache.get(key);
-		if (cached) return [...cached];
+		if (cached) {
+			if (cached.rejected) onRejected?.();
+			return [...cached.parts];
+		}
 		let result = [word];
+		let rejected = false;
 		try {
 			const proposal = split(word);
-			result = preservesSource(word, proposal)
+			const mapped = preservesSource(word, proposal)
 				? proposal
-				: (mapSourceSlices(word, proposal) ?? [word]);
+				: mapSourceSlices(word, proposal);
+			rejected = mapped === null;
+			result = mapped ?? [word];
 		} catch {
+			rejected = true;
 			result = [word];
 		}
 		if (splitCache.size >= 4096) splitCache.clear();
-		splitCache.set(key, result);
+		splitCache.set(key, { parts: result, rejected });
+		if (rejected) onRejected?.();
 		return [...result];
 	};
 }

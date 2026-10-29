@@ -19,7 +19,6 @@ import {
 	saveTTML,
 } from "$/modules/project/ttml-save";
 import { segmentationEngineAtom } from "$/modules/segmentation/states";
-import { matchesSavedSyllabificationEngine } from "$/modules/segmentation/utils/detect-syllabification-engine";
 import { segmentLyricLines } from "$/modules/segmentation/utils/segmentation";
 import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabification-engines";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
@@ -94,7 +93,7 @@ export const useTopMenuActions = () => {
 	const setTTMLChecklistDialog = useSetAtom(ttmlChecklistDialogAtom);
 	const { openFile } = useFileOpener();
 	const setProjectId = useSetAtom(projectIdAtom);
-	const { config: segmentationConfig, isReady: segmentationReady } =
+	const { isReady: segmentationReady, runSegmentation } =
 		useSegmentationConfig();
 	const newFileKey = useAtomValue(keyNewFileAtom);
 	const openFileKey = useAtomValue(keyOpenFileAtom);
@@ -322,22 +321,11 @@ export const useTopMenuActions = () => {
 			setAutoSegmentDialog(true);
 			return;
 		}
-		if (
-			!matchesSavedSyllabificationEngine(
-				store.get(lyricLinesAtom).lyricLines,
-				savedSegmentationEngine,
-			)
-		) {
-			setAutoSegmentDialog(true);
-			return;
-		}
-
-		editLyricLines((draft) => {
-			draft.lyricLines = segmentLyricLines(
-				draft.lyricLines,
-				segmentationConfig,
-			);
-		});
+		runSegmentation((config) =>
+			editLyricLines((draft) => {
+				draft.lyricLines = segmentLyricLines(draft.lyricLines, config);
+			}),
+		);
 		toast.success(
 			t("autoSegmentApplied", {
 				defaultValue: "Auto-segmented with {engine}",
@@ -350,8 +338,7 @@ export const useTopMenuActions = () => {
 	}, [
 		editLyricLines,
 		savedSegmentationEngine,
-		store,
-		segmentationConfig,
+		runSegmentation,
 		setAutoSegmentDialog,
 		segmentationReady,
 		t,

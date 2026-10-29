@@ -1,4 +1,7 @@
-import { getLearnedWordParts } from "$/modules/segmentation/utils/learned-rules";
+import {
+	createLearnedRule,
+	getLearnedWordParts,
+} from "$/modules/segmentation/utils/learned-rules";
 import type { LyricWord } from "$/types/ttml";
 
 export interface CombineWordSelection {
@@ -42,6 +45,17 @@ function createCombinedWord(words: LyricWord[]): LyricWord {
 	combinedWord.startTime = words[0].startTime;
 	combinedWord.endTime = words[words.length - 1].endTime;
 	return combinedWord;
+}
+
+export function getCombinationRule(words: LyricWord[]) {
+	const group = words[0]?.splitGroupId;
+	if (
+		!group ||
+		words.length < 2 ||
+		!words.every((word) => word.splitGroupId === group)
+	)
+		return null;
+	return createLearnedRule(words.map((word) => word.word).join(""), []);
 }
 
 export function combineSelectedWords(
