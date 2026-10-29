@@ -1243,8 +1243,10 @@
     "insertWord": "Inserisci una parola qui…"
   },
   "editModeTools": {
-    "toggleTitle": "Strumenti della modalità Modifica",
-    "toggleDesc": "Divide in parole una riga digitata, scambia le righe principali e del duetto e riapre ogni progetto dove avevi lasciato la modalità Modifica.",
+    "splitTypedLinesTitle": "Dividi in parole le righe digitate",
+    "splitTypedLinesDesc": "Il testo digitato in una riga vuota viene diviso in parole come fa l'importazione con le righe.",
+    "scrollMemoryTitle": "Ricorda la posizione in modalità Modifica",
+    "scrollMemoryDesc": "Riapre ogni progetto alla riga in cui eri in modalità Modifica.",
     "swapDuetAll": "Scambia righe principali e del duetto",
     "swapDuetSelected": "Scambia principale e duetto"
   },

@@ -17,7 +17,7 @@ import { Fragment } from "react";
 import { segmentationLearnedRulesAtom } from "$/modules/segmentation/states";
 import { ToolMode } from "$/states/main.ts";
 import { newLyricWord } from "$/types/ttml.ts";
-import { editModeToolsAtom } from "../../states/edit-mode-tools.ts";
+import { splitTypedLinesAtom } from "../../states/edit-mode-tools.ts";
 import { typedLineToWords } from "../../utils/typed-line-words.ts";
 import { getWordConnections } from "../../utils/word-connections.ts";
 import styles from "../index.module.css";
@@ -70,7 +70,7 @@ export function LineWordRow({
 	| "syncWordWrap"
 	| "enableInsert"
 >) {
-	const splitTypedLine = useAtomValue(editModeToolsAtom);
+	const splitTypedLine = useAtomValue(splitTypedLinesAtom);
 	const learnedRules = useAtomValue(
 		splitTypedLine ? segmentationLearnedRulesAtom : noLearnedRulesAtom,
 	);
@@ -191,10 +191,14 @@ export function LineWordRow({
 							evt.preventDefault();
 							evt.stopPropagation();
 							const word = evt.currentTarget.value;
-							const typed = splitTypedLine
-								? typedLineToWords(word, learnedRules)
-								: [word];
 							editLyricLines((state) => {
+								// Only a whole line typed into an empty line is split;
+								// adding to a line that has words inserts one word.
+								const typed =
+									splitTypedLine &&
+									state.lyricLines[lineIndex].words.length === 0
+										? typedLineToWords(word, learnedRules)
+										: [word];
 								state.lyricLines[lineIndex].words.push(
 									...typed.map((text) => ({ ...newLyricWord(), word: text })),
 								);

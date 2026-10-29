@@ -1243,8 +1243,10 @@
     "insertWord": "Insérer un mot ici…"
   },
   "editModeTools": {
-    "toggleTitle": "Outils du mode Édition",
-    "toggleDesc": "Découpe une ligne saisie en mots, inverse les lignes principales et de duo, et rouvre chaque projet là où vous avez quitté le mode Édition.",
+    "splitTypedLinesTitle": "Découper les lignes saisies en mots",
+    "splitTypedLinesDesc": "Le texte saisi dans une ligne vide est découpé en mots, comme une importation découpe les lignes.",
+    "scrollMemoryTitle": "Mémoriser la position du mode Édition",
+    "scrollMemoryDesc": "Rouvre chaque projet à la ligne où vous étiez en mode Édition.",
     "swapDuetAll": "Inverser les lignes principales et de duo",
     "swapDuetSelected": "Inverser principal et duo"
   },

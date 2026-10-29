@@ -25,12 +25,51 @@ describe("swapDuetLines", () => {
 		expect(duets(swapDuetLines(doc()))).toEqual([true, false, true]);
 	});
 
-	it("flips only the given lines", () => {
+	it("flips only the given lines and their group", () => {
 		expect(duets(swapDuetLines(doc(), new Set(["b", "c"])))).toEqual([
 			false,
 			false,
 			true,
 		]);
+	});
+
+	it("moves a lead line's background lines with it", () => {
+		const lyric: TTMLLyric = {
+			lyricLines: [
+				{ ...newLyricLine(), id: "a" },
+				{ ...newLyricLine(), id: "a-bg1", isBG: true },
+				{ ...newLyricLine(), id: "a-bg2", isBG: true },
+				{ ...newLyricLine(), id: "b" },
+				{ ...newLyricLine(), id: "b-bg", isBG: true },
+			],
+			metadata: [],
+		};
+		expect(duets(swapDuetLines(lyric, new Set(["a"])))).toEqual([
+			true,
+			true,
+			true,
+			false,
+			false,
+		]);
+		// Picking only the background line still moves its lead.
+		expect(duets(swapDuetLines(lyric, new Set(["b-bg"])))).toEqual([
+			false,
+			false,
+			false,
+			true,
+			true,
+		]);
+	});
+
+	it("treats a background line with no lead as its own group", () => {
+		const lyric: TTMLLyric = {
+			lyricLines: [
+				{ ...newLyricLine(), id: "bg", isBG: true },
+				{ ...newLyricLine(), id: "a" },
+			],
+			metadata: [],
+		};
+		expect(duets(swapDuetLines(lyric, new Set(["bg"])))).toEqual([true, false]);
 	});
 
 	it("returns the same document when no line is in scope", () => {

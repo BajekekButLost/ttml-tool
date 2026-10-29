@@ -2,8 +2,9 @@ import { atom, useAtomValue, type useStore } from "jotai";
 import { useCallback, useEffect, useRef } from "react";
 import { activeProjectDirAtom } from "$/modules/project/folder-project/state";
 import { lyricLinesAtom, projectIdAtom, ToolMode } from "$/states/main.ts";
-import { editModeToolsAtom } from "../../states/edit-mode-tools";
+import { editScrollMemoryAtom } from "../../states/edit-mode-tools";
 import {
+	type EditScrollAnchor,
 	editScrollProjectKey,
 	recallEditScroll,
 	rememberEditScroll,
@@ -27,7 +28,7 @@ export interface EditScrollMemory {
 }
 
 /**
- * With Edit mode tools on, keep each project's Edit-mode position across app
+ * With the setting on, keep each project's Edit-mode position across app
  * restarts and project switches. Off, or outside Edit mode, it does nothing.
  */
 export function useEditScrollMemory({
@@ -39,7 +40,8 @@ export function useEditScrollMemory({
 	toolMode: ToolMode;
 	scrollToLineIndex: (index: number, smooth?: boolean) => void;
 }): EditScrollMemory {
-	const enabled = useAtomValue(editModeToolsAtom) && toolMode === ToolMode.Edit;
+	const enabled =
+		useAtomValue(editScrollMemoryAtom) && toolMode === ToolMode.Edit;
 	const projectDir = useAtomValue(activeProjectDirAtom);
 	const projectId = useAtomValue(projectIdAtom);
 	const lineCount = useAtomValue(lineCountAtom);
@@ -49,7 +51,9 @@ export function useEditScrollMemory({
 	enabledRef.current = enabled;
 	const scrollRef = useRef(scrollToLineIndex);
 	scrollRef.current = scrollToLineIndex;
-	const pendingRef = useRef<{ key: string; line: number } | null>(null);
+	const pendingRef = useRef<{ key: string; anchor: EditScrollAnchor } | null>(
+		null,
+	);
 	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const currentKey = useCallback(
@@ -68,7 +72,7 @@ export function useEditScrollMemory({
 		}
 		const pending = pendingRef.current;
 		pendingRef.current = null;
-		if (pending) rememberEditScroll(pending.key, pending.line);
+		if (pending) rememberEditScroll(pending.key, pending.anchor);
 	}, []);
 
 	const noteAnchor = useCallback(
@@ -77,20 +81,28 @@ export function useEditScrollMemory({
 			const projectKey = currentKey();
 			// Until the saved spot is restored, the view's position isn't the user's.
 			if (restoredProjectKey !== projectKey) return;
-			pendingRef.current = { key: projectKey, line: lineIndex };
+			// Read the id now: by the time this is saved, lines may have moved.
+			const id = store.get(lyricLinesAtom).lyricLines[lineIndex]?.id;
+			pendingRef.current = {
+				key: projectKey,
+				anchor: { id, index: lineIndex },
+			};
 			timerRef.current ??= setTimeout(flush, SAVE_DELAY_MS);
 		},
-		[currentKey, flush],
+		[currentKey, flush, store],
 	);
 
 	const claimRestore = useCallback(() => {
 		if (!enabledRef.current) return -1;
-		const lines = store.get(lineCountAtom);
+		const lines = store.get(lyricLinesAtom).lyricLines;
 		const projectKey = currentKey();
-		if (lines === 0 || restoredProjectKey === projectKey) return -1;
+		if (lines.length === 0 || restoredProjectKey === projectKey) return -1;
 		flush();
 		restoredProjectKey = projectKey;
-		return recallEditScroll(projectKey, lines);
+		return recallEditScroll(
+			projectKey,
+			lines.map((line) => line.id),
+		);
 	}, [currentKey, flush, store]);
 
 	// A project opened while the view is already showing.

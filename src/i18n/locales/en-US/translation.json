@@ -1243,8 +1243,10 @@
     "insertWord": "Insert word here…"
   },
   "editModeTools": {
-    "toggleTitle": "Edit mode tools",
-    "toggleDesc": "Split a typed line into words, swap main and duet lines, and reopen each project where you left Edit mode.",
+    "splitTypedLinesTitle": "Split typed lines into words",
+    "splitTypedLinesDesc": "Text typed into an empty line is split into words, the same way an import splits lines.",
+    "scrollMemoryTitle": "Remember Edit mode position",
+    "scrollMemoryDesc": "Reopen each project at the line you were on in Edit mode.",
     "swapDuetAll": "Swap main and duet lines",
     "swapDuetSelected": "Swap main and duet"
   },

@@ -1243,8 +1243,10 @@
     "insertWord": "Insertar palabra aquí…"
   },
   "editModeTools": {
-    "toggleTitle": "Herramientas del modo Edición",
-    "toggleDesc": "Divide una línea escrita en palabras, intercambia las líneas principales y de dúo, y abre cada proyecto donde dejaste el modo Edición.",
+    "splitTypedLinesTitle": "Dividir en palabras las líneas escritas",
+    "splitTypedLinesDesc": "El texto escrito en una línea vacía se divide en palabras igual que una importación divide las líneas.",
+    "scrollMemoryTitle": "Recordar la posición del modo Edición",
+    "scrollMemoryDesc": "Abre cada proyecto en la línea donde estabas en el modo Edición.",
     "swapDuetAll": "Intercambiar líneas principales y de dúo",
     "swapDuetSelected": "Intercambiar principal y dúo"
   },

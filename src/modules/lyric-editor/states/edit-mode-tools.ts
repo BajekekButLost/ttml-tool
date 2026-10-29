@@ -1,11 +1,19 @@
 import { atomWithStorage } from "jotai/utils";
 
 /**
- * Opt-in Edit mode tools: swap main and duet lines, split a typed line into
- * words, and reopen a project where Edit mode was left. Off by default.
+ * Split text typed into an empty line's "Insert word" field into words, the
+ * way the import splits a line. Off by default.
  */
-export const editModeToolsAtom = atomWithStorage(
-	"lyricEditor.editModeTools",
+export const splitTypedLinesAtom = atomWithStorage(
+	"lyricEditor.splitTypedLines",
+	false,
+	undefined,
+	{ getOnInit: true },
+);
+
+/** Reopen each project at the line where Edit mode was left. Off by default. */
+export const editScrollMemoryAtom = atomWithStorage(
+	"lyricEditor.editScrollMemory",
 	false,
 	undefined,
 	{ getOnInit: true },

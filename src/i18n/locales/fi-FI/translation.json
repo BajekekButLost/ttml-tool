@@ -1243,8 +1243,10 @@
     "insertWord": "Lisää sana tähän…"
   },
   "editModeTools": {
-    "toggleTitle": "Muokkaustilan työkalut",
-    "toggleDesc": "Jakaa kirjoitetun rivin sanoiksi, vaihtaa pää- ja duettorivit keskenään ja avaa jokaisen projektin kohdasta, johon jätit muokkaustilan.",
+    "splitTypedLinesTitle": "Jaa kirjoitetut rivit sanoiksi",
+    "splitTypedLinesDesc": "Tyhjälle riville kirjoitettu teksti jaetaan sanoiksi samalla tavalla kuin tuonti jakaa rivit.",
+    "scrollMemoryTitle": "Muista muokkaustilan kohta",
+    "scrollMemoryDesc": "Avaa jokainen projekti riviltä, jolla olit muokkaustilassa.",
     "swapDuetAll": "Vaihda pää- ja duettorivit",
     "swapDuetSelected": "Vaihda pää- ja duettorivi"
   },

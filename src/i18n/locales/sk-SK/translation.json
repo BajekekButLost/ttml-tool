@@ -1243,8 +1243,10 @@
     "insertWord": "Vložiť slovo tu…"
   },
   "editModeTools": {
-    "toggleTitle": "Nástroje režimu úprav",
-    "toggleDesc": "Rozdelí napísaný riadok na slová, vymení hlavné a duetové riadky a otvorí každý projekt tam, kde ste opustili režim úprav.",
+    "splitTypedLinesTitle": "Rozdeliť napísané riadky na slová",
+    "splitTypedLinesDesc": "Text napísaný do prázdneho riadka sa rozdelí na slová rovnako, ako import rozdeľuje riadky.",
+    "scrollMemoryTitle": "Pamätať si pozíciu v režime úprav",
+    "scrollMemoryDesc": "Otvorí každý projekt na riadku, kde ste boli v režime úprav.",
     "swapDuetAll": "Vymeniť hlavné a duetové riadky",
     "swapDuetSelected": "Vymeniť hlavný a duet"
   },

@@ -1,22 +1,40 @@
 import { atom } from "jotai";
 import { lyricLinesAtom } from "$/states/main";
-import type { TTMLLyric } from "$/types/ttml";
+import type { LyricLine, TTMLLyric } from "$/types/ttml";
+
+/**
+ * Index of the group each line belongs to: a lead line and the background
+ * lines right after it share one. A background line with no lead above it
+ * starts its own group.
+ */
+function lineGroups(lines: readonly LyricLine[]): number[] {
+	let group = -1;
+	return lines.map((line, index) => {
+		if (!line.isBG || index === 0) group++;
+		return group;
+	});
+}
 
 /**
  * Flip every line between the main singer and the duet singer, or only the
- * lines in `ids`. Background lines flip with the rest, so they keep following
- * their lead line. Returns the same document when nothing is in scope.
+ * lines in `ids`. A lead line and its background lines always flip together,
+ * so picking either one moves the whole group. Returns the same document when
+ * nothing is in scope.
  */
 export function swapDuetLines(
 	doc: TTMLLyric,
 	ids?: ReadonlySet<string>,
 ): TTMLLyric {
-	const inScope = (id: string) => !ids || ids.has(id);
-	if (!doc.lyricLines.some((line) => inScope(line.id))) return doc;
+	const groups = lineGroups(doc.lyricLines);
+	const swapped = new Set<number>();
+	doc.lyricLines.forEach((line, index) => {
+		if (!ids || ids.has(line.id)) swapped.add(groups[index]);
+	});
+	if (swapped.size === 0) return doc;
 	return {
 		...doc,
-		lyricLines: doc.lyricLines.map((line) =>
-			inScope(line.id) ? { ...line, isDuet: !line.isDuet } : line,
+		lyricLines: doc.lyricLines.map((line, index) =>
+			swapped.has(groups[index]) ? { ...line, isDuet: !line.isDuet } : line,
 		),
 	};
 }

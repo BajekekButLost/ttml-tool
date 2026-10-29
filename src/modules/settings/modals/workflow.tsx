@@ -9,6 +9,7 @@ import {
 	EyeOff24Regular,
 	Flash24Regular,
 	Highlight24Regular,
+	History24Regular,
 	Image24Regular,
 	NumberSymbol24Regular,
 	Options24Regular,
@@ -20,10 +21,10 @@ import {
 	TextDescription24Regular,
 	TextEditStyle24Regular,
 	TextLineSpacing24Regular,
+	TextWordCount24Regular,
 	Timeline24Regular,
 	TopSpeed24Regular,
 	Translate24Regular,
-	Wrench24Regular,
 } from "@fluentui/react-icons";
 import { Box, Card, Flex, Heading, Text, TextField } from "@radix-ui/themes";
 import { useAtom, type WritableAtom } from "jotai";
@@ -32,7 +33,10 @@ import { useTranslation } from "react-i18next";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import { showPreviewPanelAtom } from "$/states/main";
 // Relative on purpose: keeps this import apart from other settings rows' imports.
-import { editModeToolsAtom } from "../../lyric-editor/states/edit-mode-tools";
+import {
+	editScrollMemoryAtom,
+	splitTypedLinesAtom,
+} from "../../lyric-editor/states/edit-mode-tools";
 import {
 	BackgroundSyncControl,
 	PreviewModeControl,
@@ -98,12 +102,20 @@ const editModeToggles: readonly ToggleRow[] = [
 		showLineTranslationAtom,
 	],
 	[
-		"editModeTools.toggleTitle",
-		"Edit mode tools",
-		"editModeTools.toggleDesc",
-		"Split a typed line into words, swap main and duet lines, and reopen each project where you left Edit mode.",
-		<Wrench24Regular key="icon" />,
-		editModeToolsAtom,
+		"editModeTools.splitTypedLinesTitle",
+		"Split typed lines into words",
+		"editModeTools.splitTypedLinesDesc",
+		"Text typed into an empty line is split into words, the same way an import splits lines.",
+		<TextWordCount24Regular key="icon" />,
+		splitTypedLinesAtom,
+	],
+	[
+		"editModeTools.scrollMemoryTitle",
+		"Remember Edit mode position",
+		"editModeTools.scrollMemoryDesc",
+		"Reopen each project at the line you were on in Edit mode.",
+		<History24Regular key="icon" />,
+		editScrollMemoryAtom,
 	],
 	[
 		"ribbonBar.editMode.showRomanization",

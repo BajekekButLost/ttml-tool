@@ -261,7 +261,7 @@ export function useLineListScrolling({
 				syncFocusMainLine: store.get(syncFocusMainLineAtom),
 				findCurrentLineIndex,
 			});
-			// A project reopened with Edit mode tools on goes back to its saved spot.
+			// A project reopened with scroll memory on goes back to its saved spot.
 			const remembered = editScrollMemoryRef.current?.claimRestore() ?? -1;
 			const targetLineIndex =
 				remembered !== -1 ? remembered : resolvedLineIndex;

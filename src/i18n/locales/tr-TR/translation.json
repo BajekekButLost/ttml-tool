@@ -1243,8 +1243,10 @@
     "insertWord": "Buraya kelime ekle…"
   },
   "editModeTools": {
-    "toggleTitle": "Düzenleme modu araçları",
-    "toggleDesc": "Yazılan bir satırı kelimelere böler, ana ve düet satırlarını değiştirir ve her projeyi Düzenleme modundan ayrıldığınız yerde açar.",
+    "splitTypedLinesTitle": "Yazılan satırları kelimelere böl",
+    "splitTypedLinesDesc": "Boş bir satıra yazılan metin, içe aktarmanın satırları böldüğü gibi kelimelere bölünür.",
+    "scrollMemoryTitle": "Düzenleme modu konumunu hatırla",
+    "scrollMemoryDesc": "Her projeyi Düzenleme modunda kaldığınız satırda açar.",
     "swapDuetAll": "Ana ve düet satırlarını değiştir",
     "swapDuetSelected": "Ana ve düeti değiştir"
   },

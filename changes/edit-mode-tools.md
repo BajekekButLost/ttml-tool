@@ -5,4 +5,4 @@ highlight: false
 ---
 Swap duet lines and type whole lines in Edit mode
 
-Turn on **Edit mode tools** in **Preferences › Editing** to swap duet lines and reopen where you left off
+Swap from the Tools or line menu, and find typed-line splitting and scroll memory in **Preferences › Editing**

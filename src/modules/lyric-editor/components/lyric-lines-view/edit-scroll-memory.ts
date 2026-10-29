@@ -7,7 +7,17 @@ export const EDIT_SCROLL_STORAGE_KEY = "lyricEditor.editScrollPositions";
 /** Enough for a working set of songs; the least recently used drop off. */
 export const EDIT_SCROLL_MAX_PROJECTS = 50;
 
-type Positions = Record<string, number>;
+/**
+ * The line's id finds it again after lines are added or removed above it.
+ * Ids are made fresh whenever a TTML file is read, so a reopened folder
+ * project falls back to the index.
+ */
+export interface EditScrollAnchor {
+	id?: string;
+	index: number;
+}
+
+type Positions = Record<string, EditScrollAnchor>;
 type KeyValueStorage = Pick<Storage, "getItem" | "setItem">;
 
 const defaultStorage = (): KeyValueStorage | null => {
@@ -39,9 +49,8 @@ function readPositions(storage: KeyValueStorage | null): Positions {
 		}
 		const positions: Positions = {};
 		for (const [key, value] of Object.entries(parsed)) {
-			if (Number.isInteger(value) && (value as number) >= 0) {
-				positions[key] = value as number;
-			}
+			const anchor = toAnchor(value);
+			if (anchor) positions[key] = anchor;
 		}
 		return positions;
 	} catch {
@@ -49,17 +58,33 @@ function readPositions(storage: KeyValueStorage | null): Positions {
 	}
 }
 
-/** Remember `lineIndex` for `key`, moving it to the most recent slot. */
+const isIndex = (value: unknown): value is number =>
+	Number.isInteger(value) && (value as number) >= 0;
+
+/** Accepts the current shape and the bare index earlier builds stored. */
+function toAnchor(value: unknown): EditScrollAnchor | null {
+	if (isIndex(value)) return { index: value };
+	if (!value || typeof value !== "object") return null;
+	const { id, index } = value as Record<string, unknown>;
+	if (!isIndex(index)) return null;
+	return typeof id === "string" && id ? { id, index } : { index };
+}
+
+/** Remember `anchor` for `key`, moving it to the most recent slot. */
 export function rememberEditScroll(
 	key: string,
-	lineIndex: number,
+	anchor: EditScrollAnchor,
 	storage: KeyValueStorage | null = defaultStorage(),
 ) {
-	if (!Number.isInteger(lineIndex) || lineIndex < 0) return;
+	const next = toAnchor(anchor);
+	if (!next) return;
 	const positions = readPositions(storage);
-	if (positions[key] === lineIndex) return;
+	const current = positions[key];
+	if (current && current.id === next.id && current.index === next.index) {
+		return;
+	}
 	delete positions[key];
-	positions[key] = lineIndex;
+	positions[key] = next;
 	const keys = Object.keys(positions);
 	const excess = Math.max(0, keys.length - EDIT_SCROLL_MAX_PROJECTS);
 	for (const old of keys.slice(0, excess)) delete positions[old];
@@ -70,13 +95,19 @@ export function rememberEditScroll(
 	}
 }
 
-/** The remembered line for `key`, kept inside a document of `lineCount` lines. */
+/**
+ * The index of the remembered line for `key` in a document whose lines have
+ * `lineIds`: wherever that line is now, or else the saved index, kept inside
+ * the document. -1 when nothing is remembered.
+ */
 export function recallEditScroll(
 	key: string,
-	lineCount: number,
+	lineIds: readonly string[],
 	storage: KeyValueStorage | null = defaultStorage(),
 ): number {
-	if (lineCount <= 0) return -1;
-	const line = readPositions(storage)[key];
-	return line === undefined ? -1 : Math.min(line, lineCount - 1);
+	if (lineIds.length === 0) return -1;
+	const anchor = readPositions(storage)[key];
+	if (!anchor) return -1;
+	const byId = anchor.id ? lineIds.indexOf(anchor.id) : -1;
+	return byId !== -1 ? byId : Math.min(anchor.index, lineIds.length - 1);
 }
