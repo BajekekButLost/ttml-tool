@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Ayarlarda ara",
     "clearSearch": "Aramayı temizle",
-    "noSearchResults": "Eşleşen kategori yok",
+    "matchCount": "Eşleşen ayarlar: {count}",
+    "noResults": "\"{query}\" ile eşleşen ayar yok",
+    "noResultsDesc": "Başka bir kelime deneyin veya aramayı temizleyin.",
     "title": "Tercihler",
     "common": {
       "latencyTest": "Ses/giriş gecikme testi"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "Genel",
       "appearance": "Görünüm",
-      "audio": "Ses",
-      "keybindings": "Kısayollar",
-      "spectrogram": "Spektrogram",
+      "editing": "Düzenleme",
+      "syncing": "Senkronizasyon",
+      "preview": "Önizleme",
+      "audioSpectrogram": "Ses ve spektrogram",
+      "importFiles": "İçe aktarma ve dosyalar",
       "backup": "Yedekleme",
-      "editor": "Düzenleyici ve senkronizasyon",
-      "files": "Dosyalar ve depolama",
+      "keybindings": "Kısayollar",
       "changelog": "Değişiklik günlüğü"
-    },
-    "page": {
-      "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
-      "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
-      "filesDesc": "İçe aktarma temizliği, otomatik kayıt geçmişi ve taşınabilir yedekler.",
-      "audioDesc": "Oynatma, ekolayzer ve spektrogram görünümü."
     }
   },
   "autoSegmentApplied": "{engine} ile otomatik bölündü",

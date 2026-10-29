@@ -144,9 +144,6 @@
 		},
 		"tab": {
 			"backup": "Respaldo"
-		},
-		"page": {
-			"filesDesc": "Limpieza al importar, historial de autoguardado y respaldos portátiles."
 		}
 	},
 	"error": {

@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Cari pengaturan",
     "clearSearch": "Hapus pencarian",
-    "noSearchResults": "Tidak ada kategori yang cocok",
+    "matchCount": "Pengaturan yang cocok: {count}",
+    "noResults": "Tidak ada pengaturan yang cocok dengan \"{query}\"",
+    "noResultsDesc": "Coba kata lain, atau hapus pencarian.",
     "title": "Preferensi",
     "common": {
       "latencyTest": "Tes latensi audio/input"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "Umum",
       "appearance": "Penampilan",
-      "audio": "Audio",
-      "keybindings": "Pintasan",
-      "spectrogram": "Spektrogram",
+      "editing": "Pengeditan",
+      "syncing": "Sinkronisasi",
+      "preview": "Pratinjau",
+      "audioSpectrogram": "Audio & spektrogram",
+      "importFiles": "Impor & file",
       "backup": "Cadangan",
-      "editor": "Editor & sinkronisasi",
-      "files": "File & penyimpanan",
+      "keybindings": "Pintasan",
       "changelog": "Log perubahan"
-    },
-    "page": {
-      "generalDesc": "Bahasa, privasi, dan perilaku seluruh aplikasi.",
-      "editorDesc": "Input waktu, perilaku sinkronisasi, dan petunjuk visual.",
-      "filesDesc": "Pembersihan impor, riwayat simpan otomatis, dan cadangan portabel.",
-      "audioDesc": "Pemutaran, ekualiser, dan tampilan spektrogram."
     }
   },
   "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",

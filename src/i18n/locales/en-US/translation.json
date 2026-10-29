@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Search settings",
     "clearSearch": "Clear search",
-    "noSearchResults": "No matching categories",
+    "matchCount": "Matching settings: {count}",
+    "noResults": "No settings match \"{query}\"",
+    "noResultsDesc": "Try another word, or clear the search.",
     "title": "Preferences",
     "common": {
       "latencyTest": "Audio/input latency test"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "General",
       "appearance": "Appearance",
-      "audio": "Audio",
-      "keybindings": "Shortcuts",
-      "spectrogram": "Spectrogram",
+      "editing": "Editing",
+      "syncing": "Syncing",
+      "preview": "Preview",
+      "audioSpectrogram": "Audio & spectrogram",
+      "importFiles": "Import & files",
       "backup": "Backup",
-      "editor": "Editor & sync",
-      "files": "Files & storage",
+      "keybindings": "Shortcuts",
       "changelog": "Changelog"
-    },
-    "page": {
-      "generalDesc": "Language, privacy, and app-wide behavior.",
-      "editorDesc": "Timing input, synchronization behavior, and visual cues.",
-      "filesDesc": "Import cleanup, autosave history, and portable backups.",
-      "audioDesc": "Playback, equalizer, and spectrogram display."
     }
   },
   "autoSegmentApplied": "Auto-segmented with {engine}",

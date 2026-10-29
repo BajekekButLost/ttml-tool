@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Etsi asetuksia",
     "clearSearch": "Tyhjennä haku",
-    "noSearchResults": "Ei vastaavia luokkia",
+    "matchCount": "Vastaavat asetukset: {count}",
+    "noResults": "Mikään asetus ei vastaa hakua \"{query}\"",
+    "noResultsDesc": "Kokeile toista sanaa tai tyhjennä haku.",
     "title": "Asetukset",
     "common": {
       "latencyTest": "Äänen ja syötteen viivetesti"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "Yleiset",
       "appearance": "Ulkonäkö",
-      "audio": "Ääni",
-      "keybindings": "Pikanäppäimet",
-      "spectrogram": "Spektrogrammi",
+      "editing": "Muokkaus",
+      "syncing": "Ajoitus",
+      "preview": "Esikatselu",
+      "audioSpectrogram": "Ääni ja spektrogrammi",
+      "importFiles": "Tuonti ja tiedostot",
       "backup": "Varmuuskopio",
-      "editor": "Editori ja ajoitus",
-      "files": "Tiedostot ja tallennus",
+      "keybindings": "Pikanäppäimet",
       "changelog": "Muutosloki"
-    },
-    "page": {
-      "generalDesc": "Kieli, yksityisyys ja koko sovelluksen toiminta.",
-      "editorDesc": "Ajoitussyöte, synkronoinnin toiminta ja visuaaliset vihjeet.",
-      "filesDesc": "Tuonnin siivous, automaattitallennuksen historia ja siirrettävät varmuuskopiot.",
-      "audioDesc": "Toisto, taajuuskorjain ja spektrogrammin näyttö."
     }
   },
   "autoSegmentApplied": "Automaattinen jako tehty moottorilla {engine}",

@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "搜索设置",
     "clearSearch": "清除搜索",
-    "noSearchResults": "没有匹配的类别",
+    "matchCount": "匹配的设置：{count}",
+    "noResults": "没有与“{query}”匹配的设置",
+    "noResultsDesc": "换个词试试，或清除搜索。",
     "title": "偏好设置",
     "common": {
       "latencyTest": "音频/输入延迟测试"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "通用",
       "appearance": "外观",
-      "audio": "音频",
-      "keybindings": "快捷键",
-      "spectrogram": "频谱图",
+      "editing": "编辑",
+      "syncing": "打轴",
+      "preview": "预览",
+      "audioSpectrogram": "音频与频谱图",
+      "importFiles": "导入与文件",
       "backup": "备份",
-      "editor": "编辑与打轴",
-      "files": "文件与存储",
+      "keybindings": "快捷键",
       "changelog": "更新日志"
-    },
-    "page": {
-      "generalDesc": "语言、隐私及应用全局行为。",
-      "editorDesc": "时间输入、打轴行为与视觉提示。",
-      "filesDesc": "导入清理、自动保存历史与可移植备份。",
-      "audioDesc": "播放、均衡器和频谱图显示。"
     }
   },
   "autoSegmentApplied": "已使用 {engine} 自动分词",

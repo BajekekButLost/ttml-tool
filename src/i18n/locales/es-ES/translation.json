@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Buscar en los ajustes",
     "clearSearch": "Borrar búsqueda",
-    "noSearchResults": "No hay categorías coincidentes",
+    "matchCount": "Ajustes coincidentes: {count}",
+    "noResults": "Ningún ajuste coincide con «{query}»",
+    "noResultsDesc": "Prueba otra palabra o borra la búsqueda.",
     "title": "Preferencias",
     "common": {
       "latencyTest": "Prueba de latencia de audio/entrada"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "General",
       "appearance": "Apariencia",
-      "audio": "Audio",
-      "keybindings": "Atajos",
-      "spectrogram": "Espectrograma",
+      "editing": "Edición",
+      "syncing": "Sincronización",
+      "preview": "Vista previa",
+      "audioSpectrogram": "Audio y espectrograma",
+      "importFiles": "Importación y archivos",
       "backup": "Copia de seguridad",
-      "editor": "Editor y sincronización",
-      "files": "Archivos y almacenamiento",
+      "keybindings": "Atajos",
       "changelog": "Registro de cambios"
-    },
-    "page": {
-      "generalDesc": "Idioma, privacidad y comportamiento general de la aplicación.",
-      "editorDesc": "Entrada de tiempos, comportamiento de la sincronización y señales visuales.",
-      "filesDesc": "Limpieza al importar, historial de autoguardado y copias de seguridad portátiles.",
-      "audioDesc": "Reproducción, ecualizador y visualización del espectrograma."
     }
   },
   "autoSegmentApplied": "Autosegmentado con {engine}",
