@@ -24,18 +24,26 @@ import {
 
 type View = "all" | "highlights";
 
+/** One line, as in the release notes: "**Lead.** Explanation". */
 function EntryText({ entry }: { entry: ChangeEntry }) {
+	const lead =
+		entry.body && !/[.!?:]$/.test(entry.title)
+			? `${entry.title}.`
+			: entry.title;
 	return (
-		<Flex direction="column" gap="1" className={styles.entry}>
-			<Text as="p" size="2" weight="bold">
-				<ChangeMarkdown text={entry.title} />
+		<Text as="p" size="2" className={styles.entry}>
+			<Text weight="bold">
+				<ChangeMarkdown text={lead} />
 			</Text>
 			{entry.body && (
-				<Text as="p" size="2" color="gray">
-					<ChangeMarkdown text={entry.body} />
-				</Text>
+				<>
+					{" "}
+					<Text color="gray">
+						<ChangeMarkdown text={entry.body} />
+					</Text>
+				</>
 			)}
-		</Flex>
+		</Text>
 	);
 }
 

@@ -3,21 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SECTION_BY_TYPE } from "./compile-changelog.mjs";
 
-export const generateReleaseNotes = (releases, version) => {
-	const data = typeof releases === "string" ? JSON.parse(releases) : releases;
-	const release = data.find((item) => item.version === version);
-	if (!release?.entries.length) return null;
-	return release.entries
-		.map(
-			({ title, body }) =>
-				"- **" +
-				title +
-				(body ? ":" : "") +
-				"**" +
-				(body ? ` ${body.replace(/\s*\n\s*/g, " ")}` : ""),
-		)
-		.join("\n");
-};
+const REPOSITORY = "https://github.com/spicylyrics/ttml-tool";
 
 export const SECTION_HEADINGS = {
 	new: "New",
@@ -37,12 +23,12 @@ export const formatEntryLine = ({ title, body }) => {
 	return `- **${lead}** ${text}`;
 };
 
-// The shared format: ## New / ## Changed / ## Fixed, empty sections left out.
-export const generateSectionedReleaseNotes = (releases, version) => {
-	const data = typeof releases === "string" ? JSON.parse(releases) : releases;
-	const release = data.find((item) => item.version === version);
-	if (!release?.entries.length) return null;
-	return Object.entries(SECTION_HEADINGS)
+const parse = (releases) =>
+	typeof releases === "string" ? JSON.parse(releases) : releases;
+
+// ## New / ## Changed / ## Fixed, empty sections left out.
+const sections = (release, separator) =>
+	Object.entries(SECTION_HEADINGS)
 		.map(([section, heading]) => {
 			const lines = release.entries
 				.filter((entry) => sectionOf(entry) === section)
@@ -50,7 +36,31 @@ export const generateSectionedReleaseNotes = (releases, version) => {
 			return lines.length ? [`## ${heading}`, ...lines].join("\n") : null;
 		})
 		.filter(Boolean)
-		.join("\n\n");
+		.join(separator);
+
+/** GitHub release notes for one version, or null without entries. */
+export const generateReleaseNotes = (releases, version) => {
+	const release = parse(releases).find((item) => item.version === version);
+	return release?.entries.length ? sections(release, "\n\n") : null;
+};
+
+/** The Discord announcement: no blank lines around headings, links in <>. */
+export const generateDiscordPost = (releases, version) => {
+	const data = parse(releases);
+	const index = data.findIndex((item) => item.version === version);
+	const release = data[index];
+	if (!release?.entries.length) return null;
+	const previous = data[index + 1]?.version;
+	const changelogLink = previous
+		? `${REPOSITORY}/compare/v${previous}...v${version}`
+		: `${REPOSITORY}/commits/v${version}`;
+	return [
+		`# 📝 TTML Tool v${version}`,
+		sections(release, "\n"),
+		"",
+		`**Full Changelog**: <${changelogLink}>`,
+		"-# ||@TTML Tool Announcements||",
+	].join("\n");
 };
 
 if (
@@ -63,16 +73,15 @@ if (
 	};
 	const version = readArgument("--version");
 	const outputPath = readArgument("--output");
-	// --changelog is accepted but ignored for existing release workflow callers.
+	// --changelog and --sectioned are accepted but ignored for older callers.
 	if (!version) {
 		console.error(
-			"Usage: node scripts/generate-release-notes.mjs --version X.Y.Z [--sectioned] [--output file]",
+			"Usage: node scripts/generate-release-notes.mjs --version X.Y.Z [--discord] [--output file]",
 		);
 		process.exitCode = 1;
 	} else {
-		// --sectioned prints the shared New / Changed / Fixed format.
-		const generate = process.argv.includes("--sectioned")
-			? generateSectionedReleaseNotes
+		const generate = process.argv.includes("--discord")
+			? generateDiscordPost
 			: generateReleaseNotes;
 		const notes = generate(
 			readFileSync(
