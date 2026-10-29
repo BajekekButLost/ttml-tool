@@ -1496,7 +1496,9 @@
     "sectionNew": "Новое",
     "sectionChanged": "Изменено",
     "sectionFixed": "Исправлено",
-    "empty": "Нет версий для показа."
+    "empty": "Нет версий для показа.",
+    "versions": "Версии",
+    "earlier": "Ранние"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

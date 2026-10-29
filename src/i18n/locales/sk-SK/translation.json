@@ -1496,7 +1496,9 @@
     "sectionNew": "Nové",
     "sectionChanged": "Zmenené",
     "sectionFixed": "Opravené",
-    "empty": "Žiadne vydania na zobrazenie."
+    "empty": "Žiadne vydania na zobrazenie.",
+    "versions": "Verzie",
+    "earlier": "Staršie"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

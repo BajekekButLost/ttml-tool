@@ -1496,7 +1496,9 @@
     "sectionNew": "Novità",
     "sectionChanged": "Modificato",
     "sectionFixed": "Corretto",
-    "empty": "Nessuna versione da mostrare."
+    "empty": "Nessuna versione da mostrare.",
+    "versions": "Versioni",
+    "earlier": "Precedenti"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

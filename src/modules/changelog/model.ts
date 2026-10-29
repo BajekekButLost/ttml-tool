@@ -67,6 +67,30 @@ export function toReleaseCard(
 	};
 }
 
+export interface ReleaseGroup {
+	/** "0.18" for 0.18.x releases, or null for the legacy block. */
+	minor: string | null;
+	cards: ReleaseCard[];
+}
+
+/** "0.18.1" and "0.18" both give "0.18". */
+export const minorOf = (version: string) =>
+	version.split(".").slice(0, 2).join(".");
+
+/** Consecutive cards of the same minor version, in order; the legacy block last. */
+export function groupReleaseCards(
+	cards: readonly ReleaseCard[],
+): ReleaseGroup[] {
+	const groups: ReleaseGroup[] = [];
+	for (const card of cards) {
+		const minor = card.version ? minorOf(card.version) : null;
+		const last = groups[groups.length - 1];
+		if (last && last.minor === minor) last.cards.push(card);
+		else groups.push({ minor, cards: [card] });
+	}
+	return groups;
+}
+
 /** Releases newest first, then the legacy block; empty cards are left out. */
 export function buildReleaseCards(
 	releases: readonly CompiledRelease[],

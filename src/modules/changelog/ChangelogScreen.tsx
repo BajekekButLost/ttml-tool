@@ -1,15 +1,12 @@
-import { OpenRegular, SparkleRegular } from "@fluentui/react-icons";
 import {
-	Badge,
-	Box,
-	Button,
-	Card,
-	Flex,
-	Heading,
-	Text,
-} from "@radix-ui/themes";
+	ChevronDownRegular,
+	ChevronRightRegular,
+	OpenRegular,
+	SparkleRegular,
+} from "@fluentui/react-icons";
+import { Badge, Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
 import { open } from "@tauri-apps/plugin-shell";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChangeMarkdown } from "$/components/Dialogs/change-notes.tsx";
 import { OptionPicker } from "$/components/OptionPicker";
@@ -20,7 +17,9 @@ import {
 	buildReleaseCards,
 	type ChangeEntry,
 	type ChangeSection,
+	groupReleaseCards,
 	type ReleaseCard,
+	type ReleaseGroup,
 } from "./model";
 
 type View = "all" | "highlights";
@@ -54,12 +53,17 @@ function formatDate(date: string | undefined, language: string) {
 	}
 }
 
-function ReleaseCardView({
+/** A release: one row while closed, a card with its notes while open. */
+function ReleaseItem({
 	card,
 	latest,
+	open,
+	onToggle,
 }: {
 	card: ReleaseCard;
 	latest: boolean;
+	open: boolean;
+	onToggle: () => void;
 }) {
 	const { t, i18n } = useTranslation();
 	const sectionLabels: Record<ChangeSection, string> = {
@@ -68,65 +72,85 @@ function ReleaseCardView({
 		fixed: t("changelogScreen.sectionFixed", "Fixed"),
 	};
 	const date = formatDate(card.date, i18n.language);
+	const title = card.version ? `v${card.version}` : card.summary;
+	const Chevron = open ? ChevronDownRegular : ChevronRightRegular;
 	return (
-		<Card size="2" className={styles.release} asChild>
-			<article aria-label={card.version ? `v${card.version}` : card.summary}>
-				<Flex align="baseline" gap="2" wrap="wrap" mb="3">
-					<Heading as="h3" size="4" className={styles.releaseHeading}>
-						{card.version ? `v${card.version}` : card.summary}
-					</Heading>
-					{latest && (
-						<Badge color="green" variant="soft">
-							{t("changelogScreen.latest", "Latest")}
-						</Badge>
-					)}
-					{card.version && card.summary && (
-						<Text size="2" color="gray">
-							{card.summary}
-						</Text>
-					)}
-					{date && (
-						<Text size="1" color="gray" className={styles.date}>
-							<time dateTime={card.date}>{date}</time>
-						</Text>
-					)}
-				</Flex>
-
-				{card.highlights.length > 0 && (
-					<Box className={styles.highlights} mb="3">
-						<Flex align="center" gap="1" mb="2">
-							<SparkleRegular aria-hidden className={styles.highlightIcon} />
-							<Text size="2" weight="medium">
-								{t("changelogScreen.highlights", "Highlights")}
-							</Text>
-						</Flex>
-						<Flex direction="column" gap="2">
-							{card.highlights.map((entry) => (
-								<EntryText
-									key={`${entry.title}:${entry.body ?? ""}`}
-									entry={entry}
-								/>
-							))}
-						</Flex>
-					</Box>
+		<article
+			id={`release-${card.key}`}
+			className={styles.release}
+			data-open={open || undefined}
+			aria-label={title}
+		>
+			<button
+				type="button"
+				className={styles.releaseToggle}
+				aria-expanded={open}
+				onClick={onToggle}
+			>
+				<Chevron aria-hidden className={styles.chevron} />
+				<Heading as="h3" size="3" className={styles.releaseHeading}>
+					{title}
+				</Heading>
+				{latest && (
+					<Badge color="green" variant="soft">
+						{t("changelogScreen.latest", "Latest")}
+					</Badge>
 				)}
+				{card.version && card.summary && (
+					<Text size="2" color="gray" className={styles.summary}>
+						{card.summary}
+					</Text>
+				)}
+				{date && (
+					<Text size="1" color="gray" className={styles.date}>
+						<time dateTime={card.date}>{date}</time>
+					</Text>
+				)}
+			</button>
 
-				{card.sections.map(({ section, entries }) => (
-					<Box key={section} className={styles.section}>
-						<Heading as="h4" size="2" mb="2" className={styles.sectionHeading}>
-							{sectionLabels[section]}
-						</Heading>
-						<ul className={styles.list}>
-							{entries.map((entry) => (
-								<li key={`${entry.title}:${entry.body ?? ""}`}>
-									<EntryText entry={entry} />
-								</li>
-							))}
-						</ul>
-					</Box>
-				))}
-			</article>
-		</Card>
+			{open && (
+				<div className={styles.releaseBody}>
+					{card.highlights.length > 0 && (
+						<Box className={styles.highlights} mb="3">
+							<Flex align="center" gap="1" mb="2">
+								<SparkleRegular aria-hidden className={styles.highlightIcon} />
+								<Text size="2" weight="medium">
+									{t("changelogScreen.highlights", "Highlights")}
+								</Text>
+							</Flex>
+							<Flex direction="column" gap="2">
+								{card.highlights.map((entry) => (
+									<EntryText
+										key={`${entry.title}:${entry.body ?? ""}`}
+										entry={entry}
+									/>
+								))}
+							</Flex>
+						</Box>
+					)}
+
+					{card.sections.map(({ section, entries }) => (
+						<Box key={section} className={styles.section}>
+							<Heading
+								as="h4"
+								size="2"
+								mb="2"
+								className={styles.sectionHeading}
+							>
+								{sectionLabels[section]}
+							</Heading>
+							<ul className={styles.list}>
+								{entries.map((entry) => (
+									<li key={`${entry.title}:${entry.body ?? ""}`}>
+										<EntryText entry={entry} />
+									</li>
+								))}
+							</ul>
+						</Box>
+					))}
+				</div>
+			)}
+		</article>
 	);
 }
 
@@ -139,17 +163,86 @@ const openCommits = async () => {
 	}
 };
 
-/** The Changelog page in Preferences: one card per release, newest first. */
+const groupId = (group: ReleaseGroup) =>
+	`release-group-${group.minor ?? "earlier"}`;
+
+function scrollParentOf(element: HTMLElement | null) {
+	for (let node = element?.parentElement; node; node = node.parentElement) {
+		const { overflowY } = getComputedStyle(node);
+		if (overflowY === "auto" || overflowY === "scroll") return node;
+	}
+	return null;
+}
+
+/**
+ * The Changelog page in Preferences. A rail of minor versions on the left
+ * jumps through the list; only the newest release starts open.
+ */
 export function ChangelogScreen() {
 	const { t } = useTranslation();
 	const [view, setView] = useState<View>("all");
-	const cards = useMemo(
+	const groups = useMemo(
 		() =>
-			buildReleaseCards(changelog, legacy, {
-				highlightsOnly: view === "highlights",
-			}),
+			groupReleaseCards(
+				buildReleaseCards(changelog, legacy, {
+					highlightsOnly: view === "highlights",
+				}),
+			),
 		[view],
 	);
+	const latestKey = groups[0]?.cards[0]?.key;
+	const [openKeys, setOpenKeys] = useState<ReadonlySet<string>>(
+		() => new Set(latestKey ? [latestKey] : []),
+	);
+	const [activeGroup, setActiveGroup] = useState(groups[0]?.minor);
+	const listRef = useRef<HTMLDivElement>(null);
+
+	const toggle = (key: string) =>
+		setOpenKeys((keys) => {
+			const next = new Set(keys);
+			if (!next.delete(key)) next.add(key);
+			return next;
+		});
+
+	const jumpTo = (group: ReleaseGroup) => {
+		const first = group.cards[0];
+		if (first) setOpenKeys((keys) => new Set(keys).add(first.key));
+		setActiveGroup(group.minor);
+		// After the open release renders, so the jump lands on its final spot.
+		requestAnimationFrame(() =>
+			document
+				.getElementById(groupId(group))
+				?.scrollIntoView({ block: "start", behavior: "instant" }),
+		);
+	};
+
+	// Marks the group whose top has passed the top of the scrolling pane.
+	useEffect(() => {
+		const scroller = scrollParentOf(listRef.current);
+		if (!scroller) return;
+		let frame = 0;
+		const update = () => {
+			frame = 0;
+			const top = scroller.getBoundingClientRect().top + 24;
+			let current = groups[0]?.minor;
+			for (const group of groups) {
+				const element = document.getElementById(groupId(group));
+				if (!element || element.getBoundingClientRect().top > top) break;
+				current = group.minor;
+			}
+			setActiveGroup(current);
+		};
+		const onScroll = () => {
+			if (!frame) frame = requestAnimationFrame(update);
+		};
+		scroller.addEventListener("scroll", onScroll, { passive: true });
+		return () => {
+			scroller.removeEventListener("scroll", onScroll);
+			cancelAnimationFrame(frame);
+		};
+	}, [groups]);
+
+	const earlier = t("changelogScreen.earlier", "Earlier");
 
 	return (
 		<Flex direction="column" gap="3">
@@ -176,10 +269,50 @@ export function ChangelogScreen() {
 				</Button>
 			</Flex>
 
-			{cards.length ? (
-				cards.map((card, index) => (
-					<ReleaseCardView key={card.key} card={card} latest={index === 0} />
-				))
+			{groups.length ? (
+				<div className={styles.layout}>
+					<nav
+						className={styles.rail}
+						aria-label={t("changelogScreen.versions", "Versions")}
+					>
+						<ol>
+							{groups.map((group) => (
+								<li key={group.minor ?? "earlier"}>
+									<button
+										type="button"
+										className={styles.railItem}
+										aria-current={
+											group.minor === activeGroup ? "location" : undefined
+										}
+										onClick={() => jumpTo(group)}
+									>
+										{group.minor ?? earlier}
+									</button>
+								</li>
+							))}
+						</ol>
+					</nav>
+					<div ref={listRef} className={styles.releases}>
+						{groups.map((group) => (
+							<section
+								key={group.minor ?? "earlier"}
+								id={groupId(group)}
+								className={styles.group}
+								aria-label={group.minor ?? earlier}
+							>
+								{group.cards.map((card) => (
+									<ReleaseItem
+										key={card.key}
+										card={card}
+										latest={card.version === changelog[0]?.version}
+										open={openKeys.has(card.key)}
+										onToggle={() => toggle(card.key)}
+									/>
+								))}
+							</section>
+						))}
+					</div>
+				</div>
 			) : (
 				<Text size="2" color="gray">
 					{t("changelogScreen.empty", "No releases to show.")}
