@@ -1054,7 +1054,8 @@
       "spectrogram": "Spectrogramă",
       "backup": "Backup",
       "editor": "Editor și sincronizare",
-      "files": "Fișiere și stocare"
+      "files": "Fișiere și stocare",
+      "changelog": "Jurnal de modificări"
     },
     "page": {
       "generalDesc": "Limbă, confidențialitate și comportamentul general al aplicației.",
@@ -1499,6 +1500,19 @@
     "description": "{type, select, word {Alege o împărțire sugerată pentru acest cuvânt.} other {Alege o împărțire sugerată pentru acest vers.}}",
     "apply": "Aplică sugestia",
     "noSuggestions": "Nu sunt disponibile sugestii de împărțire automată pentru acest conținut."
+  },
+  "changelogScreen": {
+    "viewLabel": "Afișează",
+    "viewAll": "Tot",
+    "viewHighlights": "Puncte importante",
+    "highlights": "Puncte importante",
+    "latest": "Cea mai nouă",
+    "sectionNew": "Nou",
+    "sectionChanged": "Schimbat",
+    "sectionFixed": "Reparat",
+    "empty": "Nu există versiuni de afișat.",
+    "versions": "Versiuni",
+    "earlier": "Mai vechi"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

@@ -1054,7 +1054,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Yedekleme",
       "editor": "Düzenleyici ve senkronizasyon",
-      "files": "Dosyalar ve depolama"
+      "files": "Dosyalar ve depolama",
+      "changelog": "Değişiklik günlüğü"
     },
     "page": {
       "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
@@ -1499,6 +1500,19 @@
     "description": "{type, select, word {Bu kelime için önerilen bir bölme seçin.} other {Bu satır için önerilen bir bölme seçin.}}",
     "apply": "Öneriyi uygula",
     "noSuggestions": "Bu içerik için otomatik bölme önerisi yok."
+  },
+  "changelogScreen": {
+    "viewLabel": "Göster",
+    "viewAll": "Tümü",
+    "viewHighlights": "Öne çıkanlar",
+    "highlights": "Öne çıkanlar",
+    "latest": "En yeni",
+    "sectionNew": "Yeni",
+    "sectionChanged": "Değişti",
+    "sectionFixed": "Düzeltildi",
+    "empty": "Gösterilecek sürüm yok.",
+    "versions": "Sürümler",
+    "earlier": "Daha eski"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

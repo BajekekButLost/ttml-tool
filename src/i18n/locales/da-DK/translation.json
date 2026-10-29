@@ -1054,7 +1054,8 @@
       "spectrogram": "Spektrogram",
       "backup": "Sikkerhedskopi",
       "editor": "Editor og synkronisering",
-      "files": "Filer og lager"
+      "files": "Filer og lager",
+      "changelog": "Ændringslog"
     },
     "page": {
       "generalDesc": "Sprog, privatliv og adfærd for hele appen.",
@@ -1499,6 +1500,19 @@
     "description": "{type, select, word {Vælg en foreslået opdeling for dette ord.} other {Vælg en foreslået opdeling for denne linje.}}",
     "apply": "Anvend forslag",
     "noSuggestions": "Der er ingen tilgængelige automatiske opdelingsforslag for dette indhold."
+  },
+  "changelogScreen": {
+    "viewLabel": "Vis",
+    "viewAll": "Alt",
+    "viewHighlights": "Højdepunkter",
+    "highlights": "Højdepunkter",
+    "latest": "Nyeste",
+    "sectionNew": "Nyt",
+    "sectionChanged": "Ændret",
+    "sectionFixed": "Rettet",
+    "empty": "Ingen udgivelser at vise.",
+    "versions": "Versioner",
+    "earlier": "Ældre"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

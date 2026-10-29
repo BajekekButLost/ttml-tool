@@ -1054,7 +1054,8 @@
       "spectrogram": "Spektrogrammi",
       "backup": "Varmuuskopio",
       "editor": "Editori ja ajoitus",
-      "files": "Tiedostot ja tallennus"
+      "files": "Tiedostot ja tallennus",
+      "changelog": "Muutosloki"
     },
     "page": {
       "generalDesc": "Kieli, yksityisyys ja koko sovelluksen toiminta.",
@@ -1499,6 +1500,19 @@
     "description": "{type, select, word {Valitse ehdotettu jako tälle sanalle.} other {Valitse ehdotettu jako tälle riville.}}",
     "apply": "Käytä ehdotusta",
     "noSuggestions": "Tälle sisällölle ei ole saatavilla automaattisia jakoehdotuksia."
+  },
+  "changelogScreen": {
+    "viewLabel": "Näytä",
+    "viewAll": "Kaikki",
+    "viewHighlights": "Kohokohdat",
+    "highlights": "Kohokohdat",
+    "latest": "Uusin",
+    "sectionNew": "Uutta",
+    "sectionChanged": "Muutettu",
+    "sectionFixed": "Korjattu",
+    "empty": "Ei näytettäviä julkaisuja.",
+    "versions": "Versiot",
+    "earlier": "Aiemmat"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
