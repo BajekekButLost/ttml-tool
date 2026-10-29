@@ -1,13 +1,16 @@
 .tokens {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: baseline;
 	gap: var(--chip-gap, var(--space-2));
 	padding: var(--space-1);
+	transition: none;
 }
 
 .token {
 	box-sizing: border-box;
+	flex: 0 0 auto;
 	min-width: 0;
 	max-width: 100%;
 	color: var(--gray-12);

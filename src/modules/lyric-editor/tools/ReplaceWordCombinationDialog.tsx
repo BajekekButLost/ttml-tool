@@ -160,7 +160,11 @@ function ReplacementForm({
 		>
 			<Flex direction="column" gap="3">
 				<div
-					className={styles.tokens}
+					className={classNames(
+						editorStyles.lyricWordsContainer,
+						editorStyles.edit,
+						styles.tokens,
+					)}
 					role="group"
 					aria-label={t("replaceWordCombinationDialog.title")}
 					aria-describedby={instructionsId}
