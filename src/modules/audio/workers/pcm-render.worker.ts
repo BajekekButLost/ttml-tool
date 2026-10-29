@@ -1,4 +1,4 @@
-import { PcmVoice } from "../worklet/pcm-voice";
+import { PcmVoice, renderPcmBlock } from "../worklet/pcm-voice";
 import type {
 	RendererCommand,
 	RendererEvent,
@@ -18,6 +18,7 @@ type Voice = {
 	state: VoiceState | null;
 	inFlight: number;
 	pool: Float32Array[][];
+	scratch: Float32Array[];
 	timer: ReturnType<typeof setTimeout> | null;
 	ended: boolean;
 };
@@ -56,7 +57,7 @@ function schedule(id: VoiceId) {
 					{ length: channelCount },
 					() => new Float32Array(BLOCK_FRAMES),
 				);
-			const report = voice.renderer.render(channels, 0);
+			const report = renderPcmBlock(voice.renderer, channels, voice.scratch);
 			if (report && (report.renderedFrames > 0 || report.ended)) {
 				voice.inFlight++;
 				voice.ended = report.ended;
@@ -99,6 +100,10 @@ self.onmessage = (event: MessageEvent<RendererCommand>) => {
 			state: null,
 			inFlight: 0,
 			pool: [],
+			scratch: Array.from(
+				{ length: channelCount },
+				() => new Float32Array(128),
+			),
 			timer: null,
 			ended: false,
 		});

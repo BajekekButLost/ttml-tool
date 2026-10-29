@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { seekFrame } from "../utils/pcm-clock";
 import { BufferedPcmVoice } from "./buffered-voice";
-import { PcmVoice, type StretchProcessor } from "./pcm-voice";
+import { PcmVoice, renderPcmBlock, type StretchProcessor } from "./pcm-voice";
 import type {
 	PcmPacket,
 	RendererCommand,
@@ -92,6 +92,7 @@ describe("decoded PCM playback", () => {
 			);
 			const first = messages.find((message) => message.type === "pcm");
 			if (!first || first.type !== "pcm") throw new Error("Missing PCM packet");
+			expect(first.report.renderedFrames).toBe(2048);
 			port.onmessage?.({
 				data: {
 					type: "recycle",
@@ -136,9 +137,10 @@ describe("decoded PCM playback", () => {
 		const buffered = new BufferedPcmVoice(() => {});
 		buffered.setState({ ...configuration });
 		let produced = false;
+		const scratch = [new Float32Array(128), new Float32Array(128)];
 		while (!produced) {
 			const channels = [new Float32Array(2048), new Float32Array(2048)];
-			const report = producer.render(channels, 0);
+			const report = renderPcmBlock(producer, channels, scratch);
 			if (!report) throw new Error("Missing render report");
 			buffered.accept({ type: "pcm", voice: "music", channels, report });
 			produced = report.ended;

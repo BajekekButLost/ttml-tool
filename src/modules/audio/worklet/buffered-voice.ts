@@ -5,6 +5,7 @@ export class BufferedPcmVoice {
 	private packets: PcmPacket[] = [];
 	private offset = 0;
 	private position = 0;
+	private renderedSinceSeek = 0;
 	private started = false;
 	private report: RenderReport = {
 		generation: 0,
@@ -40,6 +41,7 @@ export class BufferedPcmVoice {
 		this.packets.length = 0;
 		this.offset = 0;
 		this.started = false;
+		this.renderedSinceSeek = 0;
 	}
 
 	render(output: Float32Array[], contextTime: number): RenderReport | null {
@@ -76,7 +78,8 @@ export class BufferedPcmVoice {
 			report.renderedFrames += count;
 			this.position = Math.min(
 				packet.report.endFrame,
-				packet.report.startFrame + this.offset * this.state.rate,
+				this.state.frame +
+					(this.renderedSinceSeek + report.renderedFrames) * this.state.rate,
 			);
 			if (this.offset === packet.report.renderedFrames) {
 				this.position = packet.report.endFrame;
@@ -91,6 +94,7 @@ export class BufferedPcmVoice {
 			}
 		}
 		report.endFrame = this.position;
+		this.renderedSinceSeek += report.renderedFrames;
 		return report;
 	}
 }
