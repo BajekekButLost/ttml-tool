@@ -296,6 +296,12 @@
       "title": "Tuodaanko uudet sanoitukset?",
       "description": "Sinulla on tallentamattomia muutoksia. Jos jatkat, menetät muutokset. Oletko varma että haluat tuoda uudet sanoitukset?"
     },
+    "discardTextEdits": {
+      "title": "Hylätäänkö muokkaukset?",
+      "description": "Tekstissä on muutoksia, joita et ole ottanut käyttöön. Jos suljet nyt, ne menetetään.",
+      "discard": "Hylkää",
+      "keepEditing": "Jatka muokkausta"
+    },
     "noSongwriter": {
       "description": "Kappaleelle ei ole lisätty lauluntekijöitä. Tallennetaanko silti?"
     },

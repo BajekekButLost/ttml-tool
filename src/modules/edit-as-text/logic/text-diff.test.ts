@@ -163,7 +163,9 @@ describe("serializeLyrics", () => {
 			lyricLines: [{ ...newLyricLine(), sectionId: "x", words: [] }],
 			sections: [{ id: "x", label: "Bridge", category: "bridge" as const }],
 		});
-		expect(serializeLyrics(lyrics, editTextFormat(lyrics))).toBe("[Bridge]\n");
+		expect(serializeLyrics(lyrics, editTextFormat(lyrics))).toBe(
+			"[Bridge]\n\\",
+		);
 	});
 });
 
@@ -184,7 +186,7 @@ describe("applyEditedText", () => {
 		expect(result.sections).toEqual(lyrics.sections);
 	});
 
-	it("keeps every other timing when a typo is fixed", () => {
+	it("keeps every timing, the fixed word's too, when a typo is fixed", () => {
 		const lyrics = synced();
 		const result = edit(lyrics, (text) =>
 			replaceRow(text, "Say\\ \\teh\\ \\word", "Say\\ \\the\\ \\word"),
@@ -194,12 +196,10 @@ describe("applyEditedText", () => {
 			edited: 1,
 			added: 0,
 			removed: 0,
-			droppedTimedWords: 1,
+			droppedTimedWords: 0,
 			hasChanges: true,
 		});
-		expect(result.summary.lossyLines).toEqual([
-			{ index: 5, text: "Say the word", droppedTimed: 1 },
-		]);
+		expect(result.summary.lossyLines).toEqual([]);
 		for (const index of [0, 1, 2, 3, 4, 6])
 			expect(result.lyricLines[index]).toEqual(lyrics.lyricLines[index]);
 		const fixed = result.lyricLines[5];
@@ -209,12 +209,13 @@ describe("applyEditedText", () => {
 		expect(fixed.sectionId).toBe("s-chorus-b");
 		expect(fixed.words[0]).toBe(old.words[0]);
 		expect(fixed.words[4]).toBe(old.words[4]);
+		expect(old.words[2].startTime).toBeGreaterThan(0);
 		expect(fixed.words[2]).toMatchObject({
+			id: old.words[2].id,
 			word: "the",
-			startTime: 0,
-			endTime: 0,
+			startTime: old.words[2].startTime,
+			endTime: old.words[2].endTime,
 		});
-		expect(fixed.words[2].id).not.toBe(old.words[2].id);
 	});
 
 	it("keeps hyphenated words whole", () => {
@@ -401,13 +402,37 @@ describe("applyEditedText", () => {
 		]);
 	});
 
-	it("keeps a line rewritten in place as the same line", () => {
+	it("keeps a similar line rewritten in place as the same line", () => {
+		const lyrics = synced();
+		const result = edit(lyrics, (text) =>
+			replaceRow(text, "Say\\ \\teh\\ \\word", "Say\\ \\teh\\ \\word\\ \\now"),
+		);
+		expect(result.summary).toMatchObject({
+			edited: 1,
+			added: 0,
+			removed: 0,
+			droppedTimedWords: 0,
+		});
+		const before = lyrics.lyricLines[5];
+		const after = result.lyricLines[5];
+		expect(after.id).toBe(before.id);
+		expect(timing(after).slice(0, 5)).toEqual(timing(before));
+		expect(after.words[6]).toMatchObject({ word: "now", startTime: 0 });
+	});
+
+	it("treats a dissimilar line rewritten in place as a delete and an add", () => {
 		const lyrics = synced();
 		const result = edit(lyrics, (text) =>
 			replaceRow(text, "Say\\ \\teh\\ \\word", "Something\\ \\else"),
 		);
-		expect(result.summary).toMatchObject({ edited: 1, droppedTimedWords: 3 });
-		expect(result.lyricLines[5].id).toBe(lyrics.lyricLines[5].id);
+		expect(result.summary).toMatchObject({
+			edited: 0,
+			added: 1,
+			removed: 1,
+			droppedTimedWords: 3,
+		});
+		expect(result.lyricLines[5].id).not.toBe(lyrics.lyricLines[5].id);
+		expect(result.lyricLines[5].sectionId).toBe("s-chorus-b");
 	});
 
 	it("removes everything for empty text", () => {
@@ -418,7 +443,48 @@ describe("applyEditedText", () => {
 		expect(result.summary).toMatchObject({ removed: 7, hasChanges: true });
 	});
 
-	it("reports an empty project line as removed", () => {
+	it("round-trips empty lines without changes", () => {
+		const lyrics = synced();
+		const empty = {
+			...newLyricLine(),
+			words: [],
+			sectionId: "s-verse",
+			geniusHeader: "[Verse 1]",
+		};
+		const emptyBG = {
+			...newLyricLine(),
+			isBG: true,
+			words: [{ ...newLyricWord(), word: " " }],
+			translatedLyric: "bg",
+			sectionId: "s-chorus-a",
+			geniusHeader: "[Chorus]",
+		};
+		const withEmpty = deepFreeze({
+			...lyrics,
+			lyricLines: [
+				...lyrics.lyricLines.slice(0, 1),
+				empty,
+				...lyrics.lyricLines.slice(1, 4),
+				emptyBG,
+				...lyrics.lyricLines.slice(4),
+			],
+		});
+		const format = editTextFormat(withEmpty);
+		expect(format.mode).toBe("lyric-trans");
+		const text = serializeLyrics(withEmpty, format);
+		expect(text.split("\n")).toContain("\\");
+		expect(text.split("\n")).toContain("<\\");
+		const result = applyEditedText(withEmpty, text, format);
+		expect(result.summary).toMatchObject({
+			unchanged: 9,
+			removed: 0,
+			added: 0,
+			hasChanges: false,
+		});
+		expect(result.lyricLines).toEqual(withEmpty.lyricLines);
+	});
+
+	it("round-trips a lone empty line", () => {
 		const empty = { ...newLyricLine(), words: [] };
 		const lyrics = deepFreeze({
 			metadata: [],
@@ -426,7 +492,10 @@ describe("applyEditedText", () => {
 			sections: [],
 		});
 		const result = edit(lyrics, (text) => text);
-		expect(result.summary).toMatchObject({ removed: 1, hasChanges: true });
+		expect(result.summary).toMatchObject({ unchanged: 1, hasChanges: false });
+		expect(result.lyricLines).toEqual([empty]);
+		const filled = edit(lyrics, () => "Hello");
+		expect(filled.summary).toMatchObject({ added: 1, removed: 1 });
 	});
 
 	it("treats a trailing space on the last word as unchanged", () => {
@@ -526,6 +595,31 @@ describe("mergeWords", () => {
 			word: "end",
 			startTime: 1,
 		});
+	});
+
+	it("keeps a changed word's timing by position when the count is the same", () => {
+		const old = [timed("I", 1), timed(" ", 2), timed("lvoe", 3)];
+		const result = mergeWords(old, ["I", " ", "love"]);
+		expect(result.words[0]).toBe(old[0]);
+		expect(result.words[2]).toMatchObject({
+			id: old[2].id,
+			word: "love",
+			startTime: 3,
+			romanWord: "",
+		});
+		expect(result).toMatchObject({ droppedTimed: 0, keptTimed: 3 });
+	});
+
+	it("matches by text when a same-count edit shifts the words", () => {
+		const old = ["a", " ", "b", " ", "c", " ", "d"].map((text, index) =>
+			timed(text, index + 1),
+		);
+		const result = mergeWords(old, ["a", " ", "c", " ", "d", " ", "e"]);
+		expect(result.words[2]).toBe(old[4]);
+		expect(result.words[4]).toBe(old[6]);
+		expect(result.words[6]).toMatchObject({ word: "e", startTime: 0 });
+		// "b" and one of the spaces around it.
+		expect(result.droppedTimed).toBe(2);
 	});
 
 	it("doesn't count untimed old words as dropped", () => {

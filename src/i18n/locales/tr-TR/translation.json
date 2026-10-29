@@ -296,6 +296,12 @@
       "title": "Yeni şarkı sözleri içe aktarılsın mı?",
       "description": "Kaydedilmemiş değişiklikleriniz var. Eğer devam ederseniz, bunlar kaybolacak. Yeni şarkı sözü içe aktarmak istediğinize emin misiniz?"
     },
+    "discardTextEdits": {
+      "title": "Düzenlemeler atılsın mı?",
+      "description": "Metinde uygulanmamış değişiklikler var. Şimdi kapatırsanız kaybolur.",
+      "discard": "At",
+      "keepEditing": "Düzenlemeye devam et"
+    },
     "noSongwriter": {
       "description": "Şarkı yazarı belirtilmemiş. Yine de kaydedilsin mi?"
     },

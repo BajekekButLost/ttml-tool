@@ -65,6 +65,8 @@ export const subKeysOf = (
  * The rows for one line: the lyric row with its role prefixes and every word
  * joined by the separator (spaces included, so word boundaries are exact),
  * then one row per translation kind. Translation rows are flattened to one row.
+ * A line with no text is written as a lone word separator: a blank row would
+ * be dropped by the importer, and the separator alone reads back as no words.
  */
 export function serializeLine(
 	line: LyricLine,
@@ -73,7 +75,8 @@ export function serializeLine(
 	const prefix =
 		(line.isBG ? format.bgLyricPrefix : "") +
 		(line.isDuet ? format.duetLyricPrefix : "");
-	const body = line.words.map((word) => word.word).join(format.wordSeparator);
+	const words = line.words.map((word) => word.word).join(format.wordSeparator);
+	const body = words.trim() ? words : format.wordSeparator;
 	return [
 		prefix + body,
 		...subKeysOf(format).map((key) =>

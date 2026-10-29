@@ -6,13 +6,14 @@ import {
 	Text,
 	VisuallyHidden,
 } from "@radix-ui/themes";
-import { useAtom, useStore } from "jotai";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useAtom, useSetAtom, useStore } from "jotai";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { LyricMarkupEditor } from "$/components/LyricMarkupEditor";
 import { importTextFormatAtom } from "$/modules/lyrics-import/states";
 import { geniusCategorizationEnabledAtom } from "$/modules/settings/states/index.ts";
+import { confirmDialogAtom } from "$/states/dialogs.ts";
 import {
 	lyricLinesAtom,
 	selectedLinesAtom,
@@ -31,17 +32,61 @@ const LOSSY_LINES_SHOWN = 8;
  * word whose text didn't change, and lands as one undo step.
  */
 export const EditAsTextDialog = () => {
+	const { t } = useTranslation();
 	const [open, setOpen] = useAtom(editAsTextDialogAtom);
+	const setConfirmDialog = useSetAtom(confirmDialogAtom);
+	// Whether the text differs from what the dialog opened with.
+	const dirtyRef = useRef(false);
+
+	const close = () => {
+		dirtyRef.current = false;
+		setOpen(false);
+	};
+	// Escape, the overlay and Cancel all land here. The confirmation stacks on
+	// top, so the text survives "Keep editing".
+	const onOpenChange = (next: boolean) => {
+		if (next) setOpen(true);
+		else if (!dirtyRef.current) close();
+		else
+			setConfirmDialog({
+				open: true,
+				title: t("confirmDialog.discardTextEdits.title", "Discard your edits?"),
+				description: t(
+					"confirmDialog.discardTextEdits.description",
+					"The text has changes you haven't applied. Closing now loses them.",
+				),
+				confirmText: t("confirmDialog.discardTextEdits.discard", "Discard"),
+				cancelText: t(
+					"confirmDialog.discardTextEdits.keepEditing",
+					"Keep editing",
+				),
+				onConfirm: close,
+			});
+	};
+
 	return (
-		<Dialog.Root open={open} onOpenChange={setOpen}>
+		<Dialog.Root open={open} onOpenChange={onOpenChange}>
 			<Dialog.Content className={styles.content} maxWidth="1120px">
-				{open && <EditAsTextBody onDone={() => setOpen(false)} />}
+				{open && (
+					<EditAsTextBody
+						onDone={close}
+						onDirtyChange={(dirty) => {
+							dirtyRef.current = dirty;
+						}}
+					/>
+				)}
 			</Dialog.Content>
 		</Dialog.Root>
 	);
 };
 
-function EditAsTextBody({ onDone }: { onDone: () => void }) {
+function EditAsTextBody({
+	onDone,
+	onDirtyChange,
+}: {
+	onDone: () => void;
+	onDirtyChange: (dirty: boolean) => void;
+}) {
 	const { t } = useTranslation();
 	const store = useStore();
 	// The text is written once when the dialog opens.
@@ -51,6 +96,8 @@ function EditAsTextBody({ onDone }: { onDone: () => void }) {
 		return { format, original: serializeLyrics(lyrics, format) };
 	});
 	const [text, setText] = useState(original);
+	const dirty = text !== original;
+	useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange]);
 	const deferredText = useDeferredValue(text);
 	const summary = useMemo(() => {
 		try {

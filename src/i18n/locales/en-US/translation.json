@@ -296,6 +296,12 @@
       "title": "Import new lyrics?",
       "description": "You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to import new lyrics?"
     },
+    "discardTextEdits": {
+      "title": "Discard your edits?",
+      "description": "The text has changes you haven't applied. Closing now loses them.",
+      "discard": "Discard",
+      "keepEditing": "Keep editing"
+    },
     "noSongwriter": {
       "description": "This song has no songwriters. Save anyway?"
     },

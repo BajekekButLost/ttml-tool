@@ -296,6 +296,12 @@
       "title": "Imporți versuri noi?",
       "description": "Ai modificări nesalvate. Dacă continui, se vor pierde. Sigur vrei să imporți versuri noi?"
     },
+    "discardTextEdits": {
+      "title": "Renunți la modificări?",
+      "description": "Textul are modificări pe care nu le-ai aplicat. Dacă închizi acum, le pierzi.",
+      "discard": "Renunță",
+      "keepEditing": "Continuă editarea"
+    },
     "noSongwriter": {
       "description": "Melodia nu are compozitori. Salvezi oricum?"
     },

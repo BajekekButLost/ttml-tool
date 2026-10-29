@@ -296,6 +296,12 @@
       "title": "Importovat nový text písně?",
       "description": "Máte neuložené změny. Pokud budete pokračovat, budou ztraceny. Opravdu chcete importovat nový text písně?"
     },
+    "discardTextEdits": {
+      "title": "Zahodit úpravy?",
+      "description": "Text obsahuje změny, které jste nepoužili. Zavřením je ztratíte.",
+      "discard": "Zahodit",
+      "keepEditing": "Pokračovat v úpravách"
+    },
     "noSongwriter": {
       "description": "Skladba nemá uvedené autory. Přesto uložit?"
     },

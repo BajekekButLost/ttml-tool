@@ -296,6 +296,12 @@
       "title": "Importér ny sangtekst?",
       "description": "Du har ikke-gemte ændringer. Hvis du fortsætter, vil disse ændringer gå tabt. Er du sikker på, at du vil importere nye sangtekster?"
     },
+    "discardTextEdits": {
+      "title": "Kassér dine ændringer?",
+      "description": "Teksten har ændringer, du ikke har anvendt. Lukker du nu, går de tabt.",
+      "discard": "Kassér",
+      "keepEditing": "Fortsæt redigering"
+    },
     "noSongwriter": {
       "description": "Sangen har ingen sangskrivere. Gem alligevel?"
     },

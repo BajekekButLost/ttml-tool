@@ -296,6 +296,12 @@
       "title": "Importare un nuovo testo?",
       "description": "Ci sono modifiche non salvate. Se procedi, queste modifiche andranno perse. Sei sicuro di voler importare un nuovo testo?"
     },
+    "discardTextEdits": {
+      "title": "Scartare le modifiche?",
+      "description": "Il testo ha modifiche non applicate. Se chiudi ora, andranno perse.",
+      "discard": "Scarta",
+      "keepEditing": "Continua a modificare"
+    },
     "noSongwriter": {
       "description": "Questo brano non ha autori. Salvare comunque?"
     },

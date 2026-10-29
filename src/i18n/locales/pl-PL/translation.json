@@ -296,6 +296,12 @@
       "title": "Zaimportować nowy tekst?",
       "description": "Masz niezapisane zmiany. Jeśli kontynuujesz, te zmiany zostaną utracone. Czy na pewno chcesz zaimportować nowy tekst?"
     },
+    "discardTextEdits": {
+      "title": "Odrzucić zmiany?",
+      "description": "Tekst ma niezastosowane zmiany. Zamknięcie teraz spowoduje ich utratę.",
+      "discard": "Odrzuć",
+      "keepEditing": "Edytuj dalej"
+    },
     "noSongwriter": {
       "description": "Nie podano autorów utworu. Zapisać mimo to?"
     },

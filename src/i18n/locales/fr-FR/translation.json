@@ -296,6 +296,12 @@
       "title": "Importer de nouvelles paroles ?",
       "description": "Vous avez des modifications non enregistrées. Si vous continuez, ces modifications seront perdues. Êtes-vous sûr de vouloir importer de nouvelles paroles ?"
     },
+    "discardTextEdits": {
+      "title": "Abandonner vos modifications ?",
+      "description": "Le texte contient des modifications non appliquées. Fermer maintenant les fera perdre.",
+      "discard": "Abandonner",
+      "keepEditing": "Continuer à modifier"
+    },
     "noSongwriter": {
       "description": "Cette chanson n’a pas d’auteurs-compositeurs. Enregistrer quand même ?"
     },

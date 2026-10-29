@@ -20,10 +20,14 @@ import { sectionHeaderText, serializeLine, subKeysOf } from "./serialize";
  *
  * Lines are matched in three passes: an in-order match of identical lines
  * (unchanged), then identical lines anywhere (moved), then similar lines in the
- * same stretch of changes (edited). Inside an edited line, words are matched in
- * order by their text; matched words keep their id and timing, new words come
- * in untimed. Section headers are matched the same way, so sections keep their
- * id, category and notes.
+ * same stretch of changes (edited). "Similar" is the Dice coefficient of the
+ * two lines' character bigrams after lowercasing and dropping punctuation, at
+ * least `EDITED_LINE_SIMILARITY` (0.5); this holds even when exactly one line
+ * was removed and one added, so an unrelated replacement is a delete plus an
+ * add. Inside an edited line, words are matched in order by their text, or by
+ * position when only some words' text changed (see `mergeWords`); matched
+ * words keep their id and timing, new words come in untimed. Section headers
+ * are matched the same way, so sections keep their id, category and notes.
  */
 
 /** A row of the text as the importer reads it: a header or a lyric line. */
@@ -192,16 +196,38 @@ export interface WordMerge {
 /**
  * The new words of a line, reusing old words (id, timing, romanization) where
  * the text matches in order. Spacing around a word doesn't count as a change.
+ *
+ * When the word count is the same and matching by position keeps at least as
+ * many words as matching by text, words are paired by position instead, so a
+ * typo fix ("teh" to "the") keeps that word's timing. A changed word loses its
+ * romanization, which belonged to the old text. A shift (a word removed and
+ * another added elsewhere) keeps more by text, so it stays text-matched.
  */
 export function mergeWords(
 	oldWords: LyricWord[],
 	newTexts: string[],
 ): WordMerge {
-	const ops = alignByKey(
-		oldWords.map((word) => word.word.trim()),
-		newTexts.map((text) => text.trim()),
-		(x, y) => x === y,
-	);
+	const oldKeys = oldWords.map((word) => word.word.trim());
+	const newKeys = newTexts.map((text) => text.trim());
+	const ops = alignByKey(oldKeys, newKeys, (x, y) => x === y);
+	if (oldWords.length === newTexts.length && oldWords.length > 0) {
+		const byText = ops.filter((op) => op.type === "equal").length;
+		const byPosition = oldKeys.filter(
+			(key, index) => key === newKeys[index],
+		).length;
+		if (byPosition >= byText)
+			return {
+				words: oldWords.map((old, index) => {
+					const text = newTexts[index];
+					if (old.word === text) return old;
+					if (oldKeys[index] === newKeys[index]) return { ...old, word: text };
+					const { romanWarning: _stale, ...kept } = old;
+					return { ...kept, word: text, romanWord: "" };
+				}),
+				droppedTimed: 0,
+				keptTimed: oldWords.filter((word) => !hasNoTiming(word)).length,
+			};
+	}
 	const words: LyricWord[] = [];
 	const used = new Set<number>();
 	let keptTimed = 0;
@@ -370,31 +396,24 @@ export function applyEditedText(
 		const addedLines = current.added
 			.map((b) => newSides[b].line)
 			.filter((line) => line !== -1 && !lineMatch.has(line));
-		if (removedLines.length === 1 && addedLines.length === 1) {
-			// One line rewritten in place keeps its id and line settings.
-			lineMatch.set(addedLines[0], { kind: "edited", old: removedLines[0] });
-			oldUsed.add(removedLines[0]);
-		} else {
-			let from = 0;
-			for (const old of removedLines) {
-				let best = -1;
-				let bestScore = EDITED_LINE_SIMILARITY;
-				for (let index = from; index < addedLines.length; index++) {
-					const score = lineSimilarity(
-						oldText(old),
-						newText(addedLines[index]),
-					);
-					if (score >= bestScore) {
-						if (score > bestScore || best === -1) best = index;
-						bestScore = score;
-						if (score === 1) break;
-					}
+		// Even a single line rewritten in place must pass the similarity bar, so
+		// replacing a line with unrelated text is a delete plus an add.
+		let from = 0;
+		for (const old of removedLines) {
+			let best = -1;
+			let bestScore = EDITED_LINE_SIMILARITY;
+			for (let index = from; index < addedLines.length; index++) {
+				const score = lineSimilarity(oldText(old), newText(addedLines[index]));
+				if (score >= bestScore) {
+					if (score > bestScore || best === -1) best = index;
+					bestScore = score;
+					if (score === 1) break;
 				}
-				if (best === -1) continue;
-				lineMatch.set(addedLines[best], { kind: "edited", old });
-				oldUsed.add(old);
-				from = best + 1;
 			}
+			if (best === -1) continue;
+			lineMatch.set(addedLines[best], { kind: "edited", old });
+			oldUsed.add(old);
+			from = best + 1;
 		}
 		const removedHeaders = current.removed.filter(
 			(a) => oldSides[a].line === -1,

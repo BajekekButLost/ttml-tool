@@ -296,6 +296,12 @@
       "title": "Impor lirik baru?",
       "description": "File saat ini memiliki perubahan yang belum disimpan. Jika dilanjutkan, perubahan ini akan hilang. Anda yakin ingin mengimpor lirik?"
     },
+    "discardTextEdits": {
+      "title": "Buang perubahan Anda?",
+      "description": "Teks memiliki perubahan yang belum diterapkan. Jika ditutup sekarang, perubahan itu hilang.",
+      "discard": "Buang",
+      "keepEditing": "Lanjut mengedit"
+    },
     "noSongwriter": {
       "description": "Lagu ini belum memiliki penulis lagu. Tetap simpan?"
     },

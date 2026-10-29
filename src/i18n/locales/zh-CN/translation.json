@@ -296,6 +296,12 @@
       "title": "导入新歌词？",
       "description": "当前文件有未保存的更改。如果继续，这些更改将会丢失。确定要导入歌词吗？"
     },
+    "discardTextEdits": {
+      "title": "放弃编辑？",
+      "description": "文本中有尚未应用的更改。现在关闭将丢失这些更改。",
+      "discard": "放弃",
+      "keepEditing": "继续编辑"
+    },
     "noSongwriter": {
       "description": "此歌曲未填写词曲作者。仍然保存？"
     },

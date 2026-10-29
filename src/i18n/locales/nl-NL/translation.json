@@ -296,6 +296,12 @@
       "title": "Nieuwe songtekst importeren?",
       "description": "Je hebt niet-opgeslagen wijzigingen. Als je doorgaat, gaan deze wijzigingen verloren. Weet je zeker dat je nieuwe songteksten wilt importeren?"
     },
+    "discardTextEdits": {
+      "title": "Je wijzigingen verwerpen?",
+      "description": "De tekst heeft wijzigingen die je niet hebt toegepast. Als je nu sluit, gaan ze verloren.",
+      "discard": "Verwerpen",
+      "keepEditing": "Verder bewerken"
+    },
     "noSongwriter": {
       "description": "Er zijn geen liedschrijvers toegevoegd. Toch opslaan?"
     },

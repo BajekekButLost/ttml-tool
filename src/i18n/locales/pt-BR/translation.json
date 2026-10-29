@@ -296,6 +296,12 @@
       "title": "Importar uma nova letra?",
       "description": "Você tem alterações não salvas. Se continuar, essas alterações serão perdidas. Tem certeza de que deseja importar novas letras?"
     },
+    "discardTextEdits": {
+      "title": "Descartar suas edições?",
+      "description": "O texto tem alterações que você não aplicou. Fechar agora faz você perdê-las.",
+      "discard": "Descartar",
+      "keepEditing": "Continuar editando"
+    },
     "noSongwriter": {
       "description": "Esta música não tem compositores. Salvar mesmo assim?"
     },
