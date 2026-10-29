@@ -384,7 +384,8 @@
     "shortcut": "Ver - Abrir paleta de comandos",
     "shortcutAlternate": "Ver - Abrir paleta de comandos (atalho alternativo)",
     "settingLabel": "Paleta de comandos",
-    "settingDesc": "Encontre comandos e páginas de configurações pelo nome. Abra com {shortcut} ou pelo menu Ajuda."
+    "settingDesc": "Encontre comandos e páginas de configurações pelo nome. Abra com {shortcut} ou pelo menu Ajuda.",
+    "settingDescUnbound": "Encontre comandos e páginas de configurações pelo nome. Abra pelo menu Ajuda."
   },
   "projectsDialog": {
     "title": "Projetos",

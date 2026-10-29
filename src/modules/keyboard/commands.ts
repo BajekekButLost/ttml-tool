@@ -150,6 +150,21 @@ export const cmdInterfaceScaleReset = registerCommand(
 	"View",
 );
 
+// Only bound while the command palette's flag is on; the palette mounts their handlers.
+export const cmdOpenCommandPalette = registerCommand(
+	"openCommandPalette",
+	[CONTROL_KEY, "KeyK"],
+	t("commandPalette.shortcut"),
+	"View",
+);
+
+export const cmdOpenCommandPaletteAlternate = registerCommand(
+	"openCommandPaletteAlternate",
+	[CONTROL_KEY, "Shift", "KeyP"],
+	t("commandPalette.shortcutAlternate"),
+	"View",
+);
+
 // =========================================================================================
 //  打轴操作
 // =========================================================================================

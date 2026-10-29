@@ -384,7 +384,8 @@
     "shortcut": "Näkymä - Avaa komentopaletti",
     "shortcutAlternate": "Näkymä - Avaa komentopaletti (vaihtoehtoinen pikanäppäin)",
     "settingLabel": "Komentopaletti",
-    "settingDesc": "Etsi komentoja ja asetussivuja nimellä. Avaa se pikanäppäimellä {shortcut} tai Apua-valikosta."
+    "settingDesc": "Etsi komentoja ja asetussivuja nimellä. Avaa se pikanäppäimellä {shortcut} tai Apua-valikosta.",
+    "settingDescUnbound": "Etsi komentoja ja asetussivuja nimellä. Avaa se Apua-valikosta."
   },
   "projectsDialog": {
     "title": "Projektit",

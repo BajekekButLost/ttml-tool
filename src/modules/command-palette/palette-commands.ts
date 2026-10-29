@@ -1,38 +1,8 @@
-import { t } from "$/modules/keyboard/i18n-helper";
-import { getCommandById, registerCommand } from "$/modules/keyboard/registry";
+import {
+	cmdOpenCommandPalette,
+	cmdOpenCommandPaletteAlternate,
+} from "$/modules/keyboard/commands";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
-
-const CONTROL_KEY = navigator.userAgent.includes("Mac") ? "Meta" : "Control";
-
-/**
- * The palette's own shortcuts (Ctrl+K and Ctrl+Shift+P), registered on first
- * use instead of in `keyboard/commands.ts`. Only the palette calls this, and
- * only while its flag is on, so with the flag off the Shortcuts page and the
- * key handlers stay exactly as they were.
- */
-export function getPaletteCommands(): {
-	open: KeyBindingCommand;
-	openAlternate: KeyBindingCommand;
-} {
-	return {
-		open:
-			getCommandById("openCommandPalette") ??
-			registerCommand(
-				"openCommandPalette",
-				[CONTROL_KEY, "KeyK"],
-				t("commandPalette.shortcut"),
-				"View",
-			),
-		openAlternate:
-			getCommandById("openCommandPaletteAlternate") ??
-			registerCommand(
-				"openCommandPaletteAlternate",
-				[CONTROL_KEY, "Shift", "KeyP"],
-				t("commandPalette.shortcutAlternate"),
-				"View",
-			),
-	};
-}
 
 /**
  * Whether a command's handler is active in an editor mode. Takes any string
@@ -46,6 +16,30 @@ export function commandRunsInMode(
 }
 
 export const PALETTE_COMMAND_IDS: ReadonlySet<string> = new Set([
-	"openCommandPalette",
-	"openCommandPaletteAlternate",
+	cmdOpenCommandPalette.id,
+	cmdOpenCommandPaletteAlternate.id,
 ]);
+
+/**
+ * Sync commands are the timing keys (start, next and end word, move between
+ * words and lines, and the rest of the Sync group on the Shortcuts page).
+ * They're pressed in rhythm with the audio, so running one from a search
+ * box is never useful.
+ */
+export function isSyncCommand(command: Pick<KeyBindingCommand, "category">) {
+	return command.category === "Sync";
+}
+
+/**
+ * Whether the palette lists a command in an editor mode: it has to run there,
+ * it can't be one of the palette's own shortcuts, and in Time mode the sync
+ * commands are left out.
+ */
+export function paletteListsCommand(
+	command: Pick<KeyBindingCommand, "id" | "category" | "modes">,
+	mode: string,
+): boolean {
+	if (PALETTE_COMMAND_IDS.has(command.id)) return false;
+	if (mode === "sync" && isSyncCommand(command)) return false;
+	return commandRunsInMode(command, mode);
+}

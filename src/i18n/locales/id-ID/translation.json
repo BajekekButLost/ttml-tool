@@ -384,7 +384,8 @@
     "shortcut": "Tampilan - Buka palet perintah",
     "shortcutAlternate": "Tampilan - Buka palet perintah (pintasan alternatif)",
     "settingLabel": "Palet perintah",
-    "settingDesc": "Temukan perintah dan halaman pengaturan berdasarkan nama. Buka dengan {shortcut} atau dari menu Bantuan."
+    "settingDesc": "Temukan perintah dan halaman pengaturan berdasarkan nama. Buka dengan {shortcut} atau dari menu Bantuan.",
+    "settingDescUnbound": "Temukan perintah dan halaman pengaturan berdasarkan nama. Buka dari menu Bantuan."
   },
   "projectsDialog": {
     "title": "Proyek",

@@ -384,7 +384,8 @@
     "shortcut": "视图 - 打开命令面板",
     "shortcutAlternate": "视图 - 打开命令面板（备用快捷键）",
     "settingLabel": "命令面板",
-    "settingDesc": "按名称查找命令和设置页面。使用 {shortcut} 或从帮助菜单打开。"
+    "settingDesc": "按名称查找命令和设置页面。使用 {shortcut} 或从帮助菜单打开。",
+    "settingDescUnbound": "按名称查找命令和设置页面。从帮助菜单打开。"
   },
   "projectsDialog": {
     "title": "项目",

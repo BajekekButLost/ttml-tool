@@ -384,7 +384,8 @@
     "shortcut": "Widok – otwórz paletę poleceń",
     "shortcutAlternate": "Widok – otwórz paletę poleceń (alternatywny skrót)",
     "settingLabel": "Paleta poleceń",
-    "settingDesc": "Znajduj polecenia i strony ustawień po nazwie. Otwórz ją skrótem {shortcut} lub z menu Pomoc."
+    "settingDesc": "Znajduj polecenia i strony ustawień po nazwie. Otwórz ją skrótem {shortcut} lub z menu Pomoc.",
+    "settingDescUnbound": "Znajduj polecenia i strony ustawień po nazwie. Otwórz ją z menu Pomoc."
   },
   "projectsDialog": {
     "title": "Projekty",

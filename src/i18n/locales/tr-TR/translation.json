@@ -384,7 +384,8 @@
     "shortcut": "Görünüm - Komut paletini aç",
     "shortcutAlternate": "Görünüm - Komut paletini aç (alternatif kısayol)",
     "settingLabel": "Komut paleti",
-    "settingDesc": "Komutları ve ayar sayfalarını adıyla bulun. {shortcut} ile veya Yardım menüsünden açın."
+    "settingDesc": "Komutları ve ayar sayfalarını adıyla bulun. {shortcut} ile veya Yardım menüsünden açın.",
+    "settingDescUnbound": "Komutları ve ayar sayfalarını adıyla bulun. Yardım menüsünden açın."
   },
   "projectsDialog": {
     "title": "Projeler",

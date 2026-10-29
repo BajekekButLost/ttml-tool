@@ -384,7 +384,8 @@
     "shortcut": "Vis - Åbn kommandopaletten",
     "shortcutAlternate": "Vis - Åbn kommandopaletten (alternativ genvej)",
     "settingLabel": "Kommandopalet",
-    "settingDesc": "Find kommandoer og indstillingssider efter navn. Åbn den med {shortcut} eller fra menuen Hjælp."
+    "settingDesc": "Find kommandoer og indstillingssider efter navn. Åbn den med {shortcut} eller fra menuen Hjælp.",
+    "settingDescUnbound": "Find kommandoer og indstillingssider efter navn. Åbn den fra menuen Hjælp."
   },
   "projectsDialog": {
     "title": "Projekter",

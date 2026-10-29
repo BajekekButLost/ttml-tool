@@ -57,16 +57,14 @@ afterEach(() => {
 });
 
 describe("palette shortcuts", () => {
-	it("registers Ctrl+K and Ctrl+Shift+P once, without default conflicts", () => {
-		const first = paletteCommands.getPaletteCommands();
-		const second = paletteCommands.getPaletteCommands();
-		expect(second.open).toBe(first.open);
-		expect(first.open.defaultKeys).toEqual(["Control", "KeyK"]);
-		expect(first.openAlternate.defaultKeys).toEqual([
-			"Control",
-			"Shift",
-			"KeyP",
-		]);
+	it("registers Ctrl+K and Ctrl+Shift+P with the other commands, without default conflicts", () => {
+		const open = registry.getCommandById("openCommandPalette");
+		const alternate = registry.getCommandById("openCommandPaletteAlternate");
+		expect(open).toBe(commands.cmdOpenCommandPalette);
+		expect(alternate).toBe(commands.cmdOpenCommandPaletteAlternate);
+		expect(open?.defaultKeys).toEqual(["Control", "KeyK"]);
+		expect(alternate?.defaultKeys).toEqual(["Control", "Shift", "KeyP"]);
+		expect(open?.category).toBe("View");
 		expect(
 			findConflicts(
 				registry
@@ -88,6 +86,40 @@ describe("commandRunsInMode", () => {
 				.getAllCommands()
 				.filter((command) => commandRunsInMode(command, "transcribe")),
 		).toEqual([]);
+	});
+});
+
+describe("paletteListsCommand", () => {
+	const listed = (mode: string) =>
+		registry
+			.getAllCommands()
+			.filter((command) => paletteCommands.paletteListsCommand(command, mode));
+
+	it("leaves sync commands out in Time mode and keeps the rest", () => {
+		const sync = listed("sync");
+		expect(sync.some(paletteCommands.isSyncCommand)).toBe(false);
+		expect(sync).not.toContain(commands.cmdSyncStart);
+		expect(sync).not.toContain(commands.cmdMoveNextWord);
+		expect(sync).not.toContain(commands.cmdUrbanDictionarySync);
+		expect(sync).toContain(commands.cmdPlayPause);
+		expect(sync).toContain(commands.cmdUndo);
+		expect(sync).toContain(commands.cmdSwitchEditMode);
+		expect(sync).toContain(commands.cmdAuditionSelection);
+	});
+
+	it("never lists the palette's own shortcuts", () => {
+		for (const mode of ["edit", "sync", "preview"]) {
+			expect(listed(mode)).not.toContain(commands.cmdOpenCommandPalette);
+			expect(listed(mode)).not.toContain(
+				commands.cmdOpenCommandPaletteAlternate,
+			);
+		}
+	});
+
+	it("lists every other command that runs in the mode", () => {
+		expect(listed("edit")).toContain(commands.cmdUrbanDictionary);
+		expect(listed("edit")).not.toContain(commands.cmdSyncStart);
+		expect(listed("preview")).toContain(commands.cmdPlayPause);
 	});
 });
 

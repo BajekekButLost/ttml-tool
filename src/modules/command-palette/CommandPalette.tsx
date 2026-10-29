@@ -19,6 +19,10 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import {
+	cmdOpenCommandPalette,
+	cmdOpenCommandPaletteAlternate,
+} from "$/modules/keyboard/commands";
 import { useCommand } from "$/modules/keyboard/hooks";
 import { getAllCommands } from "$/modules/keyboard/registry";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
@@ -32,11 +36,7 @@ import {
 	normalizeKeyCode,
 } from "$/utils/keybindings";
 import styles from "./CommandPalette.module.css";
-import {
-	commandRunsInMode,
-	getPaletteCommands,
-	PALETTE_COMMAND_IDS,
-} from "./palette-commands";
+import { paletteListsCommand } from "./palette-commands";
 import { type RankableItem, rankPaletteItems } from "./ranking";
 import { runKeyboardCommand } from "./run-command";
 import {
@@ -92,10 +92,9 @@ const CommandPaletteDialog = () => {
 	const pendingRun = useRef<(() => void) | null>(null);
 	const listId = useId();
 
-	const paletteCommands = useMemo(() => getPaletteCommands(), []);
 	const toggle = useCallback(() => setOpen((value) => !value), [setOpen]);
-	useCommand(paletteCommands.open, toggle, [toggle]);
-	useCommand(paletteCommands.openAlternate, toggle, [toggle]);
+	useCommand(cmdOpenCommandPalette, toggle, [toggle]);
+	useCommand(cmdOpenCommandPaletteAlternate, toggle, [toggle]);
 
 	useEffect(() => {
 		if (!open) return;
@@ -115,11 +114,7 @@ const CommandPaletteDialog = () => {
 			}
 		};
 		const commandItems = getAllCommands()
-			.filter(
-				(command) =>
-					!PALETTE_COMMAND_IDS.has(command.id) &&
-					commandRunsInMode(command, toolMode),
-			)
+			.filter((command) => paletteListsCommand(command, toolMode))
 			.map(
 				(command): PaletteItem => ({
 					id: `command:${command.id}`,
@@ -177,10 +172,12 @@ const CommandPaletteDialog = () => {
 		const shortcut = eventShortcut(event);
 		// The search field swallows global shortcuts, so close on the palette's own here.
 		if (
-			[paletteCommands.open, paletteCommands.openAlternate].some((command) => {
-				const keys = store.get(command.atom);
-				return keys.length > 0 && getShortcutKey(keys) === shortcut;
-			})
+			[cmdOpenCommandPalette, cmdOpenCommandPaletteAlternate].some(
+				(command) => {
+					const keys = store.get(command.atom);
+					return keys.length > 0 && getShortcutKey(keys) === shortcut;
+				},
+			)
 		) {
 			event.preventDefault();
 			setOpen(false);

@@ -384,7 +384,8 @@
     "shortcut": "Zobrazenie – otvoriť paletu príkazov",
     "shortcutAlternate": "Zobrazenie – otvoriť paletu príkazov (alternatívna skratka)",
     "settingLabel": "Paleta príkazov",
-    "settingDesc": "Nájdite príkazy a stránky nastavení podľa názvu. Otvoríte ju skratkou {shortcut} alebo z ponuky Pomoc."
+    "settingDesc": "Nájdite príkazy a stránky nastavení podľa názvu. Otvoríte ju skratkou {shortcut} alebo z ponuky Pomoc.",
+    "settingDescUnbound": "Nájdite príkazy a stránky nastavení podľa názvu. Otvoríte ju z ponuky Pomoc."
   },
   "projectsDialog": {
     "title": "Projekty",

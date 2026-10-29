@@ -384,7 +384,8 @@
     "shortcut": "Vizualizare - Deschide paleta de comenzi",
     "shortcutAlternate": "Vizualizare - Deschide paleta de comenzi (scurtătură alternativă)",
     "settingLabel": "Paleta de comenzi",
-    "settingDesc": "Găsește comenzi și pagini de setări după nume. Deschide-o cu {shortcut} sau din meniul Ajutor."
+    "settingDesc": "Găsește comenzi și pagini de setări după nume. Deschide-o cu {shortcut} sau din meniul Ajutor.",
+    "settingDescUnbound": "Găsește comenzi și pagini de setări după nume. Deschide-o din meniul Ajutor."
   },
   "projectsDialog": {
     "title": "Proiecte",
