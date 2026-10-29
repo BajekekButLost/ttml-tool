@@ -3,6 +3,12 @@
     "changelogTitle": "Registro modifiche e aggiornamenti",
     "viewCommits": "Visualizza i commit su GitHub"
   },
+  "updatedToast": {
+    "message": "Aggiornato alla v{version}",
+    "seeChanges": "Scopri le novità",
+    "setting": "Mostra le novità dopo un aggiornamento",
+    "settingDesc": "Al primo avvio di una nuova versione, mostra un breve avviso con un link al registro modifiche."
+  },
   "app": {
     "error": {
       "title": "Ops, si è verificato un errore!",
@@ -286,6 +292,30 @@
       "noPreviousFound": "Nessuna sezione precedente corrispondente con tempi trovata.",
       "noMatchingLines": "Nessuna riga di questa sezione corrisponde a quella precedente, quindi non è stato copiato nulla.",
       "copyPrevious": "Copia tempi precedenti"
+    }
+  },
+  "logoColor": {
+    "title": "Colore del logo",
+    "description": "Scegli un colore per il logo nella barra del titolo e nella schermata di benvenuto della guida.",
+    "descriptionDesktop": "Scegli un colore per l'icona della finestra e della barra delle applicazioni e, su Windows, per i collegamenti sul desktop e nel menu Start.",
+    "colorLabel": "Colore",
+    "customLabel": "Colore personalizzato del logo",
+    "designNote": "Il logo appare solo con il design Spicy Lyrics attivo.",
+    "presets": {
+      "default": "Predefinito",
+      "defaultDesc": "Il colore proprio del design",
+      "lilac": "Lilla",
+      "lilacDesc": "Dal logo v3",
+      "purple": "Viola",
+      "purpleDesc": "Dal logo multicolore",
+      "red": "Rosso",
+      "redDesc": "Dal logo v0.9",
+      "gold": "Oro",
+      "green": "Verde",
+      "blue": "Blu",
+      "white": "Bianco",
+      "custom": "Personalizzato",
+      "customDesc": "Scegli qualsiasi colore"
     }
   },
   "common": {
@@ -971,7 +1001,9 @@
   "settingsDialog": {
     "search": "Cerca nelle impostazioni",
     "clearSearch": "Cancella ricerca",
-    "noSearchResults": "Nessuna categoria corrispondente",
+    "matchCount": "Impostazioni corrispondenti: {count}",
+    "noResults": "Nessuna impostazione corrisponde a \"{query}\"",
+    "noResultsDesc": "Prova un'altra parola o cancella la ricerca.",
     "title": "Impostazioni",
     "common": {
       "latencyTest": "Test di latenza audio/comandi"
@@ -1043,18 +1075,14 @@
     "tab": {
       "common": "Generale",
       "appearance": "Aspetto",
-      "audio": "Audio",
-      "keybindings": "Scorciatoie",
-      "spectrogram": "Spettrogramma",
+      "editing": "Modifica",
+      "syncing": "Sincronizzazione",
+      "preview": "Anteprima",
+      "audioSpectrogram": "Audio e spettrogramma",
+      "importFiles": "Importazione e file",
       "backup": "Backup",
-      "editor": "Editor e sincronizzazione",
-      "files": "File e archiviazione"
-    },
-    "page": {
-      "generalDesc": "Lingua, privacy e comportamento generale dell'app.",
-      "editorDesc": "Inserimento dei tempi, comportamento della sincronizzazione e indicatori visivi.",
-      "filesDesc": "Pulizia all'importazione, cronologia dei salvataggi automatici e backup portatili.",
-      "audioDesc": "Riproduzione, equalizzatore e visualizzazione dello spettrogramma."
+      "keybindings": "Scorciatoie",
+      "changelog": "Registro modifiche"
     }
   },
   "autoSegmentApplied": "Segmentazione automatica con {engine}",
@@ -1378,6 +1406,14 @@
     "legacyProjectName": "Istantanee precedenti",
     "untitledProjectName": "Progetto senza titolo"
   },
+  "didYouKnow": {
+    "title": "Lo sapevi?",
+    "repeatedSection": "Le righe ripetute possono riutilizzare una sincronizzazione precedente. Seleziona le righe precedenti, porta il cursore di riproduzione all'inizio della ripetizione e usa Duplica al cursore di riproduzione.",
+    "splitInTimeMode": "Puoi dividere una parola senza uscire dalla modalità Sincronizzazione: tieni premuto {modifier} e fai doppio clic sulla parola.",
+    "turnOff": "Non mostrare suggerimenti",
+    "setting": "Mostra suggerimenti",
+    "settingDesc": "Quando fai a mano qualcosa che ha un modo più rapido, mostra un breve suggerimento. Ogni suggerimento appare una sola volta."
+  },
   "time": {
     "daysAgo": "{count, plural, one {# giorno fa} many {# giorni fa} other {# giorni fa}}",
     "hoursAgo": "{count, plural, one {# ora fa} many {# ore fa} other {# ore fa}}",
@@ -1495,6 +1531,19 @@
     "description": "{type, select, word {Scegli una divisione suggerita per questa parola.} other {Scegli una divisione suggerita per questo verso.}}",
     "apply": "Applica suggerimento",
     "noSuggestions": "Nessun suggerimento di divisione automatica disponibile per questo contenuto."
+  },
+  "changelogScreen": {
+    "viewLabel": "Mostra",
+    "viewAll": "Tutto",
+    "viewHighlights": "Punti salienti",
+    "highlights": "Punti salienti",
+    "latest": "Ultima",
+    "sectionNew": "Novità",
+    "sectionChanged": "Modificato",
+    "sectionFixed": "Corretto",
+    "empty": "Nessuna versione da mostrare.",
+    "versions": "Versioni",
+    "earlier": "Precedenti"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

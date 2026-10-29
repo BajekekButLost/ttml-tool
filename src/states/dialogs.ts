@@ -42,7 +42,12 @@ export const confirmDialogAtom = atom<{
 });
 export const historyRestoreDialogAtom = atom(false);
 export const geniusSearchDialogAtom = atom(false);
-export const changelogDialogAtom = atom(false);
+/** Write `true` to open Preferences on the Changelog page. */
+export const changelogDialogAtom = atom(null, (_get, set, open: boolean) => {
+	if (!open) return;
+	set(settingsTabAtom, "changelog");
+	set(settingsDialogAtom, true);
+});
 export const fontSelectionDialogAtom = atom(false);
 export const projectsDialogAtom = atom(false);
 export const timeShiftPreviewOffsetAtom = atom(0);

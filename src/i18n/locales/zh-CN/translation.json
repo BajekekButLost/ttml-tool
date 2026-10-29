@@ -3,6 +3,12 @@
     "changelogTitle": "更新日志与更新",
     "viewCommits": "在 GitHub 上查看提交"
   },
+  "updatedToast": {
+    "message": "已更新到 v{version}",
+    "seeChanges": "查看更新内容",
+    "setting": "更新后显示更新内容",
+    "settingDesc": "新版本首次启动时，显示一条简短通知，并附带更新日志链接。"
+  },
   "app": {
     "error": {
       "title": "诶呀，出错了！",
@@ -286,6 +292,30 @@
       "noPreviousFound": "未找到已打轴且匹配的先前分段。",
       "noMatchingLines": "此段落中没有与之前段落匹配的行，因此未复制任何内容。",
       "copyPrevious": "复制上一段时间"
+    }
+  },
+  "logoColor": {
+    "title": "Logo 颜色",
+    "description": "为标题栏和引导欢迎页中的 Logo 选择颜色。",
+    "descriptionDesktop": "为应用的窗口和任务栏图标选择颜色，在 Windows 上还包括桌面和开始菜单快捷方式。",
+    "colorLabel": "颜色",
+    "customLabel": "自定义 Logo 颜色",
+    "designNote": "Logo 仅在启用 Spicy Lyrics 设计时显示。",
+    "presets": {
+      "default": "默认",
+      "defaultDesc": "设计自带的颜色",
+      "lilac": "淡紫",
+      "lilacDesc": "来自 v3 Logo",
+      "purple": "紫色",
+      "purpleDesc": "来自多色 Logo",
+      "red": "红色",
+      "redDesc": "来自 v0.9 Logo",
+      "gold": "金色",
+      "green": "绿色",
+      "blue": "蓝色",
+      "white": "白色",
+      "custom": "自定义",
+      "customDesc": "选择任意颜色"
     }
   },
   "common": {
@@ -971,7 +1001,9 @@
   "settingsDialog": {
     "search": "搜索设置",
     "clearSearch": "清除搜索",
-    "noSearchResults": "没有匹配的类别",
+    "matchCount": "匹配的设置：{count}",
+    "noResults": "没有与“{query}”匹配的设置",
+    "noResultsDesc": "换个词试试，或清除搜索。",
     "title": "偏好设置",
     "common": {
       "latencyTest": "音频/输入延迟测试"
@@ -1043,18 +1075,14 @@
     "tab": {
       "common": "通用",
       "appearance": "外观",
-      "audio": "音频",
-      "keybindings": "快捷键",
-      "spectrogram": "频谱图",
+      "editing": "编辑",
+      "syncing": "打轴",
+      "preview": "预览",
+      "audioSpectrogram": "音频与频谱图",
+      "importFiles": "导入与文件",
       "backup": "备份",
-      "editor": "编辑与打轴",
-      "files": "文件与存储"
-    },
-    "page": {
-      "generalDesc": "语言、隐私及应用全局行为。",
-      "editorDesc": "时间输入、打轴行为与视觉提示。",
-      "filesDesc": "导入清理、自动保存历史与可移植备份。",
-      "audioDesc": "播放、均衡器和频谱图显示。"
+      "keybindings": "快捷键",
+      "changelog": "更新日志"
     }
   },
   "autoSegmentApplied": "已使用 {engine} 自动分词",
@@ -1378,6 +1406,14 @@
     "legacyProjectName": "旧版快照",
     "untitledProjectName": "未命名项目"
   },
+  "didYouKnow": {
+    "title": "小提示",
+    "repeatedSection": "重复的歌词行可以沿用之前的时间轴。选中之前的歌词行，把播放指针移到重复开始的位置，然后使用“在播放指针处复制”。",
+    "splitInTimeMode": "无需离开打轴模式也能拆分单词：按住 {modifier} 并双击该单词。",
+    "turnOff": "不再显示提示",
+    "setting": "显示提示",
+    "settingDesc": "当你手动完成某件有更快捷方式的操作时，显示一条简短提示。每条提示只显示一次。"
+  },
   "time": {
     "daysAgo": "{count, plural, other {# 天前}}",
     "hoursAgo": "{count, plural, other {# 小时前}}",
@@ -1495,6 +1531,19 @@
     "description": "{type, select, word {为这个字选择建议的拆分方式。} other {为这一行选择建议的拆分方式。}}",
     "apply": "应用建议",
     "noSuggestions": "没有适用于此内容的自动拆分建议。"
+  },
+  "changelogScreen": {
+    "viewLabel": "显示",
+    "viewAll": "全部",
+    "viewHighlights": "亮点",
+    "highlights": "亮点",
+    "latest": "最新",
+    "sectionNew": "新增",
+    "sectionChanged": "变更",
+    "sectionFixed": "修复",
+    "empty": "没有可显示的版本。",
+    "versions": "版本",
+    "earlier": "更早"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

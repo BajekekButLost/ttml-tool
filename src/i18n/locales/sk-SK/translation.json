@@ -3,6 +3,12 @@
     "changelogTitle": "Zoznam zmien a aktualizácie",
     "viewCommits": "Zobraziť commity na GitHube"
   },
+  "updatedToast": {
+    "message": "Aktualizované na v{version}",
+    "seeChanges": "Čo sa zmenilo",
+    "setting": "Po aktualizácii ukázať, čo sa zmenilo",
+    "settingDesc": "Pri prvom spustení novej verzie zobrazí krátke upozornenie s odkazom na zoznam zmien."
+  },
   "app": {
     "error": {
       "title": "Ojoj, vyskytla sa chyba!",
@@ -286,6 +292,30 @@
       "noPreviousFound": "Nenašla sa skoršia zodpovedajúca sekcia s časovaním.",
       "noMatchingLines": "Žiadne riadky v tejto sekcii nezodpovedajú tej skoršej, nič sa neskopírovalo.",
       "copyPrevious": "Kopírovať predchádzajúce časovanie"
+    }
+  },
+  "logoColor": {
+    "title": "Farba loga",
+    "description": "Vyberte farbu loga v záhlaví okna a na úvodnej obrazovke sprievodcu.",
+    "descriptionDesktop": "Vyberte farbu ikony okna a panela úloh a vo Windows aj odkazov na pracovnej ploche a v ponuke Štart.",
+    "colorLabel": "Farba",
+    "customLabel": "Vlastná farba loga",
+    "designNote": "Logo sa zobrazuje len so zapnutým dizajnom Spicy Lyrics.",
+    "presets": {
+      "default": "Predvolená",
+      "defaultDesc": "Vlastná farba dizajnu",
+      "lilac": "Orgovánová",
+      "lilacDesc": "Z loga v3",
+      "purple": "Fialová",
+      "purpleDesc": "Z viacfarebného loga",
+      "red": "Červená",
+      "redDesc": "Z loga v0.9",
+      "gold": "Zlatá",
+      "green": "Zelená",
+      "blue": "Modrá",
+      "white": "Biela",
+      "custom": "Vlastná",
+      "customDesc": "Vyberte ľubovoľnú farbu"
     }
   },
   "common": {
@@ -971,7 +1001,9 @@
   "settingsDialog": {
     "search": "Hľadať v nastaveniach",
     "clearSearch": "Vymazať vyhľadávanie",
-    "noSearchResults": "Žiadne zodpovedajúce kategórie",
+    "matchCount": "Zodpovedajúce nastavenia: {count}",
+    "noResults": "Žiadne nastavenie nezodpovedá „{query}“",
+    "noResultsDesc": "Skúste iné slovo alebo vymažte vyhľadávanie.",
     "title": "Predvoľby",
     "common": {
       "latencyTest": "Test latencie zvuku/vstupu"
@@ -1043,18 +1075,14 @@
     "tab": {
       "common": "Všeobecné",
       "appearance": "Vzhľad",
-      "audio": "Zvuk",
-      "keybindings": "Klávesové skratky",
-      "spectrogram": "Spektrogram",
+      "editing": "Úpravy",
+      "syncing": "Synchronizácia",
+      "preview": "Náhľad",
+      "audioSpectrogram": "Zvuk a spektrogram",
+      "importFiles": "Import a súbory",
       "backup": "Zálohovanie",
-      "editor": "Editor a synchronizácia",
-      "files": "Súbory a úložisko"
-    },
-    "page": {
-      "generalDesc": "Jazyk, súkromie a správanie celej aplikácie.",
-      "editorDesc": "Zadávanie časov, správanie synchronizácie a vizuálne podnety.",
-      "filesDesc": "Čistenie pri importe, história automatického ukladania a prenosné zálohy.",
-      "audioDesc": "Prehrávanie, ekvalizér a zobrazenie spektrogramu."
+      "keybindings": "Klávesové skratky",
+      "changelog": "Zoznam zmien"
     }
   },
   "autoSegmentApplied": "Automaticky rozdelené pomocou {engine}",
@@ -1378,6 +1406,14 @@
     "legacyProjectName": "Staršie snímky",
     "untitledProjectName": "Projekt bez názvu"
   },
+  "didYouKnow": {
+    "title": "Vedeli ste?",
+    "repeatedSection": "Opakované riadky môžu prevziať skoršie časovanie. Vyberte skoršie riadky, umiestnite pozíciu prehrávania na začiatok opakovania a použite Duplikovať na pozíciu prehrávania.",
+    "splitInTimeMode": "Slovo môžete rozdeliť bez opustenia režimu Časovanie: podržte {modifier} a dvakrát naň kliknite.",
+    "turnOff": "Nezobrazovať tipy",
+    "setting": "Zobrazovať tipy",
+    "settingDesc": "Keď niečo urobíte ručne a existuje rýchlejší spôsob, zobrazí sa krátky tip. Každý tip sa zobrazí iba raz."
+  },
   "time": {
     "daysAgo": "{count, plural, one {Pred # dňom} few {Pred # dňami} many {Pred # dňa} other {Pred # dňami}}",
     "hoursAgo": "{count, plural, one {Pred # hodinou} few {Pred # hodinami} many {Pred # hodiny} other {Pred # hodinami}}",
@@ -1495,6 +1531,19 @@
     "description": "{type, select, word {Vyberte navrhované rozdelenie pre toto slovo.} other {Vyberte navrhované rozdelenie pre tento riadok.}}",
     "apply": "Použiť návrh",
     "noSuggestions": "Pre tento obsah nie sú k dispozícii žiadne automatické návrhy na rozdelenie."
+  },
+  "changelogScreen": {
+    "viewLabel": "Zobraziť",
+    "viewAll": "Všetko",
+    "viewHighlights": "Hlavné novinky",
+    "highlights": "Hlavné novinky",
+    "latest": "Najnovšie",
+    "sectionNew": "Nové",
+    "sectionChanged": "Zmenené",
+    "sectionFixed": "Opravené",
+    "empty": "Žiadne vydania na zobrazenie.",
+    "versions": "Verzie",
+    "earlier": "Staršie"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

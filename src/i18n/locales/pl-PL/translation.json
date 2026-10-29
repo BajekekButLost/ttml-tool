@@ -3,6 +3,12 @@
     "changelogTitle": "Lista zmian i aktualizacje",
     "viewCommits": "Zobacz commity na GitHubie"
   },
+  "updatedToast": {
+    "message": "Zaktualizowano do v{version}",
+    "seeChanges": "Zobacz zmiany",
+    "setting": "Pokazuj zmiany po aktualizacji",
+    "settingDesc": "Przy pierwszym uruchomieniu nowej wersji pokazuje krótkie powiadomienie z linkiem do listy zmian."
+  },
   "app": {
     "error": {
       "title": "Ups, wystąpił błąd!",
@@ -286,6 +292,30 @@
       "noPreviousFound": "Nie znaleziono wcześniejszej pasującej sekcji z synchronizacją.",
       "noMatchingLines": "Żaden wiersz w tej sekcji nie pasuje do wcześniejszej, więc nic nie skopiowano.",
       "copyPrevious": "Kopiuj poprzednie czasy"
+    }
+  },
+  "logoColor": {
+    "title": "Kolor logo",
+    "description": "Wybierz kolor logo na pasku tytułu i na ekranie powitalnym przewodnika.",
+    "descriptionDesktop": "Wybierz kolor ikony okna i paska zadań, a w systemie Windows także skrótów na pulpicie i w menu Start.",
+    "colorLabel": "Kolor",
+    "customLabel": "Własny kolor logo",
+    "designNote": "Logo jest widoczne tylko przy włączonym wyglądzie Spicy Lyrics.",
+    "presets": {
+      "default": "Domyślny",
+      "defaultDesc": "Własny kolor wyglądu",
+      "lilac": "Liliowy",
+      "lilacDesc": "Z logo v3",
+      "purple": "Fioletowy",
+      "purpleDesc": "Z wielokolorowego logo",
+      "red": "Czerwony",
+      "redDesc": "Z logo v0.9",
+      "gold": "Złoty",
+      "green": "Zielony",
+      "blue": "Niebieski",
+      "white": "Biały",
+      "custom": "Własny",
+      "customDesc": "Wybierz dowolny kolor"
     }
   },
   "common": {
@@ -971,7 +1001,9 @@
   "settingsDialog": {
     "search": "Szukaj w ustawieniach",
     "clearSearch": "Wyczyść wyszukiwanie",
-    "noSearchResults": "Brak pasujących kategorii",
+    "matchCount": "Pasujące ustawienia: {count}",
+    "noResults": "Żadne ustawienie nie pasuje do „{query}”",
+    "noResultsDesc": "Spróbuj innego słowa lub wyczyść wyszukiwanie.",
     "title": "Preferencje",
     "common": {
       "latencyTest": "Test opóźnienia audio/wejścia"
@@ -1043,18 +1075,14 @@
     "tab": {
       "common": "Ogólne",
       "appearance": "Wygląd",
-      "audio": "Dźwięk",
-      "keybindings": "Skróty klawiszowe",
-      "spectrogram": "Spektrogram",
+      "editing": "Edycja",
+      "syncing": "Synchronizacja",
+      "preview": "Podgląd",
+      "audioSpectrogram": "Dźwięk i spektrogram",
+      "importFiles": "Import i pliki",
       "backup": "Kopia zapasowa",
-      "editor": "Edytor i synchronizacja",
-      "files": "Pliki i przechowywanie"
-    },
-    "page": {
-      "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
-      "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
-      "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
-      "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."
+      "keybindings": "Skróty klawiszowe",
+      "changelog": "Lista zmian"
     }
   },
   "autoSegmentApplied": "Automatycznie podzielono za pomocą {engine}",
@@ -1378,6 +1406,14 @@
     "legacyProjectName": "Starsze migawki",
     "untitledProjectName": "Projekt bez tytułu"
   },
+  "didYouKnow": {
+    "title": "Czy wiesz, że...?",
+    "repeatedSection": "Powtarzające się wiersze mogą użyć wcześniejszej synchronizacji. Zaznacz wcześniejsze wiersze, ustaw pozycję odtwarzania na początku powtórzenia i użyj Duplikuj na pozycji odtwarzania.",
+    "splitInTimeMode": "Możesz podzielić słowo bez wychodzenia z trybu Synchronizacja: przytrzymaj {modifier} i kliknij je dwukrotnie.",
+    "turnOff": "Nie pokazuj wskazówek",
+    "setting": "Pokazuj wskazówki",
+    "settingDesc": "Gdy robisz coś ręcznie, a istnieje szybszy sposób, pokazuje krótką wskazówkę. Każda wskazówka pojawia się tylko raz."
+  },
   "time": {
     "daysAgo": "{count, plural, one {# dzień temu} few {# dni temu} many {# dni temu} other {# dnia temu}}",
     "hoursAgo": "{count, plural, one {# godzinę temu} few {# godziny temu} many {# godzin temu} other {# godziny temu}}",
@@ -1495,6 +1531,19 @@
     "description": "{type, select, word {Wybierz sugerowany podział dla tego słowa.} other {Wybierz sugerowany podział dla tego wersu.}}",
     "apply": "Zastosuj sugestię",
     "noSuggestions": "Dla tej treści nie są dostępne żadne automatyczne sugestie podziału."
+  },
+  "changelogScreen": {
+    "viewLabel": "Pokaż",
+    "viewAll": "Wszystko",
+    "viewHighlights": "Najważniejsze",
+    "highlights": "Najważniejsze",
+    "latest": "Najnowsze",
+    "sectionNew": "Nowości",
+    "sectionChanged": "Zmiany",
+    "sectionFixed": "Poprawki",
+    "empty": "Brak wydań do pokazania.",
+    "versions": "Wersje",
+    "earlier": "Wcześniejsze"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

@@ -3,6 +3,12 @@
     "changelogTitle": "Değişiklik günlüğü ve güncellemeler",
     "viewCommits": "GitHub'daki commit'leri görüntüle"
   },
+  "updatedToast": {
+    "message": "v{version} sürümüne güncellendi",
+    "seeChanges": "Neler değişti",
+    "setting": "Güncellemeden sonra neyin değiştiğini göster",
+    "settingDesc": "Uygulama yeni bir sürümde ilk kez açıldığında, değişiklik günlüğüne bağlantı içeren kısa bir bildirim gösterir."
+  },
   "app": {
     "error": {
       "title": "Hay aksi, bir hata oluştu!",
@@ -286,6 +292,30 @@
       "noPreviousFound": "Zamanlaması olan önceki bir eşleşen bölüm bulunamadı.",
       "noMatchingLines": "Bu bölümdeki hiçbir satır öncekiyle eşleşmiyor, bu yüzden hiçbir şey kopyalanmadı.",
       "copyPrevious": "Önceki zamanlamayı kopyala"
+    }
+  },
+  "logoColor": {
+    "title": "Logo rengi",
+    "description": "Başlık çubuğundaki ve rehberin karşılama ekranındaki logo için bir renk seçin.",
+    "descriptionDesktop": "Uygulamanın pencere ve görev çubuğu simgesi, Windows'ta ise masaüstü ve Başlat menüsü kısayolları için bir renk seçin.",
+    "colorLabel": "Renk",
+    "customLabel": "Özel logo rengi",
+    "designNote": "Logo yalnızca Spicy Lyrics tasarımı açıkken görünür.",
+    "presets": {
+      "default": "Varsayılan",
+      "defaultDesc": "Tasarımın kendi rengi",
+      "lilac": "Leylak",
+      "lilacDesc": "v3 logosundan",
+      "purple": "Mor",
+      "purpleDesc": "Çok renkli logodan",
+      "red": "Kırmızı",
+      "redDesc": "v0.9 logosundan",
+      "gold": "Altın",
+      "green": "Yeşil",
+      "blue": "Mavi",
+      "white": "Beyaz",
+      "custom": "Özel",
+      "customDesc": "İstediğiniz rengi seçin"
     }
   },
   "common": {
@@ -971,7 +1001,9 @@
   "settingsDialog": {
     "search": "Ayarlarda ara",
     "clearSearch": "Aramayı temizle",
-    "noSearchResults": "Eşleşen kategori yok",
+    "matchCount": "Eşleşen ayarlar: {count}",
+    "noResults": "\"{query}\" ile eşleşen ayar yok",
+    "noResultsDesc": "Başka bir kelime deneyin veya aramayı temizleyin.",
     "title": "Tercihler",
     "common": {
       "latencyTest": "Ses/giriş gecikme testi"
@@ -1043,18 +1075,14 @@
     "tab": {
       "common": "Genel",
       "appearance": "Görünüm",
-      "audio": "Ses",
-      "keybindings": "Kısayollar",
-      "spectrogram": "Spektrogram",
+      "editing": "Düzenleme",
+      "syncing": "Senkronizasyon",
+      "preview": "Önizleme",
+      "audioSpectrogram": "Ses ve spektrogram",
+      "importFiles": "İçe aktarma ve dosyalar",
       "backup": "Yedekleme",
-      "editor": "Düzenleyici ve senkronizasyon",
-      "files": "Dosyalar ve depolama"
-    },
-    "page": {
-      "generalDesc": "Dil, gizlilik ve uygulama genelindeki davranış.",
-      "editorDesc": "Zamanlama girişi, senkronizasyon davranışı ve görsel ipuçları.",
-      "filesDesc": "İçe aktarma temizliği, otomatik kayıt geçmişi ve taşınabilir yedekler.",
-      "audioDesc": "Oynatma, ekolayzer ve spektrogram görünümü."
+      "keybindings": "Kısayollar",
+      "changelog": "Değişiklik günlüğü"
     }
   },
   "autoSegmentApplied": "{engine} ile otomatik bölündü",
@@ -1378,6 +1406,14 @@
     "legacyProjectName": "Eski anlık görüntüler",
     "untitledProjectName": "Adsız proje"
   },
+  "didYouKnow": {
+    "title": "Biliyor muydunuz?",
+    "repeatedSection": "Tekrarlanan satırlar önceki zamanlamayı yeniden kullanabilir. Önceki satırları seçin, oynatma konumunu tekrarın başladığı yere getirin ve Oynatma konumunda çoğalt seçeneğini kullanın.",
+    "splitInTimeMode": "Zamanla modundan çıkmadan bir kelimeyi bölebilirsiniz: {modifier} tuşunu basılı tutup kelimeye çift tıklayın.",
+    "turnOff": "İpuçlarını gösterme",
+    "setting": "İpuçlarını göster",
+    "settingDesc": "Daha hızlı bir yolu olan bir işi elle yaptığınızda kısa bir ipucu gösterir. Her ipucu yalnızca bir kez gösterilir."
+  },
   "time": {
     "daysAgo": "{count, plural, one {# gün önce} other {# gün önce}}",
     "hoursAgo": "{count, plural, one {# saat önce} other {# saat önce}}",
@@ -1495,6 +1531,19 @@
     "description": "{type, select, word {Bu kelime için önerilen bir bölme seçin.} other {Bu satır için önerilen bir bölme seçin.}}",
     "apply": "Öneriyi uygula",
     "noSuggestions": "Bu içerik için otomatik bölme önerisi yok."
+  },
+  "changelogScreen": {
+    "viewLabel": "Göster",
+    "viewAll": "Tümü",
+    "viewHighlights": "Öne çıkanlar",
+    "highlights": "Öne çıkanlar",
+    "latest": "En yeni",
+    "sectionNew": "Yeni",
+    "sectionChanged": "Değişti",
+    "sectionFixed": "Düzeltildi",
+    "empty": "Gösterilecek sürüm yok.",
+    "versions": "Sürümler",
+    "earlier": "Daha eski"
   },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",

@@ -39,6 +39,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
 import { Bounce, cssTransition, ToastContainer, toast } from "react-toastify";
 import semverGt from "semver/functions/gt";
+import { DidYouKnowHints } from "$/modules/did-you-know/DidYouKnowHints";
 import { backgroundGradients } from "$/modules/settings/states/gradients";
 import {
 	accentColorAtom,
@@ -102,6 +103,7 @@ import AudioControls from "./modules/audio/components/index.tsx";
 import { useAudioFeedback } from "./modules/audio/hooks/useAudioFeedback.ts";
 import { DiscordPresence } from "./modules/discord-presence/DiscordPresence";
 import { MigrationNotice } from "./modules/domain-migration/MigrationNotice";
+import { LogoColorStyle } from "./modules/logo-color/LogoColorStyle";
 import { SyncKeyBinding } from "./modules/lyric-editor/components/sync-keybinding.tsx";
 import { UrbanDictionaryKeybinding } from "./modules/lyric-editor/components/urban-dictionary-keybinding.tsx";
 import { BeginnerGuide } from "./modules/onboarding/BeginnerGuide";
@@ -119,6 +121,7 @@ import {
 	customBackgroundOpacityAtom,
 } from "./modules/settings/modals/customBackground";
 import { showTouchSyncPanelAtom } from "./modules/settings/states/sync.ts";
+import { UpdatedToast } from "./modules/updated-toast/UpdatedToast";
 import { settingsDialogAtom, settingsTabAtom } from "./states/dialogs.ts";
 import {
 	isDarkThemeAtom,
@@ -650,6 +653,7 @@ function App() {
 			<MigrationNotice />
 			<DiscordPresence />
 			<BeginnerGuide />
+			<DidYouKnowHints />
 			<AudioMetadataPrefill />
 			{customStyleString ? <style>{customStyleString}</style> : null}
 			<ErrorBoundary
@@ -699,6 +703,7 @@ function App() {
 					{toolMode === ToolMode.Sync && <SyncKeyBinding />}
 					<UrbanDictionaryKeybinding />
 					<DarkThemeDetector />
+					<LogoColorStyle />
 					<Flex direction="column" height="100vh">
 						{appLayoutOrder.map((id) => {
 							if (id === "titlebar") return <TitleBar key="titlebar" />;
@@ -810,6 +815,7 @@ function App() {
 						theme={effectiveTheme}
 						transition={spicyLyricsDesign ? spicyLyricsToastTransition : Bounce}
 					/>
+					<UpdatedToast />
 				</div>
 			</ErrorBoundary>
 		</Theme>

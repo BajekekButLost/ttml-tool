@@ -424,6 +424,8 @@ export interface AppearancePresetSettings {
 	legacyDarkTheme: boolean;
 	legacySpaceLabels: boolean;
 	spicyLyricsDesign: boolean;
+	logoColorPreset: string;
+	logoColorCustom: string;
 }
 
 export interface AppearancePreset {
@@ -448,3 +450,11 @@ export const geniusHeaderDetectionDialogShownAtom = atomWithStorage<boolean>(
 );
 
 export const geniusHeaderDetectionDialogOpenAtom = atom(false);
+
+/** Show "Updated to vX.Y.Z" the first time the app starts on a new version. */
+export const showUpdatedToastAtom = atomWithStorage(
+	"showUpdatedToast",
+	true,
+	undefined,
+	{ getOnInit: true },
+);

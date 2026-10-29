@@ -1,3 +1,5 @@
+mod app_icon;
+
 use std::fs;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::{Arc, Mutex};
@@ -602,6 +604,7 @@ pub fn run() {
             open_linked_projects_folder,
             open_linked_project_dir,
             allow_dropped_file,
+            app_icon::apply_app_icon,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
