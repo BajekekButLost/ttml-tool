@@ -1,7 +1,7 @@
 import { Button, Dialog, Flex, Select, Text } from "@radix-ui/themes";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen.ts";
 import {
@@ -24,17 +24,22 @@ export const AutoSegmentDialog = () => {
 	const setSplitEnglish = useSetAtom(segmentationSplitEnglishAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const lyrics = useLyricLinesWhileOpen(open);
-	const { config, isLoading } = useSegmentationConfig();
 	const [selectedEngine, setSelectedEngine] =
 		useState<SegmentationEngineId>(savedEngine);
+	const { config, isReady, error } = useSegmentationConfig(
+		selectedEngine,
+		selectedEngine !== "none",
+	);
 	const suggestedEngine = useMemo(
 		() => detectSyllabificationEngine(lyrics.lyricLines),
 		[lyrics.lyricLines],
 	);
+	const wasOpen = useRef(false);
 
 	useEffect(() => {
-		if (open) setSelectedEngine(suggestedEngine ?? savedEngine);
-	}, [open, savedEngine, suggestedEngine]);
+		if (open && !wasOpen.current) setSelectedEngine(savedEngine);
+		wasOpen.current = open;
+	}, [open, savedEngine]);
 
 	const engine = useMemo(
 		() =>
@@ -44,14 +49,11 @@ export const AutoSegmentDialog = () => {
 	);
 
 	const apply = () => {
+		if (!isReady) return;
 		setEngine(selectedEngine);
 		setSplitEnglish(selectedEngine !== "none");
 		editLyricLines((draft) => {
-			draft.lyricLines = segmentLyricLines(draft.lyricLines, {
-				...config,
-				engine: selectedEngine,
-				splitEnglish: selectedEngine !== "none",
-			});
+			draft.lyricLines = segmentLyricLines(draft.lyricLines, config);
 		});
 		setOpen(false);
 	};
@@ -68,6 +70,9 @@ export const AutoSegmentDialog = () => {
 						"Choose a syllabification engine for all lyric lines.",
 					)}
 				</Dialog.Description>
+				<Text as="p" size="2" color="gray" mt="2">
+					{t("syllableSplitting.suggestions")}
+				</Text>
 				<Flex direction="column" gap="3" mt="4">
 					<Select.Root
 						value={selectedEngine}
@@ -87,6 +92,14 @@ export const AutoSegmentDialog = () => {
 					<Text size="2" color="gray">
 						{engine.description}
 					</Text>
+					{error && (
+						<Text role="alert" color="red">
+							{t(
+								"syllableSplitting.engineError",
+								"The selected splitting engine could not load. Choose another engine or reopen this dialog to retry.",
+							)}
+						</Text>
+					)}
 					{suggestedEngine && (
 						<Text size="2" color="gray">
 							{t("autoSegmentDialog.suggested", "Suggested from lyrics:")}{" "}
@@ -103,7 +116,7 @@ export const AutoSegmentDialog = () => {
 							{t("common.cancel", "Cancel")}
 						</Button>
 					</Dialog.Close>
-					<Button onClick={apply} disabled={isLoading}>
+					<Button onClick={apply} disabled={!isReady}>
 						{t("autoSegmentDialog.applyAll", "Apply to all lines")}
 					</Button>
 				</Flex>

@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Mesin pemisah yang dipilih gagal dimuat. Pilih mesin lain lalu coba lagi.",
+    "suggestions": "Pemisahan adalah saran berdasarkan teks. Mesin pemenggalan menyarankan posisi pergantian baris dan dapat melewatkan suku kata. Periksa setiap bagian sesuai nyanyiannya.",
+    "timing": "Pemisahan membuat waktu sementara berbobot jumlah karakter. Periksa waktu dan romanisasi sebelum ekspor.",
+    "boundary": "Pisahkan antara {left} dan {right}",
+    "rememberHint": "Simpan koreksi ini untuk mesin saat ini di perangkat ini. Membatalkan suntingan lirik tetap menyimpan aturan.",
+    "rulesHint": "Aturan mencocokkan kata utuh tanpa membedakan huruf besar. Daftar abaikan didahulukan, lalu aturan khusus dan aturan tersimpan. Tidak ada menonaktifkan pemisahan. Suku kata yang ada dipertahankan; gabungkan sebelum memisahkan ulang.",
+    "review": "Beberapa saran ditolak atau waktunya perlu diperiksa ({count}). Teks sumber dipertahankan. Periksa aturan tersimpan dan kata terkait.",
+    "adjacent": "Pilih bagian yang bersebelahan untuk menggabungkan tanpa mengubah urutan lirik."
+  },
   "changeNotes": {
     "changelogTitle": "Log perubahan & pembaruan",
     "viewCommits": "Lihat commit di GitHub"

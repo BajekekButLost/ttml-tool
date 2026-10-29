@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Motorul de despărțire selectat nu a putut fi încărcat. Alege altul și încearcă din nou.",
+    "suggestions": "Despărțirile sunt sugestii bazate pe text. Motoarele de silabisire tipografică propun sfârșituri de rând și pot omite silabe. Verifică fiecare caz după interpretarea cântată.",
+    "timing": "Despărțirea creează timpi provizorii ponderați după numărul de caractere. Verifică timpii și romanizarea înainte de export.",
+    "boundary": "Desparte între {left} și {right}",
+    "rememberHint": "Memorează corecția pentru motorul actual pe acest dispozitiv. Anularea editării păstrează regula salvată.",
+    "rulesHint": "Regulile se aplică unor cuvinte întregi indiferent de majuscule. Au prioritate excluderile, apoi regulile personalizate și învățate. Niciunul dezactivează despărțirea. Silabele existente sunt păstrate; combină-le înainte de o nouă despărțire.",
+    "review": "Unele sugestii au fost respinse sau necesită verificarea timpilor ({count}). Textul sursă a fost păstrat. Verifică regulile salvate și cuvintele afectate.",
+    "adjacent": "Selectează părți alăturate pentru a le combina fără a schimba ordinea versurilor."
+  },
   "changeNotes": {
     "changelogTitle": "Jurnal de modificări și actualizări",
     "viewCommits": "Vezi commit-urile pe GitHub"

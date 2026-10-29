@@ -18,10 +18,7 @@ import {
 	type ExportTranslation,
 	saveTTML,
 } from "$/modules/project/ttml-save";
-import {
-	segmentationEngineAtom,
-	segmentationSplitEnglishAtom,
-} from "$/modules/segmentation/states";
+import { segmentationEngineAtom } from "$/modules/segmentation/states";
 import { matchesSavedSyllabificationEngine } from "$/modules/segmentation/utils/detect-syllabification-engine";
 import { segmentLyricLines } from "$/modules/segmentation/utils/segmentation";
 import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabification-engines";
@@ -91,14 +88,14 @@ export const useTopMenuActions = () => {
 	);
 	const setAutoSegmentDialog = useSetAtom(autoSegmentDialogAtom);
 	const savedSegmentationEngine = useAtomValue(segmentationEngineAtom);
-	const setSplitEnglish = useSetAtom(segmentationSplitEnglishAtom);
 	const setLearnedSplitsDialog = useSetAtom(learnedSplitsDialogAtom);
 	const setTimeShiftDialog = useSetAtom(timeShiftDialogAtom);
 	const setTimeStretchDialog = useSetAtom(timeStretchDialogAtom);
 	const setTTMLChecklistDialog = useSetAtom(ttmlChecklistDialogAtom);
 	const { openFile } = useFileOpener();
 	const setProjectId = useSetAtom(projectIdAtom);
-	const { config: segmentationConfig } = useSegmentationConfig();
+	const { config: segmentationConfig, isReady: segmentationReady } =
+		useSegmentationConfig();
 	const newFileKey = useAtomValue(keyNewFileAtom);
 	const openFileKey = useAtomValue(keyOpenFileAtom);
 	const saveFileKey = useAtomValue(keySaveFileAtom);
@@ -321,6 +318,10 @@ export const useTopMenuActions = () => {
 	}, [setAutoSegmentDialog]);
 
 	const onQuickAutoSegment = useCallback(() => {
+		if (!segmentationReady) {
+			setAutoSegmentDialog(true);
+			return;
+		}
 		if (
 			!matchesSavedSyllabificationEngine(
 				store.get(lyricLinesAtom).lyricLines,
@@ -331,13 +332,11 @@ export const useTopMenuActions = () => {
 			return;
 		}
 
-		setSplitEnglish(savedSegmentationEngine !== "none");
 		editLyricLines((draft) => {
-			draft.lyricLines = segmentLyricLines(draft.lyricLines, {
-				...segmentationConfig,
-				engine: savedSegmentationEngine,
-				splitEnglish: savedSegmentationEngine !== "none",
-			});
+			draft.lyricLines = segmentLyricLines(
+				draft.lyricLines,
+				segmentationConfig,
+			);
 		});
 		toast.success(
 			t("autoSegmentApplied", {
@@ -354,7 +353,7 @@ export const useTopMenuActions = () => {
 		store,
 		segmentationConfig,
 		setAutoSegmentDialog,
-		setSplitEnglish,
+		segmentationReady,
 		t,
 	]);
 

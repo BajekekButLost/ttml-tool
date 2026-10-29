@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Impossibile caricare il motore di divisione selezionato. Scegline un altro e riprova.",
+    "suggestions": "Le divisioni sono suggerimenti basati sul testo. I motori di sillabazione tipografica propongono interruzioni di riga e possono omettere sillabe. Controlla ogni caso in base all'esecuzione cantata.",
+    "timing": "La divisione crea tempi provvisori ponderati per numero di caratteri. Controlla tempi e romanizzazione prima dell'esportazione.",
+    "boundary": "Dividi tra {left} e {right}",
+    "rememberHint": "Ricorda questa correzione per il motore attuale su questo dispositivo. Annullare la modifica conserva la regola salvata.",
+    "rulesHint": "Le regole corrispondono a parole intere senza distinzione tra maiuscole e minuscole. Hanno precedenza le esclusioni, poi le regole personalizzate e apprese. Nessuno disattiva la divisione. Le sillabe esistenti vengono conservate; combinale prima di dividerle di nuovo.",
+    "review": "Alcuni suggerimenti sono stati rifiutati o richiedono un controllo dei tempi ({count}). Il testo originale è stato conservato. Controlla le regole salvate e le parole interessate.",
+    "adjacent": "Seleziona parti adiacenti per combinarle senza cambiare l'ordine del testo."
+  },
   "changeNotes": {
     "changelogTitle": "Registro modifiche e aggiornamenti",
     "viewCommits": "Visualizza i commit su GitHub"

@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Não foi possível carregar o mecanismo de divisão selecionado. Escolha outro e tente novamente.",
+    "suggestions": "As divisões são sugestões baseadas no texto. Mecanismos de hifenização sugerem quebras de linha e podem omitir sílabas. Confira cada ocorrência conforme a interpretação cantada.",
+    "timing": "A divisão cria tempos provisórios ponderados pelo número de caracteres. Revise os tempos e a romanização antes de exportar.",
+    "boundary": "Dividir entre {left} e {right}",
+    "rememberHint": "Lembrar esta correção para o mecanismo atual neste dispositivo. Desfazer a edição mantém a regra salva.",
+    "rulesHint": "As regras correspondem a palavras inteiras sem diferenciar maiúsculas. A lista de ignorados tem prioridade, seguida das regras personalizadas e aprendidas. Nenhum desativa a divisão. Sílabas existentes são preservadas; combine-as antes de dividir novamente.",
+    "review": "Algumas sugestões foram rejeitadas ou precisam de revisão dos tempos ({count}). O texto original foi preservado. Confira as regras salvas e as palavras afetadas.",
+    "adjacent": "Selecione partes adjacentes para combiná-las sem mudar a ordem da letra."
+  },
   "changeNotes": {
     "changelogTitle": "Registro de alterações e atualizações",
     "viewCommits": "Ver commits no GitHub"

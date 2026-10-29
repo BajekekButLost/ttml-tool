@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "No se pudo cargar el motor de división seleccionado. Elige otro e inténtalo de nuevo.",
+    "suggestions": "Las divisiones son sugerencias basadas en texto. Los motores de separación tipográfica proponen saltos de línea y pueden omitir sílabas. Revisa cada caso según la interpretación cantada.",
+    "timing": "La división crea tiempos provisionales según el número de caracteres. Revisa los tiempos y la romanización antes de exportar.",
+    "boundary": "Dividir entre {left} y {right}",
+    "rememberHint": "Recordar esta corrección para el motor actual en este dispositivo. Deshacer la edición conserva la regla guardada.",
+    "rulesHint": "Las reglas coinciden con palabras completas sin distinguir mayúsculas. Tienen prioridad las exclusiones, luego las reglas personalizadas y las aprendidas. Ninguno desactiva la división. Se conservan las sílabas existentes; combínalas antes de volver a dividir.",
+    "review": "Algunas sugerencias se rechazaron o necesitan revisar los tiempos ({count}). Se conservó el texto original. Revisa las reglas guardadas y las palabras afectadas.",
+    "adjacent": "Selecciona partes adyacentes para combinarlas sin cambiar el orden de la letra."
+  },
   "changeNotes": {
     "changelogTitle": "Registro de cambios y actualizaciones",
     "viewCommits": "Ver commits en GitHub"

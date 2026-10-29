@@ -85,7 +85,7 @@ export const LearnedSplitsDialog = memo(() => {
 				</Dialog.Title>
 				<Text size="2" color="gray">
 					{t(
-						"advancedSegmentDialog.learned.description",
+						"syllableSplitting.rememberHint",
 						"These rules match any casing and ignore surrounding punctuation.",
 					)}
 				</Text>

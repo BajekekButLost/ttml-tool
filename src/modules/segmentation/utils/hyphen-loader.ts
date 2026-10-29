@@ -26,6 +26,7 @@ export const SUPPORTED_LANGUAGES = [
  * @description 分词函数的缓存
  */
 const hyphenatorCache: Record<string, HyphenatorFunc> = {};
+const pendingHyphenators = new Map<string, Promise<HyphenatorFunc | null>>();
 
 /**
  * @description 加载指定语言的分词函数
@@ -35,9 +36,7 @@ const hyphenatorCache: Record<string, HyphenatorFunc> = {};
  * - 成功时兑现为该语言的分词函数
  * - 失败或语言不支持时兑现为 null
  */
-export async function loadHyphenator(
-	lang: string,
-): Promise<HyphenatorFunc | null> {
+async function importHyphenator(lang: string): Promise<HyphenatorFunc | null> {
 	if (hyphenatorCache[lang]) {
 		return hyphenatorCache[lang];
 	}
@@ -86,4 +85,15 @@ export async function loadHyphenator(
 		console.error(`为 ${lang} 加载分词引擎失败:`, error);
 		return null;
 	}
+}
+
+export function loadHyphenator(lang: string): Promise<HyphenatorFunc | null> {
+	if (hyphenatorCache[lang]) return Promise.resolve(hyphenatorCache[lang]);
+	const pending = pendingHyphenators.get(lang);
+	if (pending) return pending;
+	const request = importHyphenator(lang).finally(() =>
+		pendingHyphenators.delete(lang),
+	);
+	pendingHyphenators.set(lang, request);
+	return request;
 }

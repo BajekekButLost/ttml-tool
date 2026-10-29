@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Vybraný nástroj dělení se nepodařilo načíst. Vyberte jiný a zkuste to znovu.",
+    "suggestions": "Dělení jsou návrhy podle textu. Nástroje dělení slov navrhují zalomení řádků a mohou vynechat slabiky. Každý výskyt ověřte podle zpěvu.",
+    "timing": "Dělení vytváří návrh časování podle počtu znaků. Před exportem zkontrolujte časování a přepis.",
+    "boundary": "Rozdělit mezi {left} a {right}",
+    "rememberHint": "Uložit opravu pro aktuální nástroj na tomto zařízení. Vrácení úpravy textu uložené pravidlo zachová.",
+    "rulesHint": "Pravidla odpovídají celým slovům bez ohledu na velikost písmen. Přednost mají ignorovaná slova, pak vlastní a naučená pravidla. Žádné vypne dělení. Existující slabiky se zachovají; před novým dělením je spojte.",
+    "review": "Některé návrhy byly odmítnuty nebo vyžadují kontrolu časování ({count}). Zdrojový text byl zachován. Zkontrolujte uložená pravidla a příslušná slova.",
+    "adjacent": "Vyberte sousední části, aby spojení nezměnilo pořadí textu."
+  },
   "changeNotes": {
     "changelogTitle": "Seznam změn a aktualizace",
     "viewCommits": "Zobrazit commity na GitHubu"

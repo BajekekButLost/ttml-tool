@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "The selected splitting engine could not load. Choose another engine and try again.",
+    "suggestions": "Splits are text-based suggestions. Hyphenation engines suggest line-break positions and may miss syllables. Review each occurrence for the sung performance.",
+    "timing": "Splitting creates draft timings weighted by character count. Review timing and romanization before export.",
+    "boundary": "Split between {left} and {right}",
+    "rememberHint": "Remember this correction for the current engine on this device. Undoing the lyric edit keeps the saved rule.",
+    "rulesHint": "Rules match whole words in any casing. Ignore entries take priority, then custom rules, then learned rules. None disables splitting. Existing syllables are preserved; combine them before requesting a new split.",
+    "review": "Some suggestions were rejected or need timing review ({count}). Source text was preserved. Check saved rules and the affected words.",
+    "adjacent": "Select adjacent capsules to combine them without changing the lyric order."
+  },
   "changeNotes": {
     "changelogTitle": "Changelog & updates",
     "viewCommits": "View Commits on GitHub"

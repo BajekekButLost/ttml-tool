@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "De geselecteerde splitsengine kon niet worden geladen. Kies een andere en probeer het opnieuw.",
+    "suggestions": "Splitsingen zijn suggesties op basis van tekst. Afbreekengines stellen regeleinden voor en kunnen lettergrepen missen. Controleer elk geval aan de hand van de gezongen uitvoering.",
+    "timing": "Splitsen maakt voorlopige tijden op basis van het aantal tekens. Controleer timing en romanisatie vóór het exporteren.",
+    "boundary": "Splits tussen {left} en {right}",
+    "rememberHint": "Bewaar deze correctie voor de huidige engine op dit apparaat. Het ongedaan maken van de tekstbewerking behoudt de opgeslagen regel.",
+    "rulesHint": "Regels gelden voor hele woorden ongeacht hoofdletters. Genegeerde woorden hebben voorrang, daarna aangepaste en geleerde regels. Geen schakelt splitsen uit. Bestaande lettergrepen blijven behouden; combineer ze vóór opnieuw splitsen.",
+    "review": "Sommige suggesties zijn afgewezen of vereisen controle van de timing ({count}). De brontekst is behouden. Controleer opgeslagen regels en de betrokken woorden.",
+    "adjacent": "Selecteer aangrenzende delen om ze te combineren zonder de tekstvolgorde te wijzigen."
+  },
   "changeNotes": {
     "changelogTitle": "Wijzigingslogboek en updates",
     "viewCommits": "Commits bekijken op GitHub"

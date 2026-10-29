@@ -269,7 +269,7 @@ describe("syllable splitting in the import text", () => {
 
 	it("applies learned splits through Auto segment", () => {
 		const config: SegmentationConfig = {
-			engine: "none",
+			engine: "basic",
 			splitCJK: true,
 			splitEnglish: true,
 			punctuationWeight: 0.2,

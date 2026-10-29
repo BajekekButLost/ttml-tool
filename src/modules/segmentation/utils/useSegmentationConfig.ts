@@ -1,47 +1,80 @@
 import { useAtomValue } from "jotai";
 import { useEffect, useMemo, useState } from "react";
 import {
+	segmentationAllLearnedRulesAtom,
 	segmentationCustomRulesAtom,
 	segmentationEngineAtom,
 	segmentationIgnoreListTextAtom,
-	segmentationLearnedRulesAtom,
 	segmentationPunctuationModeAtom,
 	segmentationPunctuationWeightAtom,
 	segmentationRemoveEmptySegmentsAtom,
 	segmentationSplitCJKAtom,
 	segmentationSplitEnglishAtom,
 } from "../states";
-import type { HyphenatorFunc, SegmentationConfig } from "../types";
+import type {
+	HyphenatorFunc,
+	SegmentationConfig,
+	SegmentationEngineId,
+} from "../types";
 import { loadHyphenator } from "../utils/hyphen-loader";
-import { getHyphenationLanguage } from "./syllabification-engines";
+import {
+	getHyphenationLanguage,
+	getSyllabificationEngine,
+} from "./syllabification-engines";
 
-export const useSegmentationConfig = () => {
+export const useSegmentationConfig = (
+	engineOverride?: SegmentationEngineId,
+	enableWestern?: boolean,
+) => {
 	const splitCJK = useAtomValue(segmentationSplitCJKAtom);
-	const splitEnglish = useAtomValue(segmentationSplitEnglishAtom);
-	const engine = useAtomValue(segmentationEngineAtom);
+	const savedSplitEnglish = useAtomValue(segmentationSplitEnglishAtom);
+	const savedEngine = useAtomValue(segmentationEngineAtom);
+	const engine = getSyllabificationEngine(engineOverride ?? savedEngine).id;
+	const splitEnglish = enableWestern ?? savedSplitEnglish;
 	const punctuationMode = useAtomValue(segmentationPunctuationModeAtom);
 	const punctuationWeightStr = useAtomValue(segmentationPunctuationWeightAtom);
 	const removeEmptySegments = useAtomValue(segmentationRemoveEmptySegmentsAtom);
 	const ignoreListText = useAtomValue(segmentationIgnoreListTextAtom);
 	const customRules = useAtomValue(segmentationCustomRulesAtom);
-	const learnedRules = useAtomValue(segmentationLearnedRulesAtom);
+	const allLearnedRules = useAtomValue(segmentationAllLearnedRulesAtom);
+	const learnedRules = useMemo(() => {
+		const prefix = `${engine}\u0000`;
+		return new Map(
+			[...allLearnedRules]
+				.filter(([key]) => key.startsWith(prefix))
+				.map(([key, boundaries]) => [key.slice(prefix.length), boundaries]),
+		);
+	}, [allLearnedRules, engine]);
 
-	const [hyphenator, setHyphenator] = useState<HyphenatorFunc | undefined>();
-	const [isLoading, setIsLoading] = useState(false);
+	const [resolution, setResolution] = useState<{
+		engine: SegmentationEngineId;
+		split?: HyphenatorFunc;
+		status: "ready" | "loading" | "error";
+	}>({ engine, status: "loading" });
+	const needsPatterns = splitEnglish && !!getHyphenationLanguage(engine);
+	const matches = resolution.engine === engine;
+	const isLoading =
+		needsPatterns && (!matches || resolution.status === "loading");
+	const error = needsPatterns && matches && resolution.status === "error";
+	const isReady = !needsPatterns || (matches && resolution.status === "ready");
+	const hyphenator = needsPatterns && isReady ? resolution.split : undefined;
 
 	useEffect(() => {
 		let isMounted = true;
 		const fetchHyphenator = async () => {
 			const language = getHyphenationLanguage(engine);
 			if (!splitEnglish || !language) {
-				setHyphenator(undefined);
+				setResolution({ engine, status: "ready" });
 				return;
 			}
-			setIsLoading(true);
+			setResolution({ engine, status: "loading" });
 			const func = await loadHyphenator(language);
 			if (isMounted) {
-				setHyphenator(() => func || undefined);
-				setIsLoading(false);
+				setResolution({
+					engine,
+					split: func ?? undefined,
+					status: func ? "ready" : "error",
+				});
 			}
 		};
 		fetchHyphenator();
@@ -55,7 +88,10 @@ export const useSegmentationConfig = () => {
 		const finalPunctuationWeight = Number.isNaN(weight) ? 0.2 : weight;
 
 		const ignoreList = new Set(
-			ignoreListText.split("\n").filter((line) => line.trim() !== ""),
+			ignoreListText
+				.split("\n")
+				.map((line) => line.trim())
+				.filter(Boolean),
 		);
 
 		return {
@@ -69,6 +105,7 @@ export const useSegmentationConfig = () => {
 			customRules,
 			learnedRules,
 			hyphenator,
+			hyphenatorEngine: hyphenator ? engine : undefined,
 		};
 	}, [
 		engine,
@@ -86,5 +123,7 @@ export const useSegmentationConfig = () => {
 	return {
 		config,
 		isLoading,
+		isReady,
+		error,
 	};
 };

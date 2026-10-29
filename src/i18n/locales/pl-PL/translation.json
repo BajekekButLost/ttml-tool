@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Nie udało się wczytać wybranego silnika podziału. Wybierz inny i spróbuj ponownie.",
+    "suggestions": "Podziały są sugestiami na podstawie tekstu. Silniki dzielenia wyrazów proponują miejsca łamania wierszy i mogą pomijać sylaby. Sprawdź każde wystąpienie zgodnie ze śpiewanym wykonaniem.",
+    "timing": "Podział tworzy wstępne czasy ważone liczbą znaków. Przed eksportem sprawdź czasy i romanizację.",
+    "boundary": "Podziel między {left} a {right}",
+    "rememberHint": "Zapamiętaj poprawkę dla bieżącego silnika na tym urządzeniu. Cofnięcie edycji tekstu zachowuje zapisaną regułę.",
+    "rulesHint": "Reguły dotyczą całych słów niezależnie od wielkości liter. Pierwszeństwo mają wykluczenia, potem reguły własne i wyuczone. Brak wyłącza podział. Istniejące sylaby są zachowywane; połącz je przed ponownym podziałem.",
+    "review": "Niektóre sugestie odrzucono lub wymagają sprawdzenia czasów ({count}). Zachowano tekst źródłowy. Sprawdź zapisane reguły i odpowiednie słowa.",
+    "adjacent": "Wybierz sąsiednie części, aby połączyć je bez zmiany kolejności tekstu."
+  },
   "changeNotes": {
     "changelogTitle": "Lista zmian i aktualizacje",
     "viewCommits": "Zobacz commity na GitHubie"

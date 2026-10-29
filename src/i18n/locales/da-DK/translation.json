@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Den valgte opdelingsmotor kunne ikke indlæses. Vælg en anden, og prøv igen.",
+    "suggestions": "Opdelinger er tekstbaserede forslag. Orddelingsmotorer foreslår linjeskift og kan overse stavelser. Kontrollér hvert sted i forhold til sangen.",
+    "timing": "Opdeling laver et udkast til timing vægtet efter antal tegn. Kontrollér timing og romanisering før eksport.",
+    "boundary": "Opdel mellem {left} og {right}",
+    "rememberHint": "Husk rettelsen for den aktuelle motor på denne enhed. Fortrydelse af tekstændringen bevarer den gemte regel.",
+    "rulesHint": "Regler matcher hele ord uanset store og små bogstaver. Ignorerede ord har forrang, derefter brugerdefinerede og lærte regler. Ingen slår opdeling fra. Eksisterende stavelser bevares; kombinér dem før en ny opdeling.",
+    "review": "Nogle forslag blev afvist eller kræver kontrol af timing ({count}). Kildeteksten er bevaret. Kontrollér gemte regler og de berørte ord.",
+    "adjacent": "Vælg tilstødende dele for at kombinere dem uden at ændre tekstens rækkefølge."
+  },
   "changeNotes": {
     "changelogTitle": "Ændringslog og opdateringer",
     "viewCommits": "Se commits på GitHub"

@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Seçilen bölme motoru yüklenemedi. Başka bir motor seçip yeniden deneyin.",
+    "suggestions": "Bölmeler metne dayalı önerilerdir. Heceleme motorları satır sonu konumları önerir ve bazı heceleri atlayabilir. Her kullanımı söylenen performansa göre denetleyin.",
+    "timing": "Bölme, karakter sayısına göre ağırlıklı taslak zamanlamalar oluşturur. Dışa aktarmadan önce zamanlamayı ve Latin harflerine çevrimi gözden geçirin.",
+    "boundary": "{left} ile {right} arasını böl",
+    "rememberHint": "Bu düzeltmeyi bu cihazdaki geçerli motor için hatırla. Söz düzenlemesini geri almak kaydedilen kuralı korur.",
+    "rulesHint": "Kurallar büyük küçük harf ayrımı olmadan tam sözcüklerle eşleşir. Önce hariç tutulanlar, sonra özel ve öğrenilen kurallar uygulanır. Hiçbiri bölmeyi kapatır. Mevcut heceler korunur; yeniden bölmeden önce birleştirin.",
+    "review": "Bazı öneriler reddedildi veya zamanlama denetimi gerekiyor ({count}). Kaynak metin korundu. Kaydedilen kuralları ve ilgili sözcükleri denetleyin.",
+    "adjacent": "Söz sırasını değiştirmeden birleştirmek için bitişik parçaları seçin."
+  },
   "changeNotes": {
     "changelogTitle": "Değişiklik günlüğü ve güncellemeler",
     "viewCommits": "GitHub'daki commit'leri görüntüle"

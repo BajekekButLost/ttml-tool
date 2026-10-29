@@ -4,7 +4,6 @@ import { useSetImmerAtom } from "jotai-immer";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { segmentationEngineAtom } from "$/modules/segmentation/states";
 import { segmentSelectedWords } from "$/modules/segmentation/utils/segmentation";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import {
@@ -70,8 +69,7 @@ export const LyricWordMenu = ({
 	const combineApplyToAll = useAtomValue(combineWordsApplyToAllAtom);
 	const combineIgnoreCase = useAtomValue(combineWordsIgnoreCaseAtom);
 	const combineShiftClickRef = useRef(false);
-	const segmentationEngine = useAtomValue(segmentationEngineAtom);
-	const { config: segmentationConfig, isLoading: segmentationLoading } =
+	const { config: segmentationConfig, isReady: segmentationReady } =
 		useSegmentationConfig();
 
 	return (
@@ -90,19 +88,16 @@ export const LyricWordMenu = ({
 				{t("contextMenu.splitWord", "拆分单词…")}
 			</ContextMenu.Item>
 			<ContextMenu.Item
-				disabled={selectedWordsSize === 0 || segmentationLoading}
+				disabled={selectedWordsSize === 0 || !segmentationReady}
 				onSelect={() => {
+					if (!segmentationReady) return;
 					const selectedWordIds = store.get(selectedWordsAtom);
 					let splitCount = 0;
 					editLyricLines((state) => {
 						splitCount = segmentSelectedWords(
 							state.lyricLines,
 							selectedWordIds,
-							{
-								...segmentationConfig,
-								engine: segmentationEngine,
-								splitEnglish: segmentationEngine !== "none",
-							},
+							segmentationConfig,
 						);
 					});
 					if (splitCount === 0) {

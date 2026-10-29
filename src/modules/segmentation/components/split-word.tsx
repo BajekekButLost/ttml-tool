@@ -10,28 +10,15 @@ import {
 } from "@radix-ui/themes";
 import { useAtom, useAtomValue } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen.ts";
 import {
-	segmentationCustomRulesAtom,
-	segmentationEngineAtom,
-	segmentationIgnoreListTextAtom,
 	segmentationLearnedRulesAtom,
-	segmentationPunctuationModeAtom,
-	segmentationPunctuationWeightAtom,
-	segmentationRemoveEmptySegmentsAtom,
-	segmentationSplitCJKAtom,
-	segmentationSplitEnglishAtom,
 	splitWordApplyToAllAtom,
 	splitWordIgnoreCaseAtom,
 	splitWordRememberAtom,
 } from "$/modules/segmentation/states";
-import type {
-	HyphenatorFunc,
-	SegmentationConfig,
-} from "$/modules/segmentation/types";
-import { loadHyphenator } from "$/modules/segmentation/utils/hyphen-loader.ts";
 import {
 	applyLearnedRule,
 	createLearnedRule,
@@ -41,10 +28,11 @@ import {
 	recalculateWordTime,
 	segmentWord,
 } from "$/modules/segmentation/utils/segmentation.ts";
-import { getHyphenationLanguage } from "$/modules/segmentation/utils/syllabification-engines";
 import { splitWordDialogAtom } from "$/states/dialogs.ts";
 import { editingWordStateAtom, lyricLinesAtom } from "$/states/main";
 import type { LyricWord } from "$/types/ttml";
+import { graphemes } from "$/utils/graphemes";
+import { useSegmentationConfig } from "../utils/useSegmentationConfig";
 import { ManualWordSplitter } from "./ManualWordSplitter";
 
 export const SplitWordDialog = memo(() => {
@@ -55,118 +43,59 @@ export const SplitWordDialog = memo(() => {
 	const { t } = useTranslation();
 
 	const [splitIndices, setSplitIndices] = useState(new Set<number>());
-	const [targetWordText, setTargetWordText] = useState("");
+	const [target, setTarget] = useState<{
+		lineId: string;
+		word: LyricWord;
+	} | null>(null);
+	const targetWordText = target?.word.word ?? "";
+	const dirty = useRef(false);
 
 	const [applyToAll, setApplyToAll] = useAtom(splitWordApplyToAllAtom);
 	const [ignoreCase, setIgnoreCase] = useAtom(splitWordIgnoreCaseAtom);
 	const [rememberSplit, setRememberSplit] = useAtom(splitWordRememberAtom);
 	const [learnedRules, setLearnedRules] = useAtom(segmentationLearnedRulesAtom);
-	const engine = useAtomValue(segmentationEngineAtom);
-
-	const splitCJK = useAtomValue(segmentationSplitCJKAtom);
-	const splitEnglish = useAtomValue(segmentationSplitEnglishAtom);
-	const punctuationMode = useAtomValue(segmentationPunctuationModeAtom);
-	const punctuationWeight = useAtomValue(segmentationPunctuationWeightAtom);
-	const removeEmptySegments = useAtomValue(segmentationRemoveEmptySegmentsAtom);
-	const ignoreListText = useAtomValue(segmentationIgnoreListTextAtom);
-	const customRules = useAtomValue(segmentationCustomRulesAtom);
-	const [activeHyphenator, setActiveHyphenator] = useState<
-		HyphenatorFunc | undefined
-	>(undefined);
-
-	useEffect(() => {
-		let isMounted = true;
-
-		const fetchHyphenator = async () => {
-			const language = getHyphenationLanguage(engine);
-			if (!language) {
-				setActiveHyphenator(undefined);
-				return;
-			}
-			const func = await loadHyphenator(language);
-			if (isMounted && func) {
-				setActiveHyphenator(() => func);
-			}
-		};
-
-		fetchHyphenator();
-
-		return () => {
-			isMounted = false;
-		};
-	}, [engine]);
-
-	const ignoreList = useMemo(() => {
-		return new Set(
-			ignoreListText.split("\n").filter((line) => line.trim() !== ""),
-		);
-	}, [ignoreListText]);
-
-	const segmentationConfig = useMemo((): SegmentationConfig => {
-		const weight = parseFloat(punctuationWeight);
-		const finalPunctuationWeight = Number.isNaN(weight) ? 0.2 : weight;
-
-		return {
-			engine,
-			splitCJK,
-			splitEnglish,
-			punctuationMode,
-			punctuationWeight: finalPunctuationWeight,
-			removeEmptySegments,
-			ignoreList,
-			customRules,
-			learnedRules,
-			hyphenator: activeHyphenator,
-		};
-	}, [
-		engine,
-		splitCJK,
-		splitEnglish,
-		punctuationMode,
-		punctuationWeight,
-		removeEmptySegments,
-		ignoreList,
-		customRules,
-		learnedRules,
-		activeHyphenator,
-	]);
+	const {
+		config: segmentationConfig,
+		isReady,
+		error,
+	} = useSegmentationConfig();
 
 	useEffect(() => {
 		if (!splitWordDialog) {
+			setTarget(null);
+			dirty.current = false;
 			return;
 		}
-
+		if (target) return;
 		const line = lyricLines.lyricLines[editingState.lineIndex];
 		const word = line?.words[editingState.wordIndex];
-
-		if (word) {
-			setTargetWordText(word.word);
-
-			const resultWords = segmentWord(word, segmentationConfig);
-			if (resultWords.length > 1) {
-				const indices = new Set<number>();
-				let currentIndex = 0;
-				for (let i = 0; i < resultWords.length - 1; i++) {
-					currentIndex += Array.from(resultWords[i].word).length;
-					indices.add(currentIndex);
-				}
-				setSplitIndices(indices);
-			} else {
-				setSplitIndices(new Set());
-			}
-		} else {
-			setTargetWordText("");
-			setSplitIndices(new Set());
-		}
+		if (word) setTarget({ lineId: line.id, word });
 	}, [
 		splitWordDialog,
+		target,
+		lyricLines,
 		editingState.lineIndex,
 		editingState.wordIndex,
-		lyricLines,
-		segmentationConfig,
 	]);
 
+	useEffect(() => {
+		if (!target || !isReady || dirty.current) return;
+		const resultWords = segmentWord(target.word, segmentationConfig);
+		if (resultWords.length > 1) {
+			const indices = new Set<number>();
+			let currentIndex = 0;
+			for (let i = 0; i < resultWords.length - 1; i++) {
+				currentIndex += graphemes(resultWords[i].word).length;
+				indices.add(currentIndex);
+			}
+			setSplitIndices(indices);
+		} else {
+			setSplitIndices(new Set());
+		}
+	}, [target, segmentationConfig, isReady]);
+
 	const toggleSplitPoint = useCallback((index: number) => {
+		dirty.current = true;
 		setSplitIndices((prev) => {
 			const next = new Set(prev);
 			if (next.has(index)) {
@@ -179,11 +108,11 @@ export const SplitWordDialog = memo(() => {
 	}, []);
 
 	const handleSplit = useCallback(() => {
-		if (!targetWordText) return;
+		if (!targetWordText || !target) return;
 
 		const sortedIndices = Array.from(splitIndices).sort((a, b) => a - b);
 		const buildSegments = (text: string) => {
-			const chars = Array.from(text);
+			const chars = graphemes(text);
 			const parts: string[] = [];
 			let lastIndex = 0;
 			for (const index of sortedIndices) {
@@ -212,13 +141,28 @@ export const SplitWordDialog = memo(() => {
 			return recalculateWordTime(targetWord, segments, segmentationConfig);
 		};
 
+		let applied = false;
 		editLyricLines((state) => {
+			const sourceLine = state.lyricLines.find(
+				(line) => line.id === target.lineId,
+			);
+			const currentWord = sourceLine?.words.find(
+				(word) => word.id === target.word.id,
+			);
+			if (
+				!currentWord ||
+				JSON.stringify(currentWord) !== JSON.stringify(target.word)
+			)
+				return;
+			applied = true;
 			if (applyToAll) {
 				for (const line of state.lyricLines) {
 					line.words = line.words.flatMap((word) => {
-						const isMatch = ignoreCase
-							? getLearnedWordParts(word.word)?.key === targetCore?.key
-							: word.word === targetWordText;
+						const candidateCore = getLearnedWordParts(word.word);
+						const isMatch =
+							ignoreCase && targetCore && candidateCore
+								? candidateCore.key === targetCore.key
+								: word.word === targetWordText;
 
 						if (isMatch) {
 							const wordSegments =
@@ -235,12 +179,15 @@ export const SplitWordDialog = memo(() => {
 					});
 				}
 			} else {
-				const line = state.lyricLines[editingState.lineIndex];
+				const line = sourceLine;
 				if (line) {
-					const word = line.words[editingState.wordIndex];
+					const index = line.words.findIndex(
+						(word) => word.id === target.word.id,
+					);
+					const word = line.words[index];
 					if (word && word.word === targetWordText) {
 						line.words.splice(
-							editingState.wordIndex,
+							index,
 							1,
 							...createNewWords(word, targetSegments),
 						);
@@ -249,13 +196,14 @@ export const SplitWordDialog = memo(() => {
 			}
 		});
 
-		if (learnedRule) {
+		if (applied && learnedRule) {
 			const nextRules = new Map(learnedRules);
 			nextRules.set(learnedRule.key, learnedRule.boundaries);
 			setLearnedRules(nextRules);
 		}
 	}, [
 		targetWordText,
+		target,
 		splitIndices,
 		editLyricLines,
 		applyToAll,
@@ -263,8 +211,6 @@ export const SplitWordDialog = memo(() => {
 		rememberSplit,
 		learnedRules,
 		setLearnedRules,
-		editingState.lineIndex,
-		editingState.wordIndex,
 		segmentationConfig,
 	]);
 
@@ -279,8 +225,8 @@ export const SplitWordDialog = memo(() => {
 						</Callout.Icon>
 						<Callout.Text>
 							{t(
-								"splitWordDialog.tip",
-								"After splitting, new words will evenly divide the original word's start/end time.",
+								"syllableSplitting.timing",
+								"Splitting creates draft timings weighted by character count. Review the timing and romanization before export.",
 							)}
 						</Callout.Text>
 					</Callout.Root>
@@ -295,15 +241,18 @@ export const SplitWordDialog = memo(() => {
 							<Button
 								size="1"
 								variant="soft"
-								disabled={!activeHyphenator || !targetWordText}
+								disabled={!isReady || !targetWordText}
 								onClick={() => {
-									if (!activeHyphenator || !targetWordText) return;
-									const hyphenated = activeHyphenator(targetWordText);
-									const parts = hyphenated.split("\u00AD");
+									if (!isReady || !target) return;
+									dirty.current = true;
+									const parts = segmentWord(
+										target.word,
+										segmentationConfig,
+									).map((word) => word.word);
 									const indices = new Set<number>();
 									let currentIndex = 0;
 									for (let i = 0; i < parts.length - 1; i++) {
-										currentIndex += parts[i].length;
+										currentIndex += graphemes(parts[i]).length;
 										indices.add(currentIndex);
 									}
 									setSplitIndices(indices);
@@ -312,6 +261,14 @@ export const SplitWordDialog = memo(() => {
 								{t("splitWordDialog.syllableSplit", "Syllable split")}
 							</Button>
 						</Flex>
+						{error && (
+							<Text role="alert" color="red">
+								{t(
+									"syllableSplitting.engineError",
+									"The selected splitting engine could not load. Choose another engine or reopen this dialog to retry.",
+								)}
+							</Text>
+						)}
 					</Box>
 
 					<Flex direction="column" gap="2">
@@ -336,6 +293,9 @@ export const SplitWordDialog = memo(() => {
 								/>
 								{t("splitWordDialog.remember", "Remember this split")}
 							</Flex>
+						</Text>
+						<Text size="1" color="gray">
+							{t("syllableSplitting.rememberHint")}
 						</Text>
 
 						<Text as="label" size="2">

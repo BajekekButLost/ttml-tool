@@ -1,12 +1,21 @@
-import { describe, expect, it } from "vitest";
+import { createStore, Provider } from "jotai";
+import { act, createElement } from "react";
+import { createRoot } from "react-dom/client";
+import { describe, expect, it, vi } from "vitest";
 import { newLyricWord } from "$/types/ttml";
-import type { SegmentationConfig } from "../types";
+import {
+	segmentationEngineAtom,
+	segmentationSplitEnglishAtom,
+} from "../states";
+import type { SegmentationConfig, SegmentationEngineId } from "../types";
+import * as hyphenLoader from "./hyphen-loader";
 import { loadHyphenator } from "./hyphen-loader";
 import { segmentWord } from "./segmentation";
 import {
 	getSyllabificationEngine,
 	splitJapaneseText,
 } from "./syllabification-engines";
+import { useSegmentationConfig } from "./useSegmentationConfig";
 
 const prosodicConfig: SegmentationConfig = {
 	engine: "prosodic",
@@ -21,6 +30,87 @@ const prosodicConfig: SegmentationConfig = {
 };
 
 describe("syllabification engines", () => {
+	it("rejects missing and mismatched pattern configurations", () => {
+		const word = { ...newLyricWord(), word: "przepraszam" };
+		expect(() =>
+			segmentWord(word, { ...prosodicConfig, engine: "hyphenation-pl" }),
+		).toThrow("not ready");
+		expect(() =>
+			segmentWord(word, {
+				...prosodicConfig,
+				engine: "hyphenation-pl",
+				hyphenator: (value) => value,
+				hyphenatorEngine: "hyphenation-de",
+			}),
+		).toThrow("not ready");
+	});
+
+	it("deduplicates in-flight pattern imports", async () => {
+		const first = loadHyphenator("es");
+		const second = loadHyphenator("es");
+		expect(first).toBe(second);
+		expect(await first).toBeTypeOf("function");
+	});
+
+	it("resolves the local engine and clears stale loading and failures", async () => {
+		const { JSDOM } = await import("jsdom" as string);
+		const dom = new JSDOM("<div id='root'></div>", {
+			url: "https://ttml.test",
+		});
+		vi.stubGlobal("window", dom.window);
+		vi.stubGlobal("document", dom.window.document);
+		vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
+		const store = createStore();
+		store.set(segmentationEngineAtom, "prosodic");
+		let override: SegmentationEngineId = "hyphenation-pl";
+		let current: ReturnType<typeof useSegmentationConfig> | undefined;
+		let finish:
+			| ((value: ((text: string) => string) | null) => void)
+			| undefined;
+		vi.spyOn(hyphenLoader, "loadHyphenator").mockImplementation(
+			() =>
+				new Promise((resolve) => {
+					finish = resolve;
+				}),
+		);
+		const Capture = () => {
+			current = useSegmentationConfig(override);
+			return null;
+		};
+		const root = createRoot(
+			dom.window.document.getElementById("root") as HTMLElement,
+		);
+		const render = () =>
+			root.render(createElement(Provider, { store }, createElement(Capture)));
+		try {
+			await act(async () => render());
+			expect(current?.config.engine).toBe("hyphenation-pl");
+			expect(current?.isReady).toBe(false);
+			const polish = (text: string) => text;
+			await act(async () => finish?.(polish));
+			expect(current?.config.hyphenator).toBe(polish);
+			expect(current?.config.hyphenatorEngine).toBe("hyphenation-pl");
+			override = "hyphenation-de";
+			await act(async () => render());
+			expect(current?.config.hyphenator).toBeUndefined();
+			expect(current?.isLoading).toBe(true);
+			const staleFinish = finish;
+			await act(async () => store.set(segmentationSplitEnglishAtom, false));
+			expect(current?.isLoading).toBe(false);
+			expect(current?.isReady).toBe(true);
+			await act(async () => staleFinish?.(polish));
+			expect(current?.config.hyphenator).toBeUndefined();
+			await act(async () => store.set(segmentationSplitEnglishAtom, true));
+			await act(async () => finish?.(null));
+			expect(current?.isReady).toBe(false);
+			expect(current?.error).toBe(true);
+		} finally {
+			await act(async () => root.unmount());
+			vi.restoreAllMocks();
+			vi.unstubAllGlobals();
+			dom.window.close();
+		}
+	});
 	it.each([
 		"PAYS",
 		"привет",

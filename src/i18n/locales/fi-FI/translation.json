@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Valittua jakomoottoria ei voitu ladata. Valitse toinen ja yritä uudelleen.",
+    "suggestions": "Jaot ovat tekstiin perustuvia ehdotuksia. Tavutusmoottorit ehdottavat rivinvaihtokohtia ja voivat jättää tavuja väliin. Tarkista jokainen kohta lauletun esityksen mukaan.",
+    "timing": "Jakaminen luo merkkimäärän mukaan painotetun ajoitusluonnoksen. Tarkista ajoitus ja latinalaistus ennen vientiä.",
+    "boundary": "Jaa merkkien {left} ja {right} välistä",
+    "rememberHint": "Tallenna korjaus nykyiselle moottorille tällä laitteella. Tekstimuokkauksen kumoaminen säilyttää tallennetun säännön.",
+    "rulesHint": "Säännöt koskevat kokonaisia sanoja kirjainkoosta riippumatta. Ohitettavat sanat ovat etusijalla, sitten omat ja opitut säännöt. Ei mitään poistaa jakamisen käytöstä. Nykyiset tavut säilyvät; yhdistä ne ennen uutta jakoa.",
+    "review": "Osa ehdotuksista hylättiin tai vaatii ajoituksen tarkistamista ({count}). Lähdeteksti säilytettiin. Tarkista tallennetut säännöt ja kyseiset sanat.",
+    "adjacent": "Valitse vierekkäiset osat yhdistääksesi ne muuttamatta sanoituksen järjestystä."
+  },
   "changeNotes": {
     "changelogTitle": "Muutosloki ja päivitykset",
     "viewCommits": "Näytä muutokset GitHubissa"

@@ -1,4 +1,14 @@
 {
+  "syllableSplitting": {
+    "engineError": "Le moteur de découpage sélectionné n'a pas pu être chargé. Choisissez-en un autre et réessayez.",
+    "suggestions": "Les découpages sont des suggestions fondées sur le texte. Les moteurs de césure proposent des sauts de ligne et peuvent omettre des syllabes. Vérifiez chaque occurrence selon l'interprétation chantée.",
+    "timing": "Le découpage crée des minutages provisoires pondérés par le nombre de caractères. Vérifiez le minutage et la romanisation avant l'export.",
+    "boundary": "Séparer entre {left} et {right}",
+    "rememberHint": "Mémoriser cette correction pour le moteur actuel sur cet appareil. Annuler la modification du texte conserve la règle enregistrée.",
+    "rulesHint": "Les règles correspondent aux mots entiers sans tenir compte de la casse. Les exclusions sont prioritaires, puis les règles personnalisées et apprises. Aucun désactive le découpage. Les syllabes existantes sont conservées ; combinez-les avant un nouveau découpage.",
+    "review": "Certaines suggestions ont été rejetées ou nécessitent une vérification du minutage ({count}). Le texte source a été conservé. Vérifiez les règles enregistrées et les mots concernés.",
+    "adjacent": "Sélectionnez des éléments adjacents pour les combiner sans changer l'ordre des paroles."
+  },
   "changeNotes": {
     "changelogTitle": "Journal des modifications et mises à jour",
     "viewCommits": "Voir les commits sur GitHub"

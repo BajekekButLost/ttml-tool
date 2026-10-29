@@ -44,6 +44,7 @@ import { SYLLABIFICATION_ENGINES } from "$/modules/segmentation/utils/syllabific
 import { advancedSegmentationDialogAtom } from "$/states/dialogs.ts";
 import { lyricLinesAtom } from "$/states/main.ts";
 import { type LyricWord, newLyricLine, newLyricWord } from "$/types/ttml";
+import { graphemes } from "$/utils/graphemes";
 import { useSegmentationConfig } from "../utils/useSegmentationConfig";
 import styles from "./AdvancedSegmentation.module.css";
 import { ManualWordSplitter } from "./ManualWordSplitter";
@@ -51,7 +52,11 @@ import { ManualWordSplitter } from "./ManualWordSplitter";
 export const AdvancedSegmentationDialog = memo(() => {
 	const [open, setOpen] = useAtom(advancedSegmentationDialogAtom);
 	const [scope, setScope] = useAtom(segmentationScopeAtom);
-	const { config: segmentationConfig } = useSegmentationConfig();
+	const {
+		config: segmentationConfig,
+		isReady,
+		error,
+	} = useSegmentationConfig();
 	const [rangeStart, setRangeStart] = useAtom(segmentationRangeStartAtom);
 	const [rangeEnd, setRangeEnd] = useAtom(segmentationRangeEndAtom);
 	const [splitCJK, setSplitCJK] = useAtom(segmentationSplitCJKAtom);
@@ -98,14 +103,15 @@ export const AdvancedSegmentationDialog = memo(() => {
 		if (!manualWordInput) return;
 
 		const parts: string[] = [];
+		const chars = graphemes(manualWordInput);
 		let lastIndex = 0;
 		const sortedIndices = Array.from(manualSplitIndices).sort((a, b) => a - b);
 
 		for (const index of sortedIndices) {
-			parts.push(manualWordInput.slice(lastIndex, index));
+			parts.push(chars.slice(lastIndex, index).join(""));
 			lastIndex = index;
 		}
-		parts.push(manualWordInput.slice(lastIndex));
+		parts.push(chars.slice(lastIndex).join(""));
 
 		const next = new Map(customRules);
 		next.set(manualWordInput, parts);
@@ -130,14 +136,14 @@ export const AdvancedSegmentationDialog = memo(() => {
 		const indices = new Set<number>();
 		let currentIndex = 0;
 		for (let i = 0; i < parts.length - 1; i++) {
-			currentIndex += parts[i].length;
+			currentIndex += graphemes(parts[i]).length;
 			indices.add(currentIndex);
 		}
 		setManualSplitIndices(indices);
 	}, []);
 
 	const testPreview = useMemo(() => {
-		if (!testInput.trim()) {
+		if (!testInput.trim() || !isReady) {
 			return;
 		}
 
@@ -185,9 +191,10 @@ export const AdvancedSegmentationDialog = memo(() => {
 				</Text>
 			);
 		}
-	}, [testInput, t, segmentationConfig]);
+	}, [testInput, t, segmentationConfig, isReady]);
 
 	const onApply = useCallback(() => {
+		if (!isReady) return;
 		const maxLines = currentLyric.lyricLines.length;
 		let startIndex = 0;
 		let endIndex = maxLines;
@@ -214,6 +221,7 @@ export const AdvancedSegmentationDialog = memo(() => {
 
 		setOpen(false);
 	}, [
+		isReady,
 		segmentationConfig,
 		scope,
 		rangeStart,
@@ -229,6 +237,9 @@ export const AdvancedSegmentationDialog = memo(() => {
 				<Dialog.Title>
 					{t("advancedSegmentDialog.title", "Advanced segmentation")}
 				</Dialog.Title>
+				<Text as="p" size="2" color="gray" mb="3">
+					{t("syllableSplitting.rulesHint")}
+				</Text>
 
 				<Flex direction="column" gap="4">
 					<Flex direction="column" gap="2">
@@ -577,7 +588,17 @@ export const AdvancedSegmentationDialog = memo(() => {
 							{t("common.cancel", "取消")}
 						</Button>
 					</Dialog.Close>
-					<Button onClick={onApply}>{t("common.apply", "应用")}</Button>
+					{error && (
+						<Text role="alert" color="red">
+							{t(
+								"syllableSplitting.engineError",
+								"The selected splitting engine could not load. Choose another engine and try again.",
+							)}
+						</Text>
+					)}
+					<Button onClick={onApply} disabled={!isReady}>
+						{t("common.apply", "应用")}
+					</Button>
 				</Flex>
 			</Dialog.Content>
 		</Dialog.Root>

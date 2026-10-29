@@ -199,6 +199,14 @@ export function segmentWord(
 	pattern = prepareProtectedPattern(config),
 ): LyricWord[] {
 	const ctx = context ?? { isQuoteOpen: false };
+	if (
+		config.splitEnglish &&
+		getHyphenationLanguage(config.engine) &&
+		(!config.hyphenator ||
+			(config.hyphenatorEngine && config.hyphenatorEngine !== config.engine))
+	) {
+		throw new Error("The selected syllabification engine is not ready");
+	}
 	if (config.engine === "none") {
 		advanceContext(word.word, ctx);
 		return [word];

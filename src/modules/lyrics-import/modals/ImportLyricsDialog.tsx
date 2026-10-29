@@ -103,7 +103,7 @@ export const ImportLyricsDialog = () => {
 	const setEnableSpecialPrefix = useSetAtom(enableSpecialPrefixAtom);
 	const setBgLyricPrefix = useSetAtom(bgLyricPrefixAtom);
 	const setConfirmDialog = useSetAtom(confirmDialogAtom);
-	const { config: segmentationConfig, isLoading: segmentationLoading } =
+	const { config: segmentationConfig, isReady: segmentationReady } =
 		useSegmentationConfig();
 
 	const [step, setStep] = useState<"edit" | "review">("edit");
@@ -236,6 +236,10 @@ export const ImportLyricsDialog = () => {
 	};
 
 	const handleSplit = () => {
+		if (!segmentationReady) {
+			toast.error(t("syllableSplitting.engineError"));
+			return;
+		}
 		const changed = transformText(
 			segmentImportText(text, format, (word) =>
 				segmentWord({ ...newLyricWord(), word }, segmentationConfig).map(
@@ -538,9 +542,7 @@ export const ImportLyricsDialog = () => {
 									hasText={!!text.trim()}
 									canRestore={originalText !== null}
 									canSplit={
-										!!text.trim() &&
-										!!format.wordSeparator &&
-										!segmentationLoading
+										!!text.trim() && !!format.wordSeparator && segmentationReady
 									}
 									showSongwriters={pickedTrack?.source === "genius"}
 									onProcess={handleProcess}

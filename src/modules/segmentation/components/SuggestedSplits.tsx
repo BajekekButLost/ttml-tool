@@ -3,6 +3,7 @@ import { useAtom, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
 import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useLyricLinesWhileOpen } from "$/hooks/useLyricLinesWhileOpen";
 import {
 	segmentLyricLines,
 	segmentWord,
@@ -16,19 +17,27 @@ export const SuggestedSplitsDialog = memo(() => {
 	const [dialog, setDialog] = useAtom(suggestedSplitsDialogAtom);
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
 	const { t } = useTranslation();
-	const { config, isLoading } = useSegmentationConfig();
+	const { config, isLoading, isReady, error } = useSegmentationConfig();
 	const store = useStore();
+	const currentLyrics = useLyricLinesWhileOpen(dialog.open);
 
-	const targetLine = useMemo(() => {
+	const openingLine = useMemo(() => {
 		if (!dialog.open || !dialog.lineId) return null;
 		const lines = store.get(lyricLinesAtom).lyricLines;
 		return lines.find((l) => l.id === dialog.lineId);
 	}, [dialog.open, dialog.lineId, store]);
+	const targetLine = currentLyrics.lyricLines.find(
+		(line) => line.id === dialog.lineId,
+	);
+	const targetWordId =
+		dialog.wordIndex === undefined
+			? undefined
+			: openingLine?.words[dialog.wordIndex]?.id;
 
 	const suggestions = useMemo(() => {
-		if (!targetLine) return [];
+		if (!targetLine || !isReady) return [];
 		if (dialog.wordIndex !== undefined) {
-			const word = targetLine.words[dialog.wordIndex];
+			const word = targetLine.words.find((word) => word.id === targetWordId);
 			if (!word) return [];
 			const result = segmentWord(word, config);
 			// Only suggest if it actually splits into more than 1 part or changes something
@@ -51,16 +60,19 @@ export const SuggestedSplitsDialog = memo(() => {
 			}
 			return [];
 		}
-	}, [targetLine, dialog.wordIndex, config]);
+	}, [targetLine, targetWordId, dialog.wordIndex, config, isReady]);
 
-	const handleApply = (words: LyricWord[]) => {
+	const handleApply = (_words: LyricWord[]) => {
+		if (!isReady || !targetLine) return;
 		editLyricLines((state) => {
 			const line = state.lyricLines.find((l) => l.id === dialog.lineId);
-			if (!line) return;
+			if (!line || JSON.stringify(line) !== JSON.stringify(targetLine)) return;
 			if (dialog.wordIndex !== undefined) {
-				line.words.splice(dialog.wordIndex, 1, ...words);
+				const index = line.words.findIndex((word) => word.id === targetWordId);
+				if (index < 0) return;
+				line.words.splice(index, 1, ...segmentWord(line.words[index], config));
 			} else {
-				line.words = words;
+				line.words = segmentLyricLines([line], config)[0].words;
 			}
 		});
 		setDialog({ open: false });
@@ -85,6 +97,14 @@ export const SuggestedSplitsDialog = memo(() => {
 					)}
 				</Dialog.Description>
 				<Flex direction="column" gap="4" mt="4">
+					{error && (
+						<Text role="alert" color="red">
+							{t(
+								"syllableSplitting.engineError",
+								"The selected splitting engine could not load. Choose another engine or reopen this dialog to retry.",
+							)}
+						</Text>
+					)}
 					{isLoading ? (
 						<Text color="gray" align="center">
 							{t("common.loading", "Loading…")}
