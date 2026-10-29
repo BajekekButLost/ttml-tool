@@ -25,12 +25,15 @@
 	--card-background-color: color-mix(in oklab, var(--gray-2) 84%, transparent);
 }
 
+/* Same selectors as the translucent rules above, so these win on order. */
 @media (prefers-reduced-transparency: reduce) {
-	:global(:root[data-design-backdrop]) .panel.panel {
+	:global(:root[data-design="spicy-lyrics"][data-design-backdrop])
+		.panel.panel {
 		--card-background-color: var(--color-panel-solid);
 	}
 
-	:global(:root[data-design-backdrop]) .sunken.sunken {
+	:global(:root[data-design="spicy-lyrics"][data-design-backdrop])
+		.sunken.sunken {
 		--card-background-color: var(--gray-2);
 	}
 }

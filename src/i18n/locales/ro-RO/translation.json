@@ -1001,7 +1001,9 @@
   "settingsDialog": {
     "search": "Caută în setări",
     "clearSearch": "Șterge căutarea",
-    "noSearchResults": "Nu există categorii care se potrivesc",
+    "matchCount": "Setări potrivite: {count}",
+    "noResults": "Nicio setare nu se potrivește cu „{query}”",
+    "noResultsDesc": "Încearcă alt cuvânt sau șterge căutarea.",
     "title": "Preferințe",
     "common": {
       "latencyTest": "Testul de latență audio/intrare"
@@ -1073,19 +1075,14 @@
     "tab": {
       "common": "General",
       "appearance": "Aspect",
-      "audio": "Audio",
-      "keybindings": "Scurtături",
-      "spectrogram": "Spectrogramă",
+      "editing": "Editare",
+      "syncing": "Sincronizare",
+      "preview": "Previzualizare",
+      "audioSpectrogram": "Audio și spectrogramă",
+      "importFiles": "Import și fișiere",
       "backup": "Backup",
-      "editor": "Editor și sincronizare",
-      "files": "Fișiere și stocare",
+      "keybindings": "Scurtături",
       "changelog": "Jurnal de modificări"
-    },
-    "page": {
-      "generalDesc": "Limbă, confidențialitate și comportamentul general al aplicației.",
-      "editorDesc": "Introducerea timpilor, comportamentul sincronizării și indicii vizuale.",
-      "filesDesc": "Curățare la import, istoricul salvărilor automate și copii de rezervă portabile.",
-      "audioDesc": "Redare, egalizator și afișarea spectrogramei."
     }
   },
   "autoSegmentApplied": "Segmentat automat cu {engine}",
