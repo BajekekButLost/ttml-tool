@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Korvaa sanayhdistelmä",
-    "description": "Muokkaa jokaista valittua sanaa tai tavua. Ajoitukset pysyvät samoina.",
+    "description": "Muokkaa tekstiä napsauttamalla sanaa. Ajoitukset pysyvät samoina.",
     "word": "Sana {index}",
+    "reorderWord": "Siirrä sanaa {index}",
+    "reorderHint": "Muuta järjestystä vetämällä kahvasta tai kohdista sanaan ja paina Alt+vasen/oikea.",
+    "position": "Paikka {index}/{count}",
     "applyToAll": "Korvaa kaikki vastaavat yhdistelmät",
     "adjacentOnly": "Valitse vierekkäisiä sanoja tai tavuja samalta riviltä korvataksesi yhdistelmän."
   },

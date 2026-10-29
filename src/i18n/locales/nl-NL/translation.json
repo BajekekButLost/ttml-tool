@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Woordcombinatie vervangen",
-    "description": "Bewerk elk geselecteerd woord of elke lettergreep. De timing blijft hetzelfde.",
+    "description": "Klik op een woord om de tekst te bewerken. De timing blijft hetzelfde.",
     "word": "Woord {index}",
+    "reorderWord": "Woord {index} verplaatsen",
+    "reorderHint": "Sleep een handgreep om de volgorde te wijzigen, of focus een woord en druk op Alt+Links/Rechts.",
+    "position": "Positie {index} van {count}",
     "applyToAll": "Alle overeenkomende combinaties vervangen",
     "adjacentOnly": "Selecteer aangrenzende woorden of lettergrepen op één regel om een combinatie te vervangen."
   },

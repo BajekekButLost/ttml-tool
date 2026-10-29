@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Erstat ordkombination",
-    "description": "Rediger hvert valgt ord eller hver stavelse. Tidsangivelserne forbliver de samme.",
+    "description": "Klik på et ord for at redigere teksten. Tidsangivelserne forbliver de samme.",
     "word": "Ord {index}",
+    "reorderWord": "Flyt ord {index}",
+    "reorderHint": "Træk i et håndtag for at ændre rækkefølgen, eller fokuser et ord og tryk Alt+venstre/højre.",
+    "position": "Placering {index} af {count}",
     "applyToAll": "Erstat alle matchende kombinationer",
     "adjacentOnly": "Vælg tilstødende ord eller stavelser på én linje for at erstatte en kombination."
   },

@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Sostituisci combinazione di parole",
-    "description": "Modifica ogni parola o sillaba selezionata. I tempi rimangono invariati.",
+    "description": "Fai clic su una parola per modificarne il testo. I tempi rimangono invariati.",
     "word": "Parola {index}",
+    "reorderWord": "Sposta parola {index}",
+    "reorderHint": "Trascina una maniglia per cambiare l'ordine, oppure seleziona una parola e premi Alt+Sinistra/Destra.",
+    "position": "Posizione {index} di {count}",
     "applyToAll": "Sostituisci tutte le combinazioni corrispondenti",
     "adjacentOnly": "Seleziona parole o sillabe adiacenti sulla stessa riga per sostituire una combinazione."
   },

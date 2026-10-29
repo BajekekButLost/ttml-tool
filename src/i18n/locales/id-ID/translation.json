@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Ganti kombinasi kata",
-    "description": "Edit setiap kata atau suku kata yang dipilih. Waktu tetap sama.",
+    "description": "Klik kata untuk mengedit teksnya. Waktu tetap sama.",
     "word": "Kata {index}",
+    "reorderWord": "Pindahkan kata {index}",
+    "reorderHint": "Seret pegangan untuk mengubah urutan, atau fokuskan kata dan tekan Alt+Kiri/Kanan.",
+    "position": "Posisi {index} dari {count}",
     "applyToAll": "Ganti semua kombinasi yang cocok",
     "adjacentOnly": "Pilih kata atau suku kata yang bersebelahan dalam satu baris untuk mengganti kombinasi."
   },

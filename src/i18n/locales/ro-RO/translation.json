@@ -1258,8 +1258,11 @@
   },
   "replaceWordCombinationDialog": {
     "title": "Înlocuiește combinația de cuvinte",
-    "description": "Editează fiecare cuvânt sau silabă selectată. Timpii rămân neschimbați.",
+    "description": "Fă clic pe un cuvânt pentru a-i edita textul. Timpii rămân neschimbați.",
     "word": "Cuvântul {index}",
+    "reorderWord": "Mută cuvântul {index}",
+    "reorderHint": "Trage de un mâner pentru a schimba ordinea sau focalizează un cuvânt și apasă Alt+Stânga/Dreapta.",
+    "position": "Poziția {index} din {count}",
     "applyToAll": "Înlocuiește toate combinațiile identice",
     "adjacentOnly": "Selectează cuvinte sau silabe alăturate pe același rând pentru a înlocui o combinație."
   },
