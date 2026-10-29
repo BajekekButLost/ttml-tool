@@ -78,6 +78,15 @@ export const LyricWordMenu = ({
 	const segmentationEngine = useAtomValue(segmentationEngineAtom);
 	const { config: segmentationConfig, isLoading: segmentationLoading } =
 		useSegmentationConfig();
+	// Read when the menu renders: words on different lines or with gaps can't
+	// be replaced as one combination, so the item greys out instead of opening.
+	const wordCombination =
+		selectedWordsSize > 1
+			? getWordCombinationSelection(
+					store.get(lyricLinesAtom).lyricLines,
+					store.get(selectedWordsAtom),
+				)
+			: null;
 
 	return (
 		<>
@@ -203,13 +212,11 @@ export const LyricWordMenu = ({
 			)}
 			{selectedWordsSize > 1 ? (
 				<ContextMenu.Item
+					disabled={!wordCombination}
 					onSelect={() => {
 						setReplaceWordCombinationDialog({
 							open: true,
-							selection: getWordCombinationSelection(
-								store.get(lyricLinesAtom).lyricLines,
-								store.get(selectedWordsAtom),
-							),
+							selection: wordCombination,
 						});
 					}}
 				>
