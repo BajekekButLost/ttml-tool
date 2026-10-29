@@ -119,6 +119,7 @@ import {
 	customBackgroundOpacityAtom,
 } from "./modules/settings/modals/customBackground";
 import { showTouchSyncPanelAtom } from "./modules/settings/states/sync.ts";
+import { UpdatedToast } from "./modules/updated-toast/UpdatedToast";
 import { settingsDialogAtom, settingsTabAtom } from "./states/dialogs.ts";
 import {
 	isDarkThemeAtom,
@@ -810,6 +811,7 @@ function App() {
 						theme={effectiveTheme}
 						transition={spicyLyricsDesign ? spicyLyricsToastTransition : Bounce}
 					/>
+					<UpdatedToast />
 				</div>
 			</ErrorBoundary>
 		</Theme>
