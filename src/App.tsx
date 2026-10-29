@@ -39,6 +39,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
 import { Bounce, cssTransition, ToastContainer, toast } from "react-toastify";
 import semverGt from "semver/functions/gt";
+import { DidYouKnowHints } from "$/modules/did-you-know/DidYouKnowHints";
 import { backgroundGradients } from "$/modules/settings/states/gradients";
 import {
 	accentColorAtom,
@@ -651,6 +652,7 @@ function App() {
 			<MigrationNotice />
 			<DiscordPresence />
 			<BeginnerGuide />
+			<DidYouKnowHints />
 			<AudioMetadataPrefill />
 			{customStyleString ? <style>{customStyleString}</style> : null}
 			<ErrorBoundary
