@@ -17,7 +17,11 @@ import {
 	stepRepeatedSection,
 	stepSplitTrip,
 } from "./detectors";
-import { didYouKnowEnabledAtom, didYouKnowShownAtom } from "./states";
+import {
+	didYouKnowEnabledAtom,
+	didYouKnowShownAtom,
+	TIPS_RELEASED,
+} from "./states";
 
 // At most one hint per app session, across remounts.
 let shownThisSession = false;
@@ -34,7 +38,7 @@ export const DidYouKnowHints = () => {
 	const { t } = useTranslation();
 
 	useEffect(() => {
-		if (!enabled || shownThisSession) return;
+		if (!TIPS_RELEASED || !enabled || shownThisSession) return;
 		const alreadyShown = store.get(didYouKnowShownAtom);
 		if (HINT_IDS.every((id) => alreadyShown.includes(id))) return;
 
