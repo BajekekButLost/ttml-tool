@@ -166,13 +166,25 @@ export function joinSplitWords(
 }
 
 /** Join split words in every line, keeping lines with nothing to join as they are. */
+const joinedLineCache = new WeakMap<LyricLine, LyricLine>();
+
 export function joinSplitWordsInLines(lines: LyricLine[]): LyricLine[] {
 	let changed = false;
 	const result = lines.map((line) => {
+		const cached = joinedLineCache.get(line);
+		if (cached) {
+			changed ||= cached !== line;
+			return cached;
+		}
 		const words = joinSplitWords(line.words, !!line.isBG);
-		if (words === line.words) return line;
+		if (words === line.words) {
+			joinedLineCache.set(line, line);
+			return line;
+		}
 		changed = true;
-		return { ...line, words };
+		const joined = { ...line, words };
+		joinedLineCache.set(line, joined);
+		return joined;
 	});
 	return changed ? result : lines;
 }
