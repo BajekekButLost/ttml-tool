@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimalizuj okno",
       "maximize": "Maksymalizuj okno",
+      "restore": "Przywróć okno",
       "close": "Zamknij okno"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Wygląd Spicy Lyrics ma własny lawendowy kolor akcentu. Włącz własny kolor akcentu, aby użyć innego.",
         "legacyDarkThemeNote": "Nie działa, gdy wygląd Spicy Lyrics jest włączony.",
         "fontNote": "Geist, z wyglądu Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Efekty wizualne",
+        "description": "Lżejsze wyłącza rozmycie, poświaty, animacje okien dialogowych i ruchome tło podglądu, żeby aplikacja działała płynnie tam, gdzie są rysowane wolno. Wyłącza też rozmycie szkła.",
+        "auto": "Automatycznie",
+        "full": "Pełne",
+        "lite": "Lżejsze",
+        "autoLite": "Używane są Lżejsze, bo Linux rysuje te efekty wolno.",
+        "autoFull": "Używane są Pełne."
       },
       "presets": {
         "missingBackground": "Obraz tła tego zestawu ustawień jest niedostępny na tym urządzeniu. Zachowano bieżący obraz.",

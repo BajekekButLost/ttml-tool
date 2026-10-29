@@ -123,7 +123,6 @@ Decide by how often people see it:
 - **Never animate the sync surface or keyboard actions:**
   - word chips, line selection and Time-mode highlights
   - spectrogram, playhead
-  - Edit/Time/Preview switching
   - anything a shortcut triggers
   Visual changes there must not move layout (no padding, size or border-width changes) or slow it down. Test with a long song.
 - **Press feedback:** `scale(0.97)` over 150ms, pointer presses only (`:not(:focus-visible)`). Already global for Radix buttons.

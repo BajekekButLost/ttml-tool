@@ -218,6 +218,21 @@ fn clear_discord_connection(
     Ok(())
 }
 
+/// On Linux the updater can only replace an `AppImage`. Flatpak, AUR and other
+/// package-manager installs update through their package manager instead.
+#[tauri::command]
+fn can_self_update() -> bool {
+    !cfg!(target_os = "linux") || std::env::var_os("APPIMAGE").is_some()
+}
+
+/// Inside the Flatpak, GTK can't see the host's theme, so native decorations
+/// come out as GNOME's Adwaita header bar on every desktop. Draw our own title
+/// bar there instead, as on Windows. Other Linux installs keep the native one.
+#[tauri::command]
+fn uses_custom_title_bar() -> bool {
+    cfg!(target_os = "linux") && std::path::Path::new("/.flatpak-info").exists()
+}
+
 #[derive(serde::Serialize)]
 struct OpenFileData {
     pub filename: String,
@@ -522,7 +537,7 @@ pub fn run() {
         .plugin(tauri_plugin_process::init());
 
     #[cfg(any(target_os = "macos", target_os = "linux"))]
-    {
+    if can_self_update() {
         builder = builder.plugin(tauri_plugin_updater::Builder::new().build());
     }
 
@@ -593,11 +608,25 @@ pub fn run() {
                     });
                 }
             }
+            #[cfg(target_os = "linux")]
+            if uses_custom_title_bar() {
+                use tauri::Manager;
+
+                // The window is still hidden, so this never flashes the native bar.
+                // Tauri keeps edge resizing for undecorated GTK windows.
+                if let Some(main_window) = app.get_webview_window("main") {
+                    if let Err(error) = main_window.set_decorations(false) {
+                        log::warn!("Couldn't remove the native title bar: {error}");
+                    }
+                }
+            }
             show_main_window_if_frontend_stalls(app);
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
             get_open_file_data,
+            can_self_update,
+            uses_custom_title_bar,
             set_discord_activity,
             clear_discord_activity,
             pick_project_folder,

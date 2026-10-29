@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Réduire la fenêtre",
       "maximize": "Agrandir la fenêtre",
+      "restore": "Restaurer la fenêtre",
       "close": "Fermer la fenêtre"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Le design Spicy Lyrics a sa propre couleur d'accent lavande. Activez une couleur d'accent personnalisée pour en utiliser une autre.",
         "legacyDarkThemeNote": "Sans effet tant que le design Spicy Lyrics est activé.",
         "fontNote": "Geist, du design Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Effets visuels",
+        "description": "Allégé retire le flou, les halos, les animations des boîtes de dialogue et le fond animé de l'aperçu, pour que l'app reste fluide là où ils s'affichent lentement. Il désactive aussi le flou du verre.",
+        "auto": "Automatique",
+        "full": "Complet",
+        "lite": "Allégé",
+        "autoLite": "Allégé est utilisé, car Linux affiche ces effets lentement.",
+        "autoFull": "Complet est utilisé."
       },
       "presets": {
         "missingBackground": "L'image d'arrière-plan de ce préréglage n'est pas disponible sur cet appareil. L'image actuelle a été conservée.",

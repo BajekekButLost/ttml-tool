@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimizează fereastra",
       "maximize": "Maximizează fereastra",
+      "restore": "Restabilește fereastra",
       "close": "Închide fereastra"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Designul Spicy Lyrics are propria culoare de accent lavandă. Activează o culoare de accent personalizată pentru a folosi alta.",
         "legacyDarkThemeNote": "Nu are efect cât timp designul Spicy Lyrics este activat.",
         "fontNote": "Geist, din designul Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Efecte vizuale",
+        "description": "Ușor elimină estomparea, strălucirile, animațiile dialogurilor și fundalul animat al previzualizării, ca aplicația să rămână fluidă acolo unde sunt desenate încet. Dezactivează și estomparea sticlei.",
+        "auto": "Automat",
+        "full": "Complet",
+        "lite": "Ușor",
+        "autoLite": "Se folosește Ușor, pentru că Linux desenează lent aceste efecte.",
+        "autoFull": "Se folosește Complet."
       },
       "presets": {
         "missingBackground": "Imaginea de fundal a acestei presetări nu este disponibilă pe acest dispozitiv. Imaginea curentă a fost păstrată.",

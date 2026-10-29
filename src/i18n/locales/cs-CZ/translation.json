@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimalizovat okno",
       "maximize": "Maximalizovat okno",
+      "restore": "Obnovit okno",
       "close": "Zavřít okno"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Design Spicy Lyrics má vlastní levandulový akcent. Chcete-li jiný, zapněte vlastní barvu akcentu.",
         "legacyDarkThemeNote": "Nemá vliv, dokud je zapnutý design Spicy Lyrics.",
         "fontNote": "Geist, z designu Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Vizuální efekty",
+        "description": "Lehčí vypne rozostření, záře, animace dialogů a pohyblivé pozadí náhledu, aby aplikace zůstala plynulá tam, kde se vykreslují pomalu. Vypne také rozostření skla.",
+        "auto": "Automaticky",
+        "full": "Plné",
+        "lite": "Lehčí",
+        "autoLite": "Používá se Lehčí, protože Linux tyto efekty vykresluje pomalu.",
+        "autoFull": "Používá se Plné."
       },
       "presets": {
         "missingBackground": "Obrázek na pozadí této předvolby není na tomto zařízení k dispozici. Aktuální obrázek byl zachován.",

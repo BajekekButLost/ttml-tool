@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimize window",
       "maximize": "Maximize window",
+      "restore": "Restore window",
       "close": "Close window"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "The Spicy Lyrics design brings its own lavender accent. Turn on a custom accent color to use a different one.",
         "legacyDarkThemeNote": "Has no effect while the Spicy Lyrics design is on.",
         "fontNote": "Geist, from the Spicy Lyrics design"
+      },
+      "effects": {
+        "title": "Visual effects",
+        "description": "Lighter drops blur, glows, dialog animations and the moving preview background, so the app stays smooth where they render slowly. It also turns off glass blur.",
+        "auto": "Automatic",
+        "full": "Full",
+        "lite": "Lighter",
+        "autoLite": "Using Lighter, because Linux renders these effects slowly.",
+        "autoFull": "Using Full."
       },
       "presets": {
         "missingBackground": "This preset's background image is unavailable on this device. The current image was kept.",

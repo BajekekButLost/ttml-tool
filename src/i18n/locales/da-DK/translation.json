@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Minimér vindue",
       "maximize": "Maksimér vindue",
+      "restore": "Gendan vindue",
       "close": "Luk vindue"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Spicy Lyrics-designet har sin egen lavendelfarvede accent. Slå en brugerdefineret accentfarve til for at bruge en anden.",
         "legacyDarkThemeNote": "Har ingen effekt, mens Spicy Lyrics-designet er slået til.",
         "fontNote": "Geist, fra Spicy Lyrics-designet"
+      },
+      "effects": {
+        "title": "Visuelle effekter",
+        "description": "Lettere fjerner sløring, glød, dialoganimationer og den bevægelige baggrund i forhåndsvisningen, så appen forbliver jævn, hvor de tegnes langsomt. Den slår også glassløring fra.",
+        "auto": "Automatisk",
+        "full": "Fuld",
+        "lite": "Lettere",
+        "autoLite": "Bruger Lettere, fordi Linux tegner disse effekter langsomt.",
+        "autoFull": "Bruger Fuld."
       },
       "presets": {
         "missingBackground": "Denne forudindstillings baggrundsbillede er ikke tilgængelig på denne enhed. Det aktuelle billede blev bevaret.",

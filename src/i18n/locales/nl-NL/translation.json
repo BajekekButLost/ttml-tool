@@ -29,6 +29,7 @@
     "window": {
       "minimize": "Venster minimaliseren",
       "maximize": "Venster maximaliseren",
+      "restore": "Venster herstellen",
       "close": "Venster sluiten"
     }
   },
@@ -644,6 +645,15 @@
         "accentNote": "Het Spicy Lyrics-ontwerp heeft een eigen lavendelkleurig accent. Zet een eigen accentkleur aan om een andere te gebruiken.",
         "legacyDarkThemeNote": "Heeft geen effect zolang het Spicy Lyrics-ontwerp aan staat.",
         "fontNote": "Geist, uit het Spicy Lyrics-ontwerp"
+      },
+      "effects": {
+        "title": "Visuele effecten",
+        "description": "Lichter schakelt vervaging, gloed, dialooganimaties en de bewegende achtergrond van het voorbeeld uit, zodat de app soepel blijft waar die traag worden getekend. Het zet ook de glasvervaging uit.",
+        "auto": "Automatisch",
+        "full": "Volledig",
+        "lite": "Lichter",
+        "autoLite": "Lichter wordt gebruikt, omdat Linux deze effecten traag tekent.",
+        "autoFull": "Volledig wordt gebruikt."
       },
       "presets": {
         "missingBackground": "De achtergrondafbeelding van deze voorinstelling is niet beschikbaar op dit apparaat. Het huidige beeld werd behouden.",
