@@ -294,6 +294,30 @@
       "copyPrevious": "Önceki zamanlamayı kopyala"
     }
   },
+  "logoColor": {
+    "title": "Logo rengi",
+    "description": "Başlık çubuğundaki ve rehberin karşılama ekranındaki logo için bir renk seçin.",
+    "descriptionDesktop": "Uygulamanın pencere ve görev çubuğu simgesi, Windows'ta ise masaüstü ve Başlat menüsü kısayolları için bir renk seçin.",
+    "colorLabel": "Renk",
+    "customLabel": "Özel logo rengi",
+    "designNote": "Logo yalnızca Spicy Lyrics tasarımı açıkken görünür.",
+    "presets": {
+      "default": "Varsayılan",
+      "defaultDesc": "Tasarımın kendi rengi",
+      "lilac": "Leylak",
+      "lilacDesc": "v3 logosundan",
+      "purple": "Mor",
+      "purpleDesc": "Çok renkli logodan",
+      "red": "Kırmızı",
+      "redDesc": "v0.9 logosundan",
+      "gold": "Altın",
+      "green": "Yeşil",
+      "blue": "Mavi",
+      "white": "Beyaz",
+      "custom": "Özel",
+      "customDesc": "İstediğiniz rengi seçin"
+    }
+  },
   "common": {
     "close": "Kapat",
     "autoDetect": "Otomatik algıla",

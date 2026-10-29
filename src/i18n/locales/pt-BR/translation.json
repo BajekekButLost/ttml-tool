@@ -294,6 +294,30 @@
       "copyPrevious": "Copiar tempos anteriores"
     }
   },
+  "logoColor": {
+    "title": "Cor do logotipo",
+    "description": "Escolha uma cor para o logotipo na barra de título e na tela de boas-vindas do guia.",
+    "descriptionDesktop": "Escolha uma cor para o ícone da janela e da barra de tarefas e, no Windows, para os atalhos da área de trabalho e do menu Iniciar.",
+    "colorLabel": "Cor",
+    "customLabel": "Cor personalizada do logotipo",
+    "designNote": "O logotipo só aparece com o design do Spicy Lyrics ativado.",
+    "presets": {
+      "default": "Padrão",
+      "defaultDesc": "A cor do próprio design",
+      "lilac": "Lilás",
+      "lilacDesc": "Do logotipo v3",
+      "purple": "Roxo",
+      "purpleDesc": "Do logotipo multicolorido",
+      "red": "Vermelho",
+      "redDesc": "Do logotipo v0.9",
+      "gold": "Dourado",
+      "green": "Verde",
+      "blue": "Azul",
+      "white": "Branco",
+      "custom": "Personalizada",
+      "customDesc": "Escolha qualquer cor"
+    }
+  },
   "common": {
     "close": "Fechar",
     "autoDetect": "Detecção automática",
