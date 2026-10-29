@@ -39,6 +39,15 @@
     "untimedLines": "{count, plural, one {# linje mangler timing} other {# linjer mangler timing}}",
     "jumpToUntimed": "Sæt tider for første linje uden timing"
   },
+  "previewProblems": {
+    "count": "{count, plural, one {# ord har et timingproblem} other {# ord har timingproblemer}}",
+    "jump": "Vælg det første",
+    "untimed": "Ingen timing i en linje med timing",
+    "untimedLine": "Ingen timing endnu",
+    "endsBeforeStart": "Slutter, før det starter",
+    "startsBeforeLine": "Starter før sin linje",
+    "endsAfterLine": "Slutter efter sin linje"
+  },
   "beginnerGuide": {
     "empty": {
       "open": "Åbn sangtekstfil",
@@ -439,7 +448,7 @@
       "mode": "Tilstand",
       "standard": "Standard",
       "timing": "Timing",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Enkel sangteksttilstand",
       "forceLineRendering": "Vis som linjesynkroniseret",
       "background": "Baggrund",
@@ -844,7 +853,7 @@
       "timingOverviewAutoScrollDesc": "Hold tidsoversigten rullet til afspilningspositionen.",
       "vsyncDesc": "Opdater Standard- og Toxi-forhåndsvisningerne hvert billede i stedet for cirka 30 gange i sekundet. Mere flydende, men bruger mere CPU.",
       "showFpsDesc": "Vis en billedfrekvenstæller på forhåndsvisningen.",
-      "syncLevelDesc": "Ord: Synkronisér hvert ord. Linje: Synkronisér hele linjer, og fordel ordene jævnt som en grov timing, du finjusterer i spektrogrammet.",
+      "syncLevelDesc": "Ord: Synkronisér hvert ord. Linje: Synkronisér hele linjer, og fordel ordene jævnt. Linje gemmer stadig timing for hvert ord, ikke linjesynkroniseret tekst, så finjustér ordene i spektrogrammet.",
       "previewModeDesc": "Vælg, hvilken forhåndsvisning fanen Forhåndsvisning viser.",
       "spicyBackgroundDesc": "Hvad der vises bag Spicy-forhåndsvisningen.",
       "fadeWidthDesc": "Hvor blød kanten af fremhævningen er, når et ord fyldes i Standard- og Toxi-forhåndsvisningerne."
@@ -864,6 +873,10 @@
     "order": "Rækkefølge",
     "orderChronological": "Kronologisk",
     "orderTextual": "Tekstrækkefølge"
+  },
+  "joinSplitWords": {
+    "label": "Saml opdelte ord",
+    "description": "Vis et ord, der synges i dele, som ét ord, når delene passer jævnt sammen, som indstillingen Join Split Words i Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -1106,7 +1119,10 @@
     "volume": "Lydstyrke",
     "playbackRate": "Afspilningshastighed",
     "preservesPitch": "Bevar tonehøjde",
-    "clickToLoadMusic": "Klik på musikikonet for at indlæse lyd",
+    "audioMenu": "Lyd og afspilning",
+    "loadedAudio": "Indlæst lyd",
+    "replaceAudio": "Erstat",
+    "resetSpeed": "Nulstil til 1×",
     "playPause": "Afspil / pause musik",
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },
@@ -1166,6 +1182,11 @@
     "customKey": "Brugerdefineret felt",
     "addPresets": "Tilføj alle standardfelter",
     "clear": "Ryd"
+  },
+  "helpText": {
+    "metadataArtists": "Hvem der fremfører sangen, som nummeret er krediteret på streamingtjenester. Eksempel: \"Shake It Off\" er af Taylor Swift.",
+    "metadataSongwriter": "Hvem der skrev musikken og teksten, ifølge sangskriverkrediteringerne. Ofte andre end kunstnerne. Eksempel: \"Shake It Off\" er skrevet af Taylor Swift, Max Martin og Shellback.",
+    "openSongwritersGuide": "Åbn guiden om sangskrivere"
   },
   "lrclib": {
     "placeholder": "Sangtitel og kunstner…",
@@ -1493,6 +1514,23 @@
     "openContributorProfile": "Åbn GitHub-profilen for {name}",
     "unknown": "Ukendt"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Separate spor",
+    "settingDesc": "Vis baggrundslinjer i deres eget spor under hovedlinjerne. Spor er kun til visning: skift en linjes rolle i redigeringstilstand.",
+    "menu": "Spor",
+    "visibleLanes": "Vis spor",
+    "duetLane": "Separat duetspor",
+    "lane": {
+      "main": "Hoved",
+      "duet": "Duet",
+      "bg": "Baggrund"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Slut på linje og sidste ord. Træk med Alt for kun at flytte det ene.",
+    "wordEndHandle": "Slut på sidste ord",
+    "lineEndHandle": "Linjens slut"
+  },
   "spectrogram": {
     "invalidEndTime": "Kan ikke vælge denne sluttid",
     "noAudioLoaded": "Indlæs en lydfil for at vise spektrogrammet",
@@ -1508,6 +1546,17 @@
       "4096": "4096 (flest detaljer)"
     },
     "height": "Visningshøjde"
+  },
+  "spectrogramFollow": {
+    "toggle": "Følg afspilningshovedet",
+    "shortcut": "Spektrogram - Følg afspilningshovedet til/fra",
+    "setting": "Følg afspilningshovedet",
+    "settingDesc": "Ruller spektrogrammet, så afspilningshovedet forbliver synligt. Rulning eller træk sætter det på pause, indtil du trykker afspil eller venter et øjeblik.",
+    "style": "Følgemåde",
+    "page": "Side for side",
+    "pageDesc": "Springer frem, når afspilningshovedet forlader visningen.",
+    "continuous": "Løbende",
+    "continuousDesc": "Ruller med afspilningshovedet og holder det i midten."
   },
   "export": {
     "recoveryUntimed": "Denne gendannede eksport indeholder tekster uden timing. Tjek timingen, før du indsender.",
