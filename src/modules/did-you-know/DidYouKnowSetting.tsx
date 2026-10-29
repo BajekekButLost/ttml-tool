@@ -2,10 +2,11 @@ import { Lightbulb24Regular } from "@fluentui/react-icons";
 import { Box, Card, Flex, Text } from "@radix-ui/themes";
 import { useTranslation } from "react-i18next";
 import { SettingToggle } from "$/modules/settings/components/WorkflowControls";
-import { didYouKnowEnabledAtom } from "./states";
+import { didYouKnowEnabledAtom, TIPS_RELEASED } from "./states";
 
 export const DidYouKnowSetting = () => {
 	const { t } = useTranslation();
+	if (!TIPS_RELEASED) return null;
 	return (
 		<Card>
 			<Text as="label">

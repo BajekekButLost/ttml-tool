@@ -4,7 +4,7 @@ export const settingsSearchKeywords: Record<string, string> = {
 	editing:
 		"edit mode ribbon advanced controls translation romanization per word line field",
 	syncing:
-		"sync timing timestamp judgment keybinding trigger offset commit smart last word upcoming highlight threshold color wrap scroll focus spectrogram hover tab position glow manual double click background line touch panel skip separate pass inline sync with main skip while syncing background vocals romanization tips hints",
+		"sync timing timestamp judgment keybinding trigger offset commit smart last word upcoming highlight threshold color wrap scroll focus spectrogram hover tab position glow manual double click background line touch panel skip separate pass inline sync with main skip while syncing background vocals romanization",
 	preview:
 		"preview fps vsync fade rendering romanization translation simple lyrics line synced background instant auto scroll",
 	files:
