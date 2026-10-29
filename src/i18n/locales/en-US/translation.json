@@ -1294,6 +1294,16 @@
     "applyToAll": "Replace all identical words",
     "caseSensitive": "Match case"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Replace word combination",
+    "description": "Click a token to edit its text. Timing stays the same.",
+    "word": "Word {index}",
+    "reorderWord": "Reorder word {index}",
+    "reorderHint": "Drag a handle to reorder, or focus a token and press Alt+Left/Right.",
+    "position": "Position {index} of {count}",
+    "applyToAll": "Replace all matching combinations",
+    "adjacentOnly": "Select adjacent words or syllables in one line to replace a combination."
+  },
   "replaceRomanizationDialog": {
     "title": "Replace romanization",
     "description": "New romanization:",

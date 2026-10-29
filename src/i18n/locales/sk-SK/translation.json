@@ -1294,6 +1294,16 @@
     "applyToAll": "Nahradiť všetky rovnaké slová",
     "caseSensitive": "Rozlišovať veľké a malé písmená"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Nahradiť kombináciu slov",
+    "description": "Kliknutím na slovo upravíte jeho text. Časovanie zostane rovnaké.",
+    "word": "Slovo {index}",
+    "reorderWord": "Presunúť slovo {index}",
+    "reorderHint": "Poradie zmeníte potiahnutím úchytu alebo zameraním slova a stlačením Alt+šípka vľavo/vpravo.",
+    "position": "Pozícia {index} z {count}",
+    "applyToAll": "Nahradiť všetky zodpovedajúce kombinácie",
+    "adjacentOnly": "Ak chcete nahradiť kombináciu, vyberte susediace slová alebo slabiky v jednom riadku."
+  },
   "replaceRomanizationDialog": {
     "title": "Nahradiť prepis do latinky",
     "description": "Nový prepis do latinky:",

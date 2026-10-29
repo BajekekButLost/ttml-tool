@@ -1294,6 +1294,16 @@
     "applyToAll": "Remplacer tous les mots identiques",
     "caseSensitive": "Respecter la casse"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Remplacer une combinaison de mots",
+    "description": "Cliquez sur un mot pour modifier son texte. Les temps restent inchangés.",
+    "word": "Mot {index}",
+    "reorderWord": "Déplacer le mot {index}",
+    "reorderHint": "Faites glisser une poignée pour changer l'ordre, ou sélectionnez un mot et appuyez sur Alt+Gauche/Droite.",
+    "position": "Position {index} sur {count}",
+    "applyToAll": "Remplacer toutes les combinaisons correspondantes",
+    "adjacentOnly": "Sélectionnez des mots ou syllabes adjacents sur une même ligne pour remplacer une combinaison."
+  },
   "replaceRomanizationDialog": {
     "title": "Remplacer la romanisation",
     "description": "Nouvelle romanisation :",

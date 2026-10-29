@@ -1294,6 +1294,16 @@
     "applyToAll": "Reemplazar todas las palabras idénticas",
     "caseSensitive": "Distinguir mayúsculas y minúsculas"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Reemplazar combinación de palabras",
+    "description": "Haz clic en una palabra para editar su texto. Los tiempos se mantienen.",
+    "word": "Palabra {index}",
+    "reorderWord": "Mover palabra {index}",
+    "reorderHint": "Arrastra un asa para cambiar el orden o enfoca una palabra y pulsa Alt+Izquierda/Derecha.",
+    "position": "Posición {index} de {count}",
+    "applyToAll": "Reemplazar todas las combinaciones coincidentes",
+    "adjacentOnly": "Selecciona palabras o sílabas contiguas en una misma línea para reemplazar una combinación."
+  },
   "replaceRomanizationDialog": {
     "title": "Reemplazar la romanización",
     "description": "Nueva romanización:",

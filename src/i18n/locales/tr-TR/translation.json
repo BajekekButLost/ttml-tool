@@ -1294,6 +1294,16 @@
     "applyToAll": "Tüm aynı kelimeleri değiştir",
     "caseSensitive": "Büyük/küçük harfe duyarlı"
   },
+  "replaceWordCombinationDialog": {
+    "title": "Kelime birleşimini değiştir",
+    "description": "Metnini düzenlemek için bir kelimeye tıklayın. Zamanlamalar aynı kalır.",
+    "word": "Kelime {index}",
+    "reorderWord": "Kelime {index} konumunu değiştir",
+    "reorderHint": "Sıralamak için tutamacı sürükleyin veya kelimeye odaklanıp Alt+Sol/Sağ tuşlarına basın.",
+    "position": "Konum {index}/{count}",
+    "applyToAll": "Eşleşen tüm birleşimleri değiştir",
+    "adjacentOnly": "Bir birleşimi değiştirmek için aynı satırda bitişik kelimeler veya heceler seçin."
+  },
   "replaceRomanizationDialog": {
     "title": "Latin harflerine çeviriyi değiştir",
     "description": "Yeni Latin harflerine çeviri:",

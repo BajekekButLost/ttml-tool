@@ -1294,6 +1294,16 @@
     "applyToAll": "替换所有相同的字",
     "caseSensitive": "区分大小写"
   },
+  "replaceWordCombinationDialog": {
+    "title": "替换单词组合",
+    "description": "点击单词即可编辑文本，时间保持不变。",
+    "word": "单词 {index}",
+    "reorderWord": "移动单词 {index}",
+    "reorderHint": "拖动手柄以调整顺序，或聚焦单词后按 Alt+左/右方向键。",
+    "position": "第 {index} 个，共 {count} 个",
+    "applyToAll": "替换所有匹配的组合",
+    "adjacentOnly": "请选择同一行内相邻的单词或音节来替换组合。"
+  },
   "replaceRomanizationDialog": {
     "title": "替换罗马音",
     "description": "新罗马音：",
