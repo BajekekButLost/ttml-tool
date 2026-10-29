@@ -1011,7 +1011,9 @@
   "settingsDialog": {
     "search": "Søg i indstillinger",
     "clearSearch": "Ryd søgning",
-    "noSearchResults": "Ingen matchende kategorier",
+    "matchCount": "Matchende indstillinger: {count}",
+    "noResults": "Ingen indstillinger matcher \"{query}\"",
+    "noResultsDesc": "Prøv et andet ord, eller ryd søgningen.",
     "title": "Indstillinger",
     "common": {
       "latencyTest": "Lyd/input-latenstest"
@@ -1083,19 +1085,14 @@
     "tab": {
       "common": "Generelt",
       "appearance": "Udseende",
-      "audio": "Lyd",
-      "keybindings": "Genveje",
-      "spectrogram": "Spektrogram",
+      "editing": "Redigering",
+      "syncing": "Synkronisering",
+      "preview": "Forhåndsvisning",
+      "audioSpectrogram": "Lyd og spektrogram",
+      "importFiles": "Import og filer",
       "backup": "Sikkerhedskopi",
-      "editor": "Editor og synkronisering",
-      "files": "Filer og lager",
+      "keybindings": "Genveje",
       "changelog": "Ændringslog"
-    },
-    "page": {
-      "generalDesc": "Sprog, privatliv og adfærd for hele appen.",
-      "editorDesc": "Tidsinput, synkroniseringsadfærd og visuelle signaler.",
-      "filesDesc": "Oprydning ved import, historik for automatisk lagring og flytbare sikkerhedskopier.",
-      "audioDesc": "Afspilning, equalizer og spektrogramvisning."
     }
   },
   "autoSegmentApplied": "Automatisk opdelt med {engine}",

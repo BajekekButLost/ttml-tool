@@ -1011,7 +1011,9 @@
   "settingsDialog": {
     "search": "Hledat v nastavení",
     "clearSearch": "Vymazat vyhledávání",
-    "noSearchResults": "Žádné odpovídající kategorie",
+    "matchCount": "Odpovídající nastavení: {count}",
+    "noResults": "Žádné nastavení neodpovídá „{query}“",
+    "noResultsDesc": "Zkuste jiné slovo nebo vymažte hledání.",
     "title": "Předvolby",
     "common": {
       "latencyTest": "Test latence zvuku/vstupu"
@@ -1083,19 +1085,14 @@
     "tab": {
       "common": "Obecné",
       "appearance": "Vzhled",
-      "audio": "Zvuk",
-      "keybindings": "Klávesové zkratky",
-      "spectrogram": "Spektrogram",
+      "editing": "Úpravy",
+      "syncing": "Synchronizace",
+      "preview": "Náhled",
+      "audioSpectrogram": "Zvuk a spektrogram",
+      "importFiles": "Import a soubory",
       "backup": "Zálohování",
-      "editor": "Editor a synchronizace",
-      "files": "Soubory a úložiště",
+      "keybindings": "Klávesové zkratky",
       "changelog": "Seznam změn"
-    },
-    "page": {
-      "generalDesc": "Jazyk, soukromí a chování celé aplikace.",
-      "editorDesc": "Zadávání časů, chování synchronizace a vizuální podněty.",
-      "filesDesc": "Čištění při importu, historie automatického ukládání a přenosné zálohy.",
-      "audioDesc": "Přehrávání, ekvalizér a zobrazení spektrogramu."
     }
   },
   "autoSegmentApplied": "Automaticky rozděleno pomocí {engine}",

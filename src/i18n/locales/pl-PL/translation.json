@@ -1011,7 +1011,9 @@
   "settingsDialog": {
     "search": "Szukaj w ustawieniach",
     "clearSearch": "Wyczyść wyszukiwanie",
-    "noSearchResults": "Brak pasujących kategorii",
+    "matchCount": "Pasujące ustawienia: {count}",
+    "noResults": "Żadne ustawienie nie pasuje do „{query}”",
+    "noResultsDesc": "Spróbuj innego słowa lub wyczyść wyszukiwanie.",
     "title": "Preferencje",
     "common": {
       "latencyTest": "Test opóźnienia audio/wejścia"
@@ -1083,19 +1085,14 @@
     "tab": {
       "common": "Ogólne",
       "appearance": "Wygląd",
-      "audio": "Dźwięk",
-      "keybindings": "Skróty klawiszowe",
-      "spectrogram": "Spektrogram",
+      "editing": "Edycja",
+      "syncing": "Synchronizacja",
+      "preview": "Podgląd",
+      "audioSpectrogram": "Dźwięk i spektrogram",
+      "importFiles": "Import i pliki",
       "backup": "Kopia zapasowa",
-      "editor": "Edytor i synchronizacja",
-      "files": "Pliki i przechowywanie",
+      "keybindings": "Skróty klawiszowe",
       "changelog": "Lista zmian"
-    },
-    "page": {
-      "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
-      "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
-      "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
-      "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."
     }
   },
   "autoSegmentApplied": "Automatycznie podzielono za pomocą {engine}",
