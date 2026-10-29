@@ -294,6 +294,30 @@
       "copyPrevious": "Kopírovať predchádzajúce časovanie"
     }
   },
+  "logoColor": {
+    "title": "Farba loga",
+    "description": "Vyberte farbu loga v záhlaví okna a na úvodnej obrazovke sprievodcu.",
+    "descriptionDesktop": "Vyberte farbu ikony okna a panela úloh a vo Windows aj odkazov na pracovnej ploche a v ponuke Štart.",
+    "colorLabel": "Farba",
+    "customLabel": "Vlastná farba loga",
+    "designNote": "Logo sa zobrazuje len so zapnutým dizajnom Spicy Lyrics.",
+    "presets": {
+      "default": "Predvolená",
+      "defaultDesc": "Vlastná farba dizajnu",
+      "lilac": "Orgovánová",
+      "lilacDesc": "Z loga v3",
+      "purple": "Fialová",
+      "purpleDesc": "Z viacfarebného loga",
+      "red": "Červená",
+      "redDesc": "Z loga v0.9",
+      "gold": "Zlatá",
+      "green": "Zelená",
+      "blue": "Modrá",
+      "white": "Biela",
+      "custom": "Vlastná",
+      "customDesc": "Vyberte ľubovoľnú farbu"
+    }
+  },
   "common": {
     "close": "Zavrieť",
     "autoDetect": "Automatická detekcia",

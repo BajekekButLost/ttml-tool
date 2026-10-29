@@ -424,6 +424,8 @@ export interface AppearancePresetSettings {
 	legacyDarkTheme: boolean;
 	legacySpaceLabels: boolean;
 	spicyLyricsDesign: boolean;
+	logoColorPreset: string;
+	logoColorCustom: string;
 }
 
 export interface AppearancePreset {
