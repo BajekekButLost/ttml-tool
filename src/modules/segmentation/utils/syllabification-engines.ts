@@ -3,6 +3,7 @@ import nlpSpeech from "compromise-speech";
 import silabas from "silabas";
 import syllabify from "syllabify";
 import syllabifyFr from "syllabify-fr";
+import { graphemes, mapSourceSlices, preservesSource } from "$/utils/graphemes";
 import prosodicDictionary from "../data/prosodic-dict.json";
 import type { SegmentationEngineId } from "../types";
 
@@ -53,35 +54,17 @@ const splitAtLengths = (word: string, lengths: number[]) => {
 };
 
 const compromiseSplit = (word: string) => {
-	const syllables = (nlpWithSpeech(word).syllables() as string[][]).flat();
+	const normalize = (value: string) =>
+		value
+			.normalize("NFD")
+			.replace(/\p{M}/gu, "")
+			.replace(/’/g, "'")
+			.toLowerCase();
+	const syllables = (
+		nlpWithSpeech(normalize(word)).syllables() as string[][]
+	).flat();
 	if (syllables.length <= 1) return [word];
-
-	let offset = 0;
-	const intervals = syllables.map((syllable) => {
-		const remaining = word.slice(offset);
-		const match = remaining.toLowerCase().indexOf(syllable.toLowerCase());
-		const end = offset + (match < 0 ? 0 : match) + syllable.length;
-		const begin = offset;
-		offset = end;
-		return { begin, end };
-	});
-
-	for (let index = 0; index < intervals.length; index++) {
-		const interval = intervals[index];
-		if (index === intervals.length - 1) {
-			interval.end = word.length;
-			continue;
-		}
-		const next = intervals[index + 1];
-		interval.end = next.begin;
-		if (/[’']/.test(word.charAt(interval.end - 1))) {
-			interval.end--;
-			next.begin--;
-		}
-	}
-	return intervals
-		.map(({ begin, end }) => word.slice(begin, end))
-		.filter(Boolean);
+	return mapSourceSlices(word, syllables, normalize) ?? [word];
 };
 
 const mergeContractionSuffix = (parts: string[]) => {
@@ -97,10 +80,17 @@ const mergeContractionSuffix = (parts: string[]) => {
 };
 
 const prosodicSplit = (word: string) => {
-	const key = word.toLowerCase();
+	const key = word.normalize("NFC").toLowerCase().replace(/’/g, "'");
+	if (
+		/^(?:y'all|(?:could|would|should|might|must|we|you|they|i|he|she|it|that|there|who|what|let)(?:'s|'re|'ve|'ll|'d|'m)|(?:can|won|don|doesn|didn|isn|aren|wasn|weren|hasn|haven|hadn|couldn|wouldn|shouldn|mustn|needn)'t)$/i.test(
+			key,
+		)
+	)
+		return [word];
+	const elided = key.replace(/'$/, "");
 	const entry =
 		dictionary.get(key) ??
-		(key.endsWith("in") ? dictionary.get(`${key}g`) : undefined);
+		(elided.endsWith("in") ? dictionary.get(`${elided}g`) : undefined);
 	if (entry !== undefined) {
 		return splitAtLengths(word, typeof entry === "number" ? [entry] : entry);
 	}
@@ -113,34 +103,54 @@ const isJapaneseCharacter = (char: string | undefined) =>
 const isJapanesePunctuation = (char: string | undefined) =>
 	!!char && /[\p{P}\p{S}]/u.test(char);
 const isJapaneseModifier = (char: string | undefined) =>
-	!!char && "ャュョゃゅょンッっ".includes(char);
+	!!char &&
+	/^[ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ]$/u.test(char.normalize("NFKC"));
+
+export const splitJapaneseRun = (text: string) => {
+	const tokens: string[] = [];
+	for (const char of graphemes(text)) {
+		if (
+			isJapaneseModifier(char) &&
+			tokens.length > 0 &&
+			/[\p{Script=Hiragana}\p{Script=Katakana}]$/u.test(
+				tokens[tokens.length - 1].normalize("NFKC"),
+			)
+		) {
+			tokens[tokens.length - 1] += char;
+		} else {
+			tokens.push(char);
+		}
+	}
+	return tokens;
+};
 
 /** Adapted from amll-dev/amll-editor's Japanese basic engine. */
 export const splitJapaneseText = (text: string) => {
 	if (!text.trim()) return [text];
-	const chars = Array.from(text);
+	const chars = graphemes(text);
 	const tokens: string[] = [];
-	while (chars.length > 0) {
+	let index = 0;
+	while (index < chars.length) {
 		const token: string[] = [];
-		if (isJapaneseCharacter(chars[0])) {
-			token.push(chars.shift() ?? "");
-			if (isJapaneseModifier(chars[0])) token.push(chars.shift() ?? "");
-			while (isJapanesePunctuation(chars[0])) token.push(chars.shift() ?? "");
+		if (isJapaneseCharacter(chars[index])) {
+			token.push(chars[index++]);
+			while (isJapaneseModifier(chars[index])) token.push(chars[index++]);
+			while (isJapanesePunctuation(chars[index])) token.push(chars[index++]);
 			tokens.push(token.join(""));
 			continue;
 		}
 		while (
-			chars.length > 0 &&
-			!isJapaneseCharacter(chars[0]) &&
-			!isJapanesePunctuation(chars[0]) &&
-			!/^\s$/u.test(chars[0] ?? "")
+			index < chars.length &&
+			!isJapaneseCharacter(chars[index]) &&
+			!isJapanesePunctuation(chars[index]) &&
+			!/^\s$/u.test(chars[index] ?? "")
 		) {
-			token.push(chars.shift() ?? "");
+			token.push(chars[index++]);
 		}
-		while (isJapanesePunctuation(chars[0])) token.push(chars.shift() ?? "");
+		while (isJapanesePunctuation(chars[index])) token.push(chars[index++]);
 		if (token.length > 0) tokens.push(token.join(""));
-		if (chars.length > 0 && /^\s$/u.test(chars[0] ?? "")) {
-			tokens.push(chars.shift() ?? "");
+		if (index < chars.length && /^\s$/u.test(chars[index] ?? "")) {
+			tokens.push(chars[index++]);
 		}
 	}
 	return tokens;
@@ -219,4 +229,32 @@ SYLLABIFICATION_ENGINES.sort((left, right) =>
 
 export const getSyllabificationEngine = (id: SegmentationEngineId) =>
 	SYLLABIFICATION_ENGINES.find((engine) => engine.id === id) ??
-	SYLLABIFICATION_ENGINES[0];
+	SYLLABIFICATION_ENGINES.find((engine) => engine.id === "none") ?? {
+		id: "none" as const,
+		name: "None",
+		description: "Do not split words automatically.",
+		split: (word: string) => [word],
+	};
+
+const splitCache = new Map<string, string[]>();
+
+for (const engine of SYLLABIFICATION_ENGINES) {
+	const split = engine.split;
+	engine.split = (word) => {
+		const key = `${engine.id}\u0000${word}`;
+		const cached = splitCache.get(key);
+		if (cached) return [...cached];
+		let result = [word];
+		try {
+			const proposal = split(word);
+			result = preservesSource(word, proposal)
+				? proposal
+				: (mapSourceSlices(word, proposal) ?? [word]);
+		} catch {
+			result = [word];
+		}
+		if (splitCache.size >= 4096) splitCache.clear();
+		splitCache.set(key, result);
+		return [...result];
+	};
+}

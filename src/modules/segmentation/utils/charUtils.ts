@@ -1,9 +1,8 @@
 import { CharType } from "../types";
 
 export const RE_WHITESPACE = /[\s\n\t]/;
-export const RE_LATIN =
-	/[\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{M}'’]/u;
-export const RE_NUMERIC = /[0-9]/;
+export const RE_LATIN = /[\p{L}\p{M}'’]/u;
+export const RE_NUMERIC = /\p{N}/u;
 
 /**
  * 判断单个字符的类型
@@ -12,20 +11,16 @@ export function getCharType(c: string): CharType {
 	if (!c || c.trim() === "") {
 		return CharType.Whitespace;
 	}
-	const code = c.charCodeAt(0);
-
 	if (RE_WHITESPACE.test(c)) return CharType.Whitespace;
-	if (RE_LATIN.test(c)) return CharType.Latin;
-	if (RE_NUMERIC.test(c)) return CharType.Numeric;
-
 	if (
-		(code >= 0x4e00 && code <= 0x9fff) || // CJK
-		(code >= 0x3040 && code <= 0x309f) || // 日语平假名
-		(code >= 0x30a0 && code <= 0x30ff) || // 日语片假名
-		(code >= 0xac00 && code <= 0xd7af) // 韩语
+		/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(
+			c,
+		)
 	) {
 		return CharType.Cjk;
 	}
+	if (RE_LATIN.test(c)) return CharType.Latin;
+	if (RE_NUMERIC.test(c)) return CharType.Numeric;
 	// 标点符号和emoji等
 	return CharType.Other;
 }

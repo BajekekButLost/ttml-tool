@@ -4,6 +4,7 @@
 
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import { graphemes, preservesSource } from "$/utils/graphemes";
 import type { SegmentationEngineId } from "../types";
 
 type Scope = "all" | "range";
@@ -65,7 +66,18 @@ export const segmentationCustomRulesAtom = atom<
 >(
 	(get) => {
 		const rulesArray = get(segmentationCustomRulesStorageAtom);
-		return new Map(rulesArray);
+		return new Map(
+			Array.isArray(rulesArray)
+				? rulesArray.filter(
+						(entry) =>
+							Array.isArray(entry) &&
+							typeof entry[0] === "string" &&
+							Array.isArray(entry[1]) &&
+							entry[1].every((part) => typeof part === "string") &&
+							preservesSource(entry[0], entry[1]),
+					)
+				: [],
+		);
 	},
 	(_get, set, newMap) => {
 		const rulesArray = Array.from(newMap.entries());
@@ -73,17 +85,55 @@ export const segmentationCustomRulesAtom = atom<
 	},
 );
 
-const segmentationLearnedRulesStorageAtom =
-	atomWithStorage<LearnedRulesStorage>("segmentation.learnedRules", []);
+const segmentationLearnedRulesStorageAtom = atomWithStorage<
+	LearnedRulesStorage | { version: 2; rules: LearnedRulesStorage }
+>("segmentation.learnedRules", []);
 
 export const segmentationLearnedRulesAtom = atom<
 	Map<string, number[]>,
 	[Map<string, number[]>],
 	void
 >(
-	(get) => new Map(get(segmentationLearnedRulesStorageAtom)),
+	(get) => {
+		const stored = get(segmentationLearnedRulesStorageAtom);
+		const legacy = Array.isArray(stored);
+		const entries = legacy ? stored : stored?.version === 2 ? stored.rules : [];
+		const rules = new Map<string, number[]>();
+		if (!Array.isArray(entries)) return rules;
+		for (const entry of entries) {
+			if (
+				!Array.isArray(entry) ||
+				typeof entry[0] !== "string" ||
+				!Array.isArray(entry[1])
+			)
+				continue;
+			const [key, boundaries] = entry;
+			const chars = graphemes(key);
+			const offsets = [0];
+			for (const char of chars)
+				offsets.push(offsets[offsets.length - 1] + Array.from(char).length);
+			const mapped = boundaries.map((value) =>
+				legacy ? offsets.indexOf(value) : value,
+			);
+			rules.set(
+				key,
+				[
+					...new Set(
+						mapped.filter(
+							(value) =>
+								Number.isInteger(value) && value > 0 && value < chars.length,
+						),
+					),
+				].sort((a, b) => a - b),
+			);
+		}
+		return rules;
+	},
 	(_get, set, rules) =>
-		set(segmentationLearnedRulesStorageAtom, Array.from(rules.entries())),
+		set(segmentationLearnedRulesStorageAtom, {
+			version: 2,
+			rules: Array.from(rules.entries()),
+		}),
 );
 
 export const splitWordApplyToAllAtom = atomWithStorage(

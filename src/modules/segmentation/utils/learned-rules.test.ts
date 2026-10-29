@@ -21,6 +21,20 @@ const config = (learnedRules: Map<string, number[]>): SegmentationConfig => ({
 });
 
 describe("learned split rules", () => {
+	it("maps canonical spellings at grapheme boundaries", () => {
+		const rule = createLearnedRule("ábc", [1]);
+		expect(rule).not.toBeNull();
+		expect(applyLearnedRule("a\u0301bc", new Map([["ábc", [1]]]))).toEqual([
+			"a\u0301",
+			"bc",
+		]);
+	});
+
+	it("sorts and deduplicates malformed persisted boundaries", () => {
+		expect(
+			applyLearnedRule("hello", new Map([["hello", [3, 1, 3, -1, 1.5]]])),
+		).toEqual(["h", "el", "lo"]);
+	});
 	it("normalizes case and keeps surrounding Unicode punctuation", () => {
 		const rule = createLearnedRule("Beautiful", [4, 7]);
 		expect(rule).toEqual({ key: "beautiful", boundaries: [4, 7] });

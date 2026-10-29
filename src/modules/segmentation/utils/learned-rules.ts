@@ -1,4 +1,4 @@
-/** Utilities for user-learned word splits. */
+import { graphemes } from "$/utils/graphemes";
 
 const BOUNDARY_PUNCTUATION_OR_SYMBOL = /^[\p{P}\p{S}]$/u;
 
@@ -15,7 +15,7 @@ export interface LearnedWordParts {
  * as `hello` without changing the text the editor emits.
  */
 export function getLearnedWordParts(text: string): LearnedWordParts | null {
-	const chars = Array.from(text);
+	const chars = graphemes(text);
 	let coreStart = 0;
 	let coreEnd = chars.length;
 
@@ -33,7 +33,7 @@ export function getLearnedWordParts(text: string): LearnedWordParts | null {
 	}
 
 	const core = chars.slice(coreStart, coreEnd).join("");
-	if (!core) return null;
+	if (!core || !/[\p{L}\p{N}]/u.test(core) || /\s/u.test(core)) return null;
 
 	return {
 		key: core.normalize("NFC").toLowerCase(),
@@ -55,7 +55,9 @@ export function createLearnedRule(
 		new Set(
 			Array.from(splitIndices)
 				.map((index) => index - parts.coreStart)
-				.filter((index) => index > 0 && index < coreLength),
+				.filter(
+					(index) => Number.isInteger(index) && index > 0 && index < coreLength,
+				),
 		),
 	).sort((a, b) => a - b);
 
@@ -70,12 +72,16 @@ export function applyLearnedRule(
 	const parts = getLearnedWordParts(text);
 	if (!parts) return null;
 	const boundaries = learnedRules.get(parts.key);
-	if (!boundaries) return null;
+	if (!Array.isArray(boundaries)) return null;
 
 	const core = parts.chars.slice(parts.coreStart, parts.coreEnd);
-	const validBoundaries = boundaries.filter(
-		(index) => Number.isInteger(index) && index > 0 && index < core.length,
-	);
+	const validBoundaries = [
+		...new Set(
+			boundaries.filter(
+				(index) => Number.isInteger(index) && index > 0 && index < core.length,
+			),
+		),
+	].sort((a, b) => a - b);
 	const segments: string[] = [];
 	let start = 0;
 	for (const end of validBoundaries) {

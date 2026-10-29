@@ -21,6 +21,55 @@ const prosodicConfig: SegmentationConfig = {
 };
 
 describe("syllabification engines", () => {
+	it.each([
+		"PAYS",
+		"привет",
+		"Україна",
+		"Αθήνα",
+		"éé",
+		"œœ",
+	])("preserves French adapter input %s", (word) => {
+		expect(getSyllabificationEngine("syllabify-fr").split(word).join("")).toBe(
+			word,
+		);
+	});
+
+	it.each([
+		"y’all",
+		"could’ve",
+		"we’re",
+	])("keeps reviewed contraction %s", (word) => {
+		expect(getSyllabificationEngine("prosodic").split(word)).toEqual([word]);
+	});
+
+	it.each([
+		"singin'",
+		"SINGIN’",
+	])("recognizes elided dropped-g spelling %s", (word) => {
+		expect(getSyllabificationEngine("prosodic").split(word)).toEqual([
+			word.slice(0, 4),
+			word.slice(4),
+		]);
+	});
+
+	it("honors Japanese shared settings and kana combinations", () => {
+		const split = (word: string, settings: Partial<SegmentationConfig> = {}) =>
+			segmentWord(
+				{ ...newLyricWord(), word },
+				{ ...prosodicConfig, engine: "japanese", ...settings },
+			).map((part) => part.word);
+		expect(split("ファイル")).toEqual(["ファ", "イ", "ル"]);
+		expect(split("ｷｬｯﾄ")).toEqual(["ｷｬ", "ｯ", "ﾄ"]);
+		expect(split("ぱんパン")).toEqual(["ぱ", "ん", "パ", "ン"]);
+		expect(split("キャット。", { punctuationMode: "standalone" })).toEqual([
+			"キャ",
+			"ッ",
+			"ト",
+			"。",
+		]);
+		expect(split("キャット", { splitCJK: false })).toEqual(["キャット"]);
+		expect(split("we’re")).toEqual(["we’re"]);
+	});
 	it("uses Prosodic dictionary entries before its speech fallback", () => {
 		const parts = getSyllabificationEngine("prosodic").split("everything");
 		expect(parts.join("")).toBe("everything");
