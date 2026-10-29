@@ -12,3 +12,5 @@ Release collapsed spectrogram workers and audio copies, bound bitmap memory and 
 Avoid unrelated waveform and project-header updates on sync presses. Coalesce presence publication and autosaves, and keep an older save from reporting newer edits as saved.
 
 Prepare time-stretched audio in a dedicated worker so expensive processing cannot block the audio device callback. Keep buffered playback bounded and preserve exact seeking, pitch, and audition endpoints.
+
+Prepare custom segmentation matchers once per batch instead of rebuilding them for every word.
