@@ -3,6 +3,8 @@ import {
 	buildLineRomanization,
 	formatPhoneticForDisplay,
 	getPhonetic,
+	getPhoneticCapsules,
+	getPhoneticSpans,
 	getPhoneticSyllables,
 } from "./phonetic";
 
@@ -18,6 +20,71 @@ afterEach(() => {
 });
 
 describe("phonetic conversion requests", () => {
+	it("returns exact source offsets for spaces and supplementary characters", async () => {
+		const spans = await getPhoneticSpans(" 你 𠀀好 ", "zh");
+		expect(spans.map((span) => span.text).join("")).toBe(" 你 𠀀好 ");
+		expect(spans.map((span) => span.text)).toEqual([
+			" ",
+			"你",
+			" ",
+			"𠀀",
+			"好",
+			" ",
+		]);
+		expect(spans.find((span) => span.text === "你")?.reading).toBe("nǐ");
+		expect(spans.find((span) => span.text === "好")?.reading).toBe("hǎo");
+		for (const span of spans)
+			expect(" 你 𠀀好 ".slice(span.start, span.end)).toBe(span.text);
+	});
+
+	it("uses contextual local kana and Hangul readings without requests", async () => {
+		const fetchMock = vi.fn();
+		vi.stubGlobal("fetch", fetchMock);
+		const spans = await getPhoneticSpans("キャット コーヒー", "ja");
+		expect(spans.map((span) => span.text)).toEqual([
+			"キャ",
+			"ッ",
+			"ト",
+			" ",
+			"コ",
+			"ー",
+			"ヒ",
+			"ー",
+		]);
+		expect(spans.map((span) => span.reading).join("")).toBe("kyattokoohii");
+		expect(
+			(await getPhoneticSpans("한국어", "ko"))
+				.map((span) => span.text)
+				.join(""),
+		).toBe("한국어");
+		expect(fetchMock).not.toHaveBeenCalled();
+	});
+
+	it("requests a compound reading once and flags unaligned source capsules", async () => {
+		const fetchMock = vi.fn(async () => googleResponse("kyou"));
+		vi.stubGlobal("fetch", fetchMock);
+		const [first, second] = await Promise.all([
+			getPhoneticSpans("今日", "ja"),
+			getPhoneticSpans("今日", "ja"),
+		]);
+		expect(first).toEqual(second);
+		expect(first).toEqual([
+			{ text: "今日", start: 0, end: 2, reading: "kyou", warning: true },
+		]);
+		expect(fetchMock).toHaveBeenCalledOnce();
+		expect(await getPhoneticCapsules(["今", "日"], "ja")).toEqual([
+			{ reading: "kyou", warning: true },
+			{ reading: "", warning: true },
+		]);
+	});
+
+	it("honors operation cancellation", async () => {
+		const controller = new AbortController();
+		controller.abort();
+		await expect(
+			getPhoneticSpans("你好", "zh", controller.signal),
+		).rejects.toMatchObject({ name: "AbortError" });
+	});
 	it("limits simultaneous Google transliteration requests", async () => {
 		let activeRequests = 0;
 		let maximumActiveRequests = 0;
@@ -30,12 +97,13 @@ describe("phonetic conversion requests", () => {
 		});
 		vi.stubGlobal("fetch", fetchMock);
 
-		await getPhoneticSyllables(
-			["一", "二", "三", "四", "五", "六", "七", "八"],
-			"ja",
+		await Promise.all(
+			["一", "二", "三", "四", "五", "六", "七", "八"].map((text) =>
+				getPhonetic(text, "ja"),
+			),
 		);
 
-		expect(fetchMock).toHaveBeenCalledTimes(9);
+		expect(fetchMock).toHaveBeenCalledTimes(8);
 		expect(maximumActiveRequests).toBeLessThanOrEqual(4);
 	});
 

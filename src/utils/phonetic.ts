@@ -1,25 +1,32 @@
 import { Romanize } from "hangul-romanize";
 import { pinyin as getPinyin } from "pinyin-pro";
 import * as wanakana from "wanakana";
+import { graphemes, preservesSource } from "./graphemes";
+import { splitJapaneseRun } from "./japanese";
 
 export type PhoneticLanguage = "ja" | "zh" | "ko" | "yue" | "auto";
 
-const GOOGLE_TIMEOUT_MS = 3000;
-const MAX_CONCURRENT_GOOGLE_REQUESTS = 4;
-const MAX_PHONETIC_CACHE_SIZE = 2048;
+export interface PhoneticSpan {
+	text: string;
+	start: number;
+	end: number;
+	reading: string;
+	warning: boolean;
+}
+
 interface PhoneticConversion {
 	value: string;
 	cacheable: boolean;
 }
 
 const phoneticCache = new Map<string, Promise<PhoneticConversion>>();
+const spanRequests = new Map<string, Promise<PhoneticSpan[]>>();
 const googleRequestQueue: Array<() => void> = [];
 let activeGoogleRequests = 0;
 
 const withGoogleRequestSlot = async <T>(request: () => Promise<T>) => {
-	if (activeGoogleRequests >= MAX_CONCURRENT_GOOGLE_REQUESTS) {
+	if (activeGoogleRequests >= 4)
 		await new Promise<void>((resolve) => googleRequestQueue.push(resolve));
-	}
 	activeGoogleRequests++;
 	try {
 		return await request();
@@ -28,19 +35,6 @@ const withGoogleRequestSlot = async <T>(request: () => Promise<T>) => {
 		googleRequestQueue.shift()?.();
 	}
 };
-
-const normalizePhoneticForMatching = (text: string) =>
-	text
-		.toLowerCase()
-		.replace(/ā/g, "aa")
-		.replace(/ī/g, "ii")
-		.replace(/ū/g, "uu")
-		.replace(/ē/g, "ee")
-		.replace(/ō/g, "ou")
-		.normalize("NFD")
-		.replace(/\p{M}/gu, "")
-		.replace(/\s+/g, "")
-		.replace(/[^a-z]/g, "");
 
 export const formatPhoneticForDisplay = (text: string) =>
 	text.toLocaleLowerCase().replace(/\s+/g, "");
@@ -70,308 +64,293 @@ const hasSourceScript = (text: string, language: PhoneticLanguage) => {
 	}
 };
 
-const normalizeCapsulePhonetic = (text: string, language: PhoneticLanguage) => {
-	const normalized = text.trim().replace(/\s+/g, " ");
-	return language === "zh" || language === "yue"
-		? formatPhoneticForDisplay(normalized)
-		: normalizePhoneticForMatching(normalized);
-};
-
-const mapContextualChinesePhonetic = (
-	capsules: string[],
-	linePhonetic: string,
-) => {
-	const syllables = linePhonetic.trim().split(/\s+/).filter(Boolean);
-	const hanCounts = capsules.map(
-		(capsule) => capsule.match(/\p{Script=Han}/gu)?.length ?? 0,
-	);
+export function detectPhoneticLanguage(
+	text: string,
+	declared?: string,
+): PhoneticLanguage {
+	const language = declared?.toLowerCase().split(/[-_]/)[0];
 	if (
-		syllables.length === 0 ||
-		hanCounts.reduce((sum, count) => sum + count, 0) !== syllables.length
-	) {
-		return undefined;
-	}
-
-	let syllableIndex = 0;
-	return hanCounts.map((count) => {
-		if (count === 0) return "";
-		const result = syllables
-			.slice(syllableIndex, syllableIndex + count)
-			.join(" ");
-		syllableIndex += count;
-		return formatPhoneticForDisplay(result);
-	});
-};
-
-const mapMandarinCapsules = (capsules: string[]) => {
-	const hanText = capsules
-		.flatMap((capsule) => capsule.match(/\p{Script=Han}/gu) ?? [])
-		.join("");
-	if (!hanText) return capsules.map(() => "");
-
-	const readings = getPinyin(hanText, {
-		toneType: "symbol",
-		type: "array",
-		traditional: true,
-	});
-	let readingIndex = 0;
-	return capsules.map((capsule) => {
-		if (!/\p{Script=Han}/u.test(capsule)) return "";
-		return Array.from(capsule)
-			.map((character) =>
-				/\p{Script=Han}/u.test(character)
-					? (readings[readingIndex++] ?? "")
-					: character,
-			)
-			.join("")
-			.toLocaleLowerCase();
-	});
-};
+		language === "ja" ||
+		language === "zh" ||
+		language === "ko" ||
+		language === "yue"
+	)
+		return language;
+	if (/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(text)) return "ja";
+	if (/\p{Script=Hangul}/u.test(text)) return "ko";
+	if (/\p{Script=Han}/u.test(text)) return "zh";
+	return "auto";
+}
 
 export async function getPhonetic(
 	text: string,
 	lang: PhoneticLanguage = "auto",
 	preserveFormatting = false,
 ): Promise<string> {
-	if (!text.trim()) return "";
-
-	let detectedLang = lang;
-	if (lang === "auto") {
-		detectedLang = detectLanguage(text);
+	const detected = lang === "auto" ? detectPhoneticLanguage(text) : lang;
+	if (!text.trim() || detected === "auto" || !hasSourceScript(text, detected))
+		return "";
+	const key = `${detected}\u0000${text}`;
+	let request = phoneticCache.get(key);
+	if (!request) {
+		request = convertPhonetic(text, detected);
+		phoneticCache.set(key, request);
+		if (phoneticCache.size > 2048) {
+			const oldest = phoneticCache.keys().next().value;
+			if (oldest !== undefined) phoneticCache.delete(oldest);
+		}
 	}
-
-	if (detectedLang === "auto") return "";
-	if (!hasSourceScript(text, detectedLang)) return "";
-
-	const cacheKey = `${detectedLang}\u0000${text}`;
-	const cached = phoneticCache.get(cacheKey);
-	if (cached) {
-		phoneticCache.delete(cacheKey);
-		phoneticCache.set(cacheKey, cached);
-		const value = (await cached).value;
-		return preserveFormatting ? value : formatPhoneticForDisplay(value);
-	}
-
-	const request = convertPhonetic(text, detectedLang);
-	phoneticCache.set(cacheKey, request);
-	while (phoneticCache.size > MAX_PHONETIC_CACHE_SIZE) {
-		const oldestKey = phoneticCache.keys().next().value;
-		if (oldestKey === undefined) break;
-		phoneticCache.delete(oldestKey);
-	}
-
 	try {
 		const result = await request;
-		if (!result.cacheable) phoneticCache.delete(cacheKey);
+		if (!result.cacheable) phoneticCache.delete(key);
 		return preserveFormatting
 			? result.value
 			: formatPhoneticForDisplay(result.value);
-	} catch (e) {
-		phoneticCache.delete(cacheKey);
-		console.error("Phonetic conversion failed", e);
+	} catch (error) {
+		phoneticCache.delete(key);
+		console.error("Phonetic conversion failed", error);
 		return "";
 	}
 }
 
 async function convertPhonetic(
 	text: string,
-	detectedLang: Exclude<PhoneticLanguage, "auto">,
+	language: Exclude<PhoneticLanguage, "auto">,
 ): Promise<PhoneticConversion> {
+	if (language === "ja" && !/\p{Script=Han}/u.test(text))
+		return {
+			value: wanakana.toRomaji(text.normalize("NFKC")),
+			cacheable: true,
+		};
+	if (language === "ko")
+		return { value: Romanize.from(text.normalize("NFC")), cacheable: true };
+	if (language === "zh")
+		return {
+			value: getPinyin(text, { toneType: "symbol", traditional: true }),
+			cacheable: true,
+		};
 	try {
-		const romanized = await withGoogleRequestSlot(async () => {
+		const value = await withGoogleRequestSlot(async () => {
 			const controller = new AbortController();
-			const timeoutId = setTimeout(() => controller.abort(), GOOGLE_TIMEOUT_MS);
+			const timeout = setTimeout(() => controller.abort(), 3000);
 			try {
-				const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${detectedLang}&tl=en&dt=rm&q=${encodeURIComponent(text)}`;
-				const response = await fetch(url, { signal: controller.signal });
-				if (!response.ok) {
-					throw new Error(
-						`Google transliteration request failed: ${response.status}`,
-					);
-				}
-
+				const response = await fetch(
+					`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${language}&tl=en&dt=rm&q=${encodeURIComponent(text)}`,
+					{ signal: controller.signal },
+				);
+				if (!response.ok)
+					throw new Error(`Transliteration request failed: ${response.status}`);
 				const data: unknown = await response.json();
 				const segments =
 					Array.isArray(data) && Array.isArray(data[0]) ? data[0] : null;
-				if (!segments) {
-					throw new Error("Invalid Google transliteration response");
-				}
-
+				if (!segments) throw new Error("Invalid transliteration response");
 				const result = segments
-					.map((segment: unknown) => {
-						if (!Array.isArray(segment)) return "";
-						const value = segment[3];
-						return typeof value === "string" ? value : "";
-					})
+					.map((segment: unknown) =>
+						Array.isArray(segment) && typeof segment[3] === "string"
+							? segment[3]
+							: "",
+					)
 					.join("");
-				if (!result.trim()) {
-					throw new Error("Google transliteration response was empty");
-				}
+				if (!result.trim()) throw new Error("Empty transliteration response");
 				return result;
 			} finally {
-				clearTimeout(timeoutId);
+				clearTimeout(timeout);
 			}
 		});
-		return { value: romanized, cacheable: true };
-	} catch (e) {
-		console.warn(`${detectedLang} API failed, falling back to local libs`, e);
+		return { value, cacheable: true };
+	} catch (error) {
+		console.warn(`${language} transliteration unavailable`, error);
+		return { value: "", cacheable: false };
 	}
+}
 
-	let fallback = "";
-	if (detectedLang === "ja") fallback = wanakana.toRomaji(text);
-	if (detectedLang === "zh") fallback = getPinyin(text, { toneType: "none" });
-	if (detectedLang === "ko") fallback = Romanize.from(text);
-	return { value: fallback, cacheable: false };
+function kanaReadings(parts: string[]): string[] | null {
+	const normalized = parts.map((part) => part.normalize("NFKC"));
+	const readings = normalized.map((part) =>
+		formatPhoneticForDisplay(wanakana.toRomaji(part)),
+	);
+	for (let index = 0; index < normalized.length; index++) {
+		const char = normalized[index];
+		if (char === "っ" || char === "ッ") {
+			const next = readings[index + 1] ?? "";
+			readings[index] = /^(?:ch|ts)/.test(next)
+				? "t"
+				: /^[bcdfghjkmprstvwz]/.test(next)
+					? next[0]
+					: "";
+		}
+		if (char === "ー")
+			readings[index] = readings[index - 1]?.match(/[aeiou]$/)?.[0] ?? "";
+		if (
+			(char === "ん" || char === "ン") &&
+			/^[aeiouy]/.test(readings[index + 1] ?? "")
+		)
+			readings[index] = "n'";
+	}
+	return readings.join("") ===
+		formatPhoneticForDisplay(wanakana.toRomaji(normalized.join("")))
+		? readings
+		: null;
+}
+
+async function proposeSpans(
+	text: string,
+	language: PhoneticLanguage,
+): Promise<PhoneticSpan[]> {
+	const spans: PhoneticSpan[] = [];
+	const push = (source: string, reading: string, warning = false) => {
+		const start = spans[spans.length - 1]?.end ?? 0;
+		spans.push({
+			text: source,
+			start,
+			end: start + source.length,
+			reading,
+			warning,
+		});
+	};
+	if (language === "zh") {
+		const records = getPinyin(text, {
+			type: "all",
+			traditional: true,
+			toneType: "symbol",
+		});
+		let offset = 0;
+		const readings = records.map((record) => {
+			const start = offset;
+			offset += record.origin.length;
+			return {
+				start,
+				end: offset,
+				reading: record.isZh ? record.pinyin.toLocaleLowerCase() : "",
+			};
+		});
+		let recordIndex = 0;
+		for (const char of graphemes(text)) {
+			const start = spans[spans.length - 1]?.end ?? 0;
+			let reading = "";
+			while (
+				recordIndex < readings.length &&
+				readings[recordIndex].end <= start + char.length
+			) {
+				const record = readings[recordIndex++];
+				if (record.start >= start) reading += record.reading;
+			}
+			push(char, reading, /\p{Script=Han}/u.test(char) && !reading);
+		}
+		return spans;
+	}
+	const units = graphemes(text);
+	for (let index = 0; index < units.length; ) {
+		const char = units[index];
+		if (!hasSourceScript(char, language)) {
+			push(char, "");
+			index++;
+			continue;
+		}
+		const start = index;
+		while (
+			index < units.length &&
+			(hasSourceScript(units[index], language) ||
+				(language === "ja" && units[index] === "ー"))
+		)
+			index++;
+		const run = units.slice(start, index).join("");
+		if (language === "ja" && !/\p{Script=Han}/u.test(run)) {
+			const parts = splitJapaneseRun(run);
+			const readings = kanaReadings(parts);
+			if (readings)
+				parts.forEach((part, offset) => {
+					push(part, readings[offset], !readings[offset]);
+				});
+			else push(run, await getPhonetic(run, language), true);
+		} else if (language === "ko") {
+			const parts = graphemes(run);
+			const readings = Romanize.toGroup(run.normalize("NFC"));
+			if (readings.length === parts.length)
+				parts.forEach((part, offset) => {
+					push(part, readings[offset].toLowerCase(), !readings[offset]);
+				});
+			else push(run, await getPhonetic(run, language), true);
+		} else if (language === "yue") {
+			const reading = await getPhonetic(run, language, true);
+			const readings = reading.trim().split(/\s+/).filter(Boolean);
+			const parts = graphemes(run);
+			if (readings.length === parts.length)
+				parts.forEach((part, offset) => {
+					push(part, readings[offset].toLowerCase());
+				});
+			else push(run, formatPhoneticForDisplay(reading), true);
+		} else push(run, await getPhonetic(run, language), true);
+	}
+	return spans;
+}
+
+export async function getPhoneticSpans(
+	text: string,
+	lang: PhoneticLanguage = "auto",
+	signal?: AbortSignal,
+): Promise<PhoneticSpan[]> {
+	if (signal?.aborted) throw new DOMException("Cancelled", "AbortError");
+	const language = lang === "auto" ? detectPhoneticLanguage(text) : lang;
+	const key = `${language}\u0000${text}`;
+	let request = spanRequests.get(key);
+	if (!request) {
+		request = proposeSpans(text, language).finally(() =>
+			spanRequests.delete(key),
+		);
+		spanRequests.set(key, request);
+	}
+	const result = await request;
+	if (signal?.aborted) throw new DOMException("Cancelled", "AbortError");
+	if (
+		!preservesSource(
+			text,
+			result.map((span) => span.text),
+		)
+	)
+		return [{ text, start: 0, end: text.length, reading: "", warning: true }];
+	return result.map((span) => ({ ...span }));
+}
+
+export async function getPhoneticCapsules(
+	capsules: string[],
+	lang: PhoneticLanguage = "auto",
+): Promise<{ reading: string; warning: boolean }[]> {
+	const spans = await getPhoneticSpans(capsules.join(""), lang);
+	let start = 0;
+	let spanIndex = 0;
+	return capsules.map((capsule) => {
+		const end = start + capsule.length;
+		while (spanIndex < spans.length && spans[spanIndex].end <= start)
+			spanIndex++;
+		const matches: PhoneticSpan[] = [];
+		for (
+			let index = spanIndex;
+			index < spans.length && spans[index].start < end;
+			index++
+		)
+			matches.push(spans[index]);
+		const reading = matches
+			.filter((span) => span.start >= start)
+			.map((span) => span.reading)
+			.join("");
+		const warning = matches.some(
+			(span) => span.warning || span.start < start || span.end > end,
+		);
+		start = end;
+		return { reading, warning };
+	});
 }
 
 export async function getPhoneticSyllables(
 	textOrArray: string | string[],
 	lang: PhoneticLanguage = "auto",
 ): Promise<string[]> {
-	const originalCapsules =
-		typeof textOrArray === "string"
-			? textOrArray.split("").filter((c) => !/^\s*$/.test(c))
-			: textOrArray;
-	if (originalCapsules.length === 0) return [];
-
-	const fullLineText = originalCapsules.join("").replace(/\s+/g, "");
-	let detectedLang = lang;
-	if (lang === "auto") {
-		detectedLang = detectLanguage(fullLineText);
-	}
-	if (detectedLang === "zh") return mapMandarinCapsules(originalCapsules);
-
-	// Prefer full-line context for Chinese because individual Han characters can be
-	// polyphonic. Google returns one whitespace-separated reading per character.
-	const rawLinePhoneticPromise = getPhonetic(fullLineText, detectedLang, true);
-	if (detectedLang === "yue") {
-		const contextual = mapContextualChinesePhonetic(
-			originalCapsules,
-			await rawLinePhoneticPromise,
+	if (typeof textOrArray === "string")
+		return (await getPhoneticSpans(textOrArray, lang)).map(
+			(span) => span.reading,
 		);
-		if (contextual) return contextual;
-	}
-
-	// Other languages, and unusual Chinese responses without a one-to-one
-	// character mapping, use capsule requests while retaining the line fallback.
-	const capResultsPromise = Promise.all(
-		originalCapsules.map(async (cap) => {
-			const capText = cap.trim().replace(/\s+/g, "");
-			if (capText.length === 0) return { phonetic: "", weight: 0 };
-
-			const rawCapPhonetic = await getPhonetic(capText, detectedLang);
-			if (!rawCapPhonetic) return { phonetic: "", weight: 0 };
-			const capPhonetic = normalizeCapsulePhonetic(
-				rawCapPhonetic,
-				detectedLang,
-			);
-
-			const capSyllables = normalizePhoneticForMatching(capPhonetic)
-				.replace(/([aeiouy])([aeiouy])/gi, "$1 $2")
-				.match(/([^aeiouy ]*[aeiouy]{1}([nm](?![aeiouy]))?|[^aeiouy ]+)/gi) || [
-				"a",
-			];
-			return { phonetic: capPhonetic, weight: capSyllables.length };
-		}),
+	return (await getPhoneticCapsules(textOrArray, lang)).map(
+		(capsule) => capsule.reading,
 	);
-
-	// Get ROOT transliteration for FULL line (captures compound readings like 'Jujutsu').
-	const rawLinePhonetic = await rawLinePhoneticPromise;
-	const normalizedLinePhonetic = normalizePhoneticForMatching(rawLinePhonetic);
-
-	// 2. Split master into mora (syllables) — used as fallback for ambiguous chars
-	const masterSyllables = normalizedLinePhonetic
-		.replace(/([aeiouy])([aeiouy])/gi, "$1 $2")
-		.match(/([^aeiouy ]*[aeiouy]{1}([nm](?![aeiouy]))?|[^aeiouy ]+)/gi) || [
-		normalizedLinePhonetic,
-	];
-
-	// 3. Fetch individual phonetics per capsule; store them directly for use as results.
-	//    Also compute syllable-count weights for the master-distribution fallback.
-	const capResults = await capResultsPromise;
-	const charWeights = capResults.map((result) => result.weight);
-	const capPhonetics = capResults.map((result) => result.phonetic);
-
-	const totalWeight = charWeights.reduce((a, b) => a + b, 0);
-	const results: string[] = [];
-	let syllableIndex = 0;
-
-	for (let i = 0; i < originalCapsules.length; i++) {
-		if (charWeights[i] === 0) {
-			results.push("");
-			continue;
-		}
-
-		// Prefer the directly-fetched individual phonetic — it is already correct for
-		// simple kana (の → "no") and avoids syllable-distribution rounding errors.
-		// Only fall back to master-distribution slicing when the individual fetch was empty.
-		if (capPhonetics[i]) {
-			// Still advance syllableIndex so the master pointer stays in sync for any
-			// subsequent capsules that do need the fallback path.
-			let charSyllableCount = Math.round(
-				(charWeights[i] / totalWeight) * masterSyllables.length,
-			);
-			if (i === originalCapsules.length - 1 || totalWeight === 0) {
-				charSyllableCount = masterSyllables.length - syllableIndex;
-			}
-			charSyllableCount = Math.max(1, charSyllableCount);
-			if (i < originalCapsules.length - 1) {
-				const remainingWeight = charWeights
-					.slice(i + 1)
-					.reduce((a, b) => a + b, 0);
-				if (remainingWeight > 0) {
-					charSyllableCount = Math.min(
-						charSyllableCount,
-						masterSyllables.length - syllableIndex - 1,
-					);
-				}
-			}
-			syllableIndex += charSyllableCount;
-			results.push(capPhonetics[i]);
-			continue;
-		}
-
-		// Fallback: distribute from the master line phonetic
-		let charSyllableCount = Math.round(
-			(charWeights[i] / totalWeight) * masterSyllables.length,
-		);
-		if (i === originalCapsules.length - 1 || totalWeight === 0) {
-			charSyllableCount = masterSyllables.length - syllableIndex;
-		}
-
-		charSyllableCount = Math.max(1, charSyllableCount);
-		if (i < originalCapsules.length - 1) {
-			const remainingWeight = charWeights
-				.slice(i + 1)
-				.reduce((a, b) => a + b, 0);
-			if (remainingWeight > 0) {
-				charSyllableCount = Math.min(
-					charSyllableCount,
-					masterSyllables.length - syllableIndex - 1,
-				);
-			}
-		}
-
-		const charSyllables = masterSyllables.slice(
-			syllableIndex,
-			syllableIndex + charSyllableCount,
-		);
-		syllableIndex += charSyllableCount;
-		results.push(charSyllables.join("").trim());
-	}
-
-	return results;
-}
-
-function detectLanguage(text: string): PhoneticLanguage {
-	// Japanese: Contains Hiragana or Katakana
-	if (/[\u3040-\u309F\u30A0-\u30FF]/.test(text)) return "ja";
-
-	// Korean: Contains Hangul
-	if (/[\uAC00-\uD7AF]/.test(text)) return "ko";
-
-	// Chinese: Contains Hanzi (and we assume it's Chinese if no Japanese indicators found)
-	if (/[\u4E00-\u9FA5]/.test(text)) return "zh";
-
-	return "auto";
 }

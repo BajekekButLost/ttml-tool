@@ -11,7 +11,7 @@
 
 import { useAtomValue, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { displayRomanizationInSyncAtom } from "$/modules/settings/states/index.ts";
@@ -22,7 +22,8 @@ import {
 } from "$/states/main.ts";
 import {
 	buildLineRomanization,
-	getPhoneticSyllables,
+	detectPhoneticLanguage,
+	getPhoneticCapsules,
 	type PhoneticLanguage,
 } from "$/utils/phonetic";
 
@@ -34,8 +35,18 @@ export const usePhoneticSection = () => {
 	const store = useStore();
 	const [loading, setLoading] = useState(false);
 	const [lang, setLang] = useState<PhoneticLanguage>("auto");
+	const active = useRef(false);
+	const mounted = useRef(true);
+	useEffect(() => {
+		mounted.current = true;
+		return () => {
+			mounted.current = false;
+		};
+	}, []);
 
 	const handleAutoFetch = useCallback(async () => {
+		if (active.current) return;
+		active.current = true;
 		setLoading(true);
 		try {
 			const { lyricLines: originalLines } = store.get(lyricLinesAtom);
@@ -51,7 +62,11 @@ export const usePhoneticSection = () => {
 			}
 
 			const lineUpdates: Record<string, string> = {};
-			const wordUpdates: Record<string, string> = {};
+			const wordUpdates: Record<string, { reading: string; warning: boolean }> =
+				{};
+			const sourceLines = new Map(
+				originalLines.map((line) => [line.id, JSON.stringify(line)]),
+			);
 
 			if (selectedWords.size > 0) {
 				const targetLines = originalLines.filter((line) =>
@@ -63,12 +78,17 @@ export const usePhoneticSection = () => {
 					if (capsuleTexts.join("").trim().length === 0) continue;
 
 					// Get line-level phonetic data
-					const lineSyllables = await getPhoneticSyllables(capsuleTexts, lang);
+					const lineSyllables = await getPhoneticCapsules(
+						capsuleTexts,
+						lang === "auto"
+							? detectPhoneticLanguage(capsuleTexts.join(""), line.language)
+							: lang,
+					);
 
 					for (let i = 0; i < line.words.length; i++) {
 						const word = line.words[i];
 						if (selectedWords.has(word.id)) {
-							wordUpdates[word.id] = lineSyllables[i] ?? "";
+							wordUpdates[word.id] = lineSyllables[i];
 						}
 					}
 				}
@@ -81,26 +101,37 @@ export const usePhoneticSection = () => {
 					const capsuleTexts = line.words.map((w) => w.word);
 					if (line.words.length > 0) {
 						// Distribute using capsule-aware mapping
-						const syllables = await getPhoneticSyllables(capsuleTexts, lang);
-						lineUpdates[line.id] = buildLineRomanization(
+						const syllables = await getPhoneticCapsules(
 							capsuleTexts,
-							syllables,
+							lang === "auto"
+								? detectPhoneticLanguage(capsuleTexts.join(""), line.language)
+								: lang,
 						);
+						if (syllables.some((capsule) => capsule.reading))
+							lineUpdates[line.id] = buildLineRomanization(
+								capsuleTexts,
+								syllables.map((capsule) => capsule.reading),
+							);
 						for (let i = 0; i < line.words.length; i++) {
-							wordUpdates[line.words[i].id] = syllables[i] ?? "";
+							wordUpdates[line.words[i].id] = syllables[i];
 						}
 					}
 				}
 			}
 
+			if (!mounted.current) return;
 			editLyricLines((draft) => {
 				for (const line of draft.lyricLines) {
+					if (sourceLines.get(line.id) !== JSON.stringify(line)) continue;
 					if (lineUpdates[line.id] !== undefined) {
 						line.romanLyric = lineUpdates[line.id];
 					}
 					for (const word of line.words) {
 						if (wordUpdates[word.id] !== undefined) {
-							word.romanWord = wordUpdates[word.id];
+							const update = wordUpdates[word.id];
+							if (update.reading) word.romanWord = update.reading;
+							word.romanWarning =
+								word.romanWarning || update.warning || undefined;
 						}
 					}
 				}
@@ -117,6 +148,7 @@ export const usePhoneticSection = () => {
 				t("ribbonBar.editMode.phonetic.error", "Failed to fetch phonetics"),
 			);
 		} finally {
+			active.current = false;
 			setLoading(false);
 		}
 	}, [editLyricLines, selectedLines, selectedWords, store, t, lang]);

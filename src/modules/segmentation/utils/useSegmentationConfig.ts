@@ -53,10 +53,11 @@ export const useSegmentationConfig = (
 	}>({ engine, status: "loading" });
 	const needsPatterns = splitEnglish && !!getHyphenationLanguage(engine);
 	const matches = resolution.engine === engine;
-	const isLoading =
-		needsPatterns && (!matches || resolution.status === "loading");
 	const error = needsPatterns && matches && resolution.status === "error";
-	const isReady = !needsPatterns || (matches && resolution.status === "ready");
+	const isReady =
+		!needsPatterns ||
+		(matches && resolution.status === "ready" && !!resolution.split);
+	const isLoading = needsPatterns && !isReady && !error;
 	const hyphenator = needsPatterns && isReady ? resolution.split : undefined;
 
 	useEffect(() => {

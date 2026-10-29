@@ -4,6 +4,10 @@ import silabas from "silabas";
 import syllabify from "syllabify";
 import syllabifyFr from "syllabify-fr";
 import { graphemes, mapSourceSlices, preservesSource } from "$/utils/graphemes";
+import { isKanaModifier as isJapaneseModifier } from "$/utils/japanese";
+
+export { splitJapaneseRun } from "$/utils/japanese";
+
 import prosodicDictionary from "../data/prosodic-dict.json";
 import type { SegmentationEngineId } from "../types";
 
@@ -102,27 +106,6 @@ const isJapaneseCharacter = (char: string | undefined) =>
 	/[々\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u.test(char);
 const isJapanesePunctuation = (char: string | undefined) =>
 	!!char && /[\p{P}\p{S}]/u.test(char);
-const isJapaneseModifier = (char: string | undefined) =>
-	!!char &&
-	/^[ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ]$/u.test(char.normalize("NFKC"));
-
-export const splitJapaneseRun = (text: string) => {
-	const tokens: string[] = [];
-	for (const char of graphemes(text)) {
-		if (
-			isJapaneseModifier(char) &&
-			tokens.length > 0 &&
-			/[\p{Script=Hiragana}\p{Script=Katakana}]$/u.test(
-				tokens[tokens.length - 1].normalize("NFKC"),
-			)
-		) {
-			tokens[tokens.length - 1] += char;
-		} else {
-			tokens.push(char);
-		}
-	}
-	return tokens;
-};
 
 /** Adapted from amll-dev/amll-editor's Japanese basic engine. */
 export const splitJapaneseText = (text: string) => {

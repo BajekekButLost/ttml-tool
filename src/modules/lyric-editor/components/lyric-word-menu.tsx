@@ -1,10 +1,13 @@
 import { ContextMenu } from "@radix-ui/themes";
 import { type Atom, atom, useAtomValue, useSetAtom, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { segmentSelectedWords } from "$/modules/segmentation/utils/segmentation";
+import {
+	recalculateWordTime,
+	segmentSelectedWords,
+} from "$/modules/segmentation/utils/segmentation";
 import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import {
 	combineWordsDialogAtom,
@@ -18,13 +21,9 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main";
-import {
-	type LyricLine,
-	type LyricWord,
-	newLyricLine,
-	newLyricWord,
-} from "$/types/ttml";
-import { getPhoneticSyllables } from "$/utils/phonetic";
+import { type LyricLine, type LyricWord, newLyricLine } from "$/types/ttml";
+import { graphemes } from "$/utils/graphemes";
+import { detectPhoneticLanguage, getPhoneticSpans } from "$/utils/phonetic";
 import {
 	combineWordsApplyToAllAtom,
 	combineWordsIgnoreCaseAtom,
@@ -69,6 +68,9 @@ export const LyricWordMenu = ({
 	const combineApplyToAll = useAtomValue(combineWordsApplyToAllAtom);
 	const combineIgnoreCase = useAtomValue(combineWordsIgnoreCaseAtom);
 	const combineShiftClickRef = useRef(false);
+	const romanizationOperation = useRef<AbortController | null>(null);
+	const [romanizing, setRomanizing] = useState(false);
+	useEffect(() => () => romanizationOperation.current?.abort(), []);
 	const { config: segmentationConfig, isReady: segmentationReady } =
 		useSegmentationConfig();
 
@@ -115,43 +117,40 @@ export const LyricWordMenu = ({
 					defaultValue: "Auto-segment selected words",
 				})}
 			</ContextMenu.Item>
-			{/[\u3040-\u309F\u30A0-\u30FF\uAC00-\uD7AF\u4E00-\u9FA5]/.test(
+			{/[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}\p{Script=Han}]/u.test(
 				word.word,
 			) && (
 				<ContextMenu.Item
-					disabled={selectedWordsSize !== 1 || word.word.length <= 1}
+					disabled={
+						selectedWordsSize !== 1 ||
+						graphemes(word.word).length <= 1 ||
+						romanizing
+					}
 					onSelect={async () => {
+						if (romanizationOperation.current) return;
+						const operation = new AbortController();
+						romanizationOperation.current = operation;
+						setRomanizing(true);
 						try {
-							// Detect project-level language priority for context
 							const allLines = store.get(lyricLinesAtom).lyricLines;
-							const fullProjectText = allLines
-								.map((l) => l.words.map((w) => w.word).join(""))
-								.join("");
-							let projectLangPriority: "ja" | "zh" | "ko" | "auto" = "auto";
-
-							if (/[\u3040-\u309F\u30A0-\u30FF]/.test(fullProjectText))
-								projectLangPriority = "ja";
-							else if (/[\uAC00-\uD7AF]/.test(fullProjectText))
-								projectLangPriority = "ko";
-							else if (/[\u4E00-\u9FA5]/.test(fullProjectText))
-								projectLangPriority = "zh";
-
-							const syllables = await getPhoneticSyllables(
-								word.word,
-								projectLangPriority,
+							const sourceLine = allLines.find((line) =>
+								line.words.some((candidate) => candidate.id === word.id),
 							);
-							if (syllables.length <= 1) {
-								toast.info(
-									t(
-										"contextMenu.noSyllablesFound",
-										"No syllables found to split.",
-									),
-								);
-								return;
-							}
-
+							if (!sourceLine) return;
+							const language = detectPhoneticLanguage(
+								sourceLine.words.map((word) => word.word).join(""),
+								sourceLine.language,
+							);
+							const spans = await getPhoneticSpans(
+								word.word,
+								language,
+								operation.signal,
+							);
+							if (operation.signal.aborted) return;
 							editLyricLines((state) => {
-								const line = state.lyricLines[lineIndex];
+								const line = state.lyricLines.find(
+									(line) => line.id === sourceLine.id,
+								);
 								if (!line) return;
 
 								const targetWordIndex = line.words.findIndex(
@@ -160,28 +159,39 @@ export const LyricWordMenu = ({
 								if (targetWordIndex === -1) return;
 
 								const originalWord = line.words[targetWordIndex];
-								const duration = originalWord.endTime - originalWord.startTime;
-								const syllDuration = Math.floor(duration / syllables.length);
-
-								const newWords: LyricWord[] = syllables.map((syll, i) => {
-									const nw = newLyricWord();
-									nw.word = word.word[i];
-									nw.romanWord = syll;
-									nw.startTime = originalWord.startTime + i * syllDuration;
-									nw.endTime =
-										i === syllables.length - 1
-											? originalWord.endTime
-											: originalWord.startTime + (i + 1) * syllDuration;
-									return nw;
-								});
-
+								if (JSON.stringify(originalWord) !== JSON.stringify(word))
+									return;
+								const newWords = recalculateWordTime(
+									originalWord,
+									spans.map((span) => span.text),
+									segmentationConfig,
+								).map((part, index) => ({
+									...part,
+									romanWord: spans.some((span) => span.reading)
+										? spans[index].reading
+										: part.romanWord,
+									romanWarning:
+										originalWord.romanWarning ||
+										spans[index].warning ||
+										undefined,
+								}));
 								line.words.splice(targetWordIndex, 1, ...newWords);
 							});
+							if (spans.some((span) => span.warning))
+								toast.warn(
+									t("syllableSplitting.review", {
+										count: spans.filter((span) => span.warning).length,
+									}),
+								);
 						} catch (e) {
+							if (operation.signal.aborted) return;
 							console.error("Failed to split syllables", e);
 							toast.error(
 								t("common.error", "The data is corrupted or missing"),
 							);
+						} finally {
+							romanizationOperation.current = null;
+							setRomanizing(false);
 						}
 					}}
 				>
@@ -189,6 +199,13 @@ export const LyricWordMenu = ({
 						"contextMenu.splitIntoSyllables",
 						"Split into syllables (romanized)",
 					)}
+				</ContextMenu.Item>
+			)}
+			{romanizing && (
+				<ContextMenu.Item
+					onSelect={() => romanizationOperation.current?.abort()}
+				>
+					{t("common.cancel")}
 				</ContextMenu.Item>
 			)}
 			<ContextMenu.Item
