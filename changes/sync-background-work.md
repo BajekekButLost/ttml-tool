@@ -3,8 +3,8 @@ type: fix
 impact: 4
 highlight: true
 ---
-Reduce background work while syncing lyrics
+Reduce lag while syncing long songs
 
-Reduce work while syncing long songs by reusing preview models and segmentation matchers, avoiding unnecessary highlight and document updates, and coalescing autosave and presence updates.
+The editor, preview, autosave and Discord status do less work on every edit, so syncing long songs stays responsive.
 
-Prepare stretched audio outside the device callback, cancel obsolete decoder jobs, and release collapsed spectrogram workers with bounded tile memory and preserved editing drafts.
+In the browser, the spectrogram uses at most two threads instead of every CPU core, which stopped it from slowing down the whole tool. Playback audio is prepared ahead of time instead of on the audio thread, and a closed spectrogram frees its memory.
