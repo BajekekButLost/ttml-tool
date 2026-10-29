@@ -9,6 +9,10 @@ import {
 import { spectrogramFollowEngagedAtom } from "../states/follow-playhead";
 
 const clampZoom = (z: number) => Math.max(50, Math.min(z, 10000));
+const initializedBuffers = new WeakMap<
+	ReturnType<typeof useStore>,
+	WeakSet<AudioBuffer>
+>();
 
 export function useSpectrogramInteraction(
 	scrollContainerRef: React.RefObject<HTMLDivElement | null>,
@@ -178,12 +182,27 @@ export function useSpectrogramInteraction(
 	}, [zoom]);
 
 	useEffect(() => {
-		if (audioBuffer) {
+		let buffers = initializedBuffers.get(store);
+		if (!buffers) {
+			buffers = new WeakSet();
+			initializedBuffers.set(store, buffers);
+		}
+		if (audioBuffer && !buffers.has(audioBuffer)) {
+			buffers.add(audioBuffer);
 			setScrollLeft(0);
 			targetScrollLeftRef.current = 0;
 			currentScrollLeftRef.current = 0;
 		}
-	}, [audioBuffer, setScrollLeft]);
+	}, [audioBuffer, setScrollLeft, store]);
+
+	useEffect(
+		() => () => {
+			if (animationFrameRef.current !== null)
+				cancelAnimationFrame(animationFrameRef.current);
+			animationFrameRef.current = null;
+		},
+		[],
+	);
 
 	return {
 		zoom,

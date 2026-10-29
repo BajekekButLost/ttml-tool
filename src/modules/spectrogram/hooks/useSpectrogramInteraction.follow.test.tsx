@@ -86,6 +86,33 @@ describe("Ctrl+wheel zoom while following continuously", () => {
 		expect(store.get(spectrogramZoomAtom)).toBeCloseTo(460, 0);
 	});
 
+	it("preserves scroll when the same audio is reopened and cancels a pending zoom", () => {
+		act(() => {
+			store.set(audioPlayingAtom, false);
+			store.set(spectrogramFollowOnAtom, false);
+			store.set(spectrogramScrollLeftAtom, 1234);
+			container.dispatchEvent(
+				new WheelEvent("wheel", { ctrlKey: true, deltaY: -100 }),
+			);
+			root.render(null);
+		});
+		const scroll = store.get(spectrogramScrollLeftAtom);
+		act(() => vi.advanceTimersByTime(1000));
+		expect(store.get(spectrogramScrollLeftAtom)).toBe(scroll);
+		function Reopened() {
+			useSpectrogramInteraction({ current: container }, VIEW_WIDTH);
+			return null;
+		}
+		act(() =>
+			root.render(
+				<Provider store={store}>
+					<Reopened />
+				</Provider>,
+			),
+		);
+		expect(store.get(spectrogramScrollLeftAtom)).toBe(scroll);
+	});
+
 	it("stays centered through a long run of wheel ticks", () => {
 		for (let frame = 1; frame <= 90; frame++) {
 			act(() => {

@@ -29,7 +29,7 @@ import { findSpicyScrollIndex } from "./active-line";
 import { createSpicyAnimator, type SpringSet } from "./createSpicyAnimator";
 import { joinSplitWordsInLines, remapToJoinedWords } from "./join-split-words";
 import type { Spring } from "./math";
-import { buildSpicyLines } from "./model";
+import { createSpicyLineBuilder } from "./model";
 import { useCoverPalette, useKawarpBackground } from "./useBackground";
 import { useSpicyVirtualList } from "./useSpicyVirtualList";
 
@@ -68,9 +68,10 @@ export function useSpicyLyrics() {
 		);
 		return joinWords ? remapToJoinedWords(sourceLines, byWordId) : byWordId;
 	}, [timingProblems, joinWords, sourceLines]);
+	const buildLines = useMemo(createSpicyLineBuilder, []);
 	const lines = useMemo(
 		() =>
-			buildSpicyLines(
+			buildLines(
 				sourceLines,
 				simple,
 				romanized,
@@ -80,6 +81,7 @@ export function useSpicyLyrics() {
 				true,
 			),
 		[
+			buildLines,
 			sourceLines,
 			simple,
 			romanized,

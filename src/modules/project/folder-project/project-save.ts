@@ -547,6 +547,7 @@ export async function saveLyricsOnly(
 		const manifestPath = assertSafePath(activeDir, PROJECT_MANIFEST_FILENAME);
 		await writeTextFile(manifestPath, JSON.stringify(nextManifest, null, 2));
 
+		if (store.get(activeProjectDirAtom) !== activeDir) return true;
 		store.set(activeProjectManifestAtom, nextManifest);
 		store.set(saveFileNameAtom, lyricFileName);
 		store.set(markLyricsSavedAtom, lyric);

@@ -352,6 +352,11 @@ export interface SpicyVocalGroup {
 	backgrounds: SpicyLine[];
 }
 
+type ConversionCache = WeakMap<
+	LyricLine,
+	Map<string, Omit<SpicyLine, "startTime" | "endTime" | "isUntimed">>
+>;
+
 /**
  * Nest the editor's flat background lines under their lead the way the TTML
  * export writes them, so the preview shows what Spicy Lyrics receives:
@@ -370,11 +375,13 @@ export function groupVocals(
 	allowConsecutiveBackgrounds = false,
 	problems?: SpicyWordProblems,
 	showUntimed = false,
+	cache?: ConversionCache,
 ): SpicyVocalGroup[] {
 	// An untimed line sits, zero-length, where the line before it ends, so it
 	// stays in order without ever becoming the active line.
 	const untimedIds = new Set<string>();
 	const syncingIds = new Set<string>();
+	const originalLines = new WeakMap<LyricLine, LyricLine>();
 	const lines: LyricLine[] = [];
 	let lastEnd = 0;
 	for (const line of source) {
@@ -383,7 +390,9 @@ export function groupVocals(
 			lastEnd = line.endTime;
 		} else if (showUntimed && hasNoTiming(line)) {
 			untimedIds.add(line.id);
-			lines.push({ ...line, startTime: lastEnd, endTime: lastEnd });
+			const normalized = { ...line, startTime: lastEnd, endTime: lastEnd };
+			originalLines.set(normalized, line);
+			lines.push(normalized);
 		} else if (showUntimed && Number.isFinite(line.startTime)) {
 			// Being synced: the start is set with the first word, the end only
 			// with the last, so it ends where the last finished word does.
@@ -392,31 +401,49 @@ export function groupVocals(
 				if (validWord(word.startTime, word.endTime) && !hasNoTiming(word))
 					end = Math.max(end, word.endTime);
 			syncingIds.add(line.id);
-			lines.push({ ...line, endTime: end });
+			const normalized = { ...line, endTime: end };
+			originalLines.set(normalized, line);
+			lines.push(normalized);
 			lastEnd = end;
 		}
 	}
 	const groups: SpicyVocalGroup[] = [];
-	const convert = (line: LyricLine, background: boolean): SpicyLine => ({
-		id: line.id,
-		startTime: line.startTime,
-		endTime: line.endTime,
-		isUntimed: untimedIds.has(line.id) || undefined,
-		isLineSynced: forceLineSynced || isLineSynced(line),
-		isRtl: isRtl(lineText(line, false)),
-		text: lineText(line, romanized),
-		isBackground: background,
-		isDuet: !!line.isDuet,
-		translation: line.translatedLyric || undefined,
-		words: makeTokens(
-			line.words,
-			simple,
-			romanized,
-			background,
-			problems,
-			syncingIds.has(line.id),
-		),
-	});
+	const convert = (line: LyricLine, background: boolean): SpicyLine => {
+		const original = originalLines.get(line) ?? line;
+		const key = `${background}:${syncingIds.has(line.id)}`;
+		const cached = !problems ? cache?.get(original)?.get(key) : undefined;
+		const converted = cached ?? {
+			id: line.id,
+			isLineSynced: forceLineSynced || isLineSynced(line),
+			isRtl: isRtl(lineText(line, false)),
+			text: lineText(line, romanized),
+			isBackground: background,
+			isDuet: !!line.isDuet,
+			translation: line.translatedLyric || undefined,
+			words: makeTokens(
+				line.words,
+				simple,
+				romanized,
+				background,
+				problems,
+				syncingIds.has(line.id),
+			),
+		};
+		if (cache && !cached && !problems) {
+			let entries = cache.get(original);
+			if (!entries) {
+				entries = new Map();
+				cache.set(original, entries);
+			}
+			entries.set(key, converted);
+		}
+		return {
+			...converted,
+			startTime: line.startTime,
+			endTime: line.endTime,
+			isUntimed: untimedIds.has(line.id) || undefined,
+		};
+	};
 
 	for (let index = 0; index < lines.length; index++) {
 		const line = lines[index];
@@ -495,6 +522,7 @@ export function buildSpicyLines(
 	allowConsecutiveBackgrounds = false,
 	problems?: SpicyWordProblems,
 	showUntimed = false,
+	cache?: ConversionCache,
 ): SpicyLine[] {
 	const groups = groupVocals(
 		source,
@@ -504,6 +532,7 @@ export function buildSpicyLines(
 		allowConsecutiveBackgrounds,
 		problems,
 		showUntimed,
+		cache,
 	);
 	const result: SpicyLine[] = [];
 	// Interludes are measured between timed lines only, and lead straight into
@@ -537,6 +566,52 @@ export function buildSpicyLines(
 		result.push(lead, ...backgrounds);
 	}
 	return result;
+}
+
+export function createSpicyLineBuilder() {
+	let cache: ConversionCache = new WeakMap();
+	let previous = new Map<string, SpicyLine>();
+	let settings = "";
+	return (
+		source: LyricLine[],
+		simple: boolean,
+		romanized: boolean,
+		forceLineSynced = false,
+		allowConsecutiveBackgrounds = false,
+		problems?: SpicyWordProblems,
+		showUntimed = false,
+	): SpicyLine[] => {
+		const nextSettings = `${simple}:${romanized}:${forceLineSynced}:${allowConsecutiveBackgrounds}:${showUntimed}`;
+		if (settings !== nextSettings) {
+			cache = new WeakMap();
+			settings = nextSettings;
+		}
+		const lines = buildSpicyLines(
+			source,
+			simple,
+			romanized,
+			forceLineSynced,
+			allowConsecutiveBackgrounds,
+			problems,
+			showUntimed,
+			cache,
+		);
+		const next = new Map<string, SpicyLine>();
+		for (let index = 0; index < lines.length; index++) {
+			const line = lines[index];
+			const old = previous.get(line.id);
+			if (
+				old &&
+				Object.keys(line).every(
+					(key) => old[key as keyof SpicyLine] === line[key as keyof SpicyLine],
+				)
+			)
+				lines[index] = old;
+			next.set(line.id, lines[index]);
+		}
+		previous = next;
+		return lines;
+	};
 }
 
 export const keyFor = (line: SpicyLine, word: SpicyToken, index: number) =>

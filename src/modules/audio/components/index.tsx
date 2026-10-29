@@ -198,7 +198,7 @@ export const AudioControls: FC = memo(() => {
 				<AuditionKeyBinding />
 				<Flex direction="column">
 					<div style={{ display: spectrogramVisible ? "flex" : "none" }}>
-						<AudioSpectrogram />
+						{spectrogramVisible && <AudioSpectrogram />}
 					</div>
 					<Flex
 						align="center"

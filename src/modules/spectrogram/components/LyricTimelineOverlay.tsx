@@ -97,6 +97,7 @@ const LyricTimelineOverlayImpl: FC<LyricTimelineOverlayProps> = ({
 		);
 	const [timelineDrag, setTimelineDrag] = useAtom(timelineDragAtom);
 	const setPreviewLine = useSetAtom(previewLineAtom);
+	useEffect(() => () => setTimelineDrag(null), [setTimelineDrag]);
 	const snapTargetsMs = useRef<number[]>([]);
 	const { scrollContainerRef, zoom } = useContext(SpectrogramContext);
 	const scrollLeft = useAtomValue(spectrogramScrollLeftAtom);

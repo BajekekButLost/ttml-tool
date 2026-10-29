@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { newLyricLine, newLyricWord } from "$/types/ttml";
 import {
 	buildSpicyLines,
+	createSpicyLineBuilder,
 	groupSpicyTokens,
 	isRtl,
 	keyFor,
@@ -30,6 +31,79 @@ const flatten = (groups: SpicyWordGroup[]) =>
 	groups.flatMap((group) => group.items);
 
 describe("Spicy conversion ownership", () => {
+	it("reuses unchanged tokens and keeps grouping equivalent after edits", () => {
+		const build = createSpicyLineBuilder();
+		const source = Array.from({ length: 8 }, (_, index) => ({
+			...newLyricLine(),
+			id: `line-${index}`,
+			startTime: index * 5000,
+			endTime: index * 5000 + 2000,
+			isBG: index === 2 || index === 3,
+			words: [
+				{
+					...newLyricWord(),
+					word: "Hello ",
+					startTime: index * 5000,
+					endTime: index * 5000 + 2000,
+				},
+			],
+		}));
+		const first = build(source, false, false, false, true, undefined, true);
+		const edited = source.map((line, index) =>
+			index === 2
+				? {
+						...line,
+						endTime: line.endTime + 250,
+						words: line.words.map((word) => ({
+							...word,
+							endTime: word.endTime + 250,
+						})),
+					}
+				: line,
+		);
+		const next = build(edited, false, false, false, true, undefined, true);
+		expect(next).toEqual(
+			buildSpicyLines(edited, false, false, false, true, undefined, true),
+		);
+		expect(next.find((line) => line.id === "line-7")).toBe(
+			first.find((line) => line.id === "line-7"),
+		);
+		expect(next.find((line) => line.id === "line-2")?.words).not.toBe(
+			first.find((line) => line.id === "line-2")?.words,
+		);
+		const untimed = edited.map((line, index) =>
+			index === 0
+				? {
+						...line,
+						startTime: 0,
+						endTime: 0,
+						words: line.words.map((word) => ({
+							...word,
+							startTime: 0,
+							endTime: 0,
+						})),
+					}
+				: line,
+		);
+		for (const simple of [false, true]) {
+			for (const romanized of [false, true]) {
+				expect(
+					build(untimed, simple, romanized, true, false, undefined, true),
+				).toEqual(
+					buildSpicyLines(
+						untimed,
+						simple,
+						romanized,
+						true,
+						false,
+						undefined,
+						true,
+					),
+				);
+			}
+		}
+	});
+
 	it("does not mutate TTML input and preserves token keys across repeated conversion", () => {
 		const word = {
 			...newLyricWord(),
