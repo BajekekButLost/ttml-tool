@@ -5,6 +5,7 @@ import { GeniusSearchDialog } from "$/modules/genius/modals/GeniusSearchDialog.t
 import { UrbanDictionaryDialog } from "$/modules/lyric-editor/modals/UrbanDictionaryDialog.tsx";
 import { CombineWordsDialog } from "$/modules/lyric-editor/tools/CombineWordsDialog.tsx";
 import { ReplaceRomanizationDialog } from "$/modules/lyric-editor/tools/ReplaceRomanizationDialog.tsx";
+import { ReplaceWordCombinationDialog } from "$/modules/lyric-editor/tools/ReplaceWordCombinationDialog.tsx";
 import { ReplaceWordDialog } from "$/modules/lyric-editor/tools/ReplaceWordDialog.tsx";
 import { TimeShiftDialog } from "$/modules/lyric-editor/tools/TimeShift.tsx";
 import { TimeStretchDialog } from "$/modules/lyric-editor/tools/TimeStretch.tsx";
@@ -26,7 +27,6 @@ import { SplitWordDialog } from "$/modules/segmentation/components/split-word.ts
 import { FontSelectionDialog } from "$/modules/settings/modals/FontSelectionDialog.tsx";
 import { SettingsDialog } from "$/modules/settings/modals/index.tsx";
 import { TTMLChecklistDialog } from "$/modules/ttml-checklist/TTMLChecklistDialog.tsx";
-import { ChangelogDialog } from "./changelog.tsx";
 import { ConfirmationDialog } from "./confirmation.tsx";
 import { CreateProjectPromptDialog } from "./create-project-prompt.tsx";
 import { GeniusHeaderDetectionDialog } from "./genius-header-detection.tsx";
@@ -40,6 +40,7 @@ export const Dialogs = () => {
 			<SplitWordDialog />
 			<CombineWordsDialog />
 			<ReplaceWordDialog />
+			<ReplaceWordCombinationDialog />
 			<ReplaceRomanizationDialog />
 			<LatencyTestDialog />
 			<TTMLChecklistDialog />
@@ -56,7 +57,6 @@ export const Dialogs = () => {
 			<TimeStretchDialog />
 
 			<GeniusSearchDialog />
-			<ChangelogDialog />
 			<FontSelectionDialog />
 			<UrbanDictionaryDialog />
 			<SuggestedSplitsDialog />

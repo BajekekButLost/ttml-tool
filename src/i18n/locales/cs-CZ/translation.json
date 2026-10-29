@@ -3,6 +3,12 @@
     "changelogTitle": "Seznam změn a aktualizace",
     "viewCommits": "Zobrazit commity na GitHubu"
   },
+  "updatedToast": {
+    "message": "Aktualizováno na v{version}",
+    "seeChanges": "Co se změnilo",
+    "setting": "Po aktualizaci ukázat, co se změnilo",
+    "settingDesc": "Při prvním spuštění nové verze zobrazí krátké oznámení s odkazem na seznam změn."
+  },
   "app": {
     "error": {
       "title": "Jejda, došlo k chybě!",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Minimalizovat okno",
       "maximize": "Maximalizovat okno",
+      "restore": "Obnovit okno",
       "close": "Zavřít okno"
     }
   },
@@ -32,6 +39,15 @@
   "preview": {
     "untimedLines": "{count, plural, one {# řádek zatím nemá časování} few {# řádky zatím nemají časování} many {# řádku zatím nemá časování} other {# řádků zatím nemá časování}}",
     "jumpToUntimed": "Nastavit časy prvního řádku bez časování"
+  },
+  "previewProblems": {
+    "count": "{count, plural, one {# slovo má problém s časováním} few {# slova mají problém s časováním} many {# slova má problém s časováním} other {# slov má problém s časováním}}",
+    "jump": "Vybrat první",
+    "untimed": "Nemá časování v časovaném řádku",
+    "untimedLine": "Zatím bez časování",
+    "endsBeforeStart": "Končí dřív, než začne",
+    "startsBeforeLine": "Začíná před svým řádkem",
+    "endsAfterLine": "Končí po svém řádku"
   },
   "beginnerGuide": {
     "empty": {
@@ -302,6 +318,30 @@
       "copyPrevious": "Kopírovat předchozí časování"
     }
   },
+  "logoColor": {
+    "title": "Barva loga",
+    "description": "Vyberte barvu loga v záhlaví okna a na úvodní obrazovce průvodce.",
+    "descriptionDesktop": "Vyberte barvu ikony okna a hlavního panelu a ve Windows také zástupců na ploše a v nabídce Start.",
+    "colorLabel": "Barva",
+    "customLabel": "Vlastní barva loga",
+    "designNote": "Logo se zobrazuje jen se zapnutým designem Spicy Lyrics.",
+    "presets": {
+      "default": "Výchozí",
+      "defaultDesc": "Vlastní barva designu",
+      "lilac": "Šeříková",
+      "lilacDesc": "Z loga v3",
+      "purple": "Fialová",
+      "purpleDesc": "Z vícebarevného loga",
+      "red": "Červená",
+      "redDesc": "Z loga v0.9",
+      "gold": "Zlatá",
+      "green": "Zelená",
+      "blue": "Modrá",
+      "white": "Bílá",
+      "custom": "Vlastní",
+      "customDesc": "Vyberte libovolnou barvu"
+    }
+  },
   "common": {
     "close": "Zavřít",
     "autoDetect": "Automatická detekce",
@@ -456,7 +496,7 @@
       "mode": "Režim",
       "standard": "Standard",
       "timing": "Časování",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Jednoduché texty",
       "forceLineRendering": "Zobrazit časování po řádcích",
       "background": "Pozadí",
@@ -628,6 +668,15 @@
         "accentNote": "Design Spicy Lyrics má vlastní levandulový akcent. Chcete-li jiný, zapněte vlastní barvu akcentu.",
         "legacyDarkThemeNote": "Nemá vliv, dokud je zapnutý design Spicy Lyrics.",
         "fontNote": "Geist, z designu Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Vizuální efekty",
+        "description": "Lehčí vypne rozostření, záře, animace dialogů a pohyblivé pozadí náhledu, aby aplikace zůstala plynulá tam, kde se vykreslují pomalu. Vypne také rozostření skla.",
+        "auto": "Automaticky",
+        "full": "Plné",
+        "lite": "Lehčí",
+        "autoLite": "Používá se Lehčí, protože Linux tyto efekty vykresluje pomalu.",
+        "autoFull": "Používá se Plné."
       },
       "presets": {
         "missingBackground": "Obrázek na pozadí této předvolby není na tomto zařízení k dispozici. Aktuální obrázek byl zachován.",
@@ -861,7 +910,7 @@
       "timingOverviewAutoScrollDesc": "Udržovat přehled časování posunutý na pozici přehrávání.",
       "vsyncDesc": "Aktualizovat náhledy Standard a Toxi v každém snímku místo zhruba 30krát za sekundu. Plynulejší, ale náročnější na CPU.",
       "showFpsDesc": "Zobrazit v náhledu počítadlo snímků za sekundu.",
-      "syncLevelDesc": "Slova: časovat každé slovo zvlášť. Řádky: časovat celé řádky a rovnoměrně rozložit jejich slova. Hrubé časování pak doladíte ve spektrogramu.",
+      "syncLevelDesc": "Slova: časovat každé slovo zvlášť. Řádky: časovat celé řádky a rovnoměrně rozložit jejich slova. I režim Řádky ukládá časování slov, ne časování po řádcích. Slova pak doladíte ve spektrogramu.",
       "previewModeDesc": "Vyberte, který náhled se zobrazí na kartě Náhled.",
       "spicyBackgroundDesc": "Co se zobrazuje za náhledem Spicy.",
       "fadeWidthDesc": "Jak měkký je okraj zvýraznění při vyplňování slova v náhledech Standard a Toxi."
@@ -881,6 +930,10 @@
     "order": "Pořadí",
     "orderChronological": "Podle času",
     "orderTextual": "Podle textu"
+  },
+  "joinSplitWords": {
+    "label": "Spojit rozdělená slova",
+    "description": "Zobrazit slovo zpívané po částech jako jedno slovo, když jsou části rovnoměrně načasované, jako nastavení Join Split Words ve Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -981,7 +1034,9 @@
   "settingsDialog": {
     "search": "Hledat v nastavení",
     "clearSearch": "Vymazat vyhledávání",
-    "noSearchResults": "Žádné odpovídající kategorie",
+    "matchCount": "Odpovídající nastavení: {count}",
+    "noResults": "Žádné nastavení neodpovídá „{query}“",
+    "noResultsDesc": "Zkuste jiné slovo nebo vymažte hledání.",
     "title": "Předvolby",
     "common": {
       "latencyTest": "Test latence zvuku/vstupu"
@@ -1053,18 +1108,14 @@
     "tab": {
       "common": "Obecné",
       "appearance": "Vzhled",
-      "audio": "Zvuk",
-      "keybindings": "Klávesové zkratky",
-      "spectrogram": "Spektrogram",
+      "editing": "Úpravy",
+      "syncing": "Synchronizace",
+      "preview": "Náhled",
+      "audioSpectrogram": "Zvuk a spektrogram",
+      "importFiles": "Import a soubory",
       "backup": "Zálohování",
-      "editor": "Editor a synchronizace",
-      "files": "Soubory a úložiště"
-    },
-    "page": {
-      "generalDesc": "Jazyk, soukromí a chování celé aplikace.",
-      "editorDesc": "Zadávání časů, chování synchronizace a vizuální podněty.",
-      "filesDesc": "Čištění při importu, historie automatického ukládání a přenosné zálohy.",
-      "audioDesc": "Přehrávání, ekvalizér a zobrazení spektrogramu."
+      "keybindings": "Klávesové zkratky",
+      "changelog": "Seznam změn"
     }
   },
   "autoSegmentApplied": "Automaticky rozděleno pomocí {engine}",
@@ -1123,7 +1174,10 @@
     "volume": "Hlasitost",
     "playbackRate": "Rychlost přehrávání",
     "preservesPitch": "Zachovat výšku tónu",
-    "clickToLoadMusic": "Kliknutím na ikonu hudby načtěte zvuk",
+    "audioMenu": "Zvuk a přehrávání",
+    "loadedAudio": "Načtený zvuk",
+    "replaceAudio": "Nahradit",
+    "resetSpeed": "Obnovit na 1×",
     "playPause": "Přehrát / pozastavit hudbu",
     "expandSpectrogram": "Rozbalit / sbalit spektrogram"
   },
@@ -1183,6 +1237,11 @@
     "customKey": "Vlastní pole",
     "addPresets": "Přidat všechna standardní pole",
     "clear": "Vymazat"
+  },
+  "helpText": {
+    "metadataArtists": "Kdo skladbu interpretuje, podle toho, jak je skladba uvedena ve streamovacích službách. Příklad: „Shake It Off“ je od Taylor Swift.",
+    "metadataSongwriter": "Kdo napsal hudbu a text, podle autorských údajů. Často jde o jiné lidi než interpreti. Příklad: „Shake It Off“ napsali Taylor Swift, Max Martin a Shellback.",
+    "openSongwritersGuide": "Otevřít průvodce k autorům"
   },
   "lrclib": {
     "placeholder": "Název skladby a interpret…",
@@ -1257,6 +1316,16 @@
     "placeholder": "Nové slovo",
     "applyToAll": "Nahradit všechna stejná slova",
     "caseSensitive": "Rozlišovat velká a malá písmena"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Nahradit kombinaci slov",
+    "description": "Kliknutím na slovo upravíte jeho text. Časování zůstane stejné.",
+    "word": "Slovo {index}",
+    "reorderWord": "Přesunout slovo {index}",
+    "reorderHint": "Pořadí změníte přetažením úchytu nebo zaměřením slova a stisknutím Alt+šipka vlevo/vpravo.",
+    "position": "Pozice {index} z {count}",
+    "applyToAll": "Nahradit všechny odpovídající kombinace",
+    "adjacentOnly": "Chcete-li nahradit kombinaci, vyberte sousedící slova nebo slabiky na jednom řádku."
   },
   "replaceRomanizationDialog": {
     "title": "Nahradit přepis do latinky",
@@ -1369,6 +1438,14 @@
   "autosave": {
     "legacyProjectName": "Starší snímky",
     "untitledProjectName": "Projekt bez názvu"
+  },
+  "didYouKnow": {
+    "title": "Věděli jste?",
+    "repeatedSection": "Opakované řádky mohou převzít dřívější časování. Vyberte dřívější řádky, umístěte pozici přehrávání na začátek opakování a použijte Duplikovat na pozici přehrávání.",
+    "splitInTimeMode": "Slovo můžete rozdělit i bez opuštění režimu Časování: podržte {modifier} a dvakrát na něj klikněte.",
+    "turnOff": "Nezobrazovat tipy",
+    "setting": "Zobrazovat tipy",
+    "settingDesc": "Když něco uděláte ručně a existuje rychlejší způsob, zobrazí se krátký tip. Každý tip se zobrazí jen jednou."
   },
   "time": {
     "daysAgo": "{count, plural, one {Před # dnem} few {Před # dny} many {Před # dne} other {Před # dny}}",
@@ -1488,6 +1565,19 @@
     "apply": "Použít návrh",
     "noSuggestions": "Pro tento obsah nejsou k dispozici žádné automatické návrhy rozdělení."
   },
+  "changelogScreen": {
+    "viewLabel": "Zobrazit",
+    "viewAll": "Vše",
+    "viewHighlights": "Hlavní novinky",
+    "highlights": "Hlavní novinky",
+    "latest": "Nejnovější",
+    "sectionNew": "Nové",
+    "sectionChanged": "Změněno",
+    "sectionFixed": "Opraveno",
+    "empty": "Žádná vydání k zobrazení.",
+    "versions": "Verze",
+    "earlier": "Starší"
+  },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
     "description": "Editor TTML a nástroj pro časování textů po slovech ve stylu Apple Music",
@@ -1510,6 +1600,23 @@
     "openContributorProfile": "Otevřít GitHub profil uživatele {name}",
     "unknown": "Neznámý"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Oddělené stopy",
+    "settingDesc": "Zobrazí doprovodné řádky ve vlastní stopě pod hlavními řádky. Stopy slouží jen k zobrazení: roli řádku změníte v režimu úprav.",
+    "menu": "Stopy",
+    "visibleLanes": "Zobrazit stopy",
+    "duetLane": "Samostatná stopa pro duet",
+    "lane": {
+      "main": "Hlavní",
+      "duet": "Duet",
+      "bg": "Doprovod"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Konec řádku a posledního slova. Tažením s Alt posunete jen jedno.",
+    "wordEndHandle": "Konec posledního slova",
+    "lineEndHandle": "Konec řádku"
+  },
   "spectrogram": {
     "invalidEndTime": "Nelze vybrat tento čas konce",
     "noAudioLoaded": "Načtěte zvukový soubor pro zobrazení spektrogramu",
@@ -1525,6 +1632,17 @@
       "4096": "4096 (nejvíce detailů)"
     },
     "height": "Výška zobrazení"
+  },
+  "spectrogramFollow": {
+    "toggle": "Sledovat přehrávací hlavu",
+    "shortcut": "Spektrogram – zapnout/vypnout sledování přehrávací hlavy",
+    "setting": "Sledovat přehrávací hlavu",
+    "settingDesc": "Posouvá spektrogram tak, aby přehrávací hlava zůstala vidět. Posouvání nebo tažení sledování pozastaví, dokud nespustíte přehrávání nebo chvíli nečekáte.",
+    "style": "Způsob sledování",
+    "page": "Po stránkách",
+    "pageDesc": "Skočí dopředu, když přehrávací hlava opustí zobrazení.",
+    "continuous": "Plynule",
+    "continuousDesc": "Posouvá se s přehrávací hlavou a drží ji uprostřed."
   },
   "export": {
     "recoveryUntimed": "Tento obnovený export obsahuje nečasované texty. Před odesláním zkontrolujte časování.",

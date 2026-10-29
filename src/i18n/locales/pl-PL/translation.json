@@ -3,6 +3,12 @@
     "changelogTitle": "Lista zmian i aktualizacje",
     "viewCommits": "Zobacz commity na GitHubie"
   },
+  "updatedToast": {
+    "message": "Zaktualizowano do v{version}",
+    "seeChanges": "Zobacz zmiany",
+    "setting": "Pokazuj zmiany po aktualizacji",
+    "settingDesc": "Przy pierwszym uruchomieniu nowej wersji pokazuje krótkie powiadomienie z linkiem do listy zmian."
+  },
   "app": {
     "error": {
       "title": "Ups, wystąpił błąd!",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Minimalizuj okno",
       "maximize": "Maksymalizuj okno",
+      "restore": "Przywróć okno",
       "close": "Zamknij okno"
     }
   },
@@ -32,6 +39,15 @@
   "preview": {
     "untimedLines": "{count, plural, one {# wers nie ma jeszcze synchronizacji} few {# wersy nie mają jeszcze synchronizacji} many {# wersów nie ma jeszcze synchronizacji} other {# wersu nie ma jeszcze synchronizacji}}",
     "jumpToUntimed": "Synchronizuj pierwszy wers bez czasów"
+  },
+  "previewProblems": {
+    "count": "{count, plural, one {# słowo ma problem z synchronizacją} few {# słowa mają problemy z synchronizacją} many {# słów ma problemy z synchronizacją} other {# słowa ma problemy z synchronizacją}}",
+    "jump": "Zaznacz pierwsze",
+    "untimed": "Brak czasów w zsynchronizowanym wersie",
+    "untimedLine": "Jeszcze niezsynchronizowany",
+    "endsBeforeStart": "Kończy się, zanim się zacznie",
+    "startsBeforeLine": "Zaczyna się przed swoim wersem",
+    "endsAfterLine": "Kończy się po swoim wersie"
   },
   "beginnerGuide": {
     "empty": {
@@ -302,6 +318,30 @@
       "copyPrevious": "Kopiuj poprzednie czasy"
     }
   },
+  "logoColor": {
+    "title": "Kolor logo",
+    "description": "Wybierz kolor logo na pasku tytułu i na ekranie powitalnym przewodnika.",
+    "descriptionDesktop": "Wybierz kolor ikony okna i paska zadań, a w systemie Windows także skrótów na pulpicie i w menu Start.",
+    "colorLabel": "Kolor",
+    "customLabel": "Własny kolor logo",
+    "designNote": "Logo jest widoczne tylko przy włączonym wyglądzie Spicy Lyrics.",
+    "presets": {
+      "default": "Domyślny",
+      "defaultDesc": "Własny kolor wyglądu",
+      "lilac": "Liliowy",
+      "lilacDesc": "Z logo v3",
+      "purple": "Fioletowy",
+      "purpleDesc": "Z wielokolorowego logo",
+      "red": "Czerwony",
+      "redDesc": "Z logo v0.9",
+      "gold": "Złoty",
+      "green": "Zielony",
+      "blue": "Niebieski",
+      "white": "Biały",
+      "custom": "Własny",
+      "customDesc": "Wybierz dowolny kolor"
+    }
+  },
   "common": {
     "close": "Zamknij",
     "autoDetect": "Automatyczne wykrywanie",
@@ -456,7 +496,7 @@
       "mode": "Tryb",
       "standard": "Standard",
       "timing": "Synchronizacja",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Proste teksty",
       "forceLineRendering": "Pokaż synchronizację wersami",
       "background": "Tło",
@@ -628,6 +668,15 @@
         "accentNote": "Wygląd Spicy Lyrics ma własny lawendowy kolor akcentu. Włącz własny kolor akcentu, aby użyć innego.",
         "legacyDarkThemeNote": "Nie działa, gdy wygląd Spicy Lyrics jest włączony.",
         "fontNote": "Geist, z wyglądu Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Efekty wizualne",
+        "description": "Lżejsze wyłącza rozmycie, poświaty, animacje okien dialogowych i ruchome tło podglądu, żeby aplikacja działała płynnie tam, gdzie są rysowane wolno. Wyłącza też rozmycie szkła.",
+        "auto": "Automatycznie",
+        "full": "Pełne",
+        "lite": "Lżejsze",
+        "autoLite": "Używane są Lżejsze, bo Linux rysuje te efekty wolno.",
+        "autoFull": "Używane są Pełne."
       },
       "presets": {
         "missingBackground": "Obraz tła tego zestawu ustawień jest niedostępny na tym urządzeniu. Zachowano bieżący obraz.",
@@ -861,7 +910,7 @@
       "timingOverviewAutoScrollDesc": "Utrzymuj przegląd czasów przewinięty do pozycji odtwarzania.",
       "vsyncDesc": "Aktualizuj podglądy Standard i Toxi w każdej klatce zamiast około 30 razy na sekundę. Płynniej, ale większe użycie CPU.",
       "showFpsDesc": "Pokaż licznik klatek na sekundę w podglądzie.",
-      "syncLevelDesc": "Słowa: ustawiaj czas każdego słowa. Wersy: ustawiaj czas całych wersów i rozkładaj słowa równomiernie. Tę wstępną synchronizację dopracujesz w spektrogramie.",
+      "syncLevelDesc": "Słowa: ustawiaj czas każdego słowa. Wersy: ustawiaj czas całych wersów i rozkładaj słowa równomiernie. Tryb Wersy nadal zapisuje czasy słów, a nie tekst synchronizowany wersami, więc słowa dopracujesz w spektrogramie.",
       "previewModeDesc": "Wybierz, który podgląd pokazuje karta Podgląd.",
       "spicyBackgroundDesc": "Co jest wyświetlane za podglądem Spicy.",
       "fadeWidthDesc": "Jak miękka jest krawędź wyróżnienia podczas wypełniania słowa w podglądach Standard i Toxi."
@@ -881,6 +930,10 @@
     "order": "Kolejność",
     "orderChronological": "Według czasu",
     "orderTextual": "Według tekstu"
+  },
+  "joinSplitWords": {
+    "label": "Łącz podzielone słowa",
+    "description": "Pokaż słowo śpiewane w częściach jako jedno słowo, gdy części są rozłożone równomiernie, jak ustawienie Join Split Words w Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -981,7 +1034,9 @@
   "settingsDialog": {
     "search": "Szukaj w ustawieniach",
     "clearSearch": "Wyczyść wyszukiwanie",
-    "noSearchResults": "Brak pasujących kategorii",
+    "matchCount": "Pasujące ustawienia: {count}",
+    "noResults": "Żadne ustawienie nie pasuje do „{query}”",
+    "noResultsDesc": "Spróbuj innego słowa lub wyczyść wyszukiwanie.",
     "title": "Preferencje",
     "common": {
       "latencyTest": "Test opóźnienia audio/wejścia"
@@ -1053,18 +1108,14 @@
     "tab": {
       "common": "Ogólne",
       "appearance": "Wygląd",
-      "audio": "Dźwięk",
-      "keybindings": "Skróty klawiszowe",
-      "spectrogram": "Spektrogram",
+      "editing": "Edycja",
+      "syncing": "Synchronizacja",
+      "preview": "Podgląd",
+      "audioSpectrogram": "Dźwięk i spektrogram",
+      "importFiles": "Import i pliki",
       "backup": "Kopia zapasowa",
-      "editor": "Edytor i synchronizacja",
-      "files": "Pliki i przechowywanie"
-    },
-    "page": {
-      "generalDesc": "Język, prywatność i ogólne działanie aplikacji.",
-      "editorDesc": "Wprowadzanie czasu, działanie synchronizacji i wskazówki wizualne.",
-      "filesDesc": "Czyszczenie przy imporcie, historia autozapisu i przenośne kopie zapasowe.",
-      "audioDesc": "Odtwarzanie, korektor i wyświetlanie spektrogramu."
+      "keybindings": "Skróty klawiszowe",
+      "changelog": "Lista zmian"
     }
   },
   "autoSegmentApplied": "Automatycznie podzielono za pomocą {engine}",
@@ -1123,7 +1174,10 @@
     "volume": "Głośność",
     "playbackRate": "Prędkość odtwarzania",
     "preservesPitch": "Zachowaj wysokość dźwięku",
-    "clickToLoadMusic": "Kliknij ikonę muzyki, aby wczytać dźwięk",
+    "audioMenu": "Dźwięk i odtwarzanie",
+    "loadedAudio": "Wczytany dźwięk",
+    "replaceAudio": "Zastąp",
+    "resetSpeed": "Przywróć 1×",
     "playPause": "Odtwórz / wstrzymaj muzykę",
     "expandSpectrogram": "Rozwiń / zwiń spektrogram"
   },
@@ -1183,6 +1237,11 @@
     "customKey": "Własne pole",
     "addPresets": "Dodaj wszystkie standardowe pola",
     "clear": "Wyczyść"
+  },
+  "helpText": {
+    "metadataArtists": "Kto wykonuje utwór, tak jak jest podpisany w serwisach streamingowych. Przykład: „Shake It Off” wykonuje Taylor Swift.",
+    "metadataSongwriter": "Kto napisał muzykę i tekst, według informacji o autorach. Często są to inne osoby niż wykonawcy. Przykład: „Shake It Off” napisali Taylor Swift, Max Martin i Shellback.",
+    "openSongwritersGuide": "Otwórz przewodnik o autorach"
   },
   "lrclib": {
     "placeholder": "Tytuł utworu i wykonawca…",
@@ -1257,6 +1316,16 @@
     "placeholder": "Nowe słowo",
     "applyToAll": "Zamień wszystkie identyczne słowa",
     "caseSensitive": "Uwzględniaj wielkość liter"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Zastąp kombinację słów",
+    "description": "Kliknij słowo, aby edytować jego tekst. Czasy pozostają bez zmian.",
+    "word": "Słowo {index}",
+    "reorderWord": "Przenieś słowo {index}",
+    "reorderHint": "Przeciągnij uchwyt, aby zmienić kolejność, lub ustaw fokus na słowie i naciśnij Alt+strzałka w lewo/prawo.",
+    "position": "Pozycja {index} z {count}",
+    "applyToAll": "Zastąp wszystkie pasujące kombinacje",
+    "adjacentOnly": "Zaznacz sąsiadujące słowa lub sylaby w jednym wierszu, aby zastąpić kombinację."
   },
   "replaceRomanizationDialog": {
     "title": "Zamień transkrypcję łacińską",
@@ -1369,6 +1438,14 @@
   "autosave": {
     "legacyProjectName": "Starsze migawki",
     "untitledProjectName": "Projekt bez tytułu"
+  },
+  "didYouKnow": {
+    "title": "Czy wiesz, że...?",
+    "repeatedSection": "Powtarzające się wiersze mogą użyć wcześniejszej synchronizacji. Zaznacz wcześniejsze wiersze, ustaw pozycję odtwarzania na początku powtórzenia i użyj Duplikuj na pozycji odtwarzania.",
+    "splitInTimeMode": "Możesz podzielić słowo bez wychodzenia z trybu Synchronizacja: przytrzymaj {modifier} i kliknij je dwukrotnie.",
+    "turnOff": "Nie pokazuj wskazówek",
+    "setting": "Pokazuj wskazówki",
+    "settingDesc": "Gdy robisz coś ręcznie, a istnieje szybszy sposób, pokazuje krótką wskazówkę. Każda wskazówka pojawia się tylko raz."
   },
   "time": {
     "daysAgo": "{count, plural, one {# dzień temu} few {# dni temu} many {# dni temu} other {# dnia temu}}",
@@ -1488,6 +1565,19 @@
     "apply": "Zastosuj sugestię",
     "noSuggestions": "Dla tej treści nie są dostępne żadne automatyczne sugestie podziału."
   },
+  "changelogScreen": {
+    "viewLabel": "Pokaż",
+    "viewAll": "Wszystko",
+    "viewHighlights": "Najważniejsze",
+    "highlights": "Najważniejsze",
+    "latest": "Najnowsze",
+    "sectionNew": "Nowości",
+    "sectionChanged": "Zmiany",
+    "sectionFixed": "Poprawki",
+    "empty": "Brak wydań do pokazania.",
+    "versions": "Wersje",
+    "earlier": "Wcześniejsze"
+  },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
     "description": "Edytor TTML i narzędzie do synchronizacji słowo po słowie w stylu Apple Music",
@@ -1510,6 +1600,23 @@
     "openContributorProfile": "Otwórz profil GitHub użytkownika {name}",
     "unknown": "Nieznany"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Osobne ścieżki",
+    "settingDesc": "Pokazuj wersy wokalu w tle na osobnej ścieżce pod głównymi wersami. Ścieżki służą tylko do podglądu: rolę wersu zmienisz w trybie edycji.",
+    "menu": "Ścieżki",
+    "visibleLanes": "Pokaż ścieżki",
+    "duetLane": "Osobna ścieżka duetu",
+    "lane": {
+      "main": "Główna",
+      "duet": "Duet",
+      "bg": "W tle"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Koniec wiersza i ostatniego słowa. Przeciągnij z Alt, aby przesunąć tylko jedno.",
+    "wordEndHandle": "Koniec ostatniego słowa",
+    "lineEndHandle": "Koniec wiersza"
+  },
   "spectrogram": {
     "invalidEndTime": "Nie można wybrać tego czasu końcowego",
     "noAudioLoaded": "Wczytaj plik audio, aby zobaczyć spektrogram",
@@ -1525,6 +1632,17 @@
       "4096": "4096 (najwięcej szczegółów)"
     },
     "height": "Wysokość widoku"
+  },
+  "spectrogramFollow": {
+    "toggle": "Podążaj za głowicą",
+    "shortcut": "Spektrogram – włącz/wyłącz podążanie za głowicą",
+    "setting": "Podążaj za głowicą odtwarzania",
+    "settingDesc": "Przewija spektrogram, aby głowica była widoczna. Przewijanie lub przeciąganie wstrzymuje to, dopóki nie wciśniesz odtwarzania albo nie odczekasz chwili.",
+    "style": "Sposób podążania",
+    "page": "Stronami",
+    "pageDesc": "Przeskakuje dalej, gdy głowica opuści widok.",
+    "continuous": "Płynnie",
+    "continuousDesc": "Przewija razem z głowicą i trzyma ją na środku."
   },
   "export": {
     "recoveryUntimed": "Ten odzyskany eksport zawiera niezsynchronizowane teksty. Sprawdź synchronizację przed wysłaniem.",

@@ -3,6 +3,12 @@
     "changelogTitle": "Journal des modifications et mises à jour",
     "viewCommits": "Voir les commits sur GitHub"
   },
+  "updatedToast": {
+    "message": "Mis à jour vers la v{version}",
+    "seeChanges": "Voir les nouveautés",
+    "setting": "Afficher les nouveautés après une mise à jour",
+    "settingDesc": "Au premier démarrage sur une nouvelle version, affiche une courte notification avec un lien vers le journal des modifications."
+  },
   "app": {
     "error": {
       "title": "Oups, une erreur s'est produite !",
@@ -23,6 +29,7 @@
     "window": {
       "minimize": "Réduire la fenêtre",
       "maximize": "Agrandir la fenêtre",
+      "restore": "Restaurer la fenêtre",
       "close": "Fermer la fenêtre"
     }
   },
@@ -32,6 +39,15 @@
   "preview": {
     "untimedLines": "{count, plural, one {# ligne n’est pas encore minutée} many {# lignes ne sont pas encore minutées} other {# lignes ne sont pas encore minutées}}",
     "jumpToUntimed": "Synchroniser la première ligne non minutée"
+  },
+  "previewProblems": {
+    "count": "{count, plural, one {# mot a un problème de minutage} many {# mots ont des problèmes de minutage} other {# mots ont des problèmes de minutage}}",
+    "jump": "Sélectionner le premier",
+    "untimed": "Pas de minutage dans une ligne minutée",
+    "untimedLine": "Pas encore minutée",
+    "endsBeforeStart": "Se termine avant de commencer",
+    "startsBeforeLine": "Commence avant sa ligne",
+    "endsAfterLine": "Se termine après sa ligne"
   },
   "beginnerGuide": {
     "empty": {
@@ -302,6 +318,30 @@
       "copyPrevious": "Copier les temps précédents"
     }
   },
+  "logoColor": {
+    "title": "Couleur du logo",
+    "description": "Choisissez une couleur pour le logo de la barre de titre et de l'écran d'accueil du guide.",
+    "descriptionDesktop": "Choisissez une couleur pour l'icône de la fenêtre et de la barre des tâches et, sous Windows, pour les raccourcis du bureau et du menu Démarrer.",
+    "colorLabel": "Couleur",
+    "customLabel": "Couleur personnalisée du logo",
+    "designNote": "Le logo ne s'affiche qu'avec le design Spicy Lyrics activé.",
+    "presets": {
+      "default": "Par défaut",
+      "defaultDesc": "La couleur propre au design",
+      "lilac": "Lilas",
+      "lilacDesc": "Du logo v3",
+      "purple": "Violet",
+      "purpleDesc": "Du logo multicolore",
+      "red": "Rouge",
+      "redDesc": "Du logo v0.9",
+      "gold": "Or",
+      "green": "Vert",
+      "blue": "Bleu",
+      "white": "Blanc",
+      "custom": "Personnalisée",
+      "customDesc": "Choisissez n'importe quelle couleur"
+    }
+  },
   "common": {
     "close": "Fermer",
     "autoDetect": "Détection automatique",
@@ -456,7 +496,7 @@
       "mode": "Mode",
       "standard": "Standard",
       "timing": "Temps",
-      "spicy": "Spicy",
+      "spicy": "Spicy Lyrics",
       "simpleLyrics": "Paroles simples",
       "forceLineRendering": "Afficher la synchronisation par ligne",
       "background": "Arrière-plan",
@@ -628,6 +668,15 @@
         "accentNote": "Le design Spicy Lyrics a sa propre couleur d'accent lavande. Activez une couleur d'accent personnalisée pour en utiliser une autre.",
         "legacyDarkThemeNote": "Sans effet tant que le design Spicy Lyrics est activé.",
         "fontNote": "Geist, du design Spicy Lyrics"
+      },
+      "effects": {
+        "title": "Effets visuels",
+        "description": "Allégé retire le flou, les halos, les animations des boîtes de dialogue et le fond animé de l'aperçu, pour que l'app reste fluide là où ils s'affichent lentement. Il désactive aussi le flou du verre.",
+        "auto": "Automatique",
+        "full": "Complet",
+        "lite": "Allégé",
+        "autoLite": "Allégé est utilisé, car Linux affiche ces effets lentement.",
+        "autoFull": "Complet est utilisé."
       },
       "presets": {
         "missingBackground": "L'image d'arrière-plan de ce préréglage n'est pas disponible sur cet appareil. L'image actuelle a été conservée.",
@@ -861,7 +910,7 @@
       "timingOverviewAutoScrollDesc": "La vue d’ensemble des temps suit la tête de lecture.",
       "vsyncDesc": "Met à jour les aperçus Standard et Toxi à chaque image au lieu d'environ 30 fois par seconde. Plus fluide, mais consomme plus de CPU.",
       "showFpsDesc": "Affiche un compteur d'images par seconde sur l'aperçu.",
-      "syncLevelDesc": "Mot : synchronisez chaque mot à mesure. Ligne : synchronisez des lignes entières et répartissez leurs mots uniformément pour une synchronisation approximative à affiner dans le spectrogramme.",
+      "syncLevelDesc": "Mot : synchronisez chaque mot à mesure. Ligne : synchronisez des lignes entières et répartissez leurs mots uniformément. Le mode Ligne enregistre toujours le minutage de chaque mot, pas des paroles synchronisées ligne par ligne : affinez donc les mots dans le spectrogramme.",
       "previewModeDesc": "Choisissez l'aperçu affiché dans l'onglet Aperçu.",
       "spicyBackgroundDesc": "Ce qui s'affiche derrière l'aperçu Spicy.",
       "fadeWidthDesc": "Douceur du bord du surlignage lorsqu'un mot se remplit dans les aperçus Standard et Toxi."
@@ -881,6 +930,10 @@
     "order": "Ordre",
     "orderChronological": "Chronologique",
     "orderTextual": "Ordre du texte"
+  },
+  "joinSplitWords": {
+    "label": "Fusionner les mots découpés",
+    "description": "Affiche un mot chanté en plusieurs parties comme un seul mot lorsque les parties s'enchaînent régulièrement, comme le réglage Join Split Words de Spicy Lyrics."
   },
   "topBar": {
     "modeBtns": {
@@ -981,7 +1034,9 @@
   "settingsDialog": {
     "search": "Rechercher dans les paramètres",
     "clearSearch": "Effacer la recherche",
-    "noSearchResults": "Aucune catégorie correspondante",
+    "matchCount": "Réglages correspondants : {count}",
+    "noResults": "Aucun réglage ne correspond à « {query} »",
+    "noResultsDesc": "Essayez un autre mot ou effacez la recherche.",
     "title": "Préférences",
     "common": {
       "latencyTest": "Test de latence audio/entrée"
@@ -1053,18 +1108,14 @@
     "tab": {
       "common": "Général",
       "appearance": "Apparence",
-      "audio": "Audio",
-      "keybindings": "Raccourcis",
-      "spectrogram": "Spectrogramme",
+      "editing": "Édition",
+      "syncing": "Synchronisation",
+      "preview": "Aperçu",
+      "audioSpectrogram": "Audio et spectrogramme",
+      "importFiles": "Importation et fichiers",
       "backup": "Sauvegarde",
-      "editor": "Éditeur et synchronisation",
-      "files": "Fichiers et stockage"
-    },
-    "page": {
-      "generalDesc": "Langue, confidentialité et comportement général de l'application.",
-      "editorDesc": "Saisie des temps, comportement de la synchronisation et repères visuels.",
-      "filesDesc": "Nettoyage à l'import, historique d'enregistrement automatique et sauvegardes portables.",
-      "audioDesc": "Lecture, égaliseur et affichage du spectrogramme."
+      "keybindings": "Raccourcis",
+      "changelog": "Nouveautés"
     }
   },
   "autoSegmentApplied": "Segmentation automatique avec {engine}",
@@ -1123,7 +1174,10 @@
     "volume": "Volume",
     "playbackRate": "Vitesse de lecture",
     "preservesPitch": "Conserver la hauteur",
-    "clickToLoadMusic": "Cliquez sur l’icône de musique pour charger l’audio",
+    "audioMenu": "Audio et lecture",
+    "loadedAudio": "Audio chargé",
+    "replaceAudio": "Remplacer",
+    "resetSpeed": "Revenir à 1×",
     "playPause": "Lecture / pause de la musique",
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },
@@ -1183,6 +1237,11 @@
     "customKey": "Champ personnalisé",
     "addPresets": "Ajouter tous les champs standard",
     "clear": "Effacer"
+  },
+  "helpText": {
+    "metadataArtists": "Qui interprète la chanson, tel que le titre est crédité sur les services de streaming. Exemple : « Shake It Off » est de Taylor Swift.",
+    "metadataSongwriter": "Qui a écrit la musique et les paroles, d'après les crédits d'écriture. Souvent différent des artistes. Exemple : « Shake It Off » a été écrit par Taylor Swift, Max Martin et Shellback.",
+    "openSongwritersGuide": "Ouvrir le guide des auteurs-compositeurs"
   },
   "lrclib": {
     "placeholder": "Titre de la chanson et artiste…",
@@ -1257,6 +1316,16 @@
     "placeholder": "Nouveau mot",
     "applyToAll": "Remplacer tous les mots identiques",
     "caseSensitive": "Respecter la casse"
+  },
+  "replaceWordCombinationDialog": {
+    "title": "Remplacer une combinaison de mots",
+    "description": "Cliquez sur un mot pour modifier son texte. Les temps restent inchangés.",
+    "word": "Mot {index}",
+    "reorderWord": "Déplacer le mot {index}",
+    "reorderHint": "Faites glisser une poignée pour changer l'ordre, ou sélectionnez un mot et appuyez sur Alt+Gauche/Droite.",
+    "position": "Position {index} sur {count}",
+    "applyToAll": "Remplacer toutes les combinaisons correspondantes",
+    "adjacentOnly": "Sélectionnez des mots ou syllabes adjacents sur une même ligne pour remplacer une combinaison."
   },
   "replaceRomanizationDialog": {
     "title": "Remplacer la romanisation",
@@ -1369,6 +1438,14 @@
   "autosave": {
     "legacyProjectName": "Anciens instantanés",
     "untitledProjectName": "Projet sans titre"
+  },
+  "didYouKnow": {
+    "title": "Le saviez-vous ?",
+    "repeatedSection": "Les lignes répétées peuvent reprendre une synchronisation précédente. Sélectionnez les lignes précédentes, placez la tête de lecture au début de la répétition et utilisez Dupliquer à la tête de lecture.",
+    "splitInTimeMode": "Vous pouvez scinder un mot sans quitter le mode Synchronisation : maintenez {modifier} et double-cliquez dessus.",
+    "turnOff": "Ne plus afficher les astuces",
+    "setting": "Afficher des astuces",
+    "settingDesc": "Quand vous faites à la main une action qui a un raccourci plus rapide, affiche une courte astuce. Chaque astuce ne s'affiche qu'une fois."
   },
   "time": {
     "daysAgo": "{count, plural, one {Il y a # jour} many {Il y a # jours} other {Il y a # jours}}",
@@ -1488,6 +1565,19 @@
     "apply": "Appliquer la suggestion",
     "noSuggestions": "Aucune suggestion de découpage automatique pour ce contenu."
   },
+  "changelogScreen": {
+    "viewLabel": "Afficher",
+    "viewAll": "Tout",
+    "viewHighlights": "Points forts",
+    "highlights": "Points forts",
+    "latest": "Dernière",
+    "sectionNew": "Nouveau",
+    "sectionChanged": "Modifié",
+    "sectionFixed": "Corrigé",
+    "empty": "Aucune version à afficher.",
+    "versions": "Versions",
+    "earlier": "Plus anciennes"
+  },
   "aboutModal": {
     "appName": "Spicy Lyrics TTML Tool",
     "description": "Éditeur TTML pour synchroniser les paroles mot par mot dans le style d’Apple Music",
@@ -1510,6 +1600,23 @@
     "openContributorProfile": "Ouvrir le profil GitHub de {name}",
     "unknown": "Inconnu"
   },
+  "spectrogramLanes": {
+    "settingTitle": "Pistes séparées",
+    "settingDesc": "Affiche les lignes de chœurs sur leur propre piste sous les lignes principales. Les pistes servent uniquement à l'affichage : changez le rôle d'une ligne en mode édition.",
+    "menu": "Pistes",
+    "visibleLanes": "Afficher les pistes",
+    "duetLane": "Piste séparée pour le duo",
+    "lane": {
+      "main": "Principale",
+      "duet": "Duo",
+      "bg": "Chœurs"
+    }
+  },
+  "spectrogramLineEnds": {
+    "mergedHandle": "Fin de la ligne et du dernier mot. Glissez avec Alt pour n'en déplacer qu'un.",
+    "wordEndHandle": "Fin du dernier mot",
+    "lineEndHandle": "Fin de la ligne"
+  },
   "spectrogram": {
     "invalidEndTime": "Impossible de sélectionner ce temps de fin",
     "noAudioLoaded": "Veuillez charger un fichier audio pour afficher le spectrogramme",
@@ -1525,6 +1632,17 @@
       "4096": "4096 (maximum de détails)"
     },
     "height": "Hauteur d'affichage"
+  },
+  "spectrogramFollow": {
+    "toggle": "Suivre la tête de lecture",
+    "shortcut": "Spectrogramme - Activer/désactiver le suivi de la tête de lecture",
+    "setting": "Suivre la tête de lecture",
+    "settingDesc": "Fait défiler le spectrogramme pour garder la tête de lecture visible. Faire défiler ou glisser le met en pause jusqu'à ce que vous lanciez la lecture ou attendiez un instant.",
+    "style": "Mode de suivi",
+    "page": "Par page",
+    "pageDesc": "Saute en avant quand la tête de lecture sort de la vue.",
+    "continuous": "Continu",
+    "continuousDesc": "Défile avec la tête de lecture et la garde au centre."
   },
   "export": {
     "recoveryUntimed": "Cet export de récupération contient des paroles non synchronisées. Vérifiez la synchronisation avant de l'envoyer.",
