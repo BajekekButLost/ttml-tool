@@ -381,4 +381,7 @@ if (import.meta.env.DEV) {
 	t("settingsDialog.keybindings.category.Sync");
 	t("settingsDialog.keybindings.category.Audio");
 	t("settingsDialog.keybindings.category.Spectrogram");
+	// Menu actions (src/modules/menu-actions) register these two.
+	t("settingsDialog.keybindings.category.Tools");
+	t("settingsDialog.keybindings.category.Help");
 }

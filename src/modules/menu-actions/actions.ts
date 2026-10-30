@@ -12,7 +12,10 @@ import {
 	cmdUndo,
 	cmdUnselectAll,
 } from "$/modules/keyboard/commands";
+import { t as key } from "$/modules/keyboard/i18n-helper";
+import { registerCommand } from "$/modules/keyboard/registry";
 import type {
+	I18nKey,
 	KeyBindingCommand,
 	KeyBindingMode,
 } from "$/modules/keyboard/types";
@@ -33,6 +36,7 @@ import {
 	lyricLinesAtom,
 	selectedLinesAtom,
 	selectedWordsAtom,
+	toolModeAtom,
 } from "$/states/main.ts";
 
 type Store = ReturnType<typeof createStore>;
@@ -44,32 +48,46 @@ export interface MenuActionContext {
 	menu: ReturnType<typeof useTopMenuActions>;
 }
 
-export type MenuActionGroup = "file" | "edit" | "tools" | "help";
-
 /**
  * One action from the top menus (or a selection action from the right-click
- * menus), defined once so the menu item and its command palette entry share
- * the label, the enabled rule and what it runs.
+ * menus), defined once. Each is a keyboard command, so it can be given a key
+ * in Preferences and the command palette lists it; the menu item, the
+ * shortcut and the palette share the label, the enabled rule and what it runs.
  */
 export interface MenuAction {
-	id: string;
-	group: MenuActionGroup;
-	/** The menu item's label. */
+	command: KeyBindingCommand;
+	/** The command existed before and its shortcut is handled elsewhere (the top bar). */
+	boundElsewhere?: boolean;
+	/** The menu item's label. The command's description is the same text unless the menu's only makes sense in its submenu, e.g. "LRC". */
 	label: (t: Translate) => string;
-	/** The palette's label when the menu's needs its submenu to make sense, e.g. "LRC". */
-	paletteLabel?: (t: Translate) => string;
-	/** Already a keyboard command, so the palette lists that instead. */
-	command?: KeyBindingCommand;
-	/** Left out of the palette because another entry covers it, e.g. a Preferences page. */
+	/** Left out of the palette because a Preferences page already covers it. */
 	paletteHidden?: boolean;
-	/** Editor modes the palette lists it in. All of them when unset. */
-	modes?: readonly KeyBindingMode[];
 	enabledAtom?: Atom<boolean>;
 	visibleAtom?: Atom<boolean>;
 	/** Set for toggles: the menu shows a checkbox and the palette a check mark. */
 	checkedAtom?: Atom<boolean>;
 	/** May return a promise; what it resolves to is ignored. */
 	run: (context: MenuActionContext) => unknown;
+}
+
+type Category = "File" | "Edit" | "Tools" | "Help";
+
+/** Registers a command with no default key, described by the menu label unless `description` says otherwise. */
+function defineAction(
+	id: string,
+	category: Category,
+	label: [I18nKey, string],
+	action: Omit<MenuAction, "command" | "label"> & {
+		modes?: readonly KeyBindingMode[];
+		description?: I18nKey;
+	},
+): MenuAction {
+	const { modes, description, ...rest } = action;
+	return {
+		command: registerCommand(id, [], description ?? label[0], category, modes),
+		label: (t) => t(label[0], label[1]),
+		...rest,
+	};
 }
 
 const hasLyricLinesAtom = atom(
@@ -82,334 +100,338 @@ const canCombineWordsAtom = atom(
 );
 
 const exportAction = (
-	id: LyricExportFormat,
-	key: string,
-	fallback: string,
-): MenuAction => ({
-	id: `export.${id}`,
-	group: "file",
-	label: (t) => t(key, fallback),
-	paletteLabel: (t) =>
-		`${t("topBar.menu.exportLyric.export", "Export lyrics")}: ${t(key, fallback)}`,
-	// Loaded on use: the stringifiers aren't needed until someone exports.
-	run: ({ store, t }) =>
-		import("$/modules/project/export-lyric").then(({ exportLyric }) =>
-			exportLyric(store, t, id),
-		),
-});
+	id: string,
+	format: LyricExportFormat,
+	label: [I18nKey, string],
+	description: I18nKey,
+) =>
+	defineAction(id, "File", label, {
+		description,
+		// Loaded on use: the stringifiers aren't needed until someone exports.
+		run: ({ store, t }) =>
+			import("$/modules/project/export-lyric").then(({ exportLyric }) =>
+				exportLyric(store, t, format),
+			),
+	});
 
 export const MENU_ACTIONS = {
 	// File
 	newFile: {
-		id: "newFile",
-		group: "file",
-		label: (t) => t("topBar.menu.newLyric", "New TTML file"),
 		command: cmdNewFile,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.newLyric", "New TTML file"),
 		run: ({ menu }) => menu.onNewFile(),
 	},
 	openFile: {
-		id: "openFile",
-		group: "file",
-		label: (t) => t("topBar.menu.openLyric", "Open TTML file"),
 		command: cmdOpenFile,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.openLyric", "Open TTML file"),
 		run: ({ menu }) => menu.onOpenFile(),
 	},
-	openFromClipboard: {
-		id: "openFromClipboard",
-		group: "file",
-		label: (t) =>
-			t("topBar.menu.openFromClipboard", "Open TTML file from clipboard"),
-		run: ({ menu }) => menu.onOpenFileFromClipboard(),
-	},
-	saveFile: {
-		id: "saveFile",
-		group: "file",
-		label: (t) => t("topBar.menu.saveLyric", "Save TTML file"),
-		command: cmdSaveFile,
-		run: ({ menu }) => menu.onSaveFile(),
-	},
-	projects: {
-		id: "projects",
-		group: "file",
-		label: (t) => t("topBar.menu.projects", "Projects"),
-		visibleAtom: folderProjectsEnabledAtom,
-		run: ({ menu }) => menu.onOpenProjects(),
-	},
-	restoreFromHistory: {
-		id: "restoreFromHistory",
-		group: "file",
-		label: (t) =>
-			t("topBar.menu.restoreFromHistory", "Restore from history..."),
-		run: ({ menu }) => menu.onOpenHistoryRestore(),
-	},
-	saveToClipboard: {
-		id: "saveToClipboard",
-		group: "file",
-		label: (t) =>
-			t("topBar.menu.saveLyricToClipboard", "Save TTML file to clipboard"),
-		run: ({ menu }) => menu.onSaveFileToClipboard(),
-	},
-	importLyrics: {
-		id: "importLyrics",
-		group: "file",
-		label: (t) => t("topBar.menu.importLyric.import", "Import lyrics..."),
-		run: ({ store }) => store.set(importLyricsDialogAtom, true),
-	},
-	exportTtml: {
-		id: "export.ttml",
-		group: "file",
-		label: (t) => t("topBar.menu.exportLyric.toTTML", "TTML"),
-		paletteLabel: (t) =>
-			`${t("topBar.menu.exportLyric.export", "Export lyrics")}: ${t("topBar.menu.exportLyric.toTTML", "TTML")}`,
-		run: ({ menu }) => menu.onSaveFile(),
-	},
-	exportLrc: exportAction("lrc", "topBar.menu.exportLyric.toLRC", "LRC"),
-	exportEslrc: exportAction(
-		"eslrc",
-		"topBar.menu.exportLyric.toESLRC",
-		"ESLRC",
+	openFromClipboard: defineAction(
+		"openFromClipboard",
+		"File",
+		[key("topBar.menu.openFromClipboard"), "Open TTML file from clipboard"],
+		{ run: ({ menu }) => menu.onOpenFileFromClipboard() },
 	),
-	exportQrc: exportAction("qrc", "topBar.menu.exportLyric.toQRC", "QRC"),
-	exportYrc: exportAction("yrc", "topBar.menu.exportLyric.toYRC", "YRC"),
+	saveFile: {
+		command: cmdSaveFile,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.saveLyric", "Save TTML file"),
+		run: ({ menu }) => menu.onSaveFile(),
+	},
+	projects: defineAction(
+		"openProjects",
+		"File",
+		[key("topBar.menu.projects"), "Projects"],
+		{
+			visibleAtom: folderProjectsEnabledAtom,
+			run: ({ menu }) => menu.onOpenProjects(),
+		},
+	),
+	restoreFromHistory: defineAction(
+		"restoreFromHistory",
+		"File",
+		[key("topBar.menu.restoreFromHistory"), "Restore from history..."],
+		{ run: ({ menu }) => menu.onOpenHistoryRestore() },
+	),
+	saveToClipboard: defineAction(
+		"saveToClipboard",
+		"File",
+		[key("topBar.menu.saveLyricToClipboard"), "Save TTML file to clipboard"],
+		{ run: ({ menu }) => menu.onSaveFileToClipboard() },
+	),
+	importLyrics: defineAction(
+		"importLyrics",
+		"File",
+		[key("topBar.menu.importLyric.import"), "Import lyrics..."],
+		{ run: ({ store }) => store.set(importLyricsDialogAtom, true) },
+	),
+	exportTtml: defineAction(
+		"exportTtml",
+		"File",
+		[key("topBar.menu.exportLyric.toTTML"), "TTML"],
+		{
+			description: key("settingsDialog.keybindings.exportTtml"),
+			run: ({ menu }) => menu.onSaveFile(),
+		},
+	),
+	exportLrc: exportAction(
+		"exportLrc",
+		"lrc",
+		[key("topBar.menu.exportLyric.toLRC"), "LRC"],
+		key("settingsDialog.keybindings.exportLrc"),
+	),
+	exportEslrc: exportAction(
+		"exportEslrc",
+		"eslrc",
+		[key("topBar.menu.exportLyric.toESLRC"), "ESLRC"],
+		key("settingsDialog.keybindings.exportEslrc"),
+	),
+	exportQrc: exportAction(
+		"exportQrc",
+		"qrc",
+		[key("topBar.menu.exportLyric.toQRC"), "QRC"],
+		key("settingsDialog.keybindings.exportQrc"),
+	),
+	exportYrc: exportAction(
+		"exportYrc",
+		"yrc",
+		[key("topBar.menu.exportLyric.toYRC"), "YRC"],
+		key("settingsDialog.keybindings.exportYrc"),
+	),
 	exportLys: exportAction(
+		"exportLys",
 		"lys",
-		"topBar.menu.exportLyric.toLrcfySylb",
-		"Lyricify Syllable",
+		[key("topBar.menu.exportLyric.toLrcfySylb"), "Lyricify Syllable"],
+		key("settingsDialog.keybindings.exportLys"),
 	),
 	exportAss: exportAction(
+		"exportAss",
 		"ass",
-		"topBar.menu.exportLyric.toASS",
-		"ASS subtitles",
+		[key("topBar.menu.exportLyric.toASS"), "ASS subtitles"],
+		key("settingsDialog.keybindings.exportAss"),
 	),
 
 	// Edit
 	undo: {
-		id: "undo",
-		group: "edit",
-		label: (t) => t("topBar.menu.undo", "Undo"),
 		command: cmdUndo,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.undo", "Undo"),
 		run: ({ menu }) => menu.onUndo(),
 	},
 	redo: {
-		id: "redo",
-		group: "edit",
-		label: (t) => t("topBar.menu.redo", "Redo"),
 		command: cmdRedo,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.redo", "Redo"),
 		run: ({ menu }) => menu.onRedo(),
 	},
 	selectAll: {
-		id: "selectAll",
-		group: "edit",
-		label: (t) => t("topBar.menu.selectAllLines", "Select all lines"),
 		command: cmdSelectAll,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.selectAllLines", "Select all lines"),
 		run: ({ menu }) => menu.onSelectAll(),
 	},
 	unselectAll: {
-		id: "unselectAll",
-		group: "edit",
-		label: (t) => t("topBar.menu.unselectAllLines", "Unselect all lines"),
 		command: cmdUnselectAll,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.unselectAllLines", "Unselect all lines"),
 		run: ({ menu }) => menu.onUnselectAll(),
 	},
 	deleteSelection: {
-		id: "deleteSelection",
-		group: "edit",
+		command: cmdDeleteSelection,
+		boundElsewhere: true,
 		label: (t) =>
 			t("settingsDialog.keybindings.deleteSelection", "Delete selection"),
-		command: cmdDeleteSelection,
 		run: ({ menu }) => menu.onDeleteSelection(),
 	},
-	timeShift: {
-		id: "timeShift",
-		group: "edit",
-		label: (t) => t("topBar.menu.timeShift", "Time shift..."),
-		run: ({ menu }) => menu.onOpenTimeShift(),
-	},
-	timeStretch: {
-		id: "timeStretch",
-		group: "edit",
-		label: (t) => t("topBar.menu.timeStretch", "Time stretch..."),
-		run: ({ menu }) => menu.onOpenTimeStretch(),
-	},
-	editMetadata: {
-		id: "editMetadata",
-		group: "edit",
-		label: (t) => t("topBar.menu.editMetadata", "Edit lyric metadata"),
-		run: ({ menu }) => menu.onOpenMetadataEditor(),
-	},
-	editAsText: {
-		id: "editAsText",
-		group: "edit",
-		label: (t) => t("editAsText.menuItem", "Edit as text..."),
-		run: ({ store }) => store.set(editAsTextDialogAtom, true),
-	},
-	preferences: {
-		id: "preferences",
-		group: "edit",
-		label: (t) => t("settingsDialog.title", "Preferences"),
-		run: ({ menu }) => menu.onOpenSettings(),
-	},
-	// Right-click selection actions, palette only.
-	swapDuetSelected: {
-		id: "swapDuetSelected",
-		group: "edit",
-		label: (t) => t("editModeTools.swapDuetSelected", "Swap main and duet"),
-		modes: ["edit"],
-		enabledAtom: hasSelectedLinesAtom,
-		run: ({ store }) =>
-			store.set(swapDuetLinesAtom, store.get(selectedLinesAtom)),
-	},
-	combineWords: {
-		id: "combineWords",
-		group: "edit",
-		label: (t) => t("contextMenu.combineWords", "Combine words"),
-		modes: ["edit"],
-		enabledAtom: canCombineWordsAtom,
-		run: ({ store }) => {
-			const selectedLines = store.get(selectedLinesAtom);
-			const lineIndex = store
-				.get(lyricLinesAtom)
-				.lyricLines.findIndex((line) => selectedLines.has(line.id));
-			if (lineIndex !== -1)
-				store.set(combineWordsDialogAtom, { open: true, lineIndex });
+	timeShift: defineAction(
+		"timeShift",
+		"Edit",
+		[key("topBar.menu.timeShift"), "Time shift..."],
+		{ run: ({ menu }) => menu.onOpenTimeShift() },
+	),
+	timeStretch: defineAction(
+		"timeStretch",
+		"Edit",
+		[key("topBar.menu.timeStretch"), "Time stretch..."],
+		{ run: ({ menu }) => menu.onOpenTimeStretch() },
+	),
+	editMetadata: defineAction(
+		"editMetadata",
+		"Edit",
+		[key("topBar.menu.editMetadata"), "Edit lyric metadata"],
+		{ run: ({ menu }) => menu.onOpenMetadataEditor() },
+	),
+	editAsText: defineAction(
+		"editAsText",
+		"Edit",
+		[key("editAsText.menuItem"), "Edit as text..."],
+		{ run: ({ store }) => store.set(editAsTextDialogAtom, true) },
+	),
+	preferences: defineAction(
+		"openPreferences",
+		"Edit",
+		[key("settingsDialog.title"), "Preferences"],
+		{ run: ({ menu }) => menu.onOpenSettings() },
+	),
+	// Right-click selection actions; no menu item of their own up top.
+	swapDuetSelected: defineAction(
+		"swapDuetSelected",
+		"Edit",
+		[key("editModeTools.swapDuetSelected"), "Swap main and duet"],
+		{
+			modes: ["edit"],
+			enabledAtom: hasSelectedLinesAtom,
+			run: ({ store }) =>
+				store.set(swapDuetLinesAtom, store.get(selectedLinesAtom)),
 		},
-	},
+	),
+	combineWords: defineAction(
+		"combineWords",
+		"Edit",
+		[key("contextMenu.combineWords"), "Combine words"],
+		{
+			modes: ["edit"],
+			enabledAtom: canCombineWordsAtom,
+			run: ({ store }) => {
+				const selectedLines = store.get(selectedLinesAtom);
+				const lineIndex = store
+					.get(lyricLinesAtom)
+					.lyricLines.findIndex((line) => selectedLines.has(line.id));
+				if (lineIndex !== -1)
+					store.set(combineWordsDialogAtom, { open: true, lineIndex });
+			},
+		},
+	),
 
 	// Tools
 	autoSegment: {
-		id: "autoSegment",
-		group: "tools",
-		label: (t) => t("topBar.menu.autoSegment", "Auto segment..."),
 		command: cmdAutoSegmentDialog,
+		boundElsewhere: true,
+		label: (t) => t("topBar.menu.autoSegment", "Auto segment..."),
 		run: ({ menu }) => menu.onAutoSegment(),
 	},
-	advancedSegment: {
-		id: "advancedSegment",
-		group: "tools",
-		label: (t) => t("topBar.menu.advancedSegment", "Advanced segmentation..."),
-		run: ({ menu }) => menu.onOpenAdvancedSegmentation(),
-	},
-	learnedSplits: {
-		id: "learnedSplits",
-		group: "tools",
-		label: (t) => t("topBar.menu.learnedSplits", "Learned splits..."),
-		run: ({ menu }) => menu.onOpenLearnedSplits(),
-	},
-	syncLineTimestamps: {
-		id: "syncLineTimestamps",
-		group: "tools",
-		label: (t) =>
-			t("topBar.menu.syncLineTimestamps", "Fit lines to their words"),
-		run: ({ menu }) => menu.onSyncLineTimestamps(),
-	},
-	swapDuetAll: {
-		id: "swapDuetAll",
-		group: "tools",
-		label: (t) => t("editModeTools.swapDuetAll", "Swap main and duet lines"),
-		enabledAtom: hasLyricLinesAtom,
-		run: ({ store }) => store.set(swapDuetLinesAtom),
-	},
-	spectrogramHoverSync: {
-		id: "spectrogramHoverSync",
-		group: "tools",
-		label: (t) =>
-			t("topBar.menu.spectrogramHoverSync", "Sync at mouse position"),
-		checkedAtom: spectrogramHoverSyncEnabledAtom,
-		run: ({ store }) =>
-			store.set(
-				spectrogramHoverSyncEnabledAtom,
-				!store.get(spectrogramHoverSyncEnabledAtom),
-			),
-	},
-	latencyTest: {
-		id: "latencyTest",
-		group: "tools",
-		label: (t) =>
-			t("settingsDialog.common.latencyTest", "Audio/input latency test"),
-		run: ({ menu }) => menu.onOpenLatencyTest(),
-	},
-	ttmlChecklist: {
-		id: "ttmlChecklist",
-		group: "tools",
-		label: (t) => t("topBar.menu.ttmlChecklist", "TTML checklist"),
-		run: ({ menu }) => menu.onOpenTTMLChecklist(),
-	},
-	// The metadata editor's Genius button, palette only.
-	geniusSearch: {
-		id: "geniusSearch",
-		group: "tools",
-		label: (t) =>
-			t(
-				"metadataDialog.fetchSongwriters.button",
-				"Fetch songwriters from Genius",
-			),
-		run: ({ store }) => store.set(geniusSearchDialogAtom, true),
-	},
+	advancedSegment: defineAction(
+		"advancedSegmentation",
+		"Tools",
+		[key("topBar.menu.advancedSegment"), "Advanced segmentation..."],
+		{ run: ({ menu }) => menu.onOpenAdvancedSegmentation() },
+	),
+	learnedSplits: defineAction(
+		"learnedSplits",
+		"Tools",
+		[key("topBar.menu.learnedSplits"), "Learned splits..."],
+		{ run: ({ menu }) => menu.onOpenLearnedSplits() },
+	),
+	syncLineTimestamps: defineAction(
+		"syncLineTimestamps",
+		"Tools",
+		[key("topBar.menu.syncLineTimestamps"), "Fit lines to their words"],
+		{ run: ({ menu }) => menu.onSyncLineTimestamps() },
+	),
+	swapDuetAll: defineAction(
+		"swapDuetAll",
+		"Tools",
+		[key("editModeTools.swapDuetAll"), "Swap main and duet lines"],
+		{
+			enabledAtom: hasLyricLinesAtom,
+			run: ({ store }) => store.set(swapDuetLinesAtom),
+		},
+	),
+	spectrogramHoverSync: defineAction(
+		"toggleSpectrogramHoverSync",
+		"Tools",
+		[key("topBar.menu.spectrogramHoverSync"), "Sync at mouse position"],
+		{
+			checkedAtom: spectrogramHoverSyncEnabledAtom,
+			run: ({ store }) =>
+				store.set(
+					spectrogramHoverSyncEnabledAtom,
+					!store.get(spectrogramHoverSyncEnabledAtom),
+				),
+		},
+	),
+	latencyTest: defineAction(
+		"latencyTest",
+		"Tools",
+		[key("settingsDialog.common.latencyTest"), "Audio/input latency test"],
+		{ run: ({ menu }) => menu.onOpenLatencyTest() },
+	),
+	ttmlChecklist: defineAction(
+		"ttmlChecklist",
+		"Tools",
+		[key("topBar.menu.ttmlChecklist"), "TTML checklist"],
+		{ run: ({ menu }) => menu.onOpenTTMLChecklist() },
+	),
+	// The metadata editor's Genius button.
+	geniusSearch: defineAction(
+		"geniusSearch",
+		"Tools",
+		[
+			key("metadataDialog.fetchSongwriters.button"),
+			"Fetch songwriters from Genius",
+		],
+		{ run: ({ store }) => store.set(geniusSearchDialogAtom, true) },
+	),
 
 	// Help
-	startGuide: {
-		id: "startGuide",
-		group: "help",
-		label: (t) => t("beginnerGuide.menu", "Start guide"),
-		run: ({ store }) => store.set(guideWelcomeOpenAtom, true),
-	},
-	github: {
-		id: "github",
-		group: "help",
-		label: (t) => t("aboutModal.github", "Star on GitHub"),
-		run: ({ menu }) => menu.onOpenGitHub(),
-	},
-	guides: {
-		id: "guides",
-		group: "help",
-		label: (t) => t("topBar.menu.helpDoc", "TTML guides"),
-		run: ({ menu }) => menu.onOpenGuides(),
-	},
-	changelog: {
-		id: "changelog",
-		group: "help",
-		label: (t) => t("topBar.menu.changelog", "Changelog & updates"),
-		paletteHidden: true,
-		run: ({ store }) => store.set(changelogDialogAtom, true),
-	},
-	about: {
-		id: "about",
-		group: "help",
-		label: (t) => t("common.about", "About"),
+	startGuide: defineAction(
+		"startGuide",
+		"Help",
+		[key("beginnerGuide.menu"), "Start guide"],
+		{ run: ({ store }) => store.set(guideWelcomeOpenAtom, true) },
+	),
+	github: defineAction(
+		"openGitHub",
+		"Help",
+		[key("aboutModal.github"), "Star on GitHub"],
+		{ run: ({ menu }) => menu.onOpenGitHub() },
+	),
+	guides: defineAction(
+		"openGuides",
+		"Help",
+		[key("topBar.menu.helpDoc"), "TTML guides"],
+		{ run: ({ menu }) => menu.onOpenGuides() },
+	),
+	changelog: defineAction(
+		"openChangelog",
+		"Help",
+		[key("topBar.menu.changelog"), "Changelog & updates"],
+		{
+			paletteHidden: true,
+			run: ({ store }) => store.set(changelogDialogAtom, true),
+		},
+	),
+	about: defineAction("openAbout", "Help", [key("common.about"), "About"], {
 		paletteHidden: true,
 		run: ({ store }) => {
 			store.set(settingsTabAtom, "about");
 			store.set(settingsDialogAtom, true);
 		},
-	},
+	}),
 } satisfies Record<string, MenuAction>;
 
 export const MENU_ACTION_LIST: readonly MenuAction[] =
 	Object.values(MENU_ACTIONS);
 
-/** The top menu's name for each group, used as a search keyword. */
-export const MENU_ACTION_GROUP_LABELS: Record<
-	MenuActionGroup,
-	(t: Translate) => string
-> = {
-	file: (t) => t("topBar.menu.file", "File"),
-	edit: (t) => t("topBar.menu.edit", "Edit"),
-	tools: (t) => t("topBar.menu.tool", "Tools"),
-	help: (t) => t("topBar.menu.help", "Help"),
-};
+/** Menu actions by their command id, for the palette's greyed and checked state. */
+export const MENU_ACTION_BY_COMMAND_ID: ReadonlyMap<string, MenuAction> =
+	new Map(MENU_ACTION_LIST.map((action) => [action.command.id, action]));
 
 /**
- * Whether the palette lists a menu action: not one a keyboard command or a
- * Preferences page already covers, runnable in this mode, and visible in its
- * menu (Projects only shows with folder projects on).
+ * Runs an action from its shortcut or the palette, with the menu's rules: only
+ * in its command's modes, and not while it's hidden or greyed out.
  */
-export function paletteListsMenuAction(
-	action: MenuAction,
-	mode: string,
-	store: Store,
-): boolean {
-	if (action.command || action.paletteHidden) return false;
-	if (action.modes && !(action.modes as readonly string[]).includes(mode))
-		return false;
-	return action.visibleAtom ? store.get(action.visibleAtom) : true;
+export function runMenuAction(action: MenuAction, context: MenuActionContext) {
+	const { store } = context;
+	if (
+		!(action.command.modes as readonly string[]).includes(
+			store.get(toolModeAtom),
+		)
+	)
+		return;
+	if (action.visibleAtom && !store.get(action.visibleAtom)) return;
+	if (action.enabledAtom && !store.get(action.enabledAtom)) return;
+	return action.run(context);
 }

@@ -7,6 +7,7 @@ import {
 	cmdRedoAlternate,
 } from "$/modules/keyboard/commands";
 import { autoSegmentDoublePressAtom } from "$/modules/keyboard/states";
+import { MenuActionShortcuts } from "$/modules/menu-actions/MenuActionShortcuts";
 import {
 	keyAutoSegmentAtom,
 	keyDeleteSelectionAtom,
@@ -98,6 +99,7 @@ export const TopMenu: FC = () => {
 				whiteSpace: "nowrap",
 			}}
 		>
+			<MenuActionShortcuts menu={menu} />
 			{showHomeButton ? (
 				<HomeMenu />
 			) : (

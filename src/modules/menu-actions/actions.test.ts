@@ -2,12 +2,15 @@ import { createStore } from "jotai";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import en from "$/i18n/locales/en-US/translation.json";
 import type { LyricLine } from "$/types/ttml";
+import type { MenuAction, MenuActionContext } from "./actions";
 
 let actions: typeof import("./actions");
+let registry: typeof import("$/modules/keyboard/registry");
+let conflicts: typeof import("$/modules/keyboard/conflicts");
+let palette: typeof import("$/modules/command-palette/palette-commands");
 let main: typeof import("$/states/main");
 let dialogs: typeof import("$/states/dialogs");
 let ttml: typeof import("$/types/ttml");
-let settings: typeof import("$/modules/settings/states");
 let sync: typeof import("$/modules/settings/states/sync");
 let editAsText: typeof import("$/modules/edit-as-text/states");
 
@@ -22,16 +25,15 @@ beforeAll(async () => {
 	vi.stubGlobal("localStorage", localStorage);
 	vi.stubGlobal("navigator", { userAgent: "Windows" });
 	actions = await import("./actions");
+	registry = await import("$/modules/keyboard/registry");
+	conflicts = await import("$/modules/keyboard/conflicts");
+	palette = await import("$/modules/command-palette/palette-commands");
 	main = await import("$/states/main");
 	dialogs = await import("$/states/dialogs");
 	ttml = await import("$/types/ttml");
-	settings = await import("$/modules/settings/states");
 	sync = await import("$/modules/settings/states/sync");
 	editAsText = await import("$/modules/edit-as-text/states");
 });
-
-/** Returns the key so a test can check it exists in the en-US catalog. */
-const keyOnly = (key: string) => key;
 
 function hasKey(key: string): boolean {
 	let node: unknown = en;
@@ -58,116 +60,93 @@ function lineWithWords(count: number): LyricLine {
 	return line;
 }
 
-const paletteIds = (mode: string, store = createStore()) =>
-	actions.MENU_ACTION_LIST.filter((action) =>
-		actions.paletteListsMenuAction(action, mode, store),
-	).map((action) => action.id);
+const context = (store: ReturnType<typeof createStore>) =>
+	({
+		store,
+		t: (_key: string, fallback: string) => fallback,
+		menu: {},
+	}) as unknown as MenuActionContext;
 
-describe("menu action definitions", () => {
-	it("have unique ids and labels that exist in en-US", () => {
-		const ids = actions.MENU_ACTION_LIST.map((action) => action.id);
-		expect(new Set(ids).size).toBe(ids.length);
+const isEnabled = (
+	action: MenuAction,
+	store: ReturnType<typeof createStore>,
+) => (action.enabledAtom ? store.get(action.enabledAtom) : true);
+
+describe("menu actions as keyboard commands", () => {
+	it("registers every action, so Preferences > Shortcuts and the palette list it", () => {
 		for (const action of actions.MENU_ACTION_LIST) {
-			expect(hasKey(action.label(keyOnly)), action.id).toBe(true);
+			expect(registry.getCommandById(action.command.id)).toBe(action.command);
 		}
-		for (const label of Object.values(actions.MENU_ACTION_GROUP_LABELS)) {
-			expect(hasKey(label(keyOnly))).toBe(true);
+		const ids = actions.MENU_ACTION_LIST.map((action) => action.command.id);
+		expect(new Set(ids).size).toBe(ids.length);
+	});
+
+	it("gives new commands no default key and no conflicts", () => {
+		for (const action of actions.MENU_ACTION_LIST) {
+			if (!action.boundElsewhere)
+				expect(action.command.defaultKeys, action.command.id).toEqual([]);
+		}
+		expect(
+			conflicts.findKeyBindingConflicts(
+				registry
+					.getAllCommands()
+					.map((command) => ({ command, keys: command.defaultKeys })),
+			),
+		).toEqual(new Map());
+	});
+
+	it("describes each command with text that exists in en-US", () => {
+		for (const action of actions.MENU_ACTION_LIST) {
+			expect(hasKey(action.command.description), action.command.id).toBe(true);
+			expect(
+				hasKey(
+					`settingsDialog.keybindings.category.${action.command.category}`,
+				),
+				action.command.category,
+			).toBe(true);
 		}
 	});
 
-	it("gives export formats a label that names the export, not just the format", () => {
-		const t = (_key: string, fallback: string) => fallback;
-		expect(actions.MENU_ACTIONS.exportLrc.label(t)).toBe("LRC");
-		expect(actions.MENU_ACTIONS.exportLrc.paletteLabel?.(t)).toBe(
-			"Export lyrics: LRC",
-		);
-		expect(actions.MENU_ACTIONS.exportTtml.paletteLabel?.(t)).toBe(
-			"Export lyrics: TTML",
-		);
-	});
-});
-
-describe("paletteListsMenuAction", () => {
-	it("lists every menu action a keyboard command or Preferences page doesn't already cover", () => {
-		expect(paletteIds("edit").sort()).toEqual(
+	it("uses the menu label as the description, except where the menu's needs its submenu", () => {
+		const keyOnly = (key: string) => key;
+		const differs = actions.MENU_ACTION_LIST.filter(
+			(action) =>
+				!action.boundElsewhere &&
+				action.label(keyOnly) !== action.command.description,
+		).map((action) => action.command.id);
+		expect(differs.sort()).toEqual(
 			[
-				"openFromClipboard",
-				"restoreFromHistory",
-				"saveToClipboard",
-				"importLyrics",
-				"export.ttml",
-				"export.lrc",
-				"export.eslrc",
-				"export.qrc",
-				"export.yrc",
-				"export.lys",
-				"export.ass",
-				"timeShift",
-				"timeStretch",
-				"editMetadata",
-				"editAsText",
-				"preferences",
-				"swapDuetSelected",
-				"combineWords",
-				"advancedSegment",
-				"learnedSplits",
-				"syncLineTimestamps",
-				"swapDuetAll",
-				"spectrogramHoverSync",
-				"latencyTest",
-				"ttmlChecklist",
-				"geniusSearch",
-				"startGuide",
-				"github",
-				"guides",
+				"exportAss",
+				"exportEslrc",
+				"exportLrc",
+				"exportLys",
+				"exportQrc",
+				"exportTtml",
+				"exportYrc",
 			].sort(),
 		);
-	});
-
-	it("leaves actions with a keyboard command to the command's own entry", () => {
-		const covered = actions.MENU_ACTION_LIST.filter((action) => action.command);
-		expect(covered.map((action) => action.id).sort()).toEqual(
-			[
-				"autoSegment",
-				"deleteSelection",
-				"newFile",
-				"openFile",
-				"redo",
-				"saveFile",
-				"selectAll",
-				"undo",
-				"unselectAll",
-			].sort(),
-		);
-		for (const id of paletteIds("edit")) {
-			expect(covered.some((action) => action.id === id)).toBe(false);
-		}
+		expect(en.settingsDialog.keybindings.exportLrc).toBe("Export lyrics: LRC");
 	});
 
 	it("keeps the selection actions to Edit mode", () => {
+		const { swapDuetSelected, combineWords, swapDuetAll } =
+			actions.MENU_ACTIONS;
 		for (const mode of ["sync", "preview"]) {
-			const ids = paletteIds(mode);
-			expect(ids).not.toContain("swapDuetSelected");
-			expect(ids).not.toContain("combineWords");
-			expect(ids).toContain("swapDuetAll");
-			expect(ids).toContain("importLyrics");
+			expect(palette.paletteListsCommand(swapDuetSelected.command, mode)).toBe(
+				false,
+			);
+			expect(palette.paletteListsCommand(combineWords.command, mode)).toBe(
+				false,
+			);
+			expect(palette.paletteListsCommand(swapDuetAll.command, mode)).toBe(true);
 		}
-	});
-
-	it("shows Projects only with folder projects on, like the File menu", () => {
-		const store = createStore();
-		expect(paletteIds("edit", store)).not.toContain("projects");
-		store.set(settings.folderProjectsEnabledAtom, true);
-		expect(paletteIds("edit", store)).toContain("projects");
+		expect(palette.paletteListsCommand(combineWords.command, "edit")).toBe(
+			true,
+		);
 	});
 });
 
 describe("enabled rules", () => {
-	const isEnabled = (
-		action: import("./actions").MenuAction,
-		store: ReturnType<typeof createStore>,
-	) => (action.enabledAtom ? store.get(action.enabledAtom) : true);
-
 	it("greys out Swap main and duet lines with no lines", () => {
 		const { swapDuetAll } = actions.MENU_ACTIONS;
 		expect(isEnabled(swapDuetAll, storeWithLines([]))).toBe(false);
@@ -202,24 +181,58 @@ describe("enabled rules", () => {
 	});
 });
 
-describe("running actions", () => {
-	const context = (store: ReturnType<typeof createStore>) =>
-		({
-			store,
-			t: (_key: string, fallback: string) => fallback,
-			menu: {},
-		}) as unknown as import("./actions").MenuActionContext;
+describe("runMenuAction", () => {
+	it("does nothing while the action is greyed out", () => {
+		const store = storeWithLines([]);
+		const run = vi.fn();
+		actions.runMenuAction(
+			{ ...actions.MENU_ACTIONS.swapDuetAll, run },
+			context(store),
+		);
+		expect(run).not.toHaveBeenCalled();
+	});
+
+	it("does nothing outside its command's modes", () => {
+		const line = lineWithWords(2);
+		const store = storeWithLines([line]);
+		store.set(main.selectedLinesAtom, new Set([line.id]));
+		store.set(main.toolModeAtom, main.ToolMode.Sync);
+		const run = vi.fn();
+		actions.runMenuAction(
+			{ ...actions.MENU_ACTIONS.swapDuetSelected, run },
+			context(store),
+		);
+		expect(run).not.toHaveBeenCalled();
+		store.set(main.toolModeAtom, main.ToolMode.Edit);
+		actions.runMenuAction(
+			{ ...actions.MENU_ACTIONS.swapDuetSelected, run },
+			context(store),
+		);
+		expect(run).toHaveBeenCalledOnce();
+	});
+
+	it("does nothing while hidden, like Projects with folder projects off", () => {
+		const run = vi.fn();
+		actions.runMenuAction(
+			{ ...actions.MENU_ACTIONS.projects, run },
+			context(createStore()),
+		);
+		expect(run).not.toHaveBeenCalled();
+	});
 
 	it("swaps every line, or only the selected ones", () => {
 		const first = lineWithWords(1);
 		const second = lineWithWords(1);
 		const store = storeWithLines([first, second]);
-		actions.MENU_ACTIONS.swapDuetAll.run(context(store));
+		actions.runMenuAction(actions.MENU_ACTIONS.swapDuetAll, context(store));
 		expect(
 			store.get(main.lyricLinesAtom).lyricLines.map((line) => line.isDuet),
 		).toEqual([true, true]);
 		store.set(main.selectedLinesAtom, new Set([second.id]));
-		actions.MENU_ACTIONS.swapDuetSelected.run(context(store));
+		actions.runMenuAction(
+			actions.MENU_ACTIONS.swapDuetSelected,
+			context(store),
+		);
 		expect(
 			store.get(main.lyricLinesAtom).lyricLines.map((line) => line.isDuet),
 		).toEqual([true, false]);
@@ -230,7 +243,11 @@ describe("running actions", () => {
 		const second = lineWithWords(2);
 		const store = storeWithLines([first, second]);
 		store.set(main.selectedLinesAtom, new Set([second.id]));
-		actions.MENU_ACTIONS.combineWords.run(context(store));
+		store.set(
+			main.selectedWordsAtom,
+			new Set(second.words.map((word) => word.id)),
+		);
+		actions.runMenuAction(actions.MENU_ACTIONS.combineWords, context(store));
 		expect(store.get(dialogs.combineWordsDialogAtom)).toEqual({
 			open: true,
 			lineIndex: 1,
@@ -239,12 +256,15 @@ describe("running actions", () => {
 
 	it("opens dialogs and flips toggles", () => {
 		const store = createStore();
-		actions.MENU_ACTIONS.editAsText.run(context(store));
+		actions.runMenuAction(actions.MENU_ACTIONS.editAsText, context(store));
 		expect(store.get(editAsText.editAsTextDialogAtom)).toBe(true);
-		actions.MENU_ACTIONS.importLyrics.run(context(store));
+		actions.runMenuAction(actions.MENU_ACTIONS.importLyrics, context(store));
 		expect(store.get(dialogs.importLyricsDialogAtom)).toBe(true);
 		const before = store.get(sync.spectrogramHoverSyncEnabledAtom);
-		actions.MENU_ACTIONS.spectrogramHoverSync.run(context(store));
+		actions.runMenuAction(
+			actions.MENU_ACTIONS.spectrogramHoverSync,
+			context(store),
+		);
 		expect(store.get(sync.spectrogramHoverSyncEnabledAtom)).toBe(!before);
 	});
 });

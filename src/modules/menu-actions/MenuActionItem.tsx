@@ -8,7 +8,6 @@ import type { MenuAction, MenuActionContext } from "./actions";
 
 const trueAtom = atom(true);
 const falseAtom = atom(false);
-const noKeysAtom = atom<string[]>([]);
 
 /** What a menu action needs to run. Mount it only where its menu or the palette is open. */
 export function useMenuActionContext(): MenuActionContext {
@@ -36,7 +35,7 @@ export const MenuActionItem = ({
 	const enabled = useAtomValue(action.enabledAtom ?? trueAtom);
 	const visible = useAtomValue(action.visibleAtom ?? trueAtom);
 	const checked = useAtomValue(action.checkedAtom ?? falseAtom);
-	const keys = useAtomValue(action.command?.atom ?? noKeysAtom);
+	const keys = useAtomValue(action.command.atom);
 	if (!visible) return null;
 	const label = action.label(context.t);
 	const run = () => void action.run(context);

@@ -32,7 +32,11 @@ export const ImportExportLyric = ({
 				</DropdownMenu.SubTrigger>
 				<DropdownMenu.SubContent>
 					{EXPORT_ACTIONS.map((action) => (
-						<MenuActionItem key={action.id} action={action} context={context} />
+						<MenuActionItem
+							key={action.command.id}
+							action={action}
+							context={context}
+						/>
 					))}
 				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>

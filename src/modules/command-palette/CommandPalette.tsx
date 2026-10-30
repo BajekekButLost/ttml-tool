@@ -26,12 +26,7 @@ import {
 import { useCommand } from "$/modules/keyboard/hooks";
 import { getAllCommands } from "$/modules/keyboard/registry";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
-import {
-	MENU_ACTION_GROUP_LABELS,
-	MENU_ACTION_LIST,
-	paletteListsMenuAction,
-} from "$/modules/menu-actions/actions";
-import { useMenuActionContext } from "$/modules/menu-actions/MenuActionItem";
+import { MENU_ACTION_BY_COMMAND_ID } from "$/modules/menu-actions/actions";
 import { settingsSearchKeywords } from "$/modules/settings/logic/settings-search";
 import { getSettingsPages } from "$/modules/settings/modals/pages";
 import { settingsDialogAtom, settingsTabAtom } from "$/states/dialogs.ts";
@@ -41,7 +36,6 @@ import {
 	getShortcutKey,
 	normalizeKeyCode,
 } from "$/utils/keybindings";
-import { error } from "$/utils/logging.ts";
 import styles from "./CommandPalette.module.css";
 import { paletteListsCommand } from "./palette-commands";
 import { type RankableItem, rankPaletteItems } from "./ranking";
@@ -53,7 +47,7 @@ import {
 } from "./states";
 
 interface PaletteItem extends RankableItem {
-	kind: "command" | "action" | "setting";
+	kind: "command" | "setting";
 	command?: KeyBindingCommand;
 	/** Listed but greyed out, like its menu item. */
 	disabled?: boolean;
@@ -155,11 +149,6 @@ const PaletteSearch = ({
 	const [activeIndex, setActiveIndex] = useState(0);
 	const listId = useId();
 
-	// Read when an item runs, so a re-render while typing doesn't rebuild the list.
-	const menuContext = useMenuActionContext();
-	const menuContextRef = useRef(menuContext);
-	menuContextRef.current = menuContext;
-
 	const items = useMemo<PaletteItem[]>(() => {
 		const runCommand = (command: KeyBindingCommand) => () => {
 			if (!runKeyboardCommand(store, command)) {
@@ -171,38 +160,34 @@ const PaletteSearch = ({
 				);
 			}
 		};
+		// Menu actions are commands too; they add the menu's hidden, greyed and
+		// checked state. The palette is modal, so what's read here can't change
+		// while it's open.
 		const commandItems = getAllCommands()
-			.filter((command) => paletteListsCommand(command, toolMode))
-			.map(
-				(command): PaletteItem => ({
+			.filter((command) => {
+				if (!paletteListsCommand(command, toolMode)) return false;
+				const action = MENU_ACTION_BY_COMMAND_ID.get(command.id);
+				if (!action) return true;
+				if (action.paletteHidden) return false;
+				return action.visibleAtom ? store.get(action.visibleAtom) : true;
+			})
+			.map((command): PaletteItem => {
+				const action = MENU_ACTION_BY_COMMAND_ID.get(command.id);
+				return {
 					id: `command:${command.id}`,
 					kind: "command",
 					label: t(command.description),
 					keywords: command.category,
 					command,
+					disabled: action?.enabledAtom
+						? !store.get(action.enabledAtom)
+						: false,
+					checked: action?.checkedAtom
+						? store.get(action.checkedAtom)
+						: undefined,
 					run: runCommand(command),
-				}),
-			);
-		// The palette is modal, so the enabled and checked state read here
-		// can't change while it's open.
-		const translate = (key: string, fallback: string) => t(key, fallback);
-		const actionItems = MENU_ACTION_LIST.filter((action) =>
-			paletteListsMenuAction(action, toolMode, store),
-		).map(
-			(action): PaletteItem => ({
-				id: `action:${action.id}`,
-				kind: "action",
-				label: (action.paletteLabel ?? action.label)(translate),
-				keywords: MENU_ACTION_GROUP_LABELS[action.group](translate),
-				disabled: action.enabledAtom ? !store.get(action.enabledAtom) : false,
-				checked: action.checkedAtom ? store.get(action.checkedAtom) : undefined,
-				run: () => {
-					Promise.resolve(action.run(menuContextRef.current)).catch((e) =>
-						error(`Command palette action "${action.id}" failed`, e),
-					);
-				},
-			}),
-		);
+				};
+			});
 		const settingItems = getSettingsPages(t).map(
 			(page): PaletteItem => ({
 				id: `setting:${page.value}`,
@@ -215,7 +200,7 @@ const PaletteSearch = ({
 				},
 			}),
 		);
-		return [...commandItems, ...actionItems, ...settingItems];
+		return [...commandItems, ...settingItems];
 	}, [store, t, toolMode, setSettingsOpen, setSettingsTab]);
 
 	const results = useMemo(
