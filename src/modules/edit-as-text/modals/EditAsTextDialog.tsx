@@ -1,4 +1,12 @@
 import {
+	Add16Regular,
+	ArrowSort16Regular,
+	Checkmark16Regular,
+	Edit16Regular,
+	Subtract16Regular,
+	Warning16Regular,
+} from "@fluentui/react-icons";
+import {
 	Button,
 	Dialog,
 	Flex,
@@ -217,6 +225,7 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 	const rows = [
 		{
 			count: summary.unchanged,
+			icon: <Checkmark16Regular />,
 			label: t(
 				"editAsText.unchanged",
 				"{count, plural, one {# line unchanged} other {# lines unchanged}}",
@@ -225,6 +234,7 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 		},
 		{
 			count: summary.edited,
+			icon: <Edit16Regular />,
 			label: t(
 				"editAsText.edited",
 				"{count, plural, one {# line edited} other {# lines edited}}",
@@ -234,6 +244,7 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 		},
 		{
 			count: summary.moved,
+			icon: <ArrowSort16Regular />,
 			label: t(
 				"editAsText.moved",
 				"{count, plural, one {# line moved} other {# lines moved}}",
@@ -242,6 +253,7 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 		},
 		{
 			count: summary.added,
+			icon: <Add16Regular />,
 			label: t(
 				"editAsText.added",
 				"{count, plural, one {# line added} other {# lines added}}",
@@ -250,6 +262,7 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 		},
 		{
 			count: summary.removed,
+			icon: <Subtract16Regular />,
 			label: t(
 				"editAsText.removed",
 				"{count, plural, one {# line removed} other {# lines removed}}",
@@ -271,13 +284,18 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 						{rows
 							.filter((row) => row.count > 0)
 							.map((row) => (
-								<li key={row.label}>
-									<Text size="2">{row.label}</Text>
-									{row.hint && (
-										<Text as="p" size="1" color="gray">
-											{row.hint}
-										</Text>
-									)}
+								<li key={row.label} className={styles.change}>
+									<span className={styles.changeIcon} aria-hidden>
+										{row.icon}
+									</span>
+									<div>
+										<Text size="2">{row.label}</Text>
+										{row.hint && (
+											<Text as="p" size="1" color="gray">
+												{row.hint}
+											</Text>
+										)}
+									</div>
 								</li>
 							))}
 					</ul>
@@ -290,7 +308,8 @@ function SummaryPanel({ summary }: { summary: TextEditSummary | null }) {
 
 			{summary.droppedTimedWords > 0 && (
 				<Flex direction="column" gap="2" className={styles.warning}>
-					<Text size="2" weight="medium">
+					<Text size="2" weight="medium" className={styles.warningTitle}>
+						<Warning16Regular aria-hidden className={styles.warningIcon} />
 						{t(
 							"editAsText.droppedTimings",
 							"{count, plural, one {# timed word loses its timing} other {# timed words lose their timing}}",

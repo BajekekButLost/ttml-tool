@@ -1,0 +1,56 @@
+.rows {
+	display: flex;
+	flex-direction: column;
+}
+
+/* One line per action: name, keys, then its buttons. Wraps only when a
+   translation runs long. */
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: var(--space-3);
+	row-gap: var(--space-2);
+	padding-block: var(--space-2);
+}
+
+.row + .row {
+	border-top: 1px solid var(--gray-a4);
+}
+
+.name {
+	flex: 1 1 200px;
+	min-width: 0;
+}
+
+.recorder {
+	flex: none;
+	width: 168px;
+	cursor: pointer;
+}
+
+.recorder input {
+	cursor: pointer;
+}
+
+.recorder[data-listening="true"] {
+	color: var(--accent-11);
+}
+
+.extra {
+	flex: none;
+}
+
+.conflict {
+	flex-basis: 100%;
+}
+
+:global(:root[data-design="spicy-lyrics"]) .row + .row {
+	border-top-color: var(--sl-border);
+}
+
+@media (prefers-contrast: more) {
+	.row + .row {
+		border-top-color: var(--gray-a8);
+	}
+}

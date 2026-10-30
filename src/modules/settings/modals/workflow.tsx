@@ -102,22 +102,6 @@ const editModeToggles: readonly ToggleRow[] = [
 		showLineTranslationAtom,
 	],
 	[
-		"editModeTools.splitTypedLinesTitle",
-		"Split typed lines into words",
-		"editModeTools.splitTypedLinesDesc",
-		"Text typed into an empty line is split into words, the same way an import splits lines.",
-		<TextWordCount24Regular key="icon" />,
-		splitTypedLinesAtom,
-	],
-	[
-		"editModeTools.scrollMemoryTitle",
-		"Remember Edit mode position",
-		"editModeTools.scrollMemoryDesc",
-		"Reopen each project at the line you were on in Edit mode.",
-		<History24Regular key="icon" />,
-		editScrollMemoryAtom,
-	],
-	[
 		"ribbonBar.editMode.showRomanization",
 		"Show romanization line",
 		"settings.workflow.showRomanizationDesc",
@@ -132,6 +116,23 @@ const editModeToggles: readonly ToggleRow[] = [
 		"Show a romanization field on each word.",
 		<TextEditStyle24Regular key="icon" />,
 		showWordRomanizationInputAtom,
+	],
+	// Behavior after the fields: what typing does, and where a project reopens.
+	[
+		"editModeTools.splitTypedLinesTitle",
+		"Split typed lines into words",
+		"editModeTools.splitTypedLinesDesc",
+		"Text typed into an empty line is split into words, the same way an import splits lines.",
+		<TextWordCount24Regular key="icon" />,
+		splitTypedLinesAtom,
+	],
+	[
+		"editModeTools.scrollMemoryTitle",
+		"Remember Edit mode position",
+		"editModeTools.scrollMemoryDesc",
+		"Reopen each project at the line you were on in Edit mode.",
+		<History24Regular key="icon" />,
+		editScrollMemoryAtom,
 	],
 ];
 
