@@ -12,7 +12,8 @@ export function PreviewBackground({
 	playing: boolean;
 }) {
 	const container = useRef<HTMLDivElement>(null);
-	const [renderer, setRenderer] = useState<BackgroundRender | null>(null);
+	const [renderer, setRenderer] =
+		useState<BackgroundRender<MeshGradientRenderer> | null>(null);
 
 	useEffect(() => {
 		const background = BackgroundRender.new(MeshGradientRenderer);
