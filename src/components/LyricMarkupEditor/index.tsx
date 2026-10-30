@@ -7,6 +7,7 @@ import {
 	TextWordCountRegular,
 } from "@fluentui/react-icons";
 import {
+	Button,
 	Flex,
 	IconButton,
 	Popover,
@@ -14,7 +15,7 @@ import {
 	Text,
 	TextField,
 } from "@radix-ui/themes";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	LYRIC_SECTION_CATEGORIES,
@@ -39,6 +40,18 @@ import {
 
 export type { LyricMarkupFormat } from "./markup";
 
+/** Lines a tool works on, 0-based and inclusive, or null for the whole text. */
+export type LyricMarkupLineRange = { from: number; to: number } | null;
+
+/** A text-wide action in the toolbar, run on the selected lines or everything. */
+export interface LyricMarkupTool {
+	key: string;
+	icon: ReactNode;
+	label: string;
+	disabled?: boolean;
+	run: (text: string, lines: LyricMarkupLineRange) => string;
+}
+
 /**
  * A plain-text lyric editor that draws its markup as it goes: section headers
  * as pills, background and duet lines styled by role, syllable splits as dots,
@@ -51,12 +64,14 @@ export function LyricMarkupEditor({
 	format,
 	ariaLabel,
 	placeholder,
+	tools,
 }: {
 	value: string;
 	onChange: (value: string) => void;
 	format: LyricMarkupFormat;
 	ariaLabel: string;
 	placeholder?: string;
+	tools?: LyricMarkupTool[];
 }) {
 	const { t } = useTranslation();
 	const wrapperRef = useRef<HTMLDivElement>(null);
@@ -178,6 +193,31 @@ export function LyricMarkupEditor({
 		view.focus();
 	};
 
+	// Runs on the lines the selection touches, or the whole text without one.
+	// The rewrite is one undo step.
+	const runTool = (tool: LyricMarkupTool) => {
+		const view = viewRef.current;
+		if (!view) return;
+		const { doc, selection } = view.state;
+		const { from, to, empty } = selection.main;
+		const first = doc.lineAt(from).number - 1;
+		const last = doc.lineAt(to).number - 1;
+		// A selection ending at the start of a line doesn't pick that line.
+		const end = last > first && doc.lineAt(to).from === to ? last - 1 : last;
+		const before = doc.toString();
+		const after = tool.run(before, empty ? null : { from: first, to: end });
+		if (after !== before)
+			view.dispatch({
+				changes: { from: 0, to: doc.length, insert: after },
+				annotations: [
+					Transaction.addToHistory.of(true),
+					isolateHistory.of("full"),
+				],
+				userEvent: "input.tool",
+			});
+		view.focus();
+	};
+
 	// The header the open menu edits, read fresh from the document.
 	const header = (() => {
 		const view = viewRef.current;
@@ -250,6 +290,23 @@ export function LyricMarkupEditor({
 						"Alt+click between letters to split, click a dot to join. Alt+C changes a section.",
 					)}
 				</Text>
+				{tools && tools.length > 0 && (
+					<Flex gap="1" align="center" className={styles.tools}>
+						{tools.map((tool) => (
+							<Button
+								key={tool.key}
+								size="1"
+								variant="ghost"
+								color="gray"
+								disabled={tool.disabled}
+								onClick={() => runTool(tool)}
+							>
+								{tool.icon}
+								{tool.label}
+							</Button>
+						))}
+					</Flex>
+				)}
 			</Flex>
 			<div className={styles.editor} ref={parentRef} />
 

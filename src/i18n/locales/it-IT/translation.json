@@ -233,6 +233,8 @@
     "title": "Modifica come testo",
     "description": "Modifica l'intero testo come testo semplice. Le parole che non cambi mantengono la sincronizzazione.",
     "textLabel": "Testo della canzone",
+    "toolsHint": "Elabora testo e Dividi in sillabe agiscono sulle righe selezionate, o su tutto se non è selezionato nulla.",
+    "nothingToProcess": "Niente da cambiare.",
     "summaryTitle": "Modifiche",
     "unchanged": "{count, plural, one {# riga invariata} many {# righe invariate} other {# righe invariate}}",
     "edited": "{count, plural, one {# riga modificata} many {# righe modificate} other {# righe modificate}}",

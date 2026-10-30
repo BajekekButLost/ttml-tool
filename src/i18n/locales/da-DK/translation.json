@@ -233,6 +233,8 @@
     "title": "Rediger som tekst",
     "description": "Rediger hele sangteksten som almindelig tekst. Ord, du ikke ændrer, beholder deres timing.",
     "textLabel": "Sangtekst",
+    "toolsHint": "Behandl sangtekster og Opdel stavelser virker på de markerede linjer, eller på det hele, når intet er markeret.",
+    "nothingToProcess": "Intet at ændre.",
     "summaryTitle": "Ændringer",
     "unchanged": "{count, plural, one {# linje uændret} other {# linjer uændret}}",
     "edited": "{count, plural, one {# linje redigeret} other {# linjer redigeret}}",

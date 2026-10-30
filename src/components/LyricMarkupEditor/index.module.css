@@ -28,6 +28,12 @@
 	border-bottom: 1px solid var(--gray-a4);
 }
 
+.tools {
+	flex-shrink: 0;
+	margin-left: auto;
+	padding-left: var(--space-2);
+}
+
 .hint {
 	min-width: 0;
 	margin-left: var(--space-2);
