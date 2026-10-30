@@ -28,7 +28,6 @@ import {
 	spicySimpleLyricsModeAtom,
 } from "$/modules/settings/states/preview";
 import { timingOverviewAutoScrollAtom } from "$/modules/settings/states/sync.ts";
-import { AdvancedSection } from "./AdvancedSection";
 import { RibbonFrame, RibbonSection } from "./common";
 import { RibbonLabel, RibbonToggle } from "./RibbonToggle";
 
@@ -166,7 +165,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 						</Grid>
 					</RibbonSection>
 				)}
-				<AdvancedSection />
+				{/* No Advanced switch here: nothing in Preview has advanced controls. */}
 			</RibbonFrame>
 		);
 	},

@@ -3,6 +3,6 @@ type: fix
 impact: 2
 highlight: false
 ---
-Tooltips no longer cover open menus
+Tooltips stay out of the way
 
-A ribbon control's tooltip stays hidden while a dropdown or menu is open, so it can't sit on top of the choices
+Tooltips close as soon as the pointer leaves their control, and stay hidden while a menu or dropdown is open
