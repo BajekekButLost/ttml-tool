@@ -42,7 +42,9 @@ export const RibbonToggle: FC<{
 	description?: ReactNode;
 	shortcut?: Atom<KeyBindingsConfig>;
 	setting: WritableAtom<boolean, [boolean], unknown>;
-}> = ({ label, description, shortcut, setting }) => {
+	/** Shown before the label, for toggles about a role. */
+	icon?: ReactNode;
+}> = ({ label, description, shortcut, setting, icon }) => {
 	const id = useId();
 	return (
 		<>
@@ -51,6 +53,7 @@ export const RibbonToggle: FC<{
 				description={description}
 				shortcut={shortcut}
 				htmlFor={id}
+				icon={icon}
 			/>
 			<ActionTooltip
 				label={label}
