@@ -797,6 +797,11 @@
 	}
 }
 
+/* Background and duet markers beside the line number. */
+.roleBadge {
+	font-size: 1.1em;
+}
+
 .lineNumber {
 	min-width: 2em;
 	position: relative;

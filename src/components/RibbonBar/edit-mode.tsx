@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ActionTooltip } from "$/components/ActionTooltip";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
+
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -16,6 +17,7 @@ import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
  * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
+import { ROLE_COLORS, SlIcon } from "$/components/SlIcon";
 import {
 	editActiveLineHighlightAtom,
 	editAutoScrollAtom,
@@ -144,6 +146,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							defaultValue={false}
 							isWordField={false}
 							fieldName="isBG"
+							icon={<SlIcon name="background" color={ROLE_COLORS.background} />}
 						/>
 						<CheckboxField
 							label={t("ribbonBar.editMode.duetLyric", "Duet vocal")}
@@ -154,6 +157,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							isWordField={false}
 							fieldName="isDuet"
 							defaultValue={false}
+							icon={<SlIcon name="duet" color={ROLE_COLORS.duet} />}
 						/>
 						<CheckboxField
 							label={t("ribbonBar.editMode.ignoreSync", "Skip when syncing")}

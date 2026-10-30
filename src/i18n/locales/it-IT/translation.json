@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Elimina # parola} many {Elimina # parole} other {Elimina # parole}}",
     "bgLyric": "Verso dei cori",
     "duetLyric": "Verso del duetto",
+    "lineRole": "Ruolo della riga",
     "moveLineToPlayhead": "Sposta il verso al cursore di riproduzione",
     "copyTimingsTo": "Copia tempi in…",
     "cancelCopyTimings": "Annulla copia dei tempi",

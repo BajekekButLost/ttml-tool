@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Slet # ord} other {Slet # ord}}",
     "bgLyric": "Baggrundslinje",
     "duetLyric": "Duetlinje",
+    "lineRole": "Linjens rolle",
     "moveLineToPlayhead": "Flyt linje til afspilningsmarkør",
     "copyTimingsTo": "Kopiér timing til…",
     "cancelCopyTimings": "Annuller kopiering af timing",

@@ -1026,6 +1026,7 @@
     "deleteWords": "Usuń {count, plural, one {# słowo} few {# słowa} many {# słów} other {# słowa}}",
     "bgLyric": "Wers wokalu w tle",
     "duetLyric": "Wers duetu",
+    "lineRole": "Rola wiersza",
     "moveLineToPlayhead": "Przesuń wers do pozycji odtwarzania",
     "copyTimingsTo": "Kopiuj czasy do…",
     "cancelCopyTimings": "Anuluj kopiowanie czasów",

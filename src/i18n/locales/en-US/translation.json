@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Delete # word} other {Delete # words}}",
     "bgLyric": "Background line",
     "duetLyric": "Duet line",
+    "lineRole": "Line role",
     "moveLineToPlayhead": "Move line to playhead",
     "copyTimingsTo": "Copy timings to…",
     "cancelCopyTimings": "Cancel timing copy",

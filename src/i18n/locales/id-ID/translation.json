@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, other {Hapus # kata}}",
     "bgLyric": "Baris vokal latar",
     "duetLyric": "Baris duet",
+    "lineRole": "Peran baris",
     "moveLineToPlayhead": "Pindahkan baris ke penunjuk putar",
     "copyTimingsTo": "Salin waktu ke…",
     "cancelCopyTimings": "Batalkan penyalinan waktu",

@@ -11,15 +11,27 @@ export const RibbonLabel: FC<{
 	description?: ReactNode;
 	shortcut?: Atom<KeyBindingsConfig>;
 	htmlFor?: string;
-}> = ({ label, description, shortcut, htmlFor }) => (
+	/** Shown before the text, for fields with a role icon. */
+	icon?: ReactNode;
+}> = ({ label, description, shortcut, htmlFor, icon }) => (
 	<ActionTooltip label={label} description={description} shortcut={shortcut}>
 		<Text
 			wrap="nowrap"
 			size="1"
 			asChild
-			style={{ color: "var(--ribbon-label-color)" }}
+			style={{
+				color: "var(--ribbon-label-color)",
+				...(icon && {
+					display: "inline-flex",
+					alignItems: "center",
+					gap: "var(--space-1)",
+				}),
+			}}
 		>
-			<label htmlFor={htmlFor}>{label}</label>
+			<label htmlFor={htmlFor}>
+				{icon}
+				{label}
+			</label>
 		</Text>
 	</ActionTooltip>
 );

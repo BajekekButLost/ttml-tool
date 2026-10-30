@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, other {删除 # 个字}}",
     "bgLyric": "背景人声行",
     "duetLyric": "对唱行",
+    "lineRole": "行角色",
     "moveLineToPlayhead": "将行移至播放指针",
     "copyTimingsTo": "复制时间到…",
     "cancelCopyTimings": "取消复制时间",
