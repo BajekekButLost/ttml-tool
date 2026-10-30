@@ -399,6 +399,18 @@
       "title": "Wybierz folder obszaru roboczego z projektami"
     }
   },
+  "commandPalette": {
+    "title": "Paleta poleceń",
+    "placeholder": "Szukaj poleceń i ustawień",
+    "noResults": "Brak pasujących poleceń i ustawień",
+    "commandTag": "Polecenie",
+    "settingTag": "Preferencje",
+    "hint": "Strzałki przesuwają, Enter uruchamia, Esc zamyka",
+    "notRunnable": "Nie udało się uruchomić polecenia. Przypisz mu skrót w Preferencjach i spróbuj ponownie.",
+    "menu": "Paleta poleceń...",
+    "shortcut": "Widok – otwórz paletę poleceń",
+    "shortcutAlternate": "Widok – otwórz paletę poleceń (alternatywny skrót)"
+  },
   "projectsDialog": {
     "title": "Projekty",
     "tabProject": "Projekt",

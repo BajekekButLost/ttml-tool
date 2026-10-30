@@ -399,6 +399,18 @@
       "title": "Valitse projekteja sisältävä työtilakansio"
     }
   },
+  "commandPalette": {
+    "title": "Komentopaletti",
+    "placeholder": "Etsi komentoja ja asetuksia",
+    "noResults": "Ei vastaavia komentoja tai asetuksia",
+    "commandTag": "Komento",
+    "settingTag": "Asetukset",
+    "hint": "Nuolinäppäimet siirtävät, Enter suorittaa, Esc sulkee",
+    "notRunnable": "Komentoa ei voitu suorittaa. Anna sille pikanäppäin asetuksissa ja yritä uudelleen.",
+    "menu": "Komentopaletti...",
+    "shortcut": "Näkymä - Avaa komentopaletti",
+    "shortcutAlternate": "Näkymä - Avaa komentopaletti (vaihtoehtoinen pikanäppäin)"
+  },
   "projectsDialog": {
     "title": "Projektit",
     "tabProject": "Projekti",

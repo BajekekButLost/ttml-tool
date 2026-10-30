@@ -399,6 +399,18 @@
       "title": "Selectează un folder de spațiu de lucru care conține proiecte"
     }
   },
+  "commandPalette": {
+    "title": "Paleta de comenzi",
+    "placeholder": "Caută comenzi și setări",
+    "noResults": "Nu există comenzi sau setări care se potrivesc",
+    "commandTag": "Comandă",
+    "settingTag": "Preferințe",
+    "hint": "Săgețile mută selecția, Enter rulează, Esc închide",
+    "notRunnable": "Comanda nu a putut fi rulată. Atribuie-i o scurtătură în Preferințe și încearcă din nou.",
+    "menu": "Paleta de comenzi...",
+    "shortcut": "Vizualizare - Deschide paleta de comenzi",
+    "shortcutAlternate": "Vizualizare - Deschide paleta de comenzi (scurtătură alternativă)"
+  },
   "projectsDialog": {
     "title": "Proiecte",
     "tabProject": "Proiect",

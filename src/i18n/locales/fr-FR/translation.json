@@ -399,6 +399,18 @@
       "title": "Sélectionnez un dossier d'espace de travail contenant des projets"
     }
   },
+  "commandPalette": {
+    "title": "Palette de commandes",
+    "placeholder": "Rechercher des commandes et des paramètres",
+    "noResults": "Aucune commande ni aucun paramètre correspondant",
+    "commandTag": "Commande",
+    "settingTag": "Préférences",
+    "hint": "Flèches pour se déplacer, Entrée pour exécuter, Échap pour fermer",
+    "notRunnable": "Impossible d'exécuter cette commande. Attribuez-lui un raccourci dans les Préférences, puis réessayez.",
+    "menu": "Palette de commandes...",
+    "shortcut": "Afficher - Ouvrir la palette de commandes",
+    "shortcutAlternate": "Afficher - Ouvrir la palette de commandes (raccourci alternatif)"
+  },
   "projectsDialog": {
     "title": "Projets",
     "tabProject": "Projet",
