@@ -3,13 +3,16 @@ import {
 	history,
 	historyKeymap,
 	insertNewline,
+	isolateHistory,
 	redo,
 } from "@codemirror/commands";
 import {
+	type ChangeSet,
 	type EditorState,
 	Facet,
 	RangeSetBuilder,
 	StateField,
+	Transaction,
 } from "@codemirror/state";
 import {
 	type Command,
@@ -25,6 +28,7 @@ import {
 } from "@codemirror/view";
 import { buildDecorationSpecs } from "./decorations";
 import { type LyricMarkupFormat, type MarkupLine, parseMarkup } from "./markup";
+import { searchHighlightField } from "./search-view";
 
 /** Resolved, translated strings the editor draws. */
 export interface LyricMarkupLabels {
@@ -43,6 +47,8 @@ export interface LyricMarkupLabels {
 export interface LyricMarkupCallbacks {
 	/** A section pill (or Alt+C) asked for the category menu of a line. */
 	openHeaderMenu: (lineIndex: number, rect: DOMRect) => void;
+	/** Ctrl+F or the replace shortcut, with the selected text if any. */
+	openSearch: (mode: "find" | "replace", text: string) => void;
 }
 
 export const formatFacet = Facet.define<LyricMarkupFormat, LyricMarkupFormat>({
@@ -326,7 +332,7 @@ const lineNumberField = StateField.define<number[]>({
 			: numberLines(transaction.state.field(markupField)),
 });
 
-function numberLines(lines: MarkupLine[]): number[] {
+export function numberLines(lines: MarkupLine[]): number[] {
 	let count = 0;
 	return lines.map((line) => (NUMBERED_KINDS.has(line.kind) ? ++count : 0));
 }
@@ -458,6 +464,46 @@ export const openHeaderMenu: Command = (view) => {
 	return true;
 };
 
+/**
+ * Applies changes as one undo step of their own, keeping the line at the top
+ * of the view where it was.
+ */
+export function dispatchInPlace(
+	view: EditorView,
+	changes: ChangeSet,
+	userEvent?: string,
+) {
+	view.dispatch({
+		changes,
+		// Redrawing the cursor's line would otherwise let the browser scroll to
+		// it; this puts the line that was at the top back at the top.
+		effects: view.scrollSnapshot().map(changes),
+		annotations: [Transaction.addToHistory.of(true), isolateHistory.of("full")],
+		userEvent,
+	});
+}
+
+/** Opens the search with the selected text, split marks left out. */
+export const openSearch =
+	(mode: "find" | "replace"): Command =>
+	(view) => {
+		const { from, to } = view.state.selection.main;
+		const selected = view.state.sliceDoc(from, to);
+		const separator = view.state.facet(formatFacet).wordSeparator;
+		const text = selected.includes("\n")
+			? ""
+			: separator
+				? selected.split(separator).join("")
+				: selected;
+		view.state.facet(callbacksFacet).openSearch(mode, text);
+		return true;
+	};
+
+/** Cmd+H hides the app on macOS, so replace takes Cmd+Alt+F there. */
+export const REPLACE_KEY = navigator.userAgent.includes("Mac")
+	? "Mod-Alt-f"
+	: "Mod-h";
+
 /** Everything the editor needs apart from its format, labels and callbacks. */
 export const lyricMarkupExtensions = [
 	history(),
@@ -466,6 +512,8 @@ export const lyricMarkupExtensions = [
 		{ key: "Alt-d", run: toggleLinePrefix("duet") },
 		{ key: "Alt-s", run: splitOrJoin },
 		{ key: "Alt-c", run: openHeaderMenu },
+		{ key: "Mod-f", run: openSearch("find"), preventDefault: true },
+		{ key: REPLACE_KEY, run: openSearch("replace"), preventDefault: true },
 		// Windows doesn't bind this one by default.
 		{ key: "Mod-Shift-z", run: redo, preventDefault: true },
 		// Plain new lines; lyrics don't carry indentation over.
@@ -476,6 +524,7 @@ export const lyricMarkupExtensions = [
 	EditorView.lineWrapping,
 	markupField,
 	markupPlugin,
+	searchHighlightField,
 	lineNumberField,
 	labelGutter,
 	// After the labels, so each number sits right next to its line.

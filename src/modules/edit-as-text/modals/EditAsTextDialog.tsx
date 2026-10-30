@@ -16,6 +16,14 @@ import {
 	type LyricMarkupTool,
 } from "$/components/LyricMarkupEditor";
 import {
+	lyricEditorMounted,
+	lyricSearchRequestAtom,
+} from "$/components/LyricMarkupEditor/search-view";
+import {
+	cmdFindInLyrics,
+	cmdReplaceInLyrics,
+} from "$/modules/keyboard/commands";
+import {
 	importTextFormatAtom,
 	processStepsAtom,
 } from "$/modules/lyrics-import/states";
@@ -29,6 +37,7 @@ import {
 	selectedWordsAtom,
 } from "$/states/main.ts";
 import { newLyricWord } from "$/types/ttml";
+import { useKeyBindingAtom } from "$/utils/keybindings";
 import { error as logError } from "$/utils/logging.ts";
 import { editTextFormat, serializeLyrics } from "../logic/serialize";
 import { applyEditedText, type TextEditSummary } from "../logic/text-diff";
@@ -38,6 +47,22 @@ import styles from "./EditAsTextDialog.module.css";
 
 const LOSSY_LINES_SHOWN = 8;
 
+/** The selected words' text when they all sit in one line, else nothing. */
+function selectedWordsText(store: ReturnType<typeof useStore>) {
+	const selected = store.get(selectedWordsAtom);
+	if (!selected.size) return undefined;
+	for (const line of store.get(lyricLinesAtom).lyricLines) {
+		const words = line.words.filter((word) => selected.has(word.id));
+		if (!words.length) continue;
+		if (words.length !== selected.size) return undefined;
+		return words
+			.map((word) => word.word)
+			.join("")
+			.trim();
+	}
+	return undefined;
+}
+
 /**
  * Edit the whole project as import markup. Applying keeps the timing of every
  * word whose text didn't change, and lands as one undo step.
@@ -46,6 +71,25 @@ export const EditAsTextDialog = () => {
 	const { t } = useTranslation();
 	const [open, setOpen] = useAtom(editAsTextDialogAtom);
 	const setConfirmDialog = useSetAtom(confirmDialogAtom);
+	const store = useStore();
+
+	// Find or replace in lyrics: opens this dialog with its search ready, seeded
+	// with the selected words. A lyric editor already on screen (this one, or
+	// the import screen's) takes the request instead.
+	const requestSearch = (mode: "find" | "replace") => {
+		store.set(lyricSearchRequestAtom, {
+			mode,
+			text: selectedWordsText(store),
+			id: Date.now(),
+		});
+		if (!lyricEditorMounted()) setOpen(true);
+	};
+	useKeyBindingAtom(cmdFindInLyrics.atom, () => requestSearch("find"), []);
+	useKeyBindingAtom(
+		cmdReplaceInLyrics.atom,
+		() => requestSearch("replace"),
+		[],
+	);
 	// Whether the text differs from what the dialog opened with.
 	const dirtyRef = useRef(false);
 

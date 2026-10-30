@@ -275,6 +275,17 @@
 	color: var(--gray-12);
 }
 
+/* Search matches. Background only, so marking them never moves the text. */
+.editor :global(.lm-match) {
+	border-radius: var(--radius-1);
+	background-color: var(--accent-a4);
+}
+
+.editor :global(.lm-match.lm-current) {
+	background-color: var(--accent-a7);
+	color: var(--gray-12);
+}
+
 /* Replaces the same-line separator with the name of what follows. */
 .editor :global(.lm-subLabel) {
 	margin: 0 var(--space-2);
