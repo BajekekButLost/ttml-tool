@@ -12,9 +12,11 @@ import {
 	getShortcutKey,
 	normalizeKeyBindings,
 	RESET_KEYBINDING,
+	setDoublePressResolver,
 	setExtraKeyBindingsResolver,
 } from "$/utils/keybindings";
 import { getAllCommands } from "./registry";
+import { doublePressAtom } from "./states";
 import type { KeyBindingCommand, KeyBindingsConfig } from "./types";
 
 export type KeyBindingList = KeyBindingsConfig[];
@@ -169,4 +171,16 @@ setExtraKeyBindingsResolver((binding) => {
 		if (command) resolved.set(binding, extras);
 	}
 	return extras ?? undefined;
+});
+
+const resolvedDoublePress = new WeakMap<object, Atom<boolean>>();
+setDoublePressResolver((binding) => {
+	let flag = resolvedDoublePress.get(binding);
+	if (!flag) {
+		const command = findCommandByAtom(binding);
+		if (!command) return undefined;
+		flag = doublePressAtom(command.id);
+		resolvedDoublePress.set(binding, flag);
+	}
+	return flag;
 });
