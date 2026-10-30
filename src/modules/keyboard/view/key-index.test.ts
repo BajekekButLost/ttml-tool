@@ -104,6 +104,42 @@ describe("search", () => {
 		);
 		expect(index.matchCommands(all(), "  ", nameOf)).toEqual(new Set());
 	});
+
+	describe("by key", () => {
+		const keyNames: Record<string, string> = {
+			saveFile: "Save file",
+			playPause: "Play / pause",
+			syncStart: "Timing - Start",
+			undo: "Undo",
+		};
+		const nameOf = (command: { id: string }) => keyNames[command.id];
+		const bindings = () => [
+			{ command: commands.cmdSaveFile, lists: [["Control", "KeyS"]] },
+			{ command: commands.cmdPlayPause, lists: [["Space"]] },
+			{ command: commands.cmdSyncStart, lists: [["KeyF"], ["KeyJ"]] },
+			{ command: commands.cmdUndo, lists: [[]] },
+		];
+		const search = (query: string) =>
+			index.matchShortcutSearch(bindings(), query, nameOf);
+
+		it("finds what a shortcut is bound to, written any way", () => {
+			for (const query of ["Ctrl+S", "ctrl + s", "control+s", "ctrl s"])
+				expect(search(query), query).toEqual(new Set(["saveFile"]));
+			expect(search("space")).toEqual(new Set(["playPause"]));
+		});
+
+		it("treats a single letter as a key, including extra keys", () => {
+			// "f" would match "Save file" by name; as a key it's Timing - Start.
+			expect(search("f")).toEqual(new Set(["syncStart"]));
+			expect(search("J")).toEqual(new Set(["syncStart"]));
+		});
+
+		it("still finds actions by name, bound or not", () => {
+			expect(search("save")).toEqual(new Set(["saveFile"]));
+			expect(search("undo")).toEqual(new Set(["undo"]));
+			expect(search("ctrl+q")).toEqual(new Set());
+		});
+	});
 });
 
 describe("editing a list", () => {

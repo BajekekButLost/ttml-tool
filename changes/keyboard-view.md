@@ -5,4 +5,4 @@ highlight: false
 ---
 Second keys and a keyboard view for shortcuts
 
-**Preferences › Shortcuts** now shows every shortcut on a keyboard and lets you give any action a second key
+**Preferences › Shortcuts** shows every shortcut on a keyboard, finds actions by name or key and adds second keys

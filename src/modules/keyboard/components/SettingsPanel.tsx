@@ -1,4 +1,5 @@
 import {
+	ChevronRight16Regular,
 	Edit20Regular,
 	Folder20Regular,
 	Speaker220Regular,
@@ -10,6 +11,7 @@ import {
 	Flex,
 	Grid,
 	Heading,
+	Switch,
 	Text,
 	TextField,
 } from "@radix-ui/themes";
@@ -23,10 +25,13 @@ import {
 	recordShortcut,
 	stopRecordingShortcut,
 } from "$/utils/keybindings";
-import { keyBindingListAtom } from "../binding-list";
+import { allKeyBindingListsAtom, keyBindingListAtom } from "../binding-list";
 import { findKeyBindingConflicts } from "../conflicts";
 import { getAllCommands } from "../registry";
+import { shortcutSearchAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
+import { matchShortcutSearch } from "../view/key-index";
+import styles from "./SettingsPanel.module.css";
 
 const KEYBINDING_CATEGORY_ICONS: Record<string, React.ReactNode> = {
 	File: <Folder20Regular />,
@@ -155,31 +160,89 @@ export const AutoKeyBindingSettingsPanel = () => {
 		[commands],
 	);
 	const bindings = useAtomValue(bindingsAtom);
+	// Conflicts look at every action, not just the ones listed.
 	const conflicts = findKeyBindingConflicts(bindings);
-
-	const groupedCommands = commands.reduce(
-		(acc, cmd) => {
-			if (!acc[cmd.category]) {
-				acc[cmd.category] = [];
-			}
-			acc[cmd.category].push(cmd);
-			return acc;
-		},
-		{} as Record<string, KeyBindingCommand[]>,
+	const lists = useAtomValue(allKeyBindingListsAtom);
+	const query = useAtomValue(shortcutSearchAtom);
+	const [showAll, setShowAll] = useState(false);
+	const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(
+		() => new Set(),
 	);
+	const showAllId = useId();
+	const searching = query.trim() !== "";
+
+	// The keyboard view's search filters this list too, by name or by key, and
+	// always over every action so an unbound one can be found and given a key.
+	// Otherwise only actions with a key are listed unless "Show actions
+	// without a key" is on.
+	const matches = useMemo(
+		() =>
+			searching
+				? matchShortcutSearch(lists, query, (command) => t(command.description))
+				: undefined,
+		[lists, query, searching, t],
+	);
+	const groups = new Map<string, KeyBindingCommand[]>();
+	for (const { command, lists: keys } of lists) {
+		const listed = matches
+			? matches.has(command.id)
+			: showAll || keys.some((binding) => binding.length > 0);
+		if (!listed) continue;
+		const group = groups.get(command.category) ?? [];
+		group.push(command);
+		groups.set(command.category, group);
+	}
 
 	return (
 		<Box>
-			{Object.entries(groupedCommands).map(([category, cmds]) => (
-				<Box key={category} mb="5">
-					<Heading size="3" mb="3" color="gray">
-						<Flex align="center" gap="2">
-							{KEYBINDING_CATEGORY_ICONS[category]}
-							<span>
-								{t(`settingsDialog.keybindings.category.${category}`, category)}
-							</span>
-						</Flex>
-					</Heading>
+			<Flex align="center" justify="end" gap="2" mb="4">
+				<Text as="label" htmlFor={showAllId} size="2">
+					{t("settingsDialog.keybindings.showAll")}
+				</Text>
+				<Switch
+					id={showAllId}
+					size="1"
+					checked={showAll}
+					onCheckedChange={setShowAll}
+				/>
+			</Flex>
+			{[...groups].map(([category, cmds]) => (
+				<details
+					key={category}
+					className={styles.group}
+					// Search results always show; otherwise each group remembers
+					// being closed.
+					open={searching || !collapsed.has(category)}
+					onToggle={(event) => {
+						if (searching) return;
+						const open = event.currentTarget.open;
+						setCollapsed((current) => {
+							const next = new Set(current);
+							if (open) next.delete(category);
+							else next.add(category);
+							return next;
+						});
+					}}
+				>
+					<summary className={styles.summary}>
+						<span className={styles.chevron} aria-hidden>
+							<ChevronRight16Regular />
+						</span>
+						<Heading as="h3" size="3" color="gray">
+							<Flex align="center" gap="2">
+								{KEYBINDING_CATEGORY_ICONS[category]}
+								<span>
+									{t(
+										`settingsDialog.keybindings.category.${category}`,
+										category,
+									)}
+								</span>
+							</Flex>
+						</Heading>
+						<Text size="1" color="gray" className={styles.count}>
+							{cmds.length}
+						</Text>
+					</summary>
 
 					<Grid
 						columns={{ initial: "1", sm: "2" }}
@@ -195,8 +258,13 @@ export const AutoKeyBindingSettingsPanel = () => {
 							/>
 						))}
 					</Grid>
-				</Box>
+				</details>
 			))}
+			{groups.size === 0 && (
+				<Text as="div" size="2" color="gray" role="status" align="center">
+					{t("keyboardView.searchResults", { count: 0 })}
+				</Text>
+			)}
 		</Box>
 	);
 };

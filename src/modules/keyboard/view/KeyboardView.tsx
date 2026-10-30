@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
 import { stopRecordingShortcut } from "$/utils/keybindings";
 import { allKeyBindingListsAtom } from "../binding-list";
+import { shortcutSearchAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 import { CATEGORY_ICONS } from "./category-icons";
 import styles from "./KeyboardView.module.css";
@@ -19,7 +20,7 @@ import { KeyDetailsPanel } from "./KeyDetailsPanel";
 import {
 	buildKeyIndex,
 	type KeyBindingRef,
-	matchCommands,
+	matchShortcutSearch,
 	refsInLayer,
 	VIEW_CATEGORIES,
 	viewCategoryOf,
@@ -188,17 +189,16 @@ export const KeyboardView: FC = () => {
 	const [layoutChoice, setLayoutChoice] = useAtom(keyboardViewLayoutAtom);
 	const [layer, setLayer] = useState<ModifierCode[]>([]);
 	const [selected, setSelected] = useState<string>();
-	const [query, setQuery] = useState("");
+	// Shared with the list below, which this search filters too.
+	const [query, setQuery] = useAtom(shortcutSearchAtom);
 	useEffect(() => () => stopRecordingShortcut(), []);
+	// Leaving Shortcuts clears the search, so it doesn't come back filtered.
+	useEffect(() => () => setQuery(""), [setQuery]);
 
 	const index = useMemo(() => buildKeyIndex(bindings), [bindings]);
-	const commands = useMemo(
-		() => bindings.map(({ command }) => command),
-		[bindings],
-	);
 	const nameOf = (command: KeyBindingCommand) => t(command.description);
 	const matches = query.trim()
-		? matchCommands(commands, query, nameOf)
+		? matchShortcutSearch(bindings, query, nameOf)
 		: undefined;
 
 	const context: CapContext = {

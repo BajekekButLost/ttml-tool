@@ -1,4 +1,7 @@
-import { normalizeKeyBindings } from "$/utils/keybindings";
+import {
+	formatKeyBindingsAsArray,
+	normalizeKeyBindings,
+} from "$/utils/keybindings";
 import type { KeyBindingList } from "../binding-list";
 import type { KeyBindingCommand, KeyBindingsConfig } from "../types";
 import { isModifierCode, MODIFIER_CODES, type ModifierCode } from "./layouts";
@@ -136,6 +139,78 @@ export function matchCommands(
 			})
 			.map((command) => command.id),
 	);
+}
+
+const KEY_ALIASES: Record<string, string[]> = {
+	Control: ["ctrl", "control"],
+	Meta: ["meta", "win", "cmd", "command", "super"],
+	Alt: ["alt", "option", "opt"],
+	Shift: ["shift"],
+	Escape: ["esc", "escape"],
+	Space: ["space", "spacebar"],
+	Enter: ["enter", "return"],
+	Backspace: ["backspace"],
+	Delete: ["delete", "del"],
+	ArrowUp: ["up"],
+	ArrowDown: ["down"],
+	ArrowLeft: ["left"],
+	ArrowRight: ["right"],
+	PageUp: ["pageup", "pgup"],
+	PageDown: ["pagedown", "pgdn"],
+};
+
+/** Every name a key goes by: its printed label, its code and common aliases. */
+function keyNames(code: string): string[] {
+	const bare = code.replace(/^(Key|Digit|Numpad)/, "");
+	return [
+		normalizeSearch(formatKeyBindingsAsArray([code])[0] ?? ""),
+		normalizeSearch(code),
+		normalizeSearch(bare),
+		...(KEY_ALIASES[code] ?? []),
+	];
+}
+
+/** Whether every typed key appears in the shortcut, e.g. "ctrl s" or "Ctrl+S" in Ctrl+S. */
+function bindingMatches(binding: KeyBindingsConfig, tokens: string[]) {
+	const keys = normalizeKeyBindings(binding).map(keyNames);
+	return tokens.every((token) => keys.some((names) => names.includes(token)));
+}
+
+export type SearchableBinding = {
+	command: KeyBindingCommand;
+	lists: KeyBindingList;
+};
+
+/**
+ * The ids of actions a search finds. Names match on every word. Keys match
+ * when the query is written as a shortcut ("Ctrl+S"), is a single key ("F",
+ * "Space") that something is bound to, or names nothing but a key does.
+ */
+export function matchShortcutSearch(
+	bindings: readonly SearchableBinding[],
+	query: string,
+	nameOf: (command: KeyBindingCommand) => string,
+): Set<string> {
+	const normalized = normalizeSearch(query);
+	const tokens = normalized.split(/[\s+]+/).filter(Boolean);
+	if (tokens.length === 0) return new Set();
+	const byKey = new Set(
+		bindings
+			.filter(({ lists }) =>
+				lists.some(
+					(binding) => binding.length > 0 && bindingMatches(binding, tokens),
+				),
+			)
+			.map(({ command }) => command.id),
+	);
+	if (normalized.includes("+")) return byKey;
+	if (tokens.length === 1 && byKey.size > 0) return byKey;
+	const byName = matchCommands(
+		bindings.map(({ command }) => command),
+		query,
+		nameOf,
+	);
+	return byName.size > 0 ? byName : byKey;
 }
 
 /** The list with one slot replaced, or a new binding appended. */
