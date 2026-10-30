@@ -247,9 +247,7 @@
     "help": "Nowe słowa trafiają bez synchronizacji. Wiersze, które tylko przeniesiono, zachowują synchronizację. Zastosowanie cofniesz jednym krokiem.",
     "apply": "Zastosuj",
     "applied": "Tekst zastosowany. Cofnij przywraca poprzedni stan jednym krokiem.",
-    "failed": "Nie udało się zastosować tekstu. Sprawdź go i spróbuj ponownie.",
-    "setting": "Edytuj jako tekst",
-    "settingDesc": "Dodaje Edytuj jako tekst do menu Edycja: zmieniaj cały tekst piosenki jako zwykły tekst i zachowaj synchronizację słów, których nie ruszasz."
+    "failed": "Nie udało się zastosować tekstu. Sprawdź go i spróbuj ponownie."
   },
   "importChooser": {
     "options": {

@@ -247,9 +247,7 @@
     "help": "Uudet sanat tulevat ilman ajoitusta. Pelkästään siirretyt rivit säilyttävät ajoituksensa. Käyttö kumotaan yhdellä askeleella.",
     "apply": "Käytä",
     "applied": "Teksti otettiin käyttöön. Kumoa palauttaa sen yhdellä askeleella.",
-    "failed": "Tekstiä ei voitu ottaa käyttöön. Tarkista se ja yritä uudelleen.",
-    "setting": "Muokkaa tekstinä",
-    "settingDesc": "Lisää Muokkaa-valikkoon kohdan Muokkaa tekstinä: muokkaa koko sanoitusta pelkkänä tekstinä ja säilytä koskemattomien sanojen ajoitus."
+    "failed": "Tekstiä ei voitu ottaa käyttöön. Tarkista se ja yritä uudelleen."
   },
   "importChooser": {
     "options": {

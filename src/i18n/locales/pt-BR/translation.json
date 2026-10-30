@@ -247,9 +247,7 @@
     "help": "Palavras novas entram sem sincronização. Linhas que só foram movidas mantêm a sincronização. Aplicar é desfeito em um único passo.",
     "apply": "Aplicar",
     "applied": "Texto aplicado. Desfazer reverte em um único passo.",
-    "failed": "Não foi possível aplicar o texto. Confira e tente de novo.",
-    "setting": "Editar como texto",
-    "settingDesc": "Adiciona Editar como texto ao menu Editar: altere a letra inteira como texto simples e mantenha a sincronização das palavras que você não mexer."
+    "failed": "Não foi possível aplicar o texto. Confira e tente de novo."
   },
   "importChooser": {
     "options": {

@@ -247,9 +247,7 @@
     "help": "New words come in untimed. Lines that only moved keep their timing. Apply is one undo step.",
     "apply": "Apply",
     "applied": "Applied the text. Undo reverts it in one step.",
-    "failed": "Couldn't apply the text. Check it and try again.",
-    "setting": "Edit as text",
-    "settingDesc": "Adds Edit as text to the Edit menu: change the whole lyrics as plain text and keep the timing of words you don't touch."
+    "failed": "Couldn't apply the text. Check it and try again."
   },
   "importChooser": {
     "options": {

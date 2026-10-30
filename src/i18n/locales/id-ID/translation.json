@@ -247,9 +247,7 @@
     "help": "Kata baru masuk tanpa timing. Baris yang hanya dipindah tetap mempertahankan timing-nya. Terapkan adalah satu langkah urungkan.",
     "apply": "Terapkan",
     "applied": "Teks diterapkan. Urungkan mengembalikannya dalam satu langkah.",
-    "failed": "Teks tidak dapat diterapkan. Periksa lalu coba lagi.",
-    "setting": "Edit sebagai teks",
-    "settingDesc": "Menambahkan Edit sebagai teks ke menu Edit: ubah seluruh lirik sebagai teks biasa dan pertahankan timing kata yang tidak Anda sentuh."
+    "failed": "Teks tidak dapat diterapkan. Periksa lalu coba lagi."
   },
   "importChooser": {
     "options": {

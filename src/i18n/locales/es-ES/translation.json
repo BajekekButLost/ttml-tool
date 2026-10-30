@@ -247,9 +247,7 @@
     "help": "Las palabras nuevas entran sin sincronizar. Las líneas que solo se movieron conservan su sincronización. Aplicar es un solo paso de deshacer.",
     "apply": "Aplicar",
     "applied": "Texto aplicado. Deshacer lo revierte en un solo paso.",
-    "failed": "No se pudo aplicar el texto. Revísalo e inténtalo de nuevo.",
-    "setting": "Editar como texto",
-    "settingDesc": "Añade Editar como texto al menú Editar: cambia toda la letra como texto sin formato y conserva la sincronización de las palabras que no toques."
+    "failed": "No se pudo aplicar el texto. Revísalo e inténtalo de nuevo."
   },
   "importChooser": {
     "options": {

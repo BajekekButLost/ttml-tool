@@ -247,9 +247,7 @@
     "help": "Nové slová prídu bez časovania. Riadky, ktoré sa len presunuli, si časovanie ponechajú. Použitie vrátite jedným krokom späť.",
     "apply": "Použiť",
     "applied": "Text bol použitý. Jedným krokom späť ho vrátite.",
-    "failed": "Text sa nepodarilo použiť. Skontrolujte ho a skúste to znova.",
-    "setting": "Upraviť ako text",
-    "settingDesc": "Pridá do ponuky Úpravy položku Upraviť ako text: celý text piesne upravíte ako obyčajný text a slová, na ktoré nesiahnete, si ponechajú časovanie."
+    "failed": "Text sa nepodarilo použiť. Skontrolujte ho a skúste to znova."
   },
   "importChooser": {
     "options": {

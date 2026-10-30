@@ -247,9 +247,7 @@
     "help": "Les nouveaux mots arrivent sans synchronisation. Les lignes seulement déplacées gardent leur synchronisation. Appliquer s'annule en une seule étape.",
     "apply": "Appliquer",
     "applied": "Texte appliqué. Annuler le rétablit en une seule étape.",
-    "failed": "Impossible d'appliquer le texte. Vérifiez-le et réessayez.",
-    "setting": "Modifier en texte",
-    "settingDesc": "Ajoute Modifier en texte au menu Édition : modifiez toutes les paroles en texte brut et gardez la synchronisation des mots que vous ne touchez pas."
+    "failed": "Impossible d'appliquer le texte. Vérifiez-le et réessayez."
   },
   "importChooser": {
     "options": {

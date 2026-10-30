@@ -247,9 +247,7 @@
     "help": "Nieuwe woorden komen binnen zonder timing. Regels die alleen verplaatst zijn, houden hun timing. Toepassen is één stap ongedaan maken.",
     "apply": "Toepassen",
     "applied": "Tekst toegepast. Ongedaan maken draait het in één stap terug.",
-    "failed": "Kan de tekst niet toepassen. Controleer hem en probeer het opnieuw.",
-    "setting": "Bewerken als tekst",
-    "settingDesc": "Voegt Bewerken als tekst toe aan het menu Bewerken: wijzig de hele songtekst als platte tekst en behoud de timing van woorden die je niet aanraakt."
+    "failed": "Kan de tekst niet toepassen. Controleer hem en probeer het opnieuw."
   },
   "importChooser": {
     "options": {

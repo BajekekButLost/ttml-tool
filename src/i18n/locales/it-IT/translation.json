@@ -247,9 +247,7 @@
     "help": "Le parole nuove entrano senza sincronizzazione. Le righe solo spostate mantengono la sincronizzazione. Applica si annulla in un solo passaggio.",
     "apply": "Applica",
     "applied": "Testo applicato. Annulla lo ripristina in un solo passaggio.",
-    "failed": "Impossibile applicare il testo. Controllalo e riprova.",
-    "setting": "Modifica come testo",
-    "settingDesc": "Aggiunge Modifica come testo al menu Modifica: cambia l'intero testo come testo semplice e mantieni la sincronizzazione delle parole che non tocchi."
+    "failed": "Impossibile applicare il testo. Controllalo e riprova."
   },
   "importChooser": {
     "options": {

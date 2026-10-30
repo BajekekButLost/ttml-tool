@@ -247,9 +247,7 @@
     "help": "Cuvintele noi intră fără sincronizare. Rândurile doar mutate își păstrează sincronizarea. Aplicarea se anulează într-un singur pas.",
     "apply": "Aplică",
     "applied": "Text aplicat. Anularea îl readuce într-un singur pas.",
-    "failed": "Textul nu a putut fi aplicat. Verifică-l și încearcă din nou.",
-    "setting": "Editează ca text",
-    "settingDesc": "Adaugă Editează ca text în meniul Editare: modifică toate versurile ca text simplu și păstrează sincronizarea cuvintelor pe care nu le atingi."
+    "failed": "Textul nu a putut fi aplicat. Verifică-l și încearcă din nou."
   },
   "importChooser": {
     "options": {

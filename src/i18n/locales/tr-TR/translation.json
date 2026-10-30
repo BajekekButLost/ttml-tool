@@ -247,9 +247,7 @@
     "help": "Yeni kelimeler zamanlamasız gelir. Yalnızca taşınan satırlar zamanlamasını korur. Uygula tek adımda geri alınır.",
     "apply": "Uygula",
     "applied": "Metin uygulandı. Geri al tek adımda eski haline döndürür.",
-    "failed": "Metin uygulanamadı. Kontrol edip tekrar deneyin.",
-    "setting": "Metin olarak düzenle",
-    "settingDesc": "Düzenle menüsüne Metin olarak düzenle ekler: şarkı sözlerinin tamamını düz metin olarak değiştirin, dokunmadığınız kelimelerin zamanlaması korunsun."
+    "failed": "Metin uygulanamadı. Kontrol edip tekrar deneyin."
   },
   "importChooser": {
     "options": {

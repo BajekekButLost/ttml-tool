@@ -5,4 +5,4 @@ highlight: true
 ---
 Edit the whole lyrics as text and keep your timings
 
-Turn on **Edit as text** in **Preferences › Import & files** to edit the lyrics as text, keeping unchanged timings
+**Edit › Edit as text** opens the whole lyrics as text, and words you don't change keep their timing
