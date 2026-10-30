@@ -221,14 +221,16 @@ export function LyricMarkupEditor({
 						)
 							setSearchState(update.state);
 						if (!update.docChanged) return;
-						setWithin(
-							(range) =>
-								range && {
-									// Text replaced at either edge stays inside.
-									from: update.changes.mapPos(range.from, -1),
-									to: update.changes.mapPos(range.to, 1),
-								},
-						);
+						setWithin((range) => {
+							if (!range) return range;
+							// Text replaced at either edge stays inside.
+							const from = update.changes.mapPos(range.from, -1);
+							const to = update.changes.mapPos(range.to, 1);
+							// The same object when nothing moved, so the search doesn't rerun.
+							return from === range.from && to === range.to
+								? range
+								: { from, to };
+						});
 						const text = update.state.doc.toString();
 						knownValue.current = text;
 						onChangeRef.current(text);

@@ -185,14 +185,16 @@ export function SearchPanel({
 		select(next);
 	};
 
-	// A new search jumps to the first match from the cursor on.
+	// A new search jumps to the first match from the cursor on. Keyed on what
+	// the user set, not on the selection range moving with edits, so typing in
+	// the text never pulls the cursor away.
 	// biome-ignore lint/correctness/useExhaustiveDependencies: runs when the search itself changes
 	useEffect(() => {
 		setReplaced(null);
 		if (current !== -1 || !matches.length) return;
 		const { from } = view.state.selection.main;
 		select(matches.find((match) => match.from >= from) ?? matches[0]);
-	}, [options]);
+	}, [query, caseSensitive, wholeWord, regex, rows, !!within]);
 
 	const changesFor = (list: SearchMatch[]) =>
 		replacementChanges(
