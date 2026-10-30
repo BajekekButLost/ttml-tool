@@ -69,6 +69,22 @@ export const cmdUnselectAll = registerCommand(
 	"Edit",
 );
 
+// Edit as text mounts their handlers and opens with its search ready.
+export const cmdFindInLyrics = registerCommand(
+	"findInLyrics",
+	[CONTROL_KEY, "KeyF"],
+	t("settingsDialog.keybindings.findInLyrics"),
+	"Edit",
+);
+
+// Cmd+H hides the app on macOS.
+export const cmdReplaceInLyrics = registerCommand(
+	"replaceInLyrics",
+	IS_MAC ? [CONTROL_KEY, "Alt", "KeyF"] : [CONTROL_KEY, "KeyH"],
+	t("settingsDialog.keybindings.replaceInLyrics"),
+	"Edit",
+);
+
 export const cmdDeleteSelection = registerCommand(
 	"deleteSelection",
 	[DELETE_KEY],
