@@ -10,7 +10,10 @@ import {
 } from "../binding-list";
 import { cmdSaveFile, cmdSyncStart, cmdUndo } from "../commands";
 import { shortcutSearchAtom } from "../states";
-import { AutoKeyBindingSettingsPanel } from "./SettingsPanel";
+import {
+	AutoKeyBindingSettingsPanel,
+	ShowAllShortcutsSwitch,
+} from "./SettingsPanel";
 
 // Node's own localStorage stub shadows jsdom's; use a plain in-memory one.
 const data = vi.hoisted(() => {
@@ -44,6 +47,8 @@ function mount() {
 		root.render(
 			<Provider store={store}>
 				<Theme>
+					{/* On the page the switch sits on the keyboard view's hint line. */}
+					<ShowAllShortcutsSwitch />
 					<AutoKeyBindingSettingsPanel />
 				</Theme>
 			</Provider>,

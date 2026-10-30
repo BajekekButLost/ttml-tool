@@ -69,6 +69,9 @@ function createDoublePressAtom(commandId: string) {
 /** The Shortcuts page's search: filters the action list and lights up keys on the board. */
 export const shortcutSearchAtom = atom("");
 
+/** Whether the Shortcuts list also shows actions that have no key. */
+export const shortcutShowAllAtom = atom(false);
+
 /** Whether one action waits for a second press; writable for the toggle. */
 export function doublePressAtom(commandId: string) {
 	let cached = doublePressAtoms.get(commandId);

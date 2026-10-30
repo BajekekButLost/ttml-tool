@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
 import { stopRecordingShortcut } from "$/utils/keybindings";
 import { allKeyBindingListsAtom } from "../binding-list";
+import { ShowAllShortcutsSwitch } from "../components/SettingsPanel";
 import { shortcutSearchAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 import { CATEGORY_ICONS } from "./category-icons";
@@ -298,9 +299,12 @@ export const KeyboardView: FC = () => {
 							</Flex>
 						))}
 					</Flex>
-					<Text as="p" size="1" color="gray" mt="2">
-						{t("keyboardView.layerHint")}
-					</Text>
+					<Flex align="center" justify="between" gap="4" mt="2" wrap="wrap">
+						<Text as="p" size="1" color="gray">
+							{t("keyboardView.layerHint")}
+						</Text>
+						<ShowAllShortcutsSwitch />
+					</Flex>
 				</Box>
 				{selected && (
 					<KeyDetailsPanel

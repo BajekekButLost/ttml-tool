@@ -28,7 +28,7 @@ import {
 import { allKeyBindingListsAtom, keyBindingListAtom } from "../binding-list";
 import { findKeyBindingConflicts } from "../conflicts";
 import { getAllCommands } from "../registry";
-import { shortcutSearchAtom } from "../states";
+import { shortcutSearchAtom, shortcutShowAllAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 import { matchShortcutSearch } from "../view/key-index";
 import styles from "./SettingsPanel.module.css";
@@ -148,6 +148,24 @@ const KeyBindingsEdit = ({
 	);
 };
 
+/**
+ * "Show actions without a key", for the list below the keyboard. It sits on
+ * the keyboard view's hint line instead of taking a row of its own.
+ */
+export const ShowAllShortcutsSwitch = () => {
+	const { t } = useTranslation();
+	const [showAll, setShowAll] = useAtom(shortcutShowAllAtom);
+	const id = useId();
+	return (
+		<Flex align="center" gap="2" flexShrink="0">
+			<Text as="label" htmlFor={id} size="1">
+				{t("settingsDialog.keybindings.showAll")}
+			</Text>
+			<Switch id={id} size="1" checked={showAll} onCheckedChange={setShowAll} />
+		</Flex>
+	);
+};
+
 export const AutoKeyBindingSettingsPanel = () => {
 	const { t } = useTranslation();
 	useEffect(() => () => stopRecordingShortcut(), []);
@@ -164,11 +182,10 @@ export const AutoKeyBindingSettingsPanel = () => {
 	const conflicts = findKeyBindingConflicts(bindings);
 	const lists = useAtomValue(allKeyBindingListsAtom);
 	const query = useAtomValue(shortcutSearchAtom);
-	const [showAll, setShowAll] = useState(false);
+	const showAll = useAtomValue(shortcutShowAllAtom);
 	const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(
 		() => new Set(),
 	);
-	const showAllId = useId();
 	const searching = query.trim() !== "";
 
 	// The keyboard view's search filters this list too, by name or by key, and
@@ -195,17 +212,6 @@ export const AutoKeyBindingSettingsPanel = () => {
 
 	return (
 		<Box>
-			<Flex align="center" justify="end" gap="2" mb="4">
-				<Text as="label" htmlFor={showAllId} size="2">
-					{t("settingsDialog.keybindings.showAll")}
-				</Text>
-				<Switch
-					id={showAllId}
-					size="1"
-					checked={showAll}
-					onCheckedChange={setShowAll}
-				/>
-			</Flex>
 			{[...groups].map(([category, cmds]) => (
 				<details
 					key={category}
