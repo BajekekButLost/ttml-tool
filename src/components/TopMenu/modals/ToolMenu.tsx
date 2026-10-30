@@ -51,12 +51,14 @@ const ToolMenuItems = () => {
 			<DropdownMenu.Item disabled={!hasLines} onSelect={() => swapDuetLines()}>
 				{t("editModeTools.swapDuetAll", "Swap main and duet lines")}
 			</DropdownMenu.Item>
+			<DropdownMenu.Separator />
 			<DropdownMenu.CheckboxItem
 				checked={spectrogramHoverSyncEnabled}
 				onCheckedChange={setSpectrogramHoverSyncEnabled}
 			>
 				{t("topBar.menu.spectrogramHoverSync", "Sync at mouse position")}
 			</DropdownMenu.CheckboxItem>
+			<DropdownMenu.Separator />
 			<DropdownMenu.Item onSelect={menu.onOpenLatencyTest}>
 				{t("settingsDialog.common.latencyTest", "音频/输入延迟测试")}
 			</DropdownMenu.Item>

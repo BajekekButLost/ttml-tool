@@ -81,6 +81,21 @@
 	white-space: nowrap;
 }
 
+/* At the settings modal's narrowest, one-unit caps are about 34px wide. */
+@container (max-width: 760px) {
+	.cap {
+		padding-inline: 4px;
+		font-size: 11px;
+		letter-spacing: -0.01em;
+	}
+
+	/* Home, End, PgUp and PgDn sit on one-unit caps. */
+	.block + .block .cap {
+		padding-inline: 3px;
+		font-size: 10px;
+	}
+}
+
 .capIcon {
 	position: absolute;
 	right: 3px;
@@ -132,12 +147,12 @@
 	font-weight: var(--font-weight-medium);
 }
 
+/* Outside the cap, so it reads on every category fill. Search matches don't
+   get a ring; the keys that don't match dim instead. */
 .cap[data-selected="true"] {
-	box-shadow: inset 0 0 0 2px var(--accent-9);
-}
-
-.cap[data-match="true"] {
-	box-shadow: 0 0 0 2px var(--accent-9);
+	outline: 2px solid var(--accent-9);
+	outline-offset: 1px;
+	z-index: 1;
 }
 
 .cap[data-match="false"] {

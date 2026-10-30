@@ -36,11 +36,38 @@
 	list-style: none;
 }
 
+/* Each change kind has its icon, so the list reads without color. */
+.change {
+	display: flex;
+	gap: var(--space-2);
+	align-items: flex-start;
+}
+
+.changeIcon {
+	display: flex;
+	flex: none;
+	padding-top: 3px;
+	color: var(--gray-11);
+}
+
+/* Lost timings are a caution, not an error: tinted amber, never filled. */
 .warning {
 	padding: var(--space-3);
-	border: 1px solid var(--gray-a5);
+	border: 1px solid var(--amber-a6);
 	border-radius: var(--radius-4);
-	background-color: var(--gray-a2);
+	background-color: var(--amber-a2);
+}
+
+.warningTitle {
+	display: flex;
+	gap: var(--space-2);
+	align-items: flex-start;
+}
+
+.warningIcon {
+	flex: none;
+	margin-top: 3px;
+	color: var(--amber-11);
 }
 
 .lossyLine {
@@ -63,6 +90,6 @@
 
 @media (prefers-contrast: more) {
 	.warning {
-		border-color: var(--gray-a8);
+		border-color: var(--amber-a8);
 	}
 }

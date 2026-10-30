@@ -29,6 +29,23 @@
 	background: var(--accent-a4);
 }
 
+/* Fixed width, so labels line up even for a group without an icon. */
+.icon {
+	display: flex;
+	flex: none;
+	width: 16px;
+	color: var(--gray-11);
+}
+
+.icon svg {
+	width: 16px;
+	height: 16px;
+}
+
+.option[aria-selected="true"] .icon {
+	color: var(--accent-11);
+}
+
 .label {
 	flex: 1;
 	min-width: 0;
@@ -43,6 +60,15 @@
 
 .shortcut {
 	flex-shrink: 0;
+}
+
+.footer {
+	padding-top: var(--space-3);
+	border-top: 1px solid var(--gray-a5);
+}
+
+:global(:root[data-design="spicy-lyrics"]) .footer {
+	border-top-color: var(--sl-border);
 }
 
 .empty {
