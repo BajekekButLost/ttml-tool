@@ -24,7 +24,6 @@ import {
 	PreviewModeType,
 	previewModeTypeAtom,
 } from "$/modules/settings/states/preview";
-import { AdvancedSection } from "./AdvancedSection";
 import { RibbonFrame, RibbonSection } from "./common";
 import { RibbonActionToggle, RibbonLabel } from "./RibbonToggle";
 
@@ -146,7 +145,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 						</Grid>
 					</RibbonSection>
 				)}
-				<AdvancedSection />
+				{/* No Advanced switch here: nothing in Preview has advanced controls. */}
 			</RibbonFrame>
 		);
 	},
