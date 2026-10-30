@@ -14,7 +14,6 @@ import {
 import type { TFunction } from "i18next";
 import type { ComponentType, ReactNode } from "react";
 import { ChangelogScreen } from "$/modules/changelog/ChangelogScreen.tsx";
-import { CommandPaletteSetting } from "$/modules/command-palette/CommandPaletteSetting";
 import { SettingsAboutTab } from "./about";
 import { SettingsAppearanceTab } from "./appearance";
 import { AudioSettingsTab } from "./audio";
@@ -61,7 +60,6 @@ const GeneralPage = () => {
 	return (
 		<>
 			<DisplaySection {...state} />
-			<CommandPaletteSetting />
 			{import.meta.env.TAURI_ENV_PLATFORM && <PrivacySection {...state} />}
 		</>
 	);

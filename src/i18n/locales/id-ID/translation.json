@@ -382,10 +382,7 @@
     "notRunnable": "Perintah tidak dapat dijalankan. Beri pintasan di Preferensi, lalu coba lagi.",
     "menu": "Palet perintah...",
     "shortcut": "Tampilan - Buka palet perintah",
-    "shortcutAlternate": "Tampilan - Buka palet perintah (pintasan alternatif)",
-    "settingLabel": "Palet perintah",
-    "settingDesc": "Temukan perintah dan halaman pengaturan berdasarkan nama. Buka dengan {shortcut} atau dari menu Bantuan.",
-    "settingDescUnbound": "Temukan perintah dan halaman pengaturan berdasarkan nama. Buka dari menu Bantuan."
+    "shortcutAlternate": "Tampilan - Buka palet perintah (pintasan alternatif)"
   },
   "projectsDialog": {
     "title": "Proyek",

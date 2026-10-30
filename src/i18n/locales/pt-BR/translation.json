@@ -382,10 +382,7 @@
     "notRunnable": "Não foi possível executar o comando. Atribua um atalho a ele nas Preferências e tente de novo.",
     "menu": "Paleta de comandos...",
     "shortcut": "Ver - Abrir paleta de comandos",
-    "shortcutAlternate": "Ver - Abrir paleta de comandos (atalho alternativo)",
-    "settingLabel": "Paleta de comandos",
-    "settingDesc": "Encontre comandos e páginas de configurações pelo nome. Abra com {shortcut} ou pelo menu Ajuda.",
-    "settingDescUnbound": "Encontre comandos e páginas de configurações pelo nome. Abra pelo menu Ajuda."
+    "shortcutAlternate": "Ver - Abrir paleta de comandos (atalho alternativo)"
   },
   "projectsDialog": {
     "title": "Projetos",

@@ -150,7 +150,7 @@ export const cmdInterfaceScaleReset = registerCommand(
 	"View",
 );
 
-// Only bound while the command palette's flag is on; the palette mounts their handlers.
+// The command palette mounts their handlers.
 export const cmdOpenCommandPalette = registerCommand(
 	"openCommandPalette",
 	[CONTROL_KEY, "KeyK"],

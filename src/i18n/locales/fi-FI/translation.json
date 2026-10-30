@@ -382,10 +382,7 @@
     "notRunnable": "Komentoa ei voitu suorittaa. Anna sille pikanäppäin asetuksissa ja yritä uudelleen.",
     "menu": "Komentopaletti...",
     "shortcut": "Näkymä - Avaa komentopaletti",
-    "shortcutAlternate": "Näkymä - Avaa komentopaletti (vaihtoehtoinen pikanäppäin)",
-    "settingLabel": "Komentopaletti",
-    "settingDesc": "Etsi komentoja ja asetussivuja nimellä. Avaa se pikanäppäimellä {shortcut} tai Apua-valikosta.",
-    "settingDescUnbound": "Etsi komentoja ja asetussivuja nimellä. Avaa se Apua-valikosta."
+    "shortcutAlternate": "Näkymä - Avaa komentopaletti (vaihtoehtoinen pikanäppäin)"
   },
   "projectsDialog": {
     "title": "Projektit",

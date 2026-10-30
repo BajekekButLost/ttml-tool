@@ -3,6 +3,6 @@ type: feature
 impact: 3
 highlight: false
 ---
-Command palette (experimental)
+Command palette
 
-Turn it on in **Preferences › General**, then press **Ctrl+K** to find any command or Preferences page and run it
+Press **Ctrl+K** to find and run any command or Preferences page

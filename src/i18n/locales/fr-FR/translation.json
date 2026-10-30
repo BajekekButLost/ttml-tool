@@ -382,10 +382,7 @@
     "notRunnable": "Impossible d'exécuter cette commande. Attribuez-lui un raccourci dans les Préférences, puis réessayez.",
     "menu": "Palette de commandes...",
     "shortcut": "Afficher - Ouvrir la palette de commandes",
-    "shortcutAlternate": "Afficher - Ouvrir la palette de commandes (raccourci alternatif)",
-    "settingLabel": "Palette de commandes",
-    "settingDesc": "Trouvez les commandes et les pages de paramètres par leur nom. Ouvrez-la avec {shortcut} ou depuis le menu Aide.",
-    "settingDescUnbound": "Trouvez les commandes et les pages de paramètres par leur nom. Ouvrez-la depuis le menu Aide."
+    "shortcutAlternate": "Afficher - Ouvrir la palette de commandes (raccourci alternatif)"
   },
   "projectsDialog": {
     "title": "Projets",

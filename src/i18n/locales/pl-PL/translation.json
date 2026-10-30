@@ -382,10 +382,7 @@
     "notRunnable": "Nie udało się uruchomić polecenia. Przypisz mu skrót w Preferencjach i spróbuj ponownie.",
     "menu": "Paleta poleceń...",
     "shortcut": "Widok – otwórz paletę poleceń",
-    "shortcutAlternate": "Widok – otwórz paletę poleceń (alternatywny skrót)",
-    "settingLabel": "Paleta poleceń",
-    "settingDesc": "Znajduj polecenia i strony ustawień po nazwie. Otwórz ją skrótem {shortcut} lub z menu Pomoc.",
-    "settingDescUnbound": "Znajduj polecenia i strony ustawień po nazwie. Otwórz ją z menu Pomoc."
+    "shortcutAlternate": "Widok – otwórz paletę poleceń (alternatywny skrót)"
   },
   "projectsDialog": {
     "title": "Projekty",

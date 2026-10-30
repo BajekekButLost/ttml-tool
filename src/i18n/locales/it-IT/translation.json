@@ -382,10 +382,7 @@
     "notRunnable": "Impossibile eseguire il comando. Assegnagli una scorciatoia nelle Impostazioni e riprova.",
     "menu": "Tavolozza dei comandi...",
     "shortcut": "Vista - Apri la tavolozza dei comandi",
-    "shortcutAlternate": "Vista - Apri la tavolozza dei comandi (scorciatoia alternativa)",
-    "settingLabel": "Tavolozza dei comandi",
-    "settingDesc": "Trova comandi e pagine delle impostazioni per nome. Aprila con {shortcut} o dal menu Aiuto.",
-    "settingDescUnbound": "Trova comandi e pagine delle impostazioni per nome. Aprila dal menu Aiuto."
+    "shortcutAlternate": "Vista - Apri la tavolozza dei comandi (scorciatoia alternativa)"
   },
   "projectsDialog": {
     "title": "Progetti",

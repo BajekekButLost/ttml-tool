@@ -3,15 +3,10 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { useTranslation } from "react-i18next";
 import { cmdOpenCommandPalette } from "$/modules/keyboard/commands";
 import { formatKeyBindings } from "$/utils/keybindings";
-import { commandPaletteEnabledAtom, commandPaletteOpenAtom } from "./states";
+import { commandPaletteOpenAtom } from "./states";
 
-/** "Command palette..." for the Help menu. Renders nothing while the flag is off. */
+/** "Command palette..." for the Help menu. */
 export const CommandPaletteMenuItem = () => {
-	const enabled = useAtomValue(commandPaletteEnabledAtom);
-	return enabled ? <PaletteMenuItem /> : null;
-};
-
-const PaletteMenuItem = () => {
 	const { t } = useTranslation();
 	const setOpen = useSetAtom(commandPaletteOpenAtom);
 	const keys = useAtomValue(cmdOpenCommandPalette.atom);

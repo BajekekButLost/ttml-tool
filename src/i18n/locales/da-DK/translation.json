@@ -382,10 +382,7 @@
     "notRunnable": "Kommandoen kunne ikke køres. Giv den en genvej i Indstillinger, og prøv igen.",
     "menu": "Kommandopalet...",
     "shortcut": "Vis - Åbn kommandopaletten",
-    "shortcutAlternate": "Vis - Åbn kommandopaletten (alternativ genvej)",
-    "settingLabel": "Kommandopalet",
-    "settingDesc": "Find kommandoer og indstillingssider efter navn. Åbn den med {shortcut} eller fra menuen Hjælp.",
-    "settingDescUnbound": "Find kommandoer og indstillingssider efter navn. Åbn den fra menuen Hjælp."
+    "shortcutAlternate": "Vis - Åbn kommandopaletten (alternativ genvej)"
   },
   "projectsDialog": {
     "title": "Projekter",

@@ -40,7 +40,6 @@ import { paletteListsCommand } from "./palette-commands";
 import { type RankableItem, rankPaletteItems } from "./ranking";
 import { runKeyboardCommand } from "./run-command";
 import {
-	commandPaletteEnabledAtom,
 	commandPaletteOpenAtom,
 	commandPaletteRecentAtom,
 	pushRecent,
@@ -63,12 +62,6 @@ const ShortcutKbd = ({ command }: { command: KeyBindingCommand }) => {
 	);
 };
 
-/** Mounted only while the flag is on, so nothing below binds keys when it's off. */
-export const CommandPalette = () => {
-	const enabled = useAtomValue(commandPaletteEnabledAtom);
-	return enabled ? <CommandPaletteDialog /> : null;
-};
-
 function eventShortcut(event: KeyboardEvent<HTMLElement>): string {
 	return getShortcutKey([
 		...(event.ctrlKey ? ["Control"] : []),
@@ -79,7 +72,7 @@ function eventShortcut(event: KeyboardEvent<HTMLElement>): string {
 	]);
 }
 
-const CommandPaletteDialog = () => {
+export const CommandPalette = () => {
 	const { t } = useTranslation();
 	const store = useStore();
 	const [open, setOpen] = useAtom(commandPaletteOpenAtom);

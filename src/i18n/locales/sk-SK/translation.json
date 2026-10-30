@@ -382,10 +382,7 @@
     "notRunnable": "Príkaz sa nepodarilo spustiť. Priraďte mu skratku v Predvoľbách a skúste to znova.",
     "menu": "Paleta príkazov...",
     "shortcut": "Zobrazenie – otvoriť paletu príkazov",
-    "shortcutAlternate": "Zobrazenie – otvoriť paletu príkazov (alternatívna skratka)",
-    "settingLabel": "Paleta príkazov",
-    "settingDesc": "Nájdite príkazy a stránky nastavení podľa názvu. Otvoríte ju skratkou {shortcut} alebo z ponuky Pomoc.",
-    "settingDescUnbound": "Nájdite príkazy a stránky nastavení podľa názvu. Otvoríte ju z ponuky Pomoc."
+    "shortcutAlternate": "Zobrazenie – otvoriť paletu príkazov (alternatívna skratka)"
   },
   "projectsDialog": {
     "title": "Projekty",
