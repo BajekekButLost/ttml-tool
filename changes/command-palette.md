@@ -5,4 +5,4 @@ highlight: false
 ---
 Command palette
 
-Press **Ctrl+K** to find and run any command, menu item or Preferences page
+Press **Ctrl+K** to find and run any command, menu item or Preferences page; menu items can now get shortcuts too
