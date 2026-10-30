@@ -373,6 +373,7 @@
     "preview": "Önizleme"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# dosya dışarıda bırakıldı} other {# dosya dışarıda bırakıldı}}: aynı anda bir şarkı sözü dosyası ve bir ses dosyası açın.",
     "createProjectPrompt": {
       "title": "Proje oluşturulsun mu?",
       "description": "Sesi ve şarkı sözlerini bir proje klasöründe bir arada tutun.",

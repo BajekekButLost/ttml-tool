@@ -373,6 +373,7 @@
     "preview": "Podgląd"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {Pominięto # plik} few {Pominięto # pliki} many {Pominięto # plików} other {Pominięto # pliku}}: otwieraj naraz jeden plik z tekstem i jeden plik audio.",
     "createProjectPrompt": {
       "title": "Utworzyć projekt?",
       "description": "Trzymaj dźwięk i teksty razem w folderze projektu.",

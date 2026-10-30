@@ -373,6 +373,7 @@
     "preview": "Náhled"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# soubor byl vynechán} few {# soubory byly vynechány} many {# souboru bylo vynecháno} other {# souborů bylo vynecháno}}: otevřete najednou jeden soubor s textem a jeden zvukový soubor.",
     "createProjectPrompt": {
       "title": "Vytvořit projekt?",
       "description": "Uchovávejte zvuk a texty společně ve složce projektu.",

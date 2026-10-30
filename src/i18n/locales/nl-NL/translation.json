@@ -373,6 +373,7 @@
     "preview": "Voorbeeld"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# bestand is overgeslagen} other {# bestanden zijn overgeslagen}}: open één songtekstbestand en één audiobestand tegelijk.",
     "createProjectPrompt": {
       "title": "Een project aanmaken?",
       "description": "Bewaar de audio en songteksten bij elkaar in een projectmap.",

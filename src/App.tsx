@@ -547,7 +547,7 @@ function App() {
 	}, [status, update, t, setSettingsOpen, setSettingsTab]);
 
 	const setIsGlobalDragging = useSetAtom(isGlobalFileDraggingAtom);
-	const { openFile } = useFileOpener();
+	const { openFile, openFiles } = useFileOpener();
 	useAudioFeedback();
 
 	useEffect(() => {
@@ -635,11 +635,12 @@ function App() {
 			e.preventDefault();
 			setIsGlobalDragging(false);
 
-			const files = e.dataTransfer?.files;
-			if (files && files.length > 0) {
-				const file = files[0];
-				void attachDroppedFilePath(file).finally(() => openFile(file));
-			}
+			// A lyric file and an audio file dropped together both open.
+			const files = Array.from(e.dataTransfer?.files ?? []);
+			if (files.length > 0)
+				void Promise.allSettled(files.map(attachDroppedFilePath)).then(() =>
+					openFiles(files),
+				);
 		};
 
 		window.addEventListener("dragenter", handleDragEnter);
@@ -653,7 +654,7 @@ function App() {
 			window.removeEventListener("dragleave", handleDragLeave);
 			window.removeEventListener("drop", handleDrop);
 		};
-	}, [setIsGlobalDragging, openFile]);
+	}, [setIsGlobalDragging, openFiles]);
 
 	return (
 		<Theme

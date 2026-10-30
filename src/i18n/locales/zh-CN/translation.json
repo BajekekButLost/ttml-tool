@@ -373,6 +373,7 @@
     "preview": "预览"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, other {有 # 个文件未打开}}：每次请打开一个歌词文件和一个音频文件。",
     "createProjectPrompt": {
       "title": "创建一个项目？",
       "description": "将音频和歌词放在一个项目文件夹中。",

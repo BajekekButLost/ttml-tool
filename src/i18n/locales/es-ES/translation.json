@@ -373,6 +373,7 @@
     "preview": "Vista previa"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {Se omitió # archivo} many {Se omitieron # archivos} other {Se omitieron # archivos}}: abre un archivo de letra y un archivo de audio a la vez.",
     "createProjectPrompt": {
       "title": "¿Crear un proyecto?",
       "description": "Guarda el audio y la letra juntos en una carpeta de proyecto.",

@@ -373,6 +373,7 @@
     "preview": "Esikatselu"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# tiedosto jätettiin pois} other {# tiedostoa jätettiin pois}}: avaa kerralla yksi sanoitustiedosto ja yksi äänitiedosto.",
     "createProjectPrompt": {
       "title": "Luodaanko projekti?",
       "description": "Säilytä ääni ja sanat yhdessä projektikansiossa.",

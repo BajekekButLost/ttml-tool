@@ -19,7 +19,7 @@ export async function saveFile(
 
 	if ("showSaveFilePicker" in window) {
 		try {
-			// @ts-ignore
+			// @ts-expect-error
 			const handle = await window.showSaveFilePicker({
 				suggestedName,
 				types,

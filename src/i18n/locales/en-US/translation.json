@@ -373,6 +373,7 @@
     "preview": "Preview"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# file was left out} other {# files were left out}}: open one lyric file and one audio file at a time.",
     "createProjectPrompt": {
       "title": "Create a project?",
       "description": "Keep the audio and lyrics together in a project folder.",
