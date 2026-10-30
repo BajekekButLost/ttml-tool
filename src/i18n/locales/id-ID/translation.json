@@ -1107,6 +1107,15 @@
       "auditionSelection": "Spektrogram - Putar pilihan",
       "auditionSelectionAfter": "Spektrogram - Putar pilihan (+0,5 dtk sesudah)",
       "cancelTimelineEditing": "Spektrogram - Batalkan pengeditan linimasa",
+      "exportTtml": "Ekspor lirik: TTML",
+      "exportLrc": "Ekspor lirik: LRC",
+      "exportEslrc": "Ekspor lirik: ESLRC",
+      "exportQrc": "Ekspor lirik: QRC",
+      "exportYrc": "Ekspor lirik: YRC",
+      "exportLys": "Ekspor lirik: Lyricify Syllable",
+      "exportAss": "Ekspor lirik: Subtitle ASS",
+      "newLyricLine": "Baris lirik baru",
+      "advancedRibbonControls": "Kontrol pita lanjutan",
       "resetDefault": "Setel ulang ke bawaan",
       "clear": "Hapus",
       "unbound": "Belum diatur",
@@ -1118,11 +1127,12 @@
         "View": "Tampilan",
         "Sync": "Sinkronisasi",
         "Audio": "Audio",
-        "Spectrogram": "Spektrogram"
+        "Spectrogram": "Spektrogram",
+        "Tools": "Alat",
+        "Help": "Bantuan",
+        "Preview": "Pratinjau"
       },
-      "autoSegmentOptions": "Segmentasi otomatis",
-      "autoSegmentDoublePress": "Perlu tekan dua kali",
-      "autoSegmentDoublePressDesc": "Jalankan segmentasi otomatis cepat hanya saat pintasannya ditekan dua kali dengan cepat."
+      "showAll": "Tampilkan aksi tanpa tombol"
     },
     "tab": {
       "common": "Umum",
@@ -1164,6 +1174,8 @@
     "addKey": "Tambah tombol kedua",
     "removeKey": "Hapus {key}",
     "duplicateKey": "Tombol itu sudah dipakai untuk aksi ini.",
+    "doublePress": "Tekan dua kali untuk menjalankan",
+    "doublePressDesc": "Hanya berjalan saat tombolnya ditekan dua kali dengan cepat.",
     "otherLayers": "Juga di tombol ini",
     "closePanel": "Tutup"
   },

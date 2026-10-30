@@ -1,7 +1,9 @@
 import { Text } from "@radix-ui/themes";
 import type { Atom, WritableAtom } from "jotai";
 import { type FC, type ReactNode, useId } from "react";
+import { useTranslation } from "react-i18next";
 import { ActionTooltip } from "$/components/ActionTooltip";
+import type { ToggleAction } from "$/modules/menu-actions/ribbon-actions";
 import { SettingToggle } from "$/modules/settings/components/WorkflowControls";
 import type { KeyBindingsConfig } from "$/utils/keybindings";
 
@@ -35,6 +37,25 @@ export const RibbonLabel: FC<{
 		</Text>
 	</ActionTooltip>
 );
+
+/** A ribbon toggle drawn from its shared definition, so its label and shortcut match the command's. */
+export const RibbonActionToggle: FC<{
+	action: ToggleAction;
+	description?: ReactNode;
+	/** Shown before the label, for toggles about a role. */
+	icon?: ReactNode;
+}> = ({ action, description, icon }) => {
+	const { t } = useTranslation();
+	return (
+		<RibbonToggle
+			label={action.label((key, fallback) => t(key, fallback))}
+			description={description}
+			shortcut={action.command.atom}
+			setting={action.setting}
+			icon={icon}
+		/>
+	);
+};
 
 /** A label and checkbox pair for a two-column ribbon grid, both with the tooltip. */
 export const RibbonToggle: FC<{

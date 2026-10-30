@@ -54,6 +54,16 @@
 	white-space: nowrap;
 }
 
+/* Greyed like the menu item it mirrors; Enter and click do nothing. */
+.option[aria-disabled="true"] .label {
+	color: var(--gray-a9);
+}
+
+.check {
+	flex-shrink: 0;
+	color: var(--accent-11);
+}
+
 .tag {
 	flex-shrink: 0;
 }

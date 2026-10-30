@@ -1107,6 +1107,15 @@
       "auditionSelection": "Spektrogram – odtwórz zaznaczenie",
       "auditionSelectionAfter": "Spektrogram – odtwórz zaznaczenie (+0,5 s po)",
       "cancelTimelineEditing": "Spektrogram – anuluj edycję osi czasu",
+      "exportTtml": "Eksportuj tekst: TTML",
+      "exportLrc": "Eksportuj tekst: LRC",
+      "exportEslrc": "Eksportuj tekst: ESLRC",
+      "exportQrc": "Eksportuj tekst: QRC",
+      "exportYrc": "Eksportuj tekst: YRC",
+      "exportLys": "Eksportuj tekst: Lyricify Syllable",
+      "exportAss": "Eksportuj tekst: Napisy ASS",
+      "newLyricLine": "Nowy wers tekstu",
+      "advancedRibbonControls": "Zaawansowane opcje wstążki",
       "resetDefault": "Przywróć ustawienia domyślne",
       "clear": "Wyczyść",
       "unbound": "Nie ustawiono",
@@ -1118,11 +1127,12 @@
         "View": "Widok",
         "Sync": "Synchronizacja",
         "Audio": "Dźwięk",
-        "Spectrogram": "Spektrogram"
+        "Spectrogram": "Spektrogram",
+        "Tools": "Narzędzia",
+        "Help": "Pomoc",
+        "Preview": "Podgląd"
       },
-      "autoSegmentOptions": "Automatyczny podział",
-      "autoSegmentDoublePress": "Wymagaj podwójnego naciśnięcia",
-      "autoSegmentDoublePressDesc": "Uruchamiaj szybki automatyczny podział tylko po dwukrotnym szybkim naciśnięciu skrótu."
+      "showAll": "Pokaż akcje bez klawisza"
     },
     "tab": {
       "common": "Ogólne",
@@ -1164,6 +1174,8 @@
     "addKey": "Dodaj drugi klawisz",
     "removeKey": "Usuń {key}",
     "duplicateKey": "Ten klawisz jest już ustawiony dla tej akcji.",
+    "doublePress": "Naciśnij dwa razy, aby uruchomić",
+    "doublePressDesc": "Uruchamia się tylko po dwukrotnym szybkim naciśnięciu klawisza.",
     "otherLayers": "Również na tym klawiszu",
     "closePanel": "Zamknij"
   },

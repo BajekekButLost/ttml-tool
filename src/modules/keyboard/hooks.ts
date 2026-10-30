@@ -3,6 +3,8 @@ import { type DependencyList, useEffect } from "react";
 import {
 	type KeyBindingCallback,
 	registerExtraKeyBindings,
+	registerKeyBindingAtom,
+	useDoublePress,
 	useExtraKeyBindings,
 	useKeyBinding,
 } from "$/utils/keybindings";
@@ -25,10 +27,23 @@ export function useCommand(
 ) {
 	const currentKeys = useAtomValue(command.atom);
 	const extraKeys = useExtraKeyBindings(command.atom);
+	const doublePress = useDoublePress(command.atom);
 
-	useKeyBinding(enabled ? currentKeys : [], callback, deps);
+	// One press as usual. "Press twice to run" swaps in the double-press
+	// listener and registers on the atom too, so the command palette, which
+	// would otherwise press the shortcut once, can still run it.
+	useKeyBinding(enabled && !doublePress ? currentKeys : [], callback, deps);
+	useEffect(() => {
+		if (!enabled || !doublePress) return;
+		return registerKeyBindingAtom(command.atom, currentKeys, callback, true);
+	}, [command.atom, currentKeys, callback, enabled, doublePress, ...deps]);
 	useEffect(() => {
 		if (!enabled) return;
-		return registerExtraKeyBindings(currentKeys, extraKeys, callback);
-	}, [currentKeys, extraKeys, callback, enabled, ...deps]);
+		return registerExtraKeyBindings(
+			currentKeys,
+			extraKeys,
+			callback,
+			doublePress,
+		);
+	}, [currentKeys, extraKeys, callback, enabled, doublePress, ...deps]);
 }

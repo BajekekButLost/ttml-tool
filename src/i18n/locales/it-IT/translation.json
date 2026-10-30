@@ -1107,6 +1107,15 @@
       "auditionSelection": "Spettrogramma - Riproduci selezione",
       "auditionSelectionAfter": "Spettrogramma - Riproduci selezione (+0,5 s dopo)",
       "cancelTimelineEditing": "Spettrogramma: annulla la modifica della timeline",
+      "exportTtml": "Esporta testo: TTML",
+      "exportLrc": "Esporta testo: LRC",
+      "exportEslrc": "Esporta testo: ESLRC",
+      "exportQrc": "Esporta testo: QRC",
+      "exportYrc": "Esporta testo: YRC",
+      "exportLys": "Esporta testo: Lyricify Syllable",
+      "exportAss": "Esporta testo: Sottotitoli ASS",
+      "newLyricLine": "Nuovo verso",
+      "advancedRibbonControls": "Controlli avanzati della barra",
       "resetDefault": "Ripristina le impostazioni predefinite",
       "clear": "Elimina",
       "unbound": "Non impostata",
@@ -1118,11 +1127,12 @@
         "View": "Visualizza",
         "Sync": "Sincronizzazione",
         "Audio": "Audio",
-        "Spectrogram": "Spettrogramma"
+        "Spectrogram": "Spettrogramma",
+        "Tools": "Strumenti",
+        "Help": "Aiuto",
+        "Preview": "Anteprima"
       },
-      "autoSegmentOptions": "Segmentazione automatica",
-      "autoSegmentDoublePress": "Richiedi doppia pressione",
-      "autoSegmentDoublePressDesc": "Esegue la segmentazione automatica rapida solo premendo due volte rapidamente la scorciatoia."
+      "showAll": "Mostra azioni senza tasto"
     },
     "tab": {
       "common": "Generale",
@@ -1164,6 +1174,8 @@
     "addKey": "Aggiungi secondo tasto",
     "removeKey": "Rimuovi {key}",
     "duplicateKey": "Questo tasto è già impostato per questa azione.",
+    "doublePress": "Premi due volte per eseguire",
+    "doublePressDesc": "Si esegue solo premendo due volte rapidamente il tasto.",
     "otherLayers": "Anche su questo tasto",
     "closePanel": "Chiudi"
   },

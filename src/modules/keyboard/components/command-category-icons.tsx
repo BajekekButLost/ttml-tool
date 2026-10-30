@@ -2,9 +2,12 @@ import {
 	Edit20Regular,
 	Eye20Regular,
 	Folder20Regular,
+	Play20Regular,
 	Pulse20Regular,
+	QuestionCircle20Regular,
 	Speaker220Regular,
 	Timer20Regular,
+	Wrench20Regular,
 } from "@fluentui/react-icons";
 import type { ReactNode } from "react";
 
@@ -19,4 +22,7 @@ export const COMMAND_CATEGORY_ICONS: Record<string, ReactNode> = {
 	Audio: <Speaker220Regular />,
 	View: <Eye20Regular />,
 	Spectrogram: <Pulse20Regular />,
+	Preview: <Play20Regular />,
+	Tools: <Wrench20Regular />,
+	Help: <QuestionCircle20Regular />,
 };

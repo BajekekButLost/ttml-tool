@@ -8,8 +8,12 @@ import {
 	extraKeyBindingsStorageKey,
 	keyBindingListAtom,
 } from "../binding-list";
-import { cmdSyncStart } from "../commands";
-import { AutoKeyBindingSettingsPanel } from "./SettingsPanel";
+import { cmdSaveFile, cmdSyncStart, cmdUndo } from "../commands";
+import { shortcutSearchAtom } from "../states";
+import {
+	AutoKeyBindingSettingsPanel,
+	ShowAllShortcutsSwitch,
+} from "./SettingsPanel";
 
 // Node's own localStorage stub shadows jsdom's; use a plain in-memory one.
 const data = vi.hoisted(() => {
@@ -43,6 +47,8 @@ function mount() {
 		root.render(
 			<Provider store={store}>
 				<Theme>
+					{/* On the page the switch sits on the keyboard view's hint line. */}
+					<ShowAllShortcutsSwitch />
 					<AutoKeyBindingSettingsPanel />
 				</Theme>
 			</Provider>,
@@ -103,5 +109,37 @@ describe("shortcut rows", () => {
 			cmdSyncStart.defaultKeys,
 		]);
 		expect(data.has(EXTRA_KEY)).toBe(false);
+	});
+});
+
+describe("shortcut list", () => {
+	const listed = (container: HTMLElement, description: string) =>
+		container.textContent?.includes(description) ?? false;
+
+	it("lists actions with a key, and the rest behind the switch", async () => {
+		const { store, container } = mount();
+		await act(async () => void store.set(cmdUndo.atom, []));
+		expect(listed(container, cmdUndo.description)).toBe(false);
+		expect(listed(container, cmdSyncStart.description)).toBe(true);
+		const toggle = container.querySelector<HTMLButtonElement>(
+			'button[role="switch"]',
+		);
+		await act(async () => toggle?.click());
+		expect(listed(container, cmdUndo.description)).toBe(true);
+	});
+
+	it("filters by the keyboard view's search, by key or by name, over every action", async () => {
+		const { store, container } = mount();
+		await act(async () => void store.set(cmdUndo.atom, []));
+		await act(async () => void store.set(shortcutSearchAtom, "J"));
+		expect(listed(container, cmdSyncStart.description)).toBe(true);
+		expect(listed(container, cmdSaveFile.description)).toBe(false);
+		// Unbound actions are searched too, so they can be given a key.
+		await act(
+			async () => void store.set(shortcutSearchAtom, cmdUndo.description),
+		);
+		expect(listed(container, cmdUndo.description)).toBe(true);
+		await act(async () => void store.set(shortcutSearchAtom, "ctrl+alt+q"));
+		expect(container.textContent).toContain("keyboardView.searchResults");
 	});
 });

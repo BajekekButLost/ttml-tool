@@ -18,10 +18,7 @@ import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
  */
 
 import { ROLE_COLORS, SlIcon } from "$/components/SlIcon";
-import {
-	editActiveLineHighlightAtom,
-	editAutoScrollAtom,
-} from "$/modules/settings/states/sync.ts";
+import { RIBBON_ACTIONS } from "$/modules/menu-actions/ribbon-actions";
 import {
 	lyricLinesAtom,
 	selectedLinesAtom,
@@ -35,7 +32,7 @@ import { AuxiliaryDisplayField } from "./edit-mode/AuxiliaryDisplayField";
 import { PhoneticSection } from "./edit-mode/PhoneticSection";
 import { CheckboxField } from "./fields/CheckboxField";
 import { EditField } from "./fields/EditField";
-import { RibbonToggle } from "./RibbonToggle";
+import { RibbonActionToggle } from "./RibbonToggle";
 
 export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 	const editLyricLines = useSetImmerAtom(lyricLinesAtom);
@@ -54,6 +51,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							"ribbonBar.tooltips.newLyricLine",
 							"Add an empty line at the end of the lyrics.",
 						)}
+						shortcut={RIBBON_ACTIONS.newLyricLine.command.atom}
 					>
 						<Button
 							size="1"
@@ -79,24 +77,19 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 					flexGrow="1"
 					align="center"
 				>
-					<RibbonToggle
-						label={t("ribbonBar.editMode.autoScroll", "Auto-scroll")}
+					<RibbonActionToggle
+						action={RIBBON_ACTIONS.editAutoScroll}
 						description={t(
 							"settings.common.syncAutoScrollDesc",
 							"Scrolls the editor to follow the line that is playing.",
 						)}
-						setting={editAutoScrollAtom}
 					/>
-					<RibbonToggle
-						label={t(
-							"ribbonBar.editMode.highlightActiveLine",
-							"Highlight line",
-						)}
+					<RibbonActionToggle
+						action={RIBBON_ACTIONS.editHighlightLine}
 						description={t(
 							"settings.common.highlightActiveLineDesc",
 							"Highlights the line that is playing in the selected mode.",
 						)}
-						setting={editActiveLineHighlightAtom}
 					/>
 				</Grid>
 			</RibbonSection>
@@ -147,6 +140,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							isWordField={false}
 							fieldName="isBG"
 							icon={<SlIcon name="background" color={ROLE_COLORS.background} />}
+							shortcut={RIBBON_ACTIONS.lineBackground.command.atom}
 						/>
 						<CheckboxField
 							label={t("ribbonBar.editMode.duetLyric", "Duet vocal")}
@@ -158,6 +152,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							fieldName="isDuet"
 							defaultValue={false}
 							icon={<SlIcon name="duet" color={ROLE_COLORS.duet} />}
+							shortcut={RIBBON_ACTIONS.lineDuet.command.atom}
 						/>
 						<CheckboxField
 							label={t("ribbonBar.editMode.ignoreSync", "Skip when syncing")}
@@ -168,6 +163,7 @@ export const EditModeRibbonBar = forwardRef<HTMLDivElement>((_props, ref) => {
 							isWordField={false}
 							fieldName="ignoreSync"
 							defaultValue={false}
+							shortcut={RIBBON_ACTIONS.lineIgnoreSync.command.atom}
 						/>
 					</Grid>
 				</RibbonSection>
