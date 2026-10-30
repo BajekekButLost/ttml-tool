@@ -387,10 +387,16 @@ export function useKeyBinding(
 	}, [cfg, callback, ...(deps || [])]);
 }
 
+/**
+ * Registers an action's shortcut. With `doublePress`, the shortcut only runs it
+ * on a second press in quick succession; the callback on the atom (used by the
+ * command palette and on-screen controls) still runs it at once.
+ */
 export function registerKeyBindingAtom(
 	thisAtom: ReturnType<typeof atomWithKeybindingStorage>,
 	cfg: KeyBindingsConfig,
 	callback: KeyBindingCallback,
+	doublePress = false,
 ) {
 	// On-screen timing controls invoke an action even when its shortcut is unbound.
 	let callbacks = registeredAtomBindings.get(thisAtom);
@@ -399,7 +405,9 @@ export function registerKeyBindingAtom(
 		registeredAtomBindings.set(thisAtom, callbacks);
 	}
 	callbacks.add(callback);
-	const unregisterShortcut = registerKeyBindings(cfg, callback);
+	const unregisterShortcut = (
+		doublePress ? registerDoubleKeyBindings : registerKeyBindings
+	)(cfg, callback);
 	return () => {
 		unregisterShortcut();
 		callbacks?.delete(callback);
@@ -431,19 +439,45 @@ export function useExtraKeyBindings(
 	);
 }
 
+/**
+ * Whether an action is set to "Press twice to run". The keyboard module
+ * installs the resolver; without it every action runs on one press.
+ */
+type DoublePressResolver = (
+	binding: ReturnType<typeof atomWithKeybindingStorage>,
+) => Atom<boolean> | undefined;
+let doublePressResolver: DoublePressResolver | undefined;
+const SINGLE_PRESS = atom(false);
+
+export function setDoublePressResolver(
+	resolver: DoublePressResolver | undefined,
+) {
+	doublePressResolver = resolver;
+}
+
+export function useDoublePress(
+	thisAtom: ReturnType<typeof atomWithKeybindingStorage>,
+): boolean {
+	return useAtomValue(doublePressResolver?.(thisAtom) ?? SINGLE_PRESS);
+}
+
 /** Registers each extra shortcut once, skipping any that repeat the primary. */
 export function registerExtraKeyBindings(
 	primary: KeyBindingsConfig,
 	extras: readonly KeyBindingsConfig[],
 	callback: KeyBindingCallback,
+	doublePress = false,
 ) {
+	const register = doublePress
+		? registerDoubleKeyBindings
+		: registerKeyBindings;
 	const seen = new Set([getShortcutKey(primary)]);
 	const unregister: Array<() => void> = [];
 	for (const extra of extras) {
 		const joined = getShortcutKey(extra);
 		if (extra.length === 0 || seen.has(joined)) continue;
 		seen.add(joined);
-		unregister.push(registerKeyBindings(extra, callback));
+		unregister.push(register(extra, callback));
 	}
 	return () => {
 		for (const fn of unregister) fn();
@@ -460,45 +494,43 @@ export function useKeyBindingAtom(
 ): KeyBindingsConfig {
 	const keyBindings = useAtomValue(thisAtom);
 	const extraKeyBindings = useExtraKeyBindings(thisAtom);
+	const doublePress = useDoublePress(thisAtom);
 	useEffect(() => {
-		const unregister = registerKeyBindingAtom(thisAtom, keyBindings, callback);
+		const unregister = registerKeyBindingAtom(
+			thisAtom,
+			keyBindings,
+			callback,
+			doublePress,
+		);
 		const unregisterExtras = registerExtraKeyBindings(
 			keyBindings,
 			extraKeyBindings,
 			callback,
+			doublePress,
 		);
 		return () => {
 			unregister();
 			unregisterExtras();
 		};
-	}, [thisAtom, keyBindings, extraKeyBindings, callback, ...(deps || [])]);
+	}, [
+		thisAtom,
+		keyBindings,
+		extraKeyBindings,
+		callback,
+		doublePress,
+		...(deps || []),
+	]);
 	return keyBindings;
 }
 
-export function useDoubleKeyBindingAtom(
-	thisAtom: ReturnType<typeof atomWithKeybindingStorage>,
-	callback: KeyBindingCallback,
-	deps?: DependencyList,
-	enabled = true,
-): KeyBindingsConfig {
-	const keyBindings = useAtomValue(thisAtom);
-	const extraKeyBindings = useExtraKeyBindings(thisAtom);
-	useEffect(() => {
-		if (!enabled) return;
-		const unregister = [keyBindings, ...extraKeyBindings].map((keys) =>
-			registerDoubleKeyBindings(keys, callback),
-		);
-		return () => {
-			for (const fn of unregister) fn();
-		};
-	}, [keyBindings, extraKeyBindings, callback, enabled, ...(deps || [])]);
-	return keyBindings;
-}
+/** How quickly the second press must follow for "Press twice to run". */
+export const DOUBLE_PRESS_WINDOW_MS = 350;
 
 export function registerDoubleKeyBindings(
 	cfg: KeyBindingsConfig,
 	callback: KeyBindingCallback,
 ) {
+	if (cfg.length === 0) return () => {};
 	let lastPressTime = -Infinity;
 	let pending: { code: string; downTime: number } | undefined;
 	const joinedKey = getShortcutKey(cfg);
@@ -507,7 +539,7 @@ export function registerDoubleKeyBindings(
 		pending = undefined;
 	};
 	const trigger = (evt: KeyboardEvent, keyDownTime: number) => {
-		if (evt.timeStamp - lastPressTime <= 350) {
+		if (evt.timeStamp - lastPressTime <= DOUBLE_PRESS_WINDOW_MS) {
 			callback({
 				downTime: keyDownTime,
 				downTimeOffset: evt.timeStamp - keyDownTime,

@@ -1129,9 +1129,7 @@
         "Help": "Pomoc",
         "Preview": "Náhľad"
       },
-      "autoSegmentOptions": "Automatické delenie",
-      "autoSegmentDoublePress": "Vyžadovať dvojité stlačenie",
-      "autoSegmentDoublePressDesc": "Spustiť rýchle automatické delenie len po dvojitom rýchlom stlačení jeho skratky."
+      "showAll": "Zobraziť akcie bez klávesu"
     },
     "tab": {
       "common": "Všeobecné",
@@ -1173,6 +1171,8 @@
     "addKey": "Pridať druhý kláves",
     "removeKey": "Odobrať {key}",
     "duplicateKey": "Tento kláves je už pre túto akciu nastavený.",
+    "doublePress": "Spustiť dvojitým stlačením",
+    "doublePressDesc": "Spustí sa len po dvojitom rýchlom stlačení klávesu.",
     "otherLayers": "Aj na tomto klávese",
     "closePanel": "Zavrieť"
   },

@@ -1129,9 +1129,7 @@
         "Help": "Aiuto",
         "Preview": "Anteprima"
       },
-      "autoSegmentOptions": "Segmentazione automatica",
-      "autoSegmentDoublePress": "Richiedi doppia pressione",
-      "autoSegmentDoublePressDesc": "Esegue la segmentazione automatica rapida solo premendo due volte rapidamente la scorciatoia."
+      "showAll": "Mostra azioni senza tasto"
     },
     "tab": {
       "common": "Generale",
@@ -1173,6 +1171,8 @@
     "addKey": "Aggiungi secondo tasto",
     "removeKey": "Rimuovi {key}",
     "duplicateKey": "Questo tasto è già impostato per questa azione.",
+    "doublePress": "Premi due volte per eseguire",
+    "doublePressDesc": "Si esegue solo premendo due volte rapidamente il tasto.",
     "otherLayers": "Anche su questo tasto",
     "closePanel": "Chiudi"
   },

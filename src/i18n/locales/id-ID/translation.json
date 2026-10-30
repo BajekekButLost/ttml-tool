@@ -1129,9 +1129,7 @@
         "Help": "Bantuan",
         "Preview": "Pratinjau"
       },
-      "autoSegmentOptions": "Segmentasi otomatis",
-      "autoSegmentDoublePress": "Perlu tekan dua kali",
-      "autoSegmentDoublePressDesc": "Jalankan segmentasi otomatis cepat hanya saat pintasannya ditekan dua kali dengan cepat."
+      "showAll": "Tampilkan aksi tanpa tombol"
     },
     "tab": {
       "common": "Umum",
@@ -1173,6 +1171,8 @@
     "addKey": "Tambah tombol kedua",
     "removeKey": "Hapus {key}",
     "duplicateKey": "Tombol itu sudah dipakai untuk aksi ini.",
+    "doublePress": "Tekan dua kali untuk menjalankan",
+    "doublePressDesc": "Hanya berjalan saat tombolnya ditekan dua kali dengan cepat.",
     "otherLayers": "Juga di tombol ini",
     "closePanel": "Tutup"
   },

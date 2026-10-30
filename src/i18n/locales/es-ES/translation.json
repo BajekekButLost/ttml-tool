@@ -1129,9 +1129,7 @@
         "Help": "Ayuda",
         "Preview": "Vista previa"
       },
-      "autoSegmentOptions": "Segmentación automática",
-      "autoSegmentDoublePress": "Exigir doble pulsación",
-      "autoSegmentDoublePressDesc": "Ejecuta la segmentación automática rápida solo al pulsar su atajo dos veces seguidas."
+      "showAll": "Mostrar acciones sin tecla"
     },
     "tab": {
       "common": "General",
@@ -1173,6 +1171,8 @@
     "addKey": "Añadir segunda tecla",
     "removeKey": "Quitar {key}",
     "duplicateKey": "Esa tecla ya está asignada a esta acción.",
+    "doublePress": "Pulsar dos veces para ejecutar",
+    "doublePressDesc": "Solo se ejecuta al pulsar su tecla dos veces seguidas.",
     "otherLayers": "También en esta tecla",
     "closePanel": "Cerrar"
   },

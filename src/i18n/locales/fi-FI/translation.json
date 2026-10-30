@@ -1129,9 +1129,7 @@
         "Help": "Apua",
         "Preview": "Esikatselu"
       },
-      "autoSegmentOptions": "Automaattinen jako",
-      "autoSegmentDoublePress": "Vaatii kaksoispainalluksen",
-      "autoSegmentDoublePressDesc": "Suorita nopea automaattinen jako vain, kun painat pikanäppäintä nopeasti kahdesti."
+      "showAll": "Näytä toiminnot ilman näppäintä"
     },
     "tab": {
       "common": "Yleiset",
@@ -1173,6 +1171,8 @@
     "addKey": "Lisää toinen näppäin",
     "removeKey": "Poista {key}",
     "duplicateKey": "Tämä näppäin on jo asetettu tälle toiminnolle.",
+    "doublePress": "Suorita kahdella painalluksella",
+    "doublePressDesc": "Suoritetaan vain, kun painat näppäintä nopeasti kahdesti.",
     "otherLayers": "Myös tässä näppäimessä",
     "closePanel": "Sulje"
   },

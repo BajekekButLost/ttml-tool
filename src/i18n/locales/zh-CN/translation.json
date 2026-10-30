@@ -1129,9 +1129,7 @@
         "Help": "帮助",
         "Preview": "预览"
       },
-      "autoSegmentOptions": "自动分词",
-      "autoSegmentDoublePress": "需要按两次",
-      "autoSegmentDoublePressDesc": "只有快速连按两次快捷键才执行快速自动分词。"
+      "showAll": "显示没有按键的操作"
     },
     "tab": {
       "common": "通用",
@@ -1173,6 +1171,8 @@
     "addKey": "添加第二按键",
     "removeKey": "移除 {key}",
     "duplicateKey": "此按键已设置给该操作。",
+    "doublePress": "按两次才执行",
+    "doublePressDesc": "只有快速连按两次按键才执行。",
     "otherLayers": "此按键上的其他快捷键",
     "closePanel": "关闭"
   },

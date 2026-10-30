@@ -1129,9 +1129,7 @@
         "Help": "Pomoc",
         "Preview": "Podgląd"
       },
-      "autoSegmentOptions": "Automatyczny podział",
-      "autoSegmentDoublePress": "Wymagaj podwójnego naciśnięcia",
-      "autoSegmentDoublePressDesc": "Uruchamiaj szybki automatyczny podział tylko po dwukrotnym szybkim naciśnięciu skrótu."
+      "showAll": "Pokaż akcje bez klawisza"
     },
     "tab": {
       "common": "Ogólne",
@@ -1173,6 +1171,8 @@
     "addKey": "Dodaj drugi klawisz",
     "removeKey": "Usuń {key}",
     "duplicateKey": "Ten klawisz jest już ustawiony dla tej akcji.",
+    "doublePress": "Naciśnij dwa razy, aby uruchomić",
+    "doublePressDesc": "Uruchamia się tylko po dwukrotnym szybkim naciśnięciu klawisza.",
     "otherLayers": "Również na tym klawiszu",
     "closePanel": "Zamknij"
   },

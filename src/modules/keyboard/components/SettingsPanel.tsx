@@ -3,7 +3,6 @@ import {
 	Folder20Regular,
 	Speaker220Regular,
 	Timer20Regular,
-	Wand20Regular,
 } from "@fluentui/react-icons";
 import {
 	Box,
@@ -11,7 +10,6 @@ import {
 	Flex,
 	Grid,
 	Heading,
-	Switch,
 	Text,
 	TextField,
 } from "@radix-ui/themes";
@@ -28,7 +26,6 @@ import {
 import { keyBindingListAtom } from "../binding-list";
 import { findKeyBindingConflicts } from "../conflicts";
 import { getAllCommands } from "../registry";
-import { autoSegmentDoublePressAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 
 const KEYBINDING_CATEGORY_ICONS: Record<string, React.ReactNode> = {
@@ -149,9 +146,6 @@ const KeyBindingsEdit = ({
 export const AutoKeyBindingSettingsPanel = () => {
 	const { t } = useTranslation();
 	useEffect(() => () => stopRecordingShortcut(), []);
-	const [autoSegmentDoublePress, setAutoSegmentDoublePress] = useAtom(
-		autoSegmentDoublePressAtom,
-	);
 	const commands = useMemo(() => getAllCommands(), []);
 	const bindingsAtom = useMemo(
 		() =>
@@ -203,39 +197,6 @@ export const AutoKeyBindingSettingsPanel = () => {
 					</Grid>
 				</Box>
 			))}
-			<Box mb="5">
-				<Heading size="3" mb="3" color="gray">
-					<Flex align="center" gap="2">
-						<Wand20Regular />
-						<span>
-							{t(
-								"settingsDialog.keybindings.autoSegmentOptions",
-								"Auto segment",
-							)}
-						</span>
-					</Flex>
-				</Heading>
-				<Flex align="center" justify="between" gap="4">
-					<Box>
-						<Text>
-							{t(
-								"settingsDialog.keybindings.autoSegmentDoublePress",
-								"Require double press",
-							)}
-						</Text>
-						<Text as="div" size="1" color="gray">
-							{t(
-								"settingsDialog.keybindings.autoSegmentDoublePressDesc",
-								"Only run quick auto segment when you press its shortcut twice quickly.",
-							)}
-						</Text>
-					</Box>
-					<Switch
-						checked={autoSegmentDoublePress}
-						onCheckedChange={setAutoSegmentDoublePress}
-					/>
-				</Flex>
-			</Box>
 		</Box>
 	);
 };

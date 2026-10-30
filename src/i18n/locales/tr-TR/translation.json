@@ -1129,9 +1129,7 @@
         "Help": "Yardım",
         "Preview": "Önizleme"
       },
-      "autoSegmentOptions": "Otomatik bölme",
-      "autoSegmentDoublePress": "Çift basmayı gerektir",
-      "autoSegmentDoublePressDesc": "Hızlı otomatik bölmeyi yalnızca kısayoluna art arda iki kez basıldığında çalıştırır."
+      "showAll": "Tuşu olmayan eylemleri göster"
     },
     "tab": {
       "common": "Genel",
@@ -1173,6 +1171,8 @@
     "addKey": "İkinci tuş ekle",
     "removeKey": "{key} tuşunu kaldır",
     "duplicateKey": "Bu tuş bu eylem için zaten ayarlı.",
+    "doublePress": "Çalıştırmak için iki kez bas",
+    "doublePressDesc": "Yalnızca tuşuna art arda iki kez basıldığında çalışır.",
     "otherLayers": "Bu tuşta ayrıca",
     "closePanel": "Kapat"
   },

@@ -1129,9 +1129,7 @@
         "Help": "Hulp",
         "Preview": "Voorbeeld"
       },
-      "autoSegmentOptions": "Automatisch splitsen",
-      "autoSegmentDoublePress": "Dubbele druk vereist",
-      "autoSegmentDoublePressDesc": "Voer snel automatisch splitsen alleen uit als je de sneltoets twee keer snel indrukt."
+      "showAll": "Acties zonder toets tonen"
     },
     "tab": {
       "common": "Algemeen",
@@ -1173,6 +1171,8 @@
     "addKey": "Tweede toets toevoegen",
     "removeKey": "{key} verwijderen",
     "duplicateKey": "Die toets is al ingesteld voor deze actie.",
+    "doublePress": "Twee keer drukken om uit te voeren",
+    "doublePressDesc": "Wordt alleen uitgevoerd als je de toets twee keer snel indrukt.",
     "otherLayers": "Ook op deze toets",
     "closePanel": "Sluiten"
   },

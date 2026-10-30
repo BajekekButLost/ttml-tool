@@ -1129,9 +1129,7 @@
         "Help": "Aide",
         "Preview": "Aperçu"
       },
-      "autoSegmentOptions": "Segmentation automatique",
-      "autoSegmentDoublePress": "Exiger un double appui",
-      "autoSegmentDoublePressDesc": "Lance la segmentation automatique rapide uniquement après deux appuis rapides sur son raccourci."
+      "showAll": "Afficher les actions sans touche"
     },
     "tab": {
       "common": "Général",
@@ -1173,6 +1171,8 @@
     "addKey": "Ajouter une deuxième touche",
     "removeKey": "Retirer {key}",
     "duplicateKey": "Cette touche est déjà définie pour cette action.",
+    "doublePress": "Appuyer deux fois pour lancer",
+    "doublePressDesc": "Ne se lance qu’après deux appuis rapides sur sa touche.",
     "otherLayers": "Aussi sur cette touche",
     "closePanel": "Fermer"
   },

@@ -1129,9 +1129,7 @@
         "Help": "Ajutor",
         "Preview": "Previzualizare"
       },
-      "autoSegmentOptions": "Segmentare automată",
-      "autoSegmentDoublePress": "Necesită apăsare dublă",
-      "autoSegmentDoublePressDesc": "Rulează segmentarea automată rapidă doar când apeși scurtătura de două ori rapid."
+      "showAll": "Arată acțiunile fără tastă"
     },
     "tab": {
       "common": "General",
@@ -1173,6 +1171,8 @@
     "addKey": "Adaugă a doua tastă",
     "removeKey": "Elimină {key}",
     "duplicateKey": "Tasta aceasta este deja setată pentru această acțiune.",
+    "doublePress": "Apasă de două ori pentru a rula",
+    "doublePressDesc": "Rulează doar când apeși tasta de două ori rapid.",
     "otherLayers": "Tot pe această tastă",
     "closePanel": "Închide"
   },

@@ -1129,9 +1129,7 @@
         "Help": "Hjælp",
         "Preview": "Forhåndsvisning"
       },
-      "autoSegmentOptions": "Automatisk opdeling",
-      "autoSegmentDoublePress": "Kræver dobbelttryk",
-      "autoSegmentDoublePressDesc": "Kør kun hurtig automatisk opdeling, når genvejen trykkes to gange hurtigt."
+      "showAll": "Vis handlinger uden tast"
     },
     "tab": {
       "common": "Generelt",
@@ -1173,6 +1171,8 @@
     "addKey": "Tilføj ekstra tast",
     "removeKey": "Fjern {key}",
     "duplicateKey": "Den tast er allerede sat til denne handling.",
+    "doublePress": "Tryk to gange for at køre",
+    "doublePressDesc": "Kører kun, når du trykker på tasten to gange hurtigt.",
     "otherLayers": "Også på denne tast",
     "closePanel": "Luk"
   },

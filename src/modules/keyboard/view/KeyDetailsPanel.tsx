@@ -20,6 +20,7 @@ import {
 	stopRecordingShortcut,
 } from "$/utils/keybindings";
 import { type KeyBindingList, keyBindingListAtom } from "../binding-list";
+import { DoublePressToggle } from "../components/DoublePressToggle";
 import { findShortcutOwners } from "../conflicts";
 import type { KeyBindingCommand, KeyBindingsConfig } from "../types";
 import { CATEGORY_ICONS } from "./category-icons";
@@ -187,6 +188,9 @@ const ActionRow: FC<{
 					{t("settingsDialog.keybindings.resetDefault")}
 				</Button>
 			</Flex>
+			<Box mt="3">
+				<DoublePressToggle command={command} />
+			</Box>
 			{duplicate && (
 				<Text as="div" size="1" color="gray" role="status" mt="2">
 					{t("keyboardView.duplicateKey")}
