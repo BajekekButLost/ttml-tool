@@ -402,6 +402,7 @@
     "preview": "Aperçu"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# fichier a été ignoré} many {# fichiers ont été ignorés} other {# fichiers ont été ignorés}} : ouvrez un fichier de paroles et un fichier audio à la fois.",
     "createProjectPrompt": {
       "title": "Créer un projet ?",
       "description": "Conservez l'audio et les paroles ensemble dans un dossier de projet.",

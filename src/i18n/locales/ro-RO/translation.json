@@ -402,6 +402,7 @@
     "preview": "Previzualizare"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# fișier a fost omis} few {# fișiere au fost omise} other {# de fișiere au fost omise}}: deschide câte un fișier cu versuri și un fișier audio odată.",
     "createProjectPrompt": {
       "title": "Creezi un proiect?",
       "description": "Păstrează sunetul și versurile împreună într-un folder de proiect.",

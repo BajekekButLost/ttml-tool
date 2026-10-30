@@ -402,6 +402,7 @@
     "preview": "Anteprima"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# file è stato escluso} many {# file sono stati esclusi} other {# file sono stati esclusi}}: apri un file di testo e un file audio alla volta.",
     "createProjectPrompt": {
       "title": "Creare un progetto?",
       "description": "Conserva l'audio e i testi insieme in una cartella di progetto.",

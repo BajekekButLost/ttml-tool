@@ -402,6 +402,7 @@
     "preview": "Náhľad"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# súbor bol vynechaný} few {# súbory boli vynechané} many {# súboru bolo vynechaného} other {# súborov bolo vynechaných}}: otvárajte naraz jeden súbor s textom a jeden zvukový súbor.",
     "createProjectPrompt": {
       "title": "Vytvoriť projekt?",
       "description": "Majte zvuk a texty spolu v priečinku projektu.",

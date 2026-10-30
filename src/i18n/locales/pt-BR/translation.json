@@ -402,6 +402,7 @@
     "preview": "Prévia"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# arquivo ficou de fora} many {# arquivos ficaram de fora} other {# arquivos ficaram de fora}}: abra um arquivo de letra e um arquivo de áudio por vez.",
     "createProjectPrompt": {
       "title": "Criar um projeto?",
       "description": "Mantenha o áudio e a letra juntos em uma pasta do projeto.",

@@ -402,6 +402,7 @@
     "preview": "Forhåndsvisning"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, one {# fil blev udeladt} other {# filer blev udeladt}}: åbn én tekstfil og én lydfil ad gangen.",
     "createProjectPrompt": {
       "title": "Opret et projekt?",
       "description": "Hold lyden og sangteksten sammen i en projektmappe.",

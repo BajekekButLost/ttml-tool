@@ -402,6 +402,7 @@
     "preview": "Pratinjau"
   },
   "dialog": {
+    "openFilesIgnored": "{count, plural, other {# file dilewati}}: buka satu file lirik dan satu file audio sekaligus.",
     "createProjectPrompt": {
       "title": "Buat proyek?",
       "description": "Simpan audio dan lirik bersama-sama dalam folder proyek.",
