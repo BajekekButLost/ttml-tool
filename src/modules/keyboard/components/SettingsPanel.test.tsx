@@ -78,6 +78,17 @@ async function click(button: HTMLButtonElement) {
 }
 
 describe("shortcut rows", () => {
+	it("lists the second keys next to the primary", () => {
+		const { container } = mount();
+		const row = [...container.querySelectorAll("input")]
+			.find((input) => input.value === "J")
+			?.closest(".rt-Flex");
+		const keys = [...(row?.querySelectorAll(".rt-Kbd") ?? [])].map(
+			(kbd) => kbd.textContent,
+		);
+		expect(keys).toEqual(["Z"]);
+	});
+
 	it("clears the extra keys along with the primary", async () => {
 		const { store, container } = mount();
 		expect(store.get(keyBindingListAtom(cmdSyncStart))).toEqual([

@@ -1,16 +1,10 @@
-import {
-	ChevronRight16Regular,
-	Edit20Regular,
-	Folder20Regular,
-	Speaker220Regular,
-	Timer20Regular,
-} from "@fluentui/react-icons";
+import { ChevronRight16Regular } from "@fluentui/react-icons";
 import {
 	Box,
 	Button,
 	Flex,
-	Grid,
 	Heading,
+	Kbd,
 	Switch,
 	Text,
 	TextField,
@@ -31,14 +25,8 @@ import { getAllCommands } from "../registry";
 import { shortcutSearchAtom, shortcutShowAllAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 import { matchShortcutSearch } from "../view/key-index";
+import { COMMAND_CATEGORY_ICONS } from "./command-category-icons";
 import styles from "./SettingsPanel.module.css";
-
-const KEYBINDING_CATEGORY_ICONS: Record<string, React.ReactNode> = {
-	File: <Folder20Regular />,
-	Edit: <Edit20Regular />,
-	Sync: <Timer20Regular />,
-	Audio: <Speaker220Regular />,
-};
 
 const KeyBindingsEdit = ({
 	command,
@@ -52,7 +40,9 @@ const KeyBindingsEdit = ({
 	// Clear and Reset go through the list so extra keys go with the primary.
 	// Recording only replaces the primary, leaving extras alone.
 	const listAtom = keyBindingListAtom(command);
-	const hasExtras = useAtomValue(listAtom).length > 1;
+	const list = useAtomValue(listAtom);
+	const hasExtras = list.length > 1;
+	const extras = list.slice(1).filter((extra) => extra.length > 0);
 	const setList = useSetAtom(listAtom);
 	const [listening, setListening] = useState(false);
 	const labelId = useId();
@@ -70,81 +60,80 @@ const KeyBindingsEdit = ({
 	};
 
 	return (
-		<>
-			<Box id={labelId} style={{ display: "flex", alignItems: "center" }}>
+		<Flex className={styles.row}>
+			<Text id={labelId} size="2" className={styles.name}>
 				{t(command.description)}
-			</Box>
-
-			<Box>
-				<Flex direction="column" gap="2">
-					<TextField.Root
-						onClick={startRecording}
-						onKeyDown={(event) => {
-							if (!listening && (event.key === "Enter" || event.key === " ")) {
-								event.preventDefault();
-								event.stopPropagation();
-								void startRecording();
-							}
-						}}
-						aria-labelledby={labelId}
-						aria-describedby={conflicts.length > 0 ? conflictId : undefined}
-						size="2"
-						value={
-							listening
-								? t("settingsDialog.keybindings.recording")
-								: formatKeyBindings(keys) ||
-									t("settingsDialog.keybindings.unbound")
-						}
-						readOnly
-						variant="soft"
-						style={{
-							cursor: "pointer",
-							textAlign: "left",
-							backgroundColor: listening ? "var(--gray-3)" : "var(--gray-1)",
-							color: listening ? "var(--accent-11)" : "var(--gray-12)",
-						}}
-					/>
-					<Flex gap="2" wrap="wrap">
-						<Button
-							size="1"
-							variant="soft"
-							disabled={
-								listening ||
-								(!hasExtras &&
-									getShortcutKey(keys) === getShortcutKey(command.defaultKeys))
-							}
-							onClick={() => void setList(RESET_KEYBINDING)}
-						>
-							{t("settingsDialog.keybindings.resetDefault")}
-						</Button>
-						<Button
-							size="1"
-							variant="soft"
-							color="gray"
-							disabled={listening || (keys.length === 0 && !hasExtras)}
-							onClick={() => void setList([])}
-						>
-							{t("settingsDialog.keybindings.clear")}
-						</Button>
-					</Flex>
-					{conflicts.length > 0 && (
-						<Text
-							id={conflictId}
-							as="div"
-							size="1"
-							color="orange"
-							role="status"
-						>
-							{t("settingsDialog.keybindings.conflict", {
-								commands: conflicts
-									.map((other) => t(other.description))
-									.join(", "),
-							})}
-						</Text>
-					)}
-				</Flex>
-			</Box>
-		</>
+			</Text>
+			{/* Second keys are added from the keyboard above; listed here so the row is complete. */}
+			{extras.map((extra, index) => (
+				<Kbd
+					// biome-ignore lint/suspicious/noArrayIndexKey: slots are positional
+					key={index}
+					size="2"
+					className={styles.extra}
+				>
+					{formatKeyBindings(extra)}
+				</Kbd>
+			))}
+			<TextField.Root
+				className={styles.recorder}
+				data-listening={listening}
+				onClick={startRecording}
+				onKeyDown={(event) => {
+					if (!listening && (event.key === "Enter" || event.key === " ")) {
+						event.preventDefault();
+						event.stopPropagation();
+						void startRecording();
+					}
+				}}
+				aria-labelledby={labelId}
+				aria-describedby={conflicts.length > 0 ? conflictId : undefined}
+				size="2"
+				value={
+					listening
+						? t("settingsDialog.keybindings.recording")
+						: formatKeyBindings(keys) || t("settingsDialog.keybindings.unbound")
+				}
+				readOnly
+				variant="soft"
+				color="gray"
+			/>
+			<Button
+				size="1"
+				variant="soft"
+				disabled={
+					listening ||
+					(!hasExtras &&
+						getShortcutKey(keys) === getShortcutKey(command.defaultKeys))
+				}
+				onClick={() => void setList(RESET_KEYBINDING)}
+			>
+				{t("settingsDialog.keybindings.resetDefault")}
+			</Button>
+			<Button
+				size="1"
+				variant="soft"
+				color="gray"
+				disabled={listening || (keys.length === 0 && !hasExtras)}
+				onClick={() => void setList([])}
+			>
+				{t("settingsDialog.keybindings.clear")}
+			</Button>
+			{conflicts.length > 0 && (
+				<Text
+					id={conflictId}
+					as="div"
+					size="1"
+					color="orange"
+					role="status"
+					className={styles.conflict}
+				>
+					{t("settingsDialog.keybindings.conflict", {
+						commands: conflicts.map((other) => t(other.description)).join(", "),
+					})}
+				</Text>
+			)}
+		</Flex>
 	);
 };
 
@@ -236,7 +225,7 @@ export const AutoKeyBindingSettingsPanel = () => {
 						</span>
 						<Heading as="h3" size="3" color="gray">
 							<Flex align="center" gap="2">
-								{KEYBINDING_CATEGORY_ICONS[category]}
+								{COMMAND_CATEGORY_ICONS[category]}
 								<span>
 									{t(
 										`settingsDialog.keybindings.category.${category}`,
@@ -250,12 +239,7 @@ export const AutoKeyBindingSettingsPanel = () => {
 						</Text>
 					</summary>
 
-					<Grid
-						columns={{ initial: "1", sm: "2" }}
-						gapX="4"
-						gapY="3"
-						align="center"
-					>
+					<div className={styles.rows}>
 						{cmds.map((cmd) => (
 							<KeyBindingsEdit
 								key={cmd.id}
@@ -263,7 +247,7 @@ export const AutoKeyBindingSettingsPanel = () => {
 								conflicts={conflicts.get(cmd.id)}
 							/>
 						))}
-					</Grid>
+					</div>
 				</details>
 			))}
 			{groups.size === 0 && (

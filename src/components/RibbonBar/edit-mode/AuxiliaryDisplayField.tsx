@@ -1,6 +1,7 @@
 import { Grid } from "@radix-ui/themes";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -12,6 +13,7 @@ import { useTranslation } from "react-i18next";
  * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
+import { SlIcon } from "$/components/SlIcon";
 import { RIBBON_ACTIONS } from "$/modules/menu-actions/ribbon-actions";
 import { RibbonActionToggle } from "../RibbonToggle";
 
@@ -26,6 +28,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"settings.workflow.showTranslationDesc",
 					"Show a translation field under each lyric line.",
 				)}
+				icon={<SlIcon name="translation" />}
 			/>
 			<RibbonActionToggle
 				action={RIBBON_ACTIONS.showLineRomanization}
@@ -33,6 +36,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"settings.workflow.showRomanizationDesc",
 					"Show a romanization field under each lyric line.",
 				)}
+				icon={<SlIcon name="romanization" />}
 			/>
 			<RibbonActionToggle
 				action={RIBBON_ACTIONS.showWordRomanizationInput}
@@ -40,6 +44,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"settings.workflow.showWordRomanizationInputDesc",
 					"Show a romanization field on each word.",
 				)}
+				icon={<SlIcon name="romanization" />}
 			/>
 		</Grid>
 	);

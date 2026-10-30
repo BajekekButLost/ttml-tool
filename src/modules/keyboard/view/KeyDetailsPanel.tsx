@@ -54,7 +54,9 @@ const ActionRow: FC<{
 	slot: number;
 	layout: KeyboardLayoutInfo;
 	bindings: AllBindings;
-}> = ({ command, slot, layout, bindings }) => {
+	/** The key the panel is open on, as its heading prints it. */
+	panelCombo: string;
+}> = ({ command, slot, layout, bindings, panelCombo }) => {
 	const { t } = useTranslation();
 	const store = useStore();
 	const listAtom = keyBindingListAtom(command);
@@ -102,14 +104,19 @@ const ActionRow: FC<{
 	const isDefault =
 		list.length === 1 &&
 		getShortcutKey(list[0]) === getShortcutKey(command.defaultKeys);
+	// One key that is the panel's own key would just repeat the heading.
+	const showKeys =
+		recording ||
+		bound.length !== 1 ||
+		formatViewCombo(bound[0], layout) !== panelCombo;
 
 	return (
 		<Box className={styles.action}>
-			<Flex align="center" gap="2" mb="2">
+			<Flex align="center" gap="2" mb="3">
 				<span className={styles.swatch} data-category={category} aria-hidden>
 					{CATEGORY_ICONS[category]}
 				</span>
-				<Box>
+				<Box minWidth="0">
 					<Text as="div" weight="medium">
 						{t(command.description)}
 					</Text>
@@ -118,49 +125,51 @@ const ActionRow: FC<{
 					</Text>
 				</Box>
 			</Flex>
-			<Flex gap="2" wrap="wrap" align="center" mb="2">
-				{recording ? (
-					<Text size="2" color="gray" role="status">
-						{t("settingsDialog.keybindings.recording")}
-					</Text>
-				) : bound.length === 0 ? (
-					<Text size="2" color="gray">
-						{t("settingsDialog.keybindings.unbound")}
-					</Text>
-				) : (
-					list.map((keys, index) => {
-						if (keys.length === 0) return null;
-						const combo = formatViewCombo(keys, layout);
-						return (
-							<Flex
-								// biome-ignore lint/suspicious/noArrayIndexKey: slots are positional
-								key={index}
-								align="center"
-								gap="1"
-								className={styles.chip}
-							>
-								<Kbd size="2">{combo}</Kbd>
-								{bound.length > 1 && (
-									<IconButton
-										size="1"
-										variant="ghost"
-										color="gray"
-										aria-label={t("keyboardView.removeKey", { key: combo })}
-										onClick={() =>
-											void store.set(
-												listAtom,
-												withoutBinding(store.get(listAtom), index),
-											)
-										}
-									>
-										<Dismiss16Regular />
-									</IconButton>
-								)}
-							</Flex>
-						);
-					})
-				)}
-			</Flex>
+			{showKeys && (
+				<Flex gap="2" wrap="wrap" align="center" mb="3">
+					{recording ? (
+						<Text size="2" color="gray" role="status">
+							{t("settingsDialog.keybindings.recording")}
+						</Text>
+					) : bound.length === 0 ? (
+						<Text size="2" color="gray">
+							{t("settingsDialog.keybindings.unbound")}
+						</Text>
+					) : (
+						list.map((keys, index) => {
+							if (keys.length === 0) return null;
+							const combo = formatViewCombo(keys, layout);
+							return (
+								<Flex
+									// biome-ignore lint/suspicious/noArrayIndexKey: slots are positional
+									key={index}
+									align="center"
+									gap="1"
+									className={styles.chip}
+								>
+									<Kbd size="2">{combo}</Kbd>
+									{bound.length > 1 && (
+										<IconButton
+											size="1"
+											variant="ghost"
+											color="gray"
+											aria-label={t("keyboardView.removeKey", { key: combo })}
+											onClick={() =>
+												void store.set(
+													listAtom,
+													withoutBinding(store.get(listAtom), index),
+												)
+											}
+										>
+											<Dismiss16Regular />
+										</IconButton>
+									)}
+								</Flex>
+							);
+						})
+					)}
+				</Flex>
+			)}
 			<Flex gap="2" wrap="wrap">
 				<Button
 					size="1"
@@ -321,6 +330,7 @@ export const KeyDetailsPanel: FC<{
 							slot={ref.slot}
 							layout={layout}
 							bindings={bindings}
+							panelCombo={combo}
 						/>
 					))
 				)}

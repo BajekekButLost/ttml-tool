@@ -13,15 +13,27 @@ export const RibbonLabel: FC<{
 	description?: ReactNode;
 	shortcut?: Atom<KeyBindingsConfig>;
 	htmlFor?: string;
-}> = ({ label, description, shortcut, htmlFor }) => (
+	/** Shown before the text, for fields with a role icon. */
+	icon?: ReactNode;
+}> = ({ label, description, shortcut, htmlFor, icon }) => (
 	<ActionTooltip label={label} description={description} shortcut={shortcut}>
 		<Text
 			wrap="nowrap"
 			size="1"
 			asChild
-			style={{ color: "var(--ribbon-label-color)" }}
+			style={{
+				color: "var(--ribbon-label-color)",
+				...(icon && {
+					display: "inline-flex",
+					alignItems: "center",
+					gap: "var(--space-1)",
+				}),
+			}}
 		>
-			<label htmlFor={htmlFor}>{label}</label>
+			<label htmlFor={htmlFor}>
+				{icon}
+				{label}
+			</label>
 		</Text>
 	</ActionTooltip>
 );
@@ -30,7 +42,9 @@ export const RibbonLabel: FC<{
 export const RibbonActionToggle: FC<{
 	action: ToggleAction;
 	description?: ReactNode;
-}> = ({ action, description }) => {
+	/** Shown before the label, for toggles about a role. */
+	icon?: ReactNode;
+}> = ({ action, description, icon }) => {
 	const { t } = useTranslation();
 	return (
 		<RibbonToggle
@@ -38,6 +52,7 @@ export const RibbonActionToggle: FC<{
 			description={description}
 			shortcut={action.command.atom}
 			setting={action.setting}
+			icon={icon}
 		/>
 	);
 };
@@ -48,7 +63,9 @@ export const RibbonToggle: FC<{
 	description?: ReactNode;
 	shortcut?: Atom<KeyBindingsConfig>;
 	setting: WritableAtom<boolean, [boolean], unknown>;
-}> = ({ label, description, shortcut, setting }) => {
+	/** Shown before the label, for toggles about a role. */
+	icon?: ReactNode;
+}> = ({ label, description, shortcut, setting, icon }) => {
 	const id = useId();
 	return (
 		<>
@@ -57,6 +74,7 @@ export const RibbonToggle: FC<{
 				description={description}
 				shortcut={shortcut}
 				htmlFor={id}
+				icon={icon}
 			/>
 			<ActionTooltip
 				label={label}

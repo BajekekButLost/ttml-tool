@@ -26,7 +26,7 @@ import {
 	VIEW_CATEGORIES,
 	viewCategoryOf,
 } from "./key-index";
-import { capLabel, formatViewCombo } from "./labels";
+import { capFaceLabel, capLabel, formatViewCombo } from "./labels";
 import {
 	geometryFor,
 	isGap,
@@ -62,6 +62,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 	const { t } = useTranslation();
 	const { code } = cap;
 	const label = capLabel(code, context.layout);
+	const face = capFaceLabel(code, context.layout);
 	const style = { "--w": cap.width ?? 1 } as CSSProperties;
 
 	if (isModifierCode(code)) {
@@ -77,7 +78,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 				aria-label={t("keyboardView.modifierLayer", { key: label })}
 				onClick={() => context.onToggleModifier(code)}
 			>
-				<span className={styles.capLabel}>{label}</span>
+				<span className={styles.capLabel}>{face}</span>
 			</button>
 		);
 	}
@@ -111,7 +112,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 			}
 			onClick={() => context.onSelect(code)}
 		>
-			<span className={styles.capLabel}>{cap.continuation ? "" : label}</span>
+			<span className={styles.capLabel}>{cap.continuation ? "" : face}</span>
 			{category && !cap.continuation && (
 				<span className={styles.capIcon} aria-hidden>
 					{CATEGORY_ICONS[category]}

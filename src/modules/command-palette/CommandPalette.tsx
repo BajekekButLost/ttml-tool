@@ -10,6 +10,7 @@ import {
 import { useAtom, useAtomValue, useSetAtom, useStore } from "jotai";
 import {
 	type KeyboardEvent,
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useId,
@@ -23,6 +24,7 @@ import {
 	cmdOpenCommandPalette,
 	cmdOpenCommandPaletteAlternate,
 } from "$/modules/keyboard/commands";
+import { COMMAND_CATEGORY_ICONS } from "$/modules/keyboard/components/command-category-icons";
 import { useCommand } from "$/modules/keyboard/hooks";
 import { getAllCommands } from "$/modules/keyboard/registry";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
@@ -48,6 +50,8 @@ import {
 
 interface PaletteItem extends RankableItem {
 	kind: "command" | "setting";
+	/** The shortcut group's icon for commands, the page icon for settings. */
+	icon: ReactNode;
 	command?: KeyBindingCommand;
 	/** Listed but greyed out, like its menu item. */
 	disabled?: boolean;
@@ -177,6 +181,7 @@ const PaletteSearch = ({
 				return {
 					id: `command:${command.id}`,
 					kind: "command",
+					icon: COMMAND_CATEGORY_ICONS[command.category],
 					label: t(command.description),
 					keywords: command.category,
 					command,
@@ -193,6 +198,7 @@ const PaletteSearch = ({
 			(page): PaletteItem => ({
 				id: `setting:${page.value}`,
 				kind: "setting",
+				icon: page.icon,
 				label: page.label,
 				keywords: settingsSearchKeywords[page.value] ?? "",
 				run: () => {
@@ -314,17 +320,21 @@ const PaletteSearch = ({
 						}}
 						onClick={() => choose(item)}
 					>
+						<span className={styles.icon} aria-hidden>
+							{item.icon}
+						</span>
 						<Text size="2" className={styles.label}>
 							{item.label}
 						</Text>
 						{item.checked && (
 							<Checkmark16Regular className={styles.check} aria-hidden />
 						)}
-						<Text size="1" color="gray" className={styles.tag}>
-							{item.kind === "setting"
-								? t("commandPalette.settingTag", "Preferences")
-								: t("commandPalette.commandTag", "Command")}
-						</Text>
+						{/* Only settings get a tag: they open a page instead of running. */}
+						{item.kind === "setting" && (
+							<Text size="1" color="gray" className={styles.tag}>
+								{t("commandPalette.settingTag", "Preferences")}
+							</Text>
+						)}
 						{item.command && <ShortcutKbd command={item.command} />}
 					</div>
 				))}
@@ -334,7 +344,7 @@ const PaletteSearch = ({
 					{t("commandPalette.noResults", "No matching commands or settings")}
 				</Text>
 			)}
-			<Flex justify="end" pt="2">
+			<Flex justify="end" className={styles.footer}>
 				<Text size="1" color="gray">
 					{t(
 						"commandPalette.hint",

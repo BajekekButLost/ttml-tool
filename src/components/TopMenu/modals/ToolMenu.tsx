@@ -35,7 +35,9 @@ const ToolMenuItems = () => {
 			</DropdownMenu.Sub>
 			{item(MENU_ACTIONS.syncLineTimestamps)}
 			{item(MENU_ACTIONS.swapDuetAll)}
+			<DropdownMenu.Separator />
 			{item(MENU_ACTIONS.spectrogramHoverSync)}
+			<DropdownMenu.Separator />
 			{item(MENU_ACTIONS.latencyTest)}
 			{item(MENU_ACTIONS.ttmlChecklist)}
 		</>

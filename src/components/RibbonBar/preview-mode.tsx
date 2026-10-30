@@ -18,6 +18,7 @@ import { useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ActionTooltip } from "$/components/ActionTooltip";
+import { SlIcon } from "$/components/SlIcon";
 import { RIBBON_ACTIONS } from "$/modules/menu-actions/ribbon-actions";
 import {
 	PreviewModeType,
@@ -123,6 +124,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 									"settings.workflow.previewShowTranslationDesc",
 									"Show translation lines in the preview.",
 								)}
+								icon={<SlIcon name="translation" />}
 							/>
 							<RibbonActionToggle
 								action={RIBBON_ACTIONS.previewRomanization}
@@ -130,6 +132,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 									"settings.workflow.previewShowRomanDesc",
 									"Show romanization in the preview.",
 								)}
+								icon={<SlIcon name="romanization" />}
 							/>
 							{previewModeType === PreviewModeType.Spicy && (
 								<RibbonActionToggle
