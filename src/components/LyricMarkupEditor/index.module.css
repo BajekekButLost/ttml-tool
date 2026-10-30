@@ -102,6 +102,15 @@
 	background: transparent;
 }
 
+.editor :global(.lm-numbers) {
+	min-width: 3ch;
+	padding: 0 var(--space-1) 0 var(--space-2);
+	color: var(--gray-11);
+	font-size: var(--font-size-1);
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
 .editor :global(.cm-gutters) {
 	border: 0;
 	background: transparent;

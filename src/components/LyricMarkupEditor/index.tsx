@@ -40,6 +40,48 @@ import {
 
 export type { LyricMarkupFormat } from "./markup";
 
+/**
+ * Rewrites the text as one undo step, replacing only the span that differs so
+ * the scroll position and the cursor stay where they were.
+ */
+function replaceInPlace(
+	view: EditorView,
+	before: string,
+	after: string,
+	userEvent?: string,
+) {
+	let start = 0;
+	while (
+		start < before.length &&
+		start < after.length &&
+		before[start] === after[start]
+	)
+		start++;
+	let tail = 0;
+	while (
+		tail < before.length - start &&
+		tail < after.length - start &&
+		before[before.length - 1 - tail] === after[after.length - 1 - tail]
+	)
+		tail++;
+	const scrollTop = view.scrollDOM.scrollTop;
+	view.dispatch({
+		changes: {
+			from: start,
+			to: before.length - tail,
+			insert: after.slice(start, after.length - tail),
+		},
+		annotations: [Transaction.addToHistory.of(true), isolateHistory.of("full")],
+		userEvent,
+	});
+	view.requestMeasure({
+		read: () => null,
+		write: () => {
+			view.scrollDOM.scrollTop = scrollTop;
+		},
+	});
+}
+
 /** Lines a tool works on, 0-based and inclusive, or null for the whole text. */
 export type LyricMarkupLineRange = { from: number; to: number } | null;
 
@@ -177,13 +219,7 @@ export function LyricMarkupEditor({
 		const view = viewRef.current;
 		if (!view || value === knownValue.current) return;
 		knownValue.current = value;
-		view.dispatch({
-			changes: { from: 0, to: view.state.doc.length, insert: value },
-			annotations: [
-				Transaction.addToHistory.of(true),
-				isolateHistory.of("full"),
-			],
-		});
+		replaceInPlace(view, view.state.doc.toString(), value);
 	}, [value]);
 
 	const run = (command: (view: EditorView) => boolean) => {
@@ -206,15 +242,7 @@ export function LyricMarkupEditor({
 		const end = last > first && doc.lineAt(to).from === to ? last - 1 : last;
 		const before = doc.toString();
 		const after = tool.run(before, empty ? null : { from: first, to: end });
-		if (after !== before)
-			view.dispatch({
-				changes: { from: 0, to: doc.length, insert: after },
-				annotations: [
-					Transaction.addToHistory.of(true),
-					isolateHistory.of("full"),
-				],
-				userEvent: "input.tool",
-			});
+		if (after !== before) replaceInPlace(view, before, after, "input.tool");
 		view.focus();
 	};
 
