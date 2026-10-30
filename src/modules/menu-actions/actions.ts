@@ -40,18 +40,19 @@ import {
 } from "$/states/main.ts";
 
 type Store = ReturnType<typeof createStore>;
-type Translate = (key: string, fallback: string) => string;
+export type Translate = (key: string, fallback: string) => string;
 
 export interface MenuActionContext {
 	store: Store;
 	t: Translate;
 	menu: ReturnType<typeof useTopMenuActions>;
+	loadAudio: () => unknown;
 }
 
 /**
- * One action from the top menus (or a selection action from the right-click
- * menus), defined once. Each is a keyboard command, so it can be given a key
- * in Preferences and the command palette lists it; the menu item, the
+ * One action from the top menus, the ribbons or the right-click selection
+ * tools, defined once. Each is a keyboard command, so it can be given a key
+ * in Preferences and the command palette lists it; the control, the
  * shortcut and the palette share the label, the enabled rule and what it runs.
  */
 export interface MenuAction {
@@ -70,10 +71,18 @@ export interface MenuAction {
 	run: (context: MenuActionContext) => unknown;
 }
 
-type Category = "File" | "Edit" | "Tools" | "Help";
+type Category =
+	| "File"
+	| "Edit"
+	| "View"
+	| "Sync"
+	| "Audio"
+	| "Preview"
+	| "Tools"
+	| "Help";
 
-/** Registers a command with no default key, described by the menu label unless `description` says otherwise. */
-function defineAction(
+/** Registers a command with no default key, described by the control's label unless `description` says otherwise. */
+export function defineAction(
 	id: string,
 	category: Category,
 	label: [I18nKey, string],
@@ -411,13 +420,6 @@ export const MENU_ACTIONS = {
 		},
 	}),
 } satisfies Record<string, MenuAction>;
-
-export const MENU_ACTION_LIST: readonly MenuAction[] =
-	Object.values(MENU_ACTIONS);
-
-/** Menu actions by their command id, for the palette's greyed and checked state. */
-export const MENU_ACTION_BY_COMMAND_ID: ReadonlyMap<string, MenuAction> =
-	new Map(MENU_ACTION_LIST.map((action) => [action.command.id, action]));
 
 /**
  * Runs an action from its shortcut or the palette, with the menu's rules: only

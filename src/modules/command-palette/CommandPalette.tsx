@@ -26,7 +26,7 @@ import {
 import { useCommand } from "$/modules/keyboard/hooks";
 import { getAllCommands } from "$/modules/keyboard/registry";
 import type { KeyBindingCommand } from "$/modules/keyboard/types";
-import { MENU_ACTION_BY_COMMAND_ID } from "$/modules/menu-actions/actions";
+import { ACTION_BY_COMMAND_ID } from "$/modules/menu-actions/all-actions";
 import { settingsSearchKeywords } from "$/modules/settings/logic/settings-search";
 import { getSettingsPages } from "$/modules/settings/modals/pages";
 import { settingsDialogAtom, settingsTabAtom } from "$/states/dialogs.ts";
@@ -37,7 +37,7 @@ import {
 	normalizeKeyCode,
 } from "$/utils/keybindings";
 import styles from "./CommandPalette.module.css";
-import { paletteListsCommand } from "./palette-commands";
+import { commandRunsInMode, paletteListsCommand } from "./palette-commands";
 import { type RankableItem, rankPaletteItems } from "./ranking";
 import { runKeyboardCommand } from "./run-command";
 import {
@@ -160,19 +160,20 @@ const PaletteSearch = ({
 				);
 			}
 		};
-		// Menu actions are commands too; they add the menu's hidden, greyed and
-		// checked state. The palette is modal, so what's read here can't change
-		// while it's open.
+		// Menu and ribbon actions are commands too; they add their control's
+		// hidden, greyed and checked state. Time ribbon toggles sit in the Sync
+		// group but aren't timing keys, so they stay listed in Time mode. The
+		// palette is modal, so what's read here can't change while it's open.
 		const commandItems = getAllCommands()
 			.filter((command) => {
-				if (!paletteListsCommand(command, toolMode)) return false;
-				const action = MENU_ACTION_BY_COMMAND_ID.get(command.id);
-				if (!action) return true;
-				if (action.paletteHidden) return false;
+				const action = ACTION_BY_COMMAND_ID.get(command.id);
+				if (!action) return paletteListsCommand(command, toolMode);
+				if (action.paletteHidden || !commandRunsInMode(command, toolMode))
+					return false;
 				return action.visibleAtom ? store.get(action.visibleAtom) : true;
 			})
 			.map((command): PaletteItem => {
-				const action = MENU_ACTION_BY_COMMAND_ID.get(command.id);
+				const action = ACTION_BY_COMMAND_ID.get(command.id);
 				return {
 					id: `command:${command.id}`,
 					kind: "command",

@@ -1111,6 +1111,8 @@
       "exportYrc": "Eksportér sangtekster: YRC",
       "exportLys": "Eksportér sangtekster: Lyricify Syllable",
       "exportAss": "Eksportér sangtekster: ASS-undertekster",
+      "newLyricLine": "Ny sangtekstlinje",
+      "advancedRibbonControls": "Avancerede kontroller i båndet",
       "resetDefault": "Nulstil til standard",
       "clear": "Ryd",
       "unbound": "Ikke indstillet",
@@ -1124,7 +1126,8 @@
         "Audio": "Lyd",
         "Spectrogram": "Spektrogram",
         "Tools": "Værktøjer",
-        "Help": "Hjælp"
+        "Help": "Hjælp",
+        "Preview": "Forhåndsvisning"
       },
       "autoSegmentOptions": "Automatisk opdeling",
       "autoSegmentDoublePress": "Kræver dobbelttryk",

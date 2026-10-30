@@ -1111,6 +1111,8 @@
       "exportYrc": "Vie sanoituksia: YRC",
       "exportLys": "Vie sanoituksia: Lyricify Syllable",
       "exportAss": "Vie sanoituksia: ASS-tekstitys",
+      "newLyricLine": "Uusi sanoitusrivi",
+      "advancedRibbonControls": "Valintanauhan lisäasetukset",
       "resetDefault": "Palauta oletusarvo",
       "clear": "Tyhjennä",
       "unbound": "Ei asetettu",
@@ -1124,7 +1126,8 @@
         "Audio": "Ääni",
         "Spectrogram": "Spektrogrammi",
         "Tools": "Työkalut",
-        "Help": "Apua"
+        "Help": "Apua",
+        "Preview": "Esikatselu"
       },
       "autoSegmentOptions": "Automaattinen jako",
       "autoSegmentDoublePress": "Vaatii kaksoispainalluksen",

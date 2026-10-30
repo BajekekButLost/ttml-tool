@@ -5,6 +5,8 @@ import type { LyricLine } from "$/types/ttml";
 import type { MenuAction, MenuActionContext } from "./actions";
 
 let actions: typeof import("./actions");
+let ribbon: typeof import("./ribbon-actions");
+let all: typeof import("./all-actions");
 let registry: typeof import("$/modules/keyboard/registry");
 let conflicts: typeof import("$/modules/keyboard/conflicts");
 let palette: typeof import("$/modules/command-palette/palette-commands");
@@ -25,6 +27,8 @@ beforeAll(async () => {
 	vi.stubGlobal("localStorage", localStorage);
 	vi.stubGlobal("navigator", { userAgent: "Windows" });
 	actions = await import("./actions");
+	ribbon = await import("./ribbon-actions");
+	all = await import("./all-actions");
 	registry = await import("$/modules/keyboard/registry");
 	conflicts = await import("$/modules/keyboard/conflicts");
 	palette = await import("$/modules/command-palette/palette-commands");
@@ -60,11 +64,15 @@ function lineWithWords(count: number): LyricLine {
 	return line;
 }
 
-const context = (store: ReturnType<typeof createStore>) =>
+const context = (
+	store: ReturnType<typeof createStore>,
+	loadAudio: () => unknown = () => {},
+) =>
 	({
 		store,
 		t: (_key: string, fallback: string) => fallback,
 		menu: {},
+		loadAudio,
 	}) as unknown as MenuActionContext;
 
 const isEnabled = (
@@ -74,15 +82,15 @@ const isEnabled = (
 
 describe("menu actions as keyboard commands", () => {
 	it("registers every action, so Preferences > Shortcuts and the palette list it", () => {
-		for (const action of actions.MENU_ACTION_LIST) {
+		for (const action of all.ACTION_LIST) {
 			expect(registry.getCommandById(action.command.id)).toBe(action.command);
 		}
-		const ids = actions.MENU_ACTION_LIST.map((action) => action.command.id);
+		const ids = all.ACTION_LIST.map((action) => action.command.id);
 		expect(new Set(ids).size).toBe(ids.length);
 	});
 
 	it("gives new commands no default key and no conflicts", () => {
-		for (const action of actions.MENU_ACTION_LIST) {
+		for (const action of all.ACTION_LIST) {
 			if (!action.boundElsewhere)
 				expect(action.command.defaultKeys, action.command.id).toEqual([]);
 		}
@@ -96,7 +104,7 @@ describe("menu actions as keyboard commands", () => {
 	});
 
 	it("describes each command with text that exists in en-US", () => {
-		for (const action of actions.MENU_ACTION_LIST) {
+		for (const action of all.ACTION_LIST) {
 			expect(hasKey(action.command.description), action.command.id).toBe(true);
 			expect(
 				hasKey(
@@ -107,9 +115,9 @@ describe("menu actions as keyboard commands", () => {
 		}
 	});
 
-	it("uses the menu label as the description, except where the menu's needs its submenu", () => {
+	it("uses the control's label as the description, except where it needs its surroundings", () => {
 		const keyOnly = (key: string) => key;
-		const differs = actions.MENU_ACTION_LIST.filter(
+		const differs = all.ACTION_LIST.filter(
 			(action) =>
 				!action.boundElsewhere &&
 				action.label(keyOnly) !== action.command.description,
@@ -123,6 +131,8 @@ describe("menu actions as keyboard commands", () => {
 				"exportQrc",
 				"exportTtml",
 				"exportYrc",
+				"newLyricLine",
+				"toggleAdvancedRibbonControls",
 			].sort(),
 		);
 		expect(en.settingsDialog.keybindings.exportLrc).toBe("Export lyrics: LRC");
@@ -266,5 +276,57 @@ describe("runMenuAction", () => {
 			context(store),
 		);
 		expect(store.get(sync.spectrogramHoverSyncEnabledAtom)).toBe(!before);
+	});
+});
+
+describe("ribbon actions", () => {
+	it("keeps each ribbon's toggles to its mode, so same-named ones don't clash", () => {
+		const { editAutoScroll, syncAutoScroll, timingAutoScroll } =
+			ribbon.RIBBON_ACTIONS;
+		expect(editAutoScroll.command.modes).toEqual(["edit"]);
+		expect(syncAutoScroll.command.modes).toEqual(["sync"]);
+		expect(timingAutoScroll.command.modes).toEqual(["preview"]);
+		expect(syncAutoScroll.command.category).toBe("Sync");
+		expect(timingAutoScroll.command.category).toBe("Preview");
+	});
+
+	it("flips a ribbon setting", () => {
+		const store = createStore();
+		store.set(main.toolModeAtom, main.ToolMode.Sync);
+		const { showTimestamps } = ribbon.RIBBON_ACTIONS;
+		const before = store.get(showTimestamps.setting);
+		actions.runMenuAction(showTimestamps, context(store));
+		expect(store.get(showTimestamps.setting)).toBe(!before);
+		store.set(main.toolModeAtom, main.ToolMode.Edit);
+		actions.runMenuAction(showTimestamps, context(store));
+		expect(store.get(showTimestamps.setting)).toBe(!before);
+	});
+
+	it("sets a line flag on every selected line unless all have it, like the checkbox", () => {
+		const first = lineWithWords(1);
+		const second = lineWithWords(1);
+		second.isBG = true;
+		const store = storeWithLines([first, second]);
+		const { lineBackground } = ribbon.RIBBON_ACTIONS;
+		expect(isEnabled(lineBackground, store)).toBe(false);
+		store.set(main.selectedLinesAtom, new Set([first.id, second.id]));
+		const bg = () =>
+			store.get(main.lyricLinesAtom).lyricLines.map((line) => line.isBG);
+		actions.runMenuAction(lineBackground, context(store));
+		expect(bg()).toEqual([true, true]);
+		actions.runMenuAction(lineBackground, context(store));
+		expect(bg()).toEqual([false, false]);
+	});
+
+	it("adds a lyric line and loads audio", () => {
+		const store = storeWithLines([]);
+		actions.runMenuAction(ribbon.RIBBON_ACTIONS.newLyricLine, context(store));
+		expect(store.get(main.lyricLinesAtom).lyricLines).toHaveLength(1);
+		const loadAudio = vi.fn();
+		actions.runMenuAction(
+			ribbon.RIBBON_ACTIONS.loadAudio,
+			context(store, loadAudio),
+		);
+		expect(loadAudio).toHaveBeenCalledOnce();
 	});
 });

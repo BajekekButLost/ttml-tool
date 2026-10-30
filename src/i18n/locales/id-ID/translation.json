@@ -1111,6 +1111,8 @@
       "exportYrc": "Ekspor lirik: YRC",
       "exportLys": "Ekspor lirik: Lyricify Syllable",
       "exportAss": "Ekspor lirik: Subtitle ASS",
+      "newLyricLine": "Baris lirik baru",
+      "advancedRibbonControls": "Kontrol pita lanjutan",
       "resetDefault": "Setel ulang ke bawaan",
       "clear": "Hapus",
       "unbound": "Belum diatur",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Spektrogram",
         "Tools": "Alat",
-        "Help": "Bantuan"
+        "Help": "Bantuan",
+        "Preview": "Pratinjau"
       },
       "autoSegmentOptions": "Segmentasi otomatis",
       "autoSegmentDoublePress": "Perlu tekan dua kali",

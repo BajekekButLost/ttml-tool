@@ -1111,6 +1111,8 @@
       "exportYrc": "Exportar letras: YRC",
       "exportLys": "Exportar letras: Lyricify Syllable",
       "exportAss": "Exportar letras: Legendas ASS",
+      "newLyricLine": "Nova linha de letra",
+      "advancedRibbonControls": "Controles avançados da faixa",
       "resetDefault": "Redefinir para o padrão",
       "clear": "Limpar",
       "unbound": "Não definido",
@@ -1124,7 +1126,8 @@
         "Audio": "Áudio",
         "Spectrogram": "Espectrograma",
         "Tools": "Ferramentas",
-        "Help": "Ajuda"
+        "Help": "Ajuda",
+        "Preview": "Prévia"
       },
       "autoSegmentOptions": "Segmentação automática",
       "autoSegmentDoublePress": "Exigir duas pressões",

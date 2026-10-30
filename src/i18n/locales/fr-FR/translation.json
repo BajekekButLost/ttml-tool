@@ -1111,6 +1111,8 @@
       "exportYrc": "Exporter les paroles : YRC",
       "exportLys": "Exporter les paroles : Lyricify Syllable",
       "exportAss": "Exporter les paroles : Sous-titres ASS",
+      "newLyricLine": "Nouvelle ligne de paroles",
+      "advancedRibbonControls": "Commandes avancées du ruban",
       "resetDefault": "Réinitialiser aux valeurs par défaut",
       "clear": "Effacer",
       "unbound": "Non défini",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Spectrogramme",
         "Tools": "Outils",
-        "Help": "Aide"
+        "Help": "Aide",
+        "Preview": "Aperçu"
       },
       "autoSegmentOptions": "Segmentation automatique",
       "autoSegmentDoublePress": "Exiger un double appui",

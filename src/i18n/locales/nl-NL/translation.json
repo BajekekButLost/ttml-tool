@@ -1111,6 +1111,8 @@
       "exportYrc": "Songtekst exporteren: YRC",
       "exportLys": "Songtekst exporteren: Lyricify Syllable",
       "exportAss": "Songtekst exporteren: ASS-ondertitels",
+      "newLyricLine": "Nieuwe songtekstregel",
+      "advancedRibbonControls": "Geavanceerde lintopties",
       "resetDefault": "Standaard herstellen",
       "clear": "Wissen",
       "unbound": "Niet ingesteld",
@@ -1124,7 +1126,8 @@
         "Audio": "Geluid",
         "Spectrogram": "Spectrogram",
         "Tools": "Hulpmiddelen",
-        "Help": "Hulp"
+        "Help": "Hulp",
+        "Preview": "Voorbeeld"
       },
       "autoSegmentOptions": "Automatisch splitsen",
       "autoSegmentDoublePress": "Dubbele druk vereist",

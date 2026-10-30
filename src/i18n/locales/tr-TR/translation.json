@@ -1111,6 +1111,8 @@
       "exportYrc": "Şarkı sözlerini dışa aktar: YRC",
       "exportLys": "Şarkı sözlerini dışa aktar: Lyricify Syllable",
       "exportAss": "Şarkı sözlerini dışa aktar: ASS altyazıları",
+      "newLyricLine": "Yeni şarkı sözü satırı",
+      "advancedRibbonControls": "Gelişmiş şerit denetimleri",
       "resetDefault": "Varsayılana sıfırla",
       "clear": "Temizle",
       "unbound": "Atanmamış",
@@ -1124,7 +1126,8 @@
         "Audio": "Ses",
         "Spectrogram": "Spektrogram",
         "Tools": "Araçlar",
-        "Help": "Yardım"
+        "Help": "Yardım",
+        "Preview": "Önizleme"
       },
       "autoSegmentOptions": "Otomatik bölme",
       "autoSegmentDoublePress": "Çift basmayı gerektir",

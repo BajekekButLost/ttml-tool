@@ -1111,6 +1111,8 @@
       "exportYrc": "Esporta testo: YRC",
       "exportLys": "Esporta testo: Lyricify Syllable",
       "exportAss": "Esporta testo: Sottotitoli ASS",
+      "newLyricLine": "Nuovo verso",
+      "advancedRibbonControls": "Controlli avanzati della barra",
       "resetDefault": "Ripristina le impostazioni predefinite",
       "clear": "Elimina",
       "unbound": "Non impostata",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Spettrogramma",
         "Tools": "Strumenti",
-        "Help": "Aiuto"
+        "Help": "Aiuto",
+        "Preview": "Anteprima"
       },
       "autoSegmentOptions": "Segmentazione automatica",
       "autoSegmentDoublePress": "Richiedi doppia pressione",

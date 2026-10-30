@@ -1111,6 +1111,8 @@
       "exportYrc": "Export lyrics: YRC",
       "exportLys": "Export lyrics: Lyricify Syllable",
       "exportAss": "Export lyrics: ASS subtitles",
+      "newLyricLine": "New lyric line",
+      "advancedRibbonControls": "Advanced ribbon controls",
       "resetDefault": "Reset to default",
       "clear": "Clear",
       "unbound": "Not set",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Spectrogram",
         "Tools": "Tools",
-        "Help": "Help"
+        "Help": "Help",
+        "Preview": "Preview"
       },
       "autoSegmentOptions": "Auto segment",
       "autoSegmentDoublePress": "Require double press",

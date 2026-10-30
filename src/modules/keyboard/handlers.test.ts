@@ -78,6 +78,9 @@ vi.mock("$/components/TopMenu/modals/HomeMenu", () => ({
 vi.mock("$/components/TopMenu/modals/ToolMenu", () => ({
 	ToolMenu: () => null,
 }));
+vi.mock("$/modules/menu-actions/MenuActionShortcuts", () => ({
+	MenuActionShortcuts: () => null,
+}));
 
 vi.mock("$/modules/audio/audio-engine", () => ({
 	audioEngine: {

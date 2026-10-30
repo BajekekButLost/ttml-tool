@@ -1111,6 +1111,8 @@
       "exportYrc": "Exportă versuri: YRC",
       "exportLys": "Exportă versuri: Lyricify Syllable",
       "exportAss": "Exportă versuri: Subtitrări ASS",
+      "newLyricLine": "Vers nou",
+      "advancedRibbonControls": "Controale avansate ale panglicii",
       "resetDefault": "Resetează la valoarea implicită",
       "clear": "Golește",
       "unbound": "Nesetată",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Spectrogramă",
         "Tools": "Unelte",
-        "Help": "Ajutor"
+        "Help": "Ajutor",
+        "Preview": "Previzualizare"
       },
       "autoSegmentOptions": "Segmentare automată",
       "autoSegmentDoublePress": "Necesită apăsare dublă",

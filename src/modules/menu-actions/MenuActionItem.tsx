@@ -3,6 +3,7 @@ import { atom, useAtomValue, useStore } from "jotai";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useTopMenuActions } from "$/components/TopMenu/useTopMenuActions";
+import { useLoadAudio } from "$/hooks/useLoadAudio";
 import { formatKeyBindings } from "$/utils/keybindings";
 import type { MenuAction, MenuActionContext } from "./actions";
 
@@ -14,13 +15,15 @@ export function useMenuActionContext(): MenuActionContext {
 	const store = useStore();
 	const { t } = useTranslation();
 	const menu = useTopMenuActions();
+	const { loadAudio } = useLoadAudio();
 	return useMemo(
 		() => ({
 			store,
 			t: (key: string, fallback: string) => t(key, fallback),
 			menu,
+			loadAudio,
 		}),
-		[store, t, menu],
+		[store, t, menu, loadAudio],
 	);
 }
 

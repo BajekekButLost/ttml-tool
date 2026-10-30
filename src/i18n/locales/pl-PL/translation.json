@@ -1111,6 +1111,8 @@
       "exportYrc": "Eksportuj tekst: YRC",
       "exportLys": "Eksportuj tekst: Lyricify Syllable",
       "exportAss": "Eksportuj tekst: Napisy ASS",
+      "newLyricLine": "Nowy wers tekstu",
+      "advancedRibbonControls": "Zaawansowane opcje wstążki",
       "resetDefault": "Przywróć ustawienia domyślne",
       "clear": "Wyczyść",
       "unbound": "Nie ustawiono",
@@ -1124,7 +1126,8 @@
         "Audio": "Dźwięk",
         "Spectrogram": "Spektrogram",
         "Tools": "Narzędzia",
-        "Help": "Pomoc"
+        "Help": "Pomoc",
+        "Preview": "Podgląd"
       },
       "autoSegmentOptions": "Automatyczny podział",
       "autoSegmentDoublePress": "Wymagaj podwójnego naciśnięcia",

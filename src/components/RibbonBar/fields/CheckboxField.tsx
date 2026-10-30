@@ -10,7 +10,7 @@
  */
 
 import { Checkbox } from "@radix-ui/themes";
-import { atom, useAtomValue, useStore } from "jotai";
+import { type Atom, atom, useAtomValue, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
 import { useId, useMemo } from "react";
 import { ActionTooltip } from "$/components/ActionTooltip";
@@ -20,6 +20,7 @@ import {
 	selectedWordsAtom,
 } from "$/states/main.ts";
 import type { LyricLine, LyricWord } from "$/types/ttml";
+import type { KeyBindingsConfig } from "$/utils/keybindings";
 import { RibbonLabel } from "../RibbonToggle";
 
 import {
@@ -38,6 +39,7 @@ export function CheckboxField<
 	isWordField,
 	fieldName,
 	defaultValue,
+	shortcut,
 }: {
 	label: string;
 	/** One line for the tooltip on what the field does. */
@@ -45,6 +47,8 @@ export function CheckboxField<
 	isWordField: Word;
 	fieldName: F;
 	defaultValue: V;
+	/** The command that toggles it, shown in the tooltip. */
+	shortcut?: Atom<KeyBindingsConfig>;
 }) {
 	const itemAtom = useMemo(
 		() => (isWordField ? selectedWordsAtom : selectedLinesAtom),
@@ -82,9 +86,14 @@ export function CheckboxField<
 			<RibbonLabel
 				label={label}
 				description={description}
+				shortcut={shortcut}
 				htmlFor={checkboxId}
 			/>
-			<ActionTooltip label={label} description={description}>
+			<ActionTooltip
+				label={label}
+				description={description}
+				shortcut={shortcut}
+			>
 				<Checkbox
 					disabled={isDisabled}
 					id={checkboxId}

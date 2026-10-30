@@ -1111,6 +1111,8 @@
       "exportYrc": "Exportar letras: YRC",
       "exportLys": "Exportar letras: Lyricify Syllable",
       "exportAss": "Exportar letras: Subtítulos ASS",
+      "newLyricLine": "Nueva línea de letra",
+      "advancedRibbonControls": "Controles avanzados de la cinta",
       "resetDefault": "Restablecer valor predeterminado",
       "clear": "Borrar",
       "unbound": "Sin asignar",
@@ -1124,7 +1126,8 @@
         "Audio": "Audio",
         "Spectrogram": "Espectrograma",
         "Tools": "Herramientas",
-        "Help": "Ayuda"
+        "Help": "Ayuda",
+        "Preview": "Vista previa"
       },
       "autoSegmentOptions": "Segmentación automática",
       "autoSegmentDoublePress": "Exigir doble pulsación",

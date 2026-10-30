@@ -1111,6 +1111,8 @@
       "exportYrc": "Экспортировать текст: YRC",
       "exportLys": "Экспортировать текст: Lyricify Syllable",
       "exportAss": "Экспортировать текст: Субтитры ASS",
+      "newLyricLine": "Новая строка текста",
+      "advancedRibbonControls": "Дополнительные элементы ленты",
       "resetDefault": "Восстановить по умолчанию",
       "clear": "Очистить",
       "unbound": "Не задано",
@@ -1124,7 +1126,8 @@
         "Audio": "Аудио",
         "Spectrogram": "Спектрограмма",
         "Tools": "Инструменты",
-        "Help": "Справка"
+        "Help": "Справка",
+        "Preview": "Предпросмотр"
       },
       "autoSegmentOptions": "Авторазделение",
       "autoSegmentDoublePress": "Требовать двойное нажатие",

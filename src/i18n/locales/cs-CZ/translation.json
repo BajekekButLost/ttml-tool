@@ -1111,6 +1111,8 @@
       "exportYrc": "Exportovat text písně: YRC",
       "exportLys": "Exportovat text písně: Lyricify Syllable",
       "exportAss": "Exportovat text písně: Titulky ASS",
+      "newLyricLine": "Nový řádek textu",
+      "advancedRibbonControls": "Pokročilé ovládací prvky pásu karet",
       "resetDefault": "Obnovit výchozí",
       "clear": "Vymazat",
       "unbound": "Nenastaveno",
@@ -1124,7 +1126,8 @@
         "Audio": "Zvuk",
         "Spectrogram": "Spektrogram",
         "Tools": "Nástroje",
-        "Help": "Nápověda"
+        "Help": "Nápověda",
+        "Preview": "Náhled"
       },
       "autoSegmentOptions": "Automatické dělení",
       "autoSegmentDoublePress": "Vyžadovat dvojí stisk",
