@@ -233,6 +233,8 @@
     "title": "Muokkaa tekstinä",
     "description": "Muokkaa koko sanoitusta pelkkänä tekstinä. Sanat, joita et muuta, säilyttävät ajoituksensa.",
     "textLabel": "Sanoitusteksti",
+    "toolsHint": "Käsittele sanoitukset ja Jaa tavuihin toimivat valituilla riveillä tai koko tekstillä, jos mitään ei ole valittu.",
+    "nothingToProcess": "Ei muutettavaa.",
     "summaryTitle": "Muutokset",
     "unchanged": "{count, plural, one {# rivi ennallaan} other {# riviä ennallaan}}",
     "edited": "{count, plural, one {# rivi muokattu} other {# riviä muokattu}}",

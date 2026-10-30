@@ -233,6 +233,8 @@
     "title": "Modifier en texte",
     "description": "Modifiez toutes les paroles en texte brut. Les mots que vous ne changez pas gardent leur synchronisation.",
     "textLabel": "Texte des paroles",
+    "toolsHint": "Préparer les paroles et Découper en syllabes s'appliquent aux lignes sélectionnées, ou à tout le texte si rien n'est sélectionné.",
+    "nothingToProcess": "Rien à modifier.",
     "summaryTitle": "Modifications",
     "unchanged": "{count, plural, one {# ligne inchangée} many {# lignes inchangées} other {# lignes inchangées}}",
     "edited": "{count, plural, one {# ligne modifiée} many {# lignes modifiées} other {# lignes modifiées}}",

@@ -233,6 +233,8 @@
     "title": "Upraviť ako text",
     "description": "Upravte celý text piesne ako obyčajný text. Slová, ktoré nezmeníte, si ponechajú časovanie.",
     "textLabel": "Text piesne",
+    "toolsHint": "Spracovať text a Rozdeliť slabiky pracujú s vybranými riadkami, alebo so všetkým, keď nie je nič vybraté.",
+    "nothingToProcess": "Nie je čo meniť.",
     "summaryTitle": "Zmeny",
     "unchanged": "{count, plural, one {# riadok bez zmeny} few {# riadky bez zmeny} many {# riadka bez zmeny} other {# riadkov bez zmeny}}",
     "edited": "{count, plural, one {# upravený riadok} few {# upravené riadky} many {# upraveného riadka} other {# upravených riadkov}}",

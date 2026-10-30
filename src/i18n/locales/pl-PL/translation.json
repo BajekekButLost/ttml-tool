@@ -233,6 +233,8 @@
     "title": "Edytuj jako tekst",
     "description": "Edytuj cały tekst piosenki jako zwykły tekst. Słowa, których nie zmienisz, zachowują synchronizację.",
     "textLabel": "Tekst piosenki",
+    "toolsHint": "Przetwórz tekst i Podziel na sylaby działają na zaznaczonych wierszach albo na całości, gdy nic nie jest zaznaczone.",
+    "nothingToProcess": "Nie ma czego zmieniać.",
     "summaryTitle": "Zmiany",
     "unchanged": "{count, plural, one {# wiersz bez zmian} few {# wiersze bez zmian} many {# wierszy bez zmian} other {# wiersza bez zmian}}",
     "edited": "{count, plural, one {# edytowany wiersz} few {# edytowane wiersze} many {# edytowanych wierszy} other {# edytowanego wiersza}}",

@@ -1,12 +1,9 @@
 import { isolateHistory } from "@codemirror/commands";
 import { Compartment, EditorState, Transaction } from "@codemirror/state";
 import { EditorView, placeholder as placeholderText } from "@codemirror/view";
+import { TextWordCountRegular } from "@fluentui/react-icons";
 import {
-	PeopleRegular,
-	PersonVoiceRegular,
-	TextWordCountRegular,
-} from "@fluentui/react-icons";
-import {
+	Button,
 	Flex,
 	IconButton,
 	Popover,
@@ -14,8 +11,9 @@ import {
 	Text,
 	TextField,
 } from "@radix-ui/themes";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SlIcon } from "$/components/SlIcon";
 import {
 	LYRIC_SECTION_CATEGORIES,
 	type LyricSectionCategory,
@@ -36,8 +34,43 @@ import {
 	type LyricMarkupFormat,
 	normalizeHeaderCategory,
 } from "./markup";
+import { lineChanges } from "./text-changes";
 
 export type { LyricMarkupFormat } from "./markup";
+
+/**
+ * Rewrites the text as one undo step. Only the lines that differ are touched,
+ * so the editor keeps the line at the top of the view, and the cursor, where
+ * they were.
+ */
+function replaceInPlace(
+	view: EditorView,
+	before: string,
+	after: string,
+	userEvent?: string,
+) {
+	const changes = view.state.changes(lineChanges(before, after));
+	view.dispatch({
+		changes,
+		// Redrawing the cursor's line would otherwise let the browser scroll to
+		// it; this puts the line that was at the top back at the top.
+		effects: view.scrollSnapshot().map(changes),
+		annotations: [Transaction.addToHistory.of(true), isolateHistory.of("full")],
+		userEvent,
+	});
+}
+
+/** Lines a tool works on, 0-based and inclusive, or null for the whole text. */
+export type LyricMarkupLineRange = { from: number; to: number } | null;
+
+/** A text-wide action in the toolbar, run on the selected lines or everything. */
+export interface LyricMarkupTool {
+	key: string;
+	icon: ReactNode;
+	label: string;
+	disabled?: boolean;
+	run: (text: string, lines: LyricMarkupLineRange) => string;
+}
 
 /**
  * A plain-text lyric editor that draws its markup as it goes: section headers
@@ -51,12 +84,14 @@ export function LyricMarkupEditor({
 	format,
 	ariaLabel,
 	placeholder,
+	tools,
 }: {
 	value: string;
 	onChange: (value: string) => void;
 	format: LyricMarkupFormat;
 	ariaLabel: string;
 	placeholder?: string;
+	tools?: LyricMarkupTool[];
 }) {
 	const { t } = useTranslation();
 	const wrapperRef = useRef<HTMLDivElement>(null);
@@ -162,13 +197,7 @@ export function LyricMarkupEditor({
 		const view = viewRef.current;
 		if (!view || value === knownValue.current) return;
 		knownValue.current = value;
-		view.dispatch({
-			changes: { from: 0, to: view.state.doc.length, insert: value },
-			annotations: [
-				Transaction.addToHistory.of(true),
-				isolateHistory.of("full"),
-			],
-		});
+		replaceInPlace(view, view.state.doc.toString(), value);
 	}, [value]);
 
 	const run = (command: (view: EditorView) => boolean) => {
@@ -176,6 +205,24 @@ export function LyricMarkupEditor({
 		if (!view) return;
 		command(view);
 		view.focus();
+	};
+
+	// Runs on the lines the selection touches, or the whole text without one.
+	// The rewrite is one undo step.
+	const runTool = (tool: LyricMarkupTool) => {
+		const view = viewRef.current;
+		if (!view) return;
+		const { doc, selection } = view.state;
+		const { from, to, empty } = selection.main;
+		const first = doc.lineAt(from).number - 1;
+		const last = doc.lineAt(to).number - 1;
+		// A selection ending at the start of a line doesn't pick that line.
+		const end = last > first && doc.lineAt(to).from === to ? last - 1 : last;
+		const before = doc.toString();
+		const after = tool.run(before, empty ? null : { from: first, to: end });
+		if (after !== before) replaceInPlace(view, before, after, "input.tool");
+		// A plain focus() would scroll the cursor into view.
+		view.contentDOM.focus({ preventScroll: true });
 	};
 
 	// The header the open menu edits, read fresh from the document.
@@ -220,7 +267,7 @@ export function LyricMarkupEditor({
 					title={`${t("lyricMarkup.background", "Background line")} (Alt+B)`}
 					onClick={() => run(toggleLinePrefix("background"))}
 				>
-					<PersonVoiceRegular />
+					<SlIcon name="background" className={styles.roleBackground} />
 				</IconButton>
 				<IconButton
 					size="1"
@@ -231,7 +278,7 @@ export function LyricMarkupEditor({
 					title={`${t("lyricMarkup.duet", "Duet line")} (Alt+D)`}
 					onClick={() => run(toggleLinePrefix("duet"))}
 				>
-					<PeopleRegular />
+					<SlIcon name="duet" className={styles.roleDuet} />
 				</IconButton>
 				<IconButton
 					size="1"
@@ -250,6 +297,25 @@ export function LyricMarkupEditor({
 						"Alt+click between letters to split, click a dot to join. Alt+C changes a section.",
 					)}
 				</Text>
+				{tools && tools.length > 0 && (
+					<Flex gap="1" align="center" className={styles.tools}>
+						{tools.map((tool) => (
+							<Button
+								key={tool.key}
+								size="1"
+								variant="ghost"
+								color="gray"
+								disabled={tool.disabled}
+								// Keeps focus, and the scroll position, in the editor.
+								onMouseDown={(event) => event.preventDefault()}
+								onClick={() => runTool(tool)}
+							>
+								{tool.icon}
+								{tool.label}
+							</Button>
+						))}
+					</Flex>
+				)}
 			</Flex>
 			<div className={styles.editor} ref={parentRef} />
 

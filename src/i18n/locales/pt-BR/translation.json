@@ -233,6 +233,8 @@
     "title": "Editar como texto",
     "description": "Edite a letra inteira como texto simples. As palavras que você não mudar mantêm a sincronização.",
     "textLabel": "Texto da letra",
+    "toolsHint": "Processar letra e Dividir sílabas atuam nas linhas selecionadas, ou em tudo quando nada está selecionado.",
+    "nothingToProcess": "Nada para alterar.",
     "summaryTitle": "Alterações",
     "unchanged": "{count, plural, one {# linha sem alteração} many {# linhas sem alteração} other {# linhas sem alteração}}",
     "edited": "{count, plural, one {# linha editada} many {# linhas editadas} other {# linhas editadas}}",

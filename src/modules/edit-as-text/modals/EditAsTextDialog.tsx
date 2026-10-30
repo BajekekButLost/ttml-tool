@@ -1,3 +1,4 @@
+import { SparkleRegular, TextWordCountRegular } from "@fluentui/react-icons";
 import {
 	Button,
 	Dialog,
@@ -10,8 +11,16 @@ import { useAtom, useSetAtom, useStore } from "jotai";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { LyricMarkupEditor } from "$/components/LyricMarkupEditor";
-import { importTextFormatAtom } from "$/modules/lyrics-import/states";
+import {
+	LyricMarkupEditor,
+	type LyricMarkupTool,
+} from "$/components/LyricMarkupEditor";
+import {
+	importTextFormatAtom,
+	processStepsAtom,
+} from "$/modules/lyrics-import/states";
+import { segmentWord } from "$/modules/segmentation/utils/segmentation";
+import { useSegmentationConfig } from "$/modules/segmentation/utils/useSegmentationConfig";
 import { geniusCategorizationEnabledAtom } from "$/modules/settings/states/index.ts";
 import { confirmDialogAtom } from "$/states/dialogs.ts";
 import {
@@ -19,9 +28,11 @@ import {
 	selectedLinesAtom,
 	selectedWordsAtom,
 } from "$/states/main.ts";
+import { newLyricWord } from "$/types/ttml";
 import { error as logError } from "$/utils/logging.ts";
 import { editTextFormat, serializeLyrics } from "../logic/serialize";
 import { applyEditedText, type TextEditSummary } from "../logic/text-diff";
+import { processTextRows, splitTextRows } from "../logic/text-tools";
 import { editAsTextDialogAtom } from "../states";
 import styles from "./EditAsTextDialog.module.css";
 
@@ -109,6 +120,48 @@ function EditAsTextBody({
 		}
 	}, [deferredText, format, store]);
 
+	const { config: segmentationConfig, isLoading: segmentationLoading } =
+		useSegmentationConfig();
+	// Both run on the selected lines, or everything with no selection.
+	const tools: LyricMarkupTool[] = [
+		{
+			key: "process",
+			icon: <SparkleRegular />,
+			label: t("textImportDialog.processLyrics", "Process lyrics"),
+			run: (value, lines) => {
+				const next = processTextRows(
+					value,
+					format,
+					store.get(processStepsAtom),
+					lines,
+				);
+				if (next === value)
+					toast.info(t("editAsText.nothingToProcess", "Nothing to change."));
+				return next;
+			},
+		},
+		{
+			key: "split",
+			icon: <TextWordCountRegular />,
+			label: t("importLyrics.splitSyllables", "Split syllables"),
+			disabled: segmentationLoading,
+			run: (value, lines) => {
+				const next = splitTextRows(
+					value,
+					format,
+					(word) =>
+						segmentWord({ ...newLyricWord(), word }, segmentationConfig).map(
+							(part) => part.word,
+						),
+					lines,
+				);
+				if (next === value)
+					toast.info(t("importLyrics.splitNothing", "Nothing to split."));
+				return next;
+			},
+		},
+	];
+
 	const apply = () => {
 		try {
 			const current = store.get(lyricLinesAtom);
@@ -180,7 +233,14 @@ function EditAsTextBody({
 						onChange={setText}
 						format={format}
 						ariaLabel={t("editAsText.textLabel", "Lyrics text")}
+						tools={tools}
 					/>
+					<Text size="1" color="gray">
+						{t(
+							"editAsText.toolsHint",
+							"Process lyrics and Split syllables work on the selected lines, or on everything when nothing is selected.",
+						)}
+					</Text>
 				</Flex>
 				<ScrollArea type="auto" scrollbars="vertical" className={styles.side}>
 					<div className={styles.sideInner}>
