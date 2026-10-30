@@ -419,7 +419,7 @@ describe("preview background lifecycle", () => {
 						</StrictMode>,
 					);
 				});
-				const active = instances.at(-1);
+				const active = instances[instances.length - 1];
 				expect(active?.resume).toHaveBeenCalled();
 				expect(container.querySelectorAll("canvas")).toHaveLength(1);
 				await act(async () => {
@@ -429,7 +429,7 @@ describe("preview background lifecycle", () => {
 						</StrictMode>,
 					);
 				});
-				expect(instances.at(-1)).toBe(active);
+				expect(instances[instances.length - 1]).toBe(active);
 				expect(active?.pause).toHaveBeenCalled();
 				await act(async () => root.render(null));
 				expect(container.querySelector("canvas")).toBeNull();
