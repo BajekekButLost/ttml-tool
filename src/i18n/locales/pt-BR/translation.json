@@ -1242,6 +1242,14 @@
     "insertLine": "Inserir nova linha aqui",
     "insertWord": "Inserir palavra aqui…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Dividir linhas digitadas em palavras",
+    "splitTypedLinesDesc": "O texto digitado em uma linha vazia é dividido em palavras, como a importação divide as linhas.",
+    "scrollMemoryTitle": "Lembrar a posição do modo Edição",
+    "scrollMemoryDesc": "Reabre cada projeto na linha em que você estava no modo Edição.",
+    "swapDuetAll": "Trocar linhas principais e de dueto",
+    "swapDuetSelected": "Trocar principal e dueto"
+  },
   "lyricWordView": {
     "empty": "Vazio",
     "spaceCount": "Espaço ×{count}",

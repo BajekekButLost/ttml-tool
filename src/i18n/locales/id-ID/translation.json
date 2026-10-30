@@ -1242,6 +1242,14 @@
     "insertLine": "Sisipkan baris baru di sini",
     "insertWord": "Sisipkan kata di sini…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Pecah baris yang diketik menjadi kata",
+    "splitTypedLinesDesc": "Teks yang diketik di baris kosong dipecah menjadi kata, sama seperti impor memecah baris.",
+    "scrollMemoryTitle": "Ingat posisi mode Edit",
+    "scrollMemoryDesc": "Buka setiap proyek di baris terakhir Anda dalam mode Edit.",
+    "swapDuetAll": "Tukar baris utama dan duet",
+    "swapDuetSelected": "Tukar utama dan duet"
+  },
   "lyricWordView": {
     "empty": "Kosong",
     "spaceCount": "Spasi ×{count}",

@@ -1242,6 +1242,14 @@
     "insertLine": "Vložit nový řádek zde",
     "insertWord": "Vložit slovo zde…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Rozdělit napsané řádky na slova",
+    "splitTypedLinesDesc": "Text napsaný do prázdného řádku se rozdělí na slova stejně, jako import rozděluje řádky.",
+    "scrollMemoryTitle": "Pamatovat si pozici v režimu úprav",
+    "scrollMemoryDesc": "Otevře každý projekt na řádku, kde jste byli v režimu úprav.",
+    "swapDuetAll": "Prohodit hlavní a duetové řádky",
+    "swapDuetSelected": "Prohodit hlavní a duet"
+  },
   "lyricWordView": {
     "empty": "Prázdné",
     "spaceCount": "Mezera ×{count}",

@@ -9,6 +9,7 @@ import {
 	EyeOff24Regular,
 	Flash24Regular,
 	Highlight24Regular,
+	History24Regular,
 	Image24Regular,
 	NumberSymbol24Regular,
 	Options24Regular,
@@ -20,6 +21,7 @@ import {
 	TextDescription24Regular,
 	TextEditStyle24Regular,
 	TextLineSpacing24Regular,
+	TextWordCount24Regular,
 	Timeline24Regular,
 	TopSpeed24Regular,
 	Translate24Regular,
@@ -30,6 +32,11 @@ import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import { showPreviewPanelAtom } from "$/states/main";
+// Relative on purpose: keeps this import apart from other settings rows' imports.
+import {
+	editScrollMemoryAtom,
+	splitTypedLinesAtom,
+} from "../../lyric-editor/states/edit-mode-tools";
 import {
 	BackgroundSyncControl,
 	PreviewModeControl,
@@ -93,6 +100,22 @@ const editModeToggles: readonly ToggleRow[] = [
 		"Show a translation field under each lyric line.",
 		<Translate24Regular key="icon" />,
 		showLineTranslationAtom,
+	],
+	[
+		"editModeTools.splitTypedLinesTitle",
+		"Split typed lines into words",
+		"editModeTools.splitTypedLinesDesc",
+		"Text typed into an empty line is split into words, the same way an import splits lines.",
+		<TextWordCount24Regular key="icon" />,
+		splitTypedLinesAtom,
+	],
+	[
+		"editModeTools.scrollMemoryTitle",
+		"Remember Edit mode position",
+		"editModeTools.scrollMemoryDesc",
+		"Reopen each project at the line you were on in Edit mode.",
+		<History24Regular key="icon" />,
+		editScrollMemoryAtom,
 	],
 	[
 		"ribbonBar.editMode.showRomanization",

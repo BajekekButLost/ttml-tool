@@ -1242,6 +1242,14 @@
     "insertLine": "Insert new line here",
     "insertWord": "Insert word here…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Split typed lines into words",
+    "splitTypedLinesDesc": "Text typed into an empty line is split into words, the same way an import splits lines.",
+    "scrollMemoryTitle": "Remember Edit mode position",
+    "scrollMemoryDesc": "Reopen each project at the line you were on in Edit mode.",
+    "swapDuetAll": "Swap main and duet lines",
+    "swapDuetSelected": "Swap main and duet"
+  },
   "lyricWordView": {
     "empty": "Empty",
     "spaceCount": "Space ×{count}",

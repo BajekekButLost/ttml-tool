@@ -1242,6 +1242,14 @@
     "insertLine": "Lisää uusi rivi tähän",
     "insertWord": "Lisää sana tähän…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Jaa kirjoitetut rivit sanoiksi",
+    "splitTypedLinesDesc": "Tyhjälle riville kirjoitettu teksti jaetaan sanoiksi samalla tavalla kuin tuonti jakaa rivit.",
+    "scrollMemoryTitle": "Muista muokkaustilan kohta",
+    "scrollMemoryDesc": "Avaa jokainen projekti riviltä, jolla olit muokkaustilassa.",
+    "swapDuetAll": "Vaihda pää- ja duettorivit",
+    "swapDuetSelected": "Vaihda pää- ja duettorivi"
+  },
   "lyricWordView": {
     "empty": "Tyhjä",
     "spaceCount": "Välilyönti ×{count}",

@@ -1242,6 +1242,14 @@
     "insertLine": "Wstaw tutaj nowy wers",
     "insertWord": "Wstaw słowo tutaj…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Dziel wpisane wersy na słowa",
+    "splitTypedLinesDesc": "Tekst wpisany w pusty wers jest dzielony na słowa tak samo, jak import dzieli wersy.",
+    "scrollMemoryTitle": "Zapamiętuj pozycję w trybie edycji",
+    "scrollMemoryDesc": "Otwiera każdy projekt na wersie, na którym byłeś w trybie edycji.",
+    "swapDuetAll": "Zamień wersy główne i duetu",
+    "swapDuetSelected": "Zamień główny i duet"
+  },
   "lyricWordView": {
     "empty": "Pusty",
     "spaceCount": "Spacja ×{count}",

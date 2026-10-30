@@ -1242,6 +1242,14 @@
     "insertLine": "Insérer une nouvelle ligne ici",
     "insertWord": "Insérer un mot ici…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Découper les lignes saisies en mots",
+    "splitTypedLinesDesc": "Le texte saisi dans une ligne vide est découpé en mots, comme une importation découpe les lignes.",
+    "scrollMemoryTitle": "Mémoriser la position du mode Édition",
+    "scrollMemoryDesc": "Rouvre chaque projet à la ligne où vous étiez en mode Édition.",
+    "swapDuetAll": "Inverser les lignes principales et de duo",
+    "swapDuetSelected": "Inverser principal et duo"
+  },
   "lyricWordView": {
     "empty": "Vide",
     "spaceCount": "Espace ×{count}",

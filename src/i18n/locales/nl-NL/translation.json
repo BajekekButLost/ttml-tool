@@ -1242,6 +1242,14 @@
     "insertLine": "Voeg hier een nieuwe regel in",
     "insertWord": "Woord hier invoegen…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Getypte regels in woorden splitsen",
+    "splitTypedLinesDesc": "Tekst die je in een lege regel typt, wordt in woorden gesplitst zoals een import regels splitst.",
+    "scrollMemoryTitle": "Positie in bewerkmodus onthouden",
+    "scrollMemoryDesc": "Opent elk project bij de regel waar je in de bewerkmodus was.",
+    "swapDuetAll": "Hoofd- en duetregels omwisselen",
+    "swapDuetSelected": "Hoofd en duet omwisselen"
+  },
   "lyricWordView": {
     "empty": "Leeg",
     "spaceCount": "Spatie ×{count}",

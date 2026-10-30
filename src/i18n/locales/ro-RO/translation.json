@@ -1242,6 +1242,14 @@
     "insertLine": "Inserează un vers aici",
     "insertWord": "Introdu un cuvânt aici…"
   },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Împarte versurile tastate în cuvinte",
+    "splitTypedLinesDesc": "Textul tastat într-un vers gol este împărțit în cuvinte la fel cum un import împarte versurile.",
+    "scrollMemoryTitle": "Reține poziția din modul Editare",
+    "scrollMemoryDesc": "Redeschide fiecare proiect la versul la care erai în modul Editare.",
+    "swapDuetAll": "Inversează versurile principale și de duet",
+    "swapDuetSelected": "Inversează principal și duet"
+  },
   "lyricWordView": {
     "empty": "Gol",
     "spaceCount": "Spațiu ×{count}",
