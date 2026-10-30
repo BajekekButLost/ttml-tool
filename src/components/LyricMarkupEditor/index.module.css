@@ -95,9 +95,9 @@
 	background-color: var(--accent-a5);
 }
 
-/* Margin notes: what each line becomes. They sit level with the line's first row. */
+/* Margin icons: what each line becomes, named on hover. Level with the line's first row. */
 .editor :global(.lm-gutter) {
-	width: 136px;
+	width: 28px;
 	background: transparent;
 }
 
@@ -118,32 +118,48 @@
 	color: var(--gray-11);
 }
 
+/* The accent colour, except where a role has its own: background lines are
+   blue and duet lines green across the app, and warnings stay amber. */
 .editor :global(.lm-mark) {
-	display: block;
-	overflow: hidden;
-	padding: 0 var(--space-3);
-	font-size: var(--font-size-1);
-	text-align: right;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.editor :global(.lm-mark[data-kind="section"]) {
+	display: flex;
+	align-items: center;
+	/* One text row of the editor's 1.6 line height, so the icon sits level. */
+	height: 1.6em;
+	padding-left: var(--space-2);
 	color: var(--accent-11);
-	font-weight: 500;
+	font-size: var(--font-size-3);
 }
 
-.editor :global(.lm-mark[data-kind="section"]::first-letter) {
-	text-transform: uppercase;
+/* Toolbar buttons use the same role colours as the margin. */
+.roleBackground {
+	color: var(--blue-11);
+	font-size: 16px;
+}
+
+.roleDuet {
+	color: var(--green-11);
+	font-size: 16px;
+}
+
+.editor :global(.lm-mark svg) {
+	width: 16px;
+	height: 16px;
+}
+
+.editor :global(.lm-mark[data-kind="background"]) {
+	color: var(--blue-11);
+}
+
+.editor :global(.lm-mark[data-kind="duet"]) {
+	color: var(--green-11);
 }
 
 .editor :global(.lm-mark[data-kind="removedHeader"]) {
-	text-decoration: line-through;
+	color: var(--gray-11);
 }
 
 .editor :global(.lm-mark[data-kind="warning"]) {
 	color: var(--amber-11);
-	font-weight: 500;
 }
 
 /* Line roles. Wrapped rows keep the line's indent, so they stay attached. */
