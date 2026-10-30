@@ -1,5 +1,19 @@
 [
 	{
+		"version": "0.19.1",
+		"summary": "Linux build fix",
+		"color": "ruby",
+		"date": "2026-10-29",
+		"entries": [
+			{
+				"type": "fix",
+				"title": "The Flatpak and the fixed AppImage are back",
+				"body": "The v0.19.0 Linux build stopped early, so it had no Flatpak and an AppImage that lags on newer distros",
+				"highlight": false
+			}
+		]
+	},
+	{
 		"version": "0.19.0",
 		"summary": "New Preferences and Flatpak",
 		"color": "teal",
