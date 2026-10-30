@@ -1,44 +1,24 @@
-.trigger {
+.field {
 	width: 100%;
-	justify-content: space-between;
-	font-weight: normal;
 }
 
-.triggerText {
-	min-width: 0;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.fieldGroup {
 	white-space: nowrap;
-	color: var(--gray-12);
-}
-
-.triggerText[data-placeholder] {
-	color: var(--gray-11);
-}
-
-.triggerGroup {
-	margin-left: var(--space-2);
-	color: var(--gray-11);
 }
 
 .content {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-2);
 	width: max(var(--radix-popover-trigger-width), 280px);
 	max-width: min(420px, 90vw);
-	padding: var(--space-2);
+	padding: var(--space-1);
 }
 
 .list {
 	display: flex;
 	flex-direction: column;
-	/* Leaves room for the search field inside the space the popover has. */
 	max-height: min(
 		320px,
-		calc(var(--radix-popover-content-available-height, 50vh) - 64px)
+		calc(var(--radix-popover-content-available-height, 50vh) - 16px)
 	);
-	min-height: 96px;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 }
@@ -96,9 +76,5 @@
 		background: var(--accent-a6);
 		outline: 1px solid var(--accent-9);
 		outline-offset: -1px;
-	}
-
-	.triggerText[data-placeholder] {
-		color: var(--gray-12);
 	}
 }

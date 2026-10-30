@@ -3,13 +3,15 @@ import {
 	ChevronDown16Regular,
 	Search16Regular,
 } from "@fluentui/react-icons";
-import { Button, Popover, Text, TextField } from "@radix-ui/themes";
+import { Popover, Text, TextField } from "@radix-ui/themes";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import {
 	type KeyboardEvent,
 	type ReactNode,
 	useEffect,
 	useId,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 import styles from "./index.module.css";
@@ -44,8 +46,9 @@ export function filterSearchOptions<T extends SearchSelectOption>(
 const PAGE = 8;
 
 /**
- * A select with a search field, for lists too long to scroll through: type
- * to filter, arrow keys to move, Enter to pick, Esc to close.
+ * A select you type into, for lists too long to scroll through. The field
+ * shows the choice; focus it and type to filter the list under it, arrow keys
+ * to move, Enter to pick, Esc to close.
  */
 export function SearchSelect({
 	value,
@@ -59,16 +62,18 @@ export function SearchSelect({
 	value: string | undefined;
 	options: readonly SearchSelectOption[];
 	onValueChange: (value: string) => void;
-	/** Trigger text while nothing is picked. */
+	/** Field text while nothing is picked. */
 	placeholder: string;
+	/** Field text while the list is open and nothing is typed or picked. */
 	searchPlaceholder: string;
 	emptyText: string;
-	/** Accessible name for the trigger and the list. */
+	/** Accessible name for the field and the list. */
 	label: string;
 }) {
 	const [open, setOpen] = useState(false);
 	const [query, setQuery] = useState("");
 	const [activeIndex, setActiveIndex] = useState(0);
+	const anchorRef = useRef<HTMLDivElement>(null);
 	const listId = useId();
 	const optionId = (index: number) => `${listId}-${index}`;
 
@@ -86,13 +91,12 @@ export function SearchSelect({
 			?.scrollIntoView({ block: "nearest" });
 	});
 
-	const openChange = (next: boolean) => {
-		setOpen(next);
-		if (next) {
-			setQuery("");
-			const current = options.findIndex((option) => option.value === value);
-			setActiveIndex(Math.max(current, 0));
-		}
+	const show = () => {
+		if (open) return;
+		setQuery("");
+		const current = options.findIndex((option) => option.value === value);
+		setActiveIndex(Math.max(current, 0));
+		setOpen(true);
 	};
 
 	const pick = (option: SearchSelectOption | undefined) => {
@@ -107,87 +111,105 @@ export function SearchSelect({
 		switch (event.key) {
 			case "ArrowDown":
 				event.preventDefault();
+				if (!open) return show();
 				setActiveIndex(active >= last ? 0 : active + 1);
 				break;
 			case "ArrowUp":
 				event.preventDefault();
+				if (!open) return show();
 				setActiveIndex(active <= 0 ? last : active - 1);
 				break;
 			case "PageDown":
+				if (!open) return;
 				event.preventDefault();
 				setActiveIndex(Math.min(active + PAGE, last));
 				break;
 			case "PageUp":
+				if (!open) return;
 				event.preventDefault();
 				setActiveIndex(Math.max(active - PAGE, 0));
 				break;
 			case "Enter":
 				event.preventDefault();
-				pick(results[active]);
+				if (open) pick(results[active]);
+				else show();
+				break;
+			case "Escape":
+				if (!open) return;
+				// Close the list only, not the dialog around it.
+				event.preventDefault();
+				event.stopPropagation();
+				setOpen(false);
 				break;
 		}
 	};
 
 	return (
-		<Popover.Root open={open} onOpenChange={openChange}>
-			<Popover.Trigger>
-				<Button
-					variant="surface"
-					color="gray"
-					className={styles.trigger}
-					aria-label={label}
-					aria-haspopup="listbox"
-				>
-					<span
-						className={styles.triggerText}
-						data-placeholder={selected ? undefined : ""}
+		<Popover.Root open={open} onOpenChange={setOpen}>
+			{/* The primitive's Anchor: Themes' wrapper drops its children. */}
+			<PopoverPrimitive.Anchor asChild>
+				<div ref={anchorRef} className={styles.field}>
+					<TextField.Root
+						size="2"
+						value={open ? query : (selected?.label ?? "")}
+						onChange={(event) => {
+							setQuery(event.target.value);
+							setActiveIndex(0);
+							if (!open) setOpen(true);
+						}}
+						onFocus={show}
+						onClick={show}
+						onBlur={() => setOpen(false)}
+						onKeyDown={onKeyDown}
+						placeholder={
+							open ? (selected?.label ?? searchPlaceholder) : placeholder
+						}
+						role="combobox"
+						aria-label={label}
+						aria-expanded={open}
+						aria-controls={listId}
+						aria-autocomplete="list"
+						aria-activedescendant={
+							open && results.length > 0 ? optionId(active) : undefined
+						}
+						autoComplete="off"
+						spellCheck={false}
 					>
-						{selected?.label ?? placeholder}
-						{/* Same-named options, like three Auto-scrolls, differ by group. */}
-						{selected?.group && (
-							<span className={styles.triggerGroup}>{selected.group}</span>
-						)}
-					</span>
-					<ChevronDown16Regular aria-hidden />
-				</Button>
-			</Popover.Trigger>
+						<TextField.Slot>
+							<Search16Regular aria-hidden />
+						</TextField.Slot>
+						<TextField.Slot>
+							{/* Same-named options, like three Auto-scrolls, differ by group. */}
+							{!open && selected?.group && (
+								<Text size="1" color="gray" className={styles.fieldGroup}>
+									{selected.group}
+								</Text>
+							)}
+							<ChevronDown16Regular aria-hidden />
+						</TextField.Slot>
+					</TextField.Root>
+				</div>
+			</PopoverPrimitive.Anchor>
 			<Popover.Content
 				className={styles.content}
 				align="start"
 				sideOffset={4}
-				aria-label={label}
+				// Focus stays in the field, which drives the list.
+				onOpenAutoFocus={(event) => event.preventDefault()}
+				onCloseAutoFocus={(event) => event.preventDefault()}
+				onInteractOutside={(event) => {
+					if (anchorRef.current?.contains(event.target as Node))
+						event.preventDefault();
+				}}
+				// Keeps the field focused when an option is clicked.
+				onMouseDown={(event) => event.preventDefault()}
 			>
-				<TextField.Root
-					size="2"
-					value={query}
-					onChange={(event) => {
-						setQuery(event.target.value);
-						setActiveIndex(0);
-					}}
-					onKeyDown={onKeyDown}
-					placeholder={searchPlaceholder}
-					role="combobox"
-					aria-label={searchPlaceholder}
-					aria-expanded
-					aria-controls={listId}
-					aria-autocomplete="list"
-					aria-activedescendant={
-						results.length > 0 ? optionId(active) : undefined
-					}
-					autoComplete="off"
-					spellCheck={false}
-				>
-					<TextField.Slot>
-						<Search16Regular aria-hidden />
-					</TextField.Slot>
-				</TextField.Root>
 				<div
 					id={listId}
 					role="listbox"
 					aria-label={label}
 					className={styles.list}
 				>
-					{/* Keyboard is handled on the search field (aria-activedescendant). */}
 					{results.map((option, index) => {
 						const heading =
 							option.group !== undefined &&
@@ -208,7 +230,6 @@ export function SearchSelect({
 								<div
 									id={optionId(index)}
 									role="option"
-									tabIndex={-1}
 									aria-selected={index === active}
 									aria-checked={option.value === value}
 									className={styles.option}

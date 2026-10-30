@@ -86,18 +86,18 @@ describe("SearchSelect", () => {
 			);
 		});
 
-	it("filters as you type and picks with the arrow keys and Enter", () => {
+	it("filters what you type into the field and picks with the arrow keys and Enter", () => {
 		const onValueChange = vi.fn();
 		const container = mount(onValueChange);
-		const trigger = container.querySelector("button");
-		expect(trigger?.textContent).toContain("Choose an action...");
-		act(() => trigger?.click());
-
-		const input = document.querySelector<HTMLInputElement>(
+		const input = container.querySelector<HTMLInputElement>(
 			'input[role="combobox"]',
 		);
-		if (!input) throw new Error("search field missing");
+		if (!input) throw new Error("field missing");
+		expect(input.placeholder).toBe("Choose an action...");
+		expect(input.getAttribute("aria-expanded")).toBe("false");
+
 		type(input, "e");
+		expect(input.getAttribute("aria-expanded")).toBe("true");
 		const options = () =>
 			[...document.querySelectorAll('[role="option"]')].map(
 				(option) => option.textContent,
@@ -118,5 +118,19 @@ describe("SearchSelect", () => {
 		press(input, "ArrowDown");
 		press(input, "Enter");
 		expect(onValueChange).toHaveBeenCalledWith("loadAudio");
+		expect(input.getAttribute("aria-expanded")).toBe("false");
+	});
+
+	it("opens with the arrow keys and closes with Esc", () => {
+		const container = mount(vi.fn());
+		const input = container.querySelector<HTMLInputElement>(
+			'input[role="combobox"]',
+		);
+		if (!input) throw new Error("field missing");
+		press(input, "ArrowDown");
+		expect(input.getAttribute("aria-expanded")).toBe("true");
+		expect(document.querySelectorAll('[role="option"]')).toHaveLength(4);
+		press(input, "Escape");
+		expect(input.getAttribute("aria-expanded")).toBe("false");
 	});
 });
