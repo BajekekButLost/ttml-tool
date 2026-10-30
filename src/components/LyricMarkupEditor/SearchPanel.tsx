@@ -125,9 +125,14 @@ export function SearchPanel({
 	useEffect(() => {
 		if (request.text) setQuery(request.text);
 		if (request.mode === "replace") setShowReplace(true);
-		setFocusField({
-			field: request.mode === "replace" && request.text ? "replace" : "find",
-		});
+		const field =
+			request.mode === "replace" && request.text ? "replace" : "find";
+		const input = field === "replace" ? replaceRef.current : findRef.current;
+		// Focus now when the field is there, so the next keys land in it.
+		if (input) {
+			input.focus();
+			input.select();
+		} else setFocusField({ field });
 	}, [request]);
 
 	const options = useMemo<SearchOptions>(
@@ -321,9 +326,11 @@ export function SearchPanel({
 		shortcut: string,
 		icon: ReactNode,
 		disabled = false,
+		// The ones inside the find field are smaller so they fit in it.
+		size: "1" | "2" = "2",
 	) => (
 		<IconButton
-			size="1"
+			size={size}
 			variant="ghost"
 			color="gray"
 			className={styles.toggle}
@@ -347,7 +354,7 @@ export function SearchPanel({
 		>
 			<div className={styles.grid}>
 				<IconButton
-					size="1"
+					size="2"
 					variant="ghost"
 					color="gray"
 					aria-expanded={showReplace}
@@ -359,7 +366,7 @@ export function SearchPanel({
 				</IconButton>
 				<TextField.Root
 					ref={findRef}
-					size="1"
+					size="2"
 					className={styles.field}
 					value={query}
 					placeholder={t("lyricMarkup.search.find", "Find")}
@@ -384,6 +391,8 @@ export function SearchPanel({
 							t("lyricMarkup.search.matchCase", "Match case"),
 							"Alt+C",
 							<TextCaseTitleRegular />,
+							false,
+							"1",
 						)}
 						{toggle(
 							wholeWord,
@@ -391,6 +400,8 @@ export function SearchPanel({
 							t("lyricMarkup.search.wholeWord", "Whole word"),
 							"Alt+W",
 							<TextWholeWordRegular />,
+							false,
+							"1",
 						)}
 						{toggle(
 							regex,
@@ -398,12 +409,14 @@ export function SearchPanel({
 							t("lyricMarkup.search.regex", "Use a pattern (regex)"),
 							"Alt+R",
 							<TextAsteriskRegular />,
+							false,
+							"1",
 						)}
 					</TextField.Slot>
 				</TextField.Root>
 				<Flex align="center" gap="2" className={styles.controls}>
 					<Text
-						size="1"
+						size="2"
 						className={styles.count}
 						data-error={result.error ? true : undefined}
 						aria-live="polite"
@@ -411,7 +424,7 @@ export function SearchPanel({
 						{count}
 					</Text>
 					<IconButton
-						size="1"
+						size="2"
 						variant="ghost"
 						color="gray"
 						disabled={!matches.length}
@@ -422,7 +435,7 @@ export function SearchPanel({
 						<ChevronUpRegular />
 					</IconButton>
 					<IconButton
-						size="1"
+						size="2"
 						variant="ghost"
 						color="gray"
 						disabled={!matches.length}
@@ -449,7 +462,7 @@ export function SearchPanel({
 					)}
 					{hasSubRows && (
 						<Select.Root
-							size="1"
+							size="2"
 							value={rows}
 							onValueChange={(value) => setRows(value as SearchRows)}
 						>
@@ -475,7 +488,7 @@ export function SearchPanel({
 						</Select.Root>
 					)}
 					<IconButton
-						size="1"
+						size="2"
 						variant="ghost"
 						color="gray"
 						className={styles.close}
@@ -492,7 +505,7 @@ export function SearchPanel({
 						<span />
 						<TextField.Root
 							ref={replaceRef}
-							size="1"
+							size="2"
 							className={styles.field}
 							value={replacement}
 							placeholder={t("lyricMarkup.search.replace", "Replace with")}
@@ -512,7 +525,7 @@ export function SearchPanel({
 						</TextField.Root>
 						<Flex align="center" gap="2" className={styles.controls}>
 							<Button
-								size="1"
+								size="2"
 								variant="soft"
 								color="gray"
 								disabled={!matches.length}
@@ -522,7 +535,7 @@ export function SearchPanel({
 								{t("lyricMarkup.search.replaceOne", "Replace")}
 							</Button>
 							<Button
-								size="1"
+								size="2"
 								variant="soft"
 								color="gray"
 								disabled={!matches.length}
@@ -651,7 +664,7 @@ function MatchList({
 						</button>
 						{replacement !== null && (
 							<IconButton
-								size="1"
+								size="2"
 								variant="ghost"
 								color="gray"
 								className={styles.rowReplace}
