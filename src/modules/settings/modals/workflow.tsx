@@ -17,19 +17,18 @@ import {
 	Rename24Regular,
 	Sparkle24Regular,
 	TapSingle24Regular,
-	TextCaseTitle24Regular,
 	TextDescription24Regular,
 	TextEditStyle24Regular,
 	TextLineSpacing24Regular,
 	TextWordCount24Regular,
 	Timeline24Regular,
 	TopSpeed24Regular,
-	Translate24Regular,
 } from "@fluentui/react-icons";
 import { Box, Card, Flex, Heading, Text, TextField } from "@radix-ui/themes";
 import { useAtom, type WritableAtom } from "jotai";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { SlIcon } from "$/components/SlIcon";
 import { advancedRibbonControlsAtom } from "$/modules/onboarding/states";
 import { showPreviewPanelAtom } from "$/states/main";
 // Relative on purpose: keeps this import apart from other settings rows' imports.
@@ -98,7 +97,7 @@ const editModeToggles: readonly ToggleRow[] = [
 		"Show translation line",
 		"settings.workflow.showTranslationDesc",
 		"Show a translation field under each lyric line.",
-		<Translate24Regular key="icon" />,
+		<SlIcon name="translation" size={24} key="icon" />,
 		showLineTranslationAtom,
 	],
 	[
@@ -106,7 +105,7 @@ const editModeToggles: readonly ToggleRow[] = [
 		"Show romanization line",
 		"settings.workflow.showRomanizationDesc",
 		"Show a romanization field under each lyric line.",
-		<TextCaseTitle24Regular key="icon" />,
+		<SlIcon name="romanization" size={24} key="icon" />,
 		showLineRomanizationAtom,
 	],
 	[
@@ -182,7 +181,7 @@ const timeModeDisplayToggles: readonly ToggleRow[] = [
 		"Show per-word romanization",
 		"settings.workflow.showPerWordRomanizationDesc",
 		"Show each word's romanization under it.",
-		<TextCaseTitle24Regular key="icon" />,
+		<SlIcon name="romanization" size={24} key="icon" />,
 		displayRomanizationInSyncAtom,
 	],
 	[
@@ -228,7 +227,7 @@ const previewToggles: readonly ToggleRow[] = [
 		"Show translation",
 		"settings.workflow.previewShowTranslationDesc",
 		"Show translation lines in the preview.",
-		<Translate24Regular key="icon" />,
+		<SlIcon name="translation" size={24} key="icon" />,
 		showTranslationLinesAtom,
 	],
 	[
@@ -236,7 +235,7 @@ const previewToggles: readonly ToggleRow[] = [
 		"Show romanization",
 		"settings.workflow.previewShowRomanDesc",
 		"Show romanization in the preview.",
-		<TextCaseTitle24Regular key="icon" />,
+		<SlIcon name="romanization" size={24} key="icon" />,
 		showRomanLinesAtom,
 	],
 	[

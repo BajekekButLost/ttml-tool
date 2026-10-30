@@ -1,10 +1,11 @@
-import { SparkleRegular, TextWordCountRegular } from "@fluentui/react-icons";
 import {
 	Add16Regular,
 	ArrowSort16Regular,
 	Checkmark16Regular,
 	Edit16Regular,
+	SparkleRegular,
 	Subtract16Regular,
+	TextWordCountRegular,
 	Warning16Regular,
 } from "@fluentui/react-icons";
 import {

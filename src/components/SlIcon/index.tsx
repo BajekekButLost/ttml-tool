@@ -1,5 +1,6 @@
 import type { FluentIcon } from "@fluentui/react-icons";
 import {
+	ArrowSwapRegular,
 	BookmarkOffRegular,
 	BookmarkRegular,
 	PeopleRegular,
@@ -25,7 +26,17 @@ const FALLBACKS: Record<SlIconName, FluentIcon> = {
 	section: BookmarkRegular,
 	sectionRemoved: BookmarkOffRegular,
 	warning: WarningRegular,
+	swapDuet: ArrowSwapRegular,
 };
+
+/**
+ * Colours for roles that are colour coded across the app. Everything else
+ * follows the accent.
+ */
+export const ROLE_COLORS = {
+	background: "var(--blue-11)",
+	duet: "var(--green-11)",
+} as const;
 
 /**
  * An icon that draws the Spicy Lyrics glyph while that design is on and its
@@ -35,11 +46,17 @@ export function SlIcon({
 	name,
 	label,
 	className,
+	color,
+	size,
 }: {
 	name: SlIconName;
 	/** Names the icon for assistive tech; leave out when it's decorative. */
 	label?: string;
 	className?: string;
+	/** Defaults to the surrounding text colour. */
+	color?: string;
+	/** In px. Defaults to the surrounding font size, like Fluent's icons. */
+	size?: number;
 }) {
 	const Fallback = FALLBACKS[name];
 	// Built once per icon, so its cut-out mask keeps one id.
@@ -47,6 +64,11 @@ export function SlIcon({
 	return (
 		<span
 			className={className ? `${styles.icon} ${className}` : styles.icon}
+			style={
+				color || size
+					? { color, fontSize: size ? `${size}px` : undefined }
+					: undefined
+			}
 			role={label ? "img" : undefined}
 			aria-label={label}
 			aria-hidden={label ? undefined : true}

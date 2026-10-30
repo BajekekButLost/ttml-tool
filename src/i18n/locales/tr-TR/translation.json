@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {# kelimeyi sil} other {# kelimeyi sil}}",
     "bgLyric": "Arka vokal satırı",
     "duetLyric": "Düet satırı",
+    "lineRole": "Satır rolü",
     "moveLineToPlayhead": "Satırı oynatma konumuna taşı",
     "copyTimingsTo": "Zamanlamaları şuraya kopyala…",
     "cancelCopyTimings": "Zamanlama kopyalamasını iptal et",

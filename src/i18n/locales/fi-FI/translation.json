@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Poista # sana} other {Poista # sanaa}}",
     "bgLyric": "Taustalaulurivi",
     "duetLyric": "Duettorivi",
+    "lineRole": "Rivin rooli",
     "moveLineToPlayhead": "Siirrä rivi toistokohdistimeen",
     "copyTimingsTo": "Kopioi ajoitukset kohteeseen…",
     "cancelCopyTimings": "Peruuta ajoituskopiointi",

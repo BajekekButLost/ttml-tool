@@ -1026,6 +1026,7 @@
     "deleteWords": "Zmazať {count, plural, one {# slovo} few {# slová} many {# slova} other {# slov}}",
     "bgLyric": "Sprievodný riadok",
     "duetLyric": "Duetový riadok",
+    "lineRole": "Rola riadku",
     "moveLineToPlayhead": "Presunúť riadok na pozíciu prehrávania",
     "copyTimingsTo": "Kopírovať časovanie do…",
     "cancelCopyTimings": "Zrušiť kopírovanie časovania",

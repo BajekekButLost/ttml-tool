@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Șterge # cuvânt} few {Șterge # cuvinte} other {Șterge # de cuvinte}}",
     "bgLyric": "Vers de fundal",
     "duetLyric": "Vers de duet",
+    "lineRole": "Rolul rândului",
     "moveLineToPlayhead": "Mută versul la cursorul de redare",
     "copyTimingsTo": "Copiază timpii în…",
     "cancelCopyTimings": "Anulează copierea timpilor",

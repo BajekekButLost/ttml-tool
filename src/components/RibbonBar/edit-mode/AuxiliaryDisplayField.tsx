@@ -1,6 +1,7 @@
 import { Grid } from "@radix-ui/themes";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+
 /*
  * Copyright 2023-2025 Steve Xiao (stevexmh@qq.com) and contributors.
  *
@@ -12,6 +13,7 @@ import { useTranslation } from "react-i18next";
  * https://github.com/spicylyrics/ttml-tool/blob/main/LICENSE
  */
 
+import { SlIcon } from "$/components/SlIcon";
 import {
 	showLineRomanizationAtom,
 	showLineTranslationAtom,
@@ -31,6 +33,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"Show a translation field under each lyric line.",
 				)}
 				setting={showLineTranslationAtom}
+				icon={<SlIcon name="translation" />}
 			/>
 			<RibbonToggle
 				label={t(
@@ -42,6 +45,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"Show a romanization field under each lyric line.",
 				)}
 				setting={showLineRomanizationAtom}
+				icon={<SlIcon name="romanization" />}
 			/>
 			<RibbonToggle
 				label={t(
@@ -53,6 +57,7 @@ export const AuxiliaryDisplayField: FC = () => {
 					"Show a romanization field on each word.",
 				)}
 				setting={showWordRomanizationInputAtom}
+				icon={<SlIcon name="romanization" />}
 			/>
 		</Grid>
 	);

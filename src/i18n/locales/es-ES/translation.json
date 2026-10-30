@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {Eliminar # palabra} many {Eliminar # palabras} other {Eliminar # palabras}}",
     "bgLyric": "Línea de voces de fondo",
     "duetLyric": "Línea de dúo",
+    "lineRole": "Función de la línea",
     "moveLineToPlayhead": "Mover línea al cabezal de reproducción",
     "copyTimingsTo": "Copiar tiempos a…",
     "cancelCopyTimings": "Cancelar copia de tiempos",

@@ -1026,6 +1026,7 @@
     "deleteWords": "{count, plural, one {# woord verwijderen} other {# woorden verwijderen}}",
     "bgLyric": "Achtergrondregel",
     "duetLyric": "Duetregel",
+    "lineRole": "Rol van de regel",
     "moveLineToPlayhead": "Regel naar afspeelkop verplaatsen",
     "copyTimingsTo": "Timing kopiëren naar…",
     "cancelCopyTimings": "Kopiëren van timing annuleren",

@@ -48,6 +48,11 @@ export const SL_GLYPHS = {
 		],
 		cut: ["M8.5 16.5 12 7.5l3.5 9", "M9.75 13.25h4.5"],
 	},
+	/** Swap main and duet: two singers trading sides. */
+	swapDuet: {
+		solid: ["M7.5 4.5 3.75 8.25 7.5 12Z", "M16.5 12l3.75 3.75L16.5 19.5Z"],
+		line: ["M4.5 8.25h14.25", "M19.5 15.75H5.25"],
+	},
 	/** A section header. The header's own pill says which kind. */
 	section: {
 		solid: [
@@ -100,7 +105,7 @@ export function slGlyphMarkup(name: SlIconName): string {
 	const lines = (glyph.line ?? [])
 		.map(
 			(d) =>
-				`<path d="${d}" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>`,
+				`<path d="${d}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
 		)
 		.join("");
 	return `<svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false">${faint}${body}${lines}</svg>`;

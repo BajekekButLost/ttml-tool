@@ -12,7 +12,7 @@
 import { Checkbox } from "@radix-ui/themes";
 import { atom, useAtomValue, useStore } from "jotai";
 import { useSetImmerAtom } from "jotai-immer";
-import { useId, useMemo } from "react";
+import { type ReactNode, useId, useMemo } from "react";
 import { ActionTooltip } from "$/components/ActionTooltip";
 import {
 	lyricLinesAtom,
@@ -38,8 +38,11 @@ export function CheckboxField<
 	isWordField,
 	fieldName,
 	defaultValue,
+	icon,
 }: {
 	label: string;
+	/** Shown before the label, for role fields. */
+	icon?: ReactNode;
 	/** One line for the tooltip on what the field does. */
 	description?: string;
 	isWordField: Word;
@@ -83,6 +86,7 @@ export function CheckboxField<
 				label={label}
 				description={description}
 				htmlFor={checkboxId}
+				icon={icon}
 			/>
 			<ActionTooltip label={label} description={description}>
 				<Checkbox

@@ -18,6 +18,7 @@ import { useAtomValue } from "jotai";
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ActionTooltip } from "$/components/ActionTooltip";
+import { SlIcon } from "$/components/SlIcon";
 import {
 	PreviewModeType,
 	previewModeTypeAtom,
@@ -141,6 +142,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 									"Show translation lines in the preview.",
 								)}
 								setting={showTranslationLinesAtom}
+								icon={<SlIcon name="translation" />}
 							/>
 							<RibbonToggle
 								label={t(
@@ -152,6 +154,7 @@ export const PreviewModeRibbonBar = forwardRef<HTMLDivElement>(
 									"Show romanization in the preview.",
 								)}
 								setting={showRomanLinesAtom}
+								icon={<SlIcon name="romanization" />}
 							/>
 							{previewModeType === PreviewModeType.Spicy && (
 								<RibbonToggle
