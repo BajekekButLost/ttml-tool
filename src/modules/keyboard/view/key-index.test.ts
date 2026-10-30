@@ -176,4 +176,14 @@ describe("layouts and labels", () => {
 			}),
 		).toBe("Ctrl+A");
 	});
+
+	it("shortens long names on the cap face only", () => {
+		const picked = { layout: "qwerty" as const, canDetect: false };
+		expect(labels.capFaceLabel("PageUp", picked)).toBe("PgUp");
+		expect(labels.capLabel("PageUp", picked)).toBe("Page Up");
+		expect(labels.capFaceLabel("KeyQ", picked)).toBe("Q");
+		expect(labels.formatViewCombo(["Control", "Delete"], picked)).toBe(
+			"Ctrl+Delete",
+		);
+	});
 });
