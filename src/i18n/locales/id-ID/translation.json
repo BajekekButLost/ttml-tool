@@ -228,6 +228,27 @@
       "missingRomanization": "Romanisasi kosong"
     }
   },
+  "editAsText": {
+    "menuItem": "Edit sebagai teks...",
+    "title": "Edit sebagai teks",
+    "description": "Edit seluruh lirik sebagai teks biasa. Kata yang tidak Anda ubah tetap mempertahankan timing-nya.",
+    "textLabel": "Teks lirik",
+    "summaryTitle": "Perubahan",
+    "unchanged": "{count, plural, other {# baris tidak berubah}}",
+    "edited": "{count, plural, other {# baris diedit}}",
+    "editedHint": "Timing dipertahankan jika katanya cocok.",
+    "moved": "{count, plural, other {# baris dipindah}}",
+    "added": "{count, plural, other {# baris ditambahkan}}",
+    "removed": "{count, plural, other {# baris dihapus}}",
+    "noChanges": "Belum ada perubahan.",
+    "droppedTimings": "{count, plural, other {# kata bertiming kehilangan timing-nya}}",
+    "lineNumber": "Baris {line}",
+    "more": "{count, plural, other {dan # lainnya}}",
+    "help": "Kata baru masuk tanpa timing. Baris yang hanya dipindah tetap mempertahankan timing-nya. Terapkan adalah satu langkah urungkan.",
+    "apply": "Terapkan",
+    "applied": "Teks diterapkan. Urungkan mengembalikannya dalam satu langkah.",
+    "failed": "Teks tidak dapat diterapkan. Periksa lalu coba lagi."
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "Impor lirik baru?",
       "description": "File saat ini memiliki perubahan yang belum disimpan. Jika dilanjutkan, perubahan ini akan hilang. Anda yakin ingin mengimpor lirik?"
+    },
+    "discardTextEdits": {
+      "title": "Buang perubahan Anda?",
+      "description": "Teks memiliki perubahan yang belum diterapkan. Jika ditutup sekarang, perubahan itu hilang.",
+      "discard": "Buang",
+      "keepEditing": "Lanjut mengedit"
     },
     "noSongwriter": {
       "description": "Lagu ini belum memiliki penulis lagu. Tetap simpan?"
@@ -1107,7 +1134,37 @@
       "changelog": "Log perubahan"
     }
   },
-  "autoSegmentApplied": "Disegmentasi otomatis dengan {engine}",
+  "keyboardView": {
+    "title": "Keyboard",
+    "search": "Cari aksi",
+    "searchResults": "{count, plural, =0 {Tidak ada aksi yang cocok} other {# aksi cocok}}",
+    "layout": "Tata letak keyboard",
+    "layoutAuto": "Otomatis",
+    "layoutDetected": "Terdeteksi: {layout}",
+    "layoutUnavailable": "Tata letak tidak dapat dideteksi di sini, jadi QWERTY ditampilkan",
+    "layerHint": "Klik tombol pengubah, seperti Shift, untuk melihat pintasan yang memakainya.",
+    "category": {
+      "sync": "Sinkronisasi",
+      "edit": "Edit",
+      "playback": "Pemutaran",
+      "navigation": "Navigasi"
+    },
+    "free": "Kosong",
+    "keyFree": "{key}: kosong",
+    "keyActions": "{key}: {actions}",
+    "modifierLayer": "Tampilkan pintasan dengan {key}",
+    "freeKey": "Belum ada yang memakai {key}.",
+    "assignLabel": "Aksi",
+    "assignPlaceholder": "Pilih aksi...",
+    "assign": "Tambahkan ke {key}",
+    "changeKey": "Ganti tombol",
+    "addKey": "Tambah tombol kedua",
+    "removeKey": "Hapus {key}",
+    "duplicateKey": "Tombol itu sudah dipakai untuk aksi ini.",
+    "otherLayers": "Juga di tombol ini",
+    "closePanel": "Tutup"
+  },
+  "autoSegmentApplied":"Disegmentasi otomatis dengan {engine}",
   "error": {
     "unsupportedFileFormat": "Format file tidak didukung: {ext}",
     "openFileFailed": "Gagal membuka file",
@@ -1253,6 +1310,14 @@
     "wordTimingMismatch": "{count, plural, other {# baris memiliki jumlah kata berbeda; hanya posisi kata yang cocok yang disalin.}}",
     "insertLine": "Sisipkan baris baru di sini",
     "insertWord": "Sisipkan kata di sini…"
+  },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Pecah baris yang diketik menjadi kata",
+    "splitTypedLinesDesc": "Teks yang diketik di baris kosong dipecah menjadi kata, sama seperti impor memecah baris.",
+    "scrollMemoryTitle": "Ingat posisi mode Edit",
+    "scrollMemoryDesc": "Buka setiap proyek di baris terakhir Anda dalam mode Edit.",
+    "swapDuetAll": "Tukar baris utama dan duet",
+    "swapDuetSelected": "Tukar utama dan duet"
   },
   "lyricWordView": {
     "empty": "Kosong",

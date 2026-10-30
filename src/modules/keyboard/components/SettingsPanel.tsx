@@ -15,7 +15,7 @@ import {
 	Text,
 	TextField,
 } from "@radix-ui/themes";
-import { atom, useAtom, useAtomValue } from "jotai";
+import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useId, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -25,6 +25,7 @@ import {
 	recordShortcut,
 	stopRecordingShortcut,
 } from "$/utils/keybindings";
+import { keyBindingListAtom } from "../binding-list";
 import { findKeyBindingConflicts } from "../conflicts";
 import { getAllCommands } from "../registry";
 import { autoSegmentDoublePressAtom } from "../states";
@@ -46,6 +47,11 @@ const KeyBindingsEdit = ({
 }) => {
 	const { t } = useTranslation();
 	const [keys, setKeys] = useAtom(command.atom);
+	// Clear and Reset go through the list so extra keys go with the primary.
+	// Recording only replaces the primary, leaving extras alone.
+	const listAtom = keyBindingListAtom(command);
+	const hasExtras = useAtomValue(listAtom).length > 1;
+	const setList = useSetAtom(listAtom);
 	const [listening, setListening] = useState(false);
 	const labelId = useId();
 	const conflictId = useId();
@@ -102,9 +108,10 @@ const KeyBindingsEdit = ({
 							variant="soft"
 							disabled={
 								listening ||
-								getShortcutKey(keys) === getShortcutKey(command.defaultKeys)
+								(!hasExtras &&
+									getShortcutKey(keys) === getShortcutKey(command.defaultKeys))
 							}
-							onClick={() => setKeys(RESET_KEYBINDING)}
+							onClick={() => void setList(RESET_KEYBINDING)}
 						>
 							{t("settingsDialog.keybindings.resetDefault")}
 						</Button>
@@ -112,8 +119,8 @@ const KeyBindingsEdit = ({
 							size="1"
 							variant="soft"
 							color="gray"
-							disabled={listening || keys.length === 0}
-							onClick={() => setKeys([])}
+							disabled={listening || (keys.length === 0 && !hasExtras)}
+							onClick={() => void setList([])}
 						>
 							{t("settingsDialog.keybindings.clear")}
 						</Button>

@@ -228,6 +228,27 @@
       "missingRomanization": "Chýba romanizácia"
     }
   },
+  "editAsText": {
+    "menuItem": "Upraviť ako text...",
+    "title": "Upraviť ako text",
+    "description": "Upravte celý text piesne ako obyčajný text. Slová, ktoré nezmeníte, si ponechajú časovanie.",
+    "textLabel": "Text piesne",
+    "summaryTitle": "Zmeny",
+    "unchanged": "{count, plural, one {# riadok bez zmeny} few {# riadky bez zmeny} many {# riadka bez zmeny} other {# riadkov bez zmeny}}",
+    "edited": "{count, plural, one {# upravený riadok} few {# upravené riadky} many {# upraveného riadka} other {# upravených riadkov}}",
+    "editedHint": "Časovanie zostane tam, kde sa slová zhodujú.",
+    "moved": "{count, plural, one {# presunutý riadok} few {# presunuté riadky} many {# presunutého riadka} other {# presunutých riadkov}}",
+    "added": "{count, plural, one {# pridaný riadok} few {# pridané riadky} many {# pridaného riadka} other {# pridaných riadkov}}",
+    "removed": "{count, plural, one {# odstránený riadok} few {# odstránené riadky} many {# odstráneného riadka} other {# odstránených riadkov}}",
+    "noChanges": "Zatiaľ žiadne zmeny.",
+    "droppedTimings": "{count, plural, one {# načasované slovo príde o časovanie} few {# načasované slová prídu o časovanie} many {# načasovaného slova príde o časovanie} other {# načasovaných slov príde o časovanie}}",
+    "lineNumber": "Riadok {line}",
+    "more": "{count, plural, one {a # ďalší} few {a # ďalšie} many {a # ďalšieho} other {a # ďalších}}",
+    "help": "Nové slová prídu bez časovania. Riadky, ktoré sa len presunuli, si časovanie ponechajú. Použitie vrátite jedným krokom späť.",
+    "apply": "Použiť",
+    "applied": "Text bol použitý. Jedným krokom späť ho vrátite.",
+    "failed": "Text sa nepodarilo použiť. Skontrolujte ho a skúste to znova."
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "Importovať nový text piesne?",
       "description": "Máte neuložené zmeny. Ak budete pokračovať, tieto zmeny budú stratené. Naozaj chcete importovať nové texty?"
+    },
+    "discardTextEdits": {
+      "title": "Zahodiť úpravy?",
+      "description": "Text obsahuje zmeny, ktoré ste nepoužili. Zatvorením ich stratíte.",
+      "discard": "Zahodiť",
+      "keepEditing": "Pokračovať v úpravách"
     },
     "noSongwriter": {
       "description": "Skladba nemá uvedených autorov. Aj tak uložiť?"
@@ -1107,7 +1134,37 @@
       "changelog": "Zoznam zmien"
     }
   },
-  "autoSegmentApplied": "Automaticky rozdelené pomocou {engine}",
+  "keyboardView": {
+    "title": "Klávesnica",
+    "search": "Hľadať akcie",
+    "searchResults": "{count, plural, =0 {Žiadna akcia nezodpovedá} one {Zodpovedá # akcia} few {Zodpovedajú # akcie} many {Zodpovedá # akcie} other {Zodpovedá # akcií}}",
+    "layout": "Rozloženie klávesnice",
+    "layoutAuto": "Automaticky",
+    "layoutDetected": "Zistené: {layout}",
+    "layoutUnavailable": "Rozloženie tu nemožno zistiť, zobrazuje sa QWERTY",
+    "layerHint": "Kliknite na modifikačný kláves, napríklad Shift, a uvidíte skratky, ktoré ho používajú.",
+    "category": {
+      "sync": "Časovanie",
+      "edit": "Úpravy",
+      "playback": "Prehrávanie",
+      "navigation": "Navigácia"
+    },
+    "free": "Voľný",
+    "keyFree": "{key}: voľný",
+    "keyActions": "{key}: {actions}",
+    "modifierLayer": "Zobraziť skratky s {key}",
+    "freeKey": "{key} zatiaľ nič nepoužíva.",
+    "assignLabel": "Akcia",
+    "assignPlaceholder": "Vyberte akciu...",
+    "assign": "Pridať na {key}",
+    "changeKey": "Zmeniť kláves",
+    "addKey": "Pridať druhý kláves",
+    "removeKey": "Odobrať {key}",
+    "duplicateKey": "Tento kláves je už pre túto akciu nastavený.",
+    "otherLayers": "Aj na tomto klávese",
+    "closePanel": "Zavrieť"
+  },
+  "autoSegmentApplied":"Automaticky rozdelené pomocou {engine}",
   "error": {
     "unsupportedFileFormat": "Nepodporovaný formát súboru: {ext}",
     "openFileFailed": "Nepodarilo sa otvoriť súbor",
@@ -1253,6 +1310,14 @@
     "wordTimingMismatch": "{count, plural, one {# riadok mal} few {# riadky mali} many {# riadka malo} other {# riadkov malo}} iný počet slov. Skopírované boli len zodpovedajúce pozície slov.",
     "insertLine": "Vložiť nový riadok tu",
     "insertWord": "Vložiť slovo tu…"
+  },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Rozdeliť napísané riadky na slová",
+    "splitTypedLinesDesc": "Text napísaný do prázdneho riadka sa rozdelí na slová rovnako, ako import rozdeľuje riadky.",
+    "scrollMemoryTitle": "Pamätať si pozíciu v režime úprav",
+    "scrollMemoryDesc": "Otvorí každý projekt na riadku, kde ste boli v režime úprav.",
+    "swapDuetAll": "Vymeniť hlavné a duetové riadky",
+    "swapDuetSelected": "Vymeniť hlavný a duet"
   },
   "lyricWordView": {
     "empty": "Prázdne",

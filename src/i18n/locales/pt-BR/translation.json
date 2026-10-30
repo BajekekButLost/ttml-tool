@@ -228,6 +228,27 @@
       "missingRomanization": "Falta romanização"
     }
   },
+  "editAsText": {
+    "menuItem": "Editar como texto...",
+    "title": "Editar como texto",
+    "description": "Edite a letra inteira como texto simples. As palavras que você não mudar mantêm a sincronização.",
+    "textLabel": "Texto da letra",
+    "summaryTitle": "Alterações",
+    "unchanged": "{count, plural, one {# linha sem alteração} many {# linhas sem alteração} other {# linhas sem alteração}}",
+    "edited": "{count, plural, one {# linha editada} many {# linhas editadas} other {# linhas editadas}}",
+    "editedHint": "A sincronização é mantida onde as palavras coincidem.",
+    "moved": "{count, plural, one {# linha movida} many {# linhas movidas} other {# linhas movidas}}",
+    "added": "{count, plural, one {# linha adicionada} many {# linhas adicionadas} other {# linhas adicionadas}}",
+    "removed": "{count, plural, one {# linha removida} many {# linhas removidas} other {# linhas removidas}}",
+    "noChanges": "Nenhuma alteração ainda.",
+    "droppedTimings": "{count, plural, one {# palavra sincronizada perde a sincronização} many {# palavras sincronizadas perdem a sincronização} other {# palavras sincronizadas perdem a sincronização}}",
+    "lineNumber": "Linha {line}",
+    "more": "{count, plural, one {e mais #} many {e mais #} other {e mais #}}",
+    "help": "Palavras novas entram sem sincronização. Linhas que só foram movidas mantêm a sincronização. Aplicar é desfeito em um único passo.",
+    "apply": "Aplicar",
+    "applied": "Texto aplicado. Desfazer reverte em um único passo.",
+    "failed": "Não foi possível aplicar o texto. Confira e tente de novo."
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "Importar uma nova letra?",
       "description": "Você tem alterações não salvas. Se continuar, essas alterações serão perdidas. Tem certeza de que deseja importar novas letras?"
+    },
+    "discardTextEdits": {
+      "title": "Descartar suas edições?",
+      "description": "O texto tem alterações que você não aplicou. Fechar agora faz você perdê-las.",
+      "discard": "Descartar",
+      "keepEditing": "Continuar editando"
     },
     "noSongwriter": {
       "description": "Esta música não tem compositores. Salvar mesmo assim?"
@@ -1107,7 +1134,37 @@
       "changelog": "Novidades"
     }
   },
-  "autoSegmentApplied": "Segmentado automaticamente com {engine}",
+  "keyboardView": {
+    "title": "Teclado",
+    "search": "Buscar ações",
+    "searchResults": "{count, plural, =0 {Nenhuma ação corresponde} one {# ação corresponde} many {# ações correspondem} other {# ações correspondem}}",
+    "layout": "Layout do teclado",
+    "layoutAuto": "Automático",
+    "layoutDetected": "Detectado: {layout}",
+    "layoutUnavailable": "Não é possível detectar o layout aqui, então o QWERTY é mostrado",
+    "layerHint": "Clique em uma tecla modificadora, como Shift, para ver os atalhos que a usam.",
+    "category": {
+      "sync": "Sincronização",
+      "edit": "Edição",
+      "playback": "Reprodução",
+      "navigation": "Navegação"
+    },
+    "free": "Livre",
+    "keyFree": "{key}: livre",
+    "keyActions": "{key}: {actions}",
+    "modifierLayer": "Mostrar atalhos com {key}",
+    "freeKey": "Nada usa {key} ainda.",
+    "assignLabel": "Ação",
+    "assignPlaceholder": "Escolha uma ação...",
+    "assign": "Adicionar a {key}",
+    "changeKey": "Trocar tecla",
+    "addKey": "Adicionar segunda tecla",
+    "removeKey": "Remover {key}",
+    "duplicateKey": "Essa tecla já está definida para esta ação.",
+    "otherLayers": "Também nesta tecla",
+    "closePanel": "Fechar"
+  },
+  "autoSegmentApplied":"Segmentado automaticamente com {engine}",
   "error": {
     "unsupportedFileFormat": "Formato de arquivo não suportado: {ext}",
     "openFileFailed": "Falha ao abrir arquivo",
@@ -1253,6 +1310,14 @@
     "wordTimingMismatch": "{count, plural, one {# linha tinha uma quantidade diferente de palavras; apenas as posições correspondentes foram copiadas.} many {# linhas tinham quantidades diferentes de palavras; apenas as posições correspondentes foram copiadas.} other {# linhas tinham quantidades diferentes de palavras; apenas as posições correspondentes foram copiadas.}}",
     "insertLine": "Inserir nova linha aqui",
     "insertWord": "Inserir palavra aqui…"
+  },
+  "editModeTools": {
+    "splitTypedLinesTitle": "Dividir linhas digitadas em palavras",
+    "splitTypedLinesDesc": "O texto digitado em uma linha vazia é dividido em palavras, como a importação divide as linhas.",
+    "scrollMemoryTitle": "Lembrar a posição do modo Edição",
+    "scrollMemoryDesc": "Reabre cada projeto na linha em que você estava no modo Edição.",
+    "swapDuetAll": "Trocar linhas principais e de dueto",
+    "swapDuetSelected": "Trocar principal e dueto"
   },
   "lyricWordView": {
     "empty": "Vazio",
