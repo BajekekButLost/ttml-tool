@@ -98,13 +98,14 @@
 /* Margin notes: what each line becomes. They sit level with the line's first row. */
 .editor :global(.lm-gutter) {
 	width: 136px;
-	border-right: 1px solid var(--gray-a4);
 	background: transparent;
 }
 
+/* Lyric line numbers, right next to the text. */
 .editor :global(.lm-numbers) {
 	min-width: 3ch;
-	padding: 0 var(--space-1) 0 var(--space-2);
+	padding: 0 var(--space-1);
+	border-right: 1px solid var(--gray-a4);
 	color: var(--gray-11);
 	font-size: var(--font-size-1);
 	font-variant-numeric: tabular-nums;

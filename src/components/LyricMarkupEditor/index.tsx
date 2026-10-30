@@ -37,12 +37,14 @@ import {
 	type LyricMarkupFormat,
 	normalizeHeaderCategory,
 } from "./markup";
+import { lineChanges } from "./text-changes";
 
 export type { LyricMarkupFormat } from "./markup";
 
 /**
- * Rewrites the text as one undo step, replacing only the span that differs so
- * the scroll position and the cursor stay where they were.
+ * Rewrites the text as one undo step. Only the lines that differ are touched,
+ * so the editor keeps the line at the top of the view, and the cursor, where
+ * they were.
  */
 function replaceInPlace(
 	view: EditorView,
@@ -50,35 +52,14 @@ function replaceInPlace(
 	after: string,
 	userEvent?: string,
 ) {
-	let start = 0;
-	while (
-		start < before.length &&
-		start < after.length &&
-		before[start] === after[start]
-	)
-		start++;
-	let tail = 0;
-	while (
-		tail < before.length - start &&
-		tail < after.length - start &&
-		before[before.length - 1 - tail] === after[after.length - 1 - tail]
-	)
-		tail++;
-	const scrollTop = view.scrollDOM.scrollTop;
+	const changes = view.state.changes(lineChanges(before, after));
 	view.dispatch({
-		changes: {
-			from: start,
-			to: before.length - tail,
-			insert: after.slice(start, after.length - tail),
-		},
+		changes,
+		// Redrawing the cursor's line would otherwise let the browser scroll to
+		// it; this puts the line that was at the top back at the top.
+		effects: view.scrollSnapshot().map(changes),
 		annotations: [Transaction.addToHistory.of(true), isolateHistory.of("full")],
 		userEvent,
-	});
-	view.requestMeasure({
-		read: () => null,
-		write: () => {
-			view.scrollDOM.scrollTop = scrollTop;
-		},
 	});
 }
 
@@ -243,7 +224,8 @@ export function LyricMarkupEditor({
 		const before = doc.toString();
 		const after = tool.run(before, empty ? null : { from: first, to: end });
 		if (after !== before) replaceInPlace(view, before, after, "input.tool");
-		view.focus();
+		// A plain focus() would scroll the cursor into view.
+		view.contentDOM.focus({ preventScroll: true });
 	};
 
 	// The header the open menu edits, read fresh from the document.
@@ -327,6 +309,8 @@ export function LyricMarkupEditor({
 								variant="ghost"
 								color="gray"
 								disabled={tool.disabled}
+								// Keeps focus, and the scroll position, in the editor.
+								onMouseDown={(event) => event.preventDefault()}
 								onClick={() => runTool(tool)}
 							>
 								{tool.icon}
