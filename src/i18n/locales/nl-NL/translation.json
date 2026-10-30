@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, one {# woord verwijderen} other {# woorden verwijderen}}",
     "bgLyric": "Achtergrondregel",
     "duetLyric": "Duetregel",
+    "lineRole": "Rol van de regel",
     "moveLineToPlayhead": "Regel naar afspeelkop verplaatsen",
     "copyTimingsTo": "Timing kopiëren naar…",
     "cancelCopyTimings": "Kopiëren van timing annuleren",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Spectrogram - Selectie afspelen",
       "auditionSelectionAfter": "Spectrogram - Selectie afspelen (+0,5 s erna)",
       "cancelTimelineEditing": "Spectrogram - Tijdlijnbewerking annuleren",
+      "exportTtml": "Songtekst exporteren: TTML",
+      "exportLrc": "Songtekst exporteren: LRC",
+      "exportEslrc": "Songtekst exporteren: ESLRC",
+      "exportQrc": "Songtekst exporteren: QRC",
+      "exportYrc": "Songtekst exporteren: YRC",
+      "exportLys": "Songtekst exporteren: Lyricify Syllable",
+      "exportAss": "Songtekst exporteren: ASS-ondertitels",
+      "newLyricLine": "Nieuwe songtekstregel",
+      "advancedRibbonControls": "Geavanceerde lintopties",
       "resetDefault": "Standaard herstellen",
       "clear": "Wissen",
       "unbound": "Niet ingesteld",
@@ -1146,11 +1156,12 @@
         "View": "Beeld",
         "Sync": "Timing",
         "Audio": "Geluid",
-        "Spectrogram": "Spectrogram"
+        "Spectrogram": "Spectrogram",
+        "Tools": "Hulpmiddelen",
+        "Help": "Hulp",
+        "Preview": "Voorbeeld"
       },
-      "autoSegmentOptions": "Automatisch splitsen",
-      "autoSegmentDoublePress": "Dubbele druk vereist",
-      "autoSegmentDoublePressDesc": "Voer snel automatisch splitsen alleen uit als je de sneltoets twee keer snel indrukt."
+      "showAll": "Acties zonder toets tonen"
     },
     "tab": {
       "common": "Algemeen",
@@ -1192,6 +1203,8 @@
     "addKey": "Tweede toets toevoegen",
     "removeKey": "{key} verwijderen",
     "duplicateKey": "Die toets is al ingesteld voor deze actie.",
+    "doublePress": "Twee keer drukken om uit te voeren",
+    "doublePressDesc": "Wordt alleen uitgevoerd als je de toets twee keer snel indrukt.",
     "otherLayers": "Ook op deze toets",
     "closePanel": "Sluiten"
   },

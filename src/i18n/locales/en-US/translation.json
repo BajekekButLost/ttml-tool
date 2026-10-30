@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, one {Delete # word} other {Delete # words}}",
     "bgLyric": "Background line",
     "duetLyric": "Duet line",
+    "lineRole": "Line role",
     "moveLineToPlayhead": "Move line to playhead",
     "copyTimingsTo": "Copy timings to…",
     "cancelCopyTimings": "Cancel timing copy",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Spectrogram - Play selection",
       "auditionSelectionAfter": "Spectrogram - Play selection (+0.5 s after)",
       "cancelTimelineEditing": "Spectrogram - Cancel timeline editing",
+      "exportTtml": "Export lyrics: TTML",
+      "exportLrc": "Export lyrics: LRC",
+      "exportEslrc": "Export lyrics: ESLRC",
+      "exportQrc": "Export lyrics: QRC",
+      "exportYrc": "Export lyrics: YRC",
+      "exportLys": "Export lyrics: Lyricify Syllable",
+      "exportAss": "Export lyrics: ASS subtitles",
+      "newLyricLine": "New lyric line",
+      "advancedRibbonControls": "Advanced ribbon controls",
       "resetDefault": "Reset to default",
       "clear": "Clear",
       "unbound": "Not set",
@@ -1146,11 +1156,12 @@
         "View": "View",
         "Sync": "Timing",
         "Audio": "Audio",
-        "Spectrogram": "Spectrogram"
+        "Spectrogram": "Spectrogram",
+        "Tools": "Tools",
+        "Help": "Help",
+        "Preview": "Preview"
       },
-      "autoSegmentOptions": "Auto segment",
-      "autoSegmentDoublePress": "Require double press",
-      "autoSegmentDoublePressDesc": "Only run quick auto segment when you press its shortcut twice quickly."
+      "showAll": "Show actions without a key"
     },
     "tab": {
       "common": "General",
@@ -1192,6 +1203,8 @@
     "addKey": "Add second key",
     "removeKey": "Remove {key}",
     "duplicateKey": "That key is already set for this action.",
+    "doublePress": "Press twice to run",
+    "doublePressDesc": "Runs only when you press its key twice quickly.",
     "otherLayers": "Also on this key",
     "closePanel": "Close"
   },

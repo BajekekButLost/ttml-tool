@@ -1,11 +1,6 @@
 import { Compartment, EditorState } from "@codemirror/state";
 import { EditorView, placeholder as placeholderText } from "@codemirror/view";
-import {
-	PeopleRegular,
-	PersonVoiceRegular,
-	SearchRegular,
-	TextWordCountRegular,
-} from "@fluentui/react-icons";
+import { SearchRegular, TextWordCountRegular } from "@fluentui/react-icons";
 import {
 	Button,
 	Flex,
@@ -18,6 +13,7 @@ import {
 import { useAtom } from "jotai";
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SlIcon } from "$/components/SlIcon";
 import {
 	LYRIC_SECTION_CATEGORIES,
 	type LyricSectionCategory,
@@ -345,7 +341,7 @@ export function LyricMarkupEditor({
 					title={`${t("lyricMarkup.background", "Background line")} (Alt+B)`}
 					onClick={() => run(toggleLinePrefix("background"))}
 				>
-					<PersonVoiceRegular />
+					<SlIcon name="background" className={styles.roleBackground} />
 				</IconButton>
 				<IconButton
 					size="1"
@@ -356,7 +352,7 @@ export function LyricMarkupEditor({
 					title={`${t("lyricMarkup.duet", "Duet line")} (Alt+D)`}
 					onClick={() => run(toggleLinePrefix("duet"))}
 				>
-					<PeopleRegular />
+					<SlIcon name="duet" className={styles.roleDuet} />
 				</IconButton>
 				<IconButton
 					size="1"

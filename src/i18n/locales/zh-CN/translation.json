@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, other {删除 # 个字}}",
     "bgLyric": "背景人声行",
     "duetLyric": "对唱行",
+    "lineRole": "行角色",
     "moveLineToPlayhead": "将行移至播放指针",
     "copyTimingsTo": "复制时间到…",
     "cancelCopyTimings": "取消复制时间",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "频谱图 - 试听选区",
       "auditionSelectionAfter": "频谱图 - 试听选区（含后 0.5 秒）",
       "cancelTimelineEditing": "频谱图 - 取消时间线编辑",
+      "exportTtml": "导出歌词：TTML",
+      "exportLrc": "导出歌词：LRC",
+      "exportEslrc": "导出歌词：ESLRC",
+      "exportQrc": "导出歌词：QRC",
+      "exportYrc": "导出歌词：YRC",
+      "exportLys": "导出歌词：Lyricify Syllable",
+      "exportAss": "导出歌词：ASS 字幕",
+      "newLyricLine": "新建歌词行",
+      "advancedRibbonControls": "高级功能区控件",
       "resetDefault": "重置为默认值",
       "clear": "清除",
       "unbound": "未设置",
@@ -1146,11 +1156,12 @@
         "View": "视图",
         "Sync": "打轴",
         "Audio": "音频",
-        "Spectrogram": "频谱图"
+        "Spectrogram": "频谱图",
+        "Tools": "工具",
+        "Help": "帮助",
+        "Preview": "预览"
       },
-      "autoSegmentOptions": "自动分词",
-      "autoSegmentDoublePress": "需要按两次",
-      "autoSegmentDoublePressDesc": "只有快速连按两次快捷键才执行快速自动分词。"
+      "showAll": "显示没有按键的操作"
     },
     "tab": {
       "common": "通用",
@@ -1192,6 +1203,8 @@
     "addKey": "添加第二按键",
     "removeKey": "移除 {key}",
     "duplicateKey": "此按键已设置给该操作。",
+    "doublePress": "按两次才执行",
+    "doublePressDesc": "只有快速连按两次按键才执行。",
     "otherLayers": "此按键上的其他快捷键",
     "closePanel": "关闭"
   },

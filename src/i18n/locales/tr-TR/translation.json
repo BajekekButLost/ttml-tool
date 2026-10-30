@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, one {# kelimeyi sil} other {# kelimeyi sil}}",
     "bgLyric": "Arka vokal satırı",
     "duetLyric": "Düet satırı",
+    "lineRole": "Satır rolü",
     "moveLineToPlayhead": "Satırı oynatma konumuna taşı",
     "copyTimingsTo": "Zamanlamaları şuraya kopyala…",
     "cancelCopyTimings": "Zamanlama kopyalamasını iptal et",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Spektrogram - Seçimi oynat",
       "auditionSelectionAfter": "Spektrogram - Seçimi oynat (+0,5 sn sonra)",
       "cancelTimelineEditing": "Spektrogram - Zaman çizelgesi düzenlemesini iptal et",
+      "exportTtml": "Şarkı sözlerini dışa aktar: TTML",
+      "exportLrc": "Şarkı sözlerini dışa aktar: LRC",
+      "exportEslrc": "Şarkı sözlerini dışa aktar: ESLRC",
+      "exportQrc": "Şarkı sözlerini dışa aktar: QRC",
+      "exportYrc": "Şarkı sözlerini dışa aktar: YRC",
+      "exportLys": "Şarkı sözlerini dışa aktar: Lyricify Syllable",
+      "exportAss": "Şarkı sözlerini dışa aktar: ASS altyazıları",
+      "newLyricLine": "Yeni şarkı sözü satırı",
+      "advancedRibbonControls": "Gelişmiş şerit denetimleri",
       "resetDefault": "Varsayılana sıfırla",
       "clear": "Temizle",
       "unbound": "Atanmamış",
@@ -1146,11 +1156,12 @@
         "View": "Görünüm",
         "Sync": "Zamanlama",
         "Audio": "Ses",
-        "Spectrogram": "Spektrogram"
+        "Spectrogram": "Spektrogram",
+        "Tools": "Araçlar",
+        "Help": "Yardım",
+        "Preview": "Önizleme"
       },
-      "autoSegmentOptions": "Otomatik bölme",
-      "autoSegmentDoublePress": "Çift basmayı gerektir",
-      "autoSegmentDoublePressDesc": "Hızlı otomatik bölmeyi yalnızca kısayoluna art arda iki kez basıldığında çalıştırır."
+      "showAll": "Tuşu olmayan eylemleri göster"
     },
     "tab": {
       "common": "Genel",
@@ -1192,6 +1203,8 @@
     "addKey": "İkinci tuş ekle",
     "removeKey": "{key} tuşunu kaldır",
     "duplicateKey": "Bu tuş bu eylem için zaten ayarlı.",
+    "doublePress": "Çalıştırmak için iki kez bas",
+    "doublePressDesc": "Yalnızca tuşuna art arda iki kez basıldığında çalışır.",
     "otherLayers": "Bu tuşta ayrıca",
     "closePanel": "Kapat"
   },

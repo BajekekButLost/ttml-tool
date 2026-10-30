@@ -6,12 +6,12 @@ import {
 	Heading,
 	IconButton,
 	Kbd,
-	Select,
 	Text,
 } from "@radix-ui/themes";
 import { useAtomValue, useStore } from "jotai";
-import { type FC, useEffect, useRef, useState } from "react";
+import { type FC, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SearchSelect } from "$/components/SearchSelect";
 import {
 	getShortcutKey,
 	normalizeKeyBindings,
@@ -20,6 +20,7 @@ import {
 	stopRecordingShortcut,
 } from "$/utils/keybindings";
 import { type KeyBindingList, keyBindingListAtom } from "../binding-list";
+import { DoublePressToggle } from "../components/DoublePressToggle";
 import { findShortcutOwners } from "../conflicts";
 import type { KeyBindingCommand, KeyBindingsConfig } from "../types";
 import { CATEGORY_ICONS } from "./category-icons";
@@ -28,7 +29,6 @@ import {
 	type KeyBindingRef,
 	layerKey,
 	refsInLayer,
-	VIEW_CATEGORIES,
 	viewCategoryOf,
 	withBinding,
 	withoutBinding,
@@ -54,7 +54,9 @@ const ActionRow: FC<{
 	slot: number;
 	layout: KeyboardLayoutInfo;
 	bindings: AllBindings;
-}> = ({ command, slot, layout, bindings }) => {
+	/** The key the panel is open on, as its heading prints it. */
+	panelCombo: string;
+}> = ({ command, slot, layout, bindings, panelCombo }) => {
 	const { t } = useTranslation();
 	const store = useStore();
 	const listAtom = keyBindingListAtom(command);
@@ -102,14 +104,19 @@ const ActionRow: FC<{
 	const isDefault =
 		list.length === 1 &&
 		getShortcutKey(list[0]) === getShortcutKey(command.defaultKeys);
+	// One key that is the panel's own key would just repeat the heading.
+	const showKeys =
+		recording ||
+		bound.length !== 1 ||
+		formatViewCombo(bound[0], layout) !== panelCombo;
 
 	return (
 		<Box className={styles.action}>
-			<Flex align="center" gap="2" mb="2">
+			<Flex align="center" gap="2" mb="3">
 				<span className={styles.swatch} data-category={category} aria-hidden>
 					{CATEGORY_ICONS[category]}
 				</span>
-				<Box>
+				<Box minWidth="0">
 					<Text as="div" weight="medium">
 						{t(command.description)}
 					</Text>
@@ -118,49 +125,51 @@ const ActionRow: FC<{
 					</Text>
 				</Box>
 			</Flex>
-			<Flex gap="2" wrap="wrap" align="center" mb="2">
-				{recording ? (
-					<Text size="2" color="gray" role="status">
-						{t("settingsDialog.keybindings.recording")}
-					</Text>
-				) : bound.length === 0 ? (
-					<Text size="2" color="gray">
-						{t("settingsDialog.keybindings.unbound")}
-					</Text>
-				) : (
-					list.map((keys, index) => {
-						if (keys.length === 0) return null;
-						const combo = formatViewCombo(keys, layout);
-						return (
-							<Flex
-								// biome-ignore lint/suspicious/noArrayIndexKey: slots are positional
-								key={index}
-								align="center"
-								gap="1"
-								className={styles.chip}
-							>
-								<Kbd size="2">{combo}</Kbd>
-								{bound.length > 1 && (
-									<IconButton
-										size="1"
-										variant="ghost"
-										color="gray"
-										aria-label={t("keyboardView.removeKey", { key: combo })}
-										onClick={() =>
-											void store.set(
-												listAtom,
-												withoutBinding(store.get(listAtom), index),
-											)
-										}
-									>
-										<Dismiss16Regular />
-									</IconButton>
-								)}
-							</Flex>
-						);
-					})
-				)}
-			</Flex>
+			{showKeys && (
+				<Flex gap="2" wrap="wrap" align="center" mb="3">
+					{recording ? (
+						<Text size="2" color="gray" role="status">
+							{t("settingsDialog.keybindings.recording")}
+						</Text>
+					) : bound.length === 0 ? (
+						<Text size="2" color="gray">
+							{t("settingsDialog.keybindings.unbound")}
+						</Text>
+					) : (
+						list.map((keys, index) => {
+							if (keys.length === 0) return null;
+							const combo = formatViewCombo(keys, layout);
+							return (
+								<Flex
+									// biome-ignore lint/suspicious/noArrayIndexKey: slots are positional
+									key={index}
+									align="center"
+									gap="1"
+									className={styles.chip}
+								>
+									<Kbd size="2">{combo}</Kbd>
+									{bound.length > 1 && (
+										<IconButton
+											size="1"
+											variant="ghost"
+											color="gray"
+											aria-label={t("keyboardView.removeKey", { key: combo })}
+											onClick={() =>
+												void store.set(
+													listAtom,
+													withoutBinding(store.get(listAtom), index),
+												)
+											}
+										>
+											<Dismiss16Regular />
+										</IconButton>
+									)}
+								</Flex>
+							);
+						})
+					)}
+				</Flex>
+			)}
 			<Flex gap="2" wrap="wrap">
 				<Button
 					size="1"
@@ -188,6 +197,9 @@ const ActionRow: FC<{
 					{t("settingsDialog.keybindings.resetDefault")}
 				</Button>
 			</Flex>
+			<Box mt="3">
+				<DoublePressToggle command={command} />
+			</Box>
 			{duplicate && (
 				<Text as="div" size="1" color="gray" role="status" mt="2">
 					{t("keyboardView.duplicateKey")}
@@ -208,41 +220,47 @@ const AssignAction: FC<{
 	keys: KeyBindingsConfig;
 	combo: string;
 	bindings: AllBindings;
-}> = ({ keys, combo, bindings }) => {
+	layout: KeyboardLayoutInfo;
+}> = ({ keys, combo, bindings, layout }) => {
 	const { t } = useTranslation();
 	const store = useStore();
 	const [commandId, setCommandId] = useState<string>();
 	const command = bindings.find(
 		(item) => item.command.id === commandId,
 	)?.command;
+	// Grouped like the Shortcuts list, with each action's current key, so
+	// picking one that already has a key is a visible choice.
+	const options = useMemo(
+		() =>
+			bindings.map(({ command, lists }) => {
+				const primary = lists.find((binding) => binding.length > 0);
+				return {
+					value: command.id,
+					label: t(command.description),
+					group: t(
+						`settingsDialog.keybindings.category.${command.category}`,
+						command.category,
+					),
+					hint: primary ? formatViewCombo(primary, layout) : undefined,
+				};
+			}),
+		[bindings, layout, t],
+	);
 
 	return (
 		<Flex direction="column" gap="2">
 			<Text size="2" color="gray">
 				{t("keyboardView.freeKey", { key: combo })}
 			</Text>
-			<Select.Root value={commandId} onValueChange={setCommandId}>
-				<Select.Trigger
-					placeholder={t("keyboardView.assignPlaceholder")}
-					aria-label={t("keyboardView.assignLabel")}
-				/>
-				<Select.Content position="popper">
-					{VIEW_CATEGORIES.map((category) => (
-						<Select.Group key={category}>
-							<Select.Label>
-								{t(`keyboardView.category.${category}`)}
-							</Select.Label>
-							{bindings
-								.filter((item) => viewCategoryOf(item.command) === category)
-								.map((item) => (
-									<Select.Item key={item.command.id} value={item.command.id}>
-										{t(item.command.description)}
-									</Select.Item>
-								))}
-						</Select.Group>
-					))}
-				</Select.Content>
-			</Select.Root>
+			<SearchSelect
+				value={commandId}
+				options={options}
+				onValueChange={setCommandId}
+				label={t("keyboardView.assignLabel")}
+				placeholder={t("keyboardView.assignPlaceholder")}
+				searchPlaceholder={t("keyboardView.search")}
+				emptyText={t("keyboardView.searchResults", { count: 0 })}
+			/>
 			<Box>
 				<Button
 					size="1"
@@ -302,6 +320,7 @@ export const KeyDetailsPanel: FC<{
 						keys={keys}
 						combo={combo}
 						bindings={bindings}
+						layout={layout}
 					/>
 				) : (
 					here.map((ref) => (
@@ -311,6 +330,7 @@ export const KeyDetailsPanel: FC<{
 							slot={ref.slot}
 							layout={layout}
 							bindings={bindings}
+							panelCombo={combo}
 						/>
 					))
 				)}

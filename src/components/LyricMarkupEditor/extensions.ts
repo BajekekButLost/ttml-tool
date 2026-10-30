@@ -26,6 +26,7 @@ import {
 	type ViewUpdate,
 	WidgetType,
 } from "@codemirror/view";
+import { type SlIconName, slIconElement } from "$/components/SlIcon";
 import { buildDecorationSpecs } from "./decorations";
 import { type LyricMarkupFormat, type MarkupLine, parseMarkup } from "./markup";
 import { searchHighlightField } from "./search-view";
@@ -262,42 +263,77 @@ const markupPlugin = ViewPlugin.fromClass(
 	{ decorations: (plugin) => plugin.decorations },
 );
 
-class LabelMarker extends GutterMarker {
+/**
+ * The box a margin marker sits in: one text row of the line it belongs to,
+ * sized by the row's kind (`data-row`), so it lines up with smaller rows too.
+ */
+function rowBox(row: string, content: Node) {
+	const box = document.createElement("span");
+	box.className = "lm-row";
+	box.dataset.row = row;
+	box.append(content);
+	return box;
+}
+
+/** A role icon in the margin; its label shows on hover and is read out. */
+class RoleMarker extends GutterMarker {
 	constructor(
-		readonly text: string,
+		readonly icon: SlIconName,
+		readonly label: string,
 		readonly kind: string,
+		readonly row: string,
 	) {
 		super();
 	}
-	override eq(other: LabelMarker) {
-		return other.text === this.text && other.kind === this.kind;
+	override eq(other: RoleMarker) {
+		return (
+			other.icon === this.icon &&
+			other.label === this.label &&
+			other.kind === this.kind &&
+			other.row === this.row
+		);
 	}
 	override toDOM() {
-		const span = document.createElement("span");
-		span.className = "lm-mark";
-		span.dataset.kind = this.kind;
-		span.textContent = this.text;
-		span.title = this.text;
-		return span;
+		const mark = slIconElement(this.icon, this.label);
+		mark.classList.add("lm-mark");
+		mark.dataset.kind = this.kind;
+		return rowBox(this.row, mark);
 	}
 }
 
 function markerFor(
 	line: MarkupLine | undefined,
 	labels: LyricMarkupLabels,
-): LabelMarker | null {
+): RoleMarker | null {
 	if (!line) return null;
-	if (line.warning) return new LabelMarker(labels[line.warning], "warning");
+	if (line.warning)
+		return new RoleMarker(
+			"warning",
+			labels[line.warning],
+			"warning",
+			line.kind,
+		);
 	switch (line.kind) {
 		case "section":
-			return new LabelMarker(line.category ?? "other", "section");
+			// One icon for every header; the pill already names the kind.
+			return new RoleMarker(
+				"section",
+				labels.section(line.category ?? "other"),
+				"section",
+				line.kind,
+			);
 		case "background":
 		case "duet":
 		case "translation":
 		case "romanization":
-			return new LabelMarker(labels[line.kind], line.kind);
+			return new RoleMarker(line.kind, labels[line.kind], line.kind, line.kind);
 		case "removedHeader":
-			return new LabelMarker(labels.removed, line.kind);
+			return new RoleMarker(
+				"sectionRemoved",
+				labels.removed,
+				line.kind,
+				line.kind,
+			);
 		default:
 			return null;
 	}
@@ -338,29 +374,44 @@ export function numberLines(lines: MarkupLine[]): number[] {
 }
 
 class NumberMarker extends GutterMarker {
-	constructor(readonly value: number) {
+	constructor(
+		readonly value: number,
+		readonly row = "lyric",
+	) {
 		super();
 	}
 	override eq(other: NumberMarker) {
-		return other.value === this.value;
+		return other.value === this.value && other.row === this.row;
 	}
 	override toDOM() {
-		return document.createTextNode(String(this.value));
+		const number = document.createElement("span");
+		number.className = "lm-number";
+		number.textContent = String(this.value);
+		return rowBox(this.row, number);
 	}
 }
+
+/** A stand-in as wide as the biggest number, so the column fits it exactly. */
+const widestNumber = (numbers: number[]) =>
+	new NumberMarker(Number("9".repeat(String(Math.max(1, ...numbers)).length)));
 
 const numberGutter = gutter({
 	class: "lm-numbers",
 	lineMarker: (view, block) => {
 		const index = view.state.doc.lineAt(block.from).number - 1;
 		const value = view.state.field(lineNumberField)[index];
-		return value ? new NumberMarker(value) : null;
+		return value
+			? new NumberMarker(value, view.state.field(markupField)[index]?.kind)
+			: null;
 	},
 	lineMarkerChange: (update) =>
 		update.startState.field(lineNumberField) !==
 		update.state.field(lineNumberField),
-	// Keeps the column from jumping as the count gains digits.
-	initialSpacer: () => new NumberMarker(999),
+	initialSpacer: (view) => widestNumber(view.state.field(lineNumberField)),
+	updateSpacer: (spacer, update) => {
+		const widest = widestNumber(update.state.field(lineNumberField));
+		return spacer.eq(widest) ? spacer : widest;
+	},
 });
 
 /** Line numbers (0-based) the selection touches. */

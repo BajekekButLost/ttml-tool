@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, one {Șterge # cuvânt} few {Șterge # cuvinte} other {Șterge # de cuvinte}}",
     "bgLyric": "Vers de fundal",
     "duetLyric": "Vers de duet",
+    "lineRole": "Rolul rândului",
     "moveLineToPlayhead": "Mută versul la cursorul de redare",
     "copyTimingsTo": "Copiază timpii în…",
     "cancelCopyTimings": "Anulează copierea timpilor",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Spectrogramă - Redă selecția",
       "auditionSelectionAfter": "Spectrogramă - Redă selecția (+0,5 s după)",
       "cancelTimelineEditing": "Spectrogramă - Anulează editarea cronologiei",
+      "exportTtml": "Exportă versuri: TTML",
+      "exportLrc": "Exportă versuri: LRC",
+      "exportEslrc": "Exportă versuri: ESLRC",
+      "exportQrc": "Exportă versuri: QRC",
+      "exportYrc": "Exportă versuri: YRC",
+      "exportLys": "Exportă versuri: Lyricify Syllable",
+      "exportAss": "Exportă versuri: Subtitrări ASS",
+      "newLyricLine": "Vers nou",
+      "advancedRibbonControls": "Controale avansate ale panglicii",
       "resetDefault": "Resetează la valoarea implicită",
       "clear": "Golește",
       "unbound": "Nesetată",
@@ -1146,11 +1156,12 @@
         "View": "Vizualizare",
         "Sync": "Sincronizare",
         "Audio": "Audio",
-        "Spectrogram": "Spectrogramă"
+        "Spectrogram": "Spectrogramă",
+        "Tools": "Unelte",
+        "Help": "Ajutor",
+        "Preview": "Previzualizare"
       },
-      "autoSegmentOptions": "Segmentare automată",
-      "autoSegmentDoublePress": "Necesită apăsare dublă",
-      "autoSegmentDoublePressDesc": "Rulează segmentarea automată rapidă doar când apeși scurtătura de două ori rapid."
+      "showAll": "Arată acțiunile fără tastă"
     },
     "tab": {
       "common": "General",
@@ -1192,6 +1203,8 @@
     "addKey": "Adaugă a doua tastă",
     "removeKey": "Elimină {key}",
     "duplicateKey": "Tasta aceasta este deja setată pentru această acțiune.",
+    "doublePress": "Apasă de două ori pentru a rula",
+    "doublePressDesc": "Rulează doar când apeși tasta de două ori rapid.",
     "otherLayers": "Tot pe această tastă",
     "closePanel": "Închide"
   },

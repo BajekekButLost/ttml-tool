@@ -1053,6 +1053,7 @@
     "deleteWords": "{count, plural, one {Eliminar # palabra} many {Eliminar # palabras} other {Eliminar # palabras}}",
     "bgLyric": "Línea de voces de fondo",
     "duetLyric": "Línea de dúo",
+    "lineRole": "Función de la línea",
     "moveLineToPlayhead": "Mover línea al cabezal de reproducción",
     "copyTimingsTo": "Copiar tiempos a…",
     "cancelCopyTimings": "Cancelar copia de tiempos",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Espectrograma - Reproducir selección",
       "auditionSelectionAfter": "Espectrograma - Reproducir selección (+0,5 s después)",
       "cancelTimelineEditing": "Espectrograma: cancelar la edición de la línea de tiempo",
+      "exportTtml": "Exportar letras: TTML",
+      "exportLrc": "Exportar letras: LRC",
+      "exportEslrc": "Exportar letras: ESLRC",
+      "exportQrc": "Exportar letras: QRC",
+      "exportYrc": "Exportar letras: YRC",
+      "exportLys": "Exportar letras: Lyricify Syllable",
+      "exportAss": "Exportar letras: Subtítulos ASS",
+      "newLyricLine": "Nueva línea de letra",
+      "advancedRibbonControls": "Controles avanzados de la cinta",
       "resetDefault": "Restablecer valor predeterminado",
       "clear": "Borrar",
       "unbound": "Sin asignar",
@@ -1146,11 +1156,12 @@
         "View": "Ver",
         "Sync": "Sincronización",
         "Audio": "Audio",
-        "Spectrogram": "Espectrograma"
+        "Spectrogram": "Espectrograma",
+        "Tools": "Herramientas",
+        "Help": "Ayuda",
+        "Preview": "Vista previa"
       },
-      "autoSegmentOptions": "Segmentación automática",
-      "autoSegmentDoublePress": "Exigir doble pulsación",
-      "autoSegmentDoublePressDesc": "Ejecuta la segmentación automática rápida solo al pulsar su atajo dos veces seguidas."
+      "showAll": "Mostrar acciones sin tecla"
     },
     "tab": {
       "common": "General",
@@ -1192,6 +1203,8 @@
     "addKey": "Añadir segunda tecla",
     "removeKey": "Quitar {key}",
     "duplicateKey": "Esa tecla ya está asignada a esta acción.",
+    "doublePress": "Pulsar dos veces para ejecutar",
+    "doublePressDesc": "Solo se ejecuta al pulsar su tecla dos veces seguidas.",
     "otherLayers": "También en esta tecla",
     "closePanel": "Cerrar"
   },

@@ -1053,6 +1053,7 @@
     "deleteWords": "Zmazať {count, plural, one {# slovo} few {# slová} many {# slova} other {# slov}}",
     "bgLyric": "Sprievodný riadok",
     "duetLyric": "Duetový riadok",
+    "lineRole": "Rola riadku",
     "moveLineToPlayhead": "Presunúť riadok na pozíciu prehrávania",
     "copyTimingsTo": "Kopírovať časovanie do…",
     "cancelCopyTimings": "Zrušiť kopírovanie časovania",
@@ -1135,6 +1136,15 @@
       "auditionSelection": "Spektrogram – prehrať výber",
       "auditionSelectionAfter": "Spektrogram – prehrať výber (+0,5 s po)",
       "cancelTimelineEditing": "Spektrogram – zrušiť úpravu časovej osi",
+      "exportTtml": "Exportovať text piesne: TTML",
+      "exportLrc": "Exportovať text piesne: LRC",
+      "exportEslrc": "Exportovať text piesne: ESLRC",
+      "exportQrc": "Exportovať text piesne: QRC",
+      "exportYrc": "Exportovať text piesne: YRC",
+      "exportLys": "Exportovať text piesne: Lyricify Syllable",
+      "exportAss": "Exportovať text piesne: Titulky ASS",
+      "newLyricLine": "Nový riadok textu",
+      "advancedRibbonControls": "Pokročilé ovládacie prvky pásu kariet",
       "resetDefault": "Obnoviť predvolené nastavenie",
       "clear": "Vymazať",
       "unbound": "Nenastavené",
@@ -1146,11 +1156,12 @@
         "View": "Zobrazenie",
         "Sync": "Časovanie",
         "Audio": "Zvuk",
-        "Spectrogram": "Spektrogram"
+        "Spectrogram": "Spektrogram",
+        "Tools": "Nástroje",
+        "Help": "Pomoc",
+        "Preview": "Náhľad"
       },
-      "autoSegmentOptions": "Automatické delenie",
-      "autoSegmentDoublePress": "Vyžadovať dvojité stlačenie",
-      "autoSegmentDoublePressDesc": "Spustiť rýchle automatické delenie len po dvojitom rýchlom stlačení jeho skratky."
+      "showAll": "Zobraziť akcie bez klávesu"
     },
     "tab": {
       "common": "Všeobecné",
@@ -1192,6 +1203,8 @@
     "addKey": "Pridať druhý kláves",
     "removeKey": "Odobrať {key}",
     "duplicateKey": "Tento kláves je už pre túto akciu nastavený.",
+    "doublePress": "Spustiť dvojitým stlačením",
+    "doublePressDesc": "Spustí sa len po dvojitom rýchlom stlačení klávesu.",
     "otherLayers": "Aj na tomto klávese",
     "closePanel": "Zavrieť"
   },
