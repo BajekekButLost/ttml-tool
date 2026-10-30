@@ -76,20 +76,22 @@ export const LyricLineMenu = ({ lineIndex }: { lineIndex: number }) => {
 	return (
 		<>
 			<MenuIconRow label={t("contextMenu.lineRole", "Line role")}>
-				<MenuIconRow.Toggle
-					icon={<SlIcon name="background" />}
-					label={t("contextMenu.bgLyric", "背景歌词")}
-					checked={Bgchecked}
-					onCheckedChange={bgOnCheck}
-					color={ROLE_COLORS.background}
-				/>
-				<MenuIconRow.Toggle
-					icon={<SlIcon name="duet" />}
-					label={t("contextMenu.duetLyric", "对唱歌词")}
-					checked={DuetChecked}
-					onCheckedChange={duetOnCheck}
-					color={ROLE_COLORS.duet}
-				/>
+				<MenuIconRow.Track>
+					<MenuIconRow.Toggle
+						icon={<SlIcon name="background" />}
+						label={t("contextMenu.bgLyric", "背景歌词")}
+						checked={Bgchecked}
+						onCheckedChange={bgOnCheck}
+						color={ROLE_COLORS.background}
+					/>
+					<MenuIconRow.Toggle
+						icon={<SlIcon name="duet" />}
+						label={t("contextMenu.duetLyric", "对唱歌词")}
+						checked={DuetChecked}
+						onCheckedChange={duetOnCheck}
+						color={ROLE_COLORS.duet}
+					/>
+				</MenuIconRow.Track>
 				<MenuIconRow.Action
 					icon={<SlIcon name="swapDuet" />}
 					label={t("editModeTools.swapDuetSelected", "Swap main and duet")}

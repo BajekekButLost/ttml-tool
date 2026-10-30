@@ -3,26 +3,39 @@ import type { CSSProperties, ReactNode } from "react";
 import styles from "./index.module.css";
 
 /**
- * A row of icon buttons inside a context menu, for a few related actions
- * that would otherwise take a line each. They stay real menu items, so the
- * arrow keys and Enter reach them like any other.
+ * A context menu row for a few related actions that would otherwise take a
+ * line each: a label where item text starts, and icon buttons ending where
+ * item shortcuts end. The buttons are real menu items, so the arrow keys and
+ * Enter reach them like any other.
  */
 export function MenuIconRow({
 	label,
 	children,
 }: {
-	/** Names the group for assistive tech. */
+	/** Shown at the start of the row and names the group. */
 	label: string;
 	children: ReactNode;
 }) {
 	return (
 		<div role="group" aria-label={label} className={styles.row}>
-			{children}
+			<span className={styles.label} aria-hidden="true">
+				{label}
+			</span>
+			<div className={styles.controls}>{children}</div>
 		</div>
 	);
 }
 
-/** An on/off icon button. Its label shows on hover and is read out. */
+/** Toggles that belong together, drawn on one shared track. */
+function Track({ children }: { children: ReactNode }) {
+	return <div className={styles.track}>{children}</div>;
+}
+
+/**
+ * An on/off icon button. It's a plain menu item that announces itself as a
+ * checkbox: Radix's own checkbox items would indent the whole menu for a
+ * checkmark column this row doesn't use.
+ */
 function Toggle({
 	icon,
 	label,
@@ -35,15 +48,18 @@ function Toggle({
 	label: string;
 	checked: boolean | "indeterminate";
 	onCheckedChange: (checked: boolean) => void;
-	/** The colour of the icon when on, for colour-coded roles. */
+	/** The role's colour, used for the icon and the fill when on. */
 	color?: string;
 	disabled?: boolean;
 }) {
 	return (
-		<ContextMenu.CheckboxItem
+		<ContextMenu.Item
 			className={styles.button}
-			checked={checked}
-			onCheckedChange={onCheckedChange}
+			role="menuitemcheckbox"
+			aria-checked={checked === "indeterminate" ? "mixed" : checked}
+			data-on={checked === true ? "" : undefined}
+			data-mixed={checked === "indeterminate" ? "" : undefined}
+			onSelect={() => onCheckedChange(checked !== true)}
 			disabled={disabled}
 			aria-label={label}
 			title={label}
@@ -52,11 +68,11 @@ function Toggle({
 			}
 		>
 			{icon}
-		</ContextMenu.CheckboxItem>
+		</ContextMenu.Item>
 	);
 }
 
-/** A one-off action as an icon button. */
+/** A one-off action as an icon button, set apart from the toggles. */
 function Action({
 	icon,
 	label,
@@ -81,5 +97,6 @@ function Action({
 	);
 }
 
+MenuIconRow.Track = Track;
 MenuIconRow.Toggle = Toggle;
 MenuIconRow.Action = Action;
