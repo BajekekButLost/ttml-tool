@@ -22,6 +22,20 @@ export function capLabel(code: string, layout: KeyboardLayoutInfo): string {
 	);
 }
 
+// Narrow caps print a short form; the full name stays in labels and combos.
+const CAP_FACE_LABELS: Record<string, string> = {
+	Backspace: "Bksp",
+	Insert: "Ins",
+	Delete: "Del",
+	PageUp: "PgUp",
+	PageDown: "PgDn",
+};
+
+/** The text on the cap itself, shortened where the full name doesn't fit. */
+export function capFaceLabel(code: string, layout: KeyboardLayoutInfo): string {
+	return CAP_FACE_LABELS[code] ?? capLabel(code, layout);
+}
+
 /**
  * A shortcut the way the keyboard view prints it: modifiers from the shared
  * formatter, keys as their caps print them, so it matches the board.

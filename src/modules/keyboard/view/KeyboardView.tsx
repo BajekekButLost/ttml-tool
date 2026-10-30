@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next";
 import { OptionPicker } from "$/components/OptionPicker";
 import { stopRecordingShortcut } from "$/utils/keybindings";
 import { allKeyBindingListsAtom } from "../binding-list";
+import { ShowAllShortcutsSwitch } from "../components/SettingsPanel";
+import { shortcutSearchAtom } from "../states";
 import type { KeyBindingCommand } from "../types";
 import { CATEGORY_ICONS } from "./category-icons";
 import styles from "./KeyboardView.module.css";
@@ -19,12 +21,12 @@ import { KeyDetailsPanel } from "./KeyDetailsPanel";
 import {
 	buildKeyIndex,
 	type KeyBindingRef,
-	matchCommands,
+	matchShortcutSearch,
 	refsInLayer,
 	VIEW_CATEGORIES,
 	viewCategoryOf,
 } from "./key-index";
-import { capLabel, formatViewCombo } from "./labels";
+import { capFaceLabel, capLabel, formatViewCombo } from "./labels";
 import {
 	geometryFor,
 	isGap,
@@ -60,6 +62,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 	const { t } = useTranslation();
 	const { code } = cap;
 	const label = capLabel(code, context.layout);
+	const face = capFaceLabel(code, context.layout);
 	const style = { "--w": cap.width ?? 1 } as CSSProperties;
 
 	if (isModifierCode(code)) {
@@ -75,7 +78,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 				aria-label={t("keyboardView.modifierLayer", { key: label })}
 				onClick={() => context.onToggleModifier(code)}
 			>
-				<span className={styles.capLabel}>{label}</span>
+				<span className={styles.capLabel}>{face}</span>
 			</button>
 		);
 	}
@@ -109,7 +112,7 @@ const Cap: FC<{ cap: KeyCap; context: CapContext }> = ({ cap, context }) => {
 			}
 			onClick={() => context.onSelect(code)}
 		>
-			<span className={styles.capLabel}>{cap.continuation ? "" : label}</span>
+			<span className={styles.capLabel}>{cap.continuation ? "" : face}</span>
 			{category && !cap.continuation && (
 				<span className={styles.capIcon} aria-hidden>
 					{CATEGORY_ICONS[category]}
@@ -188,17 +191,16 @@ export const KeyboardView: FC = () => {
 	const [layoutChoice, setLayoutChoice] = useAtom(keyboardViewLayoutAtom);
 	const [layer, setLayer] = useState<ModifierCode[]>([]);
 	const [selected, setSelected] = useState<string>();
-	const [query, setQuery] = useState("");
+	// Shared with the list below, which this search filters too.
+	const [query, setQuery] = useAtom(shortcutSearchAtom);
 	useEffect(() => () => stopRecordingShortcut(), []);
+	// Leaving Shortcuts clears the search, so it doesn't come back filtered.
+	useEffect(() => () => setQuery(""), [setQuery]);
 
 	const index = useMemo(() => buildKeyIndex(bindings), [bindings]);
-	const commands = useMemo(
-		() => bindings.map(({ command }) => command),
-		[bindings],
-	);
 	const nameOf = (command: KeyBindingCommand) => t(command.description);
 	const matches = query.trim()
-		? matchCommands(commands, query, nameOf)
+		? matchShortcutSearch(bindings, query, nameOf)
 		: undefined;
 
 	const context: CapContext = {
@@ -298,9 +300,12 @@ export const KeyboardView: FC = () => {
 							</Flex>
 						))}
 					</Flex>
-					<Text as="p" size="1" color="gray" mt="2">
-						{t("keyboardView.layerHint")}
-					</Text>
+					<Flex align="center" justify="between" gap="4" mt="2" wrap="wrap">
+						<Text as="p" size="1" color="gray">
+							{t("keyboardView.layerHint")}
+						</Text>
+						<ShowAllShortcutsSwitch />
+					</Flex>
 				</Box>
 				{selected && (
 					<KeyDetailsPanel

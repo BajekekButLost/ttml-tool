@@ -331,9 +331,9 @@
    tooltip would otherwise stay up, or pop up from a label the pointer
    crosses, on top of the choices the menu is showing. */
 body:has(
-		.rt-BaseMenuContent[data-state="open"],
-		.rt-SelectContent[data-state="open"]
-	)
-	.rt-TooltipContent {
+	.rt-BaseMenuContent[data-state="open"],
+	.rt-SelectContent[data-state="open"]
+)
+.rt-TooltipContent {
 	display: none;
 }

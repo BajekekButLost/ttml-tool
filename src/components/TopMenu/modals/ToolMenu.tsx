@@ -1,16 +1,12 @@
 import { Button, DropdownMenu } from "@radix-ui/themes";
-import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { Toolbar } from "radix-ui";
 import type { CSSProperties } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { swapDuetLinesAtom } from "$/modules/lyric-editor/utils/swap-duet";
-import { spectrogramHoverSyncEnabledAtom } from "$/modules/settings/states/sync";
-import { lyricLinesAtom } from "$/states/main";
-import { useTopMenuActions } from "../useTopMenuActions";
-
-const hasLyricLinesAtom = atom(
-	(get) => get(lyricLinesAtom).lyricLines.length > 0,
-);
+import { MENU_ACTIONS, type MenuAction } from "$/modules/menu-actions/actions";
+import {
+	MenuActionItem,
+	useMenuActionContext,
+} from "$/modules/menu-actions/MenuActionItem";
 
 type ToolMenuProps = {
 	variant: "toolbar" | "submenu";
@@ -20,12 +16,10 @@ type ToolMenuProps = {
 
 const ToolMenuItems = () => {
 	const { t } = useTranslation();
-	const menu = useTopMenuActions();
-	const [spectrogramHoverSyncEnabled, setSpectrogramHoverSyncEnabled] = useAtom(
-		spectrogramHoverSyncEnabledAtom,
+	const context = useMenuActionContext();
+	const item = (action: MenuAction) => (
+		<MenuActionItem action={action} context={context} />
 	);
-	const hasLines = useAtomValue(hasLyricLinesAtom);
-	const swapDuetLines = useSetAtom(swapDuetLinesAtom);
 
 	return (
 		<>
@@ -34,35 +28,18 @@ const ToolMenuItems = () => {
 					{t("topBar.menu.segmentationTools", "Segmentation tools")}
 				</DropdownMenu.SubTrigger>
 				<DropdownMenu.SubContent>
-					<DropdownMenu.Item onSelect={menu.onAutoSegment}>
-						{t("topBar.menu.autoSegment", "Auto segment…")}
-					</DropdownMenu.Item>
-					<DropdownMenu.Item onSelect={menu.onOpenAdvancedSegmentation}>
-						{t("topBar.menu.advancedSegment", "Advanced segmentation…")}
-					</DropdownMenu.Item>
-					<DropdownMenu.Item onSelect={menu.onOpenLearnedSplits}>
-						{t("topBar.menu.learnedSplits", "Learned splits…")}
-					</DropdownMenu.Item>
+					{item(MENU_ACTIONS.autoSegment)}
+					{item(MENU_ACTIONS.advancedSegment)}
+					{item(MENU_ACTIONS.learnedSplits)}
 				</DropdownMenu.SubContent>
 			</DropdownMenu.Sub>
-			<DropdownMenu.Item onSelect={menu.onSyncLineTimestamps}>
-				{t("topBar.menu.syncLineTimestamps", "Fit lines to their words")}
-			</DropdownMenu.Item>
-			<DropdownMenu.Item disabled={!hasLines} onSelect={() => swapDuetLines()}>
-				{t("editModeTools.swapDuetAll", "Swap main and duet lines")}
-			</DropdownMenu.Item>
-			<DropdownMenu.CheckboxItem
-				checked={spectrogramHoverSyncEnabled}
-				onCheckedChange={setSpectrogramHoverSyncEnabled}
-			>
-				{t("topBar.menu.spectrogramHoverSync", "Sync at mouse position")}
-			</DropdownMenu.CheckboxItem>
-			<DropdownMenu.Item onSelect={menu.onOpenLatencyTest}>
-				{t("settingsDialog.common.latencyTest", "音频/输入延迟测试")}
-			</DropdownMenu.Item>
-			<DropdownMenu.Item onSelect={menu.onOpenTTMLChecklist}>
-				{t("topBar.menu.ttmlChecklist", "TTML checklist")}
-			</DropdownMenu.Item>
+			{item(MENU_ACTIONS.syncLineTimestamps)}
+			{item(MENU_ACTIONS.swapDuetAll)}
+			<DropdownMenu.Separator />
+			{item(MENU_ACTIONS.spectrogramHoverSync)}
+			<DropdownMenu.Separator />
+			{item(MENU_ACTIONS.latencyTest)}
+			{item(MENU_ACTIONS.ttmlChecklist)}
 		</>
 	);
 };
