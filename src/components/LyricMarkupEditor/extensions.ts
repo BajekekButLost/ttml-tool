@@ -311,6 +311,52 @@ const labelGutter = gutter({
 		update.startState.facet(labelsFacet) !== update.state.facet(labelsFacet),
 });
 
+const NUMBERED_KINDS = new Set(["lyric", "background", "duet"]);
+
+/**
+ * Each row's lyric line number, counted the way the lines import (background
+ * and duet lines included), or 0 for headers, translations and blank rows.
+ */
+const lineNumberField = StateField.define<number[]>({
+	create: (state) => numberLines(state.field(markupField)),
+	update: (numbers, transaction) =>
+		transaction.startState.field(markupField) ===
+		transaction.state.field(markupField)
+			? numbers
+			: numberLines(transaction.state.field(markupField)),
+});
+
+function numberLines(lines: MarkupLine[]): number[] {
+	let count = 0;
+	return lines.map((line) => (NUMBERED_KINDS.has(line.kind) ? ++count : 0));
+}
+
+class NumberMarker extends GutterMarker {
+	constructor(readonly value: number) {
+		super();
+	}
+	override eq(other: NumberMarker) {
+		return other.value === this.value;
+	}
+	override toDOM() {
+		return document.createTextNode(String(this.value));
+	}
+}
+
+const numberGutter = gutter({
+	class: "lm-numbers",
+	lineMarker: (view, block) => {
+		const index = view.state.doc.lineAt(block.from).number - 1;
+		const value = view.state.field(lineNumberField)[index];
+		return value ? new NumberMarker(value) : null;
+	},
+	lineMarkerChange: (update) =>
+		update.startState.field(lineNumberField) !==
+		update.state.field(lineNumberField),
+	// Keeps the column from jumping as the count gains digits.
+	initialSpacer: () => new NumberMarker(999),
+});
+
 /** Line numbers (0-based) the selection touches. */
 const selectedLines = (state: EditorState) => {
 	const numbers = new Set<number>();
@@ -430,6 +476,8 @@ export const lyricMarkupExtensions = [
 	EditorView.lineWrapping,
 	markupField,
 	markupPlugin,
+	lineNumberField,
+	numberGutter,
 	labelGutter,
 	EditorView.domEventHandlers({
 		mousedown(event, view) {
