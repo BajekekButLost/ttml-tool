@@ -477,8 +477,9 @@ export const lyricMarkupExtensions = [
 	markupField,
 	markupPlugin,
 	lineNumberField,
-	numberGutter,
 	labelGutter,
+	// After the labels, so each number sits right next to its line.
+	numberGutter,
 	EditorView.domEventHandlers({
 		mousedown(event, view) {
 			if (!event.altKey || event.button !== 0) return false;
