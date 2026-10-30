@@ -228,6 +228,27 @@
       "missingRomanization": "Romanizasyon eksik"
     }
   },
+  "editAsText": {
+    "menuItem": "Metin olarak düzenle...",
+    "title": "Metin olarak düzenle",
+    "description": "Şarkı sözlerinin tamamını düz metin olarak düzenleyin. Değiştirmediğiniz kelimeler zamanlamasını korur.",
+    "textLabel": "Şarkı sözü metni",
+    "summaryTitle": "Değişiklikler",
+    "unchanged": "{count, plural, one {# satır değişmedi} other {# satır değişmedi}}",
+    "edited": "{count, plural, one {# satır düzenlendi} other {# satır düzenlendi}}",
+    "editedHint": "Kelimelerin eşleştiği yerlerde zamanlama korunur.",
+    "moved": "{count, plural, one {# satır taşındı} other {# satır taşındı}}",
+    "added": "{count, plural, one {# satır eklendi} other {# satır eklendi}}",
+    "removed": "{count, plural, one {# satır kaldırıldı} other {# satır kaldırıldı}}",
+    "noChanges": "Henüz değişiklik yok.",
+    "droppedTimings": "{count, plural, one {# zamanlanmış kelime zamanlamasını kaybeder} other {# zamanlanmış kelime zamanlamasını kaybeder}}",
+    "lineNumber": "Satır {line}",
+    "more": "{count, plural, one {ve # tane daha} other {ve # tane daha}}",
+    "help": "Yeni kelimeler zamanlamasız gelir. Yalnızca taşınan satırlar zamanlamasını korur. Uygula tek adımda geri alınır.",
+    "apply": "Uygula",
+    "applied": "Metin uygulandı. Geri al tek adımda eski haline döndürür.",
+    "failed": "Metin uygulanamadı. Kontrol edip tekrar deneyin."
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "Yeni şarkı sözleri içe aktarılsın mı?",
       "description": "Kaydedilmemiş değişiklikleriniz var. Eğer devam ederseniz, bunlar kaybolacak. Yeni şarkı sözü içe aktarmak istediğinize emin misiniz?"
+    },
+    "discardTextEdits": {
+      "title": "Düzenlemeler atılsın mı?",
+      "description": "Metinde uygulanmamış değişiklikler var. Şimdi kapatırsanız kaybolur.",
+      "discard": "At",
+      "keepEditing": "Düzenlemeye devam et"
     },
     "noSongwriter": {
       "description": "Şarkı yazarı belirtilmemiş. Yine de kaydedilsin mi?"

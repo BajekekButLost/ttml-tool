@@ -228,6 +228,27 @@
       "missingRomanization": "Missing romanization"
     }
   },
+  "editAsText": {
+    "menuItem": "Edit as text...",
+    "title": "Edit as text",
+    "description": "Edit the whole lyrics as plain text. Words you don't change keep their timing.",
+    "textLabel": "Lyrics text",
+    "summaryTitle": "Changes",
+    "unchanged": "{count, plural, one {# line unchanged} other {# lines unchanged}}",
+    "edited": "{count, plural, one {# line edited} other {# lines edited}}",
+    "editedHint": "Timings are kept where words match.",
+    "moved": "{count, plural, one {# line moved} other {# lines moved}}",
+    "added": "{count, plural, one {# line added} other {# lines added}}",
+    "removed": "{count, plural, one {# line removed} other {# lines removed}}",
+    "noChanges": "No changes yet.",
+    "droppedTimings": "{count, plural, one {# timed word loses its timing} other {# timed words lose their timing}}",
+    "lineNumber": "Line {line}",
+    "more": "{count, plural, one {and # more} other {and # more}}",
+    "help": "New words come in untimed. Lines that only moved keep their timing. Apply is one undo step.",
+    "apply": "Apply",
+    "applied": "Applied the text. Undo reverts it in one step.",
+    "failed": "Couldn't apply the text. Check it and try again."
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "Import new lyrics?",
       "description": "You have unsaved changes. If you proceed, these changes will be lost. Are you sure you want to import new lyrics?"
+    },
+    "discardTextEdits": {
+      "title": "Discard your edits?",
+      "description": "The text has changes you haven't applied. Closing now loses them.",
+      "discard": "Discard",
+      "keepEditing": "Keep editing"
     },
     "noSongwriter": {
       "description": "This song has no songwriters. Save anyway?"

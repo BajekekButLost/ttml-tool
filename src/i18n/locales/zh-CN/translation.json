@@ -228,6 +228,27 @@
       "missingRomanization": "缺少罗马音"
     }
   },
+  "editAsText": {
+    "menuItem": "以文本编辑...",
+    "title": "以文本编辑",
+    "description": "将整首歌词作为纯文本编辑。未改动的词保留其时间轴。",
+    "textLabel": "歌词文本",
+    "summaryTitle": "更改",
+    "unchanged": "{count, plural, other {# 行未更改}}",
+    "edited": "{count, plural, other {# 行已编辑}}",
+    "editedHint": "词语一致的地方保留时间轴。",
+    "moved": "{count, plural, other {# 行已移动}}",
+    "added": "{count, plural, other {# 行已添加}}",
+    "removed": "{count, plural, other {# 行已删除}}",
+    "noChanges": "暂无更改。",
+    "droppedTimings": "{count, plural, other {# 个已打轴的词将失去时间轴}}",
+    "lineNumber": "第 {line} 行",
+    "more": "{count, plural, other {另有 # 项}}",
+    "help": "新词不带时间轴。仅移动的行保留时间轴。应用可一步撤销。",
+    "apply": "应用",
+    "applied": "已应用文本。撤销可一步还原。",
+    "failed": "无法应用文本。请检查后重试。"
+  },
   "importChooser": {
     "options": {
       "plainText": {
@@ -272,6 +293,12 @@
     "importFile": {
       "title": "导入新歌词？",
       "description": "当前文件有未保存的更改。如果继续，这些更改将会丢失。确定要导入歌词吗？"
+    },
+    "discardTextEdits": {
+      "title": "放弃编辑？",
+      "description": "文本中有尚未应用的更改。现在关闭将丢失这些更改。",
+      "discard": "放弃",
+      "keepEditing": "继续编辑"
     },
     "noSongwriter": {
       "description": "此歌曲未填写词曲作者。仍然保存？"

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { LatencyTestDialog } from "$/modules/audio/modals/LatencyTest.tsx";
+import { EditAsTextDialog } from "$/modules/edit-as-text/modals/EditAsTextDialog.tsx";
 import { GeniusSearchDialog } from "$/modules/genius/modals/GeniusSearchDialog.tsx";
 import { UrbanDictionaryDialog } from "$/modules/lyric-editor/modals/UrbanDictionaryDialog.tsx";
 import { CombineWordsDialog } from "$/modules/lyric-editor/tools/CombineWordsDialog.tsx";
@@ -60,6 +61,7 @@ export const Dialogs = () => {
 			<UrbanDictionaryDialog />
 			<SuggestedSplitsDialog />
 			<GeniusHeaderDetectionDialog />
+			<EditAsTextDialog />
 		</>
 	);
 };
