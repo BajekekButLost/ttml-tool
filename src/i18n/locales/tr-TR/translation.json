@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Klavye",
-    "flagTitle": "Klavye görünümü ve ikinci tuşlar",
-    "flagDesc": "Deneysel. Kısayollarınızı bir klavye üzerinde gösterir ve bir eyleme birden fazla tuş vermenizi sağlar.",
     "search": "Eylem ara",
     "searchResults": "{count, plural, =0 {Eşleşen eylem yok} one {# eylem eşleşiyor} other {# eylem eşleşiyor}}",
     "layout": "Klavye düzeni",

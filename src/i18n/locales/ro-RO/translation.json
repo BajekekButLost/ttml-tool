@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Tastatură",
-    "flagTitle": "Vizualizare tastatură și taste secundare",
-    "flagDesc": "Experimental. Îți arată scurtăturile pe o tastatură și permite unei acțiuni să aibă mai multe taste.",
     "search": "Caută acțiuni",
     "searchResults": "{count, plural, =0 {Nicio acțiune nu se potrivește} one {# acțiune se potrivește} few {# acțiuni se potrivesc} other {# de acțiuni se potrivesc}}",
     "layout": "Aspectul tastaturii",

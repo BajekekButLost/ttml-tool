@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Clavier",
-    "flagTitle": "Vue clavier et touches secondaires",
-    "flagDesc": "Expérimental. Affiche vos raccourcis sur un clavier et permet à une action d'avoir plusieurs touches.",
     "search": "Rechercher des actions",
     "searchResults": "{count, plural, =0 {Aucune action ne correspond} one {# action correspond} many {# actions correspondent} other {# actions correspondent}}",
     "layout": "Disposition du clavier",

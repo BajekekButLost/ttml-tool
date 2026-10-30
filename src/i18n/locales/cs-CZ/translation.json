@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Klávesnice",
-    "flagTitle": "Zobrazení klávesnice a druhé klávesy",
-    "flagDesc": "Experimentální. Zobrazí zkratky na klávesnici a umožní jedné akci mít více kláves.",
     "search": "Hledat akce",
     "searchResults": "{count, plural, =0 {Žádná akce neodpovídá} one {Odpovídá # akce} few {Odpovídají # akce} many {Odpovídá # akce} other {Odpovídá # akcí}}",
     "layout": "Rozložení klávesnice",

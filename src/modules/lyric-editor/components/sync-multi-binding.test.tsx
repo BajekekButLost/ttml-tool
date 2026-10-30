@@ -4,7 +4,6 @@ import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { extraKeyBindingsStorageKey } from "$/modules/keyboard/binding-list";
-import { keyboardViewEnabledAtom } from "$/modules/keyboard/flags";
 import { smartLastWordAtom } from "$/modules/settings/states";
 import { backgroundSyncLaneAtom } from "$/modules/settings/states/background-sync";
 import {
@@ -63,9 +62,8 @@ afterEach(() => {
 	createStore().set(keyBindingTriggerModeAtom, KeyBindingTriggerMode.KeyDown);
 });
 
-function mount(enabled: boolean, mode: KeyBindingTriggerMode) {
+function mount(mode: KeyBindingTriggerMode) {
 	const store = createStore();
-	store.set(keyboardViewEnabledAtom, enabled);
 	store.set(keyBindingTriggerModeAtom, mode);
 	const word = (text: string) => ({ ...newLyricWord(), word: text });
 	const first = { ...newLyricLine(), words: [..."abcdef"].map(word) };
@@ -151,7 +149,7 @@ describe.each([
 	KeyBindingTriggerMode.KeyUp,
 ])("F/G/H with two keys each (%s)", (mode) => {
 	it("fires every fast alternating press, primary and second key alike", () => {
-		const store = mount(true, mode);
+		const store = mount(mode);
 		roll(
 			[
 				...["KeyZ", "KeyG", "KeyX", "KeyG", "KeyX", "KeyG", "KeyC"],
@@ -162,8 +160,8 @@ describe.each([
 		expect(timings(store)).toEqual(EXPECTED);
 	});
 
-	it("syncs the same with one key each while the flag is off", () => {
-		const store = mount(false, mode);
+	it("syncs the same with the primary keys alone", () => {
+		const store = mount(mode);
 		roll(
 			[
 				...["KeyF", "KeyG", "KeyG", "KeyG", "KeyG", "KeyG", "KeyH"],
@@ -172,16 +170,5 @@ describe.each([
 			mode,
 		);
 		expect(timings(store)).toEqual(EXPECTED);
-	});
-
-	it("ignores second keys while the flag is off", () => {
-		const store = mount(false, mode);
-		roll(["KeyZ", "KeyX", "KeyC"], mode);
-		expect(
-			timings(store)
-				.flat()
-				.flat()
-				.every((time) => time === 0),
-		).toBe(true);
 	});
 });

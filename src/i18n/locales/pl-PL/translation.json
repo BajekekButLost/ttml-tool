@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Klawiatura",
-    "flagTitle": "Widok klawiatury i drugie klawisze",
-    "flagDesc": "Eksperymentalne. Pokazuje skróty na klawiaturze i pozwala jednej akcji mieć więcej niż jeden klawisz.",
     "search": "Szukaj akcji",
     "searchResults": "{count, plural, =0 {Brak pasujących akcji} one {# pasująca akcja} few {# pasujące akcje} many {# pasujących akcji} other {# pasującej akcji}}",
     "layout": "Układ klawiatury",

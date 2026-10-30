@@ -9,7 +9,6 @@ import {
 	keyBindingListAtom,
 } from "../binding-list";
 import { cmdSyncStart } from "../commands";
-import { keyboardViewEnabledAtom } from "../flags";
 import { AutoKeyBindingSettingsPanel } from "./SettingsPanel";
 
 // Node's own localStorage stub shadows jsdom's; use a plain in-memory one.
@@ -33,11 +32,10 @@ afterEach(() => cleanup());
 
 const EXTRA_KEY = extraKeyBindingsStorageKey(cmdSyncStart.id);
 
-function mount(enabled: boolean) {
+function mount() {
 	data.set(`keybindings:${cmdSyncStart.id}`, JSON.stringify(["KeyJ"]));
 	data.set(EXTRA_KEY, JSON.stringify([["KeyZ"]]));
 	const store = createStore();
-	store.set(keyboardViewEnabledAtom, enabled);
 	const container = document.createElement("div");
 	document.body.append(container);
 	const root = createRoot(container);
@@ -75,7 +73,7 @@ async function click(button: HTMLButtonElement) {
 
 describe("shortcut rows", () => {
 	it("clears the extra keys along with the primary", async () => {
-		const { store, container } = mount(true);
+		const { store, container } = mount();
 		expect(store.get(keyBindingListAtom(cmdSyncStart))).toEqual([
 			["KeyJ"],
 			["KeyZ"],
@@ -86,22 +84,13 @@ describe("shortcut rows", () => {
 	});
 
 	it("resets to the default and drops the extra keys", async () => {
-		const { store, container } = mount(true);
+		const { store, container } = mount();
 		await click(
 			rowButton(container, "settingsDialog.keybindings.resetDefault"),
 		);
 		expect(store.get(keyBindingListAtom(cmdSyncStart))).toEqual([
 			cmdSyncStart.defaultKeys,
 		]);
-		expect(data.has(EXTRA_KEY)).toBe(false);
-	});
-
-	it("drops stored extras on reset while the keyboard view is off", async () => {
-		const { store, container } = mount(false);
-		await click(
-			rowButton(container, "settingsDialog.keybindings.resetDefault"),
-		);
-		expect(store.get(cmdSyncStart.atom)).toEqual(cmdSyncStart.defaultKeys);
 		expect(data.has(EXTRA_KEY)).toBe(false);
 	});
 });

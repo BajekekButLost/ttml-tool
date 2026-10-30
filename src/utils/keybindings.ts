@@ -409,7 +409,7 @@ export function registerKeyBindingAtom(
 
 /**
  * Extra shortcuts for an action beyond its stored primary binding. The keyboard
- * module installs the resolver; its atom reads `[]` while the feature is off.
+ * module installs the resolver; without it there are no extras.
  */
 type ExtraKeyBindingsResolver = (
 	binding: ReturnType<typeof atomWithKeybindingStorage>,

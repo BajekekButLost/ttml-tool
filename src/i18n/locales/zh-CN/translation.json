@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "键盘",
-    "flagTitle": "键盘视图与第二按键",
-    "flagDesc": "实验性功能。在键盘上显示你的快捷键，并允许一个操作绑定多个按键。",
     "search": "搜索操作",
     "searchResults": "{count, plural, =0 {没有匹配的操作} other {# 个操作匹配}}",
     "layout": "键盘布局",

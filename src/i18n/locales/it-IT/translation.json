@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Tastiera",
-    "flagTitle": "Vista tastiera e tasti secondari",
-    "flagDesc": "Sperimentale. Mostra le scorciatoie su una tastiera e permette a un'azione di avere più di un tasto.",
     "search": "Cerca azioni",
     "searchResults": "{count, plural, =0 {Nessuna azione corrisponde} one {# azione corrisponde} many {# azioni corrispondono} other {# azioni corrispondono}}",
     "layout": "Layout della tastiera",

@@ -14,7 +14,6 @@ import {
 	RESET_KEYBINDING,
 	setExtraKeyBindingsResolver,
 } from "$/utils/keybindings";
-import { keyboardViewEnabledAtom } from "./flags";
 import { getAllCommands } from "./registry";
 import type { KeyBindingCommand, KeyBindingsConfig } from "./types";
 
@@ -88,8 +87,8 @@ function storedExtras(list: KeyBindingList): KeyBindingList | typeof RESET {
 const extraAtoms = new Map<string, Atom<KeyBindingList>>();
 
 /**
- * The extra shortcuts that are live for dispatch: always the same empty array
- * while the feature is off, so registration matches a single-binding build.
+ * The extra shortcuts that are live for dispatch. With none stored it is always
+ * the same empty array, so hooks don't re-register for it.
  */
 export function extraKeyBindingsAtom(
 	command: KeyBindingCommand,
@@ -98,7 +97,6 @@ export function extraKeyBindingsAtom(
 	if (!extras) {
 		const stored = extraStorageAtom(command.id);
 		extras = atom((get) => {
-			if (!get(keyboardViewEnabledAtom)) return NO_EXTRAS;
 			const list = dedupeKeyBindingList(toKeyBindingList(get(stored)), [
 				get(command.atom),
 			]);

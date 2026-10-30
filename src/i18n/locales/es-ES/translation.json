@@ -1097,8 +1097,6 @@
   },
   "keyboardView": {
     "title": "Teclado",
-    "flagTitle": "Vista de teclado y segundas teclas",
-    "flagDesc": "Experimental. Muestra tus atajos en un teclado y permite que una acción tenga más de una tecla.",
     "search": "Buscar acciones",
     "searchResults": "{count, plural, =0 {Ninguna acción coincide} one {# acción coincide} many {# acciones coinciden} other {# acciones coinciden}}",
     "layout": "Distribución del teclado",

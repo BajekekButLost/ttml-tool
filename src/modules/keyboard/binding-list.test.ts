@@ -26,7 +26,6 @@ vi.mock("$/modules/settings/modals/customBackground", () => ({
 let keyboard: typeof import("$/utils/keybindings");
 let list: typeof import("./binding-list");
 let commands: typeof import("./commands");
-let flags: typeof import("./flags");
 let conflicts: typeof import("./conflicts");
 let backupExport: typeof import("$/modules/settings/backup/export");
 let backupImport: typeof import("$/modules/settings/backup/import");
@@ -52,7 +51,6 @@ beforeAll(async () => {
 	keyboard = await import("$/utils/keybindings");
 	list = await import("./binding-list");
 	commands = await import("./commands");
-	flags = await import("./flags");
 	conflicts = await import("./conflicts");
 	backupExport = await import("$/modules/settings/backup/export");
 	backupImport = await import("$/modules/settings/backup/import");
@@ -63,9 +61,8 @@ afterEach(() => {
 	for (const cleanup of cleanups.splice(0)) cleanup();
 });
 
-function mounted(enabled: boolean) {
+function mounted() {
 	const store = createStore();
-	store.set(flags.keyboardViewEnabledAtom, enabled);
 	cleanups.push(store.sub(list.allKeyBindingListsAtom, () => {}));
 	return store;
 }
@@ -87,13 +84,9 @@ describe("reading stored bindings as lists", () => {
 	});
 });
 
-describe("extra keys behind the flag", () => {
-	it("leaves dispatch on the primary alone while the flag is off", () => {
-		storage.set(
-			list.extraKeyBindingsStorageKey("syncStart"),
-			JSON.stringify([["KeyZ"]]),
-		);
-		const store = mounted(false);
+describe("extra keys", () => {
+	it("reads no stored extras as one shared empty list", () => {
+		const store = mounted();
 		const extras = store.get(list.extraKeyBindingsAtom(commands.cmdSyncStart));
 		expect(extras).toEqual([]);
 		// Same reference every time, so hooks never re-register for it.
@@ -111,7 +104,7 @@ describe("extra keys behind the flag", () => {
 			list.extraKeyBindingsStorageKey("syncStart"),
 			JSON.stringify([["KeyZ"], ["KeyJ"], ["KeyZ"]]),
 		);
-		const store = mounted(true);
+		const store = mounted();
 		expect(store.get(list.keyBindingListAtom(commands.cmdSyncStart))).toEqual([
 			["KeyJ"],
 			["KeyZ"],
@@ -119,7 +112,7 @@ describe("extra keys behind the flag", () => {
 	});
 
 	it("writes the primary to its old key and the rest beside it", async () => {
-		const store = mounted(true);
+		const store = mounted();
 		const syncNext = list.keyBindingListAtom(commands.cmdSyncNext);
 		await store.set(syncNext, [["KeyG"], ["KeyX"], ["KeyC"]]);
 		expect(storage.get("keybindings:syncNext")).toBe(JSON.stringify(["KeyG"]));
@@ -231,7 +224,7 @@ describe("settings backups", () => {
 			}),
 		);
 		await backupImport.applyBackup(old, KEYBINDINGS);
-		const store = mounted(true);
+		const store = mounted();
 		expect(store.get(list.keyBindingListAtom(commands.cmdSyncStart))).toEqual([
 			["KeyJ"],
 		]);
@@ -246,7 +239,7 @@ describe("settings backups", () => {
 		expect(backup.formatVersion).toBe(1);
 		storage.clear();
 		await backupImport.applyBackup(backup, KEYBINDINGS);
-		const store = mounted(true);
+		const store = mounted();
 		expect(store.get(list.keyBindingListAtom(commands.cmdSyncNext))).toEqual([
 			["KeyG"],
 			["KeyX"],

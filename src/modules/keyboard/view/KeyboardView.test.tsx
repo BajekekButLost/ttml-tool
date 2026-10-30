@@ -6,7 +6,6 @@ import { createRoot } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { keyBindingListAtom } from "../binding-list";
 import { cmdSyncStart } from "../commands";
-import { keyboardViewEnabledAtom } from "../flags";
 import { KeyboardViewSection } from "./KeyboardViewSection";
 
 // Node's own localStorage stub shadows jsdom's; use a plain in-memory one.
@@ -27,9 +26,8 @@ let cleanup = () => {};
 beforeEach(() => localStorage.clear());
 afterEach(() => cleanup());
 
-function mount(enabled: boolean) {
+function mount() {
 	const store = createStore();
-	store.set(keyboardViewEnabledAtom, enabled);
 	const container = document.createElement("div");
 	document.body.append(container);
 	const root = createRoot(container);
@@ -69,14 +67,8 @@ function key(type: "keydown" | "keyup", code: string) {
 }
 
 describe("keyboard view", () => {
-	it("shows only the switch while the flag is off", () => {
-		const { container } = mount(false);
-		expect(container.querySelector('[role="switch"]')).not.toBeNull();
-		expect(cap(container, "KeyF")).toBeNull();
-	});
-
 	it("colors bound keys by category and leaves free keys blank", () => {
-		const { container } = mount(true);
+		const { container } = mount();
 		expect(cap(container, "KeyF")?.dataset.category).toBe("sync");
 		expect(cap(container, "Space")?.dataset.category).toBe("playback");
 		expect(cap(container, "KeyD")?.dataset.category).toBe("navigation");
@@ -84,7 +76,7 @@ describe("keyboard view", () => {
 	});
 
 	it("switches to the Shift layer from the Shift cap", () => {
-		const { container } = mount(true);
+		const { container } = mount();
 		const shift = container.querySelector<HTMLButtonElement>(
 			'button[data-code="Shift"]',
 		);
@@ -96,7 +88,7 @@ describe("keyboard view", () => {
 	});
 
 	it("adds a second key from the side panel, and it shows on the board", async () => {
-		const { store, container } = mount(true);
+		const { store, container } = mount();
 		act(() => cap(container, "KeyF")?.click());
 		expect(cap(container, "KeyF")?.dataset.selected).toBe("true");
 		act(() => buttonWithText(container, "keyboardView.addKey")?.click());
@@ -111,7 +103,7 @@ describe("keyboard view", () => {
 	});
 
 	it("stops recording when another key is picked mid-recording", async () => {
-		const { store, container } = mount(true);
+		const { store, container } = mount();
 		act(() => cap(container, "KeyF")?.click());
 		act(() => buttonWithText(container, "keyboardView.addKey")?.click());
 		act(() => cap(container, "KeyG")?.click());
@@ -123,7 +115,7 @@ describe("keyboard view", () => {
 	});
 
 	it("refuses a key the action already has", async () => {
-		const { store, container } = mount(true);
+		const { store, container } = mount();
 		act(() => cap(container, "KeyF")?.click());
 		act(() => buttonWithText(container, "keyboardView.addKey")?.click());
 		key("keydown", "KeyF");
@@ -134,7 +126,7 @@ describe("keyboard view", () => {
 	});
 
 	it("lights up the keys of matching actions while searching", () => {
-		const { container } = mount(true);
+		const { container } = mount();
 		const search = container.querySelector<HTMLInputElement>(
 			'input[aria-label="keyboardView.search"]',
 		);
