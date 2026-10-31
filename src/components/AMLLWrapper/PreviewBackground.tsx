@@ -28,6 +28,15 @@ export function PreviewBackground({
 			overflow: "hidden",
 		});
 		container.current?.appendChild(canvas);
+		// dispose() frees the renderer's GL objects but leaves the context
+		// alive until GC; browsers cap live contexts, so drop it right away.
+		const release = () => {
+			background.dispose();
+			canvas
+				.getContext("webgl")
+				?.getExtension("WEBGL_lose_context")
+				?.loseContext();
+		};
 		let loading = Boolean(album);
 		let disposed = false;
 		if (album) {
@@ -36,14 +45,14 @@ export function PreviewBackground({
 				.catch(console.error)
 				.finally(() => {
 					loading = false;
-					if (disposed) background.dispose();
+					if (disposed) release();
 				});
 		}
 		return () => {
 			disposed = true;
 			background.pause();
 			canvas.remove();
-			if (!loading) background.dispose();
+			if (!loading) release();
 		};
 	}, [album]);
 

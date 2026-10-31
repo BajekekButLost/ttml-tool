@@ -14,7 +14,13 @@ import { PreviewBackground } from "./PreviewBackground";
 describe("preview background lifecycle", () => {
 	function mockBackground(load = Promise.resolve()) {
 		const canvas = document.createElement("canvas");
+		const loseContext = vi.fn();
+		vi.spyOn(canvas, "getContext").mockReturnValue({
+			getExtension: (name: string) =>
+				name === "WEBGL_lose_context" ? { loseContext } : null,
+		} as unknown as WebGLRenderingContext);
 		return {
+			loseContext,
 			canvas,
 			getElement: () => canvas,
 			setRenderScale: vi.fn(),
@@ -61,6 +67,7 @@ describe("preview background lifecycle", () => {
 				for (const instance of instances) {
 					expect(instance.pause).toHaveBeenCalled();
 					expect(instance.dispose).toHaveBeenCalledTimes(1);
+					expect(instance.loseContext).toHaveBeenCalledTimes(1);
 				}
 			}
 			expect(instances).toHaveLength(6);
@@ -95,12 +102,14 @@ describe("preview background lifecycle", () => {
 			expect(background.pause).toHaveBeenCalled();
 			expect(container.querySelector("canvas")).toBeNull();
 			expect(background.dispose).not.toHaveBeenCalled();
+			expect(background.loseContext).not.toHaveBeenCalled();
 			background.resume.mockClear();
 			await act(async () => {
 				if (reject) rejectLoad(new Error("Image load failed"));
 				else resolveLoad();
 			});
 			expect(background.dispose).toHaveBeenCalledTimes(1);
+			expect(background.loseContext).toHaveBeenCalledTimes(1);
 			expect(background.resume).not.toHaveBeenCalled();
 			expect(error).toHaveBeenCalledTimes(reject ? 1 : 0);
 		} finally {
