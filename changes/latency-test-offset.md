@@ -5,4 +5,4 @@ highlight: true
 ---
 Test input precision with your sync offset
 
-Turn on Sync offset in the latency test to check how your setting affects input timing
+Try different sync offsets in the latency test and save the value that fits your system

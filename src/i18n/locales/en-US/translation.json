@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Expand / collapse spectrogram"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Changes stay in this dialog until you save the offset",
+    "saveOffset": "Save offset",
     "useOffset": "Use sync offset",
     "offsetNotice": "Results include your sync offset of {offset} ms.",
     "title": "Latency test",

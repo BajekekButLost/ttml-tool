@@ -41,8 +41,12 @@ export const LatencyTestDialog = memo(() => {
 	const [latencyBPM, setLatencyBPM] = useAtom(latencyTestBPMAtom);
 	const [start, setStart] = useState(false);
 	const [useOffset, setUseOffset] = useState(false);
-	const syncTimeOffset = useAtomValue(syncTimeOffsetAtom);
-	const appliedOffset = useOffset ? syncTimeOffset : 0;
+	const [syncTimeOffset, setSyncTimeOffset] = useAtom(syncTimeOffsetAtom);
+	const [trialOffset, setTrialOffset] = useState(String(syncTimeOffset));
+	const parsedOffset = Number(trialOffset);
+	const validOffset =
+		trialOffset.trim() !== "" && Number.isSafeInteger(parsedOffset);
+	const appliedOffset = useOffset && validOffset ? parsedOffset : 0;
 	const [curBeat, setCurBeat] = useState(-1);
 	const [hitOffset, setHitOffset] = useState<{
 		cur: number;
@@ -57,6 +61,15 @@ export const LatencyTestDialog = memo(() => {
 	const visualizerRef = useRef<HTMLCanvasElement>(null);
 	const beepDuration = 1000 / (latencyBPM / 60);
 	const { t } = useTranslation();
+
+	useEffect(() => {
+		if (dialogOpen) setTrialOffset(String(syncTimeOffset));
+	}, [dialogOpen, syncTimeOffset]);
+
+	const resetMeasurements = () => {
+		setHitOffset(null);
+		hitOffsetsRef.current = [];
+	};
 
 	useEffect(() => {
 		if (dialogOpen) return;
@@ -341,18 +354,53 @@ export const LatencyTestDialog = memo(() => {
 
 					<Text as="label" size="2">
 						<Flex align="center" gap="2">
-							<Switch checked={useOffset} onCheckedChange={setUseOffset} />
+							<Switch
+								checked={useOffset}
+								disabled={!validOffset}
+								onCheckedChange={(checked) => {
+									setUseOffset(checked);
+									resetMeasurements();
+								}}
+							/>
 							{t("latencyTestDialog.useOffset")}
 						</Flex>
 					</Text>
-					{useOffset && (
+					<Text as="label" size="2">
+						<Flex direction="column" gap="2">
+							{t("settings.common.syncTimeOffset")}
+							<TextField.Root
+								type="number"
+								step={1}
+								value={trialOffset}
+								aria-invalid={!validOffset}
+								onChange={(event) => {
+									setTrialOffset(event.target.value);
+									resetMeasurements();
+								}}
+							/>
+						</Flex>
+					</Text>
+					<Text size="1" color="gray">
+						{t("latencyTestDialog.trialOffsetHint")}
+					</Text>
+					<Button
+						variant="soft"
+						disabled={!validOffset || parsedOffset === syncTimeOffset}
+						onClick={() => setSyncTimeOffset(parsedOffset)}
+					>
+						{t("latencyTestDialog.saveOffset")}
+					</Button>
+					{useOffset && validOffset && (
 						<Text size="1" color="gray" role="status">
 							{t("latencyTestDialog.offsetNotice", { offset: appliedOffset })}
 						</Text>
 					)}
 
 					<Flex gap="2">
-						<Button onClick={() => setStart((v) => !v)}>
+						<Button
+							disabled={!start && !validOffset}
+							onClick={() => setStart((v) => !v)}
+						>
 							{start
 								? t("latencyTestDialog.button.stop", "结束")
 								: t("latencyTestDialog.button.start", "开始")}

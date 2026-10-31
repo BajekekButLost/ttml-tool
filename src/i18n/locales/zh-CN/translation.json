@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "展开 / 收起频谱图"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "保存偏移前，更改仅在此对话框中生效",
+    "saveOffset": "保存偏移",
     "useOffset": "使用打轴偏移",
     "offsetNotice": "结果包含您设置的 {offset} ms 打轴偏移。",
     "title": "延迟测试",

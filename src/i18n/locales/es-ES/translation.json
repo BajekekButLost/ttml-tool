@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Expandir/contraer espectrograma"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Los cambios solo se guardan al pulsar Guardar desfase",
+    "saveOffset": "Guardar desfase",
     "useOffset": "Usar desfase de sincronización",
     "offsetNotice": "Los resultados incluyen tu desfase de sincronización de {offset} ms.",
     "title": "Prueba de latencia",

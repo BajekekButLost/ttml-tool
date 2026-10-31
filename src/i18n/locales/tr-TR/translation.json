@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Spektrogramı genişlet/daralt"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Kaymayı kaydedene kadar değişiklikler bu pencerede kalır",
+    "saveOffset": "Kaymayı kaydet",
     "useOffset": "Senkronizasyon kaymasını kullan",
     "offsetNotice": "Sonuçlar {offset} ms senkronizasyon kaymanızı içerir.",
     "title": "Gecikme testi",

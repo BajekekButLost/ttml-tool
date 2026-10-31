@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Perluas / ciutkan spektrogram"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Perubahan tetap di dialog ini sampai Anda menyimpan offset",
+    "saveOffset": "Simpan offset",
     "useOffset": "Gunakan offset sinkronisasi",
     "offsetNotice": "Hasil mencakup offset sinkronisasi Anda sebesar {offset} ms.",
     "title": "Tes latensi",

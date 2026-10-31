@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Les changements restent dans cette boîte de dialogue jusqu’à leur enregistrement",
+    "saveOffset": "Enregistrer le décalage",
     "useOffset": "Utiliser le décalage de synchronisation",
     "offsetNotice": "Les résultats incluent votre décalage de synchronisation de {offset} ms.",
     "title": "Test de latence",

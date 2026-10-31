@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Rozbaliť / zbaliť spektrogram"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Zmeny zostanú v tomto dialógu, kým neuložíte posun",
+    "saveOffset": "Uložiť posun",
     "useOffset": "Použiť posun synchronizácie",
     "offsetNotice": "Výsledky zahŕňajú posun synchronizácie {offset} ms.",
     "title": "Test latencie",

@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Ændringer gemmes først, når du vælger Gem forskydning",
+    "saveOffset": "Gem forskydning",
     "useOffset": "Brug synkroniseringsforskydning",
     "offsetNotice": "Resultaterne inkluderer din synkroniseringsforskydning på {offset} ms.",
     "title": "Test af forsinkelse",

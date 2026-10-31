@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Uitvouwen / samenvouwen spectrogram"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Wijzigingen blijven in dit venster totdat je de verschuiving opslaat",
+    "saveOffset": "Verschuiving opslaan",
     "useOffset": "Synchronisatieverschuiving gebruiken",
     "offsetNotice": "De resultaten bevatten je synchronisatieverschuiving van {offset} ms.",
     "title": "Latentietest",

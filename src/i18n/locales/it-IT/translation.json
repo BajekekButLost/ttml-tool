@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Espandi / comprimi lo spettrogramma"
   },
   "latencyTestDialog": {
+    "trialOffsetHint": "Le modifiche restano in questa finestra finché non salvi lo scostamento",
+    "saveOffset": "Salva scostamento",
     "useOffset": "Usa lo scostamento di sincronizzazione",
     "offsetNotice": "I risultati includono lo scostamento di sincronizzazione di {offset} ms.",
     "title": "Test di latenza",
