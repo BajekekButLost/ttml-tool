@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Expandir/contraer espectrograma"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Introduce un desfase en milisegundos enteros",
     "precision": "Error absoluto medio: {error} ms ({count} pulsaciones)",
     "recommendationProgress": "Pulsa al menos 20 veces para recibir una recomendación ({count}/20)",
     "recommendedOffset": "Desfase de sincronización recomendado: {offset} ms",

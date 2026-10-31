@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "展开 / 收起频谱图"
   },
   "latencyTestDialog": {
+    "invalidOffset": "请输入整数毫秒的偏移值",
     "precision": "平均绝对误差：{error} ms（{count} 次按键）",
     "recommendationProgress": "至少按键 20 次以获取建议（{count}/20）",
     "recommendedOffset": "建议打轴偏移：{offset} ms",

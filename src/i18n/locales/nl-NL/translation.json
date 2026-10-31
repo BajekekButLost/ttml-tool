@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Uitvouwen / samenvouwen spectrogram"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Voer een verschuiving in hele milliseconden in",
     "precision": "Gemiddelde absolute afwijking: {error} ms ({count} aanslagen)",
     "recommendationProgress": "Druk minstens 20 keer voor een aanbeveling ({count}/20)",
     "recommendedOffset": "Aanbevolen synchronisatieverschuiving: {offset} ms",

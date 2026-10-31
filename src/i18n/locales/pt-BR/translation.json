@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Expandir / recolher espectrograma"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Insira um deslocamento em milissegundos inteiros",
     "precision": "Erro absoluto médio: {error} ms ({count} toques)",
     "recommendationProgress": "Pressione pelo menos 20 vezes para receber uma recomendação ({count}/20)",
     "recommendedOffset": "Deslocamento de sincronização recomendado: {offset} ms",

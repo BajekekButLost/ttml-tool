@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Saisissez un décalage en millisecondes entières",
     "precision": "Erreur absolue moyenne : {error} ms ({count} frappes)",
     "recommendationProgress": "Appuyez au moins 20 fois pour obtenir un conseil ({count}/20)",
     "recommendedOffset": "Décalage de synchronisation conseillé : {offset} ms",

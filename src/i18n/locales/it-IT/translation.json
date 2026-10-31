@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Espandi / comprimi lo spettrogramma"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Inserisci uno scostamento in millisecondi interi",
     "precision": "Errore assoluto medio: {error} ms ({count} pressioni)",
     "recommendationProgress": "Premi almeno 20 volte per un consiglio ({count}/20)",
     "recommendedOffset": "Scostamento di sincronizzazione consigliato: {offset} ms",

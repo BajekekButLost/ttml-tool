@@ -1273,6 +1273,7 @@
     "expandSpectrogram": "Spektrogramı genişlet/daralt"
   },
   "latencyTestDialog": {
+    "invalidOffset": "Tam milisaniye cinsinden bir kayma girin",
     "precision": "Ortalama mutlak hata: {error} ms ({count} basış)",
     "recommendationProgress": "Öneri almak için en az 20 kez basın ({count}/20)",
     "recommendedOffset": "Önerilen senkronizasyon kayması: {offset} ms",
