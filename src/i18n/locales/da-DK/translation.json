@@ -1273,6 +1273,10 @@
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },
   "latencyTestDialog": {
+    "precision": "Gennemsnitlig absolut fejl: {error} ms ({count} tryk)",
+    "recommendationProgress": "Tryk mindst 20 gange for en anbefaling ({count}/20)",
+    "recommendedOffset": "Anbefalet synkroniseringsforskydning: {offset} ms",
+    "tryRecommendation": "Prøv anbefalet forskydning",
     "trialOffsetHint": "Ændringer gemmes først, når du vælger Gem forskydning",
     "saveOffset": "Gem forskydning",
     "useOffset": "Brug synkroniseringsforskydning",

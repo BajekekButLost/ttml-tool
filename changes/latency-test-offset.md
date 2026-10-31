@@ -5,4 +5,4 @@ highlight: true
 ---
 Test input precision with your sync offset
 
-Try different sync offsets in the latency test and save the value that fits your system
+Try and save sync offsets, measure timing precision, and get a recommended offset after 20 presses

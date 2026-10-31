@@ -1273,6 +1273,10 @@
     "expandSpectrogram": "Rozbaliť / zbaliť spektrogram"
   },
   "latencyTestDialog": {
+    "precision": "Priemerná absolútna chyba: {error} ms ({count} stlačení)",
+    "recommendationProgress": "Pre odporúčanie stlačte aspoň 20-krát ({count}/20)",
+    "recommendedOffset": "Odporúčaný posun synchronizácie: {offset} ms",
+    "tryRecommendation": "Vyskúšať odporúčaný posun",
     "trialOffsetHint": "Zmeny zostanú v tomto dialógu, kým neuložíte posun",
     "saveOffset": "Uložiť posun",
     "useOffset": "Použiť posun synchronizácie",

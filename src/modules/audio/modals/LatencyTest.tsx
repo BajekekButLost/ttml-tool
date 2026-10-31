@@ -20,7 +20,10 @@ import { syncTimeOffsetAtom } from "$/modules/settings/states/sync";
 import { latencyTestDialogAtom } from "$/states/dialogs.ts";
 import { keySyncNextAtom } from "$/states/keybindings";
 import { type KeyBindingEvent, registerKeyBindings } from "$/utils/keybindings";
-import { subscribeLatencyTestTaps } from "../utils/latency-test-session";
+import {
+	getLatencyStatistics,
+	subscribeLatencyTestTaps,
+} from "../utils/latency-test-session";
 
 const BeepVisualizer = ({ enable }: { enable: boolean }) => {
 	return (
@@ -52,6 +55,7 @@ export const LatencyTestDialog = memo(() => {
 		cur: number;
 		min: number;
 		max: number;
+		statistics: NonNullable<ReturnType<typeof getLatencyStatistics>>;
 	} | null>(null);
 	const syncJudgeMode = useAtomValue(syncJudgeModeAtom);
 	const syncNextBinding = useAtomValue(keySyncNextAtom);
@@ -206,6 +210,7 @@ export const LatencyTestDialog = memo(() => {
 			hitOffsetsRef.current = [];
 		}
 		const onTap = (evt: KeyBindingEvent) => {
+			if (!validOffset) return;
 			const currentTime = audioEngine.ctxCurrentTime;
 			const outputLatency = audioEngine.ctxOutputLatency;
 			let hitTime = currentTime + outputLatency;
@@ -234,18 +239,25 @@ export const LatencyTestDialog = memo(() => {
 				hitOffsetsRef.current.shift();
 			}
 			// 正值为快，负值为慢
+			const statistics = getLatencyStatistics(
+				hitOffsetsRef.current,
+				appliedOffset,
+			);
+			if (!statistics) return;
 			setHitOffset((old) => {
-				const v = (diff * 1000) | 0;
+				const v = Math.round(diff * 1000);
 				if (old === null)
 					return {
 						cur: v,
 						min: v,
 						max: v,
+						statistics,
 					};
 				return {
 					cur: v,
 					min: Math.min(old.min, v),
 					max: Math.max(old.max, v),
+					statistics,
 				};
 			});
 		};
@@ -254,7 +266,14 @@ export const LatencyTestDialog = memo(() => {
 			(callback) => registerKeyBindings(syncNextBinding, callback),
 			onTap,
 		);
-	}, [dialogOpen, start, syncJudgeMode, syncNextBinding, appliedOffset]);
+	}, [
+		dialogOpen,
+		start,
+		syncJudgeMode,
+		syncNextBinding,
+		appliedOffset,
+		validOffset,
+	]);
 
 	return (
 		<Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -327,6 +346,39 @@ export const LatencyTestDialog = memo(() => {
 						</Text>
 					</Flex>
 
+					{hitOffset && (
+						<Flex direction="column" gap="2">
+							<Text size="2">
+								{t("latencyTestDialog.precision", {
+									count: hitOffset.statistics.count,
+									error: hitOffset.statistics.meanAbsoluteError,
+								})}
+							</Text>
+							<Text size="2" role="status">
+								{hitOffset.statistics.recommendedOffset === null
+									? t("latencyTestDialog.recommendationProgress", {
+											count: hitOffset.statistics.count,
+										})
+									: t("latencyTestDialog.recommendedOffset", {
+											offset: hitOffset.statistics.recommendedOffset,
+										})}
+							</Text>
+							{hitOffset.statistics.recommendedOffset !== null && (
+								<Button
+									variant="soft"
+									onClick={() => {
+										setTrialOffset(
+											String(hitOffset.statistics.recommendedOffset),
+										);
+										setUseOffset(true);
+										resetMeasurements();
+									}}
+								>
+									{t("latencyTestDialog.tryRecommendation")}
+								</Button>
+							)}
+						</Flex>
+					)}
 					<canvas
 						style={{
 							width: "14em",
