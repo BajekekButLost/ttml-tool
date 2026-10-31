@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Expandir / recolher espectrograma"
   },
   "latencyTestDialog": {
+    "useOffset": "Usar deslocamento de sincronização",
+    "offsetNotice": "Os resultados incluem seu deslocamento de sincronização de {offset} ms.",
     "title": "Teste de latência",
     "latencyDisplay": {
       "fastest": "Mais rápido",

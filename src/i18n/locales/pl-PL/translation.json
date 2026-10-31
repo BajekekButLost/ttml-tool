@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Rozwiń / zwiń spektrogram"
   },
   "latencyTestDialog": {
+    "useOffset": "Użyj przesunięcia synchronizacji",
+    "offsetNotice": "Wyniki uwzględniają przesunięcie synchronizacji o {offset} ms.",
     "title": "Test opóźnienia",
     "latencyDisplay": {
       "fastest": "Najszybciej",

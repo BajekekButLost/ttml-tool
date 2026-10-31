@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Развернуть/свернуть спектрограмму"
   },
   "latencyTestDialog": {
+    "useOffset": "Учитывать сдвиг синхронизации",
+    "offsetNotice": "Результаты учитывают сдвиг синхронизации {offset} мс.",
     "title": "Проверка задержки",
     "latencyDisplay": {
       "fastest": "Раньше всего",

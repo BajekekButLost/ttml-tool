@@ -1,4 +1,11 @@
-import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
+import {
+	Button,
+	Dialog,
+	Flex,
+	Switch,
+	Text,
+	TextField,
+} from "@radix-ui/themes";
 import { useAtom, useAtomValue } from "jotai";
 import { memo, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,6 +16,7 @@ import {
 	SyncJudgeMode,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
+import { syncTimeOffsetAtom } from "$/modules/settings/states/sync";
 import { latencyTestDialogAtom } from "$/states/dialogs.ts";
 import { keySyncNextAtom } from "$/states/keybindings";
 import { type KeyBindingEvent, registerKeyBindings } from "$/utils/keybindings";
@@ -32,6 +40,9 @@ export const LatencyTestDialog = memo(() => {
 	const [dialogOpen, setDialogOpen] = useAtom(latencyTestDialogAtom);
 	const [latencyBPM, setLatencyBPM] = useAtom(latencyTestBPMAtom);
 	const [start, setStart] = useState(false);
+	const [useOffset, setUseOffset] = useState(false);
+	const syncTimeOffset = useAtomValue(syncTimeOffsetAtom);
+	const appliedOffset = useOffset ? syncTimeOffset : 0;
 	const [curBeat, setCurBeat] = useState(-1);
 	const [hitOffset, setHitOffset] = useState<{
 		cur: number;
@@ -177,11 +188,16 @@ export const LatencyTestDialog = memo(() => {
 	}, [start, dialogOpen, beepDuration]);
 
 	useEffect(() => {
+		if (dialogOpen && start) {
+			setHitOffset(null);
+			hitOffsetsRef.current = [];
+		}
 		const onTap = (evt: KeyBindingEvent) => {
 			const currentTime = audioEngine.ctxCurrentTime;
 			const outputLatency = audioEngine.ctxOutputLatency;
 			let hitTime = currentTime + outputLatency;
 			switch (syncJudgeMode) {
+				case SyncJudgeMode.FirstKeyDownTimeLegacy:
 				case SyncJudgeMode.FirstKeyDownTime:
 					hitTime -= evt.downTimeOffset / 1000;
 					break;
@@ -199,6 +215,7 @@ export const LatencyTestDialog = memo(() => {
 			} else {
 				diff = nextDiff;
 			}
+			diff -= appliedOffset / 1000;
 			hitOffsetsRef.current.push(diff);
 			if (hitOffsetsRef.current.length > 100) {
 				hitOffsetsRef.current.shift();
@@ -224,7 +241,7 @@ export const LatencyTestDialog = memo(() => {
 			(callback) => registerKeyBindings(syncNextBinding, callback),
 			onTap,
 		);
-	}, [dialogOpen, start, syncJudgeMode, syncNextBinding]);
+	}, [dialogOpen, start, syncJudgeMode, syncNextBinding, appliedOffset]);
 
 	return (
 		<Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -321,6 +338,18 @@ export const LatencyTestDialog = memo(() => {
 							/>
 						</Flex>
 					</Text>
+
+					<Text as="label" size="2">
+						<Flex align="center" gap="2">
+							<Switch checked={useOffset} onCheckedChange={setUseOffset} />
+							{t("latencyTestDialog.useOffset")}
+						</Flex>
+					</Text>
+					{useOffset && (
+						<Text size="1" color="gray" role="status">
+							{t("latencyTestDialog.offsetNotice", { offset: appliedOffset })}
+						</Text>
+					)}
 
 					<Flex gap="2">
 						<Button onClick={() => setStart((v) => !v)}>

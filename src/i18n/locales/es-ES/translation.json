@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Expandir/contraer espectrograma"
   },
   "latencyTestDialog": {
+    "useOffset": "Usar desfase de sincronización",
+    "offsetNotice": "Los resultados incluyen tu desfase de sincronización de {offset} ms.",
     "title": "Prueba de latencia",
     "latencyDisplay": {
       "fastest": "Más rápido",

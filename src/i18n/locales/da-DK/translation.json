@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Udvid / skjul spektrogram"
   },
   "latencyTestDialog": {
+    "useOffset": "Brug synkroniseringsforskydning",
+    "offsetNotice": "Resultaterne inkluderer din synkroniseringsforskydning på {offset} ms.",
     "title": "Test af forsinkelse",
     "latencyDisplay": {
       "fastest": "Hurtigste",

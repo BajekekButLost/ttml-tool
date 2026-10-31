@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Développer / réduire le spectrogramme"
   },
   "latencyTestDialog": {
+    "useOffset": "Utiliser le décalage de synchronisation",
+    "offsetNotice": "Les résultats incluent votre décalage de synchronisation de {offset} ms.",
     "title": "Test de latence",
     "latencyDisplay": {
       "fastest": "Le plus rapide",

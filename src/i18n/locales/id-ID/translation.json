@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Perluas / ciutkan spektrogram"
   },
   "latencyTestDialog": {
+    "useOffset": "Gunakan offset sinkronisasi",
+    "offsetNotice": "Hasil mencakup offset sinkronisasi Anda sebesar {offset} ms.",
     "title": "Tes latensi",
     "latencyDisplay": {
       "fastest": "Tercepat",

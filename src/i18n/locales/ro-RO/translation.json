@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Extinde / restrânge spectrograma"
   },
   "latencyTestDialog": {
+    "useOffset": "Folosește decalajul de sincronizare",
+    "offsetNotice": "Rezultatele includ decalajul de sincronizare de {offset} ms.",
     "title": "Test de latență",
     "latencyDisplay": {
       "fastest": "Cea mai rapidă",

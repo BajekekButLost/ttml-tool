@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Laajenna / tiivistä spektrogrammi"
   },
   "latencyTestDialog": {
+    "useOffset": "Käytä ajoituksen siirtymää",
+    "offsetNotice": "Tulokset sisältävät ajoituksen siirtymän {offset} ms.",
     "title": "Viivetesti",
     "latencyDisplay": {
       "fastest": "Nopein",

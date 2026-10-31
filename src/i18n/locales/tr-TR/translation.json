@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Spektrogramı genişlet/daralt"
   },
   "latencyTestDialog": {
+    "useOffset": "Senkronizasyon kaymasını kullan",
+    "offsetNotice": "Sonuçlar {offset} ms senkronizasyon kaymanızı içerir.",
     "title": "Gecikme testi",
     "latencyDisplay": {
       "fastest": "En hızlı",

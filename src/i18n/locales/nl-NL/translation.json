@@ -1273,6 +1273,8 @@
     "expandSpectrogram": "Uitvouwen / samenvouwen spectrogram"
   },
   "latencyTestDialog": {
+    "useOffset": "Synchronisatieverschuiving gebruiken",
+    "offsetNotice": "De resultaten bevatten je synchronisatieverschuiving van {offset} ms.",
     "title": "Latentietest",
     "latencyDisplay": {
       "fastest": "Snelste",
