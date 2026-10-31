@@ -11,9 +11,9 @@ import { memo, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeyBinding } from "$/components/KeyBinding";
 import { audioEngine } from "$/modules/audio/audio-engine";
+import { calculateSyncTime } from "$/modules/lyric-editor/utils/sync-timing";
 import {
 	latencyTestBPMAtom,
-	SyncJudgeMode,
 	syncJudgeModeAtom,
 } from "$/modules/settings/states";
 import { syncTimeOffsetAtom } from "$/modules/settings/states/sync";
@@ -135,16 +135,19 @@ export const LatencyTestDialog = memo(() => {
 
 	useEffect(() => {
 		const onTap = (evt: KeyBindingEvent) => {
-			let hitTime = audioEngine.ctxCurrentTime + audioEngine.ctxOutputLatency;
-			switch (syncJudgeMode) {
-				case SyncJudgeMode.FirstKeyDownTimeLegacy:
-				case SyncJudgeMode.FirstKeyDownTime:
-					hitTime -= evt.downTimeOffset / 1000;
-					break;
-				case SyncJudgeMode.MiddleKeyTime:
-					hitTime -= evt.downTimeOffset / 2000;
-					break;
-			}
+			// Judge the tap exactly like a sync stamp: on the audible clock, with the
+			// same key and processing-delay handling, so the recommendation matches.
+			const hitTime =
+				calculateSyncTime({
+					audioTimeSeconds: audioEngine.audibleContextTime,
+					playbackRate: 1,
+					isPlaying: true,
+					event: evt,
+					judgeMode: syncJudgeMode,
+					syncTimeOffset: 0,
+					performanceTime: performance.now(),
+					performanceTimeOrigin: performance.timeOrigin,
+				}) / 1000;
 			const curDiff = curBeatTime.current - hitTime;
 			const nextDiff = nextBeatTime.current - hitTime;
 			const diff = Math.abs(curDiff) < Math.abs(nextDiff) ? curDiff : nextDiff;
