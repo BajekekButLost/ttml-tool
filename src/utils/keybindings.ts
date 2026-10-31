@@ -159,6 +159,32 @@ export function normalizeKeyCode(code: string): string {
 	return code.replace(/^(Control|Meta|Alt|Shift)(Left|Right)$/, "$1");
 }
 
+export function shortcutKeyFromCharacter(key: string): string {
+	if (/^[a-z]$/i.test(key)) return `Key${key.toUpperCase()}`;
+	if (/^\d$/.test(key)) return `Digit${key}`;
+	if (key === " ") return "Space";
+	const punctuation = Object.entries(KEY_LABELS).find(
+		([code, label]) => label === key && !code.startsWith("Numpad"),
+	);
+	if (punctuation) return punctuation[0];
+	return key.length === 1 ? key.toLowerCase() : normalizeKeyCode(key);
+}
+
+export function shortcutKeyFromEvent(
+	event: Pick<KeyboardEvent, "code" | "key"> &
+		Partial<Pick<KeyboardEvent, "shiftKey">>,
+): string {
+	if (event.code.startsWith("Numpad")) return event.code;
+	if (!event.key || event.key === "Unidentified")
+		return normalizeKeyCode(event.code);
+	const shifted = '!@#$%^&*()_+{}|:"<>?~';
+	const unshifted = "1234567890-=[]\\;',./`";
+	const index = shifted.indexOf(event.key);
+	if (event.shiftKey && event.key.length === 1 && index !== -1)
+		return shortcutKeyFromCharacter(unshifted[index]);
+	return shortcutKeyFromCharacter(event.key);
+}
+
 export function normalizeKeyBindings(cfg: Iterable<string>): KeyBindingsConfig {
 	return [...new Set([...cfg].map(normalizeKeyCode))];
 }
@@ -186,10 +212,12 @@ export function getShortcutKey(cfg: KeyBindingsConfig | Set<string>) {
 }
 
 const keyDownTimes = new Map<string, number>();
+const heldKeyCodes = new Map<string, string>();
 
 function clearPressingKeys() {
 	pressingKeys.clear();
 	keyDownTimes.clear();
+	heldKeyCodes.clear();
 }
 
 /**
@@ -240,7 +268,13 @@ function triggerCallbacks(
 }
 
 window.addEventListener("keydown", (evt) => {
-	if (evt.repeat) return;
+	if (
+		evt.repeat ||
+		evt.isComposing ||
+		evt.key === "Dead" ||
+		evt.key === "Process"
+	)
+		return;
 	if (isEditing(evt)) {
 		clearPressingKeys();
 		return;
@@ -249,7 +283,8 @@ window.addEventListener("keydown", (evt) => {
 		downTime = evt.timeStamp;
 	}
 
-	const code = normalizeKeyCode(evt.code);
+	const code = shortcutKeyFromEvent(evt);
+	heldKeyCodes.set(evt.code, code);
 	keyDownTimes.set(code, evt.timeStamp);
 
 	// 阻止空格滚动
@@ -274,7 +309,7 @@ window.addEventListener("keyup", (evt) => {
 		return;
 	}
 
-	const code = normalizeKeyCode(evt.code);
+	const code = heldKeyCodes.get(evt.code) ?? shortcutKeyFromEvent(evt);
 
 	if (currentTriggerMode === KeyBindingTriggerMode.KeyUp) {
 		dispatchPressingKeys(code, evt);
@@ -282,6 +317,7 @@ window.addEventListener("keyup", (evt) => {
 
 	pressingKeys.delete(code);
 	keyDownTimes.delete(code);
+	heldKeyCodes.delete(evt.code);
 });
 window.addEventListener("blur", clearPressingKeys);
 window.addEventListener("focus", clearPressingKeys);
@@ -546,7 +582,12 @@ export function registerDoubleKeyBindings(
 				triggerTime: evt.timeStamp,
 			});
 			// This capture listener consumes the event before the dispatcher sees it.
-			if (evt.type === "keyup") pressingKeys.delete(normalizeKeyCode(evt.code));
+			if (evt.type === "keyup") {
+				const code = heldKeyCodes.get(evt.code) ?? shortcutKeyFromEvent(evt);
+				pressingKeys.delete(code);
+				keyDownTimes.delete(code);
+				heldKeyCodes.delete(evt.code);
+			}
 			evt.preventDefault();
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
@@ -560,16 +601,22 @@ export function registerDoubleKeyBindings(
 			reset();
 			return;
 		}
-		if (evt.repeat) return;
+		if (
+			evt.repeat ||
+			evt.isComposing ||
+			evt.key === "Dead" ||
+			evt.key === "Process"
+		)
+			return;
 		const keys = [
 			...(evt.ctrlKey ? ["Control"] : []),
 			...(evt.metaKey ? ["Meta"] : []),
 			...(evt.altKey ? ["Alt"] : []),
 			...(evt.shiftKey ? ["Shift"] : []),
-			normalizeKeyCode(evt.code),
+			shortcutKeyFromEvent(evt),
 		];
 		if (getShortcutKey(keys) !== joinedKey) {
-			const code = normalizeKeyCode(evt.code);
+			const code = shortcutKeyFromEvent(evt);
 			if (
 				MODIFIER_ORDER.includes(code) &&
 				normalizeKeyBindings(cfg).includes(code)
@@ -631,7 +678,9 @@ export function recordShortcut(): Promise<KeyBindingsConfig> {
 		const recorded = new Set<string>();
 		const stack = new Set<string>();
 		const onKeyDown = (evt: KeyboardEvent) => {
-			recorded.add(normalizeKeyCode(evt.code));
+			if (evt.isComposing || evt.key === "Dead" || evt.key === "Process")
+				return;
+			recorded.add(shortcutKeyFromEvent(evt));
 			stack.add(evt.code);
 			evt.preventDefault();
 			evt.stopPropagation();

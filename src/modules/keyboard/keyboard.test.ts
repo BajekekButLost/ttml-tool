@@ -398,6 +398,90 @@ describe("shortcut recording and storage", () => {
 	});
 });
 
+describe("layout-aware shortcuts", () => {
+	it.each([
+		["QWERTZ", "KeyY", "z", "KeyZ"],
+		["AZERTY", "KeyQ", "a", "KeyA"],
+		["Dvorak", "Semicolon", "s", "KeyS"],
+		["Colemak", "KeyK", "e", "KeyE"],
+		["Unicode", "Semicolon", "ö", "ö"],
+	])("follows the character on %s", (_, physical, character, binding) => {
+		const callback = vi.fn();
+		const wrongPosition = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings([binding], callback));
+		cleanups.push(keyboard.registerKeyBindings([physical], wrongPosition));
+		key("keydown", physical, 10, { key: character });
+		key("keyup", physical, 20, { key: character });
+		expect(callback).toHaveBeenCalledOnce();
+		expect(wrongPosition).not.toHaveBeenCalled();
+	});
+
+	it.each([
+		"keydown",
+		"keyup",
+	] as const)("keeps Ctrl+Z on Z in %s mode", (mode) => {
+		createStore().set(
+			keyboard.keyBindingTriggerModeAtom,
+			mode === "keyup"
+				? keyboard.KeyBindingTriggerMode.KeyUp
+				: keyboard.KeyBindingTriggerMode.KeyDown,
+		);
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["Control", "KeyZ"], callback));
+		key("keydown", "ControlLeft", 0, { key: "Control" });
+		key("keydown", "KeyY", 10, { key: "z", ctrlKey: true });
+		key("keyup", "KeyY", 20, { key: "z", ctrlKey: true });
+		key("keyup", "ControlLeft", 30, { key: "Control" });
+		expect(callback).toHaveBeenCalledOnce();
+	});
+
+	it("records logical keys and dispatches double presses on them", async () => {
+		const recording = keyboard.recordShortcut();
+		key("keydown", "KeyY", 0, { key: "z" });
+		key("keyup", "KeyY", 10, { key: "z" });
+		const binding = await recording;
+		expect(binding).toEqual(["KeyZ"]);
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerDoubleKeyBindings(binding, callback));
+		for (const time of [20, 100]) {
+			key("keydown", "KeyY", time, { key: "z" });
+			key("keyup", "KeyY", time + 10, { key: "z" });
+		}
+		expect(callback).toHaveBeenCalledOnce();
+	});
+
+	it("cleans up the original key when modifiers change before release", () => {
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["KeyZ", "KeyA"], callback));
+		key("keydown", "KeyY", 0, { key: "Z", shiftKey: true });
+		key("keyup", "KeyY", 10, { key: "z" });
+		key("keydown", "KeyQ", 20, { key: "a" });
+		expect(callback).not.toHaveBeenCalled();
+	});
+
+	it("preserves shifted defaults, navigation and distinct numpad keys", () => {
+		for (const [code, keyValue, expected] of [
+			["Digit1", "!", "Digit1"],
+			["Equal", "+", "Equal"],
+			["Numpad1", "1", "Numpad1"],
+			["ArrowLeft", "ArrowLeft", "ArrowLeft"],
+			["Space", " ", "Space"],
+		]) {
+			expect(
+				keyboard.shortcutKeyFromEvent({ code, key: keyValue, shiftKey: true }),
+			).toBe(expected);
+		}
+	});
+
+	it("does not dispatch composing or dead keys", () => {
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["KeyZ"], callback));
+		key("keydown", "KeyZ", 0, { key: "z", isComposing: true });
+		key("keydown", "KeyZ", 10, { key: "Dead" });
+		expect(callback).not.toHaveBeenCalled();
+	});
+});
+
 describe("double-press shortcuts", () => {
 	it("does not leave the consumed key held in the key-up dispatcher", () => {
 		createStore().set(
