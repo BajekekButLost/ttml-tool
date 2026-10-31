@@ -400,6 +400,21 @@ describe("shortcut recording and storage", () => {
 
 describe("layout-aware shortcuts", () => {
 	it.each([
+		"я",
+		"ض",
+		"ש",
+		"あ",
+		"ㅁ",
+	])("keeps physical positions for %s", (character) => {
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["Control", "KeyZ"], callback));
+		key("keydown", "ControlLeft", 0, { key: "Control" });
+		key("keydown", "KeyZ", 10, { key: character, ctrlKey: true });
+		key("keyup", "KeyZ", 20, { key: character, ctrlKey: true });
+		key("keyup", "ControlLeft", 30, { key: "Control" });
+		expect(callback).toHaveBeenCalledOnce();
+	});
+	it.each([
 		["QWERTZ", "KeyY", "z", "KeyZ"],
 		["AZERTY", "KeyQ", "a", "KeyA"],
 		["Dvorak", "Semicolon", "s", "KeyS"],
@@ -473,11 +488,22 @@ describe("layout-aware shortcuts", () => {
 		}
 	});
 
-	it("does not dispatch composing or dead keys", () => {
+	it.each([
+		"keydown",
+		"keyup",
+	] as const)("does not dispatch composing or dead keys in %s mode", (mode) => {
+		createStore().set(
+			keyboard.keyBindingTriggerModeAtom,
+			mode === "keyup"
+				? keyboard.KeyBindingTriggerMode.KeyUp
+				: keyboard.KeyBindingTriggerMode.KeyDown,
+		);
 		const callback = vi.fn();
 		cleanups.push(keyboard.registerKeyBindings(["KeyZ"], callback));
 		key("keydown", "KeyZ", 0, { key: "z", isComposing: true });
+		key("keyup", "KeyZ", 5, { key: "z" });
 		key("keydown", "KeyZ", 10, { key: "Dead" });
+		key("keyup", "KeyZ", 15, { key: "Dead" });
 		expect(callback).not.toHaveBeenCalled();
 	});
 });

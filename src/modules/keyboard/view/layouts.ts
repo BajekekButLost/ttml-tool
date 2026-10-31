@@ -1,9 +1,3 @@
-/**
- * Physical keyboard geometry for the keyboard view. Keys are identified by
- * `KeyboardEvent.code`, which names a physical position, so bindings stay put
- * whatever the user's layout. Only the printed labels change per layout.
- */
-
 export type KeyboardLayoutId = "qwerty" | "azerty" | "qwertz";
 export type KeyboardGeometry = "ansi" | "iso";
 

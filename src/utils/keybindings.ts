@@ -177,6 +177,8 @@ export function shortcutKeyFromEvent(
 	if (event.code.startsWith("Numpad")) return event.code;
 	if (!event.key || event.key === "Unidentified")
 		return normalizeKeyCode(event.code);
+	if (/\p{Letter}/u.test(event.key) && !/\p{Script=Latin}/u.test(event.key))
+		return normalizeKeyCode(event.code);
 	const shifted = '!@#$%^&*()_+{}|:"<>?~';
 	const unshifted = "1234567890-=[]\\;',./`";
 	const index = shifted.indexOf(event.key);
@@ -308,6 +310,7 @@ window.addEventListener("keyup", (evt) => {
 		clearPressingKeys();
 		return;
 	}
+	if (!heldKeyCodes.has(evt.code)) return;
 
 	const code = heldKeyCodes.get(evt.code) ?? shortcutKeyFromEvent(evt);
 

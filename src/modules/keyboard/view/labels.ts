@@ -1,6 +1,9 @@
-import { formatKeyBindingsAsArray } from "$/utils/keybindings";
+import {
+	formatKeyBindings,
+	formatKeyBindingsAsArray,
+	shortcutKeyFromEvent,
+} from "$/utils/keybindings";
 import type { KeyBindingsConfig } from "../types";
-import { splitBinding } from "./key-index";
 import { isModifierCode, layoutLabel } from "./layouts";
 import type { KeyboardLayoutInfo } from "./use-keyboard-layout";
 
@@ -36,18 +39,17 @@ export function capFaceLabel(code: string, layout: KeyboardLayoutInfo): string {
 	return CAP_FACE_LABELS[code] ?? capLabel(code, layout);
 }
 
-/**
- * A shortcut the way the keyboard view prints it: modifiers from the shared
- * formatter, keys as their caps print them, so it matches the board.
- */
-export function formatViewCombo(
-	binding: KeyBindingsConfig,
+export function capShortcutKey(
+	code: string,
 	layout: KeyboardLayoutInfo,
 ): string {
-	const { modifiers, keys } = splitBinding(binding);
-	const parts = [
-		...formatKeyBindingsAsArray(modifiers),
-		...keys.map((code) => capLabel(code, layout)),
-	];
-	return parts.join(navigator.userAgent.includes("Mac") ? "" : "+");
+	const key = layout.labels?.get(code) ?? layoutLabel(layout.layout, code);
+	return key ? shortcutKeyFromEvent({ code, key }) : code;
+}
+
+export function formatViewCombo(
+	binding: KeyBindingsConfig,
+	_layout: KeyboardLayoutInfo,
+): string {
+	return formatKeyBindings(binding);
 }

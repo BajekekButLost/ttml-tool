@@ -210,7 +210,18 @@ describe("layouts and labels", () => {
 				layout: "azerty",
 				canDetect: false,
 			}),
-		).toBe("Ctrl+A");
+		).toBe("Ctrl+Q");
+		expect(
+			labels.capShortcutKey("KeyY", { layout: "qwertz", canDetect: false }),
+		).toBe("KeyZ");
+		expect(labels.capShortcutKey("KeyQ", reported)).toBe("KeyA");
+		expect(
+			labels.capShortcutKey("KeyZ", {
+				layout: "qwerty",
+				canDetect: true,
+				labels: new Map([["KeyZ", "я"]]),
+			}),
+		).toBe("KeyZ");
 	});
 
 	it("shortens long names on the cap face only", () => {
