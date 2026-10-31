@@ -1,5 +1,5 @@
 ---
-type: fix
+type: change
 impact: 3
 highlight: false
 ---
