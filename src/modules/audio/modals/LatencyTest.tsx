@@ -26,10 +26,19 @@ import {
 } from "../utils/latency-test-session";
 import styles from "./LatencyTest.module.css";
 
+const isValidBPM = (value: unknown): value is number =>
+	typeof value === "number" &&
+	Number.isFinite(value) &&
+	value >= 60 &&
+	value <= 320;
+
 export const LatencyTestDialog = memo(() => {
 	const { t } = useTranslation();
 	const [dialogOpen, setDialogOpen] = useAtom(latencyTestDialogAtom);
-	const [latencyBPM, setLatencyBPM] = useAtom(latencyTestBPMAtom);
+	const [storedBPM, setLatencyBPM] = useAtom(latencyTestBPMAtom);
+	// Older builds could store NaN (saved as null) when the field was cleared.
+	const latencyBPM = isValidBPM(storedBPM) ? storedBPM : 120;
+	const [bpmDraft, setBpmDraft] = useState(String(latencyBPM));
 	const [start, setStart] = useState(false);
 	const [useOffset, setUseOffset] = useState(false);
 	const [syncTimeOffset, setSyncTimeOffset] = useAtom(syncTimeOffsetAtom);
@@ -188,13 +197,14 @@ export const LatencyTestDialog = memo(() => {
 								type="number"
 								min={60}
 								max={320}
-								value={latencyBPM}
+								value={bpmDraft}
 								size="2"
 								onChange={(event) => {
+									setBpmDraft(event.target.value);
 									const value = event.target.valueAsNumber;
-									if (Number.isFinite(value) && value >= 60 && value <= 320)
-										setLatencyBPM(value);
+									if (isValidBPM(value)) setLatencyBPM(value);
 								}}
+								onBlur={() => setBpmDraft(String(latencyBPM))}
 							/>
 						</Text>
 						<Button
