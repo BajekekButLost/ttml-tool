@@ -330,15 +330,18 @@ export const LatencyTestDialog = memo(() => {
 						size="2"
 						weight={recommendedOffset != null ? "medium" : "regular"}
 						color={recommendedOffset != null ? undefined : "gray"}
-						role="status"
 					>
-						{recommendedOffset != null
-							? t("latencyTestDialog.recommendedOffset", {
+						{/* Announce the recommendation, not the tap count on every beat. */}
+						<span role="status">
+							{recommendedOffset != null &&
+								t("latencyTestDialog.recommendedOffset", {
 									offset: recommendedOffset,
-								})
-							: t("latencyTestDialog.recommendationProgress", {
-									count: statistics?.count ?? 0,
 								})}
+						</span>
+						{recommendedOffset == null &&
+							t("latencyTestDialog.recommendationProgress", {
+								count: samples.length,
+							})}
 					</Text>
 					{recommendedOffset != null && (
 						<Button
