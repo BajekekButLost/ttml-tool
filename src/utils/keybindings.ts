@@ -159,32 +159,20 @@ export function normalizeKeyCode(code: string): string {
 	return code.replace(/^(Control|Meta|Alt|Shift)(Left|Right)$/, "$1");
 }
 
-export function shortcutKeyFromCharacter(key: string): string {
-	if (/^[a-z]$/i.test(key)) return `Key${key.toUpperCase()}`;
-	if (/^\d$/.test(key)) return `Digit${key}`;
-	if (key === " ") return "Space";
-	const punctuation = Object.entries(KEY_LABELS).find(
-		([code, label]) => label === key && !code.startsWith("Numpad"),
-	);
-	if (punctuation) return punctuation[0];
-	return key.length === 1 ? key.toLowerCase() : normalizeKeyCode(key);
-}
-
+/**
+ * The binding key an event presses. Letters A-Z follow the character the
+ * layout types, so Ctrl+Z is the key printed Z on QWERTZ, AZERTY or Dvorak.
+ * Every other key keeps its physical position: digits and punctuation move
+ * between layouts, dead keys type nothing, and macOS Option or AltGr turn
+ * letters into other characters (Option+C types ç), so matching their
+ * characters would leave defaults unreachable. Non-Latin layouts stay
+ * physical too, since their letters are not A-Z.
+ */
 export function shortcutKeyFromEvent(
-	event: Pick<KeyboardEvent, "code" | "key"> &
-		Partial<Pick<KeyboardEvent, "shiftKey">>,
+	event: Pick<KeyboardEvent, "code" | "key">,
 ): string {
-	if (event.code.startsWith("Numpad")) return event.code;
-	if (!event.key || event.key === "Unidentified")
-		return normalizeKeyCode(event.code);
-	if (/\p{Letter}/u.test(event.key) && !/\p{Script=Latin}/u.test(event.key))
-		return normalizeKeyCode(event.code);
-	const shifted = '!@#$%^&*()_+{}|:"<>?~';
-	const unshifted = "1234567890-=[]\\;',./`";
-	const index = shifted.indexOf(event.key);
-	if (event.shiftKey && event.key.length === 1 && index !== -1)
-		return shortcutKeyFromCharacter(unshifted[index]);
-	return shortcutKeyFromCharacter(event.key);
+	if (/^[a-z]$/i.test(event.key)) return `Key${event.key.toUpperCase()}`;
+	return normalizeKeyCode(event.code);
 }
 
 export function normalizeKeyBindings(cfg: Iterable<string>): KeyBindingsConfig {
@@ -270,13 +258,8 @@ function triggerCallbacks(
 }
 
 window.addEventListener("keydown", (evt) => {
-	if (
-		evt.repeat ||
-		evt.isComposing ||
-		evt.key === "Dead" ||
-		evt.key === "Process"
-	)
-		return;
+	// IME keystrokes belong to the composition, not to shortcuts.
+	if (evt.repeat || evt.isComposing || evt.key === "Process") return;
 	if (isEditing(evt)) {
 		clearPressingKeys();
 		return;
@@ -604,13 +587,7 @@ export function registerDoubleKeyBindings(
 			reset();
 			return;
 		}
-		if (
-			evt.repeat ||
-			evt.isComposing ||
-			evt.key === "Dead" ||
-			evt.key === "Process"
-		)
-			return;
+		if (evt.repeat || evt.isComposing || evt.key === "Process") return;
 		const keys = [
 			...(evt.ctrlKey ? ["Control"] : []),
 			...(evt.metaKey ? ["Meta"] : []),
@@ -681,8 +658,7 @@ export function recordShortcut(): Promise<KeyBindingsConfig> {
 		const recorded = new Set<string>();
 		const stack = new Set<string>();
 		const onKeyDown = (evt: KeyboardEvent) => {
-			if (evt.isComposing || evt.key === "Dead" || evt.key === "Process")
-				return;
+			if (evt.isComposing || evt.key === "Process") return;
 			recorded.add(shortcutKeyFromEvent(evt));
 			stack.add(evt.code);
 			evt.preventDefault();

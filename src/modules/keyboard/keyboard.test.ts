@@ -419,7 +419,6 @@ describe("layout-aware shortcuts", () => {
 		["AZERTY", "KeyQ", "a", "KeyA"],
 		["Dvorak", "Semicolon", "s", "KeyS"],
 		["Colemak", "KeyK", "e", "KeyE"],
-		["Unicode", "Semicolon", "ö", "ö"],
 	])("follows the character on %s", (_, physical, character, binding) => {
 		const callback = vi.fn();
 		const wrongPosition = vi.fn();
@@ -481,17 +480,42 @@ describe("layout-aware shortcuts", () => {
 			["Numpad1", "1", "Numpad1"],
 			["ArrowLeft", "ArrowLeft", "ArrowLeft"],
 			["Space", " ", "Space"],
+			["ShiftLeft", "Shift", "Shift"],
 		]) {
-			expect(
-				keyboard.shortcutKeyFromEvent({ code, key: keyValue, shiftKey: true }),
-			).toBe(expected);
+			expect(keyboard.shortcutKeyFromEvent({ code, key: keyValue })).toBe(
+				expected,
+			);
 		}
+	});
+
+	it.each([
+		["QWERTZ Shift+2", "Digit2", '"'],
+		["UK Shift+3", "Digit3", "£"],
+		["QWERTZ Ö", "Semicolon", "ö"],
+		["QWERTZ dash", "Slash", "-"],
+		["QWERTZ dead caret", "Backquote", "Dead"],
+		["AZERTY Ù", "Quote", "ù"],
+		["AZERTY colon", "Period", ":"],
+		["AZERTY ampersand", "Digit1", "&"],
+		["macOS Option+C", "KeyC", "ç"],
+		["macOS Option+W", "KeyW", "∑"],
+		["AltGr+E", "KeyE", "€"],
+	])("keeps %s on its physical key", (_, code, keyValue) => {
+		expect(keyboard.shortcutKeyFromEvent({ code, key: keyValue })).toBe(code);
+	});
+
+	it("dispatches dead keys by position", () => {
+		const callback = vi.fn();
+		cleanups.push(keyboard.registerKeyBindings(["Backquote"], callback));
+		key("keydown", "Backquote", 0, { key: "Dead" });
+		key("keyup", "Backquote", 10, { key: "Dead" });
+		expect(callback).toHaveBeenCalledOnce();
 	});
 
 	it.each([
 		"keydown",
 		"keyup",
-	] as const)("does not dispatch composing or dead keys in %s mode", (mode) => {
+	] as const)("does not dispatch IME keystrokes in %s mode", (mode) => {
 		createStore().set(
 			keyboard.keyBindingTriggerModeAtom,
 			mode === "keyup"
@@ -502,8 +526,8 @@ describe("layout-aware shortcuts", () => {
 		cleanups.push(keyboard.registerKeyBindings(["KeyZ"], callback));
 		key("keydown", "KeyZ", 0, { key: "z", isComposing: true });
 		key("keyup", "KeyZ", 5, { key: "z" });
-		key("keydown", "KeyZ", 10, { key: "Dead" });
-		key("keyup", "KeyZ", 15, { key: "Dead" });
+		key("keydown", "KeyZ", 10, { key: "Process" });
+		key("keyup", "KeyZ", 15, { key: "Process" });
 		expect(callback).not.toHaveBeenCalled();
 	});
 });
