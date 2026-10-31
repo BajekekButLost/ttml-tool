@@ -5,4 +5,4 @@ highlight: true
 ---
 **Shortcuts follow your keyboard layout**
 
-Shortcuts follow characters on Latin layouts and keep physical key positions on non-Latin layouts
+Letter shortcuts follow the letters your layout types, while other keys and non-Latin layouts keep key positions
